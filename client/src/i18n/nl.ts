@@ -5689,7 +5689,7 @@ export const nl: Translations = {
         },
         {
           question: 'Hoe lang duurt het met de boot van Blanes naar Tossa?',
-          answer: 'Tussen 45 minuten en 1 uur vanuit de haven van Blanes. 7 mijl spectaculaire kust met kliffen en maagdelijke baaien.',
+          answer: 'Tussen 30 en 45 minuten vanuit de haven van Blanes. 7 mijl spectaculaire kust met kliffen en maagdelijke baaien.',
         },
         {
           question: 'Hoeveel kost de privé-excursie met schipper naar Tossa?',
@@ -5754,7 +5754,7 @@ export const nl: Translations = {
         anchoringZones: 'Ankergebieden',
         anchoringZonesDesc: 'Playa Grande: aangewezen zone voor recreatievaart. Cala Pola: vrij ankeren in kristalhelder water. Es Codolar: ongerepte baai ideaal om de dag door te brengen. Houd afstand van de aangeduide zwemzones.',
         safeNavigation: 'Veilig Varen',
-        safeNavigationDesc: '1 uur varen vereist planning. Controleer het weer, neem voldoende brandstof en water mee. Respecteer de snelheidslimieten in kustzones en houd de kust altijd in zicht.',
+        safeNavigationDesc: 'De tocht naar Tossa vereist planning. Controleer het weer, neem voldoende brandstof en water mee. Respecteer de snelheidslimieten in kustzones en houd de kust altijd in zicht.',
         ctaTitle: 'Klaar om Tossa de Mar te Ontdekken?',
         ctaDescription: 'Reserveer je boot vanuit de haven van Blanes en beleef de unieke ervaring om over zee aan te komen bij het mooiste middeleeuwse dorp van de Costa Brava.',
         ctaButton: 'Uitstapje naar Tossa Reserveren',

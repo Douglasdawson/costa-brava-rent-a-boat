@@ -5684,7 +5684,7 @@ export const it: Translations = {
         },
         {
           question: 'Quanto ci vuole in barca da Blanes a Tossa?',
-          answer: 'Tra 45 minuti e 1 ora dal Porto di Blanes. 7 miglia di costa spettacolare con scogliere e calette vergini.',
+          answer: 'Tra 30 e 45 minuti dal Porto di Blanes. 7 miglia di costa spettacolare con scogliere e calette vergini.',
         },
         {
           question: 'Quanto costa l\'Escursione Privata con Capitano a Tossa?',
@@ -5749,7 +5749,7 @@ export const it: Translations = {
         anchoringZones: 'Zone di Ancoraggio',
         anchoringZonesDesc: 'Playa Grande: zona designata per imbarcazioni da diporto. Cala Pola: ancoraggio libero in acque cristalline. Es Codolar: caletta incontaminata ideale per trascorrere la giornata. Mantieni distanza dalle zone di balneazione segnalate.',
         safeNavigation: 'Navigazione Sicura',
-        safeNavigationDesc: '1 ora di navigazione richiede pianificazione. Controlla il meteo, porta carburante e acqua a sufficienza. Rispetta i limiti di velocità nelle zone costiere e mantieni sempre la costa in vista.',
+        safeNavigationDesc: 'Raggiungere Tossa richiede pianificazione. Controlla il meteo, porta carburante e acqua a sufficienza. Rispetta i limiti di velocità nelle zone costiere e mantieni sempre la costa in vista.',
         ctaTitle: 'Pronto a Scoprire Tossa de Mar?',
         ctaDescription: 'Prenota la tua barca dal porto di Blanes e vivi l\'esperienza unica di arrivare via mare al borgo medievale più bello della Costa Brava.',
         ctaButton: 'Prenota Escursione a Tossa',

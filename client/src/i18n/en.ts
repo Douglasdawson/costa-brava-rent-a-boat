@@ -5723,7 +5723,7 @@ export const en: Translations = {
         },
         {
           question: 'How long does it take by boat from Blanes to Tossa?',
-          answer: 'Between 45 minutes and 1 hour from Blanes Marina. 7 miles of spectacular coast with cliffs and hidden coves.',
+          answer: 'Between 30 and 45 minutes from Blanes Marina. 7 miles of spectacular coast with cliffs and hidden coves.',
         },
         {
           question: 'How much does the Private Excursion with Captain to Tossa cost?',
@@ -5788,7 +5788,7 @@ export const en: Translations = {
         anchoringZones: 'Anchoring Zones',
         anchoringZonesDesc: 'Platja Gran: designated area for recreational boats. Cala Pola: free anchoring in crystal-clear waters. Es Codolar: unspoilt cove ideal for spending the day. Keep clear of signposted swimming zones.',
         safeNavigation: 'Safe Navigation',
-        safeNavigationDesc: 'A one-hour voyage requires planning. Check the weather, bring enough fuel and water. Respect speed limits in coastal areas and always keep the shore in sight.',
+        safeNavigationDesc: 'Reaching Tossa requires planning. Check the weather, bring enough fuel and water. Respect speed limits in coastal areas and always keep the shore in sight.',
         ctaTitle: 'Ready to Discover Tossa de Mar?',
         ctaDescription: 'Book your boat from the Port of Blanes and experience the unique thrill of arriving by sea at the most beautiful medieval town on the Costa Brava.',
         ctaButton: 'Book a Trip to Tossa',

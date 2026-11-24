@@ -5,11 +5,11 @@ import path from "path";
 import { storage } from "../storage";
 import { logger } from "../lib/logger";
 import { AI_CRAWLER_NAMES } from "../seo/constants";
-import { eraCopy, isLicenseFreeEraActive } from "../../shared/constants";
+import { SEASON_YEAR, eraCopy, isLicenseFreeEraActive } from "../../shared/constants";
 import { carabelaPosJsonLd } from "../../shared/coastrentLinks";
 import { BOAT_DATA, isCaptainedBoat, isPubliclyListed, type BoatData } from "../../shared/boatData";
 import { isCatalogBoatPubliclyListed } from "../../shared/publicFleet";
-import { getMaximumDuration, minPriceAcrossBoats, priceCeilingAcrossBoats } from "../../shared/pricing";
+import { filterActivePrices, getMaximumDuration, minPriceAcrossBoats, priceCeilingAcrossBoats } from "../../shared/pricing";
 import { JETSKI_PRODUCTS, isJetSkiProduct, type JetSkiProduct } from "../../shared/jetskiProducts";
 import { getLocalizedPath, type PageKey } from "../../shared/i18n-routes";
 import { NAUTICAL_GLOSSARY_ES } from "../../shared/nauticalGlossary";
@@ -286,28 +286,32 @@ function renderJetSkiPricingBlock(): string {
  * price ranges, capacity, brand, license requirement) without having to
  * parse markdown tables. Mirrors `fleet[]` shape but with full semantics.
  */
-function boatToProductSchema(boat: BoatData, businessUrl: string, ratingValue: number, reviewCount: number) {
-  const lowSeasonPrices = boat.pricing.BAJA?.prices ?? {};
-  const highSeasonPrices = boat.pricing.ALTA?.prices ?? {};
-  // El rango de la oferta solo puede citar franjas vendibles: los barcos sin
-  // licencia estan topados a 4h, asi que sus 6h y 8h quedan fuera.
+function boatToProductSchema(boat: BoatData, businessUrl: string) {
+  // The offer range only quotes sellable blocks: licence-free boats are capped at 4h, so their
+  // 6h and 8h stay out. 0 placeholders are not prices.
   const maxDurationProduct = getMaximumDuration(boat.id, new Date());
   const maxHoursProduct = maxDurationProduct ? parseFloat(maxDurationProduct) : Infinity;
+  const sellable = (prices: Record<string, number> | undefined) =>
+    Object.entries(filterActivePrices(prices)).filter(([d]) => parseFloat(d) <= maxHoursProduct);
   const allPrices: number[] = [];
   for (const tier of [boat.pricing.BAJA, boat.pricing.MEDIA, boat.pricing.ALTA]) {
-    if (tier?.prices) {
-      for (const [d, v] of Object.entries(tier.prices)) {
-        if (typeof v === "number" && parseFloat(d) <= maxHoursProduct) allPrices.push(v);
-      }
-    }
+    for (const [, v] of sellable(tier?.prices)) allPrices.push(v);
   }
-  const lowPrice = allPrices.length ? Math.min(...allPrices) : 70;
-  const highPrice = allPrices.length ? Math.max(...allPrices) : 420;
   const licenseRequired = licenseRequiredFromData(boat);
   const category = isCaptainedBoat(boat.id)
     ? "Private boat excursion with skipper"
-    : licenseRequired ? "Licensed motorboat rental" : "License-free boat rental";
+    : licenseRequired ? "Licensed motorboat rental" : "Boat rental";
+  const seasonOffers = (prices: Record<string, number> | undefined, season: string, seasonName: string) =>
+    sellable(prices).map(([dur, price]) => ({
+      "@type": "Offer",
+      name: `${boat.name} - ${dur} (${season})`,
+      price,
+      priceCurrency: "EUR",
+      eligibleDuration: { "@type": "QuantitativeValue", unitCode: "HUR", value: parseInt(dur, 10) || 1 },
+      seasonName,
+    }));
 
+  // No aggregateRating: the business rating lives on the LocalBusiness node, not on each boat.
   return {
     "@type": "Product",
     "@id": `${businessUrl}/es/barco/${boat.id}#product`,
@@ -315,6 +319,7 @@ function boatToProductSchema(boat: BoatData, businessUrl: string, ratingValue: n
     description: boat.description,
     url: `${businessUrl}/es/barco/${boat.id}`,
     image: `${businessUrl}/images/${boat.image}`,
+    sku: boat.id,
     category,
     brand: { "@id": `${businessUrl}/#brand` },
     seller: { "@id": `${businessUrl}/#business` },
@@ -326,40 +331,22 @@ function boatToProductSchema(boat: BoatData, businessUrl: string, ratingValue: n
       { "@type": "PropertyValue", name: "licenseRequired", value: licenseRequired },
       { "@type": "PropertyValue", name: "depositEur", value: boat.specifications.deposit },
     ],
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "EUR",
-      lowPrice,
-      highPrice,
-      offerCount: allPrices.length,
-      availability: "https://schema.org/InStock",
-      validFrom: `${new Date().getFullYear()}-04-01`,
-      validThrough: `${new Date().getFullYear()}-10-31`,
-      offers: [
-        ...Object.entries(lowSeasonPrices).map(([dur, price]) => ({
-          "@type": "Offer",
-          name: `${boat.name} — ${dur} (Low Season)`,
-          price,
-          priceCurrency: "EUR",
-          eligibleDuration: { "@type": "QuantitativeValue", unitCode: "HUR", value: parseInt(dur, 10) || 1 },
-          seasonName: "Low (April-June, September-October)",
-        })),
-        ...Object.entries(highSeasonPrices).map(([dur, price]) => ({
-          "@type": "Offer",
-          name: `${boat.name} — ${dur} (High Season)`,
-          price,
-          priceCurrency: "EUR",
-          eligibleDuration: { "@type": "QuantitativeValue", unitCode: "HUR", value: parseInt(dur, 10) || 1 },
-          seasonName: "High (August)",
-        })),
-      ],
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue,
-      reviewCount,
-      bestRating: 5,
-    },
+    ...(allPrices.length > 0 && {
+      offers: {
+        "@type": "AggregateOffer",
+        priceCurrency: "EUR",
+        lowPrice: Math.min(...allPrices),
+        highPrice: Math.max(...allPrices),
+        offerCount: allPrices.length,
+        availability: "https://schema.org/InStock",
+        validFrom: `${SEASON_YEAR}-04-01`,
+        validThrough: `${SEASON_YEAR}-10-31`,
+        offers: [
+          ...seasonOffers(boat.pricing.BAJA?.prices, "Low Season", "Low (April-June, September-October)"),
+          ...seasonOffers(boat.pricing.ALTA?.prices, "High Season", "High (August)"),
+        ],
+      },
+    }),
   };
 }
 
@@ -434,7 +421,7 @@ function jetskiToServiceSchema(product: JetSkiProduct, businessUrl: string) {
  * of guessing from prose. April 1 → October 31 of the current year.
  */
 function buildSeasonEvent(businessUrl: string, lowPrice: number, highPrice: number) {
-  const year = new Date().getFullYear();
+  const year = SEASON_YEAR;
   return {
     "@type": "Event",
     "@id": `${businessUrl}/#season-${year}`,
@@ -1247,7 +1234,7 @@ export function registerRobotsRoutes(app: Express): void {
           localBusinessNode,
           buildSeasonEvent(BASE_URL, floor, fleetPriceCeiling()),
           ...Object.values(BOAT_DATA).filter((b) => isCatalogBoatPubliclyListed(b)).map((b) =>
-            boatToProductSchema(b, BASE_URL, gbpStats.rating, gbpStats.userRatingCount),
+            boatToProductSchema(b, BASE_URL),
           ),
           ...JETSKI_PRODUCTS.map((p) => jetskiToServiceSchema(p, BASE_URL)),
         ],

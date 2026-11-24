@@ -2032,7 +2032,7 @@ export const es: Translations = {
         {
           question: "¿Cuánto se tarda en barco de Blanes a Tossa?",
           answer:
-            "Entre 45 minutos y 1 hora desde el Puerto de Blanes. 7 millas de costa espectacular con acantilados y calas vírgenes.",
+            "Entre 30 y 45 minutos desde el Puerto de Blanes. 7 millas de costa espectacular con acantilados y calas vírgenes.",
         },
         {
           question: "¿Cuánto cuesta la Excursión Privada con Capitán a Tossa?",
@@ -2113,7 +2113,7 @@ export const es: Translations = {
           "Playa Grande: zona habilitada para embarcaciones recreativas. Cala Pola: fondeo libre en aguas cristalinas. Es Codolar: cala virgen ideal para pasar el día. Mantén distancia de las zonas de baño señalizadas.",
         safeNavigation: "Navegación Segura",
         safeNavigationDesc:
-          "1 hora de navegación requiere planificación. Consulta el tiempo, lleva suficiente combustible y agua. Respeta las velocidades en zonas costeras y mantén la costa siempre a la vista.",
+          "Llegar a Tossa requiere planificación. Consulta el tiempo, lleva suficiente combustible y agua. Respeta las velocidades en zonas costeras y mantén la costa siempre a la vista.",
         ctaTitle: "¿Listo para Descubrir Tossa de Mar?",
         ctaDescription:
           "Reserva tu barco desde Puerto de Blanes y vive la experiencia única de llegar por mar al pueblo medieval más bonito de la Costa Brava.",

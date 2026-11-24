@@ -4,6 +4,10 @@ import { getBaseUrl } from "@/lib/domain";
 import { HREFLANG_CODES } from "@shared/seoConstants";
 import { carabelaPosJsonLd } from "@shared/coastrentLinks";
 import { getLocalizedPath } from "@shared/i18n-routes";
+import { buildBoatOffer, buildBoatPageMeta, type BoatPageMetaInput } from "@shared/boatPageMeta";
+import { isCaptainedBoat } from "@shared/boatData";
+import { translateBoatText } from "@shared/boatTextTranslations";
+import { SEASON_YEAR } from "@shared/constants";
 import type { PageKey } from "@shared/i18n-routes";
 import {
   BUSINESS_RATING_STR,
@@ -15,13 +19,6 @@ import {
   BUSINESS_COUNTRY,
   CANCELLATION_POLICY_ES,
 } from "@shared/businessProfile";
-
-// Dynamic season year: Nov-Dec → next year, otherwise current year
-function getSeasonYear(): number {
-  const now = new Date();
-  return now.getMonth() >= 10 ? now.getFullYear() + 1 : now.getFullYear();
-}
-const SEASON_YEAR = getSeasonYear();
 
 // SEO Configuration for all languages
 export interface SEOConfig {
@@ -140,10 +137,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // CTR 1.4% \u2014 el de m\u00e1s impresiones de todas las locations. Estilo Lloret:
       // hook concreto (Vila Vella + tiempo) + rating delante.
       title: `Alquiler Barco a Tossa de Mar \u00b7 Vila Vella 30-45 min \u00b7 \u2605${BUSINESS_RATING_STR} \u00b7 desde Blanes`,
-      description: "Llega a la Vila Vella de Tossa en 30-45 min desde Blanes. Barco con licencia desde 175\u20ac (pack 2h) o Excursi\u00f3n Privada con Capit\u00e1n 4h desde 420\u20ac. Combustible aparte.",
+      description: "Alquiler de barco a Tossa de Mar desde Blanes: Vila Vella en 30-45 min. Con Licencia de Navegación desde 175€ (2h) o excursión con patrón desde 265€ (2h).",
       keywords: "alquiler barco tossa de mar, vila vella tossa barco, licencia de navegacion basica tossa, LNB tossa, excursion privada tossa, charter con patron tossa blanes, barco tossa con licencia",
       ogTitle: `Alquiler Barco a Tossa de Mar \u00b7 Vila Vella 30-45 min \u00b7 \u2605${BUSINESS_RATING_STR}`,
-      ogDescription: "Vila Vella de Tossa en 30-45 min desde Blanes. Con licencia desde 175\u20ac (2h) o Excursi\u00f3n con Capit\u00e1n 4h desde 420\u20ac. 4.8\u2605."
+      ogDescription: `Vila Vella de Tossa en 30-45 min desde Blanes. Con la Licencia de Navegación desde 175€ (2h) o excursión con patrón desde 265€ (2h). Combustible aparte. ★${BUSINESS_RATING_STR} Google.`,
     },
     locationMalgrat: {
       title: "Alquiler Barco Malgrat de Mar | Puerto Blanes a 10 min | Sin Licencia 85\u20ac/h",
@@ -234,14 +231,15 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogTitle: "Blog de Navegación Costa Brava | Guías y Destinos en Barco",
       ogDescription: "Descubre guías completas, consejos de navegación y los mejores destinos de la Costa Brava. Calas secretas, rutas y tips para tu aventura en barco."
     },
+    // title/description come from shared/boatPageMeta.ts (see boatDetailSEOData): same text as the SSR shell.
     boatDetail: {
-      title: "{boatName} Blanes | {capacity} Personas desde {pricePerHour}€/h Costa Brava",
-      description: "Alquila {boatName} en Blanes, Costa Brava. {capacity} personas, {license}. Desde {pricePerHour}€/h, {fuelStatus}. 4.8★ Google. Reserva online!",
+      title: "{metaTitle}",
+      description: "{metaDescription}",
       keywords: "alquiler {boatName}, {boatName} blanes, barco {capacity} personas costa brava"
     },
     excursionDetail: {
-      title: "Excursión Privada en Barco Blanes | {capacity} Personas desde {pricePerHour}€/h Costa Brava",
-      description: "Contrata una excursión privada en barco con patrón en Blanes, Costa Brava. {capacity} personas, capitán incluido. Desde {pricePerHour}€/h. 4.8★ Google. Reserva online!",
+      title: "{metaTitle}",
+      description: "{metaDescription}",
       keywords: "excursión privada barco blanes, excursión con capitán costa brava, paseo en barco blanes"
     },
     gallery: {
@@ -384,10 +382,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationTossa: {
       title: `Boat Rental Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 & Mar d'en Roig from Blanes ${SEASON_YEAR}`,
-      description: "Sail to Tossa's Vila Vella in 30-45 min from Blanes. With Basic Boating License (LNB) from 175\u20ac (2h pack) or Private Skippered Charter 4h from 420\u20ac. Fuel apart.",
-      keywords: "boat rental tossa de mar, vila vella tossa boat, cala llevado tossa boat, mar d'en roig boat, giverola tossa boat, tossa excursion from blanes, tossa no license boat",
+      description: "Boat rental to Tossa de Mar from Blanes: Vila Vella in 30-45 min. With the Licencia de Navegación from 175€ (2h) or a skippered excursion from 265€ (2h).",
+      keywords: "boat rental tossa de mar, vila vella tossa boat, cala llevado tossa boat, mar d'en roig boat, giverola tossa boat, tossa excursion from blanes, tossa licensed boat",
       ogTitle: "Boat Rental Tossa de Mar | Vila Vella & Cala Llev\u00e1d\u00f3",
-      ogDescription: "Tossa by boat from Blanes. Vila Vella, Mar d'en Roig and Cala Llev\u00e1d\u00f3 1h away. No license from 85\u20ac/h. 4.8\u2605."
+      ogDescription: `Tossa by boat from Blanes: Vila Vella, Mar d'en Roig and Cala Llevadó in 30-45 min. With the Licencia de Navegación from 175€ (2h) or a skippered excursion from 265€ (2h). Fuel extra. ★${BUSINESS_RATING_STR} Google.`,
     },
     locationMalgrat: {
       title: "Boat Rental Malgrat de Mar | Blanes Port 10 min | No License 85\u20ac/h",
@@ -467,13 +465,13 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Discover complete guides, navigation tips and the best destinations of Costa Brava. Secret coves, routes and tips for your boat adventure."
     },
     boatDetail: {
-      title: "{boatName} Blanes | {capacity} People from {pricePerHour}€/h Costa Brava",
-      description: "Rent {boatName} in Blanes, Costa Brava. {capacity} people, {license}. From {pricePerHour}€/h, {fuelStatus}. 4.8★ Google. Book online!",
+      title: "{metaTitle}",
+      description: "{metaDescription}",
       keywords: "rent {boatName}, {boatName} blanes, boat {capacity} people costa brava"
     },
     excursionDetail: {
-      title: "Private Boat Excursion Blanes | {capacity} People from {pricePerHour}€/h Costa Brava",
-      description: "Private boat trip with skipper in Blanes, Costa Brava. {capacity} people, captain included. From {pricePerHour}€/h. 4.8★ Google. Book online!",
+      title: "{metaTitle}",
+      description: "{metaDescription}",
       keywords: "private boat excursion blanes, boat trip with captain costa brava, boat tour blanes"
     },
     gallery: {
@@ -610,10 +608,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationTossa: {
       title: `Lloguer Barca Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 i Mar d'en Roig des de Blanes ${SEASON_YEAR}`,
-      description: "Arriba a la Vila Vella de Tossa en 30-45 min des de Blanes. Amb Llic\u00e8ncia de Navegaci\u00f3 B\u00e0sica (LNB) des de 175\u20ac (pack 2h) o Excursi\u00f3 Privada amb Capit\u00e0 4h des de 420\u20ac. Combustible a part.",
-      keywords: "lloguer barca tossa de mar, vila vella tossa barca, cala llevado tossa barca, mar d'en roig barca, giverola tossa barca, excursi\u00f3 tossa des de blanes, barca tossa sense llic\u00e8ncia",
+      description: "Lloguer de barca a Tossa de Mar des de Blanes: Vila Vella en 30-45 min. Amb la Llicència de Navegació des de 175€ (2h) o excursió amb patró des de 265€ (2h).",
+      keywords: "lloguer barca tossa de mar, vila vella tossa barca, cala llevado tossa barca, mar d'en roig barca, giverola tossa barca, excursi\u00f3 tossa des de blanes, barca tossa amb llic\u00e8ncia",
       ogTitle: "Lloguer Barca Tossa de Mar | Vila Vella i Cala Llev\u00e1d\u00f3",
-      ogDescription: "Tossa en barca des de Blanes. Vila Vella, Mar d'en Roig i Cala Llev\u00e1d\u00f3 a 1h. Sense llic\u00e8ncia des de 85\u20ac/h. 4.8\u2605."
+      ogDescription: `Tossa en barca des de Blanes: Vila Vella, Mar d'en Roig i Cala Llevadó en 30-45 min. Amb la Llicència de Navegació des de 175€ (2h) o excursió amb patró des de 265€ (2h). Combustible a part. ★${BUSINESS_RATING_STR} Google.`,
     },
     locationMalgrat: {
       title: "Lloguer Barca Malgrat de Mar | Port Blanes a 10 min | Sense Llic\u00e8ncia 85\u20ac/h",
@@ -776,10 +774,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationTossa: {
       title: `Location Bateau Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 et Mar d'en Roig depuis Blanes ${SEASON_YEAR}`,
-      description: "Naviguez \u00e0 la Vila Vella de Tossa en 30-45 min depuis Blanes. Avec Permis de Navigation de Base (LNB) d\u00e8s 175\u20ac (pack 2h) ou Excursion Priv\u00e9e avec Capitaine 4h d\u00e8s 420\u20ac. Carburant en sus.",
-      keywords: "location bateau tossa de mar, vila vella tossa bateau, cala llevado tossa bateau, mar d'en roig bateau, giverola tossa bateau, excursion tossa depuis blanes, bateau tossa sans permis",
+      description: "Location de bateau à Tossa de Mar depuis Blanes : Vila Vella en 30-45 min. Avec la Licencia de Navegación dès 175€ (2h) ou excursion avec skipper dès 265€ (2h).",
+      keywords: "location bateau tossa de mar, vila vella tossa bateau, cala llevado tossa bateau, mar d'en roig bateau, giverola tossa bateau, excursion tossa depuis blanes, bateau tossa avec permis",
       ogTitle: "Location Bateau Tossa de Mar | Vila Vella et Cala Llev\u00e1d\u00f3",
-      ogDescription: "Tossa en bateau depuis Blanes. Vila Vella, Mar d'en Roig et Cala Llev\u00e1d\u00f3 \u00e0 1h. Sans permis d\u00e8s 85\u20ac/h. 4.8\u2605."
+      ogDescription: `Tossa en bateau depuis Blanes : Vila Vella, Mar d'en Roig et Cala Llevadó en 30-45 min. Avec la Licencia de Navegación dès 175€ (2h) ou excursion avec skipper dès 265€ (2h). Carburant en sus. ★${BUSINESS_RATING_STR} Google.`,
     },
     locationMalgrat: {
       title: "Location Bateau Malgrat de Mar | Port Blanes \u00e0 10 min | Sans Permis 85\u20ac/h",
@@ -940,10 +938,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationTossa: {
       title: `Bootsverleih Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 & Mar d'en Roig ab Blanes ${SEASON_YEAR}`,
-      description: "Segeln Sie in 30-45 min von Blanes zur Vila Vella von Tossa. Mit Bootsf\u00fchrerschein (LNB) ab 175\u20ac (2h-Paket) oder private Skipper-Tour 4h ab 420\u20ac. Kraftstoff separat.",
-      keywords: "bootsverleih tossa de mar, vila vella tossa boot, cala llevado tossa boot, mar d'en roig boot, giverola tossa boot, tossa ausflug von blanes, boot tossa ohne f\u00fchrerschein",
+      description: "Boot mieten nach Tossa de Mar ab Blanes: Vila Vella in 30-45 Min. Mit der Licencia de Navegación ab 175€ (2h) oder Skipper-Ausflug ab 265€ (2h).",
+      keywords: "bootsverleih tossa de mar, vila vella tossa boot, cala llevado tossa boot, mar d'en roig boot, giverola tossa boot, tossa ausflug von blanes, boot tossa mit f\u00fchrerschein",
       ogTitle: "Bootsverleih Tossa de Mar | Vila Vella & Cala Llev\u00e1d\u00f3",
-      ogDescription: "Tossa mit dem Boot ab Blanes. Vila Vella, Mar d'en Roig und Cala Llev\u00e1d\u00f3 in 1h. Ohne F\u00fchrerschein ab 85\u20ac/h. 4.8\u2605."
+      ogDescription: `Tossa mit dem Boot ab Blanes: Vila Vella, Mar d'en Roig und Cala Llevadó in 30-45 Min. Mit der Licencia de Navegación ab 175€ (2h) oder Skipper-Ausflug ab 265€ (2h). Kraftstoff separat. ★${BUSINESS_RATING_STR} Google.`,
     },
     locationMalgrat: {
       title: "Bootsverleih Malgrat de Mar | Hafen Blanes 10 Min | Ohne F\u00fchrerschein 85\u20ac/h",
@@ -1104,10 +1102,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationTossa: {
       title: `Bootverhuur Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 & Mar d'en Roig vanuit Blanes ${SEASON_YEAR}`,
-      description: "Vaar in 30-45 min vanuit Blanes naar de Vila Vella van Tossa. Met Basis Vaarbewijs (LNB) vanaf 175\u20ac (pack 2u) of Priv\u00e9 Skipper-Charter 4u vanaf 420\u20ac. Brandstof apart.",
-      keywords: "bootverhuur tossa de mar, vila vella tossa boot, cala llevado tossa boot, mar d'en roig boot, giverola tossa boot, tossa excursie vanuit blanes, boot tossa zonder vaarbewijs",
+      description: "Boot huren naar Tossa de Mar vanaf Blanes: Vila Vella in 30-45 min. Met de Licencia de Navegación vanaf 175€ (2u) of schipperstocht vanaf 265€ (2u).",
+      keywords: "bootverhuur tossa de mar, vila vella tossa boot, cala llevado tossa boot, mar d'en roig boot, giverola tossa boot, tossa excursie vanuit blanes, boot tossa met vaarbewijs",
       ogTitle: "Bootverhuur Tossa de Mar | Vila Vella & Cala Llev\u00e1d\u00f3",
-      ogDescription: "Tossa per boot vanuit Blanes. Vila Vella, Mar d'en Roig en Cala Llev\u00e1d\u00f3 op 1u. Zonder vaarbewijs vanaf 85\u20ac/u. 4.8\u2605."
+      ogDescription: `Tossa per boot vanuit Blanes: Vila Vella, Mar d'en Roig en Cala Llevadó in 30-45 min. Met de Licencia de Navegación vanaf 175€ (2u) of schipperstocht vanaf 265€ (2u). Brandstof apart. ★${BUSINESS_RATING_STR} Google.`,
     },
     locationMalgrat: {
       title: "Bootverhuur Malgrat de Mar | Haven Blanes op 10 min | Zonder Vaarbewijs 85\u20ac/u",
@@ -1268,10 +1266,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationTossa: {
       title: `Noleggio Barca Tossa de Mar | Vila Vella, Cala Llev\u00e1d\u00f3 e Mar d'en Roig da Blanes ${SEASON_YEAR}`,
-      description: "Naviga in 30-45 min da Blanes alla Vila Vella di Tossa. Con Patente Nautica Base (LNB) da 175\u20ac (pack 2h) o Escursione Privata con Capitano 4h da 420\u20ac. Carburante a parte.",
-      keywords: "noleggio barca tossa de mar, vila vella tossa barca, cala llevado tossa barca, mar d'en roig barca, giverola tossa barca, escursione tossa da blanes, barca tossa senza patente",
+      description: "Noleggio barca a Tossa de Mar da Blanes: Vila Vella in 30-45 min. Con la Licencia de Navegación da 175€ (2h) o escursione con skipper da 265€ (2h).",
+      keywords: "noleggio barca tossa de mar, vila vella tossa barca, cala llevado tossa barca, mar d'en roig barca, giverola tossa barca, escursione tossa da blanes, barca tossa con patente",
       ogTitle: "Noleggio Barca Tossa de Mar | Vila Vella e Cala Llev\u00e1d\u00f3",
-      ogDescription: "Tossa in barca da Blanes. Vila Vella, Mar d'en Roig e Cala Llev\u00e1d\u00f3 a 1h. Senza patente da 85\u20ac/h. 4.8\u2605."
+      ogDescription: `Tossa in barca da Blanes: Vila Vella, Mar d'en Roig e Cala Llevadó in 30-45 min. Con la Licencia de Navegación da 175€ (2h) o escursione con skipper da 265€ (2h). Carburante a parte. ★${BUSINESS_RATING_STR} Google.`,
     },
     locationMalgrat: {
       title: "Noleggio Barca Malgrat de Mar | Porto Blanes a 10 min | Senza Patente 85\u20ac/h",
@@ -1432,10 +1430,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationTossa: {
       title: `\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u0422\u043e\u0441\u0441\u0430-\u0434\u0435-\u041c\u0430\u0440 | \u0412\u0438\u043b\u0430-\u0412\u0435\u043b\u044c\u044f, \u041a\u0430\u043b\u0430-\u041b\u044c\u0435\u0432\u0430\u0434\u043e \u0438 \u041c\u0430\u0440-\u0434\u0435\u043d-\u0420\u043e\u0438\u0433 \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430 ${SEASON_YEAR}`,
-      description: "\u0418\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430 \u0432 \u0412\u0438\u043b\u0430-\u0412\u0435\u043b\u044c\u044f \u0422\u043e\u0441\u0441\u044b \u0437\u0430 30-45 \u043c\u0438\u043d. \u0421 \u0431\u0430\u0437\u043e\u0432\u043e\u0439 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0435\u0439 (LNB) \u043e\u0442 175\u20ac (\u043f\u0430\u043a\u0435\u0442 2\u0447) \u0438\u043b\u0438 \u0447\u0430\u0441\u0442\u043d\u0430\u044f \u044d\u043a\u0441\u043a\u0443\u0440\u0441\u0438\u044f \u0441 \u043a\u0430\u043f\u0438\u0442\u0430\u043d\u043e\u043c 4\u0447 \u043e\u0442 420\u20ac. \u0422\u043e\u043f\u043b\u0438\u0432\u043e \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u043e.",
-      keywords: "аренда лодки тосса де мар, вила велла тосса лодка, кала льевадо тосса лодка, мар ден роиг лодка, дживерола тосса лодка, экскурсия тосса из бланеса, лодка тосса без лицензии",
+      description: "Аренда лодки в Тосса-де-Мар из Бланеса: Вила-Велья за 30-45 мин. С Licencia de Navegación от 175€ (2ч) или экскурсия с капитаном от 265€ (2ч).",
+      keywords: "аренда лодки тосса де мар, вила велла тосса лодка, кала льевадо тосса лодка, мар ден роиг лодка, дживерола тосса лодка, экскурсия тосса из бланеса, лодка тосса с правами",
       ogTitle: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u0422\u043e\u0441\u0441\u0430-\u0434\u0435-\u041c\u0430\u0440 | \u0412\u0438\u043b\u0430-\u0412\u0435\u043b\u044c\u044f \u0438 \u041a\u0430\u043b\u0430-\u041b\u044c\u0435\u0432\u0430\u0434\u043e",
-      ogDescription: "\u0422\u043e\u0441\u0441\u0430 \u043d\u0430 \u043b\u043e\u0434\u043a\u0435 \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430. \u0412\u0438\u043b\u0430-\u0412\u0435\u043b\u044c\u044f, \u041c\u0430\u0440-\u0434\u0435\u043d-\u0420\u043e\u0438\u0433 \u0438 \u041a\u0430\u043b\u0430-\u041b\u044c\u0435\u0432\u0430\u0434\u043e \u0437\u0430 1\u0447. \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 85\u20ac/\u0447. 4.8\u2605."
+      ogDescription: `Тосса на лодке из Бланеса: Вила-Велья, Мар-ден-Роиг и Кала-Льевадо за 30-45 мин. С Licencia de Navegación от 175€ (2ч) или экскурсия с капитаном от 265€ (2ч). Топливо отдельно. ★${BUSINESS_RATING_STR} Google.`,
     },
     locationMalgrat: {
       title: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u041c\u0430\u043b\u0433\u0440\u0430\u0442-\u0434\u0435-\u041c\u0430\u0440 | \u041f\u043e\u0440\u0442 \u0411\u043b\u0430\u043d\u0435\u0441 \u0432 10 \u043c\u0438\u043d | \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 85\u20ac/\u0447",
@@ -1623,11 +1621,23 @@ export const getSEOConfig = (pageName: string, language: Language, dynamicData?:
   return config;
 };
 
+// Placeholder values for the boatDetail / excursionDetail configs. Title and description are the
+// shared template the SSR shell also uses (shared/boatPageMeta.ts), so both stay identical.
+export const boatDetailSEOData = (boat: BoatPageMetaInput, language: Language): Record<string, string> => {
+  const meta = buildBoatPageMeta(boat, language);
+  return {
+    metaTitle: meta.title,
+    metaDescription: meta.description,
+    boatName: translateBoatText(boat.name, language),
+    capacity: String(boat.capacity),
+  };
+};
+
 // Helper function to replace placeholders in strings
 const replacePlaceholders = (text: string, data: Record<string, string>): string => {
   let result = text;
   for (const [key, value] of Object.entries(data)) {
-    result = result.replace(new RegExp(`\\{${key}\\}`, 'g'), value);
+    result = result.replace(new RegExp(`\\{${key}\\}`, 'g'), () => value);
   }
   return result;
 };
@@ -1942,105 +1952,24 @@ interface BoatProductData {
 
 export function generateEnhancedProductSchema(boatData: BoatProductData, language: Language = 'es') {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : BUSINESS_INFO.url;
-  const currentYear = new Date().getFullYear();
-  
-  // Helper to parse season period and generate dates
-  const parseSeasonDates = (period: string, seasonName: string) => {
-    const months: { [key: string]: number } = {
-      'enero': 0, 'febrero': 1, 'marzo': 2, 'abril': 3, 'mayo': 4, 'junio': 5,
-      'julio': 6, 'agosto': 7, 'septiembre': 8, 'octubre': 9, 'noviembre': 10, 'diciembre': 11,
-      'cierre': 9 // Map "Cierre" to October (end of season)
-    };
-    
-    const periodLower = period.toLowerCase().trim();
-    
-    // Handle single month (e.g., "Julio", "Agosto")
-    if (months[periodLower] !== undefined) {
-      const monthNum = months[periodLower];
-      return {
-        validFrom: new Date(currentYear, monthNum, 1).toISOString().split('T')[0],
-        validThrough: new Date(currentYear, monthNum + 1, 0).toISOString().split('T')[0]
-      };
-    }
-    
-    // Handle comma-separated ranges (e.g., "Abril-Junio, Septiembre-Cierre")
-    const segments = periodLower.split(',').map(s => s.trim());
-    let earliestStart: Date | null = null;
-    let latestEnd: Date | null = null;
-    
-    for (const segment of segments) {
-      const parts = segment.split('-').map(p => p.trim());
-      
-      if (parts.length === 2) {
-        const startMonth = months[parts[0]];
-        const endMonth = months[parts[1]];
-        
-        if (startMonth !== undefined && endMonth !== undefined) {
-          const segmentStart = new Date(currentYear, startMonth, 1);
-          const segmentEnd = new Date(currentYear, endMonth + 1, 0);
-          
-          if (!earliestStart || segmentStart < earliestStart) {
-            earliestStart = segmentStart;
-          }
-          if (!latestEnd || segmentEnd > latestEnd) {
-            latestEnd = segmentEnd;
-          }
-        }
-      } else if (parts.length === 1 && months[parts[0]] !== undefined) {
-        // Single month in segment
-        const monthNum = months[parts[0]];
-        const segmentStart = new Date(currentYear, monthNum, 1);
-        const segmentEnd = new Date(currentYear, monthNum + 1, 0);
-        
-        if (!earliestStart || segmentStart < earliestStart) {
-          earliestStart = segmentStart;
-        }
-        if (!latestEnd || segmentEnd > latestEnd) {
-          latestEnd = segmentEnd;
-        }
-      }
-    }
-    
-    // If we successfully parsed segments, return the range
-    if (earliestStart && latestEnd) {
-      return {
-        validFrom: earliestStart.toISOString().split('T')[0],
-        validThrough: latestEnd.toISOString().split('T')[0]
-      };
-    }
-    
-    // Fallback dates based on season name (only if parsing completely failed)
-    if (seasonName === 'BAJA') {
-      return {
-        validFrom: `${currentYear}-04-01`,
-        validThrough: `${currentYear}-06-30`
-      };
-    } else if (seasonName === 'MEDIA') {
-      return {
-        validFrom: `${currentYear}-07-01`,
-        validThrough: `${currentYear}-07-31`
-      };
-    } else { // ALTA
-      return {
-        validFrom: `${currentYear}-08-01`,
-        validThrough: `${currentYear}-08-31`
-      };
-    }
-  };
+  const boatUrl = `${baseUrl}${getLocalizedPath('boatDetail', language, { slug: boatData.id })}`;
 
+  // NO aggregateRating: the business rating lives in LocalBusiness only (reviews of the company,
+  // not of this boat), same rule as the SSR schema in server/seoInjector.ts.
   const baseSchema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Product",
-    "@id": `${baseUrl}/barco/${boatData.id}`,
+    "@id": `${boatUrl}#product`,
     "name": boatData.name,
     "description": boatData.description,
+    "url": boatUrl,
+    "sku": boatData.id,
     "brand": {
       "@type": "Brand",
       "name": boatData.brand || "Costa Brava Rent a Boat"
     },
-    "category": "Boat Rental",
+    "category": isCaptainedBoat(boatData.id) ? "Private boat excursion with skipper" : "Boat Rental",
     "additionalType": "https://schema.org/Vehicle",
-    "vehicleModelDate": boatData.year || currentYear,
     "vehicleSeatingCapacity": boatData.capacity,
     "vehicleEngine": {
       "@type": "EngineSpecification",
@@ -2050,129 +1979,17 @@ export function generateEnhancedProductSchema(boatData: BoatProductData, languag
         "unitText": "CV"
       }
     },
-    "manufacturer": {
-      "@type": "Organization",
-      "name": boatData.brand || "Various"
-    },
-    "itemCondition": "https://schema.org/UsedCondition",
     "isAccessibleForFree": false,
     "requiresSubscription": false,
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": BUSINESS_RATING_STR,
-      "bestRating": "5",
-      "worstRating": "1",
-      "ratingCount": BUSINESS_REVIEW_COUNT_STR,
-      "reviewCount": BUSINESS_REVIEW_COUNT_STR
-    }
   };
 
-  // Enhanced Offers with seasonal pricing
-  if (boatData.pricing) {
-    const offers: Record<string, unknown>[] = [];
-    
-    // Generate offer for each season
-    ['BAJA', 'MEDIA', 'ALTA'].forEach((season) => {
-      const seasonData = boatData.pricing![season as keyof typeof boatData.pricing];
-      if (seasonData && seasonData.prices) {
-        const prices = Object.values(seasonData.prices).filter((p): p is number => typeof p === 'number' && p > 0);
-        if (prices.length > 0) {
-          const dates = parseSeasonDates(seasonData.period, season);
-          
-          offers.push({
-            "@type": "Offer",
-            "name": `Temporada ${season}`,
-            "url": `${baseUrl}/barco/${boatData.id}`,
-            "priceCurrency": "EUR",
-            "price": Math.min(...prices).toString(),
-            "lowPrice": Math.min(...prices).toString(),
-            "highPrice": Math.max(...prices).toString(),
-            "priceValidUntil": dates.validThrough,
-            "validFrom": dates.validFrom,
-            "validThrough": dates.validThrough,
-            "availability": "https://schema.org/InStock",
-            "eligibleRegion": {
-              "@type": "Place",
-              "name": "Costa Brava, Girona, España",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Blanes",
-                "addressRegion": "Girona",
-                "addressCountry": "ES"
-              }
-            },
-            "seller": {
-              "@type": "LocalBusiness",
-              "@id": `${baseUrl}/#organization`
-            },
-            "offeredBy": {
-              "@type": "LocalBusiness",
-              "@id": `${baseUrl}/#organization`
-            }
-          });
-        }
-      }
-    });
-
-    // Use AggregateOffer if multiple seasons, or single Offer
-    if (offers.length > 1) {
-      const allPrices = offers.flatMap(o => [parseFloat(o.lowPrice as string), parseFloat(o.highPrice as string)]);
-      baseSchema.offers = {
-        "@type": "AggregateOffer",
-        "priceCurrency": "EUR",
-        "lowPrice": Math.min(...allPrices).toString(),
-        "highPrice": Math.max(...allPrices).toString(),
-        "offerCount": offers.length.toString(),
-        "offers": offers,
-        "availability": "https://schema.org/InStock",
-        "url": `${baseUrl}/barco/${boatData.id}`,
-        "seller": {
-          "@type": "LocalBusiness",
-          "@id": `${baseUrl}/#organization`
-        }
-      };
-    } else if (offers.length === 1) {
-      baseSchema.offers = offers[0];
-    } else {
-      // Fallback to simple offer
-      baseSchema.offers = {
-        "@type": "Offer",
-        "url": `${baseUrl}/barco/${boatData.id}`,
-        "priceCurrency": "EUR",
-        "price": boatData.pricePerHour || "70",
-        "availability": "https://schema.org/InStock",
-        "seller": {
-          "@type": "LocalBusiness",
-          "@id": `${baseUrl}/#organization`
-        }
-      };
-    }
-  } else {
-    // Fallback when no pricing data
-    baseSchema.offers = {
-      "@type": "Offer",
-      "url": `${baseUrl}/barco/${boatData.id}`,
-      "priceCurrency": "EUR",
-      "price": boatData.pricePerHour || "70",
-      "priceSpecification": {
-        "@type": "UnitPriceSpecification",
-        "price": boatData.pricePerHour || "70",
-        "priceCurrency": "EUR",
-        "unitText": "hour"
-      },
-      "availability": "https://schema.org/InStock",
-      "validFrom": `${currentYear}-04-01`,
-      "validThrough": `${currentYear}-10-31`,
-      "seller": {
-        "@type": "LocalBusiness",
-        "@id": `${baseUrl}/#organization`
-      },
-      "offeredBy": {
-        "@type": "LocalBusiness",
-        "@id": `${baseUrl}/#organization`
-      }
-    };
-  }
+  // Offer / AggregateOffer from the real blocks (shared with the SSR schema); no per-hour price.
+  const offers = buildBoatOffer(boatData.id, boatData.pricing, {
+    seasonYear: SEASON_YEAR,
+    sellerId: `${baseUrl}/#organization`,
+    sellerName: BUSINESS_INFO.name,
+  });
+  if (offers) baseSchema.offers = offers;
 
   return baseSchema;
 }

@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { SEASON_YEAR } from "@shared/constants";
 import {
   generateItemListSchema,
   generateArticleSchema,
@@ -100,16 +101,20 @@ describe("generateSeasonalEventSchema", () => {
   it("generates valid Event schema", () => {
     const schema = generateSeasonalEventSchema();
     expect(schema["@type"]).toBe("Event");
-    expect(schema.startDate).toBe("2026-04-01");
-    expect(schema.endDate).toBe("2026-10-31");
+    expect(schema.startDate).toBe(`${SEASON_YEAR}-04-01`);
+    expect(schema.endDate).toBe(`${SEASON_YEAR}-10-31`);
+  });
+
+  it("omits offers until a live price range is available", () => {
+    expect(generateSeasonalEventSchema()).not.toHaveProperty("offers");
   });
 
   it("has AggregateOffer with EUR prices", () => {
-    const schema = generateSeasonalEventSchema();
-    expect(schema.offers["@type"]).toBe("AggregateOffer");
-    expect(schema.offers.priceCurrency).toBe("EUR");
-    expect(Number(schema.offers.lowPrice)).toBeGreaterThan(0);
-    expect(Number(schema.offers.highPrice)).toBeGreaterThan(Number(schema.offers.lowPrice));
+    const schema = generateSeasonalEventSchema({ low: 175, high: 460 });
+    expect(schema.offers?.["@type"]).toBe("AggregateOffer");
+    expect(schema.offers?.priceCurrency).toBe("EUR");
+    expect(Number(schema.offers?.lowPrice)).toBeGreaterThan(0);
+    expect(Number(schema.offers?.highPrice)).toBeGreaterThan(Number(schema.offers?.lowPrice));
   });
 
   it("has location in Blanes", () => {

@@ -5696,7 +5696,7 @@ export const de: Translations = {
         },
         {
           question: 'Wie lange dauert die Fahrt mit dem Boot von Blanes nach Tossa?',
-          answer: 'Zwischen 45 Minuten und 1 Stunde vom Hafen Blanes aus. 7 Meilen spektakuläre Küste mit Klippen und unberührten Buchten.',
+          answer: 'Zwischen 30 und 45 Minuten vom Hafen Blanes aus. 7 Meilen spektakuläre Küste mit Klippen und unberührten Buchten.',
         },
         {
           question: 'Wie viel kostet die private Exkursion mit Kapitän nach Tossa?',
@@ -5761,7 +5761,7 @@ export const de: Translations = {
         anchoringZones: 'Ankerzonen',
         anchoringZonesDesc: 'Playa Grande: ausgewiesene Zone für Freizeitboote. Cala Pola: freies Ankern in kristallklarem Wasser. Es Codolar: unberührte Bucht, ideal für einen Tagesaufenthalt. Halten Sie Abstand zu markierten Badezonen.',
         safeNavigation: 'Sichere Navigation',
-        safeNavigationDesc: '1 Stunde Navigation erfordert gute Planung. Prüfen Sie das Wetter, nehmen Sie ausreichend Treibstoff und Wasser mit. Halten Sie sich an die Geschwindigkeitsbegrenzungen in Küstennähe und behalten Sie die Küste stets im Blick.',
+        safeNavigationDesc: 'Die Fahrt nach Tossa erfordert gute Planung. Prüfen Sie das Wetter, nehmen Sie ausreichend Treibstoff und Wasser mit. Halten Sie sich an die Geschwindigkeitsbegrenzungen in Küstennähe und behalten Sie die Küste stets im Blick.',
         ctaTitle: 'Bereit, Tossa de Mar zu entdecken?',
         ctaDescription: 'Buchen Sie Ihr Boot ab dem Hafen von Blanes und erleben Sie das einzigartige Erlebnis, auf dem Seeweg das schönste mittelalterliche Dorf der Costa Brava zu erreichen.',
         ctaButton: 'Ausflug nach Tossa buchen',

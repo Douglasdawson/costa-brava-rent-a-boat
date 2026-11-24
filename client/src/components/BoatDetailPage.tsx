@@ -66,14 +66,17 @@ import { SEO } from "./SEO";
 import { useLanguage } from "@/hooks/use-language";
 import {
   getSEOConfig,
+  boatDetailSEOData,
   generateHreflangLinks,
   generateCanonicalUrl,
   generateEnhancedProductSchema,
   generateBreadcrumbSchema,
 } from "@/utils/seo-config";
 import type { Boat } from "@shared/schema";
-import { getMaximumDuration, getMinActivePrice } from "@shared/pricing";
+import { getLocalizedPath } from "@shared/i18n-routes";
+import { getMinActivePrice } from "@shared/pricing";
 import { isJetSkiProduct } from "@shared/jetskiProducts";
+import { boatFaqPricing } from "@shared/boatPageMeta";
 import { buildBoatFaqItems, buildBoatFaqTitle, type BoatFaqText } from "@shared/boatFaqBuilder";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { useTranslations } from "@/lib/translations";
@@ -319,37 +322,17 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     ? parseInt(boatData.specifications.capacity?.split(" ")[0] || String(boatData.capacity))
     : boatData.capacity;
 
-  const licenseLabels: Record<string, [string, string]> = {
-    es: ["con licencia", "sin licencia"],
-    en: ["with license", "without license"],
-    ca: ["amb llicència", "sense llicència"],
-    fr: ["avec permis", "sans permis"],
-    de: ["mit Lizenz", "ohne Lizenz"],
-    nl: ["met vaarbewijs", "zonder vaarbewijs"],
-    it: ["con patente", "senza patente"],
-    ru: ["с лицензией", "без лицензии"],
-  };
-  // Fuel labels — "combustible aparte" / "gasolina incluida" honest by boat type.
-  // Sin-licencia boats include fuel; licensed boats and excursión-privada do not.
-  const fuelLabels: Record<string, [string, string]> = {
-    es: ["combustible aparte", "gasolina incluida"],
-    en: ["fuel apart", "fuel included"],
-    ca: ["combustible a part", "gasolina inclosa"],
-    fr: ["carburant en sus", "carburant inclus"],
-    de: ["Kraftstoff separat", "Kraftstoff inklusive"],
-    nl: ["brandstof apart", "brandstof inbegrepen"],
-    it: ["carburante a parte", "carburante incluso"],
-    ru: ["топливо отдельно", "топливо включено"],
-  };
-  const [withLic, withoutLic] = licenseLabels[language] || licenseLabels.es;
-  const [fuelApart, fuelInc] = fuelLabels[language] || fuelLabels.es;
-  const dynamicSEOData = {
-    boatName: boatName,
-    capacity: capacity.toString(),
-    license: requiresLicense ? withLic : withoutLic,
-    pricePerHour: lowestPrice.toString(),
-    fuelStatus: fuelIncluded ? fuelInc : fuelApart,
-  };
+  // Title/description: shared/boatPageMeta.ts, the same template the SSR shell renders.
+  const dynamicSEOData = boatDetailSEOData(
+    {
+      id: boatId,
+      name: boatData.name,
+      capacity: boatData.capacity,
+      requiresLicense: boatData.requiresLicense,
+      pricing: boatData.pricing,
+    },
+    language
+  );
 
   const seoPageKey = boatId === "excursion-privada" ? "excursionDetail" : "boatDetail";
   const seoConfig = getSEOConfig(seoPageKey, language, dynamicSEOData);
@@ -376,6 +359,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     power: parseInt(boatData.specifications?.engine?.match(/\d+/)?.[0] || "15"),
     capacity: capacity,
     pricePerHour: lowestPrice,
+    pricing: boatData.pricing ?? undefined,
     year: new Date().getFullYear() - 2, // Assuming boats are ~2 years old
   };
 
@@ -396,9 +380,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
   // Generate breadcrumb schema with localized names
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: t.breadcrumbs.home, url: "/" },
-    { name: t.breadcrumbs.fleet, url: "/#fleet" },
-    { name: boatName, url: `/barco/${boatId}` },
+    { name: t.breadcrumbs.home, url: getLocalizedPath("home", language) },
+    { name: t.breadcrumbs.fleet, url: `${getLocalizedPath("home", language)}#fleet` },
+    { name: boatName, url: getLocalizedPath("boatDetail", language, { slug: boatId }) },
   ]);
 
   // FAQ (visible + FAQPage JSON-LD) — all answers derived from admin-edited
@@ -433,22 +417,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   };
   // El FAQ publica la tabla de tarifas BAJA, asi que no puede anunciar franjas
   // que la reserva rechaza (los barcos sin licencia estan topados a 4h).
-  const faqPricing = (() => {
-    const prices = boatData.pricing?.BAJA?.prices as
-      | Record<string, number | null | undefined>
-      | undefined;
-    if (!prices) return null;
-    const maxDuration = getMaximumDuration(boatId, new Date());
-    if (!maxDuration) return { BAJA: { prices } };
-    const maxHours = parseFloat(maxDuration);
-    return {
-      BAJA: {
-        prices: Object.fromEntries(
-          Object.entries(prices).filter(([d]) => parseFloat(d) <= maxHours)
-        ),
-      },
-    };
-  })();
+  const faqPricing = boatFaqPricing(boatId, boatData.pricing);
   const boatFaqItems = buildBoatFaqItems(
     {
       name: boatName,

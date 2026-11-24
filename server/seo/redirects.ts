@@ -4,9 +4,10 @@ import { db } from "../db";
 import { seoRedirects } from "../../shared/schema";
 import { eq, sql } from "drizzle-orm";
 import { logger } from "../lib/logger";
-import { getLocalizedPath, isValidLang, resolveSlug } from "../../shared/i18n-routes";
+import { getLocalizedPath, isValidLang, resolveSlug, ROUTE_SLUGS } from "../../shared/i18n-routes";
 import type { PageKey } from "../../shared/i18n-routes";
 import { SUPPORTED_LANGUAGES } from "../../shared/seoConstants";
+import type { LangCode } from "../../shared/seoConstants";
 import { JETSKI_PRODUCTS } from "../../shared/jetskiProducts";
 
 // In-memory cache for redirects (refreshed every 1 minute)
@@ -19,7 +20,7 @@ async function refreshCache(): Promise<void> {
     const redirects = await db.select().from(seoRedirects);
     const newCache = new Map<string, { toPath: string; statusCode: number }>();
     for (const r of redirects) {
-      newCache.set(r.fromPath, { toPath: r.toPath, statusCode: r.statusCode });
+      newCache.set(r.fromPath, { toPath: finalTarget(r.toPath), statusCode: r.statusCode });
     }
     redirectCache = newCache;
     cacheLastRefresh = Date.now();
@@ -94,6 +95,85 @@ const JETSKI_REDIRECTS: Record<string, string> = (() => {
   return out;
 })();
 
+// Boats no longer rented (licence-free fleet hidden since 2026-10-01, RD 1188/2025, plus the
+// retired astec-450 slug). Every detail URL of them, with or without language prefix and under
+// ANY localized boat slug (/fr/barco/solar-450 included), goes to the licensed category of that
+// language in ONE hop. Also applied to the toPath of every other redirect (hardcoded, DB, seed)
+// so a legacy URL never lands on a boat page that redirects again.
+const RETIRED_BOAT_IDS = ["remus-450-ii", "remus-450", "solar-450", "astec-400", "astec-450", "astec-480"];
+const BOAT_DETAIL_SLUGS = [...new Set(SUPPORTED_LANGUAGES.map((l) => ROUTE_SLUGS.boatDetail[l]))];
+const RETIRED_BOAT_RE = new RegExp(
+  `^(?:/(${SUPPORTED_LANGUAGES.join("|")}))?/(${BOAT_DETAIL_SLUGS.join("|")})/(${RETIRED_BOAT_IDS.join("|")})/?$`,
+);
+
+export function retiredBoatTarget(path: string): string | null {
+  const m = RETIRED_BOAT_RE.exec(path);
+  if (!m) return null;
+  // No prefix: take the language of the boat slug (/boat/x -> en), es when several share it.
+  const lang: LangCode =
+    (m[1] as LangCode | undefined) ?? SUPPORTED_LANGUAGES.find((l) => ROUTE_SLUGS.boatDetail[l] === m[2]) ?? "es";
+  return getLocalizedPath("categoryLicensed", lang);
+}
+
+function finalTarget(toPath: string): string {
+  return retiredBoatTarget(toPath) ?? toPath;
+}
+
+// Old Wix "excursiones privadas" URLs: the page that answers that intent today is the captained
+// landing (they pointed at the licensed category before it existed).
+const CAPTAINED_REDIRECTS: Record<string, string> = {
+  "/excursion-barco-privado": getLocalizedPath("categoryCaptained", "es"),
+  "/excursiones-privadas-con-patron-blanes": getLocalizedPath("categoryCaptained", "es"),
+  "/fr/excursion-barco-privado": getLocalizedPath("categoryCaptained", "fr"),
+};
+
+// Landings that only exist under /:lang/ but that crawlers and old links request bare
+// (/alquiler-barco-con-patron, /licencia-navegacion-titulin...): 301 to the ES page. Without it the
+// SPA answered 200 with the same content under a second URL. App screens and dynamic prefixes excluded.
+const BARE_LANDING_EXCLUDED = new Set([
+  "home", "boatDetail", "blogDetail", "destinationDetail", "cancel",
+  "crm", "login", "myAccount", "clientDashboard", "booking", "onboarding",
+]);
+const BARE_LANDING_REDIRECTS: Record<string, string> = (() => {
+  const out: Record<string, string> = {};
+  for (const [key, slugs] of Object.entries(ROUTE_SLUGS)) {
+    if (BARE_LANDING_EXCLUDED.has(key)) continue;
+    out[`/${slugs.es}`] = getLocalizedPath(key as PageKey, "es");
+  }
+  return out;
+})();
+
+// CRITICAL hardcoded redirects (do not depend on DB cache being warm).
+// Reason: indexation audit 2026-04-28 found Google was indexing legacy
+// /barco/{slug} URLs as primary because the DB-cached redirects weren't
+// hitting (seed race or onConflictDoNothing). These hardcoded entries
+// run before the cache lookup so they always fire.
+export const HARDCODED_REDIRECTS: Readonly<Record<string, string>> = Object.fromEntries(
+  Object.entries({
+    ...BARE_LANDING_REDIRECTS,
+    "/barco/solar-450": "/es/barco/solar-450",
+    "/barco/remus-450": "/es/barco/remus-450",
+    "/barco/remus-450-ii": "/es/barco/remus-450-ii",
+    "/barco/astec-400": "/es/barco/astec-400",
+    "/barco/astec-480": "/es/barco/astec-480",
+    "/barco/astec-450": "/es/barco/astec-480",
+    "/barco/mingolla-brava-19": "/es/barco/mingolla-brava-19",
+    "/barco/trimarchi-57s": "/es/barco/trimarchi-57s",
+    "/barco/pacific-craft-625": "/es/barco/pacific-craft-625",
+    "/barco/excursion-privada": "/es/barco/excursion-privada",
+    // Discontinued model: straight to the licensed category (it pointed at
+    // /es/categoria/sin-licencia, which is itself a redirect: a chain).
+    "/barco-mirimare-sunrise-7": getLocalizedPath("categoryLicensed", "es"),
+    // GSC 2026-05-18: /barcos era zombie pos 65 con redirect client-side
+    // (HTTP 200 + React Redirect). Googlebot indexaba el HTML antes del
+    // JS redirect. 301 server-side la saca del índice y consolida en /es/.
+    "/barcos": "/es/barcos-sin-licencia",
+    ...TOSSA_DUPLICATE_REDIRECTS,
+    ...JETSKI_REDIRECTS,
+    ...CAPTAINED_REDIRECTS,
+  }).map(([from, to]) => [from, finalTarget(to)]),
+);
+
 // Express middleware for dynamic redirects
 export function redirectMiddleware() {
   return async (req: Request, res: Response, next: NextFunction) => {
@@ -138,7 +218,7 @@ export function redirectMiddleware() {
         const prefixResolved = resolveSlug(segments[0]);
         if (prefixResolved) {
           const param = segments.slice(1).join("/");
-          const newPath = getLocalizedPath(prefixResolved.pageKey as PageKey, langParam) + `/${param}`;
+          const newPath = finalTarget(getLocalizedPath(prefixResolved.pageKey as PageKey, langParam) + `/${param}`);
           res.set('Cache-Control', 'public, max-age=31536000, immutable');
           return res.redirect(301, newPath);
         }
@@ -149,34 +229,13 @@ export function redirectMiddleware() {
       return res.redirect(301, `/${langParam}/${slug}`);
     }
 
-    // CRITICAL hardcoded redirects (do not depend on DB cache being warm).
-    // Reason: indexation audit 2026-04-28 found Google was indexing legacy
-    // /barco/{slug} URLs as primary because the DB-cached redirects weren't
-    // hitting (seed race or onConflictDoNothing). These hardcoded entries
-    // run before the cache lookup so they always fire.
-    const hardcoded: Record<string, string> = {
-      "/barco/solar-450": "/es/barco/solar-450",
-      "/barco/remus-450": "/es/barco/remus-450",
-      "/barco/remus-450-ii": "/es/barco/remus-450-ii",
-      "/barco/astec-400": "/es/barco/astec-400",
-      "/barco/astec-480": "/es/barco/astec-480",
-      "/barco/astec-450": "/es/barco/astec-480",
-      "/barco/mingolla-brava-19": "/es/barco/mingolla-brava-19",
-      "/barco/trimarchi-57s": "/es/barco/trimarchi-57s",
-      "/barco/pacific-craft-625": "/es/barco/pacific-craft-625",
-      "/barco/excursion-privada": "/es/barco/excursion-privada",
-      "/barco-mirimare-sunrise-7": "/es/categoria/sin-licencia",
-      // GSC 2026-05-18: /barcos era zombie pos 65 con redirect client-side
-      // (HTTP 200 + React Redirect). Googlebot indexaba el HTML antes del
-      // JS redirect. 301 server-side la saca del índice y consolida en /es/.
-      "/barcos": "/es/barcos-sin-licencia",
-      ...TOSSA_DUPLICATE_REDIRECTS,
-      ...JETSKI_REDIRECTS,
-    };
-    const hardcodedTarget = hardcoded[req.path];
+    // Retired boats: one hop to the licensed category, whatever the prefix or boat slug.
+    const retiredTarget = retiredBoatTarget(req.path);
+    const hardcodedTarget = retiredTarget ?? HARDCODED_REDIRECTS[req.path];
     if (hardcodedTarget) {
+      const qIdx = req.originalUrl.indexOf("?");
       res.set("Cache-Control", "public, max-age=31536000, immutable");
-      return res.redirect(301, hardcodedTarget);
+      return res.redirect(301, hardcodedTarget + (qIdx >= 0 ? req.originalUrl.slice(qIdx) : ""));
     }
 
     // Refresh cache if stale
@@ -236,7 +295,7 @@ export async function seedLegacyRedirects(): Promise<void> {
     "/barco-con-licencia-blanes-pacific-craft-625": getLocalizedPath("boatDetail", "es") + "/pacific-craft-625",
     "/barco-con-licencia-blanes-trimarchi-57-s": getLocalizedPath("boatDetail", "es") + "/trimarchi-57s",
     "/barco-con-licencia-blanes-mingolla-brava-19": getLocalizedPath("boatDetail", "es") + "/mingolla-brava-19",
-    "/excursiones-privadas-con-patron-blanes": getLocalizedPath("categoryLicensed", "es"),
+    "/excursiones-privadas-con-patron-blanes": getLocalizedPath("categoryCaptained", "es"),
     "/excursiones-moto-agua": getLocalizedPath("jetskiHub", "es"),
     "/condiciones-generales-alquiler": getLocalizedPath("condicionesGenerales", "es"),
     "/preguntas-frequentes": getLocalizedPath("faq", "es"),
@@ -247,7 +306,7 @@ export async function seedLegacyRedirects(): Promise<void> {
     "/ca/fuegos-artificiales-blanes-2025": getLocalizedPath("blog", "ca"),
     "/ca/barco-sin-licencia-blanes-astec-400": getLocalizedPath("boatDetail", "ca") + "/astec-400",
     "/ca/condiciones-de-reserva": getLocalizedPath("condicionesGenerales", "ca"),
-    "/fr/excursion-barco-privado": getLocalizedPath("categoryLicensed", "fr"),
+    "/fr/excursion-barco-privado": getLocalizedPath("categoryCaptained", "fr"),
     "/fr/copy-of-hoteles-y-alojamientos": getLocalizedPath("locationBlanes", "fr"),
     "/en/copy-of-hoteles-y-alojamientos": getLocalizedPath("locationBlanes", "en"),
     "/en/barco-sin-licencia-blanes-solar-450": getLocalizedPath("boatDetail", "en") + "/solar-450",
@@ -266,7 +325,7 @@ export async function seedLegacyRedirects(): Promise<void> {
     "/ca/copy-of-extras": getLocalizedPath("pricing", "ca"),
     "/blank": getLocalizedPath("home", "es"),
     "/barco-sin-licencia-solar-450-blanes": getLocalizedPath("boatDetail", "es") + "/solar-450",
-    "/excursion-barco-privado": getLocalizedPath("categoryLicensed", "es"),
+    "/excursion-barco-privado": getLocalizedPath("categoryCaptained", "es"),
     "/condiciones-de-reserva": getLocalizedPath("condicionesGenerales", "es"),
     "/es/condiciones-de-reserva": getLocalizedPath("condicionesGenerales", "es"),
     "/es/motos-de-agua": getLocalizedPath("jetskiHub", "es"),
@@ -400,12 +459,12 @@ export async function seedLegacyRedirects(): Promise<void> {
     "/barco/trimarchi-57s": "/es/barco/trimarchi-57s",
     "/barco/pacific-craft-625": "/es/barco/pacific-craft-625",
     "/barco/excursion-privada": "/es/barco/excursion-privada",
-    "/barco-mirimare-sunrise-7": "/es/categoria/sin-licencia", // discontinued model
+    "/barco-mirimare-sunrise-7": getLocalizedPath("categoryLicensed", "es"), // discontinued model
   };
 
   const values = Object.entries(legacyRedirects).map(([from, to]) => ({
     fromPath: from,
-    toPath: to,
+    toPath: finalTarget(to),
     statusCode: 301,
     createdBy: "legacy",
   }));

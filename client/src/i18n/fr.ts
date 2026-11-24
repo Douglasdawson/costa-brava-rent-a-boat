@@ -5691,7 +5691,7 @@ export const fr: Translations = {
         },
         {
           question: 'Combien de temps faut-il en bateau de Blanes à Tossa ?',
-          answer: 'Entre 45 minutes et 1 heure depuis le Port de Blanes. 7 milles de côte spectaculaire avec des falaises et des criques sauvages.',
+          answer: 'Entre 30 et 45 minutes depuis le Port de Blanes. 7 milles de côte spectaculaire avec des falaises et des criques sauvages.',
         },
         {
           question: 'Combien coûte l\'Excursion Privée avec Capitaine à Tossa ?',
@@ -5756,7 +5756,7 @@ export const fr: Translations = {
         anchoringZones: 'Zones de Mouillage',
         anchoringZonesDesc: 'Playa Grande : zone autorisée pour les embarcations de plaisance. Cala Pola : mouillage libre dans des eaux cristallines. Es Codolar : crique vierge idéale pour passer la journée. Maintenez une distance avec les zones de baignade balisées.',
         safeNavigation: 'Navigation en Sécurité',
-        safeNavigationDesc: '1 heure de navigation nécessite une bonne planification. Consultez la météo, emportez suffisamment de carburant et d\'eau. Respectez les vitesses en zones côtières et gardez la côte toujours en vue.',
+        safeNavigationDesc: 'Rejoindre Tossa nécessite une bonne planification. Consultez la météo, emportez suffisamment de carburant et d\'eau. Respectez les vitesses en zones côtières et gardez la côte toujours en vue.',
         ctaTitle: 'Prêt à Découvrir Tossa de Mar ?',
         ctaDescription: 'Réservez votre bateau depuis le Port de Blanes et vivez l\'expérience unique d\'arriver par la mer au plus beau village médiéval de la Costa Brava.',
         ctaButton: 'Réserver une Excursion à Tossa',

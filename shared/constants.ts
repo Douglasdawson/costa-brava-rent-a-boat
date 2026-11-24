@@ -9,6 +9,14 @@ export const OPERATING_END_HOUR = 20;
 export const SEASON_START_MONTH = 4; // April
 export const SEASON_END_MONTH = 10; // October
 
+// Season year shown in titles and JSON-LD dates (April to October). Nov-Dec point at the
+// NEXT season, because the current one has already closed. Single source for the server
+// (seoInjector, robots) and the client (seo-config, seo-schemas): they used to keep copies.
+export function getSeasonYear(now: Date = new Date()): number {
+  return now.getMonth() >= 10 ? now.getFullYear() + 1 : now.getFullYear();
+}
+export const SEASON_YEAR = getSeasonYear();
+
 // RD 1188/2025 (BOE 2025-12-30): from October 1, 2026 every rental customer must hold a
 // nautical qualification. The 5 m / 15 HP exemption of RD 875/2014 survives for privately
 // owned boats only. Last day the license-free rental offer is legal:

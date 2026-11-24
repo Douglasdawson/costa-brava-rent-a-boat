@@ -171,6 +171,7 @@ describe("generateEnhancedProductSchema", () => {
       capacity: 5,
       power: "15cv",
       pricePerHour: 70,
+      pricing: { BAJA: { period: "Abril-Junio", prices: { "2h": 135, "4h": 180 } } },
       image: "https://example.com/solar.jpg",
       requiresLicense: false,
     },
@@ -183,6 +184,7 @@ describe("generateEnhancedProductSchema", () => {
     expect(schema.description).toBeTruthy();
     expect(schema.brand).toBeDefined();
     expect(schema.offers).toBeDefined();
+    expect(schema).not.toHaveProperty("aggregateRating");
   });
 });
 

@@ -26,6 +26,7 @@ describe("postEraMeta", () => {
 
   it("returns base for keys or languages without an entry", () => {
     expect(postEraMeta("/faq", "es", base, POST)).toBe(base);
+    // Tossa has no override: its SEO_CONFIGS copy already says titulin/skipper (server/seoJsonLd.test.ts).
     expect(postEraMeta("/alquiler-barcos-tossa-de-mar", "es", base, POST)).toBe(base);
   });
 });

@@ -102,7 +102,24 @@ export const ROUTE_SLUGS = {
 
 export type PageKey = keyof typeof ROUTE_SLUGS;
 
-const DYNAMIC_PAGE_KEYS: readonly PageKey[] = ["boatDetail", "blogDetail", "destinationDetail", "cancel"];
+// Page keys whose URL takes a third segment (/:lang/:slug/:param). The SPA router
+// (App.tsx DYNAMIC_KEY_MAP + the /:lang/crm/:tab? route) accepts a 3rd segment ONLY for these;
+// the server uses it to 404 junk like /es/barcos-con-licencia/x. "blog", "destinations" and
+// "crm" are listed because resolveSlug() returns them (first in ROUTE_SLUGS) before
+// blogDetail/destinationDetail; their slug strings are identical in every language.
+export const DYNAMIC_PAGE_KEYS: readonly PageKey[] = [
+  "boatDetail",
+  "blogDetail",
+  "blog",
+  "destinationDetail",
+  "destinations",
+  "cancel",
+  "crm",
+];
+
+// Dynamic keys that have NO page of their own without the third segment
+// (/es/barco, /es/cancel are empty shells: the SPA renders its 404).
+export const DETAIL_ONLY_PAGE_KEYS: readonly PageKey[] = ["boatDetail", "cancel", "blogDetail", "destinationDetail"];
 
 export function getSlugForPage(pageKey: PageKey, lang: LangCode): string {
   return ROUTE_SLUGS[pageKey][lang];
@@ -210,4 +227,26 @@ export function switchLanguagePath(currentPath: string, targetLang: LangCode): s
 
 export function isValidLang(lang: string): lang is LangCode {
   return (SUPPORTED_LANGUAGES as readonly string[]).includes(lang);
+}
+
+// Keys whose slugs are data (blog posts, destinations) or app screens: never "foreign".
+const FOREIGN_SLUG_EXEMPT_KEYS: readonly PageKey[] = ["crm", "blog", "blogDetail", "destinations", "destinationDetail"];
+
+/**
+ * True when /:lang/:slug[/param] uses a slug that exists ONLY in other languages
+ * (/fr/alquiler-barcos-tossa-de-mar, /de/barco/excursion-privada): the same content
+ * would be served under two URLs. Slugs shared with the prefix language (blog, faq, shop,
+ * efoil-blanes...), unknown slugs (matrix pages, old Wix paths) and exempt keys give false.
+ * Callers redirect to switchLanguagePath(pathname, lang).
+ */
+export function isForeignLanguageSlug(pathname: string): boolean {
+  const segments = pathname.split("/").filter(Boolean);
+  if (segments.length < 2 || segments.length > 3 || !isValidLang(segments[0])) return false;
+  const entries = getReverseMap().get(segments[1]);
+  if (!entries || entries.length === 0) return false;
+  if (entries.some((e) => e.lang === segments[0])) return false;
+  if (entries.some((e) => FOREIGN_SLUG_EXEMPT_KEYS.includes(e.pageKey))) return false;
+  const detailOnly = entries.every((e) => DETAIL_ONLY_PAGE_KEYS.includes(e.pageKey));
+  // A third segment only makes sense on a detail key; a detail key without one is a 404, not a duplicate.
+  return segments.length === 3 ? detailOnly : !detailOnly;
 }

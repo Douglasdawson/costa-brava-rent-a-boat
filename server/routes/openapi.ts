@@ -17,11 +17,12 @@
 
 import type { Express } from "express";
 import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR } from "../../shared/businessProfile";
+import { SEASON_YEAR } from "../../shared/constants";
 
 const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
 
 function buildOpenApiDoc() {
-  const seasonYear = new Date().getFullYear();
+  const seasonYear = SEASON_YEAR;
 
   return {
     openapi: "3.1.0",

@@ -1,6 +1,7 @@
 import { BASE_DOMAIN } from "./seo-config";
 import type { Translations } from "@/lib/translations";
 import { authorToPersonSchema, DEFAULT_AUTHOR, AUTHORS } from "@shared/authors";
+import { SEASON_YEAR } from "@shared/constants";
 import { boatRoutes, BLANES_PORT, type BoatRoute } from "@shared/routesData";
 
 interface ListItem {
@@ -150,14 +151,12 @@ export function generateSeasonalEventSchema(
   priceRange?: { low: number; high: number } | null,
   t?: Translations,
 ) {
-  const now = new Date();
-  const year = now.getMonth() >= 10 ? now.getFullYear() + 1 : now.getFullYear();
-  // Fallbacks used only before the /api/boats query resolves; keep conservative.
-  const low = priceRange?.low ?? 75;
-  const high = priceRange?.high ?? 450;
+  const year = SEASON_YEAR;
+  // No priceRange (the /api/boats query has not resolved yet) means no offers: a hand-typed
+  // fallback range goes stale the moment the rate card moves.
   const ev = t?.seoSchemas?.seasonalEvent;
   const name = (ev?.name ?? `Temporada {year} — Alquiler de Barcos en Costa Brava`).replace("{year}", String(year));
-  const description = ev?.description ?? "Alquila barcos sin licencia en Blanes, Costa Brava. Temporada de abril a octubre.";
+  const description = ev?.description ?? "Alquiler de barcos en Blanes, Costa Brava. Temporada de abril a octubre.";
   return {
     "@context": "https://schema.org",
     "@type": "Event",
@@ -183,13 +182,17 @@ export function generateSeasonalEventSchema(
       name: "Costa Brava Rent a Boat",
       url: "https://www.costabravarentaboat.com",
     },
-    offers: {
-      "@type": "AggregateOffer",
-      lowPrice: String(low),
-      highPrice: String(high),
-      priceCurrency: "EUR",
-      availability: "https://schema.org/InStock",
-    },
+    ...(priceRange
+      ? {
+          offers: {
+            "@type": "AggregateOffer",
+            lowPrice: String(priceRange.low),
+            highPrice: String(priceRange.high),
+            priceCurrency: "EUR",
+            availability: "https://schema.org/InStock",
+          },
+        }
+      : {}),
     description,
   };
 }

@@ -6,10 +6,12 @@ import { db } from "./db";
 import { seoMeta } from "../shared/schema";
 import { eq, and } from "drizzle-orm";
 import { SUPPORTED_LANGUAGES, HREFLANG_CODES, type LangCode } from "../shared/seoConstants";
-import { isValidLang, resolveSlug, getSlugForPage, getLocalizedPath, switchLanguagePath, type PageKey } from "../shared/i18n-routes";
+import { isValidLang, resolveSlug, getSlugForPage, getLocalizedPath, switchLanguagePath, isForeignLanguageSlug, DYNAMIC_PAGE_KEYS, DETAIL_ONLY_PAGE_KEYS, type PageKey } from "../shared/i18n-routes";
 import { resolveBoatImagePath, BOAT_IMAGE_WIDTH, BOAT_IMAGE_HEIGHT } from "../shared/boatImages";
 import { resolveMediaPath } from "../shared/mediaUrl";
 import { translateBoatText } from "../shared/boatTextTranslations";
+import { boatFaqPricing, boatFromPriceLabel, buildBoatOffer, buildBoatPageMeta } from "../shared/boatPageMeta";
+import { buildBoatFaqItems, buildBoatFaqTitle, type BoatFaqText } from "../shared/boatFaqBuilder";
 import { isAICrawler as isAICrawlerShared } from "./seo/constants";
 import { authorToPersonSchema, DEFAULT_AUTHOR, AUTHORS } from "../shared/authors";
 import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, BUSINESS_STREET, CANCELLATION_POLICY_ES } from "../shared/businessProfile";
@@ -17,12 +19,12 @@ import { buildCoreFacts } from "../shared/aiCitationFacts";
 import { computeFaqVars, substituteFaqVars, type FaqVars } from "../shared/faqVars";
 import { BOAT_DATA, applyFleetStatsToText, boatIncludesFuel, isCaptainedBoat, isPubliclyListed } from "../shared/boatData";
 import { isJetSkiProduct, JETSKI_PRODUCTS, type JetSkiProduct } from "../shared/jetskiProducts";
-import { getFleetStats } from "./lib/fleetStatsCache";
+import { getFleetStats, getSegmentPriceRange } from "./lib/fleetStatsCache";
 import { getShopStats } from "./lib/shopStatsCache";
 import { ACTIVITATUM_PICKS, activitatumPicksBySlot, activitatumTopicUrl, activitatumUrl } from "../shared/activitatumLinks";
 import { CARABELA, COASTRENT_DOMAIN, COASTRENT_ORG_ID, carabelaOpen, carabelaPosJsonLd, coastrentUrl, type CoastrentSurface } from "../shared/coastrentLinks";
 import { ESCOLA_NAUTICA_DOMAIN, escolaNauticaHandoff } from "../shared/escolaNauticaLinks";
-import { eraCopy, isLicenseFreeEraActive } from "../shared/constants";
+import { SEASON_YEAR, eraCopy, isLicenseFreeEraActive } from "../shared/constants";
 import { postEraMeta } from "../shared/postEraMeta";
 import { SHOP_PRODUCTS } from "../shared/shopData";
 import { NAUTICAL_GLOSSARY_ES } from "../shared/nauticalGlossary";
@@ -55,13 +57,6 @@ const I18N_BY_LANG: Record<LangCode, typeof i18nEs> = {
 };
 
 const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
-
-// Dynamic season year: Nov-Dec → next year, otherwise current year
-function getSeasonYear(): number {
-  const now = new Date();
-  return now.getMonth() >= 10 ? now.getFullYear() + 1 : now.getFullYear();
-}
-const SEASON_YEAR = getSeasonYear();
 
 // AI crawler detection — re-exported from shared constants so other modules
 // (aiBotLogger middleware, admin endpoints) can import a single canonical fn.
@@ -353,6 +348,18 @@ function buildGarantiasStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
   for (const lang of Object.keys(I18N_BY_LANG) as LangCode[]) {
     const cfg = SEO_CONFIGS[lang]?.garantias ?? SEO_CONFIGS.es.garantias;
     if (cfg) out[lang] = { title: cfg.title, description: cfg.description };
+  }
+  return out;
+}
+
+// Tossa de Mar landing. Title/description/OG live in SEO_CONFIGS (what the client <SEO>
+// hydrates), so the bot-facing injector reads them instead of keeping a second copy: the
+// hand-written one drifted (es served an old title, nl a "without licence" description).
+function buildTossaStaticMeta(): Partial<Record<LangCode, SEOMeta>> {
+  const out: Partial<Record<LangCode, SEOMeta>> = {};
+  for (const lang of Object.keys(I18N_BY_LANG) as LangCode[]) {
+    const cfg = SEO_CONFIGS[lang]?.locationTossa ?? SEO_CONFIGS.es.locationTossa;
+    if (cfg) out[lang] = { title: cfg.title, description: cfg.description, ogTitle: cfg.ogTitle, ogDescription: cfg.ogDescription };
   }
   return out;
 }
@@ -914,42 +921,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: `Аренда лодки в Льорет-де-Мар без лицензии, из Бланеса. Санта-Кристина и Са-Боаделья за 25 минут. От 70€/ч, топливо включено. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} отзывов). Бронь в WhatsApp.`,
     },
   },
-  "/alquiler-barcos-tossa-de-mar": {
-    es: {
-      title: "Barco Tossa de Mar Con Licencia | Vila Vella desde el Mar",
-      description: "Alquila barco con licencia (LN o superior) o charter con patrón desde Blanes a Tossa de Mar. Navega frente a la Vila Vella medieval. 30-45 min ida. Cala Pola, Giverola.",
-      ogTitle: "Alquiler Barco Tossa de Mar | Licencia de Navegaci\u00f3n (LN) o Excursi\u00f3n con Capit\u00e1n",
-      ogDescription: "Vila Vella de Tossa en 30-45 min desde Blanes. Con LN desde 175\u20ac (2h) o Excursi\u00f3n con Capit\u00e1n 4h desde 420\u20ac. Combustible aparte. 4.8\u2605.",
-    },
-    en: {
-      title: "Boat Trip to Tossa de Mar from Blanes",
-      description: "Sail to Tossa de Mar in 30-45 min from Blanes. Discover the most beautiful medieval town of Costa Brava.",
-    },
-    ca: {
-      title: "Excursió en Barca a Tossa de Mar des de Blanes",
-      description: "Navega a Tossa de Mar en 30-45 min des de Blanes. Descobreix el poble medieval més bonic de la Costa Brava.",
-    },
-    fr: {
-      title: "Excursion en Bateau à Tossa de Mar depuis Blanes",
-      description: "Naviguez vers Tossa de Mar en 30-45 min depuis Blanes. Découvrez la plus belle ville médiévale de la Costa Brava.",
-    },
-    de: {
-      title: "Bootsausflug nach Tossa de Mar von Blanes",
-      description: "Segeln Sie in 30-45 Min. von Blanes nach Tossa de Mar. Entdecken Sie die schönste mittelalterliche Stadt der Costa Brava.",
-    },
-    nl: {
-      title: "Boottocht naar Tossa de Mar vanuit Blanes",
-      description: `Vaar naar Tossa de Mar vanaf Blanes. Boot huren zonder vaarbewijs vanaf €70/u. Brandstof inbegrepen, tot 5 personen. 4.8★ · ${BUSINESS_REVIEW_COUNT_STR} reviews. Online boeken.`,
-    },
-    it: {
-      title: "Escursione in Barca a Tossa de Mar da Blanes",
-      description: "Naviga verso Tossa de Mar in 30-45 min da Blanes. Scopri la città medievale più bella della Costa Brava.",
-    },
-    ru: {
-      title: "Экскурсия на Лодке в Тосса-де-Мар из Бланеса",
-      description: "Плывите в Тосса-де-Мар за 1 час из Бланеса. Откройте самый красивый средневековый город Коста-Бравы.",
-    },
-  },
+  "/alquiler-barcos-tossa-de-mar": buildTossaStaticMeta(),
   "/alquiler-barcos-malgrat-de-mar": {
     es: {
       title: "Alquiler Barco Malgrat de Mar | Puerto Blanes a 10 min | Sin Licencia 75\u20ac/h",
@@ -2050,16 +2022,14 @@ const GEO_HIERARCHY = {
   },
 };
 
-// Service schema with AggregateRating + AggregateOffer for landing pages.
-// Google shows star snippets + price for Service schemas (same treatment as
-// Product). Reads rating/reviews from buildAggregateRating() → businessStatsCache
-// (DB-backed with GBP sync, fallback to shared/businessProfile.ts).
-// Prices sourced from shared/boatData.ts (verified 2026-04-24 season).
+// Service schema with AggregateOffer for landing pages. NO aggregateRating: the GBP
+// rating is the business's, so it lives only in the LocalBusiness node (home, /testimonios,
+// /api/ai-context); borrowing it for a Service risks rich-result invalidation. Callers pass
+// getSegmentPriceRange(segment) so low/high derive from live boat pricing, never literals.
 function buildLandingService(
   serviceName: string,
   description: string,
   priceRange: { low: number; high: number },
-  opts: { includeRating?: boolean } = {},
 ): object {
   return {
     "@type": "Service",
@@ -2067,10 +2037,6 @@ function buildLandingService(
     description,
     provider: { "@type": "LocalBusiness", "@id": `${BASE_URL}/#organization` },
     areaServed: GEO_HIERARCHY,
-    // Rating is the BUSINESS aggregate. Resale products (jet ski) opt out:
-    // borrowing it for a product the reviews aren't about risks rich-result
-    // invalidation.
-    ...(opts.includeRating === false ? {} : { aggregateRating: buildAggregateRating() }),
     offers: {
       "@type": "AggregateOffer",
       lowPrice: String(priceRange.low),
@@ -2097,41 +2063,50 @@ function buildLandingService(
 // company, not of this boat, and borrowing them for a Product is the same
 // rich-result invalidation the jet ski Service schemas already opt out of.
 // Stars come back here only with genuine per-boat reviews.
-function buildBoatProductSchema(
-  boat: { id: string; name: string; requiresLicense: boolean; capacity: number; deposit: string; imageUrl: string | null; imageGallery: string[] | null },
-  fromPrice: number | null,
-): object {
-  const licenseText = boat.requiresLicense ? "con licencia náutica" : "sin licencia náutica";
-  // Offer.price is REQUIRED by Google merchant listings rich-result spec.
-  // Always emit a numeric price; fall back to category floor when boat.pricing
-  // is missing or all 0 (sin licencia ≥ 70€/h, con licencia ≥ 175€/2h-paquete).
-  // Falsey-check below is `>0` not truthy so price=0 doesn't slip through.
-  const FALLBACK_PRICE_BY_CATEGORY = boat.requiresLicense ? 160 : 70;
-  const effectivePrice = (typeof fromPrice === "number" && fromPrice > 0) ? fromPrice : FALLBACK_PRICE_BY_CATEGORY;
-  const offers: Record<string, unknown> = {
-    "@type": "Offer",
-    price: String(effectivePrice),
-    priceCurrency: "EUR",
-    availability: "https://schema.org/InStock",
-    availabilityStarts: `${SEASON_YEAR}-04-01`,
-    availabilityEnds: `${SEASON_YEAR}-10-31`,
-    priceValidUntil: `${SEASON_YEAR}-10-31`,
-    validFrom: `${SEASON_YEAR}-04-01`,
-    businessFunction: "http://purl.org/goodrelations/v1#LeaseOut",
-    eligibleRegion: { "@type": "Country", name: "ES" },
-    seller: {
-      "@type": "LocalBusiness",
-      name: "Costa Brava Rent a Boat",
-      "@id": `${BASE_URL}/#organization`,
-    },
-    priceSpecification: {
-      "@type": "UnitPriceSpecification",
-      price: effectivePrice,
-      priceCurrency: "EUR",
-      unitText: "hour",
-      referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "HUR" },
-    },
-  };
+//
+// Prices: Offer / AggregateOffer from the real blocks of boat.pricing (shared/boatPageMeta.ts
+// buildBoatOffer), never a per-hour UnitPriceSpecification carrying a 2 h price. Name, description,
+// url, breadcrumb and FAQ are localized and identical to what BoatDetailPage renders.
+export interface BoatSchemaInput {
+  id: string;
+  name: string;
+  requiresLicense: boolean;
+  capacity: number;
+  description?: string | null;
+  subtitle?: string | null;
+  licenseType?: string | null;
+  included?: string[] | null;
+  pricing?: unknown;
+  specifications?: { engine?: string; length?: string; capacity?: string } | null;
+  imageUrl: string | null;
+  imageGallery: string[] | null;
+}
+
+export function buildBoatProductSchema(boat: BoatSchemaInput, lang: LangCode): object {
+  const t = I18N_BY_LANG[lang] ?? i18nEs;
+  const boatName = translateBoatText(boat.name, lang);
+  const captained = isCaptainedBoat(boat.id);
+  const homeUrl = `${BASE_URL}${getLocalizedPath("home", lang)}`;
+  const boatUrl = `${BASE_URL}${getLocalizedPath("boatDetail", lang, { slug: boat.id })}`;
+  const offers = buildBoatOffer(boat.id, boat.pricing, {
+    seasonYear: SEASON_YEAR,
+    sellerId: `${BASE_URL}/#organization`,
+    sellerName: "Costa Brava Rent a Boat",
+  });
+
+  // Same text the page shows: i18n description first, then the boat row (never invented).
+  const description =
+    (t.boatDescriptions as Record<string, string> | undefined)?.[boat.id] ||
+    boat.description ||
+    buildBoatPageMeta(boat, lang).description;
+
+  // Real data only: the length comes from the boat row, never inferred from the model name.
+  const hp = boat.specifications?.engine?.match(/(\d+)\s*(?:cv|hp|ch|ps)\b/i)?.[1];
+  const additionalProperty: Array<Record<string, unknown>> = [
+    { "@type": "PropertyValue", name: "Capacity", value: boat.capacity, unitText: "persons" },
+  ];
+  if (hp) additionalProperty.push({ "@type": "PropertyValue", name: "Engine power", value: Number(hp), unitText: "CV" });
+  if (boat.specifications?.length) additionalProperty.push({ "@type": "PropertyValue", name: "Length", value: boat.specifications.length });
 
   let imgUrl: string | undefined;
   const resolved = resolveBoatImagePath(boat.imageUrl) || resolveBoatImagePath(boat.id);
@@ -2140,22 +2115,25 @@ function buildBoatProductSchema(
   }
 
   const schema: Record<string, unknown> = {
-    "@context": "https://schema.org",
     "@type": "Product",
-    name: `${boat.name} - Alquiler en Blanes Costa Brava`,
-    description: `Alquila el ${boat.name} en Blanes, Costa Brava. Hasta ${boat.capacity} personas, ${licenseText}. Temporada ${SEASON_YEAR} abril-octubre.`,
-    url: `${BASE_URL}/es/barco/${boat.id}`,
+    "@id": `${boatUrl}#product`,
+    name: boatName,
+    description,
+    url: boatUrl,
+    sku: boat.id,
     brand: {
       "@type": "Brand",
       name: "Costa Brava Rent a Boat",
     },
-    category: boat.requiresLicense ? "Licensed Boat Rental" : "License-Free Boat Rental",
+    category: captained
+      ? "Private boat excursion with skipper"
+      : boat.requiresLicense ? "Licensed Boat Rental" : "Boat Rental",
     audience: {
       "@type": "PeopleAudience",
-      suggestedMinAge: boat.requiresLicense ? 18 : 18,
       requiredMinAge: 18,
     },
-    offers,
+    additionalProperty,
+    ...(offers && { offers }),
   };
 
   if (imgUrl) {
@@ -2171,7 +2149,43 @@ function buildBoatProductSchema(
     schema.image = allImages;
   }
 
-  return schema;
+  const breadcrumb = {
+    "@type": "BreadcrumbList",
+    "@id": `${boatUrl}#breadcrumb`,
+    itemListElement: [
+      { name: t.breadcrumbs.home, item: homeUrl },
+      { name: t.breadcrumbs.fleet, item: `${homeUrl}#fleet` },
+      { name: boatName, item: boatUrl },
+    ].map((c, i) => ({ "@type": "ListItem", position: i + 1, ...c })),
+  };
+
+  // FAQ identical to the visible one (BoatDetailPage): same builder, same i18n bundle, same inputs.
+  const faqText = { ...(t.boatFaq ?? i18nEs.boatFaq), licenseTypes: t.licenseTypes ?? i18nEs.licenseTypes } as BoatFaqText;
+  const faqCapacity = parseInt(boat.specifications?.capacity?.split(" ")[0] || String(boat.capacity), 10) || boat.capacity;
+  const faqItems = buildBoatFaqItems(
+    {
+      name: boatName,
+      capacity: faqCapacity,
+      requiresLicense: boat.requiresLicense,
+      captained,
+      licenseType: boat.licenseType,
+      pricing: boatFaqPricing(boat.id, boat.pricing),
+      included: boat.included,
+    },
+    faqText,
+  );
+  const faq = {
+    "@type": "FAQPage",
+    "@id": `${boatUrl}#faq`,
+    name: buildBoatFaqTitle({ name: boatName }, faqText),
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
+  return { "@context": "https://schema.org", "@graph": [schema, breadcrumb, faq] };
 }
 
 // RD 1188/2025: from 2026-10-01 the licence-free boats are no longer rented and no rentable
@@ -2188,6 +2202,7 @@ const POST_ERA_TOWN = {
 
 // Build Event schema for the seasonal business (aggressive: recurring seasonal event)
 function buildSeasonalEvent(isEn: boolean): object {
+  const fleetRange = getSegmentPriceRange("fleet");
   return {
     "@type": "Event",
     name: isEn ? `Costa Brava Boat Rental Season ${SEASON_YEAR}` : `Temporada de Alquiler de Barcos Costa Brava ${SEASON_YEAR}`,
@@ -2226,10 +2241,11 @@ function buildSeasonalEvent(isEn: boolean): object {
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "EUR",
-      lowPrice: "70",
-      highPrice: "450",
+      lowPrice: String(fleetRange.low),
+      highPrice: String(fleetRange.high),
       availability: "https://schema.org/InStock",
       validFrom: `${SEASON_YEAR}-01-01`,
+      validThrough: `${SEASON_YEAR}-10-31`,
       url: BASE_URL,
     },
     image: `${BASE_URL}/og-image.webp`,
@@ -2610,7 +2626,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           validFrom: `${SEASON_YEAR}-04-01`,
           validThrough: `${SEASON_YEAR}-10-31`,
         }],
-        priceRange: "70-420 EUR",
+        priceRange: `${getSegmentPriceRange("fleet").low}-${getSegmentPriceRange("fleet").high} EUR`,
         paymentAccepted: ["Cash", "Credit Card", "Debit Card"],
         currenciesAccepted: "EUR",
         aggregateRating,
@@ -2701,7 +2717,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           ? "Step-by-step guide to renting a boat in Blanes: check your licence, pick the boat and book."
           : "Guia paso a paso para alquilar un barco en Blanes: comprueba tu titulacion, elige barco y reserva.",
         totalTime: "PT5M",
-        estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "70" },
+        estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: String(getSegmentPriceRange("fleet").low) },
         step: lang === "en" ? [
           { "@type": "HowToStep", position: 1, name: "Check your licence", text: "The basic Licencia de Navegacion covers the whole licensed fleet, and equivalent foreign titles (ICC, Permis Cotier, SBF See) are verified free online before you book. No licence? We arrange the 1-day course, or you sail with a professional skipper." },
           { "@type": "HowToStep", position: 2, name: "Choose your boat", text: "Licensed powerboats of 80-115 HP from 175 EUR/2 hours, or a private captained excursion from 265 EUR/2 hours. " + eraCopy("Boats without a licence remain available through September 30, 2026.", "Fuel is charged separately.") },
@@ -3263,7 +3279,7 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
         isEn
           ? eraCopy("Rent license-free and licensed boats from Blanes Port. 9 boats available, up to 7 people, from 70 EUR/hour. Fuel included on license-free boats.", "Rent powerboats with the Licencia de Navegacion (1-day course, no exam) or a private excursion with skipper from Blanes Port. 9 boats available, up to 7 people, from 175 EUR per 2 hours. Fuel charged separately.")
           : eraCopy("Alquiler de barcos sin licencia y con licencia desde el Puerto de Blanes. 9 embarcaciones disponibles, hasta 7 personas, desde 70€/hora. Gasolina incluida en los barcos sin licencia.", "Alquiler de lanchas con Licencia de Navegación (curso de 1 día, sin examen) y excursión privada con patrón desde el Puerto de Blanes. 9 embarcaciones disponibles, hasta 7 personas, desde 175€ por 2 horas. Gasolina aparte."),
-        { low: getFleetStats().priceFloor, high: 420 },
+        getSegmentPriceRange("fleet"),
       );
       const blanesBodyFallback = buildLocationBodyFallback(
         isEn ? "Boat Rental in Blanes, Costa Brava" : "Alquiler de Barcos en Blanes, Costa Brava",
@@ -3365,7 +3381,7 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
           : "Navega desde Blanes hasta Lloret de Mar. Los barcos sin licencia llegan a Playa de Fenals en 25 min (zona de 2 millas). Los barcos con licencia recorren toda la costa de Lloret. Desde 70€/hora, hasta 7 personas.", isEn
           ? "Sail from Blanes to Lloret de Mar. With the Licencia de Navegacion (1-day course) our powerboats reach Santa Cristina in 25 min and explore the full Lloret coastline; without a licence, sail with a skipper. From 175 EUR per 2 hours, up to 7 people."
           : "Navega desde Blanes hasta Lloret de Mar. Con la Licencia de Navegación (curso de 1 día) nuestras lanchas llegan a Santa Cristina en 25 min y recorren toda la costa de Lloret; sin título, sales con patrón. Desde 175€ por 2 horas, hasta 7 personas."),
-        { low: 75, high: 420 },
+        getSegmentPriceRange("fleet"),
       );
       const lloretBodyFallback = buildLocationBodyFallback(
         eraCopy(isEn ? "Boat Rental in Lloret de Mar (license-free, from Blanes)" : "Alquiler de Barcos en Lloret de Mar (sin licencia, desde Blanes)", isEn ? "Boat Rental in Lloret de Mar (from Blanes, licence in 1 day or skipper)" : "Alquiler de Barcos en Lloret de Mar (desde Blanes, con titulín o patrón)"),
@@ -3426,31 +3442,27 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
           { "@type": "TouristAttraction", name: "Faro de Tossa de Mar" },
         ],
       };
+      // Native-language copy: hero, sections and FAQ come from t.locationPages.tossa (8 locales),
+      // the same source and {var} interpolation the client page renders, so SSR and hydrated
+      // DOM say the same thing (the hardcoded es/en FAQ here claimed "1 hour" and a licence-free zone).
+      const tossa = (I18N_BY_LANG[lang] ?? i18nEs).locationPages.tossa;
+      let tossaVars: FaqVars;
+      try {
+        tossaVars = computeFaqVars(await storage.getAllBoats());
+      } catch {
+        tossaVars = computeFaqVars(undefined); // static catalog fallbacks
+      }
+      const tossaFaq = (tossa.faqItems ?? []).map((item) => ({
+        q: substituteFaqVars(item.question, tossaVars),
+        a: substituteFaqVars(item.answer, tossaVars),
+      }));
       const faq = {
         "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: isEn ? "How long does it take to reach Tossa de Mar by boat from Blanes?" : "Cuanto se tarda en llegar a Tossa de Mar en barco desde Blanes?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "About 1 hour from Blanes Port with a licensed boat. The route passes spectacular cliffs and hidden coves."
-              : "Aproximadamente 1 hora desde el Puerto de Blanes con barco con licencia. La ruta pasa por acantilados espectaculares y calas escondidas." },
-          },
-          {
-            "@type": "Question",
-            name: isEn ? "Do I need a license to reach Tossa de Mar by boat?" : "¿Necesito licencia para llegar a Tossa de Mar en barco?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "Yes, Tossa de Mar is beyond the 2-mile zone for license-free boats. You need a licensed boat (Basic Navigation License or ICC) or our private excursion with captain."
-              : "Si, Tossa de Mar esta mas alla de la zona de 2 millas para barcos sin licencia. Necesitas un barco con licencia (Licencia de Navegacion o ICC) o nuestra excursion privada con patron." },
-          },
-          {
-            "@type": "Question",
-            name: isEn ? "What can I see on the boat trip to Tossa de Mar?" : "¿Qué puedo ver en la excursión en barco a Tossa de Mar?",
-            acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "You'll see dramatic cliffs, hidden coves like Cala Pola, the iconic Vila Vella medieval fortress, and crystal-clear Mediterranean waters."
-              : "Verás acantilados dramáticos, calas escondidas como Cala Pola, la icónica fortaleza medieval de la Vila Vella y aguas cristalinas del Mediterráneo." },
-          },
-        ],
+        mainEntity: tossaFaq.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Tossa de Mar by Boat" : "Tossa de Mar en Barco", url: `${BASE_URL}/alquiler-barcos-tossa-de-mar` }]);
       // Same preload mechanism as Lloret — mirrors the <picture> in
@@ -3462,35 +3474,26 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
         imagesizes: "100vw",
         imageType: "image/avif",
       };
+      const ts: Record<string, string> = tossa.sections ?? {};
       const service = buildLandingService(
-        isEn ? "Boat Trip from Blanes to Tossa de Mar" : "Excursión en Barco de Blanes a Tossa de Mar",
-        isEn
-          ? "Reach Tossa de Mar from Blanes Port in 30-45 min with a licensed boat or our private excursion with captain (no license required). Licensed boats from 175 EUR/2h; private excursion from 265 EUR/2h with skipper."
-          : "Llega a Tossa de Mar desde el Puerto de Blanes en 30-45 min con barco con licencia o nuestra excursión privada con patrón (sin licencia). Barcos con licencia desde 175€/2h; excursión privada desde 265€/2h con patrón.",
-        { low: 160, high: 420 },
+        tossa.hero.title,
+        tossa.hero.subtitle,
+        getSegmentPriceRange("licensed"),
       );
-      const tossaBodyFallback = buildLocationBodyFallback(
-        isEn ? "Boat Trip to Tossa de Mar from Blanes" : "Excursión en Barco a Tossa de Mar desde Blanes",
-        isEn
-          ? "Reach Tossa de Mar's Vila Vella castle from Blanes in 30–45 minutes. Two options: rent a licensed boat (Licencia de Navegación or higher) from 175€ for 2 hours, or join our private excursion with a professional captain (no license needed) from 265€ for 2 hours. Fuel apart on both options."
-          : "Llega a la Vila Vella de Tossa de Mar desde Blanes en 30–45 minutos. Dos opciones: alquilar un barco con licencia (con la Licencia de Navegación o superior) desde 175€ por 2 horas, o unirte a nuestra excursión privada con capitán profesional (sin licencia) desde 265€ por 2 horas. Combustible aparte en ambas opciones.",
-        isEn
-          ? [
-              "Vila Vella — only fortified medieval village on the Catalan coast",
-              "Cala Pola, Cala Giverola — north of Tossa, accessible only by sea",
-              "Cala Bona, Cala Salionç — quiet coves on the southern approach",
-              "Licensed-only zone for license-free boats (legal limit at Fenals)",
-              "Private excursion with captain — no license, fully guided",
-            ]
-          : [
-              "Vila Vella — único pueblo medieval fortificado de la costa catalana",
-              "Cala Pola, Cala Giverola — al norte de Tossa, solo accesibles por mar",
-              "Cala Bona, Cala Salionç — calas tranquilas en la aproximación sur",
-              "Zona solo para barcos con licencia (límite legal sin licencia en Fenals)",
-              "Excursión privada con capitán — sin licencia, totalmente guiada",
-            ],
-        isEn ? "Book via WhatsApp +34 611 500 372" : "Reserva por WhatsApp +34 611 500 372",
-      );
+      const plainText = (html: string) => html.replace(/<[^>]+>/g, "");
+      const tossaBullets = [
+        tossa.hero.badgeFrom,
+        tossa.hero.badgeTime,
+        `${ts.jewelCostaBrava}: ${ts.jewelCostaBravaDesc}`,
+        `${ts.historicHeritage}: ${ts.historicHeritageDesc}`,
+        `${ts.paradisiacalCoves}: ${ts.paradisiacalCovesDesc}`,
+        `${ts.panoramicNavigation}: ${ts.panoramicNavigationDesc}`,
+        `${ts.warningTitle}: ${plainText(substituteFaqVars(ts.warningBody, tossaVars))}`,
+        `${ts.recommendedRoute}: ${ts.recommendedRouteDesc}`,
+        `${ts.bestSeason}: ${ts.bestSeasonDesc}`,
+      ];
+      const tossaFaqHtml = tossaFaq.map((f) => `<h2>${esc(f.q)}</h2>\n<p>${esc(f.a)}</p>`).join("\n");
+      const tossaBodyFallback = `${buildLocationBodyFallback(tossa.hero.title, tossa.hero.subtitle, tossaBullets, ts.ctaButton)}\n${tossaFaqHtml}`;
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages, lcpPreload: tossaLcp, bodyFallback: tossaBodyFallback };
     }
 
@@ -3527,7 +3530,7 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
         isEn
           ? eraCopy("License-free and licensed boat rental for ", "Boat rental for ") + "Malgrat de Mar visitors. Departures from Blanes Port, 8 km away (10 min by car, 5 min by R1 train). " + eraCopy("License-free boats from 70 EUR/hour with fuel included.", POST_ERA_TOWN.offerEn)
           : eraCopy("Alquiler de barcos sin licencia y con licencia para ", "Alquiler de barcos para ") + "visitantes de Malgrat de Mar. Salidas desde el Puerto de Blanes, a 8 km (10 min en coche, 5 min en tren R1). " + eraCopy("Barcos sin licencia desde 70 EUR/hora con gasolina incluida.", POST_ERA_TOWN.offerEs),
-        { low: getFleetStats().priceFloor, high: 420 },
+        getSegmentPriceRange("fleet"),
       );
       const faq = {
         "@type": "FAQPage",
@@ -3603,7 +3606,7 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
         isEn
           ? eraCopy("Rent a license-free boat and drive it yourself, or book the captained private excursion for a boat trip without driving. Departures from Blanes Port, 12 km from Santa Susanna (15 min by car, 10 min by R1 train). From 70 EUR/hour with fuel included.", "Rent a powerboat with the Licencia de Navegacion (1-day course, no exam) and drive it yourself, or book the captained private excursion for a boat trip without driving. Departures from Blanes Port, 12 km from Santa Susanna (15 min by car, 10 min by R1 train). From 175 EUR per 2 hours, fuel charged separately.")
           : eraCopy("Alquila un barco sin licencia y pilótalo tú, o reserva la excursión privada con patrón para un paseo en barco sin conducir. Salidas desde el Puerto de Blanes, a 12 km de Santa Susanna (15 min en coche, 10 min en tren R1). Desde 70 EUR/hora con gasolina incluida.", "Alquila una lancha con la Licencia de Navegación (curso de 1 día, sin examen) y pilótala tú, o reserva la excursión privada con patrón para un paseo en barco sin conducir. Salidas desde el Puerto de Blanes, a 12 km de Santa Susanna (15 min en coche, 10 min en tren R1). Desde 175 EUR por 2 horas, gasolina aparte."),
-        { low: getFleetStats().priceFloor, high: 420 },
+        getSegmentPriceRange("fleet"),
       );
       const faq = {
         "@type": "FAQPage",
@@ -3683,7 +3686,7 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
         isEn
           ? eraCopy("License-free and licensed boat rental for ", "Boat rental for ") + "visitors staying in Calella (Maresme, Barcelona province). Departures from Blanes Port, 17 km away (20 min by car, 15 min by R1 train). " + eraCopy("License-free boats from 70 EUR/hour with fuel included.", POST_ERA_TOWN.offerEn)
           : eraCopy("Alquiler de barcos sin licencia y con licencia para ", "Alquiler de barcos para ") + "visitantes alojados en Calella (Maresme, provincia de Barcelona). Salidas desde el Puerto de Blanes, a 17 km (20 min en coche, 15 min en tren R1). " + eraCopy("Barcos sin licencia desde 70 EUR/hora con gasolina incluida.", POST_ERA_TOWN.offerEs),
-        { low: getFleetStats().priceFloor, high: 420 },
+        getSegmentPriceRange("fleet"),
       );
       const faq = {
         "@type": "FAQPage",
@@ -3834,7 +3837,7 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
             ? `${noLicenseBoats.length} small boats (up to 15 HP) for rent in Blanes, Costa Brava. From 1 October 2026 (RD 1188/2025) the renter needs the Licencia de Navegación, a 1-day course with no exam, or sails with a skipper. 15-minute safety briefing included. Fuel, insurance and safety equipment included in price.`
             : `${noLicenseBoats.length} barcos pequeños (hasta 15 CV) para alquilar en Blanes, Costa Brava. Desde el 1 de octubre de 2026 (RD 1188/2025) el arrendatario necesita la Licencia de Navegación, un curso de un día sin examen, o sale con patrón. Formación de seguridad de 15 minutos incluida. Gasolina, seguro y equipo de seguridad incluidos en el precio.`,
         ),
-        { low: getFleetStats().priceFloor, high: 370 },
+        getSegmentPriceRange("fleet"),
       );
       // Native-language SSR body so non-ES locales carry unique content (not a
       // Spanish/English ternary) — prerequisite for indexing them. Sourced from
@@ -3950,7 +3953,7 @@ ${schoolSmall ? `<p><a href="${esc(schoolSmall.url)}" rel="noopener">${esc(schoo
         name: cl.howToTitle,
         description: cl.howToIntro,
         totalTime: "PT30M",
-        estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "160" },
+        estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: String(getSegmentPriceRange("licensed").low) },
         supply: [
           { "@type": "HowToSupply", name: isEn ? "Valid boating licence (original document)" : "Titulación náutica en vigor (documento original)" },
           { "@type": "HowToSupply", name: isEn ? "ID and 500€ refundable deposit" : "Documento de identidad y fianza reembolsable de 500€" },
@@ -3968,7 +3971,7 @@ ${schoolSmall ? `<p><a href="${esc(schoolSmall.url)}" rel="noopener">${esc(schoo
         isEn
           ? "3 self-drive powerboats (80-115 HP) for rent in Blanes, Costa Brava. The Spanish Navigation Licence or an equivalent foreign licence (ICC, EU) is enough. Skipper yourself to Lloret (15 min) and Tossa de Mar (30-45 min). Fuel charged separately."
           : "3 lanchas sin patrón (80-115 CV) para alquilar en Blanes, Costa Brava. Basta la Licencia de Navegación o un título extranjero equivalente (ICC, UE). Pilota tú mismo hasta Lloret (15 min) y Tossa de Mar (30-45 min). Gasolina aparte.",
-        { low: 160, high: 420 },
+        getSegmentPriceRange("licensed"),
       );
       const licensedBodyFallback = buildLocationBodyFallback(
         cl.heroTitle,
@@ -4023,7 +4026,7 @@ ${schoolSmall ? `<p><a href="${esc(schoolSmall.url)}" rel="noopener">${esc(schoo
         name: cap.howToTitle,
         description: cap.howToIntro,
         totalTime: "PT30M",
-        estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "240" },
+        estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: String(getSegmentPriceRange("captained").low) },
         supply: [
           { "@type": "HowToSupply", name: isEn ? "ID or passport" : "Documento de identidad o pasaporte" },
           { "@type": "HowToSupply", name: isEn ? "200€ refundable deposit" : "Fianza reembolsable de 200€" },
@@ -4041,7 +4044,7 @@ ${schoolSmall ? `<p><a href="${esc(schoolSmall.url)}" rel="noopener">${esc(schoo
         isEn
           ? "Private boat excursion with a professional skipper from Blanes, Costa Brava: coves and sea caves between Blanes and Tossa de Mar, swim stop included. Up to 6 people aboard a Pacific Craft 625, from 265€/2h. No licence needed; fuel charged separately."
           : "Excursión privada en barco con patrón profesional desde Blanes, Costa Brava: calas y cuevas marinas entre Blanes y Tossa de Mar con parada para nadar. Hasta 6 personas a bordo de una Pacific Craft 625, desde 265€/2h. Sin licencia; combustible aparte.",
-        { low: 240, high: 420 },
+        getSegmentPriceRange("captained"),
       );
       const captainedBodyFallback = buildLocationBodyFallback(
         cap.heroTitle,
@@ -4111,7 +4114,7 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
       const su = (I18N_BY_LANG[lang] ?? i18nEs).activitySunset!;
       const heading = su.heroTitle ?? meta.title;
       const summary = su.heroDescription ?? meta.description;
-      const service = buildLandingService(heading, summary, { low: getFleetStats().priceFloor, high: 200 });
+      const service = buildLandingService(heading, summary, getSegmentPriceRange("fleet"));
       const faq = {
         "@type": "FAQPage",
         mainEntity: su.faqItems.map((item) => ({
@@ -4141,7 +4144,7 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
       const fsh = (I18N_BY_LANG[lang] ?? i18nEs).activityFishing!;
       const heading = fsh.heroTitle ?? meta.title;
       const summary = fsh.heroDescription ?? meta.description;
-      const service = buildLandingService(heading, summary, { low: 115, high: 200 });
+      const service = buildLandingService(heading, summary, getSegmentPriceRange("fleet"));
       const faq = {
         "@type": "FAQPage",
         mainEntity: (fsh.faqItems ?? []).map((item) => ({
@@ -4171,7 +4174,7 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
       const fa = (I18N_BY_LANG[lang] ?? i18nEs).activityFamilies!;
       const heading = fa.heroTitle ?? meta.title;
       const summary = fa.heroDescription ?? meta.description;
-      const service = buildLandingService(heading, summary, { low: getFleetStats().priceFloor, high: 200 });
+      const service = buildLandingService(heading, summary, getSegmentPriceRange("fleet"));
       const faq = {
         "@type": "FAQPage",
         mainEntity: (fa.faqItems ?? []).map((item) => ({
@@ -4201,7 +4204,7 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
       const sn = (I18N_BY_LANG[lang] ?? i18nEs).activitySnorkel!;
       const heading = sn.heroTitle ?? meta.title;
       const summary = sn.heroDescription ?? meta.description;
-      const service = buildLandingService(heading, summary, { low: getFleetStats().priceFloor, high: 200 });
+      const service = buildLandingService(heading, summary, getSegmentPriceRange("fleet"));
       const faq = {
         "@type": "FAQPage",
         mainEntity: (sn.faqItems ?? []).map((item) => ({
@@ -4372,7 +4375,7 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
       const sec = (I18N_BY_LANG[lang] ?? i18nEs).locationPages.tordera?.sections;
       const heading = sec?.heroTitle ?? meta.title;
       const summary = sec?.heroSubtitle ?? meta.description;
-      const service = buildLandingService(heading, summary, { low: getFleetStats().priceFloor, high: 200 });
+      const service = buildLandingService(heading, summary, getSegmentPriceRange("fleet"));
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: heading, url: `${BASE_URL}${metaKey}` }]);
       const bullets = ([
         [sec?.whyCard1Title, sec?.whyCard1Desc],
@@ -4388,7 +4391,7 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
       const sec = (I18N_BY_LANG[lang] ?? i18nEs).locationPages.palafolls?.sections;
       const heading = sec?.heroTitle ?? meta.title;
       const summary = sec?.heroSubtitle ?? meta.description;
-      const service = buildLandingService(heading, summary, { low: getFleetStats().priceFloor, high: 200 });
+      const service = buildLandingService(heading, summary, getSegmentPriceRange("fleet"));
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: heading, url: `${BASE_URL}${metaKey}` }]);
       const bullets = ([
         [sec?.whyCard1Title, sec?.whyCard1Desc],
@@ -4404,7 +4407,7 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
       const sec = (I18N_BY_LANG[lang] ?? i18nEs).locationPages.pineda?.sections;
       const heading = sec?.heroTitle ?? meta.title;
       const summary = sec?.heroSubtitle ?? meta.description;
-      const service = buildLandingService(heading, summary, { low: getFleetStats().priceFloor, high: 420 });
+      const service = buildLandingService(heading, summary, getSegmentPriceRange("fleet"));
       // TouristDestination + FAQPage for schema parity with the other Maresme
       // town pages (Malgrat / Santa Susanna / Calella). Prose prices say
       // "70 EUR" on purpose: applyFleetStatsToText() rewrites the catalog
@@ -4637,7 +4640,7 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
         isEn
           ? eraCopy("Transparent prices for all our boats in Blanes, Costa Brava. License-free boats from 70 EUR/hour (fuel included). Licensed boats from 175 EUR/2h. Private excursion with captain from 265 EUR/2h. Low, mid and high season pricing.", "Transparent prices for all our boats in Blanes, Costa Brava. Powerboats with the Licencia de Navegacion from 175 EUR/2h, fuel charged separately. Private excursion with captain from 265 EUR/2h. Low, mid and high season pricing.")
           : eraCopy("Precios transparentes para todos nuestros barcos en Blanes, Costa Brava. Barcos sin licencia desde 70€/hora (gasolina incluida). Barcos con licencia desde 175€/2h. Excursión privada con patrón desde 265€/2h. Tarifas temporada baja, media y alta.", "Precios transparentes para todos nuestros barcos en Blanes, Costa Brava. Lanchas con Licencia de Navegación desde 175€/2h, gasolina aparte. Excursión privada con patrón desde 265€/2h. Tarifas temporada baja, media y alta."),
-        { low: getFleetStats().priceFloor, high: 420 },
+        getSegmentPriceRange("fleet"),
       );
       const speakable = {
         "@type": "SpeakableSpecification",
@@ -4780,7 +4783,7 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
       const service = buildLandingService(
         `${heroTitle} ${SEASON_YEAR}`,
         intro,
-        { low: getFleetStats().priceFloor, high: 420 },
+        getSegmentPriceRange("fleet"),
       );
       const costaBravaBodyFallback = buildLocationBodyFallback(
         heroTitle,
@@ -4807,7 +4810,7 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
       const service = buildLandingService(
         `Boat Rental Costa Brava ${SEASON_YEAR}`,
         "Boat rental on the Costa Brava from Blanes port. License-free boats from 70 EUR/hour (fuel included). Licensed boats and private excursions with captain available. Up to 12 people. Hidden coves, snorkel spots and medieval coastal villages.",
-        { low: getFleetStats().priceFloor, high: 420 },
+        getSegmentPriceRange("fleet"),
       );
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, breadcrumb] }, availableLanguages };
     }
@@ -5016,24 +5019,9 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
           ru: "до 15 л.с., с titulín",
         };
         const licenseText = boat.requiresLicense ? withLic : eraCopy(withoutLic, withoutLicPostEra[lang] ?? withoutLicPostEra.es);
-        const fromPrice = (() => {
-          // Filter out 0 placeholders — some boat.pricing rows have 0 for
-          // tariff slots not yet defined (e.g. MEDIA.prices['6h']=0). Without
-          // the filter Math.min returns 0, which is falsy and previously
-          // caused the JSON-LD Offer to be emitted without a `price` field —
-          // GSC flagged this as a critical "merchant listings" error
-          // 2026-04-29 ("Falta el campo 'price' (en 'offers')").
-          if (!boat.pricing) return null;
-          const seasons = Object.values(boat.pricing) as Array<{ prices?: Record<string, number> }>;
-          const prices = seasons
-            .flatMap(s => s?.prices ? Object.values(s.prices) : [])
-            .filter((p): p is number => typeof p === "number" && p > 0);
-          return prices.length > 0 ? Math.min(...prices) : null;
-        })();
-        const fromLabels: Record<string, string> = {
-          es: "Desde", en: "From", ca: "Des de", fr: "Dès", de: "Ab", nl: "Vanaf", it: "Da", ru: "От"
-        };
-        const priceStr = fromPrice ? ` | ${fromLabels[lang] || "Desde"} ${fromPrice}€` : "";
+        // "desde 175 € / 2 h": the real minimum block of the boat (0 placeholders ignored), from the
+        // template shared with the client (shared/boatPageMeta.ts) so SSR title === hydrated title.
+        const fromLabel = boatFromPriceLabel(boat.id, boat.pricing, lang);
         // Build boat-specific og:image URL. resolveBoatImagePath maps legacy DB
         // filenames (e.g. "SOLAR_450_boat_photo_xxx.png") to real /images/boats/
         // asset paths so social crawlers get a 200 instead of a 404.
@@ -5043,53 +5031,6 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
         // name Google reads on the translated URLs; the model names come back
         // from the dictionary unchanged.
         const boatName = translateBoatText(boat.name, lang);
-        const isExcursion = boat.id === "excursion-privada";
-        const excursionMeta: Record<string, { title: string; description: string }> = {
-          es: {
-            title: `Excursión Privada en Barco Blanes | Con Capitán${priceStr}`,
-            description: `Contrata una excursión privada en barco con patrón en Blanes, Costa Brava. Hasta ${boat.capacity} personas. No necesitas licencia — capitán incluido. Reserva por WhatsApp.`,
-          },
-          en: {
-            title: `Private Boat Excursion Blanes | With Captain${priceStr}`,
-            description: `Private boat trip with skipper in Blanes, Costa Brava. Up to ${boat.capacity} people. No license required — captain included. Book via WhatsApp.`,
-          },
-          ca: {
-            title: `Excursió Privada Vaixell Blanes | Amb Patró${priceStr}`,
-            description: `Contracta una excursió privada en vaixell amb patró a Blanes, Costa Brava. Fins a ${boat.capacity} persones. No necessites llicència — patró inclòs. Reserva per WhatsApp.`,
-          },
-          fr: {
-            title: `Excursion Privée Bateau Blanes | Avec Capitaine${priceStr}`,
-            description: `Réservez une excursion privée en bateau avec skipper à Blanes, Costa Brava. Jusqu'à ${boat.capacity} personnes. Pas de permis requis — capitaine inclus. Réservez via WhatsApp.`,
-          },
-          de: {
-            title: `Private Bootsexkursion Blanes | Mit Kapitän${priceStr}`,
-            description: `Buchen Sie eine private Bootsexkursion mit Skipper in Blanes, Costa Brava. Bis zu ${boat.capacity} Personen. Kein Bootsführerschein nötig — Kapitän inklusive. Buchen per WhatsApp.`,
-          },
-          nl: {
-            title: `Privé Boottocht Blanes | Met Schipper${priceStr}`,
-            description: `Boek een privé boottocht met schipper in Blanes, Costa Brava. Tot ${boat.capacity} personen. Geen vaarbewijs nodig — schipper inbegrepen. Boek via WhatsApp.`,
-          },
-          it: {
-            title: `Escursione Privata Barca Blanes | Con Capitano${priceStr}`,
-            description: `Prenota un'escursione privata in barca con skipper a Blanes, Costa Brava. Fino a ${boat.capacity} persone. Nessuna patente necessaria — capitano incluso. Prenota via WhatsApp.`,
-          },
-          ru: {
-            title: `Частная экскурсия Бланес | С капитаном${priceStr}`,
-            description: `Закажите частную экскурсию на лодке с капитаном в Бланесе, Коста Брава. До ${boat.capacity} человек. Лицензия не нужна — капитан включён. Бронируйте через WhatsApp.`,
-          },
-        };
-        const rentLabels: Record<string, { verb: string; prep: string; upTo: string; bookVerb: string; people: string }> = {
-          es: { verb: "Alquiler", prep: "en", upTo: "Hasta", bookVerb: "Alquila el", people: "personas" },
-          en: { verb: "Rent", prep: "in", upTo: "Up to", bookVerb: "Book the", people: "people" },
-          ca: { verb: "Lloguer", prep: "a", upTo: "Fins a", bookVerb: "Lloga el", people: "persones" },
-          fr: { verb: "Location", prep: "à", upTo: "Jusqu'à", bookVerb: "Louez le", people: "personnes" },
-          de: { verb: "Mieten", prep: "in", upTo: "Bis zu", bookVerb: "Mieten Sie das", people: "Personen" },
-          nl: { verb: "Huur", prep: "in", upTo: "Tot", bookVerb: "Huur de", people: "personen" },
-          it: { verb: "Noleggio", prep: "a", upTo: "Fino a", bookVerb: "Noleggia il", people: "persone" },
-          ru: { verb: "Аренда", prep: "в", upTo: "До", bookVerb: "Арендуйте", people: "человек" },
-        };
-        const r = rentLabels[lang] || rentLabels.es;
-        const exc = excursionMeta[lang] || excursionMeta.es;
         // Per-language og:image:alt for social sharing. Using the translated
         // verb + boat name keeps the alt consistent with the title and avoids
         // Spanish leaking into FB/WhatsApp/Twitter previews of /en/, /fr/, etc.
@@ -5106,18 +5047,17 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
         const boatOgImageAlt = ogImageAltByLang[lang] || ogImageAltByLang.es;
         const boatOgImageWidth = boatOgImage ? BOAT_IMAGE_WIDTH : undefined;
         const boatOgImageHeight = boatOgImage ? BOAT_IMAGE_HEIGHT : undefined;
-        const meta: SEOMeta = isExcursion
-          ? { title: exc.title, description: exc.description, ogImage: boatOgImage, ogImageAlt: boatOgImageAlt, ogImageWidth: boatOgImageWidth, ogImageHeight: boatOgImageHeight, ogType: "product" }
-          : {
-              title: `${r.verb} ${boatName} ${r.prep} Blanes${priceStr}`,
-              description: `${r.bookVerb} ${boatName} ${r.prep} Blanes, Costa Brava. ${r.upTo} ${boat.capacity} ${r.people}, ${licenseText}. WhatsApp.`,
-              ogImage: boatOgImage,
-              ogImageAlt: boatOgImageAlt,
-              ogImageWidth: boatOgImageWidth,
-              ogImageHeight: boatOgImageHeight,
-              ogType: "product",
-            };
-        const jsonLd = buildBoatProductSchema(boat, fromPrice);
+        const pageMeta = buildBoatPageMeta(boat, lang);
+        const meta: SEOMeta = {
+          title: pageMeta.title,
+          description: pageMeta.description,
+          ogImage: boatOgImage,
+          ogImageAlt: boatOgImageAlt,
+          ogImageWidth: boatOgImageWidth,
+          ogImageHeight: boatOgImageHeight,
+          ogType: "product",
+        };
+        const jsonLd = buildBoatProductSchema(boat, lang);
         // Preload the same webp the BoatDetailPage mini-hero renders
         // (client/src/components/BoatDetailPage.tsx:840 — loading="eager"
         // fetchPriority="high"). Without this preload the LCP image is only
@@ -5127,7 +5067,7 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
           ? { href: heroHref, imageType: "image/webp" }
           : undefined;
         // hasTranslation: true — boat detail meta (title/description/ogImageAlt)
-        // is fully generated per-language above via rentLabels/excursionMeta, so
+        // is fully generated per-language by shared/boatPageMeta.ts, so
         // non-ES URLs should be indexable and self-canonical, not redirected to
         // the ES equivalent. Prior default (hasTranslation: false) caused Google
         // to see noindex + canonical→/es/barco/... on every non-Spanish boat URL.
@@ -5160,7 +5100,7 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
         };
         const [fuelApart, fuelInc] = fuelLabels[lang] || fuelLabels.es;
         const fuelText = boatIncludesFuel(boat.id, boat.requiresLicense) ? fuelInc : fuelApart;
-        const priceFromLabel = fromPrice ? `${fromLabels[lang] || "Desde"} ${fromPrice}€` : "";
+        const priceFromLabel = fromLabel;
         const reservaLabel: Record<string, string> = {
           es: "Reserva por WhatsApp", en: "Book via WhatsApp", ca: "Reserva per WhatsApp",
           fr: "Réservez par WhatsApp", de: "Per WhatsApp buchen", nl: "Boek via WhatsApp",
@@ -5435,10 +5375,12 @@ export function isValidSPARoute(pathname: string): boolean {
     // Try to resolve as a known page slug
     const resolved = resolveSlug(slug);
     if (resolved) {
-      // /:lang/:slug (static page)
-      if (segments.length === 2) return true;
-      // /:lang/:slug/:param (dynamic page like blog detail, boat detail)
-      if (segments.length === 3) return true;
+      // /:lang/:slug (static page). /es/barco and /es/cancel have no page without their
+      // param: the SPA renders its 404, so the server must not answer 200 (soft 404).
+      if (segments.length === 2) return !DETAIL_ONLY_PAGE_KEYS.includes(resolved.pageKey);
+      // /:lang/:slug/:param: only dynamic routes (boat, blog post, destination, cancel, crm tab).
+      // /es/barcos-con-licencia/x is not a page.
+      if (segments.length === 3) return DYNAMIC_PAGE_KEYS.includes(resolved.pageKey);
     }
 
     // Programmatic matrix pages (occasion × location) — slugs live outside ROUTE_SLUGS
@@ -5487,6 +5429,16 @@ export async function serveWithSEO(
       // Legacy URL without lang prefix — use ?lang= param or default to es
       const legacyLang = parsedUrl.searchParams.get("lang");
       lang = (legacyLang && isValidLang(legacyLang)) ? legacyLang as LangCode : "es";
+    }
+
+    // A slug that belongs to another language than the URL prefix (/fr/alquiler-barcos-tossa-de-mar,
+    // /de/barco/excursion-privada) duplicated the localized page under a second URL: 301 to the real one.
+    if (isForeignLanguageSlug(pathname)) {
+      const target = localizedAlternatePath(pathname, lang);
+      if (target !== pathname) {
+        res.set("Cache-Control", "public, max-age=3600");
+        return res.redirect(301, target + parsedUrl.search);
+      }
     }
 
     // Prerendered HTML is served by prerenderedMiddleware (mounted BEFORE this

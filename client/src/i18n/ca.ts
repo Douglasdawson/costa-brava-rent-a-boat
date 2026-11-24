@@ -5675,7 +5675,7 @@ export const ca: Translations = {
         },
         {
           question: 'Quant es triga amb vaixell de Blanes a Tossa?',
-          answer: 'Entre 45 minuts i 1 hora des del Port de Blanes. 7 milles de costa espectacular amb penya-segats i cales verges.',
+          answer: 'Entre 30 i 45 minuts des del Port de Blanes. 7 milles de costa espectacular amb penya-segats i cales verges.',
         },
         {
           question: 'Quan costa l\'Excursió Privada amb Capità a Tossa?',
@@ -5740,7 +5740,7 @@ export const ca: Translations = {
         anchoringZones: 'Zones de Fondeig',
         anchoringZonesDesc: 'Platja Gran: zona habilitada per a embarcacions recreatives. Cala Pola: fondeig lliure en aigües cristal·lines. Es Codolar: cala verge ideal per passar el dia. Mantén distància de les zones de bany senyalitzades.',
         safeNavigation: 'Navegació Segura',
-        safeNavigationDesc: '1 hora de navegació requereix planificació. Consulta el temps, porta suficient combustible i aigua. Respecta les velocitats en zones costaneres i mantén la costa sempre a la vista.',
+        safeNavigationDesc: 'Arribar a Tossa requereix planificació. Consulta el temps, porta suficient combustible i aigua. Respecta les velocitats en zones costaneres i mantén la costa sempre a la vista.',
         ctaTitle: 'Preparat per Descobrir Tossa de Mar?',
         ctaDescription: 'Reserva el teu vaixell des del Port de Blanes i viu l\'experiència única d\'arribar per mar al poble medieval més bonic de la Costa Brava.',
         ctaButton: 'Reservar Excursió a Tossa',

@@ -31,6 +31,7 @@ import {
   type FleetStatBoat,
 } from "../../shared/boatData";
 import { isJetSkiProduct } from "../../shared/jetskiProducts";
+import { getBoatCatalogMinPrice, priceCeilingAcrossBoats } from "../../shared/pricing";
 
 // Static catalog minus the baseline-inactive hulls. The captained excursion is
 // flagged as licensed (as its DB row is) so isPubliclyListed keeps it.
@@ -107,6 +108,27 @@ export function getFleetStats(now: Date = new Date()): FleetStats {
     triggerRefresh();
   }
   return statsFor(cached, now);
+}
+
+export type FleetSegment = "fleet" | "licensed" | "captained";
+
+/**
+ * Public "from X to Y EUR" range of a segment of the publicly listed fleet, derived from
+ * live boat pricing (all seasons, all durations). `licensed` = self-drive boats that need a
+ * licence; `captained` = the skippered excursion. An empty segment falls back to the whole
+ * listed fleet so a JSON-LD offer never prints 0.
+ */
+export function getSegmentPriceRange(segment: FleetSegment, now: Date = new Date()): { low: number; high: number } {
+  getFleetStats(now); // triggers the background refresh when stale
+  const listed = cached.filter((b) => isPubliclyListed(b, now));
+  const pick = (s: FleetSegment) =>
+    listed.filter((b) =>
+      s === "fleet" ? true : s === "captained" ? isCaptainedBoat(b.id) : !!b.requiresLicense && !isCaptainedBoat(b.id),
+    );
+  let boats = pick(segment);
+  if (!boats.length) boats = listed;
+  const low = Math.min(...boats.map((b) => getBoatCatalogMinPrice(b.pricing as never) ?? Infinity));
+  return { low: Number.isFinite(low) ? low : 0, high: priceCeilingAcrossBoats(boats) ?? 0 };
 }
 
 /** Initialize the cache at server startup. Awaited from startScheduledServices. */

@@ -3056,7 +3056,10 @@ export const es: Translations = {
       "El precio final con marketplace suele ser un 20-35% mayor que el anunciado una vez sumas gasolina, comisión y extras. Nuestros 85€/h incluyen ya todo: gasolina, equipamiento, briefing, seguro de responsabilidad civil y soporte en puerto.",
   },
   categoryLicensed: {
-    heroTitle: "Alquiler de lanchas sin patrón en Blanes: llega pilotando hasta Tossa de Mar",
+    heroTitle: "Alquiler de lanchas sin patrón en Blanes",
+    heroSubtitle: "Pilota tú hasta Tossa de Mar con tu Licencia de Navegación, desde {price} EUR las 2 horas.",
+    heroSecondaryCta: "¿Sin título? Excursión con patrón",
+    heroImageAlt: "Lancha en aguas turquesa bajo la muralla de Tossa de Mar",
     heroDescription:
       "Tres lanchas con licencia de 80 a 115 CV en el Puerto de Blanes. Tú al timón con tu Licencia de Navegación o título extranjero equivalente, que verificamos online antes de tu viaje. Desde 175 EUR las 2 horas.",
     badgeLicense: "Basta la Licencia de Navegación",
@@ -6435,7 +6438,10 @@ export const es: Translations = {
     seoTitle: "Alquiler de Barco con Patrón Costa Brava | Desde Blanes",
     seoDescription:
       "Excursión privada en barco con patrón desde Blanes: calas y cuevas hasta Tossa de Mar, parada para nadar. Hasta 6 personas, desde 265€/2h. {rating}★ en Google.",
-    heroTitle: "Alquiler de barco con patrón en la Costa Brava: tu excursión privada desde Blanes",
+    heroTitle: "Alquiler de barco con patrón en la Costa Brava",
+    heroSubtitle: "Tu excursión privada desde Blanes hasta Tossa de Mar, sin licencia ni experiencia, desde {price} EUR las 2 horas.",
+    heroSecondaryCta: "¿Tienes título? Lanchas sin patrón",
+    heroImageAlt: "Barco anclado en una cala de aguas turquesa de la Costa Brava, con bañistas cerca",
     heroDescription:
       "Tú solo disfrutas: nuestro patrón profesional os lleva a calas de aguas claras y cuevas marinas entre Blanes y Tossa de Mar, y fondea en el rincón perfecto del día para que os bañéis. Sin licencia, sin experiencia y sin preocuparte de nada.",
     badgeSkipper: "Patrón profesional incluido",

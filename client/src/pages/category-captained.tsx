@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Users,
@@ -9,7 +8,6 @@ import {
   FileText,
   Fuel,
   ChevronRight,
-  LifeBuoy,
   ArrowLeftRight,
   Ruler,
   Gauge,
@@ -30,6 +28,7 @@ import { BOAT_DATA } from "@shared/boatData";
 import { BUSINESS_RATING_STR } from "@shared/businessProfile";
 import { translateBoatText } from "@shared/boatTextTranslations";
 import { BookingStickyBar } from "@/components/MobileStickyBar";
+import CategoryHero from "@/components/CategoryHero";
 
 function RevealSection({
   children,
@@ -87,6 +86,7 @@ export default function CategoryCaptainedPage() {
     { label: cp.seasonHigh, prices: excursion.pricing.ALTA.prices },
   ];
   const durations: Array<"2h" | "3h" | "4h"> = ["2h", "3h", "4h"];
+  const heroPrice = excursion.pricing.BAJA.prices["2h"];
 
   const specs = [
     { icon: Users, label: cp.specCapacityLabel, value: excursion.specifications.capacity },
@@ -107,35 +107,53 @@ export default function CategoryCaptainedPage() {
       <ReadingProgressBar />
 
       {/* ═══ HERO ═══ */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 pt-24 pb-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center mb-6">
-              <LifeBuoy className="hidden sm:block w-8 h-8 shrink-0 text-primary mr-4" aria-hidden="true" />
-              <h1 className="text-h1 font-heading font-bold text-foreground">
-                {cp.heroTitle}
-              </h1>
-            </div>
-            <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
-              {cp.heroDescription}
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Badge variant="outline" className="text-primary border-primary">
-                <LifeBuoy className="w-4 h-4 mr-2" />
-                {cp.badgeSkipper}
-              </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <Users className="w-4 h-4 mr-2" />
-                {cp.badgeCapacity}
-              </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <CheckCircle className="w-4 h-4 mr-2" />
-                {cp.badgeNoLicense}
-              </Badge>
+      <CategoryHero
+        imageBasePath="/images/locations/hero-blanes"
+        imageAlt={cp.heroImageAlt}
+        title={cp.heroTitle}
+        subtitleTemplate={cp.heroSubtitle}
+        price={heroPrice}
+        secondaryCta={{ href: localizedPath("categoryLicensed"), label: cp.heroSecondaryCta }}
+        testId="captained"
+      />
+
+      {/* ═══ PRICING BY SEASON ═══ straight from boatData */}
+      <section className="bg-muted py-6 sm:py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-h2 font-heading font-bold mb-2 sm:mb-4">{cp.pricingTitle}</h2>
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-3 sm:mb-6">{cp.pricingIntro}</p>
+          <div className="rounded-2xl bg-background overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b bg-muted/50">
+                    <th className="text-left p-3 font-semibold">{cp.pricingColDuration}</th>
+                    {seasons.map((season, idx) => (
+                      <th key={idx} className="text-right p-3 font-semibold">
+                        {season.label}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {durations.map((duration, dIdx) => (
+                    <tr key={duration} className="border-b last:border-b-0 hover:bg-muted/30">
+                      <td className="p-3 font-medium">{cp.pricingDurations[dIdx]}</td>
+                      {seasons.map((season, sIdx) => (
+                        <td key={sIdx} className="p-3 text-right font-semibold text-primary">
+                          {season.prices[duration]}
+                          {"€"}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
+          <p className="text-muted-foreground leading-relaxed mt-4">{cp.pricingNote}</p>
         </div>
-      </div>
+      </section>
 
       {/* ═══ WHAT IS A CAPTAINED EXCURSION ═══ text + image */}
       <RevealSection className="py-16 sm:py-20">
@@ -287,44 +305,6 @@ export default function CategoryCaptainedPage() {
             <ChevronRight className="w-4 h-4" />
             {cp.boatCta}
           </a>
-        </div>
-      </RevealSection>
-
-      {/* ═══ PRICING BY SEASON ═══ straight from boatData */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold mb-4">{cp.pricingTitle}</h2>
-          <p className="text-muted-foreground leading-relaxed mb-6">{cp.pricingIntro}</p>
-          <div className="rounded-2xl bg-background overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b bg-muted/50">
-                    <th className="text-left p-3 font-semibold">{cp.pricingColDuration}</th>
-                    {seasons.map((season, idx) => (
-                      <th key={idx} className="text-right p-3 font-semibold">
-                        {season.label}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {durations.map((duration, dIdx) => (
-                    <tr key={duration} className="border-b last:border-b-0 hover:bg-muted/30">
-                      <td className="p-3 font-medium">{cp.pricingDurations[dIdx]}</td>
-                      {seasons.map((season, sIdx) => (
-                        <td key={sIdx} className="p-3 text-right font-semibold text-primary">
-                          {season.prices[duration]}
-                          {"€"}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <p className="text-muted-foreground leading-relaxed mt-4">{cp.pricingNote}</p>
         </div>
       </RevealSection>
 

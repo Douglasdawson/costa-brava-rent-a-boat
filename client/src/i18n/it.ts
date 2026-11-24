@@ -1249,7 +1249,10 @@ export const it: Translations = {
       "Il prezzo finale con marketplace è di solito del 20-35% superiore a quello pubblicizzato, una volta sommati carburante, commissione ed extra. I nostri 85€/h includono già tutto: carburante, attrezzatura, briefing, assicurazione RC e assistenza in porto.",
   },
   categoryLicensed: {
-    heroTitle: "Noleggio motoscafi senza skipper a Blanes: arriva a Tossa de Mar al timone",
+    heroTitle: "Noleggio motoscafi senza skipper a Blanes",
+    heroSubtitle: "Al timone fino a Tossa de Mar con la tua Licencia de Navegación, da {price} EUR le 2 ore.",
+    heroSecondaryCta: "Senza titolo? Escursione con skipper",
+    heroImageAlt: "Motoscafo nelle acque turchesi sotto le mura di Tossa de Mar",
     heroDescription:
       "Tre motoscafi con patente da 80 a 115 CV al Porto di Blanes. Tu al timone con la tua Licencia de Navegación o un titolo estero equivalente, che verifichiamo online prima della tua uscita. Da 175 EUR le 2 ore.",
     badgeLicense: "Basta la Licencia de Navegación",
@@ -5093,7 +5096,10 @@ export const it: Translations = {
     seoTitle: "Noleggio Barca con Skipper Costa Brava | Da Blanes",
     seoDescription:
       "Escursione privata in barca con skipper da Blanes: cale e grotte fino a Tossa de Mar, sosta bagno. Fino a 6 persone, da 265€/2h. {rating}★ su Google.",
-    heroTitle: "Noleggio barca con skipper sulla Costa Brava: la tua escursione privata da Blanes",
+    heroTitle: "Noleggio barca con skipper sulla Costa Brava",
+    heroSubtitle: "La tua escursione privata da Blanes a Tossa de Mar, senza patente né esperienza, da {price} EUR le 2 ore.",
+    heroSecondaryCta: "Hai la patente? Barche senza skipper",
+    heroImageAlt: "Barca all'ancora in una cala turchese della Costa Brava con bagnanti vicino",
     heroDescription:
       "Voi vi godete la giornata: il nostro skipper professionista vi porta tra cale dalle acque cristalline e grotte marine da Blanes a Tossa de Mar, e getta l'ancora nell'angolo perfetto della giornata per il vostro bagno. Senza patente, senza esperienza e senza pensieri.",
     badgeSkipper: "Skipper professionista incluso",

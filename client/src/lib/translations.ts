@@ -1897,6 +1897,10 @@ export interface Translations {
   // these same keys, so renaming any of them changes the emitted JSON-LD.
   categoryLicensed?: {
     heroTitle: string;
+    /** One-sentence hero subtitle; "{price}" is replaced by the live catalog minimum. */
+    heroSubtitle: string;
+    heroSecondaryCta: string;
+    heroImageAlt: string;
     heroDescription: string;
     badgeLicense: string;
     badgePower: string;
@@ -3259,6 +3263,10 @@ export interface Translations {
     seoTitle: string;
     seoDescription: string;
     heroTitle: string;
+    /** One-sentence hero subtitle; "{price}" is replaced by the live catalog minimum. */
+    heroSubtitle: string;
+    heroSecondaryCta: string;
+    heroImageAlt: string;
     heroDescription: string;
     badgeSkipper: string;
     badgeCapacity: string;

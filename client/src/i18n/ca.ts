@@ -1247,7 +1247,10 @@ export const ca: Translations = {
       "El preu final amb marketplace sol ser un 20-35% major que l'anunciat un cop sumes gasolina, comissió i extres. Els nostres 85€/h ja ho inclouen tot: gasolina, equipament, briefing, assegurança de responsabilitat civil i suport al port.",
   },
   categoryLicensed: {
-    heroTitle: "Lloguer de llanxes sense patró a Blanes: arriba pilotant fins a Tossa de Mar",
+    heroTitle: "Lloguer de llanxes sense patró a Blanes",
+    heroSubtitle: "Pilota tu fins a Tossa de Mar amb la teva Llicència de Navegació, des de {price} EUR les 2 hores.",
+    heroSecondaryCta: "Sense títol? Excursió amb patró",
+    heroImageAlt: "Llanxa en aigües turquesa sota la muralla de Tossa de Mar",
     heroDescription:
       "Tres llanxes amb llicència de 80 a 115 CV al Port de Blanes. Tu al timó amb la teva Llicència de Navegació (LN) o títol estranger equivalent, que verifiquem en línia abans del teu viatge. Des de 175 EUR les 2 hores.",
     badgeLicense: "N'hi ha prou amb la Llicència de Navegació",
@@ -5084,7 +5087,10 @@ export const ca: Translations = {
     seoTitle: "Lloguer de Barca amb Patró Costa Brava | Des de Blanes",
     seoDescription:
       "Excursió privada en vaixell amb patró des de Blanes: cales i coves fins a Tossa de Mar, parada per nedar. Fins a 6 persones, des de 265€/2h. {rating}★ a Google.",
-    heroTitle: "Lloguer de barca amb patró a la Costa Brava: la teva excursió privada des de Blanes",
+    heroTitle: "Lloguer de barca amb patró a la Costa Brava",
+    heroSubtitle: "La teva excursió privada des de Blanes fins a Tossa de Mar, sense llicència ni experiència, des de {price} EUR les 2 hores.",
+    heroSecondaryCta: "Tens títol? Llanxes sense patró",
+    heroImageAlt: "Barca fondejada en una cala d'aigües turquesa de la Costa Brava, amb banyistes a prop",
     heroDescription:
       "Tu només gaudeixes: el nostre patró professional us porta a cales d'aigües clares i coves marines entre Blanes i Tossa de Mar, i fondeja al racó perfecte del dia perquè us hi banyeu. Sense llicència, sense experiència i sense preocupar-te de res.",
     badgeSkipper: "Patró professional inclòs",

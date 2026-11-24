@@ -25,6 +25,7 @@ import {
 } from "@/utils/seo-schemas";
 import { getLocalizedPath } from "@shared/i18n-routes";
 import { escolaNauticaHandoff } from "@shared/escolaNauticaLinks";
+import { useBookingModal } from "@/hooks/bookingModalContext";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
 
 const NAVY_CTA =
@@ -45,6 +46,7 @@ const WHATSAPP_NUMBER = "34611500372";
 export default function NavigationLicensePage() {
   const { language } = useLanguage();
   const t = useTranslations();
+  const { openBookingModal } = useBookingModal();
   const p = t.navigationLicensePage;
 
   const hreflangLinks = generateHreflangLinks("navigationLicense");
@@ -52,14 +54,13 @@ export default function NavigationLicensePage() {
   const licensedFleetPath = getLocalizedPath("categoryLicensed", language);
   const captainedPath = getLocalizedPath("categoryCaptained", language);
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(p?.whatsappMessage || "")}`;
-  // null fuera de es/ca/en: la escuela hermana existe solo en castellano.
+  // null fuera de es/ca/en: la escuela hermana existe solo en castellano. Es un enlace
+  // SECUNDARIO (no vende: aun no esta autorizada); el CTA principal es reservar o ver las
+  // lanchas con licencia. Fuera de esos 3 idiomas el secundario es el WhatsApp.
   const school = escolaNauticaHandoff(language, "titulin-course");
-  // Donde la escuela existe, los CTA principales llevan allí; en los otros 5 idiomas siguen
-  // yendo al WhatsApp, que es la única salida que ese visitante puede usar. El icono cambia
-  // con el destino: un logo de WhatsApp sobre un enlace a una web es una promesa falsa.
-  const ctaHref = school ? school.url : whatsappUrl;
-  const ctaLabel = school ? school.cta : p?.ctaButton;
-  const CtaIcon = school ? ExternalLink : SiWhatsapp;
+  const secondaryHref = school ? school.url : whatsappUrl;
+  const secondaryLabel = school ? school.cta : p?.ctaButton;
+  const SecondaryIcon = school ? ExternalLink : SiWhatsapp;
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -112,16 +113,24 @@ export default function NavigationLicensePage() {
           <p className="mx-auto mt-5 max-w-xl text-lg text-white/90 [text-shadow:0_1px_10px_hsl(215_45%_12%/0.45)]">
             {p?.hero?.subtitle}
           </p>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-col items-center gap-2">
             <a
-              href={ctaHref}
-              target="_blank"
-              rel="noopener"
+              href={licensedFleetPath}
               className={`${NAVY_CTA} min-h-12 px-9 text-base`}
               data-testid="cta-hero-titulin"
             >
-              {ctaLabel}
-              <CtaIcon className="h-5 w-5" aria-hidden="true" />
+              {p?.fleet?.cta}
+              <ArrowRight className="h-5 w-5" aria-hidden="true" />
+            </a>
+            <a
+              href={secondaryHref}
+              target="_blank"
+              rel="noopener"
+              className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-white underline decoration-white/60 underline-offset-4 hover:decoration-white"
+              data-testid="link-hero-titulin-secondary"
+            >
+              {secondaryLabel}
+              <SecondaryIcon className="h-4 w-4" aria-hidden="true" />
             </a>
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-2">
@@ -305,22 +314,32 @@ export default function NavigationLicensePage() {
       {/* FINAL CTA */}
       <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-heading text-h2 font-bold text-foreground">
-            {school ? school.finalTitle : p?.ctaTitle}
-          </h2>
-          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            {school ? school.finalBody : p?.ctaText}
-          </p>
+          <h2 className="font-heading text-h2 font-bold text-foreground">{p?.ctaTitle}</h2>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{p?.ctaText}</p>
           <a
-            href={ctaHref}
+            href={whatsappUrl}
             target="_blank"
             rel="noopener"
             className={`${NAVY_CTA} mt-6 min-h-12 px-9 text-base`}
             data-testid="cta-final-titulin"
           >
-            {ctaLabel}
-            <CtaIcon className="h-5 w-5" aria-hidden="true" />
+            {p?.ctaButton}
+            <SiWhatsapp className="h-5 w-5" aria-hidden="true" />
           </a>
+          {school && (
+            <div className="mt-3">
+              <a
+                href={school.url}
+                target="_blank"
+                rel="noopener"
+                className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline"
+                data-testid="link-final-titulin-school"
+              >
+                {school.cta}
+                <ExternalLink className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </div>
+          )}
         </div>
       </section>
 
@@ -331,16 +350,14 @@ export default function NavigationLicensePage() {
             <GraduationCap className="h-4 w-4 flex-shrink-0 text-success" />
             <p className="text-sm font-bold text-foreground">{p?.chips?.[0]}</p>
           </div>
-          <a
-            href={ctaHref}
-            target="_blank"
-            rel="noopener"
+          <button
+            type="button"
+            onClick={() => openBookingModal()}
             className={`${NAVY_CTA} min-h-11 flex-shrink-0 px-6 text-sm`}
             data-testid="cta-sticky-titulin"
           >
-            {p?.navLabel}
-            <CtaIcon className="h-4 w-4" aria-hidden="true" />
-          </a>
+            {t.nav.bookNow}
+          </button>
         </div>
       </MobileStickyBar>
 

@@ -1246,7 +1246,10 @@ export const nl: Translations = {
       "De uiteindelijke prijs via een marktplaats is doorgaans 20-35% hoger dan geadverteerd zodra je brandstof, commissie en extra's optelt. Onze 85€/u is al-inclusive: brandstof, uitrusting, instructie, aansprakelijkheidsverzekering en havensupport.",
   },
   categoryLicensed: {
-    heroTitle: "Speedboot huren zonder schipper in Blanes: zelf varen tot Tossa de Mar",
+    heroTitle: "Speedboot huren zonder schipper in Blanes",
+    heroSubtitle: "Zelf naar Tossa de Mar varen met je Licencia de Navegación, vanaf {price} EUR voor 2 uur.",
+    heroSecondaryCta: "Geen vaarbewijs? Tocht met schipper",
+    heroImageAlt: "Speedboot in turquoise water voor de stadsmuur van Tossa de Mar",
     heroDescription:
       "Drie speedboten met vaarbewijs van 80 tot 115 pk in de Haven van Blanes. Jij aan het roer met je Licencia de Navegación of een gelijkwaardig buitenlands vaarbewijs, dat we online controleren voor je vertrek. Vanaf 175 EUR voor 2 uur.",
     badgeLicense: "Licencia de Navegación volstaat",
@@ -5098,7 +5101,10 @@ export const nl: Translations = {
     seoTitle: "Bootverhuur met Schipper Costa Brava | Vanuit Blanes",
     seoDescription:
       "Privé boottocht met schipper vanuit Blanes: baaien en grotten tot Tossa de Mar, zwemstop inbegrepen. Tot 6 personen, vanaf 265€ voor 2 uur. {rating}★ op Google.",
-    heroTitle: "Bootverhuur met schipper aan de Costa Brava: jouw privé boottocht vanuit Blanes",
+    heroTitle: "Bootverhuur met schipper aan de Costa Brava",
+    heroSubtitle: "Jouw privé boottocht van Blanes naar Tossa de Mar, zonder vaarbewijs of ervaring, vanaf {price} EUR voor 2 uur.",
+    heroSecondaryCta: "Vaarbewijs? Boten zonder schipper",
+    heroImageAlt: "Boot voor anker in een turquoise baai aan de Costa Brava, met zwemmers in de buurt",
     heroDescription:
       "Jij hoeft alleen te genieten: onze professionele schipper brengt jullie naar baaien met helder water en zeegrotten tussen Blanes en Tossa de Mar, en gaat voor anker op het mooiste plekje van de dag zodat jullie kunnen zwemmen. Zonder vaarbewijs, zonder ervaring en zonder je ergens zorgen over te maken.",
     badgeSkipper: "Professionele schipper inbegrepen",

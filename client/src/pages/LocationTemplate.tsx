@@ -39,6 +39,7 @@ import { useTranslations } from "@/lib/translations";
 import { trackLocationPageView } from "@/utils/analytics";
 import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, GBP_PROFILE_URL } from "@shared/businessProfile";
 import ActivitatumTeaser from "@/components/ActivitatumTeaser";
+import { HeroImage } from "@/components/HeroImage";
 import { BookingStickyBar } from "@/components/MobileStickyBar";
 
 // ---------------------------------------------------------------------------
@@ -67,33 +68,7 @@ function RevealSection({
   );
 }
 
-export function HeroImage({ basePath, alt }: { basePath: string; alt: string }) {
-  return (
-    <picture>
-      <source
-        media="(min-width: 768px)"
-        type="image/avif"
-        srcSet={`${basePath}.avif`}
-      />
-      <source type="image/avif" srcSet={`${basePath}-mobile.avif`} />
-      <source
-        media="(min-width: 768px)"
-        type="image/webp"
-        srcSet={`${basePath}.webp`}
-      />
-      <source type="image/webp" srcSet={`${basePath}-mobile.webp`} />
-      <img
-        src={`${basePath}.jpg`}
-        alt={alt}
-        className="absolute inset-0 w-full h-full object-cover"
-        width={1920}
-        height={1080}
-        loading="eager"
-        {...({ fetchpriority: "high" } as unknown as React.ImgHTMLAttributes<HTMLImageElement>)}
-      />
-    </picture>
-  );
-}
+export { HeroImage };
 
 // ---------------------------------------------------------------------------
 // Config interface — each location page provides one of these

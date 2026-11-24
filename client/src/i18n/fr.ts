@@ -1254,7 +1254,10 @@ export const fr: Translations = {
       "Le prix final via marketplace est généralement 20-35 % supérieur au prix annoncé une fois ajoutés le carburant, la commission et les extras. Nos 85 €/h incluent tout : carburant, équipement, formation, assurance responsabilité civile et assistance au port.",
   },
   categoryLicensed: {
-    heroTitle: "Location de bateaux à moteur sans skipper à Blanes : jusqu'à Tossa de Mar, à la barre",
+    heroTitle: "Location de bateaux sans skipper à Blanes",
+    heroSubtitle: "Pilotez jusqu'à Tossa de Mar avec votre Licencia de Navegación, dès {price} € les 2 heures.",
+    heroSecondaryCta: "Pas de permis ? Excursion avec skipper",
+    heroImageAlt: "Bateau à moteur dans une eau turquoise au pied des remparts de Tossa de Mar",
     heroDescription:
       "Trois bateaux à moteur avec permis, de 80 à 115 CV, au Port de Blanes. Vous êtes à la barre avec le permis espagnol Licencia de Navegación ou un titre étranger équivalent, que nous vérifions en ligne avant votre sortie. Dès 175 € les 2 heures.",
     badgeLicense: "La Licencia de Navegación suffit",
@@ -5100,7 +5103,10 @@ export const fr: Translations = {
     seoTitle: "Location Bateau avec Skipper Costa Brava | Blanes",
     seoDescription:
       "Excursion privée en bateau avec skipper depuis Blanes : criques, grottes et arrêt baignade vers Tossa de Mar. Jusqu'à 6 personnes, dès 265€/2h. {rating}★ sur Google.",
-    heroTitle: "Location de bateau avec skipper sur la Costa Brava : votre excursion privée au départ de Blanes",
+    heroTitle: "Location de bateau avec skipper sur la Costa Brava",
+    heroSubtitle: "Votre excursion privée de Blanes à Tossa de Mar, sans permis ni expérience, dès {price} € les 2 heures.",
+    heroSecondaryCta: "Un permis ? Bateaux sans skipper",
+    heroImageAlt: "Bateau ancré dans une crique turquoise de la Costa Brava, baigneurs à proximité",
     heroDescription:
       "Vous n'avez qu'à profiter : notre skipper professionnel vous emmène vers des criques aux eaux claires et des grottes marines entre Blanes et Tossa de Mar, et mouille dans le meilleur recoin du jour pour que vous puissiez vous baigner. Sans permis, sans expérience et sans vous soucier de rien.",
     badgeSkipper: "Skipper professionnel inclus",

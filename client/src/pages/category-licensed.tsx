@@ -1,9 +1,7 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Users,
   CheckCircle,
-  Anchor,
   Gauge,
   Award,
   MapPin,
@@ -33,6 +31,7 @@ import { BOAT_DATA, isCaptainedBoat, type BoatData } from "@shared/boatData";
 import { minPriceAcrossBoats } from "@shared/pricing";
 import { translateBoatText } from "@shared/boatTextTranslations";
 import { BookingStickyBar } from "@/components/MobileStickyBar";
+import CategoryHero from "@/components/CategoryHero";
 
 function RevealSection({
   children,
@@ -99,11 +98,17 @@ export default function CategoryLicensedPage() {
       capacity,
       engine: specs.engine ?? "",
       features: (b.features ?? []).slice(0, 4),
-      price: minPrice ? `Desde ${minPrice}€` : "",
+      price: minPrice ? `${minPrice}€` : "",
     };
   });
 
   const cl = t.categoryLicensed!;
+
+  // Hero "from" price: live fleet when /api/boats has answered, static catalog before.
+  const heroPrice =
+    minPriceAcrossBoats(sourceLicensed, "2h", "BAJA") ??
+    minPriceAcrossBoats(fallbackLicensed, "2h", "BAJA") ??
+    0;
 
   // Comparison table straight from the static catalog (specs and prices are
   // never hardcoded in copy; boatData.ts is the single source of truth).
@@ -160,35 +165,65 @@ export default function CategoryLicensedPage() {
       <ReadingProgressBar />
 
       {/* ═══ HERO ═══ */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 pt-24 pb-12">
+      <CategoryHero
+        imageBasePath="/images/locations/hero-tossa-de-mar"
+        imageAlt={cl.heroImageAlt}
+        title={cl.heroTitle}
+        subtitleTemplate={cl.heroSubtitle}
+        price={heroPrice}
+        secondaryCta={{ href: localizedPath("categoryCaptained"), label: cl.heroSecondaryCta }}
+        testId="licensed"
+      />
+
+      {/* ═══ OUR LICENSED FLEET ═══ price block, right under the hero; cards link to each boat page */}
+      <section className="py-8 sm:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center mb-6">
-              <Award className="hidden sm:block w-8 h-8 shrink-0 text-primary mr-4" aria-hidden="true" />
-              <h1 className="text-h1 font-heading font-bold text-foreground">
-                {cl.heroTitle}
-              </h1>
-            </div>
-            <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
-              {cl.heroDescription}
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Badge variant="outline" className="text-primary border-primary">
-                <Award className="w-4 h-4 mr-2" />
-                {cl.badgeLicense}
-              </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <Gauge className="w-4 h-4 mr-2" />
-                {cl.badgePower}
-              </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <Users className="w-4 h-4 mr-2" />
-                {cl.badgeCapacity}
-              </Badge>
-            </div>
+          <h2 className="text-h2 font-heading font-bold text-foreground mb-4 sm:mb-10">
+            {cl.fleetTitle}
+          </h2>
+          <div className="grid md:grid-cols-3 gap-3 sm:gap-6">
+            {licensedBoats.map(boat => (
+              <a
+                key={boat.id}
+                href={localizedPath("boatDetail", boat.id)}
+                className="block bg-background rounded-2xl p-4 sm:p-6 border border-border transition-colors hover:border-primary"
+              >
+                <div className="flex items-baseline justify-between gap-3">
+                  <h3 className="font-heading font-semibold text-lg sm:text-xl text-primary">
+                    {boat.name}
+                  </h3>
+                  {boat.price && (
+                    <div className="shrink-0 font-heading text-lg font-semibold text-primary">
+                      <span className="mr-1 font-sans text-sm font-normal text-muted-foreground">
+                        {t.boats.from}
+                      </span>
+                      {boat.price}
+                    </div>
+                  )}
+                </div>
+                <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground sm:mt-3">
+                  <span className="flex items-center">
+                    <Users className="w-4 h-4 mr-2" aria-hidden="true" />
+                    {boat.capacity}
+                  </span>
+                  <span className="flex items-center">
+                    <Gauge className="w-4 h-4 mr-2" aria-hidden="true" />
+                    {boat.engine}
+                  </span>
+                </div>
+                <div className="mt-3 hidden space-y-1 sm:block">
+                  {boat.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-center text-muted-foreground">
+                      <CheckCircle className="w-4 h-4 mr-2 text-primary shrink-0" aria-hidden="true" />
+                      <span className="text-sm">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </a>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* ═══ WHAT IS A LICENSED POWERBOAT ═══ text + image */}
       <RevealSection className="py-16 sm:py-20">
@@ -369,48 +404,6 @@ export default function CategoryLicensedPage() {
                 </li>
               </ul>
             </div>
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* ═══ OUR LICENSED FLEET ═══ cards link to each boat page */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground mb-12">
-            <Anchor className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
-            {cl.fleetTitle}
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {licensedBoats.map(boat => (
-              <a
-                key={boat.id}
-                href={localizedPath("boatDetail", boat.id)}
-                className="block bg-background rounded-2xl p-6 border border-border transition-colors hover:border-primary"
-              >
-                <h3 className="font-heading font-semibold text-xl mb-3 text-primary">
-                  {boat.name}
-                </h3>
-                <div className="space-y-3 mb-4">
-                  <div className="flex items-center text-muted-foreground">
-                    <Users className="w-4 h-4 mr-2" />
-                    <span>{boat.capacity}</span>
-                  </div>
-                  <div className="flex items-center text-muted-foreground">
-                    <Gauge className="w-4 h-4 mr-2" />
-                    <span>{boat.engine}</span>
-                  </div>
-                  <div className="space-y-1">
-                    {boat.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center text-muted-foreground">
-                        <CheckCircle className="w-4 h-4 mr-2 text-primary shrink-0" />
-                        <span className="text-sm">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="text-lg font-heading font-semibold text-primary">{boat.price}</div>
-              </a>
-            ))}
           </div>
         </div>
       </RevealSection>

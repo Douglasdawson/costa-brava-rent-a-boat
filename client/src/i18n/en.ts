@@ -1239,7 +1239,10 @@ export const en: Translations = {
       "The final price with a marketplace is typically 20-35% higher than advertised once you add fuel, commission and extras. Our €85/h already includes everything: fuel, equipment, briefing, civil liability insurance and on-site support.",
   },
   categoryLicensed: {
-    heroTitle: "Self-drive powerboat hire in Blanes: reach Tossa de Mar at the helm",
+    heroTitle: "Self-drive powerboat hire in Blanes",
+    heroSubtitle: "Take the helm to Tossa de Mar with your Licencia de Navegación, from {price} EUR for 2 hours.",
+    heroSecondaryCta: "No licence? Skippered excursion",
+    heroImageAlt: "Powerboat in turquoise water below the walls of Tossa de Mar",
     heroDescription:
       "Three licensed powerboats, 80 to 115 HP, at the Port of Blanes. You take the helm with your Licencia de Navegación or an equivalent foreign qualification, which we check online before your trip. From 175 EUR for 2 hours.",
     badgeLicense: "The Licencia de Navegación is enough",
@@ -5132,7 +5135,10 @@ export const en: Translations = {
     seoTitle: "Boat Rental with Skipper Costa Brava | From Blanes",
     seoDescription:
       "Private boat trip with skipper from Blanes: coves and sea caves up to Tossa de Mar, with a swim stop. Up to 6 people, from 265€/2h. {rating}★ on Google.",
-    heroTitle: "Boat rental with skipper on the Costa Brava: your private trip from Blanes",
+    heroTitle: "Boat rental with skipper on the Costa Brava",
+    heroSubtitle: "Your private trip from Blanes to Tossa de Mar, no licence or experience needed, from {price} EUR for 2 hours.",
+    heroSecondaryCta: "Have a licence? Self-drive boats",
+    heroImageAlt: "Boat anchored in a turquoise Costa Brava cove with swimmers nearby",
     heroDescription:
       "All you do is enjoy it. Our professional skipper takes you to clear-water coves and sea caves between Blanes and Tossa de Mar, and anchors in the best spot of the day so you can swim. No licence, no experience and nothing to worry about.",
     badgeSkipper: "Professional skipper included",

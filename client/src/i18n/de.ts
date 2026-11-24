@@ -1251,7 +1251,10 @@ export const de: Translations = {
       "Der Endpreis über einen Marktplatz ist nach Addition von Benzin, Gebühr und Extras meist 20–35 % höher als angekündigt. Unsere 85 €/Std. sind bereits alles inklusive: Benzin, Ausrüstung, Einweisung, Haftpflichtversicherung und Unterstützung im Hafen.",
   },
   categoryLicensed: {
-    heroTitle: "Motorboot ohne Skipper mieten in Blanes: selbst ans Steuer bis Tossa de Mar",
+    heroTitle: "Motorboot ohne Skipper mieten in Blanes",
+    heroSubtitle: "Du steuerst bis nach Tossa de Mar, mit deiner Licencia de Navegación, ab {price} EUR für 2 Stunden.",
+    heroSecondaryCta: "Kein Schein? Ausflug mit Skipper",
+    heroImageAlt: "Motorboot im türkisfarbenen Wasser vor der Stadtmauer von Tossa de Mar",
     heroDescription:
       "Drei führerscheinpflichtige Motorboote mit 80 bis 115 PS im Hafen von Blanes. Du stehst am Steuer, mit deiner Licencia de Navegación oder einem gleichwertigen ausländischen Schein, den wir vor deiner Ausfahrt online prüfen. Ab 175 EUR für 2 Stunden.",
     badgeLicense: "Licencia de Navegación genügt",
@@ -5105,7 +5108,10 @@ export const de: Translations = {
     seoTitle: "Bootsverleih mit Skipper Costa Brava | Ab Blanes",
     seoDescription:
       "Private Bootstour mit Skipper ab Blanes: Buchten und Meereshöhlen bis Tossa de Mar, Badestopp inklusive. Bis zu 6 Personen, ab 265€/2 Std. {rating}★ bei Google.",
-    heroTitle: "Bootsverleih mit Skipper an der Costa Brava: Ihre private Bootstour ab Blanes",
+    heroTitle: "Bootsverleih mit Skipper an der Costa Brava",
+    heroSubtitle: "Ihre private Bootstour von Blanes bis Tossa de Mar, ohne Bootsführerschein und Erfahrung, ab {price} EUR für 2 Stunden.",
+    heroSecondaryCta: "Mit Schein? Boote ohne Skipper",
+    heroImageAlt: "Boot in einer türkisfarbenen Bucht der Costa Brava, Badende in der Nähe",
     heroDescription:
       "Sie genießen einfach nur: Unser professioneller Skipper bringt Sie zu Buchten mit klarem Wasser und zu Meereshöhlen zwischen Blanes und Tossa de Mar und ankert an der schönsten Stelle des Tages, damit Sie baden können. Ohne Bootsführerschein, ohne Erfahrung und ohne sich um irgendetwas kümmern zu müssen.",
     badgeSkipper: "Professioneller Skipper inklusive",

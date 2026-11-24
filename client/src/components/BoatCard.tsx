@@ -1,9 +1,14 @@
-import React, { memo, useCallback, useMemo, useState } from "react";
+import React, { lazy, memo, Suspense, useCallback, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Anchor, Star, ThumbsUp } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
-import { boatIncludesFuel, isCaptainedBoat } from "@shared/boatData";
+import { isCaptainedBoat } from "@shared/boatData";
+import { trackEvent } from "@/utils/analytics";
+
+// The quick view (Radix dialog + motion layout animation) is its own chunk; it is preloaded on hover/focus.
+const loadQuickView = () => import("./BoatQuickView");
+const BoatQuickView = lazy(loadQuickView);
 
 interface BoatCardProps {
   id: string;
@@ -50,14 +55,14 @@ const BoatCardImage = memo(function BoatCardImage({
 }) {
   if (imageError) {
     return (
-      <div className="w-full aspect-[4/3] flex items-center justify-center">
+      <div className="w-full aspect-[5/4] sm:aspect-[4/5] flex items-center justify-center">
         <Anchor className="w-12 h-12 text-muted-foreground/50" aria-hidden="true" />
       </div>
     );
   }
 
   return (
-    <div className="relative w-full aspect-[4/3] overflow-hidden boat-image-reveal">
+    <div className="relative w-full aspect-[5/4] sm:aspect-[4/5] overflow-hidden boat-image-reveal">
       <picture>
         {imageMobile && (
           <source media="(max-width: 767px)" srcSet={imageMobile} type="image/webp" />
@@ -70,7 +75,7 @@ const BoatCardImage = memo(function BoatCardImage({
           srcSet={imageSrcSet || undefined}
           sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1279px) calc(50vw - 20px), calc(33vw - 24px)"
           alt={imageAlt}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+          className="w-full h-full object-cover transition-[scale] duration-300 group-hover:[scale:1.03]"
           loading="lazy"
           decoding="async"
           width={400}
@@ -83,7 +88,7 @@ const BoatCardImage = memo(function BoatCardImage({
 });
 
 /** Price block: total is the headline (what you pay), per-person is the second line. */
-const BoatCardPricing = memo(function BoatCardPricing({
+export const BoatCardPricing = memo(function BoatCardPricing({
   basePrice,
   capacity,
   perPersonLabel,
@@ -139,6 +144,10 @@ function BoatCard({
   const t = useTranslations();
   const { localizedPath } = useLanguage();
   const [imageError, setImageError] = useState(false);
+  const [quickOpen, setQuickOpen] = useState(false);
+  const [quickMounted, setQuickMounted] = useState(false);
+  // Radix only restores focus to a <Trigger>; here the opener is a plain link, so remember it.
+  const quickTrigger = useRef<HTMLElement | null>(null);
   const handleDetails = useCallback(() => {
     onDetails(id);
     setTimeout(() => window.scrollTo(0, 0), 50);
@@ -150,18 +159,29 @@ function BoatCard({
 
   const handleDetailsClick = useCallback(
     (e: React.MouseEvent) => {
+      // Modified / non-primary clicks keep the browser default (new tab on the full boat page).
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
       e.preventDefault();
-      handleDetails();
+      if (isJetSki) {
+        handleDetails();
+        return;
+      }
+      quickTrigger.current = e.currentTarget as HTMLElement;
+      setQuickMounted(true);
+      setQuickOpen(true);
+      trackEvent("boat_quickview_open", { boat_id: id });
     },
-    [handleDetails]
+    [handleDetails, isJetSki, id]
   );
+  const preloadQuickView = useCallback(() => {
+    if (!isJetSki) void loadQuickView();
+  }, [isJetSki]);
 
   const licenseLabel = isCaptainedBoat(id)
-    ? t.nav.captained
+    ? (t.nav.captained ?? t.boats.withoutLicense)
     : requiresLicense
-      ? t.boats.withLicense
+      ? t.boats.navigationLicenseName
       : t.boats.withoutLicense;
-  const showFuel = boatIncludesFuel(id, requiresLicense);
   const detailsHref = isJetSki ? jetskiHref || "#" : localizedPath("boatDetail", id);
 
   return (
@@ -170,84 +190,92 @@ function BoatCard({
         isRecommended ? "border-2 border-cta" : "hover:border-cta/40"
       }`}
     >
-      <a
-        href={detailsHref}
-        onClick={handleDetailsClick}
-        className="relative block cursor-pointer group bg-muted focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
-        data-testid={`image-${id}`}
-        aria-label={isJetSki ? name : `${t.a11y.viewBoatDetails} ${name}`}
-      >
-        <BoatCardImage
-          image={image}
-          imageSrcSet={imageSrcSet}
-          imageTablet={imageTablet}
-          imageMobile={imageMobile}
-          imageAlt={imageAlt}
-          imageError={imageError}
-          onImageError={handleImageError}
-        />
-        <div className="absolute top-3 left-3 right-3 z-10 flex items-start justify-between gap-2">
-          <span className="inline-flex items-center rounded-full bg-background px-3 py-1 text-xs font-medium text-foreground">
-            {isJetSki ? t.jetski?.badge || "Jet ski" : licenseLabel}
-          </span>
-          {!isJetSki && (isRecommended || isPopular) && (
-            <span
-              className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold ${
-                isRecommended
-                  ? "bg-cta text-primary-foreground dark:text-background"
-                  : "bg-popular text-popular-foreground"
-              }`}
-            >
-              {isRecommended ? (
-                <ThumbsUp className="w-3 h-3" aria-hidden="true" />
-              ) : (
-                <Star className="w-3 h-3 fill-popular-foreground" aria-hidden="true" />
-              )}
-              {isRecommended ? t.recommendation?.recommendedForYou : t.boats.mostPopular}
-            </span>
-          )}
-        </div>
-      </a>
-
-      <div className="flex flex-1 flex-col p-4 sm:p-5">
-        <h3 className="font-heading font-semibold text-xl leading-tight tracking-tight text-foreground text-balance">
-          {name}
-        </h3>
-
-        <div className="mt-3 flex flex-wrap items-center gap-y-1 divide-x divide-border text-sm">
-          <p className="pr-3.5 text-muted-foreground">
-            <span className="font-heading text-lg font-semibold tabular-nums text-foreground">
-              {capacity}
-            </span>{" "}
-            {t.boats.people}
-          </p>
-          {enginePower && <p className="px-3.5 font-medium text-foreground/80">{enginePower}</p>}
-          {showFuel && (
-            <p className="pl-3.5 font-medium text-success">{t.boatDetail.fuelIncluded}</p>
-          )}
-        </div>
-
-        <p className="mt-3 mb-5 text-sm leading-relaxed text-muted-foreground">{description}</p>
-
-        <div className="mt-auto flex flex-wrap items-end justify-between gap-x-4 gap-y-3 border-t border-border pt-4">
-          <BoatCardPricing
-            basePrice={basePrice}
-            capacity={capacity}
-            perPersonLabel={t.boats.perPerson}
-            fromLabel={isJetSki ? t.jetski?.fromLabel || t.boats.from : t.boats.from}
-            hidePerPerson={isJetSki}
+      <div className="relative">
+        <a
+          href={detailsHref}
+          onClick={handleDetailsClick}
+          onPointerEnter={preloadQuickView}
+          onFocus={preloadQuickView}
+          className="relative block cursor-pointer group bg-muted focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
+          data-testid={`image-${id}`}
+          aria-label={isJetSki ? name : `${t.a11y.viewBoatDetails} ${name}`}
+        >
+          <BoatCardImage
+            image={image}
+            imageSrcSet={imageSrcSet}
+            imageTablet={imageTablet}
+            imageMobile={imageMobile}
+            imageAlt={imageAlt}
+            imageError={imageError}
+            onImageError={handleImageError}
           />
+          <h3 className="absolute top-3 left-3 z-10 max-w-[calc(100%-1.5rem)] rounded-full bg-background px-3.5 py-1.5 font-heading text-base font-semibold leading-tight tracking-tight text-foreground">
+            {name}
+          </h3>
+          {!isJetSki && (isRecommended || isPopular) && (
+            <div className="absolute top-3 left-3 right-3 z-10 flex items-start justify-end gap-2">
+              <span
+                className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold ${
+                  isRecommended
+                    ? "bg-cta text-primary-foreground dark:text-background"
+                    : "bg-popular text-popular-foreground"
+                }`}
+              >
+                {isRecommended ? (
+                  <ThumbsUp className="w-3 h-3" aria-hidden="true" />
+                ) : (
+                  <Star className="w-3 h-3 fill-popular-foreground" aria-hidden="true" />
+                )}
+                {isRecommended ? t.recommendation?.recommendedForYou : t.boats.mostPopular}
+              </span>
+            </div>
+          )}
+        </a>
+
+        {/* Price + CTA live in the photo pill. Sibling of the link (a button inside an anchor is invalid). */}
+        <div className="absolute bottom-2.5 left-2.5 right-2.5 z-10 flex items-center justify-between gap-3">
+          <div className="flex h-11 min-w-0 items-baseline gap-1.5 rounded-full bg-background px-4 leading-none">
+            <span className="self-center text-xs text-muted-foreground">
+              {isJetSki ? t.jetski?.fromLabel || t.boats.from : t.boats.from}
+            </span>
+            <span className="self-center font-heading text-xl font-semibold tracking-tight text-foreground tabular-nums">
+              {basePrice}&euro;
+            </span>
+          </div>
           <button
             onClick={handleBooking}
-            className={`flex-shrink-0 rounded-full bg-cta px-6 py-2.5 min-h-11 text-base font-medium text-primary-foreground dark:text-background transition-colors hover:bg-cta/90 focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none ${
-              isRecommended || isPopular ? "cta-pulse" : ""
-            }`}
+            className={`flex-shrink-0 rounded-full bg-cta px-5 min-h-11 text-base font-medium text-primary-foreground dark:text-background transition-colors hover:bg-cta/90 focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none cta-pulse cta-pulse-light`}
             data-testid={`button-book-${id}`}
           >
             {isJetSki ? t.jetski?.requestCta || t.boats.book : t.boats.book}
           </button>
         </div>
       </div>
+
+      {quickMounted && !isJetSki && (
+        <Suspense fallback={null}>
+          <BoatQuickView
+            open={quickOpen}
+            onOpenChange={setQuickOpen}
+            id={id}
+            name={name}
+            image={image}
+            imageSrcSet={imageSrcSet}
+            imageAlt={imageAlt}
+            capacity={capacity}
+            requiresLicense={requiresLicense}
+            licenseLabel={licenseLabel}
+            description={description}
+            basePrice={basePrice}
+            features={features}
+            enginePower={enginePower}
+            detailsHref={detailsHref}
+            returnFocusRef={quickTrigger}
+            onBooking={onBooking}
+            onDetails={onDetails}
+          />
+        </Suspense>
+      )}
     </Card>
   );
 }

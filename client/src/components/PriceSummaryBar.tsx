@@ -51,7 +51,7 @@ export default function PriceSummaryBar({
   // --- DESKTOP: compact card with breakdown ---
   if (variant === "desktop") {
     return (
-      <div className="border border-cta/40 rounded-xl bg-cta/5 px-4 py-3 space-y-1.5">
+      <div className="rounded-3xl border border-cta/40 bg-cta/5 px-5 py-3 space-y-1.5">
         <div className="flex items-center justify-between">
           <span className="text-sm text-muted-foreground font-medium truncate mr-2">
             {boatName} · {duration}
@@ -77,9 +77,7 @@ export default function PriceSummaryBar({
           )}
           {discount > 0 && (
             <div className="flex justify-between text-sm">
-              <span className="text-muted-foreground">
-                {discountLabel || discountText}
-              </span>
+              <span className="text-muted-foreground">{discountLabel || discountText}</span>
               <span className="text-green-600 dark:text-green-400 font-medium">-{discount}€</span>
             </div>
           )}
@@ -99,11 +97,11 @@ export default function PriceSummaryBar({
 
   // --- MOBILE: compact sticky bar, expandable ---
   return (
-    <div className="border-t border-border bg-foreground text-white">
+    <div className="overflow-hidden rounded-t-3xl bg-foreground text-white">
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}
-        className="w-full flex items-center justify-between px-4 py-2 pointer-coarse:min-h-11 text-sm"
+        className="w-full flex items-center justify-between px-5 py-2 pointer-coarse:min-h-11 text-sm"
         aria-expanded={expanded}
         aria-label={seeDetailsLabel}
       >
@@ -111,16 +109,19 @@ export default function PriceSummaryBar({
           {boatName} · {duration}
         </span>
         <span className="flex items-center gap-1 flex-shrink-0">
-          <span className="font-bold">{totalLabel}: {total}€</span>
-          {hasBreakdown && (
-            expanded
-              ? <ChevronUp className="w-3.5 h-3.5 opacity-60" />
-              : <ChevronDown className="w-3.5 h-3.5 opacity-60" />
-          )}
+          <span className="font-bold">
+            {totalLabel}: {total}€
+          </span>
+          {hasBreakdown &&
+            (expanded ? (
+              <ChevronUp className="w-3.5 h-3.5 opacity-60" />
+            ) : (
+              <ChevronDown className="w-3.5 h-3.5 opacity-60" />
+            ))}
         </span>
       </button>
       {expanded && hasBreakdown && (
-        <div className="px-4 pb-2 space-y-0.5 text-sm border-t border-white/10">
+        <div className="px-5 pb-2 space-y-0.5 text-sm border-t border-white/10">
           <div className="flex justify-between pt-1.5">
             <span className="opacity-70">{baseLabel}</span>
             <span>{basePrice}€</span>

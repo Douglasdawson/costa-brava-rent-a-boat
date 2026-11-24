@@ -107,6 +107,7 @@ export const de: Translations = {
     hoursWithLicense: "2-8h",
     hoursTooltip: "Wählen Sie zwischen 2h, 4h oder 8h, um unser {boatName} zu mieten",
     withLicense: "Mit Führerschein",
+    navigationLicenseName: "Navigationslizenz (LN)",
     withoutLicense: "Kein Führerschein nötig",
     available: "Verfügbar",
     occupied: "Besetzt",
@@ -1906,7 +1907,7 @@ export const de: Translations = {
   valueStack: {
     title: "Im Preis enthalten:",
     fuelIncluded: "Kraftstoff inklusive",
-    insurance: "Haftpflicht- und Unfallversicherung",
+    insurance: "Haftpflichtversicherung mit Unfallschutz für die Insassen",
     safetyEquipment: "Komplette Sicherheitsausrüstung",
     briefing: "15-minütige Einweisung inklusive",
     securePayment: "Sichere Buchung",
@@ -1989,7 +1990,7 @@ export const de: Translations = {
     info: {
       whatIncludesTitle: "Was ist im Preis enthalten?",
       fuelIncludedItem: "<strong>Benzin extra</strong>, nach dem tatsächlichen Verbrauch der Ausfahrt",
-      insurance: "Haftpflicht- und Unfallversicherung",
+      insurance: "Haftpflichtversicherung mit Unfallschutz für die Insassen",
       briefing: "15-minütige Einweisung vor dem Ablegen",
       equipment: "Schnorchel- und Paddle-Surf-Ausrüstung (nach Verfügbarkeit)",
       importantTitle: "Wichtige Informationen",

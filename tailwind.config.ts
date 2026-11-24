@@ -67,6 +67,7 @@ export default {
           foreground: "hsl(var(--destructive-foreground) / <alpha-value>)",
           border: "var(--destructive-border)",
         },
+        nav: "hsl(var(--nav) / <alpha-value>)",
         cta: {
           DEFAULT: "hsl(var(--cta) / <alpha-value>)",
           foreground: "hsl(var(--cta-foreground) / <alpha-value>)",
@@ -136,6 +137,10 @@ export default {
         heading: ["'Clash Display'", "Inter", "sans-serif"],
       },
       keyframes: {
+        appear: {
+          from: { opacity: "0", transform: "translateY(var(--appear-y, 18px))" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -146,6 +151,7 @@ export default {
         },
       },
       animation: {
+        appear: "appear 0.9s cubic-bezier(0.22, 1, 0.36, 1) both",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },

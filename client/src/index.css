@@ -28,11 +28,24 @@
 body { overflow-x: hidden; }
 #root { overflow-x: hidden; }
 
-/* Nav height token — consumed by sticky offsets so they sit below the floating nav pill.
-   Mobile: top-3 (12) + h-12 (48) = 60. Md: top-6 (24) + h-12 (48) = 72. Lg: top-6 (24) + h-16 (64) = 88. */
-:root { --nav-height: 60px; }
-@media (min-width: 768px) { :root { --nav-height: 72px; } }
-@media (min-width: 1024px) { :root { --nav-height: 88px; } }
+/* Nav height token — consumed by sticky offsets so they sit below the floating nav pill (Navigation.tsx).
+   Pill is 52px tall: base pt-4 (16) = 68. Sm: pt-5 (20) = 72. Lg: pt-6 (24) = 76. */
+:root { --nav-height: 68px; }
+@media (min-width: 640px) { :root { --nav-height: 72px; } }
+@media (min-width: 1024px) { :root { --nav-height: 76px; } }
+
+/* Pace of the pill that folds on scroll (Navigation.tsx, desktop only; ported from talleres.red).
+   Expand: the pill grows, then the links fade in. Collapse: the links fade out, then the width closes.
+   One multiplier (--nav-k) drives every duration and delay; COLLAPSE_GRACE_MS in Navigation.tsx is 450ms x --nav-k. */
+:root {
+  --nav-k: 0.75;
+  --nav-ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --nav-dur: calc(850ms * var(--nav-k));
+  --nav-fade-in: calc(450ms * var(--nav-k));
+  --nav-fade-in-delay: calc(200ms * var(--nav-k));
+  --nav-fade-out: calc(250ms * var(--nav-k));
+  --nav-close-delay: calc(150ms * var(--nav-k));
+}
 
 /* LIGHT MODE */
 :root {
@@ -81,6 +94,7 @@ body { overflow-x: hidden; }
   --chart-5: 270 60% 55%;
   --cta: 240 53% 11%;
   --cta-foreground: 200 20% 98%;
+  --nav: 240 53% 11%;
   --whatsapp: 142 70% 49%;
   --whatsapp-hover: 152 68% 34%;
   --whatsapp-active: 157 80% 24%;
@@ -164,6 +178,7 @@ body { overflow-x: hidden; }
   --chart-5: 270 55% 65%;
   --cta: 15 75% 55%;
   --cta-foreground: 200 20% 98%;
+  --nav: 235 50% 7%;
   --shadow-2xs: 0px 1px 2px 0px hsl(215 50% 8% / 0.15);
   --shadow-xs: 0px 1px 3px 0px hsl(215 50% 8% / 0.20);
   --shadow-sm: 0px 2px 4px 0px hsl(215 50% 8% / 0.18), 0px 1px 2px -1px hsl(215 50% 8% / 0.18);
@@ -326,6 +341,24 @@ body { overflow-x: hidden; }
     animation: cta-ring 2s ease-out 3;
     pointer-events: none;
   }
+  /* Same pulse with a white ring, for CTAs that sit on top of a photo (navy ring disappears on dark water). */
+  .cta-pulse-light::after { border-color: rgb(255 255 255 / 0.9); }
+
+  /* Booking modal entrance. shadcn's default slides it in from the top-left corner; this one fades and rises
+     (desktop) or slides up from the bottom edge (full-screen on phones). Opacity-only under reduced motion. */
+  .booking-modal[data-state="open"] { animation: booking-in 240ms cubic-bezier(0.16, 1, 0.3, 1) both !important; }
+  .booking-modal[data-state="closed"] { animation: booking-out 160ms ease-in both !important; }
+  @keyframes booking-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes booking-out { from { opacity: 1; } to { opacity: 0; } }
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes booking-in { from { opacity: 0; translate: 0 16px; } to { opacity: 1; translate: 0 0; } }
+    @keyframes booking-out { from { opacity: 1; translate: 0 0; } to { opacity: 0; translate: 0 8px; } }
+    @media (max-width: 767px) {
+      @keyframes booking-in { from { opacity: 1; translate: 0 100%; } to { opacity: 1; translate: 0 0; } }
+      @keyframes booking-out { from { opacity: 1; translate: 0 0; } to { opacity: 1; translate: 0 100%; } }
+    }
+  }
+
   @keyframes cta-ring {
     0% { transform: scale(1); opacity: 1; }
     70% { transform: scale(1.15); opacity: 0; }

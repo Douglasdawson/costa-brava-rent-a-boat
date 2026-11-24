@@ -1,8 +1,5 @@
-import { useState, useCallback, useEffect, useRef } from "react";
-import { Button } from "@/components/ui/button";
-import { Menu, X, UserCircle, Calendar, Sun, Moon, ShoppingBag, ChevronDown } from "lucide-react";
-import logoHorizontal from "@/assets/real-photos/logo-horizontal.png";
-import logoIcon from "@/assets/real-photos/logo-icon.png";
+import { useState, useEffect, useId, useRef, useSyncExternalStore, type CSSProperties } from "react";
+import { UserCircle, Sun, Moon, ShoppingBag, ChevronDown } from "lucide-react";
 import LogoCostaBravaSVG from "@/components/icons/LogoCostavaBravaSVG";
 import { useLocation, Link } from "wouter";
 import LanguageSelector from "./LanguageSelector";
@@ -16,7 +13,39 @@ import { useBookingModal } from "@/hooks/bookingModalContext";
 import { trackBookingFormOpen } from "@/utils/analytics";
 import { useTheme } from "@/hooks/use-theme";
 import { lockScroll, unlockScroll } from "@/utils/scroll-lock";
-import { useThrottledScroll } from "@/hooks/useThrottledScroll";
+
+// Pill nav ported from talleres.red (components/nav.tsx). Tokens --nav-* live in index.css.
+// Hysteresis: "scrolled" turns on past ON and off below OFF so the pill never flickers at the threshold.
+const SCROLL_ON = 32;
+const SCROLL_OFF = 12;
+// After the pointer leaves, the pill waits before collapsing (450 ms x --nav-k 0.75, see index.css).
+const COLLAPSE_GRACE_MS = 350;
+const FOCUS_RING =
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta";
+// Same easing/stagger as the talleres panel, expressed once.
+const SOFT_EASE = "ease-[cubic-bezier(0.22,1,0.36,1)]";
+
+function useMediaQuery(query: string): boolean {
+  return useSyncExternalStore(
+    cb => {
+      const mq = window.matchMedia(query);
+      mq.addEventListener("change", cb);
+      return () => mq.removeEventListener("change", cb);
+    },
+    () => window.matchMedia(query).matches,
+    () => false
+  );
+}
+
+// React 18 has no typed `inert` prop: pass it as a plain attribute.
+const inertAttr = (on: boolean): Record<string, string> => (on ? { inert: "" } : {});
+
+interface Highlight {
+  x: number;
+  width: number;
+  visible: boolean;
+  slide: boolean;
+}
 
 interface NavItem {
   label: string;
@@ -39,12 +68,10 @@ interface NavigationProps {
 
 export default function Navigation({ cartCount = 0, onCartClick }: NavigationProps = {}) {
   const [isOpen, setIsOpen] = useState(false);
-  const navRef = useRef<HTMLElement>(null);
+  const navRef = useRef<HTMLDivElement>(null);
+  const panelId = useId();
   const [scrolled, setScrolled] = useState(false);
-  const [currentLocation, setLocation] = useLocation();
-
-  const handleScroll = useCallback((scrollY: number) => setScrolled(scrollY > 50), []);
-  useThrottledScroll(handleScroll);
+  const [, setLocation] = useLocation();
   const t = useTranslations();
   const { language, localizedPath } = useLanguage();
   const { isAuthenticated } = useAuth();
@@ -328,10 +355,6 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
     );
   };
 
-  const homePath = localizedPath("home");
-  const isTransparent =
-    (currentLocation === homePath || currentLocation === homePath.replace(/\/$/, "")) && !scrolled;
-
   const isNavItemActive = (href: string): boolean => {
     const path = window.location.pathname;
     if (href === localizedPath("home")) return path === `/${language}/` || path === `/${language}`;
@@ -345,255 +368,369 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
     return path === href || path.startsWith(`${href}/`);
   };
 
+  // --- Pill behaviour (desktop collapse, sliding highlight) ---
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  // Fine pointer + desktop: the pill folds to logo + CTA after scrolling and reopens on hover / keyboard focus.
+  const canCollapse = useMediaQuery("(min-width: 1024px) and (hover: hover)");
+  const [hovered, setHovered] = useState(false);
+  const [keyboardIn, setKeyboardIn] = useState(false);
+  const leaveTimer = useRef<number | undefined>(undefined);
+  const collapsed = canCollapse && scrolled && !hovered && !keyboardIn && !openGroup;
+  // Natural width of the links block: the wrapper animates between it and 0 (a grid 0fr track does not
+  // collapse an auto-width container, so the width is measured instead).
+  const extrasRef = useRef<HTMLDivElement>(null);
+  const [extrasWidth, setExtrasWidth] = useState<number | null>(null);
+  const [highlight, setHighlight] = useState<Highlight>({
+    x: 0,
+    width: 0,
+    visible: false,
+    slide: false,
+  });
+
+  useEffect(() => {
+    const update = () =>
+      setScrolled(prev => (prev ? window.scrollY > SCROLL_OFF : window.scrollY > SCROLL_ON));
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, []);
+
+  useEffect(() => () => window.clearTimeout(leaveTimer.current), []);
+
+  useEffect(() => {
+    const el = extrasRef.current;
+    if (!el) return;
+    const measure = () => setExtrasWidth(el.offsetWidth);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Resizing past lg with the mobile panel open would leave the body scroll-locked.
+  useEffect(() => {
+    if (isDesktop && isOpen) closeMenu();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDesktop]);
+
+  const enter = () => {
+    window.clearTimeout(leaveTimer.current);
+    setHovered(true);
+  };
+  const leave = () => {
+    window.clearTimeout(leaveTimer.current);
+    leaveTimer.current = window.setTimeout(() => setHovered(false), COLLAPSE_GRACE_MS);
+  };
+  // Only keyboard focus counts: after a mouse click the focus stays on the link and must not pin the pill open.
+  const focusIn = (e: React.FocusEvent<HTMLElement>) => {
+    if (e.target.matches(":focus-visible")) setKeyboardIn(true);
+  };
+  const focusOut = (e: React.FocusEvent<HTMLElement>) => {
+    if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setKeyboardIn(false);
+  };
+
+  const showHighlight = (e: React.PointerEvent<HTMLElement> | React.FocusEvent<HTMLElement>) => {
+    const { offsetLeft, offsetWidth } = e.currentTarget;
+    setHighlight(prev => ({ x: offsetLeft, width: offsetWidth, visible: true, slide: prev.visible }));
+  };
+  const hideHighlight = () => setHighlight(prev => ({ ...prev, visible: false }));
+
+  const topLinkClass = (active: boolean) =>
+    `relative flex h-9 items-center gap-1 rounded-full px-3.5 text-sm leading-none whitespace-nowrap transition-colors duration-200 motion-reduce:transition-none hover:text-foreground ${FOCUS_RING} ${active ? "text-foreground" : "text-foreground/70"}`;
+  const panelLinkClass = (active: boolean) =>
+    `flex w-full items-center rounded-xl px-3 py-2.5 text-left text-sm whitespace-nowrap transition-colors hover:bg-foreground/[0.07] hover:text-foreground focus-visible:bg-foreground/[0.07] ${FOCUS_RING} ${active ? "text-foreground" : "text-foreground/75"}`;
+  const mobileRowClass =
+    `flex h-[52px] w-full items-center justify-between rounded-2xl px-3 text-left text-xl leading-none font-medium tracking-[-0.02em] text-foreground transition-colors duration-200 hover:bg-foreground/[0.06] ${FOCUS_RING}`;
+  const mobileSubClass =
+    `flex h-12 w-full items-center rounded-2xl pl-6 pr-3 text-left text-lg leading-none text-foreground/80 transition-colors duration-200 hover:bg-foreground/[0.06] hover:text-foreground ${FOCUS_RING}`;
+
+  const cartButton = onCartClick && (
+    <button
+      type="button"
+      onClick={onCartClick}
+      data-testid={isDesktop ? "desktop-button-cart" : "mobile-button-cart"}
+      aria-label={t.shopPage.cart.title}
+      className={`relative flex size-11 cursor-pointer items-center justify-center rounded-full text-foreground/80 transition-colors duration-200 hover:bg-foreground/[0.07] hover:text-foreground ${FOCUS_RING}`}
+    >
+      <ShoppingBag className="h-5 w-5" aria-hidden="true" />
+      {cartCount > 0 && (
+        <span className="absolute right-0.5 top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-cta px-1 text-[10px] font-bold text-primary-foreground dark:text-background">
+          {cartCount}
+        </span>
+      )}
+    </button>
+  );
+
   return (
-    <nav ref={navRef} className="fixed top-3 left-3 right-3 z-50 bg-background/95 backdrop-blur-xl rounded-2xl border border-border shadow-md md:top-6 md:left-6 md:right-6 pt-safe">
+    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-[max(1rem,env(safe-area-inset-top))] sm:pt-5 lg:pt-6">
+      {/* Scrim behind the open mobile panel; pointerdown outside the pill closes it (effect above). */}
+      <div
+        aria-hidden="true"
+        className={`fixed inset-0 -z-10 bg-black/45 backdrop-blur-sm transition-opacity duration-300 motion-reduce:transition-none lg:hidden ${isOpen ? "pointer-events-auto opacity-100" : "opacity-0"}`}
+      />
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg focus:outline-none"
+        className="sr-only focus:not-sr-only focus:pointer-events-auto focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg focus:outline-none"
       >
         {t.nav.skipToContent}
       </a>
-      <div className="px-4 lg:px-6">
-        {/* lg+: 1fr/auto/1fr grid so the nav links center on the BAR, not on
-            the leftover space between the (narrower) logo and the (wider)
-            right-side buttons. Tracks can't overlap, so the old flex safety
-            against collisions is preserved. */}
-        <div className="relative flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr] h-12 lg:h-16">
-          {/* Logo - Left */}
+      <div
+        ref={navRef}
+        data-scrolled={scrolled || isOpen}
+        data-collapsed={collapsed}
+        onPointerEnter={enter}
+        onPointerLeave={leave}
+        onFocus={focusIn}
+        onBlur={focusOut}
+        className="group/pill pointer-events-auto w-full max-w-[420px] animate-appear rounded-[26px] bg-background text-foreground shadow-[0_10px_30px_-12px_rgb(0_0_0/0.28)] ring-1 ring-border transition-shadow duration-300 [--appear-y:-14px] motion-reduce:animate-none motion-reduce:transition-none data-[scrolled=true]:shadow-[0_18px_44px_-14px_rgb(0_0_0/0.4)] sm:max-w-[520px] lg:w-auto lg:max-w-none"
+      >
+        <nav aria-label="Primary" className="flex h-[52px] items-center pl-4 pr-1.5 lg:pl-5">
           <a
             href={localizedPath("home")}
             onClick={e => {
               e.preventDefault();
               handleLogoClick();
             }}
-            className="flex flex-shrink-0 items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer p-0 pointer-coarse:p-1.5 pointer-coarse:-m-1.5 z-10 lg:justify-self-start"
+            className={`inline-flex min-h-11 shrink-0 items-center rounded-full ${FOCUS_RING} motion-reduce:transition-none`}
             data-testid="brand-logo"
             aria-label={t.a11y.goToHomePage}
           >
-            <LogoCostaBravaSVG className="h-8 lg:h-10" />
+            <LogoCostaBravaSVG className="h-9 w-auto text-foreground lg:h-10" />
           </a>
 
-          {/* Desktop Navigation - center track of the grid (true bar center) */}
-          <nav
-            aria-label="Primary"
-            className="hidden lg:flex min-w-0 items-center justify-center gap-x-3 xl:gap-x-6 px-4"
+          {/* Desktop links + extras. Collapses by animating width to 0; overflow is clipped on X only so
+              the dropdown panels can still hang below the pill. */}
+          <div
+            {...inertAttr(collapsed)}
+            style={extrasWidth === null ? undefined : { width: collapsed ? 0 : extrasWidth }}
+            className="hidden overflow-x-clip transition-[width] duration-[var(--nav-dur)] ease-[var(--nav-ease)] motion-reduce:transition-none group-data-[collapsed=true]/pill:delay-[var(--nav-close-delay)] lg:block"
           >
-            {desktopItems.map(entry => {
-              const itemClass = (active: boolean) =>
-                `text-sm xl:text-base pointer-coarse:py-3 hover:text-foreground transition-colors whitespace-nowrap rounded focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:outline-none ${active ? "text-foreground font-semibold" : "text-foreground/70 font-medium"}`;
-              if (!("items" in entry)) {
-                return renderNavLink(
-                  entry,
-                  itemClass(isNavItemActive(entry.href)),
-                  `nav-link-${entry.label.toLowerCase()}`
-                );
-              }
-              const isOpen = openGroup === entry.id;
-              const panelId = `nav-group-${entry.id}`;
-              return (
-                // Links stay in the DOM while closed (hidden via CSS, not unmounted) so crawlers see them.
-                <div
-                  key={entry.id}
-                  data-nav-group={entry.id}
-                  className="group relative"
-                  onMouseLeave={() => isOpen && setOpenGroup(null)}
-                  onBlur={e => {
-                    // Tabbing out of the group closes it (keyboard parity with the mouse).
-                    if (isOpen && !e.currentTarget.contains(e.relatedTarget as Node | null))
-                      setOpenGroup(null);
-                  }}
-                >
+            <div ref={extrasRef} className="flex w-max items-center px-1 transition-opacity duration-[var(--nav-fade-in)] delay-[var(--nav-fade-in-delay)] ease-[var(--nav-ease)] motion-reduce:transition-none group-data-[collapsed=true]/pill:opacity-0 group-data-[collapsed=true]/pill:delay-0 group-data-[collapsed=true]/pill:duration-[var(--nav-fade-out)]">
+              <ul
+                onPointerLeave={hideHighlight}
+                onBlur={e => {
+                  if (!e.currentTarget.contains(e.relatedTarget as Node | null)) hideHighlight();
+                }}
+                className="relative ml-5 flex h-9 items-center lg:ml-6"
+              >
+                <li
+                  aria-hidden="true"
+                  className={`pointer-events-none absolute inset-y-0 left-0 rounded-full bg-foreground/[0.07] transition-[transform,width,opacity] duration-200 ease-out motion-reduce:transition-none ${highlight.visible ? "opacity-100" : "opacity-0"}`}
+                  style={
+                    {
+                      width: highlight.width,
+                      transform: `translateX(${highlight.x}px)`,
+                      transitionProperty: highlight.slide ? undefined : "opacity",
+                    } as CSSProperties
+                  }
+                />
+                {desktopItems.map(entry => {
+                  if (!("items" in entry)) {
+                    return (
+                      <li key={entry.href} onPointerEnter={showHighlight} onFocus={showHighlight}>
+                        {renderNavLink(
+                          entry,
+                          topLinkClass(isNavItemActive(entry.href)),
+                          `nav-link-${entry.label.toLowerCase()}`
+                        )}
+                      </li>
+                    );
+                  }
+                  const open = openGroup === entry.id;
+                  const groupActive = entry.items.some(i => isNavItemActive(i.href));
+                  return (
+                    // Links stay in the DOM while closed (hidden via CSS, not unmounted) so crawlers see them.
+                    <li
+                      key={entry.id}
+                      data-nav-group={entry.id}
+                      className="group relative"
+                      onPointerEnter={showHighlight}
+                      onFocus={showHighlight}
+                      onMouseLeave={() => open && setOpenGroup(null)}
+                      onBlur={e => {
+                        // Tabbing out of the group closes it (keyboard parity with the mouse).
+                        if (open && !e.currentTarget.contains(e.relatedTarget as Node | null))
+                          setOpenGroup(null);
+                      }}
+                    >
+                      <button
+                        type="button"
+                        aria-expanded={open}
+                        aria-controls={`nav-group-${entry.id}`}
+                        onClick={() => setOpenGroup(open ? null : entry.id)}
+                        className={`cursor-pointer border-none bg-transparent ${topLinkClass(groupActive)}`}
+                        data-testid={`nav-group-${entry.id}`}
+                      >
+                        {entry.label}
+                        <ChevronDown
+                          className={`h-3.5 w-3.5 opacity-60 transition-transform duration-200 motion-reduce:transition-none [@media(hover:hover)]:group-hover:rotate-180 ${open ? "rotate-180" : ""}`}
+                          aria-hidden="true"
+                        />
+                      </button>
+                      {/* pt-3 bridges the gap so the pointer can travel from trigger to panel without closing it.
+                          First group opens rightwards, last leftwards, so neither is cut by the X clip. */}
+                      <div
+                        id={`nav-group-${entry.id}`}
+                        className={`absolute top-full pt-3 transition-[opacity,visibility] duration-150 motion-reduce:transition-none ${entry.id === "more" ? "right-0" : "left-0"} ${open ? "visible opacity-100" : "invisible opacity-0 [@media(hover:hover)]:group-hover:visible [@media(hover:hover)]:group-hover:opacity-100"}`}
+                      >
+                        <div className="min-w-52 rounded-2xl bg-background p-1.5 shadow-[0_18px_44px_-14px_rgb(0_0_0/0.4)] ring-1 ring-border">
+                          {entry.items.map(item =>
+                            renderNavLink(
+                              item,
+                              panelLinkClass(isNavItemActive(item.href)),
+                              `nav-link-${item.label.toLowerCase()}`,
+                              () => setOpenGroup(null)
+                            )
+                          )}
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <div className="ml-4 flex items-center gap-1 lg:ml-5">
+                <LanguageSelector
+                  variant="minimal"
+                  className="text-foreground/70 hover:bg-foreground/[0.07] hover:text-foreground"
+                />
+                {isAuthenticated && (
                   <button
                     type="button"
-                    aria-expanded={isOpen}
-                    aria-controls={panelId}
-                    onClick={() => setOpenGroup(isOpen ? null : entry.id)}
-                    className={`inline-flex items-center gap-1 cursor-pointer bg-transparent border-none ${itemClass(entry.items.some(i => isNavItemActive(i.href)))}`}
-                    data-testid={`nav-group-${entry.id}`}
+                    onClick={handleMyAccountClick}
+                    data-testid="button-my-account"
+                    aria-label={t.a11y.accessMyAccount}
+                    className={`flex h-9 cursor-pointer items-center gap-2 rounded-full px-3.5 text-sm leading-none whitespace-nowrap text-foreground/70 transition-colors duration-200 hover:text-foreground ${FOCUS_RING}`}
                   >
-                    {entry.label}
-                    <ChevronDown
-                      className={`h-3.5 w-3.5 opacity-60 transition-transform duration-200 motion-reduce:transition-none [@media(hover:hover)]:group-hover:rotate-180 ${isOpen ? "rotate-180" : ""}`}
-                      aria-hidden="true"
-                    />
+                    <UserCircle className="h-4 w-4" aria-hidden="true" />
+                    {t.nav.myAccount}
                   </button>
-                  {/* pt-3 bridges the gap so the pointer can travel from trigger to panel without closing it */}
-                  <div
-                    id={panelId}
-                    className={`absolute left-1/2 top-full -translate-x-1/2 pt-3 transition-[opacity,visibility] duration-150 motion-reduce:transition-none ${isOpen ? "visible opacity-100" : "invisible opacity-0 [@media(hover:hover)]:group-hover:visible [@media(hover:hover)]:group-hover:opacity-100"}`}
-                  >
-                    <div className="min-w-52 rounded-xl border border-border bg-background p-1.5 shadow-md">
-                      {entry.items.map(item => {
-                        const active = isNavItemActive(item.href);
-                        return renderNavLink(
-                          item,
-                          `flex w-full items-center rounded-lg px-3 py-2.5 text-left text-sm whitespace-nowrap transition-colors hover:bg-muted hover:text-foreground focus-visible:bg-muted focus-visible:outline-none ${active ? "text-foreground font-semibold" : "text-foreground/80 font-medium"}`,
-                          `nav-link-${item.label.toLowerCase()}`,
-                          () => setOpenGroup(null)
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </nav>
-
-          {/* Right side buttons */}
-          <div className="hidden lg:flex flex-shrink-0 items-center space-x-1.5 xl:space-x-3 z-10 lg:justify-self-end">
-            <LanguageSelector
-              variant="minimal"
-              className="text-foreground/70 hover:text-foreground hover:bg-muted"
-            />
-            {onCartClick && (
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={onCartClick}
-                data-testid="desktop-button-cart"
-                aria-label={t.shopPage.cart.title}
-                className="relative text-foreground/70 hover:text-foreground hover:bg-muted"
-              >
-                <ShoppingBag className="h-5 w-5" />
-                {cartCount > 0 && (
-                  <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-cta px-1 text-[10px] font-bold text-cta-foreground">
-                    {cartCount}
-                  </span>
                 )}
-              </Button>
-            )}
-            <Button
-              onClick={() => handleNavigation("#booking", t.nav.bookNow)}
-              data-testid="desktop-button-book"
-              aria-label={t.a11y.bookBoatNow}
-              className="bg-cta hover:bg-cta/90 text-primary-foreground dark:text-background rounded-full px-6 py-2 text-sm font-medium btn-elevated cta-pulse focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
-            >
-              {t.nav.bookNow}
-            </Button>
-            {isAuthenticated && (
-              <Button
-                variant="ghost"
-                onClick={handleMyAccountClick}
-                data-testid="button-my-account"
-                aria-label={t.a11y.accessMyAccount}
-                className="text-foreground/70 hover:text-foreground hover:bg-muted"
-              >
-                <UserCircle className="w-4 h-4 mr-2" />
-                {t.nav.myAccount}
-              </Button>
-            )}
+              </div>
+            </div>
           </div>
 
-          {/* Mobile/tablet menu button */}
-          <div className="lg:hidden flex items-center gap-1">
-            {onCartClick && (
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={onCartClick}
-                data-testid="mobile-button-cart"
-                aria-label={t.shopPage.cart.title}
-                className="relative min-h-11 min-w-11"
-              >
-                <ShoppingBag className="w-5 h-5" />
-                {cartCount > 0 && (
-                  <span className="absolute right-1 top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-cta px-1 text-[10px] font-bold text-cta-foreground">
-                    {cartCount}
-                  </span>
-                )}
-              </Button>
-            )}
-            <Button
-              variant="ghost"
-              size="icon"
+          {/* Always visible: cart (shop only), booking CTA, mobile menu button */}
+          <div className="ml-auto flex items-center gap-1 lg:ml-3">
+            {cartButton}
+            <button
+              type="button"
+              onClick={() => handleNavigation("#booking", t.nav.bookNow)}
+              data-testid={isDesktop ? "desktop-button-book" : "mobile-button-book"}
+              aria-label={t.a11y.bookBoatNow}
+              className={`flex h-11 cursor-pointer items-center rounded-full bg-cta px-[18px] text-sm leading-none font-medium whitespace-nowrap text-primary-foreground transition-[background-color,scale] duration-200 hover:bg-cta/90 dark:text-background active:scale-[0.97] motion-reduce:transition-none ${FOCUS_RING}`}
+            >
+              {t.nav.bookNow}
+            </button>
+            <button
+              type="button"
               onClick={toggleMenu}
               data-testid="button-mobile-menu"
               aria-label={isOpen ? t.a11y.closeNavMenu : t.a11y.openNavMenu}
               aria-expanded={isOpen}
-              className="min-h-11 min-w-11 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none"
+              aria-controls={panelId}
+              className={`flex size-11 cursor-pointer items-center justify-center rounded-full bg-foreground/[0.07] transition-colors duration-200 hover:bg-foreground/[0.12] motion-reduce:transition-none lg:hidden ${FOCUS_RING}`}
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </Button>
+              <svg
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                aria-hidden="true"
+                className="size-5"
+              >
+                <path
+                  d="M4 7.5h12"
+                  className={`origin-center transition-transform duration-300 [transform-box:fill-box] motion-reduce:transition-none ${isOpen ? "translate-y-[2.5px] rotate-45" : ""}`}
+                />
+                <path
+                  d="M4 12.5h12"
+                  className={`origin-center transition-transform duration-300 [transform-box:fill-box] motion-reduce:transition-none ${isOpen ? "-translate-y-[2.5px] -rotate-45" : ""}`}
+                />
+              </svg>
+            </button>
           </div>
-        </div>
+        </nav>
 
-        {/* Mobile/tablet Navigation */}
+        {/* Mobile/tablet panel: grows inside the pill (grid rows 0fr -> 1fr, no JS height measuring). */}
         <nav
+          id={panelId}
           aria-label={t.a11y.mobileNavMenu}
           aria-hidden={!isOpen}
-          className={`lg:hidden transition-all duration-200 ease-in-out ${isOpen ? "max-h-[calc(100dvh-6rem)] overflow-y-auto overscroll-contain opacity-100 py-3 border-t border-border bg-background" : "max-h-0 overflow-hidden opacity-0 py-0"}`}
+          {...inertAttr(!isOpen)}
+          className={`grid transition-[grid-template-rows] duration-[450ms] ${SOFT_EASE} motion-reduce:transition-none lg:hidden ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
         >
-          <div className="grid grid-cols-1 gap-0">
-            {desktopItems.map(entry => {
-              const linkClass =
-                "px-4 py-3.5 text-foreground hover:text-primary hover:bg-muted transition-colors w-full text-left font-medium block text-base rounded focus-visible:ring-2 focus-visible:ring-foreground focus-visible:outline-none";
-              if (!("items" in entry)) {
-                return renderNavLink(entry, linkClass, `mobile-nav-${entry.label.toLowerCase()}`);
-              }
-              // Native <details>: no JS state, and closed links stay in the DOM for crawlers.
-              return (
-                <details
-                  key={entry.id}
-                  className="group"
-                  data-testid={`mobile-nav-group-${entry.id}`}
-                >
-                  <summary
-                    className={`${linkClass} flex items-center justify-between cursor-pointer list-none [&::-webkit-details-marker]:hidden`}
-                  >
-                    {entry.label}
-                    <ChevronDown
-                      className="h-4 w-4 opacity-60 transition-transform duration-200 motion-reduce:transition-none group-open:rotate-180"
-                      aria-hidden="true"
-                    />
-                  </summary>
-                  <div className="pb-1">
-                    {entry.items.map(item =>
-                      renderNavLink(
-                        item,
-                        `${linkClass} pl-8 py-3 text-foreground/80`,
-                        `mobile-nav-${item.label.toLowerCase()}`
-                      )
-                    )}
+          <div className="min-h-0 overflow-hidden">
+            <div className="max-h-[calc(100dvh-8rem)] overflow-y-auto overscroll-contain px-2 pb-2 pt-1">
+              {desktopItems.map((entry, index) => {
+                const stagger: CSSProperties = { transitionDelay: isOpen ? `${60 + index * 45}ms` : "0ms" };
+                const rowMotion = `transition-[opacity,transform] duration-500 ${SOFT_EASE} motion-reduce:transition-none ${isOpen ? "translate-y-0 opacity-100" : "translate-y-2.5 opacity-0"}`;
+                if (!("items" in entry)) {
+                  return (
+                    <div key={entry.href} style={stagger} className={rowMotion}>
+                      {renderNavLink(
+                        entry,
+                        `${mobileRowClass} !cursor-pointer`,
+                        `mobile-nav-${entry.label.toLowerCase()}`
+                      )}
+                    </div>
+                  );
+                }
+                // Native <details>: no JS state, and closed links stay in the DOM for crawlers.
+                return (
+                  <div key={entry.id} style={stagger} className={rowMotion}>
+                    <details className="group" data-testid={`mobile-nav-group-${entry.id}`}>
+                      <summary
+                        className={`${mobileRowClass} cursor-pointer list-none [&::-webkit-details-marker]:hidden`}
+                      >
+                        {entry.label}
+                        <ChevronDown
+                          className="h-4 w-4 text-foreground/45 transition-transform duration-200 motion-reduce:transition-none group-open:rotate-180"
+                          aria-hidden="true"
+                        />
+                      </summary>
+                      <div className="pb-1">
+                        {entry.items.map(item =>
+                          renderNavLink(item, mobileSubClass, `mobile-nav-${item.label.toLowerCase()}`)
+                        )}
+                      </div>
+                    </details>
                   </div>
-                </details>
-              );
-            })}
-          </div>
-          <div className="px-4 py-2 border-t border-border mt-1 pt-3">
-            <div className="flex flex-wrap items-center gap-3">
-              <Button
-                className="bg-cta hover:bg-cta/90 text-primary-foreground dark:text-background rounded-full px-6 py-3 text-sm font-medium btn-elevated cta-pulse min-h-11 focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
-                onClick={handleMobileBooking}
-                data-testid="mobile-button-book"
-                aria-label={t.a11y.bookBoatNow}
-              >
-                {t.nav.bookNow}
-              </Button>
-              {isAuthenticated && (
-                <Button
-                  variant="ghost"
-                  className="min-h-11 px-4"
-                  onClick={handleMyAccountClick}
-                  data-testid="mobile-button-my-account"
-                  aria-label={t.a11y.accessMyAccount}
-                >
-                  <UserCircle className="w-4 h-4 mr-2" />
-                  {t.nav.myAccount}
-                </Button>
-              )}
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleTheme}
-                aria-label={theme === "dark" ? t.a11y.switchToLightMode : t.a11y.switchToDarkMode}
-              >
-                {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </Button>
-              <LanguageSelector variant="minimal" />
+                );
+              })}
+              <div className="mt-2 flex items-center gap-1 border-t border-border pt-2">
+                {isAuthenticated && (
+                  <button
+                    type="button"
+                    onClick={handleMyAccountClick}
+                    data-testid="mobile-button-my-account"
+                    aria-label={t.a11y.accessMyAccount}
+                    className={`flex h-11 cursor-pointer items-center gap-2 rounded-full px-3 text-[15px] font-medium text-foreground/80 transition-colors hover:bg-foreground/[0.06] hover:text-foreground ${FOCUS_RING}`}
+                  >
+                    <UserCircle className="h-4 w-4" aria-hidden="true" />
+                    {t.nav.myAccount}
+                  </button>
+                )}
+                <div className="ml-auto flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={toggleTheme}
+                    aria-label={theme === "dark" ? t.a11y.switchToLightMode : t.a11y.switchToDarkMode}
+                    className={`flex size-11 cursor-pointer items-center justify-center rounded-full text-foreground/80 transition-colors hover:bg-foreground/[0.06] hover:text-foreground ${FOCUS_RING}`}
+                  >
+                    {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                  </button>
+                  <LanguageSelector
+                    variant="minimal"
+                    className="min-h-11 text-foreground/80 hover:bg-foreground/[0.06] hover:text-foreground"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </nav>
       </div>
-    </nav>
+    </header>
   );
 }

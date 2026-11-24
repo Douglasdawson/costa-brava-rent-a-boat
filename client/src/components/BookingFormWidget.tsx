@@ -79,7 +79,11 @@ import {
   validateBookingDate,
   getLocalISODate,
 } from "@/utils/booking-validation";
-import { OPERATING_START_HOUR, OPERATING_END_HOUR, isLicenseFreeEraActive } from "@shared/constants";
+import {
+  OPERATING_START_HOUR,
+  OPERATING_END_HOUR,
+  isLicenseFreeEraActive,
+} from "@shared/constants";
 import { isJetSkiProduct } from "@shared/jetskiProducts";
 
 // Generated from shared operating hours so the dropdown can never include a
@@ -689,7 +693,10 @@ export default function BookingFormWidget({
   const { data: fetchedBoats, isLoading: isBoatsLoading } = useQuery<Boat[]>({
     queryKey: ["/api/boats"],
   });
-  const allBoats = useMemo(() => (fetchedBoats ?? []).filter(b => isPubliclyListed(b)), [fetchedBoats]);
+  const allBoats = useMemo(
+    () => (fetchedBoats ?? []).filter(b => isPubliclyListed(b)),
+    [fetchedBoats]
+  );
 
   // Coverage prices live in the CRM; the constants are the fallback if it's down.
   const { data: coveragePrices = COVERAGE_PRICES_FALLBACK } = useQuery<CoveragePrices>({
@@ -866,7 +873,8 @@ export default function BookingFormWidget({
   useEffect(() => {
     if (!fetchedBoats) return;
     if (selectedBoat && !allBoats.some(b => b.id === selectedBoat)) setSelectedBoat("");
-    if (selectedSecondaryBoat && !allBoats.some(b => b.id === selectedSecondaryBoat)) setSelectedSecondaryBoat("");
+    if (selectedSecondaryBoat && !allBoats.some(b => b.id === selectedSecondaryBoat))
+      setSelectedSecondaryBoat("");
   }, [fetchedBoats, allBoats, selectedBoat, selectedSecondaryBoat]);
 
   // Update license filter based on pre-selected boat
@@ -2217,16 +2225,27 @@ Looking forward to confirmation. Thanks!`;
           if (!open) setShowWeatherWarning(false);
         }}
       >
-        <AlertDialogContent className="max-w-md">
-          <AlertDialogHeader>
-            <AlertDialogTitle>{t.booking.coverages.warnTitle}</AlertDialogTitle>
-            <AlertDialogDescription>{t.booking.coverages.warnBody}</AlertDialogDescription>
+        <AlertDialogContent className="w-[calc(100%-1.5rem)] max-w-md rounded-3xl p-6 sm:rounded-3xl">
+          <AlertDialogHeader className="text-center sm:text-center">
+            <AlertDialogTitle className="font-heading text-xl font-semibold tracking-tight text-balance">
+              {t.booking.coverages.warnTitle}
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-balance">
+              {t.booking.coverages.warnBody}
+            </AlertDialogDescription>
           </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel onClick={handleWeatherWarningContinue}>
+          <AlertDialogFooter className="flex-col-reverse gap-2 sm:flex-col-reverse sm:justify-stretch sm:space-x-0">
+            <AlertDialogCancel
+              onClick={handleWeatherWarningContinue}
+              className="mt-0 min-h-12 w-full rounded-full"
+            >
               {t.booking.coverages.warnContinue}
             </AlertDialogCancel>
-            <AlertDialogAction onClick={handleWeatherWarningAdd} data-testid="button-weather-warning-add">
+            <AlertDialogAction
+              onClick={handleWeatherWarningAdd}
+              data-testid="button-weather-warning-add"
+              className="min-h-12 w-full rounded-full bg-cta text-primary-foreground hover:bg-cta/90 dark:text-background"
+            >
               {(t.booking.coverages.warnAdd ?? "").replace(
                 "{price}",
                 String(coveragePrices.weatherPrice)

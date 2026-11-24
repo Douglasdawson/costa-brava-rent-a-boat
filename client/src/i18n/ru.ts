@@ -109,6 +109,7 @@ export const ru: Translations = {
     hoursWithLicense: "2-8h",
     hoursTooltip: "Выберите между 2ч, 4ч или 8ч для аренды нашей {boatName}",
     withLicense: "С лицензией",
+    navigationLicenseName: "Лицензия на навигацию (LN)",
     withoutLicense: "Лицензия не нужна",
     available: "Доступно",
     occupied: "Занято",
@@ -1908,7 +1909,7 @@ export const ru: Translations = {
   valueStack: {
     title: "Включено в стоимость:",
     fuelIncluded: "Топливо включено",
-    insurance: "Страхование ответственности и от несчастных случаев",
+    insurance: "Страхование гражданской ответственности с покрытием несчастных случаев для пассажиров",
     safetyEquipment: "Полный комплект оборудования безопасности",
     briefing: "15-минутный инструктаж включён",
     securePayment: "Безопасное бронирование",
@@ -1991,7 +1992,7 @@ export const ru: Translations = {
     info: {
       whatIncludesTitle: "Что входит в цену?",
       fuelIncludedItem: "<strong>Топливо отдельно</strong>, по фактическому расходу за выход",
-      insurance: "Страхование ответственности и от несчастных случаев",
+      insurance: "Страхование гражданской ответственности с покрытием несчастных случаев для пассажиров",
       briefing: "15-минутный инструктаж перед отплытием",
       equipment: "Снаряжение для снорклинга и SUP-доска (при наличии)",
       importantTitle: "Важная информация",

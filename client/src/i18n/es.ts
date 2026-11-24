@@ -113,6 +113,7 @@ export const es: Translations = {
     hoursWithLicense: "2-8h",
     hoursTooltip: "Elige entre 2h, 4h, u 8h para alquilar nuestra {boatName}",
     withLicense: "Con licencia",
+    navigationLicenseName: "Licencia de Navegación (LN)",
     withoutLicense: "Sin necesidad de licencia",
     available: "Disponible",
     occupied: "Ocupado",
@@ -3734,7 +3735,7 @@ export const es: Translations = {
   valueStack: {
     title: "Incluido en el precio:",
     fuelIncluded: "Combustible incluido",
-    insurance: "Seguro de responsabilidad civil y accidentes",
+    insurance: "Seguro de responsabilidad civil con cobertura de accidentes para los ocupantes",
     safetyEquipment: "Equipo de seguridad completo",
     briefing: "Formación de 15 min incluida",
     securePayment: "Reserva segura",
@@ -4816,7 +4817,7 @@ export const es: Translations = {
     info: {
       whatIncludesTitle: "¿Qué incluye el precio?",
       fuelIncludedItem: "<strong>Gasolina aparte</strong>, según el consumo real de la salida",
-      insurance: "Seguro de responsabilidad civil y accidentes",
+      insurance: "Seguro de responsabilidad civil con cobertura de accidentes para los ocupantes",
       briefing: "Formación de 15 minutos antes de zarpar",
       equipment: "Equipo de snorkel y paddle surf (según disponibilidad)",
       importantTitle: "Información importante",

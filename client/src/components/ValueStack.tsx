@@ -41,7 +41,7 @@ export function ValueStack({ requiresLicense, isExcursion, t }: ValueStackProps)
   }
 
   return (
-    <div className="bg-success/10 border border-success/20 rounded-lg p-4 mb-4">
+    <div className="bg-success/10 border border-success/20 rounded-3xl p-5 mb-4">
       <h3 className="text-sm font-medium text-foreground mb-3">{vs.title}</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
         {items.map((item) => (

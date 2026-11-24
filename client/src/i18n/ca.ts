@@ -105,6 +105,7 @@ export const ca: Translations = {
     hoursWithLicense: "2-8h",
     hoursTooltip: "Tria entre 2h, 4h, o 8h per llogar la nostra {boatName}",
     withLicense: "Amb llicència",
+    navigationLicenseName: "Llicència de Navegació (LN)",
     withoutLicense: "Sense necessitat de llicència",
     available: "Disponible",
     occupied: "Ocupat",
@@ -1900,7 +1901,7 @@ export const ca: Translations = {
   valueStack: {
     title: "Inclòs en el preu:",
     fuelIncluded: "Combustible inclòs",
-    insurance: "Assegurança de responsabilitat civil i accidents",
+    insurance: "Assegurança de responsabilitat civil amb cobertura d'accidents per als ocupants",
     safetyEquipment: "Equip de seguretat complet",
     briefing: "Formació de 15 min inclosa",
     securePayment: "Reserva segura",
@@ -1983,7 +1984,7 @@ export const ca: Translations = {
     info: {
       whatIncludesTitle: "Què inclou el preu?",
       fuelIncludedItem: "<strong>Gasolina a part</strong>, segons el consum real de la sortida",
-      insurance: "Assegurança de responsabilitat civil i accidents",
+      insurance: "Assegurança de responsabilitat civil amb cobertura d'accidents per als ocupants",
       briefing: "Formació de 15 minuts abans de sortir",
       equipment: "Equip d'esnòrquel i pàdel surf (segons disponibilitat)",
       importantTitle: "Informació important",

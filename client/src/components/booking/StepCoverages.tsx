@@ -29,108 +29,102 @@ interface StepCoveragesProps {
   /** Weather guarantee price, shown inside the "with guarantee" column. */
   weatherPrice?: number;
   t: Translations;
-  /** Accent token: the mobile wizard uses `primary`, the desktop one `cta`. */
-  variant?: "mobile" | "desktop";
 }
 
-/**
- * Full class names per variant. Tailwind scans source statically, so
- * `bg-${accent}/5` would never make it into the build — the classes have to be
- * written out.
- */
-const ACCENT = {
-  mobile: {
-    tint: "bg-primary/5",
-    text: "text-primary",
-    onBox: "border-primary bg-primary/5",
-    onDot: "border-primary bg-primary",
-  },
-  desktop: {
-    tint: "bg-cta/5",
-    text: "text-cta",
-    onBox: "border-cta bg-cta/5",
-    onDot: "border-cta bg-cta",
-  },
-} as const;
+const FOCUS =
+  "focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none";
 
-export default function StepCoverages({ coverages, weatherPrice, t, variant = "mobile" }: StepCoveragesProps) {
+export default function StepCoverages({ coverages, weatherPrice, t }: StepCoveragesProps) {
   const { localizedPath } = useLanguage();
   const c = t.booking.coverages;
-  const accent = ACCENT[variant];
 
   return (
-    <div className="space-y-5">
-      <div>
-        <h2 className="text-base font-bold text-foreground">{c.stepTitle}</h2>
-        <p className="mt-1 text-sm text-muted-foreground">{c.stepSubtitle}</p>
-      </div>
+    <div className="space-y-5 md:space-y-6 [@media(max-height:820px)]:space-y-3">
+      <header className="text-center">
+        <h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground text-balance sm:text-3xl [@media(max-height:820px)]:text-xl">
+          {c.stepTitle}
+        </h2>
+        <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground text-balance [@media(max-height:820px)]:hidden">
+          {c.stepSubtitle}
+        </p>
+      </header>
 
-      {/* The contrast. Two columns sharing one frame (not two cards): the point
-          is the comparison, and a divider reads as "same subject, two outcomes". */}
-      <div className="grid grid-cols-2 divide-x divide-border overflow-hidden rounded-xl border border-border bg-card">
-        <div className="p-3.5">
-          <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
-            {c.withoutLabel}
+      {/* The contrast. Two columns sharing one frame (not two cards): the point is the comparison. */}
+      <div className="grid grid-cols-2 overflow-hidden rounded-3xl border border-border bg-card">
+        <div className="p-4 [@media(max-height:820px)]:p-3">
+          <p className="text-sm font-semibold text-muted-foreground">{c.withoutLabel}</p>
+          <p className="mt-1.5 text-[13px] leading-snug text-muted-foreground [@media(max-height:820px)]:text-xs">
+            {c.withoutBody}
           </p>
-          <p className="mt-2 text-[13px] leading-snug text-muted-foreground">{c.withoutBody}</p>
         </div>
-        <div className={`${accent.tint} p-3.5`}>
-          <div className="flex items-baseline justify-between gap-2">
-            <p className={`font-mono text-[10px] font-bold uppercase tracking-wider ${accent.text}`}>
-              {c.withLabel}
-            </p>
+        <div className="border-l border-border bg-cta/5 p-4 [@media(max-height:820px)]:p-3">
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-sm font-semibold text-foreground">{c.withLabel}</p>
             {weatherPrice != null && (
-              <span className={`shrink-0 text-sm font-bold ${accent.text}`}>{weatherPrice}€</span>
+              <span className="shrink-0 rounded-full bg-cta px-2.5 py-0.5 text-xs font-semibold tabular-nums text-primary-foreground dark:text-background">
+                {weatherPrice}&euro;
+              </span>
             )}
           </div>
-          <p className="mt-2 text-[13px] font-medium leading-snug text-foreground">{c.withBody}</p>
+          <p className="mt-1.5 text-[13px] font-medium leading-snug text-foreground">
+            {c.withBody}
+          </p>
         </div>
       </div>
 
-      <div className="space-y-2">
-        {coverages.map((option) => (
+      <div className="space-y-2.5 [@media(max-height:820px)]:space-y-2">
+        {coverages.map(option => (
           <button
             key={option.key}
             type="button"
             onClick={option.toggle}
             aria-pressed={option.on}
-            className={`flex w-full items-start gap-3 rounded-xl border-2 p-3.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 ${
-              option.on ? accent.onBox : "border-border bg-background"
+            className={`flex w-full items-center gap-3 rounded-3xl border p-3.5 text-left [@media(max-height:820px)]:py-2.5 transition-colors ${FOCUS} ${
+              option.on
+                ? "border-cta ring-2 ring-cta"
+                : "border-border bg-card hover:border-foreground/30"
             }`}
           >
             <span
               aria-hidden="true"
-              className={`mt-0.5 inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border-2 ${
-                option.on ? accent.onDot : "border-border"
+              className={`flex size-8 shrink-0 items-center justify-center rounded-full border transition-colors ${
+                option.on
+                  ? "border-cta bg-cta text-primary-foreground dark:text-background"
+                  : "border-border bg-background text-transparent"
               }`}
             >
-              {option.on && <Check className="h-3 w-3 text-white" />}
+              <Check className="h-4 w-4" strokeWidth={3} />
             </span>
             <span className="min-w-0 flex-1">
-              <span className="block text-sm font-semibold leading-tight text-foreground">{option.name}</span>
-              <span className="mt-0.5 block text-xs leading-snug text-muted-foreground">{option.desc}</span>
+              <span className="block text-sm font-semibold leading-tight text-foreground">
+                {option.name}
+              </span>
+              <span className="mt-0.5 block text-xs leading-snug text-muted-foreground">
+                {option.desc}
+              </span>
             </span>
-            <span className={`flex-shrink-0 text-sm font-bold ${accent.text}`}>{option.price}€</span>
+            <span className="shrink-0 rounded-full bg-muted px-3 py-1 font-heading text-base font-semibold tabular-nums text-foreground">
+              {option.price}&euro;
+            </span>
           </button>
         ))}
       </div>
 
-      {/* One line, not a table: at the moment of deciding the full rule ate a
-          third of the screen, and /garantias develops it in full. */}
-      <p className="border-t border-border pt-3 text-xs leading-snug text-muted-foreground">
+      {/* One line, not a table: /garantias develops the full rule. */}
+      <p className="text-center text-xs leading-snug text-muted-foreground [@media(max-height:820px)]:hidden">
         {c.criteriaShort ?? `${c.triggerAemetMark} · ${c.triggerAemet}`}{" "}
         <a
           href={localizedPath("garantias")}
           target="_blank"
           rel="noopener noreferrer"
-          className={`font-medium underline ${accent.text}`}
+          className="font-medium text-foreground underline underline-offset-2"
         >
           {t.booking.coveragesMoreInfo}
         </a>
       </p>
 
       {t.bookingWizard?.hints?.noOnlinePayment && (
-        <p className="text-center text-[11px] text-muted-foreground">
+        <p className="text-center text-[11px] text-muted-foreground [@media(max-height:820px)]:hidden">
           {t.bookingWizard.hints.noOnlinePayment}
         </p>
       )}

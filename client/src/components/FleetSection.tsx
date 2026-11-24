@@ -4,7 +4,7 @@ import { useVirtualizer } from "@tanstack/react-virtual";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import BoatCard from "./BoatCard";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { useLocation } from "wouter";
 import { getBoatImage, getBoatImageSrcSet } from "@/utils/boatImages";
@@ -28,39 +28,18 @@ import type { PageKey } from "@shared/i18n-routes";
 import JetSkiRequestModal from "./JetSkiRequestModal";
 import { translateBoatText } from "@shared/boatTextTranslations";
 
-/** Skeleton that mirrors BoatCard layout: image 4/3 + content + buttons */
+/** Skeleton that mirrors BoatCard: one photo tile with the name chip on top and the price pill below */
 function BoatCardSkeleton() {
   return (
     <Card className="overflow-hidden">
-      <div className="relative w-full aspect-[4/3] bg-muted">
+      <div className="relative w-full aspect-[5/4] sm:aspect-[4/5] bg-muted">
         <Skeleton className="w-full h-full rounded-none" />
         <div className="absolute top-3 left-3">
-          <Skeleton className="h-6 w-24 rounded-full" />
+          <Skeleton className="h-8 w-32 rounded-full" />
         </div>
-      </div>
-      <CardContent className="p-3 sm:p-4">
-        <div className="flex items-start justify-between mb-2">
-          <div className="flex-1 mr-2">
-            <Skeleton className="h-5 w-32 mb-1.5" />
-            <Skeleton className="h-3 w-24" />
-          </div>
-          <div className="text-right space-y-1">
-            <Skeleton className="h-3 w-12 ml-auto" />
-            <Skeleton className="h-5 w-16 ml-auto" />
-            <Skeleton className="h-3 w-20 ml-auto" />
-          </div>
+        <div className="absolute bottom-3 left-3 right-3">
+          <Skeleton className="h-[76px] w-full rounded-2xl" />
         </div>
-        <Skeleton className="h-4 w-full mb-1" />
-        <Skeleton className="h-4 w-3/4 mb-3" />
-        <Skeleton className="h-3 w-2/3 mb-2" />
-        <div className="flex gap-1.5 mb-3">
-          <Skeleton className="h-5 w-16 rounded-full" />
-          <Skeleton className="h-5 w-20 rounded-full" />
-        </div>
-      </CardContent>
-      <div className="px-3 sm:px-4 pb-3 sm:pb-4 flex items-center justify-between gap-2">
-        <Skeleton className="h-4 w-24" />
-        <Skeleton className="h-8 w-20 rounded-full" />
       </div>
     </Card>
   );
@@ -85,7 +64,7 @@ function getCurrentSeason(): "BAJA" | "MEDIA" | "ALTA" | null {
 }
 
 /** Estimated height of a single boat card row (px). Used by the virtualizer. */
-const BOAT_ROW_HEIGHT = 480;
+const BOAT_ROW_HEIGHT = 520;
 
 /** Threshold: only virtualize when more than this many boats */
 const VIRTUALIZATION_THRESHOLD = 12;

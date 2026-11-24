@@ -192,11 +192,11 @@ export default function LicenseVerifierPanel({ verifier, onSwitchToUnlicensed }:
   return (
     <section
       aria-label={tv?.panelEyebrow ?? "Verifica tu licencia"}
-      className={`p-4 sm:p-5 rounded-2xl bg-card/40 space-y-6 ${FADE_IN_TOP}`}
+      className={`p-4 sm:p-5 rounded-3xl bg-muted/50 space-y-5 ${FADE_IN_TOP}`}
     >
-      {/* Eyebrow + helper */}
-      <header className="space-y-1">
-        <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-foreground/65">
+      {/* Title + helper */}
+      <header className="space-y-1 text-center">
+        <p className="font-heading text-lg font-semibold leading-tight text-foreground">
           {tv?.panelEyebrow ?? "Verifica tu licencia · 30 s"}
         </p>
         <p className="text-sm text-foreground/75 leading-snug">
@@ -212,8 +212,7 @@ export default function LicenseVerifierPanel({ verifier, onSwitchToUnlicensed }:
           aria-expanded={countryOpen}
           aria-haspopup={isMobile ? "dialog" : "listbox"}
           className={[
-            "flex w-full items-center justify-between gap-3 border border-input bg-background px-3.5 h-11 text-[15px] text-foreground hover:border-foreground/30 rounded-md active:scale-[0.99] transform-gpu",
-            !isMobile && countryOpen ? "rounded-b-none border-b-0" : "",
+            "flex w-full items-center justify-between gap-3 border border-input bg-background px-5 h-12 text-[15px] text-foreground hover:border-foreground/30 rounded-full active:scale-[0.99] transform-gpu",
             FOCUS_RING,
             COLOR_TRANSITION,
           ].join(" ")}
@@ -278,7 +277,7 @@ export default function LicenseVerifierPanel({ verifier, onSwitchToUnlicensed }:
           <div
             role="radiogroup"
             aria-label={tv?.licenseTypeLabel ?? "Tipo de licencia"}
-            className={`grid grid-cols-1 sm:grid-cols-2 gap-2 ${FADE_IN_TOP}`}
+            className={`flex flex-wrap gap-2 ${FADE_IN_TOP}`}
           >
             {catalogue.map((lic) => {
               const selected = state.licenseCode === lic.code;
@@ -291,16 +290,16 @@ export default function LicenseVerifierPanel({ verifier, onSwitchToUnlicensed }:
                   onClick={() => setLicenseCode(lic.code)}
                   aria-label={lic.label}
                   className={[
-                    "flex flex-col justify-center text-left px-3.5 py-3 min-h-[68px] rounded-xl leading-snug active:scale-[0.98] transform-gpu",
+                    "inline-flex items-center text-left px-4 min-h-11 rounded-full leading-snug active:scale-[0.98] transform-gpu",
                     selected
-                      ? "bg-foreground text-white border border-foreground"
+                      ? "bg-cta text-primary-foreground dark:text-background border border-cta"
                       : "bg-background text-foreground/85 border border-border hover:border-foreground/25",
                     FOCUS_RING,
                     COLOR_TRANSITION,
                     "transition-transform",
                   ].join(" ")}
                 >
-                  <p className="text-[14px] font-medium line-clamp-2">{lic.label}</p>
+                  <p className="text-sm font-medium">{lic.label}</p>
                 </button>
               );
             })}
@@ -311,7 +310,7 @@ export default function LicenseVerifierPanel({ verifier, onSwitchToUnlicensed }:
       {/* ICC question — non-EEE + non-ICC chip */}
       {needsIccQuestion && (
         <fieldset className={`m-0 p-0 border-0 space-y-2 ${FADE_IN_TOP}`}>
-          <legend className="text-[11px] font-medium uppercase tracking-[0.08em] text-foreground/65">
+          <legend className="text-sm font-medium text-foreground">
             {tv?.hasIccLabel ?? "¿Tienes un ICC (International Certificate of Competence)?"}
           </legend>
           <div
@@ -495,12 +494,12 @@ function SummaryView({
       role="status"
       aria-live="polite"
       data-testid="license-status-summary"
-      className={`rounded-2xl border ${s.borderColor} ${s.bgColor} p-4 space-y-3 ${FADE_IN_TOP_BOUNCY}`}
+      className={`rounded-3xl border ${s.borderColor} ${s.bgColor} p-5 space-y-3 ${FADE_IN_TOP_BOUNCY}`}
     >
       <div className="flex items-start gap-3">
         <Icon className={`w-5 h-5 shrink-0 mt-0.5 ${s.iconColor}`} aria-hidden />
         <div className="min-w-0 flex-1">
-          <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-foreground/70 truncate flex items-center gap-1.5">
+          <p className="text-sm font-medium text-foreground/80 truncate flex items-center gap-1.5">
             <CountryFlag
               iso2={country}
               emoji={flag}
@@ -572,7 +571,7 @@ function SummaryView({
 function FieldSection({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="space-y-2">
-      <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-foreground/65">
+      <p className="text-sm font-medium text-foreground">
         {label}
       </p>
       {children}
@@ -598,7 +597,7 @@ function SegmentButton({
       className={[
         "h-11 rounded-full text-sm font-semibold active:scale-[0.97] transform-gpu",
         selected
-          ? "bg-foreground text-white"
+          ? "bg-cta text-primary-foreground dark:text-background"
           : "bg-transparent text-foreground/70 hover:text-foreground",
         FOCUS_RING,
         COLOR_TRANSITION,
@@ -750,7 +749,7 @@ function CountryListInline(props: CountryPickerSharedProps) {
   const listboxId = "license-verifier-country-listbox-desktop";
   const rowIdPrefix = "lv-country-row-d";
   return (
-    <div className={`rounded-b-md border border-t-input/70 border-input bg-background overflow-hidden ${FADE_IN_TOP}`}>
+    <div className={`mt-2 rounded-2xl border border-input bg-background overflow-hidden ${FADE_IN_TOP}`}>
       <div className="px-3 h-11 border-b border-input/70 bg-card/40 flex items-center gap-2">
         <Search className="w-3.5 h-3.5 text-foreground/55 shrink-0" aria-hidden />
         <SearchInput
@@ -806,7 +805,7 @@ function SearchInput({
   // would trigger Safari's auto-zoom on focus.
   const cls =
     variant === "boxed"
-      ? `flex items-center gap-2 w-full h-11 px-3 rounded-md border border-input bg-background ${FOCUS_RING}`
+      ? `flex items-center gap-2 w-full h-12 px-4 rounded-full border border-input bg-background ${FOCUS_RING}`
       : "flex-1 bg-transparent";
 
   if (variant === "boxed") {
@@ -993,7 +992,7 @@ function CountryRow({
       onClick={() => onSelect(iso2)}
       onMouseDown={(e) => e.preventDefault()}
       className={[
-        "flex w-full items-center gap-2.5 px-4 py-3 text-left text-[15px] min-h-11 active:scale-[0.99] transform-gpu",
+        "flex w-full items-center gap-2.5 px-4 py-3 text-left text-[15px] min-h-11 rounded-full active:scale-[0.99] transform-gpu",
         isSelected
           ? "bg-cta/10 text-foreground font-medium"
           : isActive

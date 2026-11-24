@@ -190,6 +190,7 @@ export interface Translations {
     hoursWithLicense: string;
     hoursTooltip: string;
     withLicense: string;
+    navigationLicenseName: string;
     withoutLicense: string;
     available: string;
     occupied: string;

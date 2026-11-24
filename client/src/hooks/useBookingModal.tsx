@@ -66,7 +66,7 @@ export function BookingModalProvider({ children }: { children: React.ReactNode }
             e.preventDefault();
             (e.currentTarget as HTMLElement).focus();
           }}
-          className="!max-w-none md:!max-w-2xl !w-full md:!w-[calc(100vw-48px)] lg:!w-[680px] xl:!w-[760px] !h-[100dvh] md:!h-[90vh] !rounded-none md:!rounded-2xl !p-0 !gap-0 !flex !flex-col overflow-hidden !left-0 md:!left-1/2 !top-0 md:!top-1/2 !translate-x-0 md:!-translate-x-1/2 !translate-y-0 md:!-translate-y-1/2 pt-safe pb-safe bg-background"
+          className="booking-modal !max-w-none md:!max-w-4xl !w-full md:!w-[calc(100vw-3rem)] !h-[100dvh] md:!h-[min(56rem,calc(100dvh-3rem))] !rounded-none md:!rounded-2xl !p-0 !gap-0 !flex !flex-col overflow-hidden !left-0 md:!left-1/2 !top-0 md:!top-1/2 !translate-x-0 md:!-translate-x-1/2 !translate-y-0 md:!-translate-y-1/2 pt-safe pb-safe bg-background"
         >
           <DialogTitle className="sr-only">{t.booking.title}</DialogTitle>
           <DialogDescription className="sr-only">{t.booking.modalSubtitle}</DialogDescription>

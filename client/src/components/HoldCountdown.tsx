@@ -100,7 +100,7 @@ const HoldCountdown = memo(function HoldCountdown({
 
     // Hard expiry (legacy behavior)
     return (
-      <div className="bg-red-600 text-white rounded-lg h-10 flex items-center justify-center gap-2 px-4 w-full transition-colors duration-700">
+      <div className="bg-red-600 text-white rounded-full min-h-10 py-1.5 flex items-center justify-center gap-2 px-5 w-full transition-colors duration-700">
         <Clock className="w-4 h-4 flex-shrink-0" />
         <span className="text-sm font-medium">
           {holdCountdownText?.expired ?? "Tu reserva ha expirado"}.{" "}
@@ -113,7 +113,7 @@ const HoldCountdown = memo(function HoldCountdown({
   return (
     <div className="w-full">
       <div
-        className={`${bgClass} text-white rounded-lg h-10 flex items-center justify-center gap-2 px-4 w-full transition-colors duration-700`}
+        className={`${bgClass} text-white rounded-full min-h-10 py-1.5 flex items-center justify-center gap-2 px-5 w-full transition-colors duration-700`}
       >
         <Clock className="w-4 h-4 flex-shrink-0" />
         <span className="text-sm font-medium">
@@ -126,9 +126,9 @@ const HoldCountdown = memo(function HoldCountdown({
       </div>
       {/* CSS-animated progress bar: runs entirely on GPU, no JS updates needed */}
       {totalSeconds > 0 && (
-        <div className="w-full h-1 bg-white/20 rounded-b-lg overflow-hidden -mt-0.5">
+        <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden mt-1.5 mx-auto max-w-[calc(100%-2.5rem)]">
           <div
-            className="h-full bg-white/60 origin-left rounded-b-lg"
+            className="h-full bg-white/60 origin-left rounded-full"
             style={{
               animation: `hold-countdown-progress ${totalSeconds}s linear forwards`,
             }}

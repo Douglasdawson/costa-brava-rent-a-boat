@@ -51,7 +51,7 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 |------|------|-------------|
 | Paginas publicas | `pages/*.tsx` | 39 paginas (10 locations, 4 activities, 3 jet ski, scooters, 2 categories, blog, FAQ, about, etc.) |
 | Componentes | `components/*.tsx` | Componentes publicos (Hero, Fleet, Booking, Navigation, etc.) |
-| Booking flow (modal del Hero) | `BookingFormWidget.tsx` → `BookingWizardMobile.tsx` / `BookingFormDesktop.tsx` | Wizard de 4 steps (barco / viaje / datos / confirmar). Lazy-loaded via `useBookingModal`. Es lo que abre el CTA del Hero. |
+| Booking flow (modal del Hero) | `BookingFormWidget.tsx` → `BookingWizardMobile.tsx` / `BookingFormDesktop.tsx` | Wizard de 6 steps (1 Cuándo, 2 Barco [se salta con barco preseleccionado], 3 Hora y duración, 4 Mejora tu día, 5 Garantías, 6 Confirmar). Los cuerpos de los steps son COMPARTIDOS en `components/booking/Step{WhenWho,Boat,Departure,Extras,Coverages,Confirm}.tsx`; los dos wizards solo los montan, un cambio de step se hace una vez. Diseño píldora (`rounded-full`/`rounded-3xl`, selección `bg-cta`), cada step cabe en el viewport móvil salvo el 6 (scroll). Post-envío: `BookingConfirmation.tsx`. Lazy-loaded via `useBookingModal`. Es lo que abre el CTA del Hero. |
 | Panel admin CRM | `components/crm/` | 25+ componentes (Dashboard, Calendar, Bookings, Fleet, etc.) |
 | UI base | `components/ui/` | Componentes shadcn/ui |
 | Traducciones i18n | `i18n/*.ts` | 8 idiomas (es, en, ca, fr, de, nl, it, ru) |

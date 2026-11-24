@@ -105,6 +105,7 @@ export const nl: Translations = {
     hoursWithLicense: "2-8h",
     hoursTooltip: "Kies tussen 2u, 4u of 8u om onze {boatName} te huren",
     withLicense: "Met vaarbewijs",
+    navigationLicenseName: "Navigatielicentie (LN)",
     withoutLicense: "Geen vaarbewijs nodig",
     available: "Beschikbaar",
     occupied: "Bezet",
@@ -1906,7 +1907,7 @@ export const nl: Translations = {
   valueStack: {
     title: "Inbegrepen in de prijs:",
     fuelIncluded: "Brandstof inbegrepen",
-    insurance: "WA- en ongevallenverzekering",
+    insurance: "WA-verzekering met ongevallendekking voor de inzittenden",
     safetyEquipment: "Volledige veiligheidsuitrusting",
     briefing: "Instructie van 15 min inbegrepen",
     securePayment: "Veilige boeking",
@@ -1989,7 +1990,7 @@ export const nl: Translations = {
     info: {
       whatIncludesTitle: "Wat is inbegrepen in de prijs?",
       fuelIncludedItem: "<strong>Brandstof apart</strong>, op basis van het werkelijke verbruik van de tocht",
-      insurance: "Aansprakelijkheids- en ongevallenverzekering",
+      insurance: "WA-verzekering met ongevallendekking voor de inzittenden",
       briefing: "Instructie van 15 minuten voor vertrek",
       equipment: "Snorkel- en paddleboarduitrusting (afhankelijk van beschikbaarheid)",
       importantTitle: "Belangrijke informatie",

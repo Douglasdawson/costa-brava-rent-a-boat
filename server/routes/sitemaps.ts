@@ -2,7 +2,14 @@ import fs from "fs";
 import path from "path";
 import type { Express } from "express";
 import { storage } from "../storage";
-import { isPubliclyListed } from "../../shared/boatData";
+import { isPubliclyListed, isCaptainedBoat } from "../../shared/boatData";
+import {
+  BOAT_PAGES_LASTMOD,
+  LICENSED_LANDING_LASTMOD,
+  CAPTAINED_LANDING_LASTMOD,
+  TITULIN_PILLAR_LASTMOD,
+  TOSSA_LANDING_LASTMOD,
+} from "../../shared/seoLastmod";
 import { isJetSkiProduct } from "../../shared/jetskiProducts";
 import { logger } from "../lib/logger";
 import { registerRobotsRoutes } from "./robots";
@@ -72,9 +79,9 @@ const escapeXml = (str: string): string =>
 
 // Sitemap-eligible languages per page type. ES is always indexable (canonical).
 // Home routes are fully i18n-covered in every language, so they index in all 8.
-// Everything else (boats, destinations, locations, activities, categories,
-// legal, faq) renders ES-only content from the DB — noindexed in non-ES langs
-// via seoInjector.computeTranslationIndex, so we exclude them from the sitemap.
+// Boat detail pages (sitemap-boats.xml) are native SSR in the 8 languages and index in all of
+// them. Destinations and other DB-backed pages still render ES-only content — noindexed in
+// non-ES langs via seoInjector.computeTranslationIndex, so we exclude them from the sitemap.
 const ALL_LANGS: readonly LangCode[] = SUPPORTED_LANGUAGES as readonly LangCode[];
 const ES_ONLY: readonly LangCode[] = ["es"];
 
@@ -238,19 +245,15 @@ export function registerSitemapRoutes(app: Express) {
       const baseUrl = getBaseUrl();
 
       // Query DB for real lastmod dates per sub-sitemap
-      const [boats, blogPosts, destinations] = await Promise.all([
-        storage.getAllBoats(),
+      const [blogPosts, destinations] = await Promise.all([
         storage.getAllBlogPosts(),
         storage.getAllDestinations(),
       ]);
 
-      const activeBoats = boats.filter(b => isPubliclyListed(b));
       const publishedPosts = blogPosts.filter(p => p.isPublished);
       const publishedDests = destinations.filter(d => d.isPublished);
 
-      const boatsLastmod = getMaxDate(
-        activeBoats.map(b => (b as Record<string, any>).updatedAt || (b as Record<string, any>).createdAt)
-      );
+      const boatsLastmod = BOAT_PAGES_LASTMOD;
       const blogLastmod = getMaxDate(
         publishedPosts.map(p => p.updatedAt || p.publishedAt || p.createdAt)
       );
@@ -318,7 +321,7 @@ export function registerSitemapRoutes(app: Express) {
       // Location pages
       sitemap += generateUrlEntry(baseUrl, "locationBlanes", "0.7", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "locationLloret", "0.7", null, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "locationTossa", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "locationTossa", "0.7", TOSSA_LANDING_LASTMOD, "monthly");
       sitemap += generateUrlEntry(baseUrl, "locationMalgrat", "0.7", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "locationSantaSusanna", "0.7", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "locationCalella", "0.7", null, "monthly");
@@ -344,13 +347,13 @@ export function registerSitemapRoutes(app: Express) {
       sitemap += generateUrlEntry(baseUrl, "efoilBlanes", "0.7", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "scooters", "0.6", null, "monthly");
       sitemap += generateUrlEntry(baseUrl, "activities", "0.6", null, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "categoryCaptained", "0.8", null, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "navigationLicense", "0.8", null, "weekly");
+      sitemap += generateUrlEntry(baseUrl, "categoryCaptained", "0.8", CAPTAINED_LANDING_LASTMOD, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "navigationLicense", "0.8", TITULIN_PILLAR_LASTMOD, "weekly");
       sitemap += generateUrlEntry(baseUrl, "tienda", "0.6", null, "weekly");
 
       // Category pages
       sitemap += generateUrlEntry(baseUrl, "categoryLicenseFree", "0.7", null, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "categoryLicensed", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "categoryLicensed", "0.7", LICENSED_LANDING_LASTMOD, "monthly");
 
       // Blog index (the listing page itself; individual posts are in sitemap-blog.xml)
       sitemap += generateUrlEntry(baseUrl, "blog", "0.7", null, "weekly");
@@ -422,10 +425,10 @@ ${hreflangLinks}  </url>\n`;
 
       activeBoats.forEach(boat => {
         const boatSlug = (boat as Record<string, any>).slug || String(boat.id);
-        const boatLastmod = formatSitemapDate((boat as Record<string, any>).updatedAt || (boat as Record<string, any>).createdAt);
+        // `boats` has no updated_at: manual constant, bumped when the ficha content changes.
+        const boatLastmod = BOAT_PAGES_LASTMOD;
         const safeName = escapeXml(boat.name);
-        // Boat detail content is ES-only in the DB. Non-ES langs are noindex+canonical→ES.
-        const boatHreflang = buildHreflangLinks(baseUrl, "boatDetail", boatSlug, ES_ONLY);
+        const boatHreflang = buildHreflangLinks(baseUrl, "boatDetail", boatSlug, ALL_LANGS);
 
         // Build image tags once (shared across all language URLs)
         let imageTags = "";
@@ -437,7 +440,7 @@ ${hreflangLinks}  </url>\n`;
           imageTags += `
     <image:image>
       <image:loc>${imageUrl}</image:loc>
-      <image:caption>Alquiler barco ${safeName} en Blanes Costa Brava - ${boat.requiresLicense ? "Con licencia" : "Sin licencia"}</image:caption>
+      <image:caption>${isCaptainedBoat(boat.id) ? `Excursion en barco con patron ${safeName} en Blanes Costa Brava` : `Alquiler barco ${safeName} en Blanes Costa Brava`}</image:caption>
       <image:title>${safeName} - Costa Brava Rent a Boat</image:title>
     </image:image>`;
         }
@@ -461,9 +464,7 @@ ${hreflangLinks}  </url>\n`;
           });
         }
 
-        // Emit only the ES URL (non-ES are noindexed, so excluding them from
-        // sitemap keeps Search Console clean of "indexed but noindex" warnings).
-        ES_ONLY.forEach(lang => {
+        ALL_LANGS.forEach(lang => {
           const boatPath = getLocalizedPath("boatDetail", lang) + `/${boatSlug}`;
           const boatPriority = getLanguagePriority("0.8", lang);
           sitemap += `  <url>

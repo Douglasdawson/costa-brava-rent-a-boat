@@ -186,7 +186,7 @@ function BoatCard({
 
   return (
     <Card
-      className={`group/card flex h-full flex-col overflow-hidden transition-colors ${
+      className={`group/card flex h-full flex-col overflow-hidden transition-[transform,border-color] duration-300 motion-safe:hover:-translate-y-1 ${
         isRecommended ? "border-2 border-cta" : "hover:border-cta/40"
       }`}
     >
@@ -209,9 +209,18 @@ function BoatCard({
             imageError={imageError}
             onImageError={handleImageError}
           />
-          <h3 className="absolute top-3 left-3 z-10 max-w-[calc(100%-1.5rem)] rounded-full bg-background px-3.5 py-1.5 font-heading text-base font-semibold leading-tight tracking-tight text-foreground">
-            {name}
-          </h3>
+          {/* Bottom scrim so the white text reads on any photo. */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black/85 via-black/45 to-transparent"
+          />
+          {!isJetSki && (
+            <span
+              className={`absolute left-3 top-3 z-10 truncate rounded-full ${isRecommended || isPopular ? "max-w-[55%]" : "max-w-[calc(100%-1.5rem)]"} bg-white px-3.5 py-1.5 text-xs font-medium text-[hsl(215_45%_20%)]`}
+            >
+              {licenseLabel}
+            </span>
+          )}
           {!isJetSki && (isRecommended || isPopular) && (
             <div className="absolute top-3 left-3 right-3 z-10 flex items-start justify-end gap-2">
               <span
@@ -230,21 +239,38 @@ function BoatCard({
               </span>
             </div>
           )}
+          {/* Name + facts. With a mouse it rests at the bottom and slides up when the price row is revealed;
+              on touch there is no hover, so it always sits above the price row. */}
+          <div className="absolute inset-x-0 bottom-[5.5rem] z-10 px-4 transition-transform duration-500 ease-out motion-reduce:transition-none [@media(hover:hover)]:translate-y-[4.5rem] [@media(hover:hover)]:group-hover/card:translate-y-0 [@media(hover:hover)]:group-focus-within/card:translate-y-0">
+            <h3 className="font-heading text-2xl font-semibold leading-tight tracking-tight text-white">
+              {name}
+            </h3>
+            <p className="mt-1 text-sm text-white/85">
+              {capacity} {t.boats.people}
+              {enginePower ? ` · ${enginePower}` : ""}
+            </p>
+            {description && (
+              <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-white/85 max-sm:hidden">
+                {description}
+              </p>
+            )}
+          </div>
         </a>
 
-        {/* Price + CTA live in the photo pill. Sibling of the link (a button inside an anchor is invalid). */}
-        <div className="absolute bottom-2.5 left-2.5 right-2.5 z-10 flex items-center justify-between gap-3">
-          <div className="flex h-11 min-w-0 items-baseline gap-1.5 rounded-full bg-background px-4 leading-none">
-            <span className="self-center text-xs text-muted-foreground">
+        {/* Price + CTA: always visible on touch, revealed on hover/focus with a mouse. Sibling of the link
+            (a button inside an anchor is invalid); only the button takes clicks, the rest falls through to the photo. */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-3 p-4 transition-[opacity,transform] duration-500 ease-out motion-reduce:transition-none [@media(hover:hover)]:translate-y-3 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover/card:translate-y-0 [@media(hover:hover)]:group-hover/card:opacity-100 [@media(hover:hover)]:group-focus-within/card:translate-y-0 [@media(hover:hover)]:group-focus-within/card:opacity-100">
+          <div className="min-w-0 leading-none text-white">
+            <div className="mb-1 text-xs text-white/85">
               {isJetSki ? t.jetski?.fromLabel || t.boats.from : t.boats.from}
-            </span>
-            <span className="self-center font-heading text-xl font-semibold tracking-tight text-foreground tabular-nums">
+            </div>
+            <div className="font-heading text-3xl font-semibold tracking-tight tabular-nums">
               {basePrice}&euro;
-            </span>
+            </div>
           </div>
           <button
             onClick={handleBooking}
-            className={`flex-shrink-0 rounded-full bg-cta px-5 min-h-11 text-base font-medium text-primary-foreground dark:text-background transition-colors hover:bg-cta/90 focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none cta-pulse cta-pulse-light`}
+            className="pointer-events-auto min-h-11 flex-shrink-0 rounded-full bg-white px-5 text-base font-medium text-[hsl(215_45%_20%)] transition-colors hover:bg-white/90 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 focus-visible:outline-none"
             data-testid={`button-book-${id}`}
           >
             {isJetSki ? t.jetski?.requestCta || t.boats.book : t.boats.book}

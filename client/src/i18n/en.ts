@@ -833,6 +833,11 @@ export const en: Translations = {
     ],
     whatToBringTip: "Arrive at Blanes Harbour 15 minutes before departure for the safety briefing.",
     imageAria: "Image",
+    ssrPricesTitle: "Prices by season",
+    ssrPricesIntro: "Rates in euros by rental duration, VAT included.",
+    ssrMaxDuration: "Maximum rental duration: {hours} hours.",
+    ssrInsurance: "Insurance: every boat carries the compulsory third-party liability insurance (Royal Decree 607/1999), extended with voluntary liability cover for damage to third parties, and accident cover for the occupants under each boat's policy. The accident cover applies to the boat's approved number of seats: exceeding it leaves the whole trip without cover.",
+    ssrBookingNote: "Booking is by request: we confirm availability on WhatsApp and payment is made in person at Blanes Port, with no online charges.",
   },
   wizard: {
     stepBoat: "Boat",

@@ -844,6 +844,11 @@ export const it: Translations = {
     whatToBringTip:
       "Arriva al Porto di Blanes 15 minuti prima della partenza per il briefing di sicurezza.",
     imageAria: "Immagine",
+    ssrPricesTitle: "Prezzi per stagione",
+    ssrPricesIntro: "Tariffe in euro in base alla durata del noleggio, IVA inclusa.",
+    ssrMaxDuration: "Durata massima del noleggio: {hours} ore.",
+    ssrInsurance: "Assicurazione: ogni imbarcazione ha l'assicurazione di responsabilità civile obbligatoria (RD 607/1999), ampliata con una responsabilità civile volontaria per i danni a terzi, e una copertura infortuni per gli occupanti secondo la polizza di ciascuna imbarcazione. La copertura infortuni vale per il numero di posti omologato: superarlo lascia l'intera uscita senza copertura.",
+    ssrBookingNote: "Prenotazione su richiesta: confermiamo la disponibilità su WhatsApp e il pagamento si effettua di persona al Porto di Blanes, senza pagamenti online.",
   },
   wizard: {
     stepBoat: "Barca",

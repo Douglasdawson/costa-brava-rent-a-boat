@@ -846,6 +846,11 @@ export const fr: Translations = {
     whatToBringTip:
       "Arrivez au Port de Blanes 15 minutes avant le départ pour le briefing de sécurité.",
     imageAria: "Image",
+    ssrPricesTitle: "Prix par saison",
+    ssrPricesIntro: "Tarifs en euros selon la durée de la location, TVA incluse.",
+    ssrMaxDuration: "Durée maximale de location : {hours} heures.",
+    ssrInsurance: "Assurance : chaque bateau est couvert par l'assurance de responsabilité civile obligatoire (RD 607/1999), complétée par une responsabilité civile volontaire pour les dommages causés à des tiers, et par une couverture accidents pour les occupants selon la police de chaque bateau. La couverture accidents s'applique au nombre de places homologué : le dépasser laisse toute la sortie sans couverture.",
+    ssrBookingNote: "Réservation sur demande : nous confirmons la disponibilité par WhatsApp et le paiement se fait en personne au Port de Blanes, sans paiement en ligne.",
   },
   wizard: {
     stepBoat: "Bateau",

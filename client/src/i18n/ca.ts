@@ -840,6 +840,11 @@ export const ca: Translations = {
     whatToBringTip:
       "Arriba al Port de Blanes 15 minuts abans de l'hora de sortida per al briefing de seguretat.",
     imageAria: "Imatge",
+    ssrPricesTitle: "Preus per temporada",
+    ssrPricesIntro: "Tarifes en euros segons la durada del lloguer, IVA inclòs.",
+    ssrMaxDuration: "Durada màxima del lloguer: {hours} hores.",
+    ssrInsurance: "Assegurança: cada embarcació porta l'assegurança de Responsabilitat Civil obligatòria (RD 607/1999), ampliada amb una Responsabilitat Civil voluntària pels danys a tercers, i cobertura d'accidents per als ocupants segons la pòlissa de cada embarcació. La cobertura d'accidents s'aplica al nombre de places homologat: sobrepassar-lo deixa tota la sortida sense cobertura.",
+    ssrBookingNote: "Reserva per sol·licitud: et confirmem la disponibilitat per WhatsApp i el pagament es fa en persona al Port de Blanes, sense cobraments en línia.",
   },
   wizard: {
     stepBoat: "Vaixell",

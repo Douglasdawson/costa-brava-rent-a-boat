@@ -1019,6 +1019,12 @@ export interface Translations {
     whatToBringItems: string[];
     whatToBringTip: string;
     imageAria: string;
+    // SSR body of the boat page (server/seoInjector.ts), INSURANCE_SCOPE_ES wording
+    ssrPricesTitle: string;
+    ssrPricesIntro: string;
+    ssrMaxDuration: string;
+    ssrInsurance: string;
+    ssrBookingNote: string;
   };
 
   // Booking Wizard Mobile

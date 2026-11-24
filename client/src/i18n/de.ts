@@ -844,6 +844,11 @@ export const de: Translations = {
     whatToBringTip:
       "Kommen Sie 15 Minuten vor Abfahrt im Hafen von Blanes für das Sicherheitsbriefing.",
     imageAria: "Bild",
+    ssrPricesTitle: "Preise nach Saison",
+    ssrPricesIntro: "Preise in Euro je nach Mietdauer, inklusive MwSt.",
+    ssrMaxDuration: "Maximale Mietdauer: {hours} Stunden.",
+    ssrInsurance: "Versicherung: Jedes Boot ist mit der gesetzlich vorgeschriebenen Haftpflichtversicherung (RD 607/1999) versichert, erweitert um eine freiwillige Haftpflicht für Schäden an Dritten, sowie mit einer Unfalldeckung für die Insassen gemäß der Police des jeweiligen Boots. Die Unfalldeckung gilt für die zugelassene Personenzahl: Wird sie überschritten, ist die gesamte Ausfahrt nicht versichert.",
+    ssrBookingNote: "Buchung auf Anfrage: Wir bestätigen die Verfügbarkeit per WhatsApp, und die Zahlung erfolgt persönlich im Hafen von Blanes, ohne Online-Zahlung.",
   },
   wizard: {
     stepBoat: "Boot",

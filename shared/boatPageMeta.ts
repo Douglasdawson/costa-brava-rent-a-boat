@@ -78,6 +78,15 @@ export function boatFaqPricing(
   };
 }
 
+/**
+ * "Included" items shown in prose (FAQ answer, SSR body): translated to the page language, with the
+ * insurance line dropped. Insurance has its own sentence (boatDetail.ssrInsurance, wording of
+ * INSURANCE_SCOPE_ES with the seats limit), so no second, looser wording of it can appear.
+ */
+export function boatIncludedItems(included: readonly string[] | null | undefined, lang: string): string[] {
+  return (included ?? []).filter((i) => !/seguro|insurance/i.test(i)).map((i) => translateBoatText(i, lang));
+}
+
 interface Labels {
   verb: string;
   prep: string;

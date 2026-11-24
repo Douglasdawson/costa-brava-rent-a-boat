@@ -1509,6 +1509,11 @@ export const es: Translations = {
     whatToBringTip:
       "Llega al Puerto de Blanes 15 minutos antes de la hora de salida para el briefing de seguridad.",
     imageAria: "Imagen",
+    ssrPricesTitle: "Precios por temporada",
+    ssrPricesIntro: "Tarifas en euros según la duración del alquiler, IVA incluido.",
+    ssrMaxDuration: "Duración máxima de alquiler: {hours} horas.",
+    ssrInsurance: "Seguro: cada embarcación lleva el seguro de Responsabilidad Civil obligatorio (RD 607/1999), ampliado con una Responsabilidad Civil voluntaria por los daños a terceros, y cobertura de accidentes para los ocupantes según la póliza de cada embarcación. La cobertura de accidentes se aplica al número de plazas homologado: sobrepasarlo deja la salida entera sin cobertura.",
+    ssrBookingNote: "Reserva por solicitud: te confirmamos la disponibilidad por WhatsApp y el pago se hace en persona en el Puerto de Blanes, sin cobros online.",
   },
   wizard: {
     stepBoat: "Barco",

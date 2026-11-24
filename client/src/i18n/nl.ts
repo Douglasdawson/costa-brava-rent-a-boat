@@ -840,6 +840,11 @@ export const nl: Translations = {
     whatToBringTip:
       "Kom 15 minuten voor vertrek naar de haven van Blanes voor de veiligheidsbriefing.",
     imageAria: "Afbeelding",
+    ssrPricesTitle: "Prijzen per seizoen",
+    ssrPricesIntro: "Tarieven in euro naar huurduur, inclusief btw.",
+    ssrMaxDuration: "Maximale huurduur: {hours} uur.",
+    ssrInsurance: "Verzekering: elke boot heeft de verplichte aansprakelijkheidsverzekering (RD 607/1999), uitgebreid met een vrijwillige aansprakelijkheidsdekking voor schade aan derden, en een ongevallendekking voor de inzittenden volgens de polis van elke boot. De ongevallendekking geldt voor het goedgekeurde aantal plaatsen: wie dat overschrijdt, laat de hele tocht zonder dekking.",
+    ssrBookingNote: "Boeken op aanvraag: we bevestigen de beschikbaarheid via WhatsApp en de betaling gebeurt persoonlijk in de haven van Blanes, zonder online betaling.",
   },
   wizard: {
     stepBoat: "Boot",

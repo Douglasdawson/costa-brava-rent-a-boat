@@ -9,15 +9,16 @@ import { SUPPORTED_LANGUAGES, HREFLANG_CODES, type LangCode } from "../shared/se
 import { isValidLang, resolveSlug, getSlugForPage, getLocalizedPath, switchLanguagePath, isForeignLanguageSlug, DYNAMIC_PAGE_KEYS, DETAIL_ONLY_PAGE_KEYS, type PageKey } from "../shared/i18n-routes";
 import { resolveBoatImagePath, BOAT_IMAGE_WIDTH, BOAT_IMAGE_HEIGHT } from "../shared/boatImages";
 import { resolveMediaPath } from "../shared/mediaUrl";
-import { translateBoatText } from "../shared/boatTextTranslations";
-import { boatFaqPricing, boatFromPriceLabel, buildBoatOffer, buildBoatPageMeta } from "../shared/boatPageMeta";
+import { translateBoatText, translateBoatSpec } from "../shared/boatTextTranslations";
+import { boatFaqPricing, boatFromPriceLabel, boatIncludedItems, buildBoatOffer, buildBoatPageMeta } from "../shared/boatPageMeta";
 import { buildBoatFaqItems, buildBoatFaqTitle, type BoatFaqText } from "../shared/boatFaqBuilder";
 import { isAICrawler as isAICrawlerShared } from "./seo/constants";
 import { authorToPersonSchema, DEFAULT_AUTHOR, AUTHORS } from "../shared/authors";
 import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, BUSINESS_STREET, CANCELLATION_POLICY_ES } from "../shared/businessProfile";
 import { buildCoreFacts } from "../shared/aiCitationFacts";
 import { computeFaqVars, substituteFaqVars, type FaqVars } from "../shared/faqVars";
-import { BOAT_DATA, applyFleetStatsToText, boatIncludesFuel, isCaptainedBoat, isPubliclyListed } from "../shared/boatData";
+import { BOAT_DATA, BASELINE_INACTIVE_BOAT_IDS, CAPTAINED_BOAT_IDS, applyFleetStatsToText, boatDataRequiresLicense, boatIncludesFuel, isCaptainedBoat, isPubliclyListed } from "../shared/boatData";
+import { filterActivePrices, getMaximumDuration } from "../shared/pricing";
 import { isJetSkiProduct, JETSKI_PRODUCTS, type JetSkiProduct } from "../shared/jetskiProducts";
 import { getFleetStats, getSegmentPriceRange } from "./lib/fleetStatsCache";
 import { getShopStats } from "./lib/shopStatsCache";
@@ -195,6 +196,50 @@ function jetskiProductLabel(product: JetSkiProduct, lang: LangCode): string {
   const key = JETSKI_COPY_KEY_BY_PAGE[product.pageKey];
   const jl = (I18N_BY_LANG[lang] ?? i18nEs).jetskiLanding;
   return (key && jl[key]?.navLabel) || product.name;
+}
+
+// ---------------------------------------------------------------------------
+// Internal links for the JS-less crawler (GPTBot, ClaudeBot, PerplexityBot, Googlebot without JS).
+// Production serves this shell, not a prerender, so a link that only exists after hydration
+// does not exist for them. Labels come from i18n keys that already exist in the 8 locales;
+// hrefs are always /{lang}/{slug of that lang} via getLocalizedPath, never /barcos.
+// Never link categoryLicenseFree (the licence-free fleet is retired) nor the sister school
+// (that goes through escolaNauticaHandoff, only es/ca/en).
+// ---------------------------------------------------------------------------
+export type InternalLinkKey =
+  | "home" | "licensed" | "captained" | "titulin" | "pricing" | "blanes" | "tossa"
+  | `boat:${string}`;
+
+/** Self-drive boats sold today (3): licence required, not the captained excursion, not retired. */
+export const LICENSED_BOAT_IDS: readonly string[] = Object.values(BOAT_DATA)
+  .filter((b) => boatDataRequiresLicense(b) && !isCaptainedBoat(b.id) && !BASELINE_INACTIVE_BOAT_IDS.includes(b.id))
+  .map((b) => b.id);
+export const CAPTAINED_BOAT_ID: string = Array.from(CAPTAINED_BOAT_IDS)[0];
+
+function internalLink(lang: LangCode, key: InternalLinkKey): { href: string; label: string } {
+  const t = I18N_BY_LANG[lang] ?? i18nEs;
+  switch (key) {
+    case "home": return { href: getLocalizedPath("home", lang), label: t.nav.home };
+    case "licensed": return { href: getLocalizedPath("categoryLicensed", lang), label: t.features.exploreLinks?.licensed ?? i18nEs.features.exploreLinks?.licensed ?? "" };
+    case "captained": return { href: getLocalizedPath("categoryCaptained", lang), label: t.captainedPage?.crossLinkLabel ?? "" };
+    case "titulin": return { href: getLocalizedPath("navigationLicense", lang), label: t.navigationLicensePage?.navLabel ?? "" };
+    case "pricing": return { href: getLocalizedPath("pricing", lang), label: t.categoryLicensed?.linksPricing ?? "" };
+    case "blanes": return { href: getLocalizedPath("locationBlanes", lang), label: t.categoryLicensed?.linksBlanes ?? "" };
+    case "tossa": return { href: getLocalizedPath("locationTossa", lang), label: t.categoryLicensed?.linksTossa ?? "" };
+    default: {
+      const id = key.slice("boat:".length);
+      return { href: getLocalizedPath("boatDetail", lang, { slug: id }), label: translateBoatText(BOAT_DATA[id]?.name ?? id, lang) };
+    }
+  }
+}
+
+export function internalLinksHtml(lang: LangCode, keys: InternalLinkKey[]): string {
+  const t = I18N_BY_LANG[lang] ?? i18nEs;
+  const items = keys.map((k) => internalLink(lang, k)).filter((l) => l.label);
+  if (items.length === 0) return "";
+  return `<nav aria-label="${esc(t.categoryLicensed?.linksTitle ?? "")}">\n<ul>\n${items
+    .map((l) => `<li><a href="${esc(l.href)}">${esc(l.label)}</a></li>`)
+    .join("\n")}\n</ul>\n</nav>`;
 }
 
 function jetskiFaqHtml(title: string, faq: { q: string; a: string }[]): string {
@@ -2082,6 +2127,27 @@ export interface BoatSchemaInput {
   imageGallery: string[] | null;
 }
 
+// One FAQ source for the Product JSON-LD and the visible SSR body of a boat page.
+function buildBoatFaqFor(boat: BoatSchemaInput, lang: LangCode): { title: string; items: ReturnType<typeof buildBoatFaqItems> } {
+  const t = I18N_BY_LANG[lang] ?? i18nEs;
+  const boatName = translateBoatText(boat.name, lang);
+  const faqText = { ...(t.boatFaq ?? i18nEs.boatFaq), licenseTypes: t.licenseTypes ?? i18nEs.licenseTypes } as BoatFaqText;
+  const faqCapacity = parseInt(boat.specifications?.capacity?.split(" ")[0] || String(boat.capacity), 10) || boat.capacity;
+  const items = buildBoatFaqItems(
+    {
+      name: boatName,
+      capacity: faqCapacity,
+      requiresLicense: boat.requiresLicense,
+      captained: isCaptainedBoat(boat.id),
+      licenseType: boat.licenseType,
+      pricing: boatFaqPricing(boat.id, boat.pricing),
+      included: boatIncludedItems(boat.included, lang),
+    },
+    faqText,
+  );
+  return { title: buildBoatFaqTitle({ name: boatName }, faqText), items };
+}
+
 export function buildBoatProductSchema(boat: BoatSchemaInput, lang: LangCode): object {
   const t = I18N_BY_LANG[lang] ?? i18nEs;
   const boatName = translateBoatText(boat.name, lang);
@@ -2160,24 +2226,11 @@ export function buildBoatProductSchema(boat: BoatSchemaInput, lang: LangCode): o
   };
 
   // FAQ identical to the visible one (BoatDetailPage): same builder, same i18n bundle, same inputs.
-  const faqText = { ...(t.boatFaq ?? i18nEs.boatFaq), licenseTypes: t.licenseTypes ?? i18nEs.licenseTypes } as BoatFaqText;
-  const faqCapacity = parseInt(boat.specifications?.capacity?.split(" ")[0] || String(boat.capacity), 10) || boat.capacity;
-  const faqItems = buildBoatFaqItems(
-    {
-      name: boatName,
-      capacity: faqCapacity,
-      requiresLicense: boat.requiresLicense,
-      captained,
-      licenseType: boat.licenseType,
-      pricing: boatFaqPricing(boat.id, boat.pricing),
-      included: boat.included,
-    },
-    faqText,
-  );
+  const { title: faqTitle, items: faqItems } = buildBoatFaqFor(boat, lang);
   const faq = {
     "@type": "FAQPage",
     "@id": `${boatUrl}#faq`,
-    name: buildBoatFaqTitle({ name: boatName }, faqText),
+    name: faqTitle,
     mainEntity: faqItems.map((item) => ({
       "@type": "Question",
       name: item.question,
@@ -2559,9 +2612,10 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
       summary: string,
       bullets: string[],
       ctaLabel: string,
+      linksHtml = "",
     ): string => `
 <h1>${esc(heading)}</h1>
-<p>${esc(summary)}</p>
+<p>${esc(summary)}</p>${linksHtml ? `\n${linksHtml}` : ""}
 <ul>
 ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
 </ul>
@@ -2892,8 +2946,6 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
             "Respuesta inmediata por WhatsApp +34 611 500 372",
           ];
       const ctaLabel = isEn ? "Book via WhatsApp" : "Reserva por WhatsApp";
-      const fleetLabel = isEn ? "View fleet" : "Ver flota";
-      const faqLabel = isEn ? "FAQ" : "Preguntas frecuentes";
       // The three money pages of the 2026 pivot. Without these the JS-less crawler
       // reads about the licence requirement and has no route to act on it: the menu
       // and hero links only exist after hydration.
@@ -2930,8 +2982,8 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
 </p>
 <p>
   <a href="https://wa.me/34611500372">${esc(ctaLabel)}</a> ·
-  <a href="${BASE_URL}/barcos">${esc(fleetLabel)}</a> ·
-  <a href="${BASE_URL}/faq">${esc(faqLabel)}</a>
+  <a href="${BASE_URL}${getLocalizedPath("pricing", lang)}">${esc(tHome.features.exploreLinks?.pricing ?? i18nEs.features.exploreLinks?.pricing ?? "")}</a> ·
+  <a href="${BASE_URL}${getLocalizedPath("faq", lang)}">${esc(tHome.nav.faq)}</a>
 </p>
       `.trim();
       return { meta, jsonLd, availableLanguages, bodyFallback };
@@ -3145,7 +3197,7 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
       const mergedItems = { ...(fpEs?.items ?? {}), ...(fp?.items ?? {}) } as Record<string, { question: string; answer: string }>;
       const faqPage = {
         "@type": "FAQPage",
-        "@id": `${BASE_URL}/faq#faq`,
+        "@id": `${BASE_URL}${getLocalizedPath("faq", lang)}#faq`,
         name: fp?.schemaName,
         description: fp?.schemaDescription,
         mainEntity: Object.values(mergedItems).map((item) => ({
@@ -3154,7 +3206,7 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
           acceptedAnswer: { "@type": "Answer", text: substituteFaqVars(item.answer, faqVars) },
         })),
       };
-      const breadcrumb = buildBreadcrumb([homeCrumb, { name: "FAQ", url: `${BASE_URL}/faq` }]);
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: "FAQ", url: `${BASE_URL}${getLocalizedPath("faq", lang)}` }]);
       // Speakable: voice assistants and AI engines can lift the answer text
       // verbatim. Targets the answer body of every Question/Answer block.
       const speakable = {
@@ -3493,7 +3545,7 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
         `${ts.bestSeason}: ${ts.bestSeasonDesc}`,
       ];
       const tossaFaqHtml = tossaFaq.map((f) => `<h2>${esc(f.q)}</h2>\n<p>${esc(f.a)}</p>`).join("\n");
-      const tossaBodyFallback = `${buildLocationBodyFallback(tossa.hero.title, tossa.hero.subtitle, tossaBullets, ts.ctaButton)}\n${tossaFaqHtml}`;
+      const tossaBodyFallback = `${buildLocationBodyFallback(tossa.hero.title, tossa.hero.subtitle, tossaBullets, ts.ctaButton, internalLinksHtml(lang, ["licensed", "captained", "titulin", "pricing", "blanes"]))}\n${tossaFaqHtml}`;
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages, lcpPreload: tossaLcp, bodyFallback: tossaBodyFallback };
     }
 
@@ -3889,7 +3941,7 @@ ${schoolSmall ? `<p><a href="${esc(schoolSmall.url)}" rel="noopener">${esc(schoo
         });
       const itemList = {
         "@type": "ItemList",
-        "@id": `${BASE_URL}/barcos-con-licencia#itemlist`,
+        "@id": `${BASE_URL}${getLocalizedPath("categoryLicensed", lang)}#itemlist`,
         name: isEn ? "Self-Drive Powerboats in Blanes" : "Lanchas Sin Patrón en Blanes",
         description: isEn
           ? `${licensedBoats.length} self-drive powerboats (80-115 HP) for rent in Blanes, Costa Brava. Skipper yourself to Lloret and Tossa de Mar.`
@@ -3965,7 +4017,7 @@ ${schoolSmall ? `<p><a href="${esc(schoolSmall.url)}" rel="noopener">${esc(schoo
           text,
         })),
       };
-      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Self-Drive Powerboats" : "Lanchas Sin Patrón", url: `${BASE_URL}/barcos-con-licencia` }]);
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Self-Drive Powerboats" : "Lanchas Sin Patrón", url: `${BASE_URL}${getLocalizedPath("categoryLicensed", lang)}` }]);
       const service = buildLandingService(
         isEn ? "Self-Drive Powerboat Rental in Blanes" : "Alquiler de Lanchas Sin Patrón en Blanes",
         isEn
@@ -4001,6 +4053,7 @@ ${schoolSmall ? `<p><a href="${esc(schoolSmall.url)}" rel="noopener">${esc(schoo
           `${cl.faqWeatherQuestion} ${cl.faqWeatherAnswer}`,
         ],
         cl.ctaButton,
+        internalLinksHtml(lang, ["captained", "titulin", "pricing", ...LICENSED_BOAT_IDS.map((id): InternalLinkKey => `boat:${id}`), "blanes", "home", "tossa"]),
       );
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, itemList, faqLicense, howTo, breadcrumb] }, availableLanguages, bodyFallback: licensedBodyFallback };
     }
@@ -4038,7 +4091,7 @@ ${schoolSmall ? `<p><a href="${esc(schoolSmall.url)}" rel="noopener">${esc(schoo
           text: s.text,
         })),
       };
-      const breadcrumbCaptained = buildBreadcrumb([homeCrumb, { name: isEn ? "Boat Rental with Skipper" : "Alquiler de Barco con Patrón", url: `${BASE_URL}/alquiler-barco-con-patron` }]);
+      const breadcrumbCaptained = buildBreadcrumb([homeCrumb, { name: isEn ? "Boat Rental with Skipper" : "Alquiler de Barco con Patrón", url: `${BASE_URL}${getLocalizedPath("categoryCaptained", lang)}` }]);
       const serviceCaptained = buildLandingService(
         isEn ? "Private Captained Boat Excursion in Blanes" : "Excursión Privada en Barco con Patrón en Blanes",
         isEn
@@ -4066,6 +4119,7 @@ ${schoolSmall ? `<p><a href="${esc(schoolSmall.url)}" rel="noopener">${esc(schoo
           ...cap.faq.map(f => `${f.q} ${f.a}`),
         ],
         cap.ctaButton,
+        internalLinksHtml(lang, ["licensed", "titulin", "pricing", `boat:${CAPTAINED_BOAT_ID}`, "blanes", "home", "tossa"]),
       );
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [serviceCaptained, faqCaptained, howToCaptained, breadcrumbCaptained] }, availableLanguages, bodyFallback: captainedBodyFallback };
     }
@@ -4093,6 +4147,7 @@ ${schoolSmall ? `<p><a href="${esc(schoolSmall.url)}" rel="noopener">${esc(schoo
       const licenseBodyFallback = `
 <h1>${esc(heading)}</h1>
 <p>${esc(summary)}</p>
+${internalLinksHtml(lang, ["licensed", "captained", ...LICENSED_BOAT_IDS.map((id): InternalLinkKey => `boat:${id}`), "pricing"])}
 <p>${esc(nl.newRule.title)}: ${esc(nl.newRule.body)}</p>
 <ul>
 ${nl.allows.items.map((item) => `  <li>${esc(item)}</li>`).join("\n")}
@@ -4634,7 +4689,7 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
           },
         ],
       };
-      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Prices" : "Precios", url: `${BASE_URL}/precios` }]);
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Prices" : "Precios", url: `${BASE_URL}${getLocalizedPath("pricing", lang)}` }]);
       const service = buildLandingService(
         isEn ? `Boat Rental Prices Blanes ${SEASON_YEAR}` : `Precios Alquiler Barcos Blanes ${SEASON_YEAR}`,
         isEn
@@ -4823,11 +4878,11 @@ ${school ? `<p>${esc(school.body)} <a href="${esc(school.url)}">${esc(school.cta
         description: isEn
           ? "Guides, tips and destinations for boat rental in Blanes and Costa Brava."
           : "Guias, consejos y destinos para alquilar barcos en Blanes y la Costa Brava.",
-        url: `${BASE_URL}/blog`,
+        url: `${BASE_URL}${getLocalizedPath("blog", lang)}`,
         isPartOf: { "@type": "WebSite", "@id": `${BASE_URL}/#website` },
         publisher: { "@type": "Organization", name: "Costa Brava Rent a Boat" },
       };
-      const breadcrumb = buildBreadcrumb([homeCrumb, { name: "Blog", url: `${BASE_URL}/blog` }]);
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: "Blog", url: `${BASE_URL}${getLocalizedPath("blog", lang)}` }]);
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [collectionPage, breadcrumb] }, availableLanguages };
     }
 
@@ -5018,7 +5073,11 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
           it: "fino a 15 CV, con titulín",
           ru: "до 15 л.с., с titulín",
         };
-        const licenseText = boat.requiresLicense ? withLic : eraCopy(withoutLic, withoutLicPostEra[lang] ?? withoutLicPostEra.es);
+        // The captained excursion has requiresLicense=false in the DB row but is NOT a licence-free
+        // boat: a skipper drives, so it never reads "sin licencia" nor "hasta 15 CV".
+        const licenseText = isCaptainedBoat(boat.id)
+          ? (I18N_BY_LANG[lang] ?? i18nEs).nav.captained
+          : boat.requiresLicense ? withLic : eraCopy(withoutLic, withoutLicPostEra[lang] ?? withoutLicPostEra.es);
         // "desde 175 € / 2 h": the real minimum block of the boat (0 placeholders ignored), from the
         // template shared with the client (shared/boatPageMeta.ts) so SSR title === hydrated title.
         const fromLabel = boatFromPriceLabel(boat.id, boat.pricing, lang);
@@ -5083,11 +5142,6 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
           de: "Personen", nl: "personen", it: "persone", ru: "человек",
         };
         const peopleLabel = capacityLabels[lang] || capacityLabels.es;
-        const includesLabel: Record<string, string> = {
-          es: "Incluye", en: "Includes", ca: "Inclou", fr: "Inclut",
-          de: "Umfasst", nl: "Inclusief", it: "Include", ru: "Включает",
-        };
-        const incLabel = includesLabel[lang] || includesLabel.es;
         const fuelLabels: Record<string, [string, string]> = {
           es: ["combustible aparte", "gasolina incluida"],
           en: ["fuel apart", "fuel included"],
@@ -5107,6 +5161,52 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
           it: "Prenota via WhatsApp", ru: "Бронирование по WhatsApp",
         };
         const ctaLabel = reservaLabel[lang] || reservaLabel.es;
+        // Visible text mirrors what BoatDetailPage paints (description, spec sheet, season prices
+        // with the booking cap, FAQ), all from i18n bundles and the boat row. Length is never
+        // inferred from the model name: it is printed as the row stores it.
+        const tBoat = I18N_BY_LANG[lang] ?? i18nEs;
+        const bd = tBoat.boatDetail;
+        const pp = (tBoat.pricingPage ?? i18nEs.pricingPage)!;
+        const specs = (boat.specifications ?? {}) as Record<string, string | undefined>;
+        const specRows = ([
+          [bd.specModel, "model"], [bd.specLength, "length"], [bd.specBeam, "beam"], [bd.specEngine, "engine"],
+          [bd.specFuel, "fuel"], [bd.specCapacity, "capacity"], [bd.specDeposit, "deposit"],
+        ] as const)
+          .filter(([, k]) => specs[k])
+          .map(([label, k]) => `  <li>${esc(label)} ${esc(translateBoatSpec(specs[k] as string, lang))}</li>`)
+          .join("\n");
+        const maxDuration = getMaximumDuration(boat.id, new Date());
+        const maxHours = maxDuration ? parseFloat(maxDuration) : Infinity;
+        const hourUnit = lang === "ru" ? "ч" : lang === "nl" ? "uur" : "h";
+        const seasonRows = (["BAJA", "MEDIA", "ALTA"] as const)
+          .map((sk) => {
+            const prices = filterActivePrices((boat.pricing as Record<string, { prices?: Record<string, number | null> } | undefined> | null)?.[sk]?.prices);
+            const blocks = Object.entries(prices)
+              .filter(([d]) => parseFloat(d) <= maxHours)
+              .sort(([x], [y]) => parseFloat(x) - parseFloat(y))
+              .map(([d, price]) => `${parseFloat(d)} ${hourUnit}: ${price} €`);
+            if (blocks.length === 0) return "";
+            return `  <li>${esc(pp.seasonNames[sk])} (${esc(pp.seasonLabels[sk])}): ${esc(blocks.join(", "))}</li>`;
+          })
+          .filter(Boolean)
+          .join("\n");
+        const includedItems = boatIncludedItems(boat.included, lang);
+        const equipmentItems = (boat.equipment ?? []).map((i) => translateBoatText(i, lang));
+        const boatDescription = (tBoat.boatDescriptions as Record<string, string> | undefined)?.[boat.id] || boat.description || "";
+        const faq = buildBoatFaqFor(boat, lang);
+        const isCaptained = isCaptainedBoat(boat.id);
+        const relatedKeys: InternalLinkKey[] = isCaptained
+          ? []
+          : LICENSED_BOAT_IDS.filter((id) => id !== boat.id).slice(0, 2).map((id): InternalLinkKey => `boat:${id}`);
+        const boatLinks = internalLinksHtml(lang, [
+          isCaptained ? "captained" : "licensed",
+          isCaptained ? "licensed" : "captained",
+          "titulin",
+          "pricing",
+          ...relatedKeys,
+          "blanes",
+          "tossa",
+        ]);
         const bodyFallback = `
 <h1>${fallbackTitle}</h1>
 <p>${fallbackDesc}</p>
@@ -5116,7 +5216,20 @@ ${data.boats.map((b) => `  <li>${esc(b.name)} — ${esc(b.capacity)}</li>`).join
   <li>${esc(licenseText)}, ${esc(fuelText)}</li>
   ${priceFromLabel ? `<li>${esc(priceFromLabel)}</li>` : ""}
 </ul>
-<p>${incLabel}: IVA, amarre, limpieza, seguro de responsabilidad civil y accidentes de ocupantes.</p>
+${boatLinks}
+${boatDescription ? `<h2>${esc(bd.description)}</h2>\n<p>${esc(boatDescription)}</p>` : ""}
+${specRows ? `<h2>${esc(bd.technicalSpecs)}</h2>\n<ul>\n${specRows}\n</ul>` : ""}
+${seasonRows ? `<h2>${esc(bd.ssrPricesTitle)}</h2>\n<p>${esc(bd.ssrPricesIntro)}${maxDuration ? ` ${esc(bd.ssrMaxDuration.replace("{hours}", String(parseFloat(maxDuration))))}` : ""}</p>\n<ul>\n${seasonRows}\n</ul>` : ""}
+<p>${esc(bd.priceIncludes)} ${esc(includedItems.join(", "))}. ${esc(boatIncludesFuel(boat.id, boat.requiresLicense) ? bd.fuelIncludedShort : bd.fuelNotIncludedNote)}.</p>
+<p>${esc(bd.ssrInsurance)}</p>
+${equipmentItems.length ? `<h2>${esc(bd.equipmentIncluded)}</h2>\n<ul>\n${equipmentItems.map((i) => `  <li>${esc(i)}</li>`).join("\n")}\n</ul>` : ""}
+${faq.items.length ? `<h2>${esc(faq.title)}</h2>\n<dl>\n${faq.items.map((f) => `<dt>${esc(f.question)}</dt><dd>${esc(f.answer)}</dd>`).join("\n")}\n</dl>` : ""}
+<h2>${esc(bd.whatToBringTitle)}</h2>
+<ul>
+${bd.whatToBringItems.map((i) => `  <li>${esc(i)}</li>`).join("\n")}
+</ul>
+<p>${esc(bd.whatToBringTip)}</p>
+<p>${esc(bd.ssrBookingNote)}</p>
 <p>${ctaLabel}: <a href="https://wa.me/34611500372">+34 611 500 372</a></p>
         `.trim();
 

@@ -76,7 +76,7 @@ import type { Boat } from "@shared/schema";
 import { getLocalizedPath } from "@shared/i18n-routes";
 import { getMinActivePrice } from "@shared/pricing";
 import { isJetSkiProduct } from "@shared/jetskiProducts";
-import { boatFaqPricing } from "@shared/boatPageMeta";
+import { boatFaqPricing, boatIncludedItems } from "@shared/boatPageMeta";
 import { buildBoatFaqItems, buildBoatFaqTitle, type BoatFaqText } from "@shared/boatFaqBuilder";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { useTranslations } from "@/lib/translations";
@@ -426,7 +426,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       captained: isCaptainedBoat(boatId),
       licenseType: boatData.licenseType,
       pricing: faqPricing,
-      included: boatData.included,
+      included: boatIncludedItems(boatData.included, language),
     },
     boatFaqText
   );

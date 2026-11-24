@@ -87,7 +87,7 @@ export function BookingTrustBanner({ t, stage = "step1" }: BookingTrustBannerPro
         </span>
         <span className="inline-flex items-center gap-1">
           <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" />
-          {t.trustEscalation?.fullInsurance || "Seguro completo"}
+          {t.trustEscalation?.fullInsurance || "Seguro incluido"}
         </span>
         <span className="inline-flex items-center gap-1">
           <Star className="w-3.5 h-3.5 flex-shrink-0 fill-popular text-popular" aria-hidden="true" />

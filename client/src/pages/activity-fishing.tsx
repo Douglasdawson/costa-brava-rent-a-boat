@@ -369,7 +369,7 @@ export default function ActivityFishingPage() {
             </a>
             <a href={localizedPath("navigationLicense")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />
-              {fi?.linkNoLicense ?? "Titulín en 1 día"}
+              {fi?.linkNoLicense ?? "Excursión privada con patrón"}
             </a>
             <a href={localizedPath("activitySnorkel")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
               <ChevronRight className="w-4 h-4" />

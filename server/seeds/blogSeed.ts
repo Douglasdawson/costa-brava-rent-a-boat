@@ -466,7 +466,7 @@ Until the end of September 2026 we also rented five small no-license boats (Aste
 
 ### Private Excursion with Captain
 
-No license? Our [Private Excursion with Captain](/es/barco/excursion-privada) includes a professional skipper who takes you to the best coves and hidden spots along the coast. Perfect for special occasions, groups up to 6 people, from 240EUR for 2 hours.
+No license? Our [Private Excursion with Captain](/es/barco/excursion-privada) includes a professional skipper who takes you to the best coves and hidden spots along the coast. Perfect for special occasions, groups up to 6 people, from 265EUR for 2 hours.
 
 ## What to Expect on Your Day
 
@@ -3134,7 +3134,7 @@ Nuestros [barcos con licencia](/es/barcos-con-licencia) son el [Pacific Craft 62
 | **Distancia de costa** | 2 millas nauticas | Llegas a Lloret y Tossa de Mar |
 | **Capacidad** | 4-5 personas | 6-7 personas |
 | **Combustible incluido** | Si | No (se paga aparte) |
-| **Precio desde** | Ya no se alquila | 150 EUR/hora |
+| **Precio desde** | Ya no se alquila | 175 EUR / 2 h |
 | **Ideal para** | Ya no disponible desde el 1-oct-2026 | Familias, grupos, rutas largas, calas cercanas |
 
 ## Quien elegia un barco sin licencia, y que hacer ahora
@@ -4443,9 +4443,9 @@ Es la opción favorita de parejas y familias con niños mayores: tú decides dó
 
 ## Opción 2: paseo en barco con patrón (tú solo disfrutas)
 
-Si viajas con niños pequeños, con abuelos, o simplemente no quieres pilotar, reserva la [excursión privada con capitán](/es/barco/excursion-privada): un patrón profesional te lleva en un barco de 7 plazas por las mejores calas de la Costa Brava sur, con paradas para nadar y hacer snorkel.
+Si viajas con niños pequeños, con abuelos, o simplemente no quieres pilotar, reserva la [excursión privada con capitán](/es/barco/excursion-privada): un patrón profesional te lleva en un barco de 6 plazas por las mejores calas de la Costa Brava sur, con paradas para nadar y hacer snorkel.
 
-- Salidas de 2 a 8 horas desde el Puerto de Blanes.
+- Salidas de 2 a 4 horas desde el Puerto de Blanes.
 - Hasta 6 pasajeros, ideal para una familia completa.
 - Sin titulación: el patrón se encarga de todo.
 
@@ -4524,7 +4524,7 @@ Con la Licencia de Navegación o superior accedes a nuestras tres lanchas de 80 
 
 ### Con patrón
 
-La [excursión privada con capitán](/es/barco/excursion-privada) es la alternativa si nadie del grupo quiere pilotar: rutas de 2 a 8 horas con paradas para nadar.
+La [excursión privada con capitán](/es/barco/excursion-privada) es la alternativa si nadie del grupo quiere pilotar: rutas de 2 a 4 horas con paradas para nadar.
 
 ## La ruta que te espera
 
@@ -4590,7 +4590,7 @@ Desde el 1 de octubre de 2026 ya no se alquila ningún barco a motor sin titulac
 
 ### Excursión privada con patrón
 
-Para grupos y familias que prefieren no pilotar: un patrón profesional os lleva por las calas en salidas de 2 a 8 horas. [Más información aquí](/es/barco/excursion-privada).
+Para grupos y familias que prefieren no pilotar: un patrón profesional os lleva por las calas en salidas de 2 a 4 horas. [Más información aquí](/es/barco/excursion-privada).
 
 ## Por qué merece la pena salir desde Blanes
 

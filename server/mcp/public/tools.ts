@@ -16,7 +16,15 @@ import { z } from "zod";
 import { eq, ilike, and, or, desc } from "drizzle-orm";
 import { db } from "../shared/db.js";
 import * as schema from "../../../shared/schema.js";
-import { BOAT_DATA, type BoatData } from "../../../shared/boatData.js";
+import {
+  BOAT_DATA,
+  BASELINE_INACTIVE_BOAT_IDS,
+  boatDataRequiresLicense,
+  boatIncludesFuel,
+  isCaptainedBoat,
+  isPubliclyListed,
+  type BoatData,
+} from "../../../shared/boatData.js";
 import { boatRoutes } from "../../../shared/routesData.js";
 import { NAUTICAL_GLOSSARY_ES } from "../../../shared/nauticalGlossary.js";
 import {
@@ -54,11 +62,30 @@ function lowestHourlyPrice(b: BoatData): number {
   return 70;
 }
 
+// Canonical licence flag: the captained excursion needs none (it is not "licensed").
 function requiresLicense(b: BoatData): boolean {
-  const subtitle = (b.subtitle || "").toLowerCase();
-  if (subtitle.startsWith("sin licencia")) return false;
-  if (subtitle.startsWith("con patrón") || subtitle.startsWith("con patron")) return false;
-  return true;
+  return boatDataRequiresLicense(b) && !isCaptainedBoat(b.id);
+}
+
+// Boats offered today. After 2026-10-01 the retired licence-free hulls drop out.
+function listedBoats(): BoatData[] {
+  return Object.values(BOAT_DATA).filter((b) =>
+    isPubliclyListed({
+      id: b.id,
+      requiresLicense: boatDataRequiresLicense(b),
+      isActive: !BASELINE_INACTIVE_BOAT_IDS.includes(b.id),
+    }),
+  );
+}
+
+// Cheapest published block (licensed boats and the excursion start at 2 h, so a
+// per-hour figure would misstate the real "from" price).
+function cheapestBlock(b: BoatData): { priceEur: number; hours: number } {
+  const entries = Object.entries(b.pricing?.BAJA?.prices ?? {})
+    .map(([k, v]) => ({ hours: parseInt(k, 10), priceEur: v }))
+    .filter((e) => e.hours > 0 && e.priceEur > 0)
+    .sort((a, c) => a.priceEur - c.priceEur);
+  return entries[0] ?? { priceEur: 0, hours: 0 };
 }
 
 function boatSummary(b: BoatData) {
@@ -71,6 +98,10 @@ function boatSummary(b: BoatData) {
     engine: b.specifications.engine,
     licenseRequired: requiresLicense(b),
     fromPricePerHourEur: lowestHourlyPrice(b),
+    fromPriceEur: cheapestBlock(b).priceEur,
+    fromPriceBlockHours: cheapestBlock(b).hours,
+    captained: isCaptainedBoat(b.id),
+    fuelIncluded: boatIncludesFuel(b.id, requiresLicense(b)),
     deposit: b.specifications.deposit,
     features: b.features?.slice(0, 6) ?? [],
     detailUrl: `${BASE_URL}/es/barco/${b.id}`,
@@ -90,12 +121,12 @@ export function registerPublicTools(server: McpServer, ctx: ToolContext): void {
     {
       query: z.string().max(120).optional().describe("Free-text match against name, subtitle, description, features"),
       minCapacity: z.number().int().min(1).max(20).optional().describe("Minimum people the boat must hold"),
-      licenseRequired: z.boolean().optional().describe("true = only licensed boats (PER/PNB), false = license-free only, omit = any"),
+      licenseRequired: z.boolean().optional().describe("true = only boats you drive yourself with the Licencia de Navegacion (LN, enough for all of them), false = no licence needed from the customer (captained excursion), omit = any"),
       maxPricePerHourEur: z.number().int().min(1).max(1000).optional().describe("Maximum low-season price per hour in EUR"),
       limit: z.number().int().min(1).max(20).optional(),
     },
     async (args) => {
-      const all = Object.values(BOAT_DATA);
+      const all = listedBoats();
       const q = args.query?.trim().toLowerCase();
       const matched = all.filter((b) => {
         if (args.minCapacity != null && parseCapacity(b.specifications.capacity) < args.minCapacity) return false;
@@ -200,7 +231,7 @@ export function registerPublicTools(server: McpServer, ctx: ToolContext): void {
   // -------------------------------------------------------------------------
   server.tool(
     "list_routes",
-    "List the 5 maritime routes departing from Puerto de Blanes: GPS waypoints, distance, estimated time, difficulty and highlights. Includes which boats can navigate the route (license-free range is 2 NM).",
+    "List the 5 maritime routes departing from Puerto de Blanes: GPS waypoints, distance, estimated time, difficulty and highlights.",
     {},
     async () => {
       const enriched = boatRoutes.map((r) => ({

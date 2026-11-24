@@ -31,7 +31,7 @@ export function TrustBadges({ t }: TrustBadgesProps) {
     {
       Icon: Shield,
       iconClass: "text-cta",
-      label: t.trustEscalation?.fullInsurance || "Seguro completo",
+      label: t.trustEscalation?.fullInsurance || "Seguro incluido",
     },
     {
       Icon: Award,

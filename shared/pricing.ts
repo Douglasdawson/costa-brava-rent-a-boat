@@ -733,6 +733,29 @@ export function getBoatCatalogMinPrice(
 }
 
 /**
+ * Highest active (>0) price across ALL seasons and ALL durations of the given
+ * boats: the ceiling of the public "from X to Y EUR" range. Pass the segment you
+ * are describing (publicly listed fleet, licensed boats, captained excursion) so
+ * the figure is derived from boat pricing and never hand-typed. Returns null when
+ * no boat has an active price.
+ */
+export function priceCeilingAcrossBoats(
+  boats: Array<{ pricing?: unknown } | undefined | null>,
+): number | null {
+  let max: number | null = null;
+  for (const b of boats) {
+    const pricing = b?.pricing as Record<string, { prices?: Record<string, number | null | undefined> | null } | null | undefined> | null | undefined;
+    if (!pricing) continue;
+    for (const season of Object.values(pricing)) {
+      for (const v of Object.values(filterActivePrices(season?.prices))) {
+        if (max === null || v > max) max = v;
+      }
+    }
+  }
+  return max;
+}
+
+/**
  * Cheapest active (>0) price for a specific duration across a set of boats.
  * Used by public pages to render "desde X€" figures derived from live admin data.
  */

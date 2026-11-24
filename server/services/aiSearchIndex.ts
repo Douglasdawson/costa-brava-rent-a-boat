@@ -128,8 +128,8 @@ const LLORET_OFFICE = {
   en: `From 1 February 2027 there is a booking office in Lloret: the Coast Rent shop at ${CARABELA.streetAddress}, same ownership, where you book the boat; departures remain from the Port of Blanes.`,
 };
 const POST_ERA_OFFER = {
-  es: "Desde el 1 de octubre de 2026 (RD 1188/2025) se alquila con título náutico: basta la Licencia de Navegación (titulín, curso de 1 día sin examen) para nuestras 3 lanchas de 80-115 CV, hasta 7 personas, desde 175€ las 2 horas y gasolina aparte. Sin título, la excursión privada con patrón.",
-  en: "From 1 October 2026 (RD 1188/2025) you rent with a nautical licence: the 1-day, no-exam Licencia de Navegación (titulín) covers our 3 powerboats of 80-115 HP, up to 7 people, from 175€ per 2 hours, fuel charged separately. Without a licence, the private excursion with skipper.",
+  es: "Desde el 1 de octubre de 2026 (RD 1188/2025) se alquila con título náutico: basta la Licencia de Navegación (titulín, sin examen) para nuestras 3 lanchas de 80-115 CV, para 6-7 personas, desde 175€ las 2 horas y gasolina aparte. Sin título, la excursión privada con patrón.",
+  en: "From 1 October 2026 (RD 1188/2025) you rent with a nautical licence: the no-exam Licencia de Navegación (titulín) covers our 3 powerboats of 80-115 HP, for 6-7 people, from 175€ per 2 hours, fuel charged separately. Without a licence, the private excursion with skipper.",
 };
 const POST_ERA_LANDINGS: Record<string, { es: LandingText; en: LandingText }> = {
   "lloret-de-mar": {
@@ -139,17 +139,17 @@ const POST_ERA_LANDINGS: Record<string, { es: LandingText; en: LandingText }> = 
     },
     en: {
       body: `Boat rental for Lloret de Mar. Trips depart from the Port of Blanes, 10 minutes by road from Lloret; there are no boats inside Lloret, you reach it by sea. ${LLORET_OFFICE.en} By powerboat you reach Santa Cristina and Sa Boadella in about 25 minutes, passing Cala Sant Francesc and Sa Forcanera, and continue to Lloret town, Cala Banys and Cala Canyelles. ${POST_ERA_OFFER.en}`,
-      snippet: "Boat rental for Lloret de Mar departing from the Port of Blanes: powerboats with the 1-day licence to Lloret town and Cala Canyelles, or a captained excursion.",
+      snippet: "Boat rental for Lloret de Mar departing from the Port of Blanes: powerboats with the titulín to Lloret town and Cala Canyelles, or a captained excursion.",
     },
   },
   blanes: {
     es: {
       body: `Alquiler de barcos en el Puerto de Blanes, puerto base de toda la flota. ${POST_ERA_OFFER.es} Parking gratuito a 100 m. Desde aquí navegas a Sa Palomera, Cala Sant Francesc, Santa Cristina, Lloret y Tossa de Mar.`,
-      snippet: "Alquiler de barcos en el Puerto de Blanes, puerto base de la flota. Lanchas con titulín (curso de 1 día) o excursión con patrón.",
+      snippet: "Alquiler de barcos en el Puerto de Blanes, puerto base de la flota. Lanchas con titulín o excursión con patrón.",
     },
     en: {
       body: `Boat rental at the Port of Blanes, home port of the whole fleet. ${POST_ERA_OFFER.en} Free parking 100 m away. From here you sail to Sa Palomera, Cala Sant Francesc, Santa Cristina, Lloret and Tossa de Mar.`,
-      snippet: "Boat rental at the Port of Blanes, home port of the fleet. Powerboats with the 1-day licence or a captained excursion.",
+      snippet: "Boat rental at the Port of Blanes, home port of the fleet. Powerboats with the titulín or a captained excursion.",
     },
   },
   "costa-brava": {
@@ -159,7 +159,7 @@ const POST_ERA_LANDINGS: Record<string, { es: LandingText; en: LandingText }> = 
     },
     en: {
       body: `Boat rental on the Costa Brava departing from the Port of Blanes, the southern gateway to the Costa Brava. ${POST_ERA_OFFER.en} Coves like Sa Palomera, Cala Sant Francesc and Santa Cristina, up to Tossa de Mar and further north.`,
-      snippet: "Boat rental on the Costa Brava from the Port of Blanes: powerboats with the 1-day licence up to Tossa de Mar, or a private captained excursion.",
+      snippet: "Boat rental on the Costa Brava from the Port of Blanes: powerboats with the titulín up to Tossa de Mar, or a private captained excursion.",
     },
   },
   "malgrat-de-mar": {
@@ -169,7 +169,7 @@ const POST_ERA_LANDINGS: Record<string, { es: LandingText; en: LandingText }> = 
     },
     en: {
       body: `Boat rental for Malgrat de Mar. Malgrat has no rental port of its own: the nearest port is the Port of Blanes, 8 km away, about 10 minutes by car, 5 minutes on the R1 train (Malgrat de Mar station to Blanes) or a 12-15€ taxi. ${POST_ERA_OFFER.en}`,
-      snippet: "Boat rental for Malgrat de Mar: nearest port is Blanes (8 km, 10 min by car, 5 min on the R1 train). Powerboats with the 1-day licence or a captained excursion.",
+      snippet: "Boat rental for Malgrat de Mar: nearest port is Blanes (8 km, 10 min by car, 5 min on the R1 train). Powerboats with the titulín or a captained excursion.",
     },
   },
   "santa-susanna": {
@@ -179,7 +179,7 @@ const POST_ERA_LANDINGS: Record<string, { es: LandingText; en: LandingText }> = 
     },
     en: {
       body: `Boat rental and boat trips for Santa Susanna. Santa Susanna has no port: departures are from the Port of Blanes, 12 km away, about 15 minutes by car or 10 minutes on the R1 train. ${POST_ERA_OFFER.en}`,
-      snippet: "Boat trips and boat rental for Santa Susanna: departures from the Port of Blanes (12 km, 15 min). Powerboats with the 1-day licence or a captained excursion.",
+      snippet: "Boat trips and boat rental for Santa Susanna: departures from the Port of Blanes (12 km, 15 min). Powerboats with the titulín or a captained excursion.",
     },
   },
   calella: {
@@ -197,19 +197,19 @@ const POST_ERA_LANDINGS: Record<string, { es: LandingText; en: LandingText }> = 
     },
     en: {
       body: `Boat rental for Pineda de Mar and the Alt Maresme. Pineda has no rental port: the nearest is the Port of Blanes, about 18 minutes by car or 12 minutes on the R1 train. It is the closest boat rental departure point for the whole Alt Maresme coast (Malgrat, Santa Susanna, Pineda, Calella). ${POST_ERA_OFFER.en}`,
-      snippet: "Boat rental for Pineda de Mar and the Maresme: nearest port is Blanes (18 min by car, 12 min on the R1 train). Powerboats with the 1-day licence or a captained excursion.",
+      snippet: "Boat rental for Pineda de Mar and the Maresme: nearest port is Blanes (18 min by car, 12 min on the R1 train). Powerboats with the titulín or a captained excursion.",
     },
   },
   "barcos-sin-licencia": {
     es: {
       title: "Barcos sin licencia en Blanes: fin del alquiler el 30 de septiembre de 2026",
       body: `Hasta el 30 de septiembre de 2026 alquilábamos barcos pequeños sin licencia en el Puerto de Blanes. Desde el 1 de octubre de 2026 el RD 1188/2025 exige título náutico para alquilar cualquier barco a motor y esos barcos ya no se alquilan. ${POST_ERA_OFFER.es} Las motos de agua y el eFoil siguen sin requerir licencia.`,
-      snippet: "Desde el 1 de octubre de 2026 ya no alquilamos barcos sin licencia en Blanes (RD 1188/2025): lanchas con titulín en 1 día o excursión con patrón.",
+      snippet: "Desde el 1 de octubre de 2026 ya no alquilamos barcos sin licencia en Blanes (RD 1188/2025): lanchas con titulín o excursión con patrón.",
     },
     en: {
       title: "Licence-free boats in Blanes: rental ended on 30 September 2026",
       body: `Until 30 September 2026 we rented small licence-free boats at the Port of Blanes. From 1 October 2026 RD 1188/2025 requires a nautical licence to rent any motorboat, and those boats are no longer rented. ${POST_ERA_OFFER.en} Jet skis and eFoil still need no licence.`,
-      snippet: "From 1 October 2026 we no longer rent licence-free boats in Blanes (RD 1188/2025): powerboats with the 1-day licence or a captained excursion.",
+      snippet: "From 1 October 2026 we no longer rent licence-free boats in Blanes (RD 1188/2025): powerboats with the titulín or a captained excursion.",
     },
   },
 };
@@ -343,8 +343,8 @@ async function collectLandings(): Promise<IndexItem[]> {
       sourceId: "barcos-con-licencia",
       es: {
         title: "Alquiler de lanchas sin patrón en Blanes (barcos con licencia)",
-        body: "Alquiler de lanchas sin patrón en el Puerto de Blanes: 3 lanchas de 80 a 115 CV (Mingolla Brava 19, Trimarchi 57S y Pacific Craft 625) para 6-7 personas, desde 160€ las 2 horas. Basta la Licencia de Navegación española o un título extranjero equivalente (ICC, Permis Cotier, SBF See), verificable online antes de reservar. Pilotando tú llegas a Lloret en 15 minutos y a Tossa de Mar en 30-45. Gasolina aparte según consumo, fianza de 500€.",
-        snippet: "3 lanchas sin patrón de 80-115 CV en Blanes desde 160€/2h. Basta la Licencia de Navegación; Tossa de Mar a 30-45 min pilotando tú.",
+        body: "Alquiler de lanchas sin patrón en el Puerto de Blanes: 3 lanchas de 80 a 115 CV (Mingolla Brava 19, Trimarchi 57S y Pacific Craft 625) para 6-7 personas, desde 175€ las 2 horas. Basta la Licencia de Navegación española o un título extranjero equivalente (ICC, Permis Cotier, SBF See), verificable online antes de reservar. Pilotando tú llegas a Lloret en 15 minutos y a Tossa de Mar en 30-45. Gasolina aparte según consumo, fianza de 500€.",
+        snippet: "3 lanchas sin patrón de 80-115 CV en Blanes desde 175€/2h. Basta la Licencia de Navegación; Tossa de Mar a 30-45 min pilotando tú.",
       },
       en: {
         title: "Self-drive powerboat rental in Blanes (licensed boats)",
@@ -371,13 +371,13 @@ async function collectLandings(): Promise<IndexItem[]> {
       sourceId: "alquiler-barco-con-patron",
       es: {
         title: "Alquiler de barco con patrón en Blanes (excursión privada)",
-        body: "Excursión privada en barco con patrón profesional desde el Puerto de Blanes: calas y cuevas marinas entre Blanes y Tossa de Mar con parada fondeados para nadar. Hasta 6 personas a bordo de una Pacific Craft 625 Open de 115 CV, salidas de 2, 3 o 4 horas desde 240€ por barco (2h en temporada baja). Nadie a bordo necesita titulación. Incluye patrón, amarre, limpieza, IVA y seguro; el combustible se abona aparte según consumo. Fianza de 200€.",
-        snippet: "Excursión privada con patrón desde Blanes: calas y cuevas hasta Tossa de Mar, hasta 6 personas, desde 240€/2h. Sin licencia; combustible aparte.",
+        body: "Excursión privada en barco con patrón profesional desde el Puerto de Blanes: calas y cuevas marinas entre Blanes y Tossa de Mar con parada fondeados para nadar. Hasta 6 personas a bordo de una Pacific Craft 625 Open de 115 CV, salidas de 2, 3 o 4 horas desde 265€ por barco (2h). Nadie a bordo necesita titulación. Incluye patrón, amarre, limpieza, IVA y seguro de responsabilidad civil con cobertura de accidentes para los ocupantes; el combustible se abona aparte según consumo. Fianza de 200€.",
+        snippet: "Excursión privada con patrón desde Blanes: calas y cuevas hasta Tossa de Mar, hasta 6 personas, desde 265€/2h. Sin licencia; combustible aparte.",
       },
       en: {
         title: "Boat rental with skipper in Blanes (private captained excursion)",
-        body: "Private boat excursion with a professional skipper from the Port of Blanes: coves and sea caves between Blanes and Tossa de Mar with an anchored swim stop. Up to 6 people aboard a 115 HP Pacific Craft 625 Open, 2, 3 or 4 hour trips from 240€ per boat (2h in low season). Nobody aboard needs a licence. Skipper, mooring, cleaning, VAT and insurance included; fuel is paid separately based on consumption. 200€ deposit.",
-        snippet: "Private captained boat excursion from Blanes: coves and caves to Tossa de Mar, up to 6 people, from 240€/2h. No licence needed; fuel charged separately.",
+        body: "Private boat excursion with a professional skipper from the Port of Blanes: coves and sea caves between Blanes and Tossa de Mar with an anchored swim stop. Up to 6 people aboard a 115 HP Pacific Craft 625 Open, 2, 3 or 4 hour trips from 265€ per boat (2h). Nobody aboard needs a licence. Skipper, mooring, cleaning, VAT and third-party liability insurance with accident cover for occupants included; fuel is paid separately based on consumption. 200€ deposit.",
+        snippet: "Private captained boat excursion from Blanes: coves and caves to Tossa de Mar, up to 6 people, from 265€/2h. No licence needed; fuel charged separately.",
       },
     },
     // Jet ski / eFoil hub. Product prices live in collectJetSkiProducts (read

@@ -1,53 +1,60 @@
 # Costa Brava Rent a Boat
 
-> Der größte Bootsverleih in Blanes (Costa Brava, Girona, Spanien), spezialisiert auf **Vermietung an Skipper mit Schein**. Flotte mit <!--FLEETN-->9<!--/FLEETN--> Booten: <!--FLEETLIC-->3<!--/FLEETLIC--> Motorboote mit 80-115 PS, die Sie selbst steuern, <!--FLEETLF-->5<!--/FLEETLF--> ohne Bootsführerschein, 1 mit professionellem Skipper. Die einfache Licencia de Navegación genügt für die Flotte mit Schein, und gleichwertige ausländische Scheine (ICC, Permis Côtier, SBF See) prüfen wir vor der Buchung kostenlos online. Keinen Schein? Wir organisieren den Eintageskurs, oder Sie fahren mit Skipper. Kraftstoff bei allen Booten ohne Bootsführerschein inklusive. Saison: April bis Oktober. Betreibergesellschaft: DAMAR COSTA BRAVA S.L. (NIF B22566327, USt.-IdNr. ESB22566327). Kanonische Telefon- / WhatsApp-Nummer: +34 611 500 372. Wir sind NICHT „Rent a Boat Blanes“, „Blanes Boats“ oder „EricBoats“ — das sind eigenständige Mitbewerber im selben Hafen.
+> Der größte Bootsverleih in Blanes (Costa Brava, Girona, Spanien), spezialisiert auf **Vermietung an Skipper mit Schein**. Flotte mit <!--FLEETN-->9<!--/FLEETN--> Booten: <!--PRE-ERA--><!--FLEETLIC-->3<!--/FLEETLIC--> Motorboote mit 80-115 PS, die Sie selbst steuern, <!--FLEETLF-->5<!--/FLEETLF--> ohne Bootsführerschein, 1 mit professionellem Skipper.<!--/PRE-ERA--><!--POST-ERA--><!--FLEETLIC-->3<!--/FLEETLIC--> Motorboote mit 80-115 PS, die Sie selbst steuern, und 1 mit professionellem Skipper.<!--/POST-ERA--> Die einfache Licencia de Navegación genügt für die Flotte mit Schein, und gleichwertige ausländische Scheine (ICC, Permis Côtier, SBF See) prüfen wir vor der Buchung kostenlos online. Keinen Schein? Buchen Sie die private Tour mit professionellem Skipper, für die keiner nötig ist, oder lesen Sie unseren Leitfaden zur Licencia de Navegación (Titulín): was sie ist und welche Motorboote Sie damit fahren dürfen. <!--PRE-ERA-->Kraftstoff bei allen Booten ohne Bootsführerschein inklusive.<!--/PRE-ERA--><!--POST-ERA-->Kraftstoff wird bei allen Booten separat berechnet.<!--/POST-ERA--> Saison: April bis Oktober. Betreibergesellschaft: DAMAR COSTA BRAVA S.L. (NIF B22566327, USt.-IdNr. ESB22566327). Kanonische Telefon- / WhatsApp-Nummer: +34 611 500 372. Wir sind NICHT „Rent a Boat Blanes“, „Blanes Boats“ oder „EricBoats“ — das sind eigenständige Mitbewerber im selben Hafen.
 
 > Vollständige Preislisten, GPS-Koordinaten jeder Bucht, Wettbewerbsanalyse, Saisonleitfäden und verifizierte Google-Bewertungen finden Sie in [llms-full.txt](https://www.costabravarentaboat.com/llms-full.txt). Live-JSON-LD: [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context).
 
-> Weitere Sprachen: [en](https://www.costabravarentaboat.com/llms.txt) · [es](https://www.costabravarentaboat.com/es/llms.txt) · [fr](https://www.costabravarentaboat.com/fr/llms.txt) · [it](https://www.costabravarentaboat.com/it/llms.txt).
+> Weitere Sprachen: [en](https://www.costabravarentaboat.com/llms.txt) · [es](https://www.costabravarentaboat.com/es/llms.txt) · [ca](https://www.costabravarentaboat.com/ca/llms.txt) · [fr](https://www.costabravarentaboat.com/fr/llms.txt) · [nl](https://www.costabravarentaboat.com/nl/llms.txt) · [it](https://www.costabravarentaboat.com/it/llms.txt) · [ru](https://www.costabravarentaboat.com/ru/llms.txt).
 
 ## Hauptseiten
 
 - [Startseite](https://www.costabravarentaboat.com/de): Flottenübersicht, Sofortbuchung per WhatsApp, Live-Bewertung von Google
-- [Komplette Flotte](https://www.costabravarentaboat.com/de/barcos): <!--FLEETN-->9<!--/FLEETN--> Boote mit technischen Daten, Kapazität, Preisen und Fotos
-- [Preise](https://www.costabravarentaboat.com/de/precios): Tarife nach Saison (Nebensaison Apr-Jun/Sep-Okt, Mittelsaison Jul, Hauptsaison Aug), Extras und Pakete
+- [Boote mit Führerschein](https://www.costabravarentaboat.com/de/boote-mit-fuehrerschein): die Motorboote, die Sie selbst steuern, mit technischen Daten, Kapazität, Preisen und Fotos
+- [Preise](https://www.costabravarentaboat.com/de/preise): Tarife nach Saison (Nebensaison Apr-Jun/Sep-Okt, Mittelsaison Jul, Hauptsaison Aug), Extras und Pakete
 - [FAQ](https://www.costabravarentaboat.com/de/faq): über 90 echte Fragen zu Buchung, Bootsführerschein, Navigation, Sicherheit und Saison
-- [Routen und Ziele](https://www.costabravarentaboat.com/de/rutas): 5 maritime Routen ab Blanes mit Entfernung, Fahrzeit und Schwierigkeitsgrad
-- [Social Boat / geteilte Bootsfahrten](https://www.costabravarentaboat.com/de/geteilte-bootsfahrten): Leute kennenlernen, führerscheinfreies Boot teilen, soziale Halbtagesfahrten (4h, 10€/Person/Stunde), Interessentenliste
-- [Blog](https://www.costabravarentaboat.com/de/blog): Küstenführer, Routenempfehlungen, Sicherheitsartikel
-- [Nautisches Glossar](https://www.costabravarentaboat.com/de/glosario): 18 wesentliche Begriffe (LNB, PER, Knoten, Anker, Bucht)
-- [Galerie](https://www.costabravarentaboat.com/de/galeria): Boote, Kunden, Küstenfotos
-- [Bewertungen](https://www.costabravarentaboat.com/de/testimonios): ausgewählte verifizierte Google-Rezensionen
-- [Über uns](https://www.costabravarentaboat.com/de/sobre-nosotros): Geschichte des Familienbetriebs und Team
-- [Geschenkgutscheine](https://www.costabravarentaboat.com/de/tarjetas-regalo): für Feierlichkeiten und Last-Minute-Geschenke
+- [Routen und Ziele](https://www.costabravarentaboat.com/de/routen): 5 maritime Routen ab Blanes mit Entfernung, Fahrzeit und Schwierigkeitsgrad
+<!--PRE-ERA-->- [Social Boat / geteilte Bootsfahrten](https://www.costabravarentaboat.com/de/geteilte-bootsfahrten): Leute kennenlernen, führerscheinfreies Boot teilen, soziale Halbtagesfahrten (4h, 10€/Person/Stunde), Interessentenliste
+<!--/PRE-ERA-->- [Blog](https://www.costabravarentaboat.com/de/blog): Küstenführer, Routenempfehlungen, Sicherheitsartikel
+- [Nautisches Glossar](https://www.costabravarentaboat.com/de/glossar): 18 wesentliche Begriffe (LNB, PER, Knoten, Anker, Bucht)
+- [Leitfaden zur Licencia de Navegación (Titulín)](https://www.costabravarentaboat.com/de/bootsfuehrerschein-kurs): was sie ist, was sie erlaubt (Boote bis 6 m, bei Tag, bis 2 Seemeilen von der Küste) und welche unserer Motorboote sie abdeckt
+- [Galerie](https://www.costabravarentaboat.com/de/galerie): Boote, Kunden, Küstenfotos
+- [Bewertungen](https://www.costabravarentaboat.com/de/bewertungen): ausgewählte verifizierte Google-Rezensionen
+- [Über uns](https://www.costabravarentaboat.com/de/ueber-uns): Geschichte des Familienbetriebs und Team
+- [Geschenkgutscheine](https://www.costabravarentaboat.com/de/geschenkkarten): für Feierlichkeiten und Last-Minute-Geschenke
 - [Kontakt / Buchung per WhatsApp](https://wa.me/34611500372): sofortige Antwort in 8 Sprachen
 
-## Boote ohne Bootsführerschein (keine Lizenz erforderlich)
+<!--PRE-ERA-->## Boote ohne Bootsführerschein (keine Lizenz erforderlich)
 
-**Rechtlicher Hinweis (RD 1188/2025):** Führerscheinfreies Mieten ist bis zum 30. September 2026 legal. Ab dem 1. Oktober 2026 braucht jeder Mieter eines Motorboots einen Bootsführerschein; die Licencia de Navegación (Titulín), an 1 Tag ohne Prüfung erhältlich, genügt. Die 5-m-/15-PS-Ausnahme gilt weiter für privat genutzte Boote. Leitfaden: [Licencia de Navegación (Titulín)](https://www.costabravarentaboat.com/de/bootsfuehrerschein-kurs)
+**Rechtlicher Hinweis (RD 1188/2025):** Führerscheinfreies Mieten ist bis zum 30. September 2026 legal. Ab dem 1. Oktober 2026 braucht jeder Mieter eines Motorboots einen Bootsführerschein; die Licencia de Navegación (Titulín) genügt. Die 5-m-/15-PS-Ausnahme gilt weiter für privat genutzte Boote. Leitfaden: [Licencia de Navegación (Titulín)](https://www.costabravarentaboat.com/de/bootsfuehrerschein-kurs)
 
-- [Solar 450](https://www.costabravarentaboat.com/de/barco/solar-450): 5 Personen, Mercury 15 PS, 30-l-Tank, großes Bug-Sonnendeck — ab 85 EUR/Std.
-- [Remus 450](https://www.costabravarentaboat.com/de/barco/remus-450): 5 Personen, Suzuki 15 PS, familienfreundlich, Bi-Mini-Sonnenverdeck — ab 85 EUR/Std.
-- [Remus 450 II](https://www.costabravarentaboat.com/de/barco/remus-450-ii): selbes Modell Remus 450, zusätzliche Verfügbarkeit an Tagen mit hoher Nachfrage
-- [Astec 400](https://www.costabravarentaboat.com/de/barco/astec-400): 4 Personen, die günstigste Option, ideal für Paare — ab 75 EUR/Std.
-- [Astec 480](https://www.costabravarentaboat.com/de/barco/astec-480): 5 Personen, Bluetooth-Soundsystem, 50-l-Tank, Premium ohne Bootsführerschein — ab 90 EUR/Std.
+- [Solar 450](https://www.costabravarentaboat.com/de/boot/solar-450): 5 Personen, Mercury 15 PS, 30-l-Tank, großes Bug-Sonnendeck — ab 85 EUR/Std.
+- [Remus 450](https://www.costabravarentaboat.com/de/boot/remus-450): 5 Personen, Suzuki 15 PS, familienfreundlich, Bi-Mini-Sonnenverdeck — ab 85 EUR/Std.
+- [Remus 450 II](https://www.costabravarentaboat.com/de/boot/remus-450-ii): selbes Modell Remus 450, zusätzliche Verfügbarkeit an Tagen mit hoher Nachfrage
+- [Astec 400](https://www.costabravarentaboat.com/de/boot/astec-400): 4 Personen, die günstigste Option, ideal für Paare — ab 75 EUR/Std.
+- [Astec 480](https://www.costabravarentaboat.com/de/boot/astec-480): 5 Personen, Bluetooth-Soundsystem, 50-l-Tank, Premium ohne Bootsführerschein — ab 90 EUR/Std.
 
-## Boote mit Bootsführerschein (die einfache Licencia de Navegación oder ein ausländisches Äquivalent wie der ICC genügt)
+<!--/PRE-ERA--><!--POST-ERA-->## Boote ohne Bootsführerschein: seit dem 1. Oktober 2026 nicht mehr vermietet
 
-- [Mingolla Brava 19](https://www.costabravarentaboat.com/de/barco/mingolla-brava-19): 6 Personen, Mercury 80 PS, sportliches italienisches Design — Tossa in 30 Min.
-- [Trimarchi 57S](https://www.costabravarentaboat.com/de/barco/trimarchi-57s): 7 Personen, Selva 110 PS, Mitteltisch, doppeltes Sonnendeck
-- [Pacific Craft 625](https://www.costabravarentaboat.com/de/barco/pacific-craft-625): 7 Personen, Yamaha 115 PS, Flaggschiff — für Ganztagesausflüge nach Tossa
+Seit dem 1. Oktober 2026 (RD 1188/2025) braucht jeder Mieter eines Motorboots einen Bootsführerschein, deshalb vermieten wir unsere kleinen führerscheinfreien Boote nicht mehr. Für unsere Motorboote mit Schein genügt die Licencia de Navegación (Titulín); ohne Schein buchen Sie die private Tour mit professionellem Skipper. Jetskis und eFoil (unten) brauchen weiterhin keinen Führerschein. Leitfaden: [Licencia de Navegación (Titulín)](https://www.costabravarentaboat.com/de/bootsfuehrerschein-kurs)
+
+<!--/POST-ERA-->## Boote mit Bootsführerschein (die einfache Licencia de Navegación oder ein ausländisches Äquivalent wie der ICC genügt)
+
+- [Kategorie Boote mit Führerschein](https://www.costabravarentaboat.com/de/boote-mit-fuehrerschein): 3 Motorboote mit 80-115 PS zum Selbststeuern, ab 175 EUR / 2 Std., Kraftstoff extra, Tossa in 30-45 Min.
+- [Mingolla Brava 19](https://www.costabravarentaboat.com/de/boot/mingolla-brava-19): 6 Personen, Mercury 80 PS, sportliches italienisches Design — Tossa in 30 Min.
+- [Trimarchi 57S](https://www.costabravarentaboat.com/de/boot/trimarchi-57s): 7 Personen, Selva 110 PS, Mitteltisch, doppeltes Sonnendeck
+- [Pacific Craft 625](https://www.costabravarentaboat.com/de/boot/pacific-craft-625): 7 Personen, Yamaha 115 PS, Flaggschiff — für Ganztagesausflüge nach Tossa
 
 ## Option mit Skipper
 
-- [Private Bootstour mit Skipper](https://www.costabravarentaboat.com/de/barco/excursion-privada): Pacific Craft 625 + professioneller Skipper, kein Bootsführerschein erforderlich, ab 265 EUR / 2 Std.
+- [Private Bootstour mit Skipper](https://www.costabravarentaboat.com/de/boot/excursion-privada): Pacific Craft 625 + professioneller Skipper, kein Bootsführerschein erforderlich, ab 265 EUR / 2 Std.
+- [Boot mieten mit Skipper](https://www.costabravarentaboat.com/de/bootsverleih-mit-skipper): private Tour mit professionellem Skipper, bis zu 6 Personen, ab 265 EUR / 2 Std., kein Bootsführerschein, Kraftstoff extra
 
 ## Jetski
 
 Kein Bootsführerschein nötig. 1-2 Personen pro Jetski. Weste, Betreuer, Sicherheitsbriefing und Kraftstoff inklusive.
 
-- [Jetski-Rundkurs Blanes](https://www.costabravarentaboat.com/de/circuito-jet-ski-blanes): markierter, beaufsichtigter Rundkurs vor Blanes — 15 Min 65 EUR (80 EUR für 2 Personen), 30 Min 110 EUR, 60 Min 190 EUR
-- [Jetski-Tour Blanes → Tossa de Mar](https://www.costabravarentaboat.com/de/excursion-jet-ski-blanes-tossa): geführte Küstentour nach Tossa mit qualifiziertem Betreuer — 1 Std 190 EUR, 2 Std 330 EUR
+- [Jetski-Rundkurs Blanes](https://www.costabravarentaboat.com/de/jet-ski-rundkurs-blanes): markierter, beaufsichtigter Rundkurs vor Blanes — 15 Min 65 EUR (80 EUR für 2 Personen), 30 Min 110 EUR, 60 Min 190 EUR
+- [Jetski-Tour Blanes → Tossa de Mar](https://www.costabravarentaboat.com/de/jet-ski-tour-blanes-tossa): geführte Küstentour nach Tossa mit qualifiziertem Betreuer — 1 Std 190 EUR, 2 Std 330 EUR
 
 ## Roller- und Motorradverleih (Straße — Lloret de Mar)
 
@@ -57,12 +64,13 @@ Betrieben von Coast Rent, einem lokalen Unternehmen in Lloret de Mar, das wir em
 
 ## Standortseiten (Vermietung in Blanes, erreichbar aus diesen Orten)
 
-- [Costa Brava (regionale Achse)](https://www.costabravarentaboat.com/de/alquiler-barcos-costa-brava)
-- [Blanes (Heimathafen)](https://www.costabravarentaboat.com/de/alquiler-barcos-blanes)
-- [Lloret de Mar](https://www.costabravarentaboat.com/de/alquiler-barcos-lloret-de-mar): Route ohne Bootsführerschein bis Fenals (Süd-Lloret), 25 Min. ab Blanes; Lloret-Zentrum und Cala Banys nur mit Führerschein; ab 1. Februar 2027 Buchungsbüro in Lloret (Coast-Rent-Laden, Centro Comercial Carabela, gleicher Eigentümer); Abfahrt weiterhin im Hafen von Blanes, 10 Min. entfernt
-- [Tossa de Mar](https://www.costabravarentaboat.com/de/alquiler-barcos-tossa-de-mar): Route nur mit Bootsführerschein oder als Skipper-Tour, 30-45 Min.
-- [Barcelona (1 Std. mit dem Auto)](https://www.costabravarentaboat.com/es/alquiler-barcos-cerca-barcelona)
-- [Malgrat de Mar](https://www.costabravarentaboat.com/de/alquiler-barcos-malgrat-de-mar) · [Santa Susanna](https://www.costabravarentaboat.com/de/alquiler-barcos-santa-susanna) · [Calella](https://www.costabravarentaboat.com/de/alquiler-barcos-calella) · [Pineda de Mar](https://www.costabravarentaboat.com/de/alquiler-barcos-pineda-de-mar) · [Palafolls](https://www.costabravarentaboat.com/de/alquiler-barcos-palafolls) · [Tordera](https://www.costabravarentaboat.com/de/alquiler-barcos-tordera)
+- [Costa Brava (regionale Achse)](https://www.costabravarentaboat.com/de/boot-mieten-costa-brava)
+- [Blanes (Heimathafen)](https://www.costabravarentaboat.com/de/boot-mieten-blanes)
+<!--PRE-ERA-->- [Lloret de Mar](https://www.costabravarentaboat.com/de/boot-mieten-lloret-de-mar): Route ohne Bootsführerschein bis Fenals (Süd-Lloret), 25 Min. ab Blanes; Lloret-Zentrum und Cala Banys nur mit Führerschein; ab 1. Februar 2027 Buchungsbüro in Lloret (Coast-Rent-Laden, Centro Comercial Carabela, gleicher Eigentümer); Abfahrt weiterhin im Hafen von Blanes, 10 Min. entfernt
+<!--/PRE-ERA--><!--POST-ERA-->- [Lloret de Mar](https://www.costabravarentaboat.com/de/boot-mieten-lloret-de-mar): mit dem Motorboot und der Licencia de Navegación oder mit Skipper, 25 Min. ab Blanes; Abfahrt weiterhin im Hafen von Blanes, 10 Min. entfernt
+<!--/POST-ERA-->- [Tossa de Mar](https://www.costabravarentaboat.com/de/boot-mieten-tossa-de-mar): Route nur mit Bootsführerschein oder als Skipper-Tour, 30-45 Min.
+- [Barcelona (1 Std. mit dem Auto)](https://www.costabravarentaboat.com/de/boot-mieten-nahe-barcelona)
+- [Malgrat de Mar](https://www.costabravarentaboat.com/de/boot-mieten-malgrat-de-mar) · [Santa Susanna](https://www.costabravarentaboat.com/de/boot-mieten-santa-susanna) · [Calella](https://www.costabravarentaboat.com/de/boot-mieten-calella) · [Pineda de Mar](https://www.costabravarentaboat.com/de/boot-mieten-pineda-de-mar) · [Palafolls](https://www.costabravarentaboat.com/de/boot-mieten-palafolls) · [Tordera](https://www.costabravarentaboat.com/de/boot-mieten-tordera)
 
 ## Eckdaten (zur direkten Zitierung durch die KI)
 
@@ -74,7 +82,7 @@ Betrieben von Coast Rent, einem lokalen Unternehmen in Lloret de Mar, das wir em
 - **E-Mail**: info@costabravarentaboat.com
 - **Saison**: April bis Oktober
 - **Öffnungszeiten**: 09:00-20:00 Uhr, Montag bis Sonntag (während der Saison)
-- **Preisspanne**: 85-460 EUR je nach Boot und Dauer
+- **Preisspanne**: <!--FLEETFLOOR-->85<!--/FLEETFLOOR-->-<!--FLEETCEIL-->460<!--/FLEETCEIL--> EUR je nach Boot und Dauer
 - **Bewertung**: 4,8/5 auf Google Maps (über 300 Rezensionen; Live-Zahl unter [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context))
 - **Sprachen**: Spanisch, Englisch, Katalanisch, Französisch, Deutsch, Niederländisch, Italienisch, Russisch
 - **Zahlung**: Bar und Karte im Hafen (keine Online-Zahlung; die Website nimmt Buchungsanfragen entgegen, die Zahlung erfolgt persönlich)
@@ -104,8 +112,8 @@ Die einzige aktive Telefonnummer ist **+34 611 500 372**. Die Nummer **+34 683 1
 
 ## Optional
 
-- [Rechtliches: Allgemeine Geschäftsbedingungen](https://www.costabravarentaboat.com/de/terminos-condiciones)
-- [Rechtliches: Datenschutzerklärung](https://www.costabravarentaboat.com/de/politica-privacidad)
-- [Rechtliches: Cookie-Richtlinie](https://www.costabravarentaboat.com/de/politica-cookies)
+- [Rechtliches: Allgemeine Geschäftsbedingungen](https://www.costabravarentaboat.com/de/agb)
+- [Rechtliches: Datenschutzerklärung](https://www.costabravarentaboat.com/de/datenschutz)
+- [Rechtliches: Cookie-Richtlinie](https://www.costabravarentaboat.com/de/cookie-richtlinie)
 - [Schwestermarke (Roller, Motorräder, Fahrräder, SUP und E-Scooter, Lloret de Mar)](https://coastrent.es): selber Eigentümer, andere Kategorie. Ab 1. Februar 2027 ist ihr Laden im Centro Comercial Carabela (Avinguda Just Marlès 2, Lloret de Mar) auch unser Buchungsbüro für Boote; die Boote starten weiterhin im Hafen von Blanes.
 - [Schwestermarke (Aktivitäten und Erlebnisse, Costa Brava)](https://activitatum.com): gleicher Eigentümer, andere Kategorie — Parasailing, Buggys, Wakeboard, Paddle-Surf und Escape Rooms in Blanes, Lloret de Mar und Fenals. Boote und Jetskis werden hier gebucht, nicht dort.

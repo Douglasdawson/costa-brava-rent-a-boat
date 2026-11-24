@@ -9,7 +9,7 @@ import { eraCopy, isLicenseFreeEraActive } from "../../shared/constants";
 import { carabelaPosJsonLd } from "../../shared/coastrentLinks";
 import { BOAT_DATA, isCaptainedBoat, isPubliclyListed, type BoatData } from "../../shared/boatData";
 import { isCatalogBoatPubliclyListed } from "../../shared/publicFleet";
-import { getMaximumDuration } from "../../shared/pricing";
+import { getMaximumDuration, minPriceAcrossBoats, priceCeilingAcrossBoats } from "../../shared/pricing";
 import { JETSKI_PRODUCTS, isJetSkiProduct, type JetSkiProduct } from "../../shared/jetskiProducts";
 import { getLocalizedPath, type PageKey } from "../../shared/i18n-routes";
 import { NAUTICAL_GLOSSARY_ES } from "../../shared/nauticalGlossary";
@@ -173,6 +173,22 @@ function pickBoat(candidates: string[]): BoatData | undefined {
     if (BOAT_DATA[id]) return BOAT_DATA[id];
   }
   return undefined;
+}
+
+/**
+ * Highest price of the publicly listed fleet (all seasons, all durations), derived from
+ * boat pricing so "X-460 EUR" never drifts from the rate card.
+ */
+function fleetPriceCeiling(): number {
+  const fleet = getFleetStats();
+  const names = new Set([...fleet.licenseFreeNames, ...fleet.licensedNames, ...fleet.captainNames]);
+  const listed = Object.values(BOAT_DATA).filter((b) => names.has(b.name));
+  return priceCeilingAcrossBoats(listed.length ? listed : Object.values(BOAT_DATA)) ?? 0;
+}
+
+/** Cheapest low-season 2-hour price over the given catalog boat ids (the "from X EUR/2h" figure). */
+function from2h(ids: string[]): number | null {
+  return minPriceAcrossBoats(ids.map((id) => BOAT_DATA[id]), "2h", "BAJA");
 }
 
 /** Render a single rate-card table for one boat in standard markdown. */
@@ -417,7 +433,7 @@ function jetskiToServiceSchema(product: JetSkiProduct, businessUrl: string) {
  * LLMs answer "is the business open in February?" with grounded data instead
  * of guessing from prose. April 1 → October 31 of the current year.
  */
-function buildSeasonEvent(businessUrl: string, lowPrice: number) {
+function buildSeasonEvent(businessUrl: string, lowPrice: number, highPrice: number) {
   const year = new Date().getFullYear();
   return {
     "@type": "Event",
@@ -446,7 +462,7 @@ function buildSeasonEvent(businessUrl: string, lowPrice: number) {
       "@type": "AggregateOffer",
       priceCurrency: "EUR",
       lowPrice,
-      highPrice: 420,
+      highPrice,
       availability: "https://schema.org/InStock",
       url: `${businessUrl}/precios`,
     },
@@ -566,6 +582,7 @@ function injectDynamicLlmsData(raw: string): string {
   //        <!--FLEETLIC-->  licensed boats
   //        <!--FLEETFLOOR-->hourly price floor (license-free starting price)
   //        <!--FLEETCHEAP-->name of the boat that sets the floor
+  //        <!--FLEETCEIL--> highest price of the listed fleet (see fleetPriceCeiling)
   //   c) rewrite the price-range low bound (language-agnostic "NN-NNN EUR")
   // The static number inside each marker is the build-time fallback; the file
   // is re-read per request and markers are stripped from the output.
@@ -592,6 +609,7 @@ function injectDynamicLlmsData(raw: string): string {
       .replace(/<!--FLEETLIC-->\d+<!--\/FLEETLIC-->/g, String(fleet.licensedCount))
       .replace(/<!--FLEETFLOOR-->\d+<!--\/FLEETFLOOR-->/g, String(fleet.priceFloor))
       .replace(/<!--FLEETCHEAP-->[^<]*<!--\/FLEETCHEAP-->/g, fleet.cheapestBoatName)
+      .replace(/<!--FLEETCEIL-->\d+<!--\/FLEETCEIL-->/g, String(fleetPriceCeiling()))
       .replace(/\b7[05]-(\d{3,4}) EUR\b/g, `${fleet.priceFloor}-$1 EUR`);
   } catch (error) {
     logger.warn("[llms] fleet alignment failed, keeping static fleet copy", {
@@ -608,12 +626,15 @@ function injectDynamicLlmsData(raw: string): string {
 // server/seo/redirects.ts, but blocking them via robots.txt prevents
 // Googlebot from ever reaching the redirect — leaving stale URLs in the
 // index. Allowing the crawl lets Google follow the 301 and clean up.
-const DISALLOWED_PATHS = [
+export const DISALLOWED_PATHS = [
   "/crm", "/crm/", "/admin", "/admin/", "/login",
   "/onboarding", "/client/dashboard", "/mi-cuenta",
   "/api/", "/cancel/",
   "/client/",
 ];
+
+// Agent-facing endpoints under /api/ that AI crawlers may fetch (longest match beats "Disallow: /api/").
+export const AI_ALLOWED_API_PATHS = ["/api/ai-context", "/api/ai-search", "/api/ai-glossary"];
 
 export function registerRobotsRoutes(app: Express): void {
 
@@ -625,7 +646,6 @@ export function registerRobotsRoutes(app: Express): void {
     lines.push("User-agent: *");
     lines.push("Allow: /");
     lines.push("Allow: /api/ai-context");
-    lines.push("");
     for (const p of DISALLOWED_PATHS) {
       lines.push(`Disallow: ${p}`);
     }
@@ -633,12 +653,17 @@ export function registerRobotsRoutes(app: Express): void {
     lines.push(`Sitemap: ${BASE_URL}/sitemap.xml`);
     lines.push("");
 
-    // AI crawler explicit allows
+    // AI crawler explicit allows. RFC 9309: a crawler obeys only the most specific group
+    // that names it and ignores "*", so each group repeats the Disallow list of "*" and
+    // re-allows the agent-facing /api/ endpoints that the "/api/" Disallow would hide.
     lines.push("# AI Search Optimization — explicit Allow for all known AI crawlers");
+    lines.push(`# llms.txt: ${BASE_URL}/llms.txt (full version: ${BASE_URL}/llms-full.txt)`);
     for (const crawler of AI_CRAWLER_NAMES) {
       lines.push("");
       lines.push(`User-agent: ${crawler}`);
       lines.push("Allow: /");
+      for (const p of AI_ALLOWED_API_PATHS) lines.push(`Allow: ${p}`);
+      for (const p of DISALLOWED_PATHS) lines.push(`Disallow: ${p}`);
     }
 
     // Crawl-delay for aggressive bots
@@ -681,7 +706,7 @@ export function registerRobotsRoutes(app: Express): void {
 ## Key Facts
 
 - **Location**: ${BUSINESS_STREET}, 17300 Blanes, Girona, Catalonia, Spain (Puerto de Blanes)
-- **Price range**: ${fleet.priceFloor}-420 EUR
+- **Price range**: ${fleet.priceFloor}-${fleetPriceCeiling()} EUR
 - **Phone / WhatsApp**: +34 611 500 372
 - **Website**: https://www.costabravarentaboat.com
 `;
@@ -696,6 +721,8 @@ export function registerRobotsRoutes(app: Express): void {
   // discover every discoverable surface: MCP, OpenAPI, llms.txt, content
   // feeds, supported languages, business hours and constraints.
   app.get("/.well-known/agent.json", (_req, res) => {
+    const licensedFrom = from2h(["mingolla-brava-19", "trimarchi-57s", "pacific-craft-625"]);
+    const captainedFrom = from2h(["excursion-privada"]);
     const manifest = {
       version: "1.0",
       name: "Costa Brava Rent a Boat",
@@ -738,6 +765,7 @@ export function registerRobotsRoutes(app: Express): void {
       sitemap: `${BASE_URL}/sitemap.xml`,
       supported_languages: ["es", "en", "ca", "fr", "de", "nl", "it", "ru"],
       localized_llms_txt: {
+        en: `${BASE_URL}/en/llms.txt`,
         es: `${BASE_URL}/es/llms.txt`,
         ca: `${BASE_URL}/ca/llms.txt`,
         fr: `${BASE_URL}/fr/llms.txt`,
@@ -749,7 +777,7 @@ export function registerRobotsRoutes(app: Express): void {
       key_pages: [
         {
           url: `${BASE_URL}/es/alquiler-barcos-lloret-de-mar`,
-          topic: eraCopy("Boat rental for Lloret de Mar — departs from the Port of Blanes (10 min by road from Lloret); license-free to Playa de Fenals in 25 min, licensed/captained beyond.", "Boat rental for Lloret de Mar: departs from the Port of Blanes (10 min by road from Lloret); powerboats with the 1-day Licencia de Navegacion reach Santa Cristina in 25 min and the whole Lloret coast, or sail with a skipper."),
+          topic: eraCopy("Boat rental for Lloret de Mar — departs from the Port of Blanes (10 min by road from Lloret); license-free to Playa de Fenals in 25 min, licensed/captained beyond.", "Boat rental for Lloret de Mar: departs from the Port of Blanes (10 min by road from Lloret); powerboats (Licencia de Navegacion) reach Santa Cristina in 25 min and the whole Lloret coast, or sail with a skipper."),
         },
         {
           url: `${BASE_URL}/es/alquiler-barcos-blanes`,
@@ -781,15 +809,19 @@ export function registerRobotsRoutes(app: Express): void {
         },
         {
           url: `${BASE_URL}/es/barcos-con-licencia`,
-          topic: "Self-drive powerboats (80-115 HP) — skipper yourself to Lloret and Tossa de Mar; the basic Spanish Navigation Licence or a foreign equivalent (ICC) is enough, verifiable online; from 175 EUR/2h, fuel charged separately.",
+          topic: `Self-drive powerboats (80-115 HP) — skipper yourself to Lloret and Tossa de Mar; the basic Spanish Navigation Licence or a foreign equivalent (ICC) is enough, verifiable online; from ${licensedFrom} EUR/2h, fuel charged separately.`,
         },
         {
           url: `${BASE_URL}/es/barcos-sin-licencia`,
-          topic: eraCopy("License-free boats — no boating licence needed, from 85 EUR/h fuel included, up to 5 people, 15-min briefing. Rentable without a licence only through September 30, 2026 (RD 1188/2025); after that a nautical qualification is required.", "License-free boats: no longer rented from October 1, 2026 (RD 1188/2025 requires a nautical licence to rent any motorboat). The page explains the change and the alternatives: powerboats with the 1-day Licencia de Navegacion (titulín) or the private excursion with skipper."),
+          topic: eraCopy("License-free boats — no boating licence needed, from 85 EUR/h fuel included, up to 5 people, 15-min briefing. Rentable without a licence only through September 30, 2026 (RD 1188/2025); after that a nautical qualification is required.", "License-free boats: no longer rented from October 1, 2026 (RD 1188/2025 requires a nautical licence to rent any motorboat). The page explains the change and the alternatives: powerboats (Licencia de Navegacion, titulín) or the private excursion with skipper."),
+        },
+        {
+          url: `${BASE_URL}${getLocalizedPath("navigationLicense", "es")}`,
+          topic: "Guide to the Licencia de Navegacion (titulín): what it is, what it allows (boats up to 6 m, by day, up to 2 nautical miles from the coast) and which of our three licensed powerboats it lets you skipper. Informational: the title is issued by an authorised nautical school.",
         },
         {
           url: `${BASE_URL}/es/alquiler-barco-con-patron`,
-          topic: "Boat rental with skipper — private captained excursion from Blanes: coves and sea caves to Tossa de Mar with swim stop, up to 6 people, from 240 EUR/2h, no licence needed, fuel charged separately.",
+          topic: `Boat rental with skipper — private captained excursion from Blanes: coves and sea caves to Tossa de Mar with swim stop, up to 6 people, from ${captainedFrom} EUR/2h, no licence needed, fuel charged separately.`,
         },
       ],
       business_hours: "Mo-Su 09:00-20:00",
@@ -870,7 +902,8 @@ export function registerRobotsRoutes(app: Express): void {
   // discover and prefer the user's language).  Each /{lang}/llms.txt is a
   // hand-tuned translation of the canonical English llms.txt.  Falls back to
   // the English file if the localized one is missing.
-  const LLMS_LANGS = ["es", "ca", "fr", "de", "nl", "it", "ru"] as const;
+  // "en" has no file of its own: it falls through to the canonical root llms.txt.
+  const LLMS_LANGS = ["en", "es", "ca", "fr", "de", "nl", "it", "ru"] as const;
   for (const lang of LLMS_LANGS) {
     app.get(`/${lang}/llms.txt`, (req, res) => {
       try {
@@ -971,14 +1004,14 @@ export function registerRobotsRoutes(app: Express): void {
       // RD 1188/2025: from 2026-10-01 there are no licence-free boats and the floor is the
       // licensed 2-hour price, so the post-era copy says "per 2 hours", not "per hour".
       const postEraDescByLang: Record<typeof lang, string> = {
-        es: `Flota de alquiler de embarcaciones en Blanes (Costa Brava) para patrones titulados. ${n} barcos: lanchas de 80-115 CV y excursion con patron. Desde el 1 de octubre de 2026 (RD 1188/2025) todo arrendatario necesita titulo nautico: basta la Licencia de Navegacion (titulin, curso de 1 dia sin examen) y verificamos titulos extranjeros online. Sin titulo, la excursion privada con patron. Desde ${floor} EUR por 2 horas, gasolina aparte.`,
-        en: `Boat rental fleet in Blanes, Costa Brava, Spain, for licensed skippers. ${n} boats: 80-115 HP powerboats and a captained excursion. From 1 October 2026 (RD 1188/2025) every renter needs a nautical licence: the basic Licencia de Navegacion (titulín, a 1-day course with no exam) is enough and foreign titles are verified online. Without a licence, the private excursion with skipper. From ${floor} EUR per 2 hours, fuel charged separately.`,
-        ca: `Flota de lloguer d embarcacions a Blanes (Costa Brava) per a patrons titulats. ${n} vaixells: llanxes de 80-115 CV i excursió amb patró. Des de l 1 d octubre de 2026 (RD 1188/2025) tot arrendatari necessita títol nàutic: n hi ha prou amb la Llicència de Navegació (titulí, curs d 1 dia sense examen) i verifiquem títols estrangers en línia. Sense títol, l excursió privada amb patró. Des de ${floor} EUR per 2 hores, benzina a part.`,
-        fr: `Flotte de location de bateaux à Blanes (Costa Brava) pour skippers diplômés. ${n} bateaux : vedettes de 80-115 CV et excursion avec skipper. Depuis le 1er octobre 2026 (RD 1188/2025), tout locataire doit avoir un permis nautique : la Licencia de Navegación (titulín, cours d un jour sans examen) suffit et nous vérifions les titres étrangers en ligne. Sans permis, l excursion privée avec skipper. À partir de ${floor} EUR les 2 heures, carburant en supplément.`,
-        de: `Bootsverleihflotte in Blanes (Costa Brava) für Skipper mit Schein. ${n} Boote: Motorboote mit 80-115 PS und Ausflug mit Skipper. Seit dem 1. Oktober 2026 (RD 1188/2025) braucht jeder Mieter einen Bootsführerschein: die Licencia de Navegación (Titulín, 1-Tages-Kurs ohne Prüfung) genügt, ausländische Scheine prüfen wir online. Ohne Schein der private Ausflug mit Skipper. Ab ${floor} EUR für 2 Stunden, Kraftstoff extra.`,
-        nl: `Bootverhuurvloot in Blanes (Costa Brava) voor schippers met vaarbewijs. ${n} boten: motorboten van 80-115 pk en een excursie met schipper. Sinds 1 oktober 2026 (RD 1188/2025) heeft elke huurder een vaarbewijs nodig: de Licencia de Navegación (titulín, cursus van 1 dag zonder examen) volstaat en buitenlandse vaarbewijzen verifiëren wij online. Zonder vaarbewijs de privé-excursie met schipper. Vanaf ${floor} EUR per 2 uur, brandstof apart.`,
-        it: `Flotta di noleggio barche a Blanes (Costa Brava) per skipper patentati. ${n} imbarcazioni: motoscafi da 80-115 CV ed escursione con skipper. Dal 1 ottobre 2026 (RD 1188/2025) ogni noleggiatore deve avere una patente nautica: basta la Licencia de Navegación (titulín, corso di 1 giorno senza esame) e verifichiamo i titoli esteri online. Senza patente, l escursione privata con skipper. Da ${floor} EUR per 2 ore, carburante a parte.`,
-        ru: `Флот аренды судов в Бланесе (Коста-Брава) для шкиперов с правами. ${n} лодок: катера 80-115 л.с. и экскурсия с капитаном. С 1 октября 2026 года (RD 1188/2025) каждому арендатору нужны права: достаточно Licencia de Navegación (titulín, курс за 1 день без экзамена), иностранные удостоверения проверяем онлайн. Без прав: частная экскурсия с капитаном. От ${floor} евро за 2 часа, топливо оплачивается отдельно.`,
+        es: `Flota de alquiler de embarcaciones en Blanes (Costa Brava) para patrones titulados. ${n} barcos: lanchas de 80-115 CV y excursion con patron. Desde el 1 de octubre de 2026 (RD 1188/2025) todo arrendatario necesita titulo nautico: basta la Licencia de Navegacion (titulin) y verificamos titulos extranjeros online. Sin titulo, la excursion privada con patron. Desde ${floor} EUR por 2 horas, gasolina aparte.`,
+        en: `Boat rental fleet in Blanes, Costa Brava, Spain, for licensed skippers. ${n} boats: 80-115 HP powerboats and a captained excursion. From 1 October 2026 (RD 1188/2025) every renter needs a nautical licence: the basic Licencia de Navegacion (titulín) is enough and foreign titles are verified online. Without a licence, the private excursion with skipper. From ${floor} EUR per 2 hours, fuel charged separately.`,
+        ca: `Flota de lloguer d embarcacions a Blanes (Costa Brava) per a patrons titulats. ${n} vaixells: llanxes de 80-115 CV i excursió amb patró. Des de l 1 d octubre de 2026 (RD 1188/2025) tot arrendatari necessita títol nàutic: n hi ha prou amb la Llicència de Navegació (titulí) i verifiquem títols estrangers en línia. Sense títol, l excursió privada amb patró. Des de ${floor} EUR per 2 hores, benzina a part.`,
+        fr: `Flotte de location de bateaux à Blanes (Costa Brava) pour skippers diplômés. ${n} bateaux : vedettes de 80-115 CV et excursion avec skipper. Depuis le 1er octobre 2026 (RD 1188/2025), tout locataire doit avoir un permis nautique : la Licencia de Navegación (titulín) suffit et nous vérifions les titres étrangers en ligne. Sans permis, l excursion privée avec skipper. À partir de ${floor} EUR les 2 heures, carburant en supplément.`,
+        de: `Bootsverleihflotte in Blanes (Costa Brava) für Skipper mit Schein. ${n} Boote: Motorboote mit 80-115 PS und Ausflug mit Skipper. Seit dem 1. Oktober 2026 (RD 1188/2025) braucht jeder Mieter einen Bootsführerschein: die Licencia de Navegación (Titulín) genügt, ausländische Scheine prüfen wir online. Ohne Schein der private Ausflug mit Skipper. Ab ${floor} EUR für 2 Stunden, Kraftstoff extra.`,
+        nl: `Bootverhuurvloot in Blanes (Costa Brava) voor schippers met vaarbewijs. ${n} boten: motorboten van 80-115 pk en een excursie met schipper. Sinds 1 oktober 2026 (RD 1188/2025) heeft elke huurder een vaarbewijs nodig: de Licencia de Navegación (titulín) volstaat en buitenlandse vaarbewijzen verifiëren wij online. Zonder vaarbewijs de privé-excursie met schipper. Vanaf ${floor} EUR per 2 uur, brandstof apart.`,
+        it: `Flotta di noleggio barche a Blanes (Costa Brava) per skipper patentati. ${n} imbarcazioni: motoscafi da 80-115 CV ed escursione con skipper. Dal 1 ottobre 2026 (RD 1188/2025) ogni noleggiatore deve avere una patente nautica: basta la Licencia de Navegación (titulín) e verifichiamo i titoli esteri online. Senza patente, l escursione privata con skipper. Da ${floor} EUR per 2 ore, carburante a parte.`,
+        ru: `Флот аренды судов в Бланесе (Коста-Брава) для шкиперов с правами. ${n} лодок: катера 80-115 л.с. и экскурсия с капитаном. С 1 октября 2026 года (RD 1188/2025) каждому арендатору нужны права: достаточно Licencia de Navegación (titulín), иностранные удостоверения проверяем онлайн. Без прав: частная экскурсия с капитаном. От ${floor} евро за 2 часа, топливо оплачивается отдельно.`,
       };
       const descByLang: Record<typeof lang, string> = {
         es: `La mayor flota de alquiler de embarcaciones en Blanes (Costa Brava), especializada en alquiler para patrones titulados. ${n} barcos: lanchas de 80-115 CV con licencia, barcos sin titulacion y excursion con patron. Basta la Licencia de Navegacion y verificamos titulos extranjeros online. Desde ${floor} EUR/hora. El alquiler sin titulacion es legal hasta el 30 de septiembre de 2026 (RD 1188/2025).`,
@@ -1109,8 +1142,8 @@ export function registerRobotsRoutes(app: Express): void {
         url: "https://escolanauticablanes.com",
         parentOrganization: { "@id": `${BASE_URL}/#organization` },
         description: lang === "es"
-          ? "Escuela náutica de DAMAR COSTA BRAVA S.L., la misma empresa que Costa Brava Rent a Boat, en el Puerto de Blanes. Impartirá la Licencia de Navegación (titulín): curso de 1 día, 2 h de teoría y 4 h de prácticas, sin examen. Todavía no está autorizada —el expediente sigue en trámite—, así que hoy solo hay lista de espera, sin precio ni fechas."
-          : "Nautical school of DAMAR COSTA BRAVA S.L., the same company as Costa Brava Rent a Boat, in Blanes harbour. Will teach the Licencia de Navegación (titulín): a 1-day course, 2 h theory and 4 h practice, no exam. Not authorised yet — the application is still pending — so today there is a waiting list only, no price and no dates.",
+          ? "Escuela náutica de DAMAR COSTA BRAVA S.L., la misma empresa que Costa Brava Rent a Boat, en el Puerto de Blanes. Impartirá la Licencia de Navegación (titulín), con 2 h de teoría y 4 h de prácticas y sin examen. Todavía no está autorizada —el expediente sigue en trámite—, así que hoy solo hay lista de espera, sin precio ni fechas."
+          : "Nautical school of DAMAR COSTA BRAVA S.L., the same company as Costa Brava Rent a Boat, in Blanes harbour. Will teach the Licencia de Navegación (titulín), with 2 h of theory, 4 h of practice and no exam. Not authorised yet — the application is still pending — so today there is a waiting list only, no price and no dates.",
         areaServed: { "@id": `${BASE_URL}/#place` },
       };
 
@@ -1140,7 +1173,7 @@ export function registerRobotsRoutes(app: Express): void {
         geo: { ...placeNode.geo },
         openingHours: "Mo-Su 09:00-20:00",
         openingSeason: "April-October",
-        priceRange: `${floor}-420 EUR`,
+        priceRange: `${floor}-${fleetPriceCeiling()} EUR`,
         aggregateRating: { "@type": "AggregateRating", ratingValue: gbpStats.rating, reviewCount: gbpStats.userRatingCount, bestRating: 5 },
         sameAs: sameAsList,
         // Punto de venta en Lloret desde el 1-feb-2027: la tienda de Coast Rent en el Centro
@@ -1167,7 +1200,7 @@ export function registerRobotsRoutes(app: Express): void {
           "Cala de s'Agulla", "Cala Treumal", "Platja de Santa Cristina",
           "Cala Sa Boadella", "Cala Bona",
           "Licencia de Navegación (LN)", "Licencia de Navegación Básica (LNB)", "PER", "PNB",
-    "Titulín (curso de 1 día)", "RD 1188/2025", "Verificación de títulos náuticos extranjeros",
+    "Titulín (Licencia de Navegación)", "RD 1188/2025", "Verificación de títulos náuticos extranjeros",
     "ICC", "Permis Côtier", "SBF See",
           "Límite 2 millas náuticas", "Navegación a 5 nudos",
           ...eraCopy(["Alquiler de barcos sin licencia"], []), "Alquiler de barcos con licencia",
@@ -1212,7 +1245,7 @@ export function registerRobotsRoutes(app: Express): void {
           brandNode,
           placeNode,
           localBusinessNode,
-          buildSeasonEvent(BASE_URL, floor),
+          buildSeasonEvent(BASE_URL, floor, fleetPriceCeiling()),
           ...Object.values(BOAT_DATA).filter((b) => isCatalogBoatPubliclyListed(b)).map((b) =>
             boatToProductSchema(b, BASE_URL, gbpStats.rating, gbpStats.userRatingCount),
           ),

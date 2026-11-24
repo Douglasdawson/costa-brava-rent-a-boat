@@ -33,18 +33,18 @@ export const it: Translations = {
   hero: {
     title: "Noleggio imbarcazioni con patente a Blanes, Costa Brava",
     subtitle:
-      "Noleggia un motoscafo nel porto di Blanes e pilotalo tu stesso: fino a 115 CV, 7 posti e rotta libera fino a Tossa de Mar. Basta la Licencia de Navegaci\u00F3n di base o un titolo estero equivalente, che verifichiamo online prima che tu prenoti. Non hai ancora la patente? Ti organizziamo il corso di un giorno, oppure esci con uno skipper professionista.",
+      "Noleggia un motoscafo nel porto di Blanes e pilotalo tu stesso: fino a 115 CV, 7 posti e rotta libera fino a Tossa de Mar. Basta la Licencia de Navegación di base o un titolo estero equivalente, che verifichiamo online prima che tu prenoti. Non hai ancora la patente? Esci con uno skipper professionista.",
     subtitleLine1:
       "Motoscafi fino a 115 CV per skipper patentati, rotta libera fino a Tossa de Mar.",
     subtitleLine2:
-      "Non hai la patente? Te la facciamo prendere in un giorno, o esci con uno skipper.",
+      "Non hai la patente? Esci con uno skipper, o con il titulín guidi tu.",
     subtitleMobile: "Motoscafi con patente da Blanes. Rotta libera fino a Tossa de Mar.",
     specsLine: "Fino a 115 CV \u00B7 7 posti \u00B7 Rotta libera fino a Tossa de Mar e oltre",
     licenseNote:
       "Basta la Licencia de Navegaci\u00F3n di base. Verifichiamo i titoli esteri online prima della prenotazione.",
     bookNow: "Verifica Disponibilit\u00E0",
     findYourBoat: "Prenota ora",
-    ctaTitulin: "Prendi la patente in 1 giorno",
+    ctaTitulin: "Cos'è il titulín",
     licenseFreeUntil:
       "Non hai la patente? Fino al 30 settembre puoi ancora noleggiare senza.",
     licenseFreeUntilCta: "Vedi le barche senza patente",
@@ -61,11 +61,11 @@ export const it: Translations = {
     experience: "+5 anni di esp.",
     instantConfirmation: "Conferma immediata",
     marqueeText:
-      "Noleggio Imbarcazioni a Blanes | Con Patente | Patente in 1 Giorno | Con Skipper",
+      "Noleggio Imbarcazioni a Blanes | Con Patente | Titulín | Con Skipper",
     askWhatsApp: "Chiedici su WhatsApp",
     testimonialQuote: "Esperienza incredibile, torneremo sicuramente",
     testimonialQuoteShort: "Torneremo sicuramente",
-    summaryGeoPostEra: "Costa Brava Rent a Boat noleggia dal Porto di Blanes motoscafi da 80 a 115 CV per skipper patentati e un'escursione privata con capitano, oltre a moto d'acqua ed eFoil. Dal 1° ottobre 2026 il RD 1188/2025 richiede la patente nautica per noleggiare: basta la Licencia de Navegación, un corso di un giorno senza esame, o una patente straniera equivalente che verifichiamo online. Assistenza in 8 lingue. Stagione da aprile a ottobre.",
+    summaryGeoPostEra: "Costa Brava Rent a Boat noleggia dal Porto di Blanes motoscafi da 80 a 115 CV per skipper patentati e un'escursione privata con capitano, oltre a moto d'acqua ed eFoil. Dal 1° ottobre 2026 il RD 1188/2025 richiede la patente nautica per noleggiare: basta la Licencia de Navegación, che si ottiene in 1 giorno senza esame, o una patente straniera equivalente che verifichiamo online. Assistenza in 8 lingue. Stagione da aprile a ottobre.",
     summaryGeo:
       "Costa Brava Rent a Boat gestisce la flotta di noleggio imbarcazioni pi\u00F9 grande del Porto di Blanes con 9 barche: 3 motoscafi da 80 a 115 CV per skipper patentati, 5 barche senza patente (noleggiabili fino al 30 settembre 2026, quando il RD 1188/2025 inizia a richiedere un titolo nautico a ogni noleggiatore) e 1 escursione privata con skipper. Basta la Licencia de Navegaci\u00F3n, il titul\u00EDn di un giorno senza esame, o un titolo estero equivalente che verifichiamo online. Assistenza in 8 lingue. Stagione da aprile a ottobre. 4.8\u2605 su Google con oltre 300 recensioni.",
   },
@@ -127,8 +127,8 @@ export const it: Translations = {
     title: "Perché Scegliere Costa Brava Rent a Boat",
     subtitle: "Tutto ciò di cui hai bisogno per un'esperienza perfetta in mare",
     withoutLicense: {
-      title: "La Patente in un Solo Giorno",
-      description: "Corso di 6 ore, senza esame e non scade. Te lo organizziamo noi.",
+      title: "Cos'è il Titulín",
+      description: "Titolo nautico di base, senza esame e senza scadenza. Rilasciato da scuole nautiche autorizzate.",
     },
     withLicense: {
       title: "Motoscafi per Skipper Patentati",
@@ -267,7 +267,7 @@ export const it: Translations = {
   footer: {
     company: "Costa Brava Rent a Boat - Blanes",
     description: "Noleggio barche con e senza patente a Blanes, Costa Brava.",
-    descriptionPostEra: "Noleggio barche con patente a Blanes, Costa Brava. Patente in 1 giorno o uscita con skipper.",
+    descriptionPostEra: "Noleggio barche con patente a Blanes, Costa Brava. Con titulín o uscita con skipper.",
     quickLinks: "Link Veloci",
     contact: "Contatto",
     followUs: "Seguici",
@@ -967,7 +967,7 @@ export const it: Translations = {
         needsIcc: "Il tuo paese rilascia l'ICC. Richiedilo alla tua federazione nautica prima di viaggiare.",
         notRecognized: "La tua patente nazionale non è riconosciuta direttamente in Spagna. Scrivici su WhatsApp e vediamo insieme le opzioni.",
         insufficient: "La tua patente è di livello inferiore alla Licencia de Navegación spagnola, il minimo per la nostra flotta con patente. Valuta di ottenere la LN o un titolo superiore.",
-        inlandOnly: "La tua patente autorizza fiumi e laghi, non la navigazione marittima, quindi non vale per le nostre barche. Con la Licencia de Navegación (corso di un giorno, senza esame) potrai guidarle, oppure puoi uscire con lo skipper nell'escursione privata.",
+        inlandOnly: "La tua patente autorizza fiumi e laghi, non la navigazione marittima, quindi non vale per le nostre barche. Con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) potrai guidarle, oppure puoi uscire con lo skipper nell'escursione privata.",
       },
       pill: {
         valid: "Valida",
@@ -1078,12 +1078,12 @@ export const it: Translations = {
     heroTitle: "Barche Senza Patente a Blanes",
     // Post-era copy (RD 1188/2025): the page picks these with eraCopy() from 2026-10-01.
     postEraHeroTitle: "Barche senza patente a Blanes: dal 1 ottobre 2026 non le noleggiamo più",
-    postEraHeroDescription: "Dal 1° ottobre 2026 la legge richiede la patente nautica per noleggiare qualsiasi barca a motore, e abbiamo ritirato le nostre piccole barche senza patente. Con il titulín, un corso di un giorno senza esame, guidi i nostri motoscafi; e se preferisci non stare al timone, esci con lo skipper.",
-    postEraBadge: "Titulín in 1 giorno, senza esame",
+    postEraHeroDescription: "Dal 1° ottobre 2026 la legge richiede la patente nautica per noleggiare qualsiasi barca a motore, e abbiamo ritirato le nostre piccole barche senza patente. Con il titulín, che si ottiene in 1 giorno senza esame, guidi i nostri motoscafi; e se preferisci non stare al timone, esci con lo skipper.",
+    postEraBadge: "Titulín o skipper",
     postEraCtaButton: "Vedi i motoscafi con titulín",
     postEraNoticeTitle: "Cosa cambia il 1 ottobre 2026",
     postEraNoticeBody: "Fino al 30 settembre 2026 noleggiavamo barche piccole senza alcuna patente. Dal 1 ottobre la legge richiede che chi noleggia abbia almeno la Licencia de Navegación, e quelle barche non si noleggiano più. Con essa guidi qualsiasi barca fino a 6 metri entro 2 miglia dalla costa, compresi i nostri tre motoscafi con patente. Senza patente, l'alternativa è l'escursione privata con skipper.",
-    postEraNoticeLink: "Come prendere il titulín in un giorno",
+    postEraNoticeLink: "Cos'è il titulín e quali barche permette",
     postEraFaqCarnetAnswer: "Sì. Dal 1 ottobre 2026 (Regio Decreto 1188/2025) per noleggiare qualsiasi barca a motore serve una patente nautica, per questo non noleggiamo più barche senza patente. Il minimo è la Licencia de Navegación (titulín): un corso di un giorno, 2 ore di teoria e 4 di pratica, senza esame e senza scadenza, rilasciato dalle scuole nautiche autorizzate. Copre i nostri tre motoscafi con patente. Senza patente puoi uscire con uno skipper nell'escursione privata.",
     heroDescription:
       "4 barche senza patente da 85€/h al Porto di Blanes, carburante incluso. Fino a 5 persone, senza patente né titolazione, senza esperienza precedente. Briefing di sicurezza di 15 minuti e si parte per navigare nelle cale della Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina e Sa Boadella fino alla Spiaggia di Fenals (Lloret de Mar).",
@@ -1436,12 +1436,12 @@ export const it: Translations = {
     licenseFeature4: "Verifichiamo i titoli esteri online",
     titulin: "Non ancora, voglio prenderla",
     titulinDesc:
-      "Ti organizziamo il corso ed esci con la nostra flotta. Un giorno, e navighi da solo per molte estati.",
-    titulinBadge: "Corso di 1 giorno, senza esame",
+      "Il titulín è il titolo nautico di base. Con lui guidi le nostre barche con patente, e lo rilasciano scuole nautiche autorizzate.",
+    titulinBadge: "Si ottiene in 1 giorno, senza esame",
     titulinFeature1: "2 ore di teoria e 4 di pratica a bordo",
     titulinFeature2: "Titolo rilasciato subito, senza esame",
     titulinFeature3: "Non scade ed \u00E8 valida in tutta la Spagna",
-    titulinFeature4: "La combiniamo con il tuo primo noleggio",
+    titulinFeature4: "Copre le nostre tre barche con patente",
     titulinCta: "Come funziona",
     captained: "No, preferisco non stare al timone",
     captainedDesc:
@@ -1571,13 +1571,13 @@ export const it: Translations = {
         id: "normativa2026",
         question: "\u00C8 vero che nel 2026 finisce il noleggio di barche senza patente?",
         answer:
-          "Sì, la legge è cambiata: il RD 1188/2025 richiede un titolo nautico per noleggiare qualsiasi imbarcazione a motore dal 1° ottobre 2026, e da quella data non noleggiamo più barche senza patente. Basta la Licencia de Navegación (titulín), un corso di un giorno senza esame, o qualsiasi titolo superiore o estero equivalente. L'escursione con skipper non è toccata: lì la barca la conduce un professionista.",
+          "Sì, la legge è cambiata: il RD 1188/2025 richiede un titolo nautico per noleggiare qualsiasi imbarcazione a motore dal 1° ottobre 2026, e da quella data non noleggiamo più barche senza patente. Basta la Licencia de Navegación (titulín), che si ottiene in 1 giorno senza esame, o qualsiasi titolo superiore o estero equivalente. L'escursione con skipper non è toccata: lì la barca la conduce un professionista.",
       },
       {
         id: "titulin",
         question: "Che cos'\u00E8 il titul\u00EDn e come si prende?",
         answer:
-          "Il titul\u00EDn \u00E8 la Licencia de Navegaci\u00F3n: il titolo nautico pi\u00F9 rapido di Spagna. Si ottiene in un giorno con 2 ore di teoria e 4 di pratica a bordo, senza esame, e non scade. Consente barche fino a 6 metri, di giorno e fino a 2 miglia da un riparo: nella nostra flotta la Mingolla Brava 19, la Trimarchi 57S e la Pacific Craft 625. Ti organizziamo il corso e lo combiniamo con il tuo primo noleggio; scrivici e ti spieghiamo come.",
+          "Il titulín è la Licencia de Navegación: il titolo nautico più rapido di Spagna. Si ottiene in un giorno con 2 ore di teoria e 4 di pratica a bordo, senza esame, e non scade. Consente barche fino a 6 metri, di giorno e fino a 2 miglia da un riparo: nella nostra flotta la Mingolla Brava 19, la Trimarchi 57S e la Pacific Craft 625.",
       },
       {
         id: "precios",
@@ -1589,7 +1589,7 @@ export const it: Translations = {
         id: "sin-licencia",
         question: "Posso noleggiare una barca senza patente nautica?",
         answer:
-          "Dal 1° ottobre 2026, no: il RD 1188/2025 richiede un titolo a chiunque noleggi una barca a motore. La Licencia de Navegación (titulín) si prende in un giorno, senza esame, e te la organizziamo noi. Se preferisci non prendere alcun titolo, l'escursione con skipper non ne richiede.",
+          "Dal 1° ottobre 2026, no: il RD 1188/2025 richiede un titolo a chiunque noleggi una barca a motore. La Licencia de Navegación (titulín) si prende in un giorno, senza esame, in una scuola nautica autorizzata. Se preferisci non prendere alcun titolo, l'escursione con skipper non ne richiede.",
       },
       {
         id: "incluye",
@@ -1715,7 +1715,7 @@ export const it: Translations = {
     certifiedCaptains: "Capitani certificati",
     officialPort: "Porto ufficiale di Blanes",
     registeredBusiness: "Azienda registrata in Spagna",
-    maritimeInsurance: "Assicurazione marittima completa",
+    maritimeInsurance: "Assicurazione RC e infortuni degli occupanti",
     gdprCompliant: "Conforme al GDPR",
   },
   reciprocity: {
@@ -1829,7 +1829,7 @@ export const it: Translations = {
     limitLabel: "FINE TRATTO",
     limitBoxTitle: "Perché il tratto finisce a Fenals?",
     limitBoxBody:
-      "Fino al 30 settembre 2026 la spiaggia di Fenals era il limite delle barche senza patente (2 miglia dalla costa, 5 nodi, 15 CV). Dal 1 ottobre non si noleggiano più barche senza patente: con la Licencia de Navegación (corso di 1 giorno, senza esame) o con uno skipper, la rotta prosegue verso nord.",
+      "Fino al 30 settembre 2026 la spiaggia di Fenals era il limite delle barche senza patente (2 miglia dalla costa, 5 nodi, 15 CV). Dal 1 ottobre non si noleggiano più barche senza patente: con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o con uno skipper, la rotta prosegue verso nord.",
     noteNorthOfFenals:
       "Nota: la spiaggia di Lloret (centro), Cala Banys e Cala Canyelles sono a nord di Fenals; con il titulín o con uno skipper ci arrivi comunque.",
     conLicenciaTitle:
@@ -1844,7 +1844,7 @@ export const it: Translations = {
       platjaAro: "Sant Feliu de Guíxols, S'Agaró, Platja d'Aro (mezza giornata / giornata intera)",
     },
     ctaFleet:
-      "Prendi la patente in 1 giorno",
+      "Cos'è il titulín",
     ctaLicensed: "Barche con Licencia de Navegación",
     internalLinks:
       'Vuoi vedere tutte le rotte? Consulta il <a href="/it/noleggio-barca-blanes" class="underline text-primary hover:text-primary/80">noleggio barche a Blanes</a>, il <a href="/it/noleggio-barca-lloret-de-mar" class="underline text-primary hover:text-primary/80">noleggio barca a Lloret de Mar</a>, l\'estensione con patente <a href="/it/noleggio-barca-tossa-de-mar" class="underline text-primary hover:text-primary/80">fino a Tossa de Mar</a>, tutte le <a href="/it/noleggio-barca-costa-brava" class="underline text-primary hover:text-primary/80">rotte sulla Costa Brava</a> e il <a href="/it/noleggio-barca-vicino-barcellona" class="underline text-primary hover:text-primary/80">noleggio barche vicino a Barcellona</a>. Prezzi completi in <a href="/it/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Quanto costa noleggiare una barca a Blanes</a>.',
@@ -1971,7 +1971,7 @@ export const it: Translations = {
     info: {
       whatIncludesTitle: "Cosa include il prezzo?",
       fuelIncludedItem: "<strong>Carburante a parte</strong>, secondo il consumo reale dell'uscita",
-      insurance: "Assicurazione kasko e attrezzatura di sicurezza",
+      insurance: "Assicurazione di responsabilità civile e infortuni",
       briefing: "Briefing di 15 minuti prima della partenza",
       equipment: "Attrezzatura snorkeling e paddle surf (secondo disponibilità)",
       importantTitle: "Informazioni importanti",
@@ -1987,7 +1987,7 @@ export const it: Translations = {
     faq: {
       q1: "Quanto costa noleggiare una barca senza patente a Blanes?",
       a1Template:
-        "Dal 1° ottobre 2026 non noleggiamo più barche senza patente: il RD 1188/2025 richiede un titolo nautico per noleggiare qualsiasi barca a motore. Con la Licencia de Navegación (titulín, corso di un giorno senza esame) noleggi i nostri motoscafi da {licBaja2h} € per 2 ore in bassa stagione; senza patente, l'escursione privata con skipper parte da {excursionBaja2h} € per 2 ore.",
+        "Dal 1° ottobre 2026 non noleggiamo più barche senza patente: il RD 1188/2025 richiede un titolo nautico per noleggiare qualsiasi barca a motore. Con la Licencia de Navegación (titulín, si ottiene in 1 giorno senza esame) noleggi i nostri motoscafi da {licBaja2h} € per 2 ore in bassa stagione; senza patente, l'escursione privata con skipper parte da {excursionBaja2h} € per 2 ore.",
       q2: "Il carburante è incluso nel prezzo?",
       a2: "No. Nessuna delle nostre barche include il carburante: si paga a parte in base al consumo reale dell'uscita.",
       q3: "C'è differenza di prezzo tra stagione bassa e alta?",
@@ -2006,7 +2006,7 @@ export const it: Translations = {
     hero: {
       title: "Noleggio Barche vicino a Barcellona",
       description:
-        "A soli 70 minuti da Barcellona, il porto di Blanes ti offre la migliore esperienza nautica della Costa Brava. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper.",
+        "A soli 70 minuti da Barcellona, il porto di Blanes ti offre la migliore esperienza nautica della Costa Brava. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper.",
       badgeDistance: "70 min da Barcellona",
       badgeLicense: "Con titulín o skipper",
       badgeWaters: "Acque cristalline",
@@ -2059,7 +2059,7 @@ export const it: Translations = {
     faqItems: [
       {
         question: "Posso noleggiare una barca senza patente vicino a Barcellona?",
-        answer: "Dal 1 ottobre 2026 (RD 1188/2025) non più: per guidare una barca a motore a noleggio serve una patente. A Blanes, a 70 minuti da Barcellona sulla AP-7, hai due opzioni: noleggiare con la Licencia de Navegación (corso di 1 giorno, senza esame) o uscire con uno skipper nella nostra escursione privata, che non richiede patente.",
+        answer: "Dal 1 ottobre 2026 (RD 1188/2025) non più: per guidare una barca a motore a noleggio serve una patente. A Blanes, a 70 minuti da Barcellona sulla AP-7, hai due opzioni: noleggiare con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o uscire con uno skipper nella nostra escursione privata, che non richiede patente.",
       },
       {
         question: "Quanto ci vuole da Barcellona a Blanes?",
@@ -2174,7 +2174,7 @@ export const it: Translations = {
       {
         question: "Ho bisogno della patente nautica per un'escursione al tramonto?",
         answer:
-          "Sì: dal 1° ottobre 2026, per guidare serve almeno la Licencia de Navegación (titulín), un corso di un giorno senza esame; con essa guidi uno qualsiasi dei nostri motoscafi. Se nessuno del gruppo ha la patente, esci con lo skipper nell'escursione privata: la barca la conduce un professionista e voi vi godete solo il tramonto.",
+          "Sì: dal 1° ottobre 2026, per guidare serve almeno la Licencia de Navegación (titulín), che si ottiene in 1 giorno senza esame; con essa guidi uno qualsiasi dei nostri motoscafi. Se nessuno del gruppo ha la patente, esci con lo skipper nell'escursione privata: la barca la conduce un professionista e voi vi godete solo il tramonto.",
       },
       {
         question: "È sicuro stare in barca al tramonto e rientrare con poca luce?",
@@ -2281,7 +2281,7 @@ export const it: Translations = {
       "A differenza delle crociere al tramonto di gruppo, la barca è solo vostra. Scegliete dove ancorare, quanto tempo restare e cosa portare a bordo. Nessuna guida che vi mette fretta, nessun altro turista. Solo voi e il Mediterraneo nel suo momento più bello.",
     whyAffordableTitle: "Con il titulín o con lo skipper",
     whyAffordableDesc:
-      "Con la Licencia de Navegación, un corso di un giorno senza esame, guidi uno qualsiasi dei nostri motoscafi, fino a 7 posti. Il prezzo è per barca, non per persona, quindi diviso tra il gruppo risulta conveniente. Se preferisci non stare al timone, l'escursione privata con skipper vi porta ai panorami migliori.",
+      "Con la Licencia de Navegación, che si ottiene in 1 giorno senza esame, guidi uno qualsiasi dei nostri motoscafi, fino a 7 posti. Il prezzo è per barca, non per persona, quindi diviso tra il gruppo risulta conveniente. Se preferisci non stare al timone, l'escursione privata con skipper vi porta ai panorami migliori.",
     whyTemperatureTitle: "Temperatura perfetta al tramonto",
     whyTemperatureDesc:
       "A tarda sera, il calore del giorno si è attenuato. La brezza marina vi mantiene comodi. L'acqua è al suo punto più caldo dopo aver assorbito il sole tutto il giorno. È il momento ideale per stare in acqua, che si tratti di nuotare, galleggiare o semplicemente contemplare il cielo che cambia colore.",
@@ -2410,7 +2410,7 @@ export const it: Translations = {
       "In un'uscita di 3-4 ore puoi visitare 2-3 cale diverse. Ognuna ha un ecosistema diverso: praterie di posidonia, fondali rocciosi, pareti verticali. È come fare tre escursioni di snorkeling in una sola.",
     whyNoExpTitle: "Con il titulín o con lo skipper",
     whyNoExpDesc:
-      "Con il titulín, un corso di un giorno senza esame, guidi uno dei nostri motoscafi, e prima di partire ti spieghiamo la barca in 15 minuti. Se nessuno del gruppo ha la patente, l'escursione con skipper vi porta alle calette. Lo snorkeling è l'attività acquatica più accessibile: ti servono solo maschera, boccaglio e voglia di scoprire.",
+      "Con il titulín, che si ottiene in 1 giorno senza esame, guidi uno dei nostri motoscafi, e prima di partire ti spieghiamo la barca in 15 minuti. Se nessuno del gruppo ha la patente, l'escursione con skipper vi porta alle calette. Lo snorkeling è l'attività acquatica più accessibile: ti servono solo maschera, boccaglio e voglia di scoprire.",
     spotsTitle: "Migliori cale per lo snorkeling vicino a Blanes",
     equipmentTitle: "Attrezzatura da snorkeling inclusa e disponibile",
     includedTitle: "Incluso con tutte le barche",
@@ -2470,7 +2470,7 @@ export const it: Translations = {
       {
         question: "Ho bisogno della patente nautica per noleggiare una barca familiare?",
         answer:
-          "Sì: dal 1° ottobre 2026 la legge richiede almeno la Licencia de Navegación (titulín), un corso di un giorno senza esame, per noleggiare qualsiasi barca a motore. Se nessuno in famiglia ha la patente, l'opzione è l'escursione privata con skipper: la barca la conduce un professionista.",
+          "Sì: dal 1° ottobre 2026 la legge richiede almeno la Licencia de Navegación (titulín), che si ottiene in 1 giorno senza esame, per noleggiare qualsiasi barca a motore. Se nessuno in famiglia ha la patente, l'opzione è l'escursione privata con skipper: la barca la conduce un professionista.",
       },
       {
         question: "Cosa include il prezzo del noleggio?",
@@ -2532,7 +2532,7 @@ export const it: Translations = {
     heroTitle: "Noleggio Barca per Famiglie sulla Costa Brava",
     heroDescription:
       "Un'avventura sicura e divertente per tutta la famiglia. Motoscafi con patente dal Porto di Blanes, che guidi con il titulín, oppure escursione privata con skipper, con giubbotti per bambini e calette protette perfette per i più piccoli.",
-    badgeNoLicense: "Titulín in 1 giorno o skipper",
+    badgeNoLicense: "Titulín o skipper",
     badgeKidsVests: "Giubbotti per bambini inclusi",
     badgeFuel: "Calette tranquille per bambini",
     whyTitle: "Perché è perfetto per le famiglie",
@@ -2541,7 +2541,7 @@ export const it: Translations = {
       "Noleggiare una barca in famiglia è molto più di una gita in mare. Significa scoprire insieme calette nascoste, vedere pesci sott'acqua, fare un picnic galleggiando in acque turchesi e creare ricordi che i bambini racconteranno per anni. Sulla Costa Brava, la costa tra Blanes e Lloret offre lo scenario perfetto.",
     whyNoStressTitle: "Senza stress, senza complicazioni",
     whyNoStressDesc:
-      "Con il titulín, un corso di un giorno senza esame, il timone è tuo, e prima di partire ti spieghiamo la barca in 15 minuti. Se preferite staccare del tutto, nell'escursione privata lo tiene il nostro skipper. Venite solo con voglia di divertirvi.",
+      "Con il titulín, che si ottiene in 1 giorno senza esame, il timone è tuo, e prima di partire ti spieghiamo la barca in 15 minuti. Se preferite staccare del tutto, nell'escursione privata lo tiene il nostro skipper. Venite solo con voglia di divertirvi.",
     whyCalmCovesTitle: "Calette tranquille per i bambini",
     whyCalmCovesDesc:
       "Consigliamo calette riparate con acqua bassa e senza moto ondoso. Cala Sant Francesc ha un fondale sabbioso ideale per il bagno sicuro dei bambini. Cala Bona offre acque cristalline perfette per le prime esperienze di snorkeling.",
@@ -2743,7 +2743,7 @@ export const it: Translations = {
       "Porta crema solare, acqua abbondante, cappello e occhiali da sole polarizzati (aiutano a vedere i pesci in acqua). Una maglietta a maniche lunghe ti protegge dal sole durante le ore di pesca. Non dimenticare la licenza di pesca stampata o sul cellulare.",
     exploreTitle: "Esplora altre attività e servizi",
     linkLicensed: "Barche con patente",
-    linkNoLicense: "Titulín in 1 giorno",
+    linkNoLicense: "Cos'è il titulín",
     linkSnorkel: "Escursione di snorkeling",
     linkPrices: "Prezzi e tariffe",
     linkBlanes: "Porto di Blanes",
@@ -2808,17 +2808,17 @@ export const it: Translations = {
       sinLicencia: {
         question: "Posso noleggiare una barca senza patente nautica?",
         answer:
-          "Dal 1° ottobre 2026, no: il RD 1188/2025 richiede un titolo nautico per noleggiare qualsiasi barca a motore, e abbiamo ritirato le nostre barche senza patente. Basta la Licencia de Navegación (titulín), un corso di un giorno senza esame. Senza patente, puoi uscire con lo skipper nell'escursione privata.",
+          "Dal 1° ottobre 2026, no: il RD 1188/2025 richiede un titolo nautico per noleggiare qualsiasi barca a motore, e abbiamo ritirato le nostre barche senza patente. Basta la Licencia de Navegación (titulín), che si ottiene in 1 giorno senza esame. Senza patente, puoi uscire con lo skipper nell'escursione privata.",
       },
       normativa2026: {
         question: "È vero che nel 2026 finisce il noleggio di barche senza patente?",
         answer:
-          "Sì, la legge è cambiata: il Regio Decreto 1188/2025 richiede un titolo nautico per noleggiare qualsiasi imbarcazione a motore dal 1° ottobre 2026, e da quella data non noleggiamo più barche senza patente. Basta la Licencia de Navegación (titulín), un corso di un giorno senza esame, oppure qualsiasi titolo superiore o straniero equivalente. L'escursione con skipper non è interessata: lì la barca la conduce un professionista.",
+          "Sì, la legge è cambiata: il Regio Decreto 1188/2025 richiede un titolo nautico per noleggiare qualsiasi imbarcazione a motore dal 1° ottobre 2026, e da quella data non noleggiamo più barche senza patente. Basta la Licencia de Navegación (titulín), che si ottiene in 1 giorno senza esame, oppure qualsiasi titolo superiore o straniero equivalente. L'escursione con skipper non è interessata: lì la barca la conduce un professionista.",
       },
       titulin: {
         question: "Cos'è il titulín e come lo ottengo?",
         answer:
-          "Il titulín è la Licencia de Navegación: la patente nautica più rapida di Spagna. Si ottiene in un giorno con 2 ore di teoria e 4 di pratica in una scuola nautica autorizzata, senza esame, e non scade mai. Permette barche fino a 6 metri, di giorno e fino a 2 miglia da un rifugio: nella nostra flotta copre la Mingolla Brava 19, la Trimarchi 57S e la Pacific Craft 625. Scrivici e ti indichiamo dove ottenerlo vicino a Blanes.",
+          "Il titulín è la Licencia de Navegación: la patente nautica più rapida di Spagna. Si ottiene in un giorno con 2 ore di teoria e 4 di pratica in una scuola nautica autorizzata, senza esame, e non scade mai. Permette barche fino a 6 metri, di giorno e fino a 2 miglia da un rifugio: nella nostra flotta copre la Mingolla Brava 19, la Trimarchi 57S e la Pacific Craft 625.",
       },
       licenciasAceptadas: {
         question: "Quali patenti accettate per le barche grandi?",
@@ -2948,7 +2948,7 @@ export const it: Translations = {
       diferenciaLicencia: {
         question: "Qual è la differenza tra barche senza patente e con patente?",
         answer:
-          "Fino al 30 settembre 2026 noleggiavamo barche senza patente fino a 15 CV e 4-5 posti. Dal 1° ottobre 2026 la legge richiede un titolo per noleggiare, quindi noleggiamo i nostri motoscafi con patente: motori da 80-115 CV, fino a 7 persone e autonomia per arrivare a Tossa de Mar, da {licBaja2h}€ (carburante non incluso). Basta la Licencia de Navegación, un corso di un giorno senza esame.",
+          "Fino al 30 settembre 2026 noleggiavamo barche senza patente fino a 15 CV e 4-5 posti. Dal 1° ottobre 2026 la legge richiede un titolo per noleggiare, quindi noleggiamo i nostri motoscafi con patente: motori da 80-115 CV, fino a 7 persone e autonomia per arrivare a Tossa de Mar, da {licBaja2h}€ (carburante non incluso). Basta la Licencia de Navegación, che si ottiene in 1 giorno senza esame.",
       },
       precioBlanesVsLloret: {
         question: "È più economico noleggiare una barca a Blanes o a Lloret de Mar?",
@@ -3349,8 +3349,8 @@ export const it: Translations = {
     categories: {
       licenseFree: {
         name: "Senza patente: norme 2026",
-        description: "Dal 1 ottobre 2026 non si noleggiano più barche senza patente. Le tue opzioni: titulín in 1 giorno o uscita con skipper.",
-        features: ["Titulín in 1 giorno", "Senza esame", "O esci con skipper"],
+        description: "Dal 1 ottobre 2026 non si noleggiano più barche senza patente. Le tue opzioni: guidare tu con il titulín o uscire con skipper.",
+        features: ["Con titulín", "Senza esame", "O esci con skipper"],
       },
       licensed: {
         name: "Barche con patente",
@@ -3435,7 +3435,7 @@ export const it: Translations = {
     faq: [
       {
         q: "Serve la patente?",
-        a: "Sì: dal 1° ottobre 2026 la legge richiede che chi guida abbia almeno la Licencia de Navegación (titulín), un corso di un giorno senza esame. Il resto del gruppo viaggia come passeggero. Stiamo adattando le uscite condivise a questa norma: iscriviti e ti avvisiamo.",
+        a: "Sì: dal 1° ottobre 2026 la legge richiede che chi guida abbia almeno la Licencia de Navegación (titulín), che si ottiene in 1 giorno senza esame. Il resto del gruppo viaggia come passeggero. Stiamo adattando le uscite condivise a questa norma: iscriviti e ti avvisiamo.",
       },
       {
         q: "Quanto costa?",
@@ -3612,7 +3612,7 @@ export const it: Translations = {
       ],
       scooters: [
         { title: "Noleggio barche a Lloret de Mar", description: "Spiagge e calette spettacolari dal porto di Blanes" },
-        { title: "Barche con patente", description: "Al timone con il titulín, un corso di un giorno senza esame" },
+        { title: "Barche con patente", description: "Al timone con il titulín, che si ottiene in 1 giorno senza esame" },
         { title: "Noleggio moto d'acqua senza patente", description: "Circuito ed escursione guidata in moto d'acqua da Blanes" },
         { title: "Escursione a Tossa de Mar", description: "Scopri la Vila Vella e le sue calette cristalline" },
       ],
@@ -3645,14 +3645,14 @@ export const it: Translations = {
           },
         ],
         boatsTitle: 'Quale barca scegliere per fare snorkeling',
-        boatsIntro: "Dal 1° ottobre 2026 noleggi con la Licencia de Navegación (corso di un giorno, senza esame) oppure esci con lo skipper. Con il titulín guidi uno dei nostri tre motoscafi con patente, da 6 o 7 posti; nell'escursione privata con skipper, fino a 6 persone, nessuno del gruppo ha bisogno di patente.",
+        boatsIntro: "Dal 1° ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) oppure esci con lo skipper. Con il titulín guidi uno dei nostri tre motoscafi con patente, da 6 o 7 posti; nell'escursione privata con skipper, fino a 6 persone, nessuno del gruppo ha bisogno di patente.",
         practicalTitle: 'Informazioni pratiche',
         practicalBody: "Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Tutte queste calette sono a pochi minuti dal porto. Porta maschera e boccaglio, protezione solare e acqua. Ricorda di ancorare sulla sabbia, mai sulle praterie di posidonia.",
         faqTitle: 'Domande frequenti',
         faq: [
           {
             q: 'Ho bisogno della patente per fare snorkeling in barca da Blanes?',
-            a: "Sì: dal 1° ottobre 2026, per guidare serve almeno la Licencia de Navegación (titulín), un corso di un giorno senza esame. Se nessuno del gruppo ha la patente, l'escursione privata con skipper vi porta alle calette.",
+            a: "Sì: dal 1° ottobre 2026, per guidare serve almeno la Licencia de Navegación (titulín), che si ottiene in 1 giorno senza esame. Se nessuno del gruppo ha la patente, l'escursione privata con skipper vi porta alle calette.",
           },
           {
             q: 'L\'attrezzatura da snorkeling è inclusa?',
@@ -3771,7 +3771,7 @@ export const it: Translations = {
           },
         ],
         boatsTitle: 'Quale barca scegliere a seconda di quanto lontano vuoi arrivare',
-        boatsIntro: "Dal 1° ottobre 2026 noleggi con la Licencia de Navegación (corso di un giorno, senza esame) oppure esci con lo skipper. I nostri motoscafi con patente ti danno autonomia per visitare in giornata calette di Blanes, Lloret e Tossa; nell'escursione privata, la rotta la decide il nostro skipper.",
+        boatsIntro: "Dal 1° ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) oppure esci con lo skipper. I nostri motoscafi con patente ti danno autonomia per visitare in giornata calette di Blanes, Lloret e Tossa; nell'escursione privata, la rotta la decide il nostro skipper.",
         practicalTitle: 'Informazioni pratiche',
         practicalBody: "Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Con una barca con patente arrivi a Lloret in circa 25 minuti e a Tossa in 30-45 minuti. Porta maschera e boccaglio, protezione solare e acqua. Ancora sempre sulla sabbia, mai sulla posidonia.",
         faqTitle: 'Domande frequenti',
@@ -3803,14 +3803,14 @@ export const it: Translations = {
         ],
         boatsTitle: "Quale barca scegliere per andare in famiglia",
         boatsIntro:
-          "Per le famiglie consigliamo barche spaziose e stabili, da 6 o 7 posti. Dal 1° ottobre 2026 noleggi con la Licencia de Navegación (corso di un giorno, senza esame) oppure esci con lo skipper nell'escursione privata, dove nessuno del gruppo ha bisogno di patente.",
+          "Per le famiglie consigliamo barche spaziose e stabili, da 6 o 7 posti. Dal 1° ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) oppure esci con lo skipper nell'escursione privata, dove nessuno del gruppo ha bisogno di patente.",
         practicalTitle: "Informazioni pratiche",
         practicalBody:
           "Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Portiamo giubbotti salvagente di tutte le taglie, comprese quelle per bambini. Porta protezione solare, cappello, acqua e qualcosa da mangiare. Le calette vicine a Blanes sono a pochi minuti dal porto.",
         faqTitle: "Domande frequenti",
         faq: [
           { q: "È sicuro andare in barca con i bambini?", a: "Sì. Portiamo giubbotti salvagente per bambini, le calette vicine sono tranquille e poco profonde, e ti spieghiamo la conduzione e la sicurezza prima di partire." },
-          { q: "Serve la patente per andare in famiglia da Blanes?", a: "Sì: dal 1° ottobre 2026, chi guida deve avere almeno la Licencia de Navegación (titulín), un corso di un giorno senza esame. Se nessuno in famiglia ha la patente, l'opzione è l'escursione privata con skipper: la barca la conduce il nostro skipper." },
+          { q: "Serve la patente per andare in famiglia da Blanes?", a: "Sì: dal 1° ottobre 2026, chi guida deve avere almeno la Licencia de Navegación (titulín), che si ottiene in 1 giorno senza esame. Se nessuno in famiglia ha la patente, l'opzione è l'escursione privata con skipper: la barca la conduce il nostro skipper." },
         ],
         ctaTitle: "Prenota la tua giornata in barca in famiglia a Blanes",
         ctaText: "Scegli data e barca, e goditi una giornata in mare con i tuoi cari partendo dal Porto di Blanes.",
@@ -3884,7 +3884,7 @@ export const it: Translations = {
         ],
         boatsTitle: "Quale barca scegliere a seconda di quanto lontano vuoi arrivare",
         boatsIntro:
-          "Dal 1° ottobre 2026 noleggi con la Licencia de Navegación (corso di un giorno, senza esame) oppure esci con lo skipper. I nostri motoscafi con patente, spaziosi e fino a 7 posti, arrivano a Lloret e Tossa; l'escursione privata con skipper accoglie fino a 6 persone.",
+          "Dal 1° ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) oppure esci con lo skipper. I nostri motoscafi con patente, spaziosi e fino a 7 posti, arrivano a Lloret e Tossa; l'escursione privata con skipper accoglie fino a 6 persone.",
         practicalTitle: "Informazioni pratiche",
         practicalBody:
           "Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Con una barca con patente arrivi a Lloret in circa 25 minuti e a Tossa in 30-45 minuti. Portiamo giubbotti di tutte le taglie.",
@@ -3911,14 +3911,14 @@ export const it: Translations = {
         ],
         boatsTitle: "Quale barca scegliere per il tramonto",
         boatsIntro:
-          "Per il tramonto consigliamo un'uscita breve e rilassata vicino a Blanes. Dal 1° ottobre 2026 noleggi uno dei nostri motoscafi con la Licencia de Navegación (corso di un giorno, senza esame), oppure esci con lo skipper nell'escursione privata.",
+          "Per il tramonto consigliamo un'uscita breve e rilassata vicino a Blanes. Dal 1° ottobre 2026 noleggi uno dei nostri motoscafi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame), oppure esci con lo skipper nell'escursione privata.",
         practicalTitle: "Informazioni pratiche",
         practicalBody:
           "Stagione da aprile a ottobre, con partenze fino alle 20:00 dal Porto di Blanes; la fascia del tardo pomeriggio è quella che regala la luce migliore. Sulla Costa Brava il sole tramonta dietro la costa, quindi ti godrai la luce dorata e le scogliere illuminate più che il tramonto sull'acqua. Porta una giacca leggera: al calar della sera rinfresca.",
         faqTitle: "Domande frequenti",
         faq: [
           { q: "A che ora è la partenza al tramonto?", a: "Operiamo fino alle 20:00; l'ultima fascia del pomeriggio è quella che offre la luce dorata. Ti consigliamo di prenotare 1 o 2 ore a fine giornata." },
-          { q: "Serve la patente?", a: "Sì: dal 1° ottobre 2026 serve almeno la Licencia de Navegación (titulín), un corso di un giorno senza esame. Senza patente, puoi uscire con lo skipper nell'escursione privata." },
+          { q: "Serve la patente?", a: "Sì: dal 1° ottobre 2026 serve almeno la Licencia de Navegación (titulín), che si ottiene in 1 giorno senza esame. Senza patente, puoi uscire con lo skipper nell'escursione privata." },
         ],
         ctaTitle: "Prenota il tuo giro al tramonto a Blanes",
         ctaText: "Scegli data e barca, e goditi l'ora dorata in mare partendo dal Porto di Blanes.",
@@ -3992,7 +3992,7 @@ export const it: Translations = {
         ],
         boatsTitle: "Quale barca scegliere a seconda di quanto lontano vuoi arrivare",
         boatsIntro:
-          "Dal 1° ottobre 2026 noleggi con la Licencia de Navegación (corso di un giorno, senza esame) oppure esci con lo skipper. Con i nostri motoscafi con patente percorri il tratto fino a Lloret e Tossa; nell'escursione privata, il giro lo fa il nostro skipper.",
+          "Dal 1° ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) oppure esci con lo skipper. Con i nostri motoscafi con patente percorri il tratto fino a Lloret e Tossa; nell'escursione privata, il giro lo fa il nostro skipper.",
         practicalTitle: "Informazioni pratiche",
         practicalBody:
           "Stagione da aprile a ottobre, con partenze fino alle 20:00 dal Porto di Blanes. Su questa costa il sole tramonta dietro la terra: ti godrai la luce dorata e i paesi e le scogliere illuminate. Con una barca con patente arrivi a Lloret o Tossa. Porta una giacca leggera.",
@@ -4100,7 +4100,7 @@ export const it: Translations = {
         ],
         boatsTitle: "Quale barca scegliere per pescare lungo la costa",
         boatsIntro:
-          "Per la pesca usiamo barche con patente, con l'autonomia necessaria per percorrere la costa tra le zone. Basta la Licencia de Navegación (titulín), un corso di un giorno senza esame.",
+          "Per la pesca usiamo barche con patente, con l'autonomia necessaria per percorrere la costa tra le zone. Basta la Licencia de Navegación (titulín), che si ottiene in 1 giorno senza esame.",
         practicalTitle: "Informazioni pratiche e normativa",
         practicalBody:
           "Stagione da aprile a ottobre, partenze dalle 09:00 alle 20:00 dal Porto di Blanes. Serve la licenza di pesca ricreativa della Catalogna (a carico del cliente). Rispetta le taglie minime, le specie protette e, in modo particolare, le zone regolamentate come la riserva di Tossa. L'attrezzatura da pesca non è inclusa.",
@@ -4829,22 +4829,22 @@ export const it: Translations = {
     conditionsLink: "Leggi le condizioni generali di noleggio",
   },
   navigationLicensePage: {
-    seoTitle: "Patente nautica spagnola (Titulín) a Blanes | Corso di 1 giorno",
+    seoTitle: "Patente nautica spagnola (Titulín) a Blanes | Cosa permette",
     seoDescription:
-      "Cos'è la Licencia de Navegación (titulín), cosa permette e come ottenerla in un giorno: 6 ore, senza esame. Da ottobre 2026 la legge la richiede per noleggiare.",
+      "Cos'è la Licencia de Navegación (titulín), cosa permette e quali barche puoi guidare con essa. Senza esame. Da ottobre 2026 la legge la richiede per noleggiare.",
     navLabel: "Patente nautica",
     hero: {
-      title: "La Licencia de Navegación: la tua patente nautica in un solo giorno",
+      title: "La Licencia de Navegación: cos'è il titulín e quali barche puoi guidare",
       subtitle:
-        "Il titulín è la patente nautica più rapida di Spagna: 6 ore di corso, senza esame, e non scade mai. Ti apre le barche a motore fino a 6 metri e, da ottobre 2026, è la chiave per continuare a noleggiare barche in autonomia.",
+        "Il titulín è la patente nautica più rapida di Spagna: 6 ore in una scuola nautica autorizzata, senza esame, e non scade mai. Ti apre le barche a motore fino a 6 metri e, da ottobre 2026, è la chiave per continuare a noleggiare barche in autonomia.",
     },
-    chips: ["Corso di 1 giorno (6 ore)", "Senza esame", "Non scade mai", "Valida in tutta la Spagna"],
+    chips: ["Si ottiene in 1 giorno (6 ore)", "Senza esame", "Non scade mai", "Valida in tutta la Spagna"],
     newRule: {
       title: "Cambio di legge: cosa succede il 1º ottobre 2026",
       body:
         "Il Regio Decreto 1188/2025 modifica la normativa spagnola sui titoli nautici (RD 875/2014): dal 1° ottobre 2026, per noleggiare qualsiasi imbarcazione a motore serve un titolo nautico, anche per le barche piccole che fino ad allora si noleggiavano senza patente. L'esenzione per le barche fino a 5 metri e 15 CV resta solo per le imbarcazioni a uso privato.",
       note:
-        "Fino al 30 settembre 2026 noleggiavamo barche senza patente; dal 1° ottobre, non più. Con la Licencia de Navegación, un corso di un giorno senza esame, guidi i nostri tre motoscafi con patente; senza patente, esci con lo skipper nell'escursione privata.",
+        "Fino al 30 settembre 2026 noleggiavamo barche senza patente; dal 1° ottobre, non più. Con la Licencia de Navegación, che si ottiene in 1 giorno senza esame, guidi i nostri tre motoscafi con patente; senza patente, esci con lo skipper nell'escursione privata.",
     },
     whatIs: {
       title: "Cos'è la Licencia de Navegación (il titulín)",
@@ -4882,7 +4882,7 @@ export const it: Translations = {
         },
       ],
       note:
-        "Il corso si svolge presso scuole nautiche da diporto autorizzate e federazioni. Noi te lo organizziamo vicino a Blanes e lo combiniamo con il tuo primo noleggio: esci patentato e con il motoscafo già prenotato nello stesso viaggio. Scrivici e ti indichiamo una scuola autorizzata vicino a Blanes.",
+        "Il corso si svolge presso scuole nautiche da diporto autorizzate e federazioni, non da noi: scegli tu dove e quando farlo. Con il titulín in mano, prenoti la barca che vuoi della nostra flotta con patente.",
     },
     fleet: {
       title: "Con il titulín, questa flotta è tua",
@@ -4894,7 +4894,7 @@ export const it: Translations = {
     faq: [
       {
         q: "Mi serve già una patente per noleggiare una barca?",
-        a: "Sì. Dal 1° ottobre 2026, il RD 1188/2025 richiede un titolo nautico a chi noleggia qualsiasi imbarcazione a motore, anche le barche fino a 5 metri e 15 CV che prima si noleggiavano senza patente. La Licencia de Navegación è il più rapido da ottenere: un corso di un giorno, senza esame.",
+        a: "Sì. Dal 1° ottobre 2026, il RD 1188/2025 richiede un titolo nautico a chi noleggia qualsiasi imbarcazione a motore, anche le barche fino a 5 metri e 15 CV che prima si noleggiavano senza patente. La Licencia de Navegación è il più rapido da ottenere: si ottiene in 1 giorno, senza esame.",
       },
       {
         q: "Quanto dura il corso e c'è un esame?",
@@ -4923,12 +4923,12 @@ export const it: Translations = {
         "Con l'escursione privata con skipper non serve nessun titolo, né ora né con la nuova legge: uno skipper professionista vi porta a calette e grotte marine tra Blanes e Tossa de Mar mentre voi vi godete solo il viaggio.",
       cta: "Vedi l'escursione con skipper",
     },
-    ctaTitle: "Ti organizziamo il titulín e la tua prima uscita",
+    ctaTitle: "Con il titulín in mano, la barca ti aspetta",
     ctaText:
-      "Scrivici su WhatsApp e montiamo il pacchetto: corso di un giorno vicino a Blanes, date disponibili, prezzo e il motoscafo prenotato per quando avrai la patente in mano.",
+      "Scrivici su WhatsApp per vedere date e barche disponibili. Se non hai ancora un titolo, l'escursione privata con skipper non ne richiede.",
     ctaButton: "Scrivici su WhatsApp",
     whatsappMessage:
-      "Ciao, vorrei informazioni su come ottenere la Licencia de Navegación (titulín) e noleggiare una barca.",
+      "Ciao, ho (o sto per prendere) la Licencia de Navegación (titulín) e vorrei informazioni per noleggiare una barca.",
   },
   activitiesPage: {
     seoTitle: "Cosa fare a Blanes e Lloret de Mar oltre alla barca | Attività",
@@ -5207,9 +5207,9 @@ export const it: Translations = {
       "Per chi vuole staccare del tutto, festeggia qualcosa o non ha la patente nautica e vuole arrivare fino alle grotte di Tossa senza limiti di potenza.",
     vsSelfDriveTitle: "Senza skipper: al timone ci sei tu",
     vsSelfDriveText:
-      "Con la Licencia de Navegación (corso di un giorno, senza esame) o un titolo superiore puoi noleggiare le nostre imbarcazioni da 80-115 cv e tracciare la tua rotta.",
+      "Con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o un titolo superiore puoi noleggiare le nostre imbarcazioni da 80-115 cv e tracciare la tua rotta.",
     vsLinkLicensed: "Barche senza skipper (con patente nautica)",
-    vsLinkFree: "Titulín in 1 giorno",
+    vsLinkFree: "Cos'è il titulín",
     faq: [
       {
         q: "Serve la patente o esperienza per questa escursione?",
@@ -5414,31 +5414,31 @@ export const it: Translations = {
       },
       malgrat: {
         title: 'Barche popolari da noleggiare dal Porto di Blanes',
-        description: 'A 10 minuti da Malgrat de Mar. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper. Queste sono le barche che ti portano a Lloret e a Tossa de Mar.',
+        description: "A 10 minuti da Malgrat de Mar. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper. Queste sono le barche che ti portano a Lloret e a Tossa de Mar.",
       },
       santaSusanna: {
         title: 'Barche popolari da noleggiare dal Porto di Blanes',
-        description: 'A 15 minuti da Santa Susanna. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper. Queste sono le barche che ti portano a Lloret e a Tossa de Mar.',
+        description: "A 15 minuti da Santa Susanna. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper. Queste sono le barche che ti portano a Lloret e a Tossa de Mar.",
       },
       calella: {
         title: 'Barche popolari da noleggiare dal Porto di Blanes',
-        description: 'A 20 minuti da Calella. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper. Queste sono le barche che ti portano a Lloret e a Tossa de Mar.',
+        description: "A 20 minuti da Calella. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper. Queste sono le barche che ti portano a Lloret e a Tossa de Mar.",
       },
       pineda: {
         title: 'Barche popolari da noleggiare dal porto di Blanes',
-        description: 'Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper. Queste sono le barche che ti portano a Lloret e a Tossa de Mar.',
+        description: "Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper. Queste sono le barche che ti portano a Lloret e a Tossa de Mar.",
       },
       palafolls: {
         title: 'Barche popolari da noleggiare dal porto di Blanes',
-        description: 'Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper. Queste sono le barche che ti portano a Lloret e a Tossa de Mar.',
+        description: "Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper. Queste sono le barche che ti portano a Lloret e a Tossa de Mar.",
       },
       tordera: {
         title: 'Barche popolari da noleggiare dal porto di Blanes',
-        description: 'Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper. Queste sono le barche che ti portano a Lloret e a Tossa de Mar.',
+        description: "Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper. Queste sono le barche che ti portano a Lloret e a Tossa de Mar.",
       },
       tossa: {
         title: 'Barche per la tua rotta verso Tossa de Mar',
-        description: 'Queste sono le barche che arrivano a Tossa de Mar: con la Licencia de Navegación, che si ottiene con un corso di 1 giorno senza esame, o con la nostra escursione privata con skipper, che non richiede patente.',
+        description: "Queste sono le barche che arrivano a Tossa de Mar: con la Licencia de Navegación, che si ottiene in 1 giorno, senza esame, o con la nostra escursione privata con skipper, che non richiede patente.",
       },
     },
   },
@@ -5455,7 +5455,7 @@ export const it: Translations = {
       faqItems: [
         {
           question: 'Ho bisogno della patente per noleggiare una barca a Blanes?',
-          answer: 'Sì. Dal 1 ottobre 2026 (RD 1188/2025) per guidare qualsiasi barca a motore a noleggio serve una patente. Basta la Licencia de Navegación, il titulín: corso di 1 giorno, senza esame. Se non ce l\'hai, prenota l\'escursione privata con skipper: guida lui e tu ti godi il mare.',
+          answer: "Sì. Dal 1 ottobre 2026 (RD 1188/2025) per guidare qualsiasi barca a motore a noleggio serve una patente. Basta la Licencia de Navegación, il titulín: si ottiene in 1 giorno, senza esame. Se non ce l'hai, prenota l'escursione privata con skipper: guida lui e tu ti godi il mare.",
         },
         {
           question: 'Quanto costa noleggiare una barca al Porto di Blanes?',
@@ -5492,7 +5492,7 @@ export const it: Translations = {
       ],
       hero: {
         title: 'Noleggio Barche a Blanes',
-        subtitle: 'Noleggio barche direttamente nel porto di Blanes. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper: barche per 6-7 persone ed escursione privata fino a 6. Parcheggio gratuito a 100 m dall\'ormeggio. Da qui navighi verso Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min), Lloret de Mar (15-25 min) e Tossa de Mar (30-45 min).',
+        subtitle: "Noleggio barche direttamente nel porto di Blanes. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper: barche per 6-7 persone ed escursione privata fino a 6. Parcheggio gratuito a 100 m dall'ormeggio. Da qui navighi verso Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min), Lloret de Mar (15-25 min) e Tossa de Mar (30-45 min).",
         badgePort: 'Porto di Blanes',
         badgeCapacity: 'Fino a 7 persone',
         badgeDuration: 'Durata 2-8 ore',
@@ -5541,7 +5541,7 @@ export const it: Translations = {
         fleetViewDetails: 'Vedi dettagli',
         guideTitle: 'Guida Completa: Noleggiare una Barca a Blanes',
         guideRequirementsTitle: 'Requisiti per noleggiare una barca',
-        guideRequirementsText: 'Dal 1 ottobre 2026 (RD 1188/2025) per guidare una barca a motore a noleggio serve una patente nautica. Basta la Licencia de Navegación (il titulín: corso di 1 giorno, senza esame); valgono anche PNB, PER o equivalenti europei. Inoltre devi essere maggiorenne e presentare carta d\'identità o passaporto. Prima di salpare ti spieghiamo la barca, l\'ancoraggio e le dotazioni di sicurezza. Se non hai la patente, l\'escursione privata con skipper non la richiede.',
+        guideRequirementsText: "Dal 1 ottobre 2026 (RD 1188/2025) per guidare una barca a motore a noleggio serve una patente nautica. Basta la Licencia de Navegación (il titulín: si ottiene in 1 giorno, senza esame); valgono anche PNB, PER o equivalenti europei. Inoltre devi essere maggiorenne e presentare carta d'identità o passaporto. Prima di salpare ti spieghiamo la barca, l'ancoraggio e le dotazioni di sicurezza. Se non hai la patente, l'escursione privata con skipper non la richiede.",
         guideSeasonTitle: 'Stagione e orari',
         guideSeasonText: 'La stagione nautica a Blanes va da aprile a ottobre. Offriamo tre fasce orarie: mattina (9:00-13:00), pomeriggio (14:00-18:00) e giornata intera (9:00-18:00). Giugno e settembre sono ideali: temperature piacevoli, mare calmo e meno affollamento.',
         guideIncludedTitle: 'Cosa include il noleggio',
@@ -5591,7 +5591,7 @@ export const it: Translations = {
       faqItems: [
         {
           question: 'Ho bisogno della patente o esperienza per arrivare a Lloret in barca?',
-          answer: 'Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper. Con il titulín guidi tu fino alla spiaggia di Lloret in circa 15-25 minuti; con l\'escursione privata con skipper non servono patente né esperienza.',
+          answer: "Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper. Con il titulín guidi tu fino alla spiaggia di Lloret in circa 15-25 minuti; con l'escursione privata con skipper non servono patente né esperienza.",
         },
         {
           question: 'Fin dove posso arrivare in barca da Blanes verso Lloret?',
@@ -5620,7 +5620,7 @@ export const it: Translations = {
       ],
       hero: {
         title: 'Noleggio Barche a Lloret de Mar: Rotta da Blanes con Patente o Skipper',
-        subtitle: 'Dal porto di Blanes alla spiaggia di Lloret, con sette cale incontaminate della Costa Brava lungo il percorso. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper.',
+        subtitle: "Dal porto di Blanes alla spiaggia di Lloret, con sette cale incontaminate della Costa Brava lungo il percorso. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper.",
         badgeFrom: 'Dal Porto di Blanes',
         badgeTime: '15-25 min di navigazione',
         badgeCapacity: 'Fino a 7 persone per barca',
@@ -5754,7 +5754,7 @@ export const it: Translations = {
         ctaDescription: 'Prenota la tua barca dal porto di Blanes e vivi l\'esperienza unica di arrivare via mare al borgo medievale più bello della Costa Brava.',
         ctaButton: 'Prenota Escursione a Tossa',
         warningTitle: 'Due modi per arrivare a Tossa da Blanes',
-        warningBody: 'Dal 1 ottobre 2026 non si noleggiano più barche senza patente. Per arrivare a Tossa da Blanes hai due opzioni: (1) noleggio senza skipper con la Licencia de Navegación (pacchetti 2 h / 4 h / 8 h da {licBaja2h} € con Mingolla Brava 19, Trimarchi 57S o Pacific Craft 625, IVA, ormeggio, pulizia e assicurazione inclusi; carburante e cauzione di 500 € a parte), oppure (2) l\'<a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Escursione Privata con Capitano</a> (Pacific Craft 625 + skipper, massimo 4 h, fino a 6 pers., da {excursionBaja4h} € con IVA, skipper, ormeggio, pulizia e assicurazione inclusi; carburante a parte). Se non hai ancora la patente, la Licencia de Navegación si ottiene con un corso di 1 giorno, senza esame.',
+        warningBody: "Dal 1 ottobre 2026 non si noleggiano più barche senza patente. Per arrivare a Tossa da Blanes hai due opzioni: (1) noleggio senza skipper con la Licencia de Navegación (pacchetti 2 h / 4 h / 8 h da {licBaja2h} € con Mingolla Brava 19, Trimarchi 57S o Pacific Craft 625, IVA, ormeggio, pulizia e assicurazione inclusi; carburante e cauzione di 500 € a parte), oppure (2) l'<a href=\"/es/barco/excursion-privada\" class=\"underline font-medium text-foreground hover:text-primary\">Escursione Privata con Capitano</a> (Pacific Craft 625 + skipper, massimo 4 h, fino a 6 pers., da {excursionBaja4h} € con IVA, skipper, ormeggio, pulizia e assicurazione inclusi; carburante a parte). Se non hai ancora la patente, la Licencia de Navegación si ottiene in 1 giorno, senza esame.",
         crossLinkingText: 'Offriamo servizio anche per turisti alloggiati a <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> e <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Da questi paesi della costa del Maresme si arriva al Porto di Blanes in 10-20 minuti d\'auto.',
         relatedTitle: 'Servizi e destinazioni correlate',
         relatedCostaBrava: 'Altre destinazioni sulla Costa Brava',
@@ -5778,7 +5778,7 @@ export const it: Translations = {
         closestPort: 'Il Porto Più Vicino',
         closestPortDesc: 'Blanes è il porto turistico più vicino a Malgrat de Mar, a soli 10 minuti sulla N-II. Barche con patente ed escursione con skipper, pronte a salpare con tutti i comfort.',
         varietyBoats: 'Con Patente o Skipper',
-        varietyBoatsDesc: 'Barche per 6-7 persone che guidi con la Licencia de Navegación (corso di 1 giorno, senza esame), oppure escursione privata con skipper fino a 6 persone.',
+        varietyBoatsDesc: "Barche per 6-7 persone che guidi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame), oppure escursione privata con skipper fino a 6 persone.",
         fuelIncluded: 'Prezzi Chiari',
         fuelIncludedDesc: 'Pacchetti di 2, 4 o 8 ore con IVA, ormeggio, pulizia e assicurazione inclusi. Il carburante si paga a parte in base al consumo reale.',
         noExperience: 'Senza Patente? Esci con lo Skipper',
@@ -5812,11 +5812,11 @@ export const it: Translations = {
         },
         {
           question: 'Quanto costa noleggiare una barca da Blanes?',
-          answer: 'Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper. Le barche con patente si noleggiano a pacchetti di 2, 4 o 8 ore da {licBaja2h} € e l\'escursione privata con skipper da {excursionBaja2h} € (2 ore). Il carburante si paga a parte.',
+          answer: "Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper. Le barche con patente si noleggiano a pacchetti di 2, 4 o 8 ore da {licBaja2h} € e l'escursione privata con skipper da {excursionBaja2h} € (2 ore). Il carburante si paga a parte.",
         },
         {
           question: 'Ho bisogno della patente nautica?',
-          answer: 'Sì. Dal 1 ottobre 2026 (RD 1188/2025) per guidare qualsiasi barca a motore a noleggio serve una patente. Basta la Licencia de Navegación, il titulín: corso di 1 giorno, senza esame. Se non ce l\'hai, prenota l\'escursione privata con skipper: guida lui e tu ti godi il mare.',
+          answer: "Sì. Dal 1 ottobre 2026 (RD 1188/2025) per guidare qualsiasi barca a motore a noleggio serve una patente. Basta la Licencia de Navegación, il titulín: si ottiene in 1 giorno, senza esame. Se non ce l'hai, prenota l'escursione privata con skipper: guida lui e tu ti godi il mare.",
         },
         {
           question: 'C\'è parcheggio al Porto di Blanes?',
@@ -5844,11 +5844,11 @@ export const it: Translations = {
         },
         {
           question: 'Quanto costa noleggiare una barca da Blanes se sono a Santa Susanna?',
-          answer: 'Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper. Le barche con patente si noleggiano a pacchetti di 2, 4 o 8 ore da {licBaja2h} € e l\'escursione privata con skipper da {excursionBaja2h} € (2 ore). Il carburante si paga a parte.',
+          answer: "Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper. Le barche con patente si noleggiano a pacchetti di 2, 4 o 8 ore da {licBaja2h} € e l'escursione privata con skipper da {excursionBaja2h} € (2 ore). Il carburante si paga a parte.",
         },
         {
           question: 'Ho bisogno della patente nautica per noleggiare una barca?',
-          answer: 'Sì. Dal 1 ottobre 2026 (RD 1188/2025) per guidare qualsiasi barca a motore a noleggio serve una patente. Basta la Licencia de Navegación, il titulín: corso di 1 giorno, senza esame. Se non ce l\'hai, prenota l\'escursione privata con skipper: guida lui e tu ti godi il mare.',
+          answer: "Sì. Dal 1 ottobre 2026 (RD 1188/2025) per guidare qualsiasi barca a motore a noleggio serve una patente. Basta la Licencia de Navegación, il titulín: si ottiene in 1 giorno, senza esame. Se non ce l'hai, prenota l'escursione privata con skipper: guida lui e tu ti godi il mare.",
         },
         {
           question: 'È facile arrivare con i mezzi pubblici da Santa Susanna?',
@@ -5860,7 +5860,7 @@ export const it: Translations = {
         },
         {
           question: 'Qual è l\'escursione in barca migliore se alloggio a Santa Susanna?',
-          answer: 'Da Blanes consigliamo: (a) escursione privata con skipper di 4h fino a Tossa e Cala Bona (da {excursionBaja4h} €, ideale se non hai patente né esperienza nautica); (b) barca con Licencia de Navegación (LN) per 4h per ancorarsi in 2-3 cale tra Blanes e Lloret o salire fino a Tossa (da 255 € / 4h). Se nessuno del gruppo ha la patente, il titulín si ottiene con un corso di 1 giorno, senza esame.',
+          answer: "Da Blanes consigliamo: (a) escursione privata con skipper di 4h fino a Tossa e Cala Bona (da {excursionBaja4h} €, ideale se non hai patente né esperienza nautica); (b) barca con Licencia de Navegación (LN) per 4h per ancorarsi in 2-3 cale tra Blanes e Lloret o salire fino a Tossa (da 255 € / 4h). Se nessuno del gruppo ha la patente, il titulín si ottiene in 1 giorno, senza esame.",
         },
         {
           question: 'Posso fare un\'escursione in barca al tramonto da Santa Susanna?',
@@ -5920,11 +5920,11 @@ export const it: Translations = {
         },
         {
           question: 'Quanto costa noleggiare una barca da Blanes se sono a Calella?',
-          answer: 'Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper. Le barche con patente si noleggiano a pacchetti di 2, 4 o 8 ore da {licBaja2h} € e l\'escursione privata con skipper da {excursionBaja2h} € (2 ore). Il carburante si paga a parte.',
+          answer: "Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper. Le barche con patente si noleggiano a pacchetti di 2, 4 o 8 ore da {licBaja2h} € e l'escursione privata con skipper da {excursionBaja2h} € (2 ore). Il carburante si paga a parte.",
         },
         {
           question: 'Ho bisogno di esperienza precedente per noleggiare una barca?',
-          answer: 'Non serve esperienza. Con l\'escursione privata con skipper non guidi tu. Se vuoi prendere il timone ti serve la Licencia de Navegación (corso di 1 giorno, senza esame) e, prima di salpare, ti spieghiamo la barca, l\'ancoraggio e le norme di sicurezza.',
+          answer: "Non serve esperienza. Con l'escursione privata con skipper non guidi tu. Se vuoi prendere il timone ti serve la Licencia de Navegación (si ottiene in 1 giorno, senza esame) e, prima di salpare, ti spieghiamo la barca, l'ancoraggio e le norme di sicurezza.",
         },
         {
           question: 'Posso andare e tornare da Calella con i mezzi pubblici?',
@@ -5956,7 +5956,7 @@ export const it: Translations = {
         closestPort: 'Il Porto Più Vicino',
         closestPortDesc: 'Blanes è il porto turistico più accessibile da Calella. A 20 minuti dalla C-32 o N-II, con barche con patente, escursione con skipper e servizio professionale.',
         varietyBoats: 'Flotta Completa',
-        varietyBoatsDesc: 'Barche con patente per chi ha la Licencia de Navegación (corso di 1 giorno, senza esame) ed escursione privata con skipper per chi preferisce non guidare.',
+        varietyBoatsDesc: "Barche con patente per chi ha la Licencia de Navegación (si ottiene in 1 giorno, senza esame) ed escursione privata con skipper per chi preferisce non guidare.",
         fuelIncluded: 'Prezzo Chiaro',
         fuelIncludedDesc: 'IVA, ormeggio, pulizia, giubbotti di salvataggio e dotazioni di sicurezza inclusi. Il carburante si paga a parte.',
         noExperience: 'Per Tutti i Livelli',
@@ -5987,14 +5987,14 @@ export const it: Translations = {
     costaBrava: {
       hero: {
         title: 'Noleggio Barche sulla Costa Brava',
-        subtitle: 'Scopri le cale e le spiagge più belle della Costa Brava a bordo delle nostre barche. Partenze dal porto di Blanes, nel cuore della costa catalana. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper.',
+        subtitle: "Scopri le cale e le spiagge più belle della Costa Brava a bordo delle nostre barche. Partenze dal porto di Blanes, nel cuore della costa catalana. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper.",
         badgePort: 'Porto di Blanes',
         badgeCapacity: 'Fino a 7 persone',
         badgeLicense: 'Con titulín o skipper',
       },
       sections: {
         introP1: 'La Costa Brava è una delle destinazioni nautiche più spettacolari del Mediterraneo. Con oltre 200 chilometri di litorale tra Blanes e il confine francese, offre una combinazione unica di scogliere, calette con acque cristalline e villaggi medievali.',
-        introP2: 'Da Costa Brava Rent a Boat ti offriamo il noleggio barche più semplice della Costa Brava: scegli la tua barca nel porto di Blanes e naviga al tuo ritmo. Per guidare basta la Licencia de Navegación (corso di 1 giorno, senza esame); se non ce l\'hai, esci con il nostro skipper. Prima di salpare ti spieghiamo la barca e ti diamo tutto il necessario per una giornata perfetta in mare.',
+        introP2: "Da Costa Brava Rent a Boat ti offriamo il noleggio barche più semplice della Costa Brava: scegli la tua barca nel porto di Blanes e naviga al tuo ritmo. Per guidare basta la Licencia de Navegación (si ottiene in 1 giorno, senza esame); se non ce l'hai, esci con il nostro skipper. Prima di salpare ti spieghiamo la barca e ti diamo tutto il necessario per una giornata perfetta in mare.",
         introP3: 'Il prezzo include IVA, ormeggio, pulizia, assicurazione di responsabilità civile e dotazioni di sicurezza; il carburante si paga a parte in base al consumo. Nessun costo nascosto. Prenota oggi e scopri perché migliaia di famiglie scelgono la Costa Brava ogni estate per le loro avventure in mare.',
         whyChooseTitle: 'Perche scegliere la Costa Brava per noleggiare una barca',
         covesTitle: 'Calette e spiagge inaccessibili via terra',
@@ -6048,7 +6048,7 @@ export const it: Translations = {
       },
       faq: {
         experienceQ: 'Ho bisogno di esperienza per noleggiare una barca sulla Costa Brava?',
-        experienceA: 'No, non serve esperienza. Con l\'escursione privata con skipper non guidi tu. Per prendere il timone basta la Licencia de Navegación (corso di 1 giorno, senza esame) ed essere maggiorenni; prima di partire ti mostriamo come manovrare, ancorare e usare le dotazioni di sicurezza. Il nostro staff è reperibile per telefono durante tutta la navigazione.',
+        experienceA: "No, non serve esperienza. Con l'escursione privata con skipper non guidi tu. Per prendere il timone basta la Licencia de Navegación (si ottiene in 1 giorno, senza esame) ed essere maggiorenni; prima di partire ti mostriamo come manovrare, ancorare e usare le dotazioni di sicurezza. Il nostro staff è reperibile per telefono durante tutta la navigazione.",
         distanceQ: 'Fin dove posso navigare da Blanes?',
         distanceA: 'Con la Licencia de Navegación, di giorno e vicino alla costa, da Blanes arrivi a Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min), Cala Treumal e Tossa de Mar (30-45 min) e, in giornata intera, a Sant Feliu de Guíxols. Con l\'escursione privata con skipper fai la rotta senza patente.',
         weatherQ: 'Cosa succede se c\'e maltempo il giorno della mia prenotazione?',
@@ -6065,11 +6065,11 @@ export const it: Translations = {
         },
         {
           question: 'Quanto costa noleggiare una barca da Blanes se abito a Tordera?',
-          answer: 'Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper. Le barche con patente si noleggiano a pacchetti di 2, 4 o 8 ore da {licBaja2h} € e l\'escursione privata con skipper da {excursionBaja2h} € (2 ore). Il carburante si paga a parte.',
+          answer: "Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper. Le barche con patente si noleggiano a pacchetti di 2, 4 o 8 ore da {licBaja2h} € e l'escursione privata con skipper da {excursionBaja2h} € (2 ore). Il carburante si paga a parte.",
         },
         {
           question: 'Ho bisogno della patente nautica?',
-          answer: 'Sì. Dal 1 ottobre 2026 (RD 1188/2025) per guidare qualsiasi barca a motore a noleggio serve una patente. Basta la Licencia de Navegación, il titulín: corso di 1 giorno, senza esame. Se non ce l\'hai, prenota l\'escursione privata con skipper: guida lui e tu ti godi il mare.',
+          answer: "Sì. Dal 1 ottobre 2026 (RD 1188/2025) per guidare qualsiasi barca a motore a noleggio serve una patente. Basta la Licencia de Navegación, il titulín: si ottiene in 1 giorno, senza esame. Se non ce l'hai, prenota l'escursione privata con skipper: guida lui e tu ti godi il mare.",
         },
         {
           question: 'C\'è parcheggio al Porto di Blanes?',
@@ -6077,8 +6077,8 @@ export const it: Translations = {
         },
       ],
       seo: {
-        title: 'Noleggio Barca Tordera | Porto Blanes a 15 min | Patente in 1 giorno o Skipper',
-        description: 'In vacanza a Tordera? Il porto di Blanes è a 15 min. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper.',
+        title: "Noleggio Barca Tordera | Porto Blanes a 15 min | Patente o Skipper",
+        description: "In vacanza a Tordera? Il porto di Blanes è a 15 min. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper.",
         ogTitle: 'Noleggio Barca Tordera | Delta del Tordera in Barca',
         ogDescription: 'Da Tordera al porto di Blanes in 15 min. Con titulín o con skipper.',
       },
@@ -6097,7 +6097,7 @@ export const it: Translations = {
         whyCard1Title: 'Il tuo porto più vicino',
         whyCard1Desc: 'Il Porto di Blanes si trova a soli 10 km da Tordera, il che lo rende il punto di noleggio barche più vicino e accessibile. Che tu sia residente o di passaggio, in 15 minuti puoi essere a navigare nelle acque cristalline della Costa Brava. Il collegamento stradale è diretto e senza complicazioni.',
         whyCard2Title: 'Con Patente o Skipper',
-        whyCard2Desc: 'Con la Licencia de Navegación (corso di 1 giorno, senza esame) guidi le nostre barche per 6-7 persone. Se nessuno del gruppo ha la patente, l\'escursione privata con skipper porta fino a 6 persone.',
+        whyCard2Desc: "Con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) guidi le nostre barche per 6-7 persone. Se nessuno del gruppo ha la patente, l'escursione privata con skipper porta fino a 6 persone.",
         whyCard3Title: 'Prezzi chiari, senza sorprese',
         whyCard3Desc: 'Pacchetti di 2, 4 o 8 ore con IVA, ormeggio, pulizia e assicurazione inclusi. Il carburante si paga a parte in base al consumo reale, su tutte le barche.',
         whyCard4Title: 'Nessuna esperienza precedente necessaria',
@@ -6148,7 +6148,7 @@ export const it: Translations = {
         },
         {
           question: 'Quanto costa noleggiare una barca da Blanes se sono a Palafolls?',
-          answer: 'Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper. Le barche con patente si noleggiano a pacchetti di 2, 4 o 8 ore da {licBaja2h} € e l\'escursione privata con skipper da {excursionBaja2h} € (2 ore). Il carburante si paga a parte.',
+          answer: "Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper. Le barche con patente si noleggiano a pacchetti di 2, 4 o 8 ore da {licBaja2h} € e l'escursione privata con skipper da {excursionBaja2h} € (2 ore). Il carburante si paga a parte.",
         },
         {
           question: 'Posso andare dal campeggio di Palafolls al Porto di Blanes facilmente?',
@@ -6156,12 +6156,12 @@ export const it: Translations = {
         },
         {
           question: 'Ho bisogno di esperienza per noleggiare una barca?',
-          answer: 'Non serve esperienza. Con l\'escursione privata con skipper non guidi tu. Se vuoi prendere il timone ti serve la Licencia de Navegación (corso di 1 giorno, senza esame) e, prima di salpare, ti spieghiamo la barca, l\'ancoraggio e le norme di sicurezza.',
+          answer: "Non serve esperienza. Con l'escursione privata con skipper non guidi tu. Se vuoi prendere il timone ti serve la Licencia de Navegación (si ottiene in 1 giorno, senza esame) e, prima di salpare, ti spieghiamo la barca, l'ancoraggio e le norme di sicurezza.",
         },
       ],
       seo: {
-        title: 'Noleggio Barca Palafolls | Porto Blanes a 12 min | Patente in 1 giorno o Skipper',
-        description: 'In vacanza a Palafolls? Il porto di Blanes è a 12 min. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper.',
+        title: "Noleggio Barca Palafolls | Porto Blanes a 12 min | Patente o Skipper",
+        description: "In vacanza a Palafolls? Il porto di Blanes è a 12 min. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper.",
         ogTitle: 'Noleggio Barca Palafolls | 12 min al Porto Blanes',
         ogDescription: 'Da Palafolls al porto di Blanes in 12 min. Con titulín o con skipper.',
       },
@@ -6231,11 +6231,11 @@ export const it: Translations = {
         },
         {
           question: 'Quanto costa noleggiare una barca da Blanes se sono a Pineda de Mar?',
-          answer: 'Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper. Le barche con patente si noleggiano a pacchetti di 2, 4 o 8 ore da {licBaja2h} € e l\'escursione privata con skipper da {excursionBaja2h} € (2 ore). Il carburante si paga a parte.',
+          answer: "Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper. Le barche con patente si noleggiano a pacchetti di 2, 4 o 8 ore da {licBaja2h} € e l'escursione privata con skipper da {excursionBaja2h} € (2 ore). Il carburante si paga a parte.",
         },
         {
           question: 'Ho bisogno della patente nautica per noleggiare una barca?',
-          answer: 'Sì. Dal 1 ottobre 2026 (RD 1188/2025) per guidare qualsiasi barca a motore a noleggio serve una patente. Basta la Licencia de Navegación, il titulín: corso di 1 giorno, senza esame. Se non ce l\'hai, prenota l\'escursione privata con skipper: guida lui e tu ti godi il mare.',
+          answer: "Sì. Dal 1 ottobre 2026 (RD 1188/2025) per guidare qualsiasi barca a motore a noleggio serve una patente. Basta la Licencia de Navegación, il titulín: si ottiene in 1 giorno, senza esame. Se non ce l'hai, prenota l'escursione privata con skipper: guida lui e tu ti godi il mare.",
         },
         {
           question: 'Posso andare da Pineda de Mar a Blanes con i mezzi pubblici?',
@@ -6255,8 +6255,8 @@ export const it: Translations = {
         },
       ],
       seo: {
-        title: 'Noleggio Barca Pineda de Mar | Porto Blanes a 18 min | Patente in 1 giorno o Skipper',
-        description: 'In vacanza a Pineda de Mar? Il porto di Blanes è a 18 min. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper.',
+        title: "Noleggio Barca Pineda de Mar | Porto Blanes a 18 min | Patente o Skipper",
+        description: "In vacanza a Pineda de Mar? Il porto di Blanes è a 18 min. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper.",
         ogTitle: 'Noleggio Barca Pineda de Mar | 18 min al Porto Blanes',
         ogDescription: 'Da Pineda de Mar al porto di Blanes in 18 min. Con titulín o con skipper.',
       },
@@ -6267,7 +6267,7 @@ export const it: Translations = {
       breadcrumbName: 'Noleggio Barche Pineda de Mar',
       sections: {
         heroTitle: 'Noleggio Barche vicino a Pineda de Mar',
-        heroSubtitle: 'Pineda de Mar è una delle principali mete turistiche della costa del Maresme, con decine di hotel e resort all-inclusive. Il porto di Blanes, a soli 18 minuti in auto o 12 minuti in treno, è il punto di noleggio barche più vicino. Goditi la Costa Brava con la Licencia de Navegación (corso di 1 giorno, senza esame) o con uno skipper.',
+        heroSubtitle: "Pineda de Mar è una delle principali mete turistiche della costa del Maresme, con decine di hotel e resort all-inclusive. Il porto di Blanes, a soli 18 minuti in auto o 12 minuti in treno, è il punto di noleggio barche più vicino. Goditi la Costa Brava con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o con uno skipper.",
         heroBadgeCar: '15 km / 18 min in auto',
         heroBadgeTransport: 'RENFE R1: 12 min',
         heroBadgeExtra: 'Costa del Maresme',
@@ -6276,7 +6276,7 @@ export const it: Translations = {
         whyCard1Title: 'Il porto più vicino con noleggio barche',
         whyCard1Desc: 'Pineda de Mar non dispone di porto turistico né di servizio di noleggio imbarcazioni. Il Porto di Blanes è il punto più vicino dove puoi noleggiare una barca, a soli 15 km sulla strada N-II. Se alloggi in uno dei molti hotel di Pineda, in meno di 20 minuti sarai a navigare nelle acque cristalline della Costa Brava.',
         whyCard2Title: 'Con Patente o Skipper',
-        whyCard2Desc: 'Con la Licencia de Navegación (corso di 1 giorno, senza esame) guidi le nostre barche per 6-7 persone. Se nessuno del gruppo ha la patente, l\'escursione privata con skipper porta fino a 6 persone.',
+        whyCard2Desc: "Con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) guidi le nostre barche per 6-7 persone. Se nessuno del gruppo ha la patente, l'escursione privata con skipper porta fino a 6 persone.",
         whyCard3Title: 'Prezzi chiari, senza sorprese',
         whyCard3Desc: 'Pacchetti di 2, 4 o 8 ore con IVA, ormeggio, pulizia e assicurazione inclusi. Il carburante si paga a parte in base al consumo reale, su tutte le barche.',
         whyCard4Title: 'Nessuna esperienza precedente necessaria',
@@ -6334,9 +6334,9 @@ export const it: Translations = {
     newBadge: "Novità",
   },
   titulinSection: {
-    title: "Prendi il titulín in un giorno e guida da solo",
-    subtitle: "6 ore di corso, senza esame e valido per sempre. Lo organizziamo vicino a Blanes e lo abbiniamo al tuo primo noleggio: finisci il corso con la patente in mano e la barca prenotata.",
-    ctaPrimary: "Voglio prendere il titulín",
+    title: "Cos'è il titulín e quali barche puoi guidare",
+    subtitle: "Titolo nautico di base: 6 ore in una scuola autorizzata, senza esame e valido per sempre. Con esso guidi le nostre tre barche con patente.",
+    ctaPrimary: "Cos'è il titulín",
     captainedLine: "Preferisci non stare al timone?",
     captainedCta: "Esci con uno skipper professionista",
   },

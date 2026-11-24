@@ -35,17 +35,17 @@ export const es: Translations = {
     // Also the SSR/GEO fallback paragraph for locales without summaryGeo
     // (server/seoInjector.ts reads summaryGeo ?? subtitle for the home body).
     subtitle:
-      "Alquila una lancha en el puerto de Blanes y pilótala tú mismo: hasta 115 CV, 7 plazas y rumbo libre hasta Tossa de Mar. Basta la Licencia de Navegación o un título extranjero equivalente, que verificamos online antes de que reserves. Si aún no tienes título, te organizamos el curso de un día o sales con patrón profesional.",
+      "Alquila una lancha en el puerto de Blanes y pilótala tú mismo: hasta 115 CV, 7 plazas y rumbo libre hasta Tossa de Mar. Basta la Licencia de Navegación o un título extranjero equivalente, que verificamos online antes de que reserves. Si aún no tienes título, sales con patrón profesional.",
     subtitleLine1:
       "Lanchas de hasta 115 CV para patrones titulados, rumbo libre hasta Tossa de Mar.",
-    subtitleLine2: "¿Aún sin título? Te lo sacamos en un día, o sales con patrón profesional.",
+    subtitleLine2: "¿Aún sin título? Sales con patrón profesional, o con el titulín pilotas tú.",
     subtitleMobile: "Lanchas con titulación en Blanes. Rumbo libre hasta Tossa de Mar.",
     specsLine: "Hasta 115 CV · 7 plazas · Rumbo libre hasta Tossa de Mar y más allá",
     licenseNote:
       "Basta la Licencia de Navegación. Verificamos títulos extranjeros online antes de reservar.",
     bookNow: "Reservar",
     findYourBoat: "Reservar ahora",
-    ctaTitulin: "Sácate el título en 1 día",
+    ctaTitulin: "Qué es el titulín",
     // Shown only while isLicenseFreeEraActive() (RD 1188/2025, until 2026-09-30).
     licenseFreeUntil: "¿Aún sin título? Hasta el 30 de septiembre puedes alquilar sin titulación.",
     licenseFreeUntilCta: "Ver barcos sin licencia",
@@ -62,7 +62,7 @@ export const es: Translations = {
     experience: "+5 años exp.",
     instantConfirmation: "Confirmación inmediata",
     marqueeText:
-      "Alquiler de Embarcaciones en Blanes | Con Titulaci\u00F3n | Titul\u00EDn en 1 D\u00EDa | Con Patr\u00F3n",
+      "Alquiler de Embarcaciones en Blanes | Con Titulación | Titulín | Con Patrón",
     askWhatsApp: "Preg\u00FAntanos por WhatsApp",
     testimonialQuote: "Experiencia incre\u00EDble, repetiremos seguro",
     testimonialQuoteShort: "Repetiremos seguro",
@@ -133,8 +133,8 @@ export const es: Translations = {
     title: "Por qué elegir Costa Brava Rent a Boat",
     subtitle: "Todo lo que necesitas para una experiencia perfecta en el mar",
     withoutLicense: {
-      title: "El Título en un Solo Día",
-      description: "Curso de 6 horas, sin examen y no caduca. Te lo organizamos nosotros.",
+      title: "Qué es el Titulín",
+      description: "Título náutico de iniciación, sin examen y sin caducidad. Lo expiden escuelas náuticas autorizadas.",
     },
     withLicense: {
       title: "Lanchas para Patrones Titulados",
@@ -274,7 +274,7 @@ export const es: Translations = {
   footer: {
     company: "Costa Brava Rent a Boat - Blanes",
     description: "Alquiler de barcos con y sin licencia en Blanes, Costa Brava.",
-    descriptionPostEra: "Alquiler de barcos con titulación en Blanes, Costa Brava. Titulín en 1 día o salida con patrón.",
+    descriptionPostEra: "Alquiler de barcos con titulación en Blanes, Costa Brava. Con titulín o salida con patrón.",
     quickLinks: "Enlaces Rápidos",
     contact: "Contacto",
     followUs: "Síguenos",
@@ -764,31 +764,31 @@ export const es: Translations = {
       },
       malgrat: {
         title: "Barcos populares para alquilar desde el Puerto de Blanes",
-        description: "A 10 minutos de Malgrat de Mar. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Estos son los barcos que te llevan a Lloret y a Tossa de Mar.",
+        description: "A 10 minutos de Malgrat de Mar. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón. Estos son los barcos que te llevan a Lloret y a Tossa de Mar.",
       },
       santaSusanna: {
         title: "Barcos populares para alquilar desde el Puerto de Blanes",
-        description: "A 15 minutos de Santa Susanna. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Estos son los barcos que te llevan a Lloret y a Tossa de Mar.",
+        description: "A 15 minutos de Santa Susanna. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón. Estos son los barcos que te llevan a Lloret y a Tossa de Mar.",
       },
       calella: {
         title: "Barcos populares para alquilar desde el Puerto de Blanes",
-        description: "A 20 minutos de Calella. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Estos son los barcos que te llevan a Lloret y a Tossa de Mar.",
+        description: "A 20 minutos de Calella. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón. Estos son los barcos que te llevan a Lloret y a Tossa de Mar.",
       },
       pineda: {
         title: "Barcos populares para alquilar desde el Puerto de Blanes",
-        description: "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Estos son los barcos que te llevan a Lloret y a Tossa de Mar.",
+        description: "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón. Estos son los barcos que te llevan a Lloret y a Tossa de Mar.",
       },
       palafolls: {
         title: "Barcos populares para alquilar desde el Puerto de Blanes",
-        description: "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Estos son los barcos que te llevan a Lloret y a Tossa de Mar.",
+        description: "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón. Estos son los barcos que te llevan a Lloret y a Tossa de Mar.",
       },
       tordera: {
         title: "Barcos populares para alquilar desde el Puerto de Blanes",
-        description: "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Estos son los barcos que te llevan a Lloret y a Tossa de Mar.",
+        description: "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón. Estos son los barcos que te llevan a Lloret y a Tossa de Mar.",
       },
       tossa: {
         title: "Barcos para tu ruta a Tossa de Mar",
-        description: "Estos son los barcos que llegan a Tossa de Mar: con la Licencia de Navegación, que se saca en un curso de 1 día sin examen, o con nuestra Excursión Privada con Capitán, que no requiere titulación.",
+        description: "Estos son los barcos que llegan a Tossa de Mar: con la Licencia de Navegación, que se saca en 1 día, sin examen, o con nuestra Excursión Privada con Capitán, que no requiere titulación.",
       },
     },
   },
@@ -898,7 +898,7 @@ export const es: Translations = {
       ],
       scooters: [
         { title: "Alquiler barcos en Lloret de Mar", description: "Playas y calas espectaculares desde el puerto de Blanes" },
-        { title: "Barcos con licencia", description: "Pilota con el titulín, un curso de 1 día sin examen" },
+        { title: "Barcos con licencia", description: "Pilota con el titulín, que se saca en 1 día sin examen" },
         { title: "Alquiler de moto de agua sin licencia", description: "Circuito y excursión guiada en moto de agua desde Blanes" },
         { title: "Excursión a Tossa de Mar", description: "Descubre la Vila Vella y sus calas cristalinas" },
       ],
@@ -922,13 +922,13 @@ export const es: Translations = {
         ],
         boatsTitle: "Qué barco elegir para hacer snorkel",
         boatsIntro:
-          "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Con el titulín llevas una de nuestras tres lanchas con licencia, de 6 o 7 plazas; en la excursión privada con patrón, para hasta 6 personas, nadie del grupo necesita título.",
+          "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón. Con el titulín llevas una de nuestras tres lanchas con licencia, de 6 o 7 plazas; en la excursión privada con patrón, para hasta 6 personas, nadie del grupo necesita título.",
         practicalTitle: "Información práctica",
         practicalBody:
           "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Todas estas calas quedan a pocos minutos del puerto. Trae tus gafas y tubo, protección solar y agua. Recuerda fondear sobre arena, nunca sobre las praderas de posidonia.",
         faqTitle: "Preguntas frecuentes",
         faq: [
-          { q: "¿Necesito licencia para hacer snorkel en barco desde Blanes?", a: "Sí: desde el 1 de octubre de 2026, para pilotar hace falta al menos la Licencia de Navegación (titulín), un curso de 1 día sin examen. Si nadie del grupo tiene título, la excursión privada con patrón os lleva a las calas." },
+          { q: "¿Necesito licencia para hacer snorkel en barco desde Blanes?", a: "Sí: desde el 1 de octubre de 2026, para pilotar hace falta al menos la Licencia de Navegación (titulín), que se saca en 1 día sin examen. Si nadie del grupo tiene título, la excursión privada con patrón os lleva a las calas." },
           { q: "¿Está incluido el equipo de snorkel?", a: "Te recomendamos traer tus propias gafas y tubo, así te aseguras una talla cómoda. Ten en cuenta que la gasolina no está incluida: se paga aparte según el consumo." },
         ],
         ctaTitle: "Reserva tu salida de snorkel en Blanes",
@@ -1006,7 +1006,7 @@ export const es: Translations = {
         ],
         boatsTitle: "Qué barco elegir según hasta dónde quieras llegar",
         boatsIntro:
-          "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Nuestras lanchas con licencia te dan autonomía para encadenar calas de Blanes, Lloret y Tossa en el día; en la excursión privada, la ruta la hace nuestro patrón.",
+          "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón. Nuestras lanchas con licencia te dan autonomía para encadenar calas de Blanes, Lloret y Tossa en el día; en la excursión privada, la ruta la hace nuestro patrón.",
         practicalTitle: "Información práctica",
         practicalBody:
           "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Con barco con licencia llegas a Lloret en unos 25 minutos y a Tossa en 30-45 minutos. Trae tus gafas y tubo, protección solar y agua. Fondea siempre sobre arena, nunca sobre posidonia.",
@@ -1033,14 +1033,14 @@ export const es: Translations = {
         ],
         boatsTitle: "Qué barco elegir para ir en familia",
         boatsIntro:
-          "Para familias recomendamos barcos espaciosos y estables, de 6 o 7 plazas. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón en la excursión privada, donde nadie del grupo necesita título.",
+          "Para familias recomendamos barcos espaciosos y estables, de 6 o 7 plazas. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón en la excursión privada, donde nadie del grupo necesita título.",
         practicalTitle: "Información práctica",
         practicalBody:
           "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Llevamos chalecos salvavidas de todas las tallas, incluidas infantiles. Trae protección solar, gorra, agua y algo de picar. Las calas cercanas a Blanes están a pocos minutos del puerto.",
         faqTitle: "Preguntas frecuentes",
         faq: [
           { q: "¿Es seguro ir en barco con niños?", a: "Sí. Llevamos chalecos salvavidas infantiles, las calas cercanas son tranquilas y poco profundas, y te explicamos el manejo y la seguridad antes de salir." },
-          { q: "¿Hace falta licencia para ir en familia desde Blanes?", a: "Sí: desde el 1 de octubre de 2026, quien pilota necesita al menos la Licencia de Navegación (titulín), un curso de 1 día sin examen. Si nadie de la familia tiene título, la excursión privada con patrón es la opción: el barco lo lleva nuestro patrón." },
+          { q: "¿Hace falta licencia para ir en familia desde Blanes?", a: "Sí: desde el 1 de octubre de 2026, quien pilota necesita al menos la Licencia de Navegación (titulín), que se saca en 1 día sin examen. Si nadie de la familia tiene título, la excursión privada con patrón es la opción: el barco lo lleva nuestro patrón." },
         ],
         ctaTitle: "Reserva tu día de barco en familia en Blanes",
         ctaText: "Elige fecha y barco, y disfruta de un día en el mar con los tuyos saliendo del Puerto de Blanes.",
@@ -1114,7 +1114,7 @@ export const es: Translations = {
         ],
         boatsTitle: "Qué barco elegir según hasta dónde quieras llegar",
         boatsIntro:
-          "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Nuestras lanchas con licencia, espaciosas y de hasta 7 plazas, llegan a Lloret y Tossa; la excursión privada con patrón admite hasta 6 personas.",
+          "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón. Nuestras lanchas con licencia, espaciosas y de hasta 7 plazas, llegan a Lloret y Tossa; la excursión privada con patrón admite hasta 6 personas.",
         practicalTitle: "Información práctica",
         practicalBody:
           "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Con barco con licencia llegas a Lloret en unos 25 minutos y a Tossa en 30-45 minutos. Llevamos chalecos de todas las tallas.",
@@ -1141,14 +1141,14 @@ export const es: Translations = {
         ],
         boatsTitle: "Qué barco elegir para el atardecer",
         boatsIntro:
-          "Para el atardecer recomendamos una salida corta y relajada cerca de Blanes. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) una de nuestras lanchas, o sales con patrón en la excursión privada.",
+          "Para el atardecer recomendamos una salida corta y relajada cerca de Blanes. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) una de nuestras lanchas, o sales con patrón en la excursión privada.",
         practicalTitle: "Información práctica",
         practicalBody:
           "Temporada de abril a octubre, con salidas hasta las 20:00 desde el Puerto de Blanes; la franja de última hora de la tarde es la que regala la mejor luz. En la Costa Brava el sol se pone tras la costa, así que disfrutarás de la luz dorada y los acantilados iluminados más que de la puesta sobre el agua. Trae una chaqueta ligera: al caer la tarde refresca.",
         faqTitle: "Preguntas frecuentes",
         faq: [
           { q: "¿A qué hora es la salida al atardecer?", a: "Operamos hasta las 20:00; la última franja de la tarde es la que ofrece la luz dorada. Te recomendamos reservar 1 o 2 horas a última hora del día." },
-          { q: "¿Necesito licencia?", a: "Sí: desde el 1 de octubre de 2026 hace falta al menos la Licencia de Navegación (titulín), un curso de 1 día sin examen. Sin título, puedes salir con patrón en la excursión privada." },
+          { q: "¿Necesito licencia?", a: "Sí: desde el 1 de octubre de 2026 hace falta al menos la Licencia de Navegación (titulín), que se saca en 1 día sin examen. Sin título, puedes salir con patrón en la excursión privada." },
         ],
         ctaTitle: "Reserva tu paseo al atardecer en Blanes",
         ctaText: "Elige fecha y barco, y disfruta de la hora dorada en el mar saliendo del Puerto de Blanes.",
@@ -1222,7 +1222,7 @@ export const es: Translations = {
         ],
         boatsTitle: "Qué barco elegir según hasta dónde quieras llegar",
         boatsIntro:
-          "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Con nuestras lanchas con licencia recorres el tramo hasta Lloret y Tossa; en la excursión privada, el paseo lo hace nuestro patrón.",
+          "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón. Con nuestras lanchas con licencia recorres el tramo hasta Lloret y Tossa; en la excursión privada, el paseo lo hace nuestro patrón.",
         practicalTitle: "Información práctica",
         practicalBody:
           "Temporada de abril a octubre, con salidas hasta las 20:00 desde el Puerto de Blanes. En esta costa el sol se pone tras la tierra: disfrutarás de la luz dorada y los pueblos y acantilados iluminados. Con barco con licencia llegas a Lloret o Tossa. Trae una chaqueta ligera.",
@@ -1330,7 +1330,7 @@ export const es: Translations = {
         ],
         boatsTitle: "Qué barco elegir para pescar por la costa",
         boatsIntro:
-          "Para la pesca usamos barcos con licencia, con la autonomía necesaria para recorrer la costa entre zonas. Basta la Licencia de Navegación (titulín), un curso de 1 día sin examen.",
+          "Para la pesca usamos barcos con licencia, con la autonomía necesaria para recorrer la costa entre zonas. Basta la Licencia de Navegación (titulín), que se saca en 1 día sin examen.",
         practicalTitle: "Información práctica y normativa",
         practicalBody:
           "Temporada de abril a octubre, salidas de 09:00 a 20:00 desde el Puerto de Blanes. Necesitas la licencia de pesca recreativa de Cataluña (a cargo del cliente). Respeta tallas mínimas, especies protegidas y, muy especialmente, las zonas reguladas como la reserva de Tossa. El equipo de pesca no está incluido.",
@@ -1641,7 +1641,7 @@ export const es: Translations = {
         needsIcc: "Tu país emite ICC. Pídelo en tu federación náutica antes de viajar.",
         notRecognized: "Tu licencia nacional no se reconoce directamente en España. Escríbenos por WhatsApp y miramos contigo qué opciones tienes.",
         insufficient: "Tu licencia queda por debajo de la Licencia de Navegación española, el mínimo para nuestra flota con licencia. Considera obtener la LN o un título superior.",
-        inlandOnly: "Tu licencia autoriza ríos y lagos, no navegación marítima, así que no sirve para nuestros barcos. Con la Licencia de Navegación (curso de 1 día, sin examen) podrás llevarlos, o puedes salir con patrón en la excursión privada.",
+        inlandOnly: "Tu licencia autoriza ríos y lagos, no navegación marítima, así que no sirve para nuestros barcos. Con la Licencia de Navegación (se saca en 1 día, sin examen) podrás llevarlos, o puedes salir con patrón en la excursión privada.",
       },
       pill: {
         valid: "Válida",
@@ -1744,7 +1744,7 @@ export const es: Translations = {
         {
           question: "¿Necesito licencia para alquilar un barco en Blanes?",
           answer:
-            "Sí. Desde el 1 de octubre de 2026 (RD 1188/2025) para pilotar cualquier barco a motor de alquiler hace falta titulación. Basta la Licencia de Navegación, el titulín: curso de 1 día, sin examen. Si no la tienes, reserva la excursión privada con patrón: él pilota y tú disfrutas.",
+            "Sí. Desde el 1 de octubre de 2026 (RD 1188/2025) para pilotar cualquier barco a motor de alquiler hace falta titulación. Basta la Licencia de Navegación, el titulín: se saca en 1 día, sin examen. Si no la tienes, reserva la excursión privada con patrón: él pilota y tú disfrutas.",
         },
         {
           question: "¿Cuánto cuesta alquilar un barco en el Puerto de Blanes?",
@@ -1792,7 +1792,7 @@ export const es: Translations = {
         // GSC 2026-05-18: subtitle SEO-extractable con keywords long-tail
         // (Puerto de Blanes, sin/con licencia, calas con tiempos)
         subtitle:
-          "Alquiler de barcos directo en el Puerto de Blanes. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón: barcos para 6-7 personas y excursión privada para hasta 6. Parking gratuito a 100 m del amarre. Desde aquí navegas a Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min), Lloret de Mar (15-25 min) y Tossa de Mar (30-45 min).",
+          "Alquiler de barcos directo en el Puerto de Blanes. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón: barcos para 6-7 personas y excursión privada para hasta 6. Parking gratuito a 100 m del amarre. Desde aquí navegas a Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min), Lloret de Mar (15-25 min) y Tossa de Mar (30-45 min).",
         badgePort: "Puerto de Blanes",
         badgeCapacity: "Hasta 7 personas",
         badgeDuration: "2h-8h duración",
@@ -1849,7 +1849,7 @@ export const es: Translations = {
         guideTitle: "Guía Completa: Alquilar un Barco en Blanes",
         guideRequirementsTitle: "Requisitos para alquilar un barco",
         guideRequirementsText:
-          "Desde el 1 de octubre de 2026 (RD 1188/2025) para pilotar un barco a motor de alquiler necesitas titulación náutica. Basta la Licencia de Navegación (el titulín: curso de 1 día, sin examen); también valen PNB, PER o equivalentes europeos. Además tienes que ser mayor de 18 años y presentar DNI o pasaporte. Antes de zarpar te explicamos el barco, el fondeo y el equipo de seguridad. Si no tienes titulación, la excursión privada con patrón no la requiere.",
+          "Desde el 1 de octubre de 2026 (RD 1188/2025) para pilotar un barco a motor de alquiler necesitas titulación náutica. Basta la Licencia de Navegación (el titulín: se saca en 1 día, sin examen); también valen PNB, PER o equivalentes europeos. Además tienes que ser mayor de 18 años y presentar DNI o pasaporte. Antes de zarpar te explicamos el barco, el fondeo y el equipo de seguridad. Si no tienes titulación, la excursión privada con patrón no la requiere.",
         guideSeasonTitle: "Temporada y horarios",
         guideSeasonText:
           "La temporada de navegación en Blanes va de abril a octubre. Ofrecemos tres franjas horarias: mañana (de 9:00 a 13:00), tarde (de 14:00 a 18:00) y día completo (de 9:00 a 18:00). Los meses de junio y septiembre son ideales para navegar: temperaturas agradables, mar en calma y menos afluencia. Julio y agosto son temporada alta con las mejores condiciones para el baño pero mayor demanda, por lo que recomendamos reservar con antelación.",
@@ -1917,7 +1917,7 @@ export const es: Translations = {
         {
           question: "¿Necesito licencia o experiencia para llegar a Lloret en barco?",
           answer:
-            "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Con el titulín pilotas tú hasta la playa de Lloret en unos 15-25 minutos; con la excursión privada con patrón no necesitas titulación ni experiencia.",
+            "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón. Con el titulín pilotas tú hasta la playa de Lloret en unos 15-25 minutos; con la excursión privada con patrón no necesitas titulación ni experiencia.",
         },
         {
           question: "¿Hasta dónde puedo llegar en barco desde Blanes hacia Lloret?",
@@ -1953,7 +1953,7 @@ export const es: Translations = {
       hero: {
         title: "Alquiler de Barcos en Lloret de Mar: Ruta desde Blanes con Titulín o Patrón",
         subtitle:
-          "Desde el puerto de Blanes hasta la playa de Lloret, con siete calas vírgenes de la Costa Brava por el camino. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón.",
+          "Desde el puerto de Blanes hasta la playa de Lloret, con siete calas vírgenes de la Costa Brava por el camino. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón.",
         badgeFrom: "Desde el puerto de Blanes (3 millas)",
         badgeTime: "15-25 min de navegación",
         badgeCapacity: "Hasta 7 personas por barco",
@@ -2120,7 +2120,7 @@ export const es: Translations = {
         ctaButton: "Reservar Excursión a Tossa",
         warningTitle: "Dos formas de llegar a Tossa desde Blanes",
         warningBody:
-          'Desde el 1 de octubre de 2026 ya no se alquilan barcos sin licencia. Para llegar a Tossa desde Blanes tienes dos opciones: (1) auto-alquiler con Licencia de Navegación (packs cerrados 2 h / 4 h / 8 h desde {licBaja2h} € con Mingolla Brava 19, Trimarchi 57S o Pacific Craft 625, IVA, amarre, limpieza y seguro incluidos; combustible y fianza 500 € aparte), o (2) la <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Excursión Privada con Capitán</a> (Pacific Craft 625 + patrón, 4 h máximo, hasta 6 pax, desde {excursionBaja4h} € con IVA, patrón, amarre, limpieza y seguro incluidos; combustible aparte). Si todavía no tienes el título, la Licencia de Navegación se saca en un curso de 1 día, sin examen.',
+          "Desde el 1 de octubre de 2026 ya no se alquilan barcos sin licencia. Para llegar a Tossa desde Blanes tienes dos opciones: (1) auto-alquiler con Licencia de Navegación (packs cerrados 2 h / 4 h / 8 h desde {licBaja2h} € con Mingolla Brava 19, Trimarchi 57S o Pacific Craft 625, IVA, amarre, limpieza y seguro incluidos; combustible y fianza 500 € aparte), o (2) la <a href=\"/es/barco/excursion-privada\" class=\"underline font-medium text-foreground hover:text-primary\">Excursión Privada con Capitán</a> (Pacific Craft 625 + patrón, 4 h máximo, hasta 6 pax, desde {excursionBaja4h} € con IVA, patrón, amarre, limpieza y seguro incluidos; combustible aparte). Si todavía no tienes el título, la Licencia de Navegación se saca en 1 día, sin examen.",
         crossLinkingText:
           'También ofrecemos servicio para turistas alojados en <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> y <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Desde estos pueblos de la costa del Maresme se llega al Puerto de Blanes en 10-20 minutos por carretera.',
         relatedTitle: "Servicios y destinos relacionados",
@@ -2148,7 +2148,7 @@ export const es: Translations = {
           "Blanes es el puerto náutico más cercano a Malgrat de Mar, a solo 10 minutos por la N-II. Barcos con licencia y excursión con patrón, listos para zarpar con todas las comodidades.",
         varietyBoats: "Con Titulín o con Patrón",
         varietyBoatsDesc:
-          "Barcos con licencia para 6-7 personas que pilotas con la Licencia de Navegación (curso de 1 día, sin examen), o excursión privada con patrón para hasta 6 personas.",
+          "Barcos con licencia para 6-7 personas que pilotas con la Licencia de Navegación (se saca en 1 día, sin examen), o excursión privada con patrón para hasta 6 personas.",
         fuelIncluded: "Precios Claros",
         fuelIncludedDesc:
           "Packs cerrados de 2, 4 u 8 horas con IVA, amarre, limpieza y seguro incluidos. El combustible se paga aparte según el consumo real.",
@@ -2195,12 +2195,12 @@ export const es: Translations = {
         {
           question: "¿Cuánto cuesta alquilar un barco desde Blanes?",
           answer:
-            "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Los barcos con licencia van en packs de 2, 4 u 8 horas desde {licBaja2h} € y la excursión privada con patrón sale desde {excursionBaja2h} € (2 horas). El combustible se paga aparte.",
+            "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón. Los barcos con licencia van en packs de 2, 4 u 8 horas desde {licBaja2h} € y la excursión privada con patrón sale desde {excursionBaja2h} € (2 horas). El combustible se paga aparte.",
         },
         {
           question: "¿Necesito licencia de navegación?",
           answer:
-            "Sí. Desde el 1 de octubre de 2026 (RD 1188/2025) para pilotar cualquier barco a motor de alquiler hace falta titulación. Basta la Licencia de Navegación, el titulín: curso de 1 día, sin examen. Si no la tienes, reserva la excursión privada con patrón: él pilota y tú disfrutas.",
+            "Sí. Desde el 1 de octubre de 2026 (RD 1188/2025) para pilotar cualquier barco a motor de alquiler hace falta titulación. Basta la Licencia de Navegación, el titulín: se saca en 1 día, sin examen. Si no la tienes, reserva la excursión privada con patrón: él pilota y tú disfrutas.",
         },
         {
           question: "¿Hay parking en el Puerto de Blanes?",
@@ -2235,12 +2235,12 @@ export const es: Translations = {
         {
           question: "¿Cuánto cuesta alquilar un barco desde Blanes si estoy en Santa Susanna?",
           answer:
-            "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Los barcos con licencia van en packs de 2, 4 u 8 horas desde {licBaja2h} € y la excursión privada con patrón sale desde {excursionBaja2h} € (2 horas). El combustible se paga aparte.",
+            "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón. Los barcos con licencia van en packs de 2, 4 u 8 horas desde {licBaja2h} € y la excursión privada con patrón sale desde {excursionBaja2h} € (2 horas). El combustible se paga aparte.",
         },
         {
           question: "¿Necesito licencia de navegación para alquilar un barco?",
           answer:
-            "Sí. Desde el 1 de octubre de 2026 (RD 1188/2025) para pilotar cualquier barco a motor de alquiler hace falta titulación. Basta la Licencia de Navegación, el titulín: curso de 1 día, sin examen. Si no la tienes, reserva la excursión privada con patrón: él pilota y tú disfrutas.",
+            "Sí. Desde el 1 de octubre de 2026 (RD 1188/2025) para pilotar cualquier barco a motor de alquiler hace falta titulación. Basta la Licencia de Navegación, el titulín: se saca en 1 día, sin examen. Si no la tienes, reserva la excursión privada con patrón: él pilota y tú disfrutas.",
         },
         {
           question: "¿Es fácil llegar en transporte público desde Santa Susanna?",
@@ -2255,7 +2255,7 @@ export const es: Translations = {
         {
           question: "¿Cuál es la mejor excursión en barco si me alojo en Santa Susanna?",
           answer:
-            "Desde Blanes recomendamos: (a) Excursión privada con patrón 4h hasta Tossa y Cala Bona (desde {excursionBaja4h} €, ideal si no tienes titulación ni experiencia náutica); (b) Barco con Licencia de Navegación (LN) 4h para fondear en 2-3 calas entre Blanes y Lloret o subir hasta Tossa (desde 255 € / 4h). Si nadie del grupo tiene titulación, el titulín se saca en un curso de 1 día, sin examen.",
+            "Desde Blanes recomendamos: (a) Excursión privada con patrón 4h hasta Tossa y Cala Bona (desde {excursionBaja4h} €, ideal si no tienes titulación ni experiencia náutica); (b) Barco con Licencia de Navegación (LN) 4h para fondear en 2-3 calas entre Blanes y Lloret o subir hasta Tossa (desde 255 € / 4h). Si nadie del grupo tiene titulación, el titulín se saca en 1 día, sin examen.",
         },
         {
           question: "¿Puedo hacer una excursión en barco al atardecer desde Santa Susanna?",
@@ -2333,12 +2333,12 @@ export const es: Translations = {
         {
           question: "¿Cuánto cuesta alquilar un barco desde Blanes si estoy en Calella?",
           answer:
-            "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Los barcos con licencia van en packs de 2, 4 u 8 horas desde {licBaja2h} € y la excursión privada con patrón sale desde {excursionBaja2h} € (2 horas). El combustible se paga aparte.",
+            "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón. Los barcos con licencia van en packs de 2, 4 u 8 horas desde {licBaja2h} € y la excursión privada con patrón sale desde {excursionBaja2h} € (2 horas). El combustible se paga aparte.",
         },
         {
           question: "¿Necesito experiencia previa para alquilar un barco?",
           answer:
-            "No hace falta experiencia previa. Con la excursión privada con patrón no pilotas tú. Si quieres llevar el timón necesitas la Licencia de Navegación (curso de 1 día, sin examen) y, antes de zarpar, te explicamos el barco, el fondeo y las normas de seguridad.",
+            "No hace falta experiencia previa. Con la excursión privada con patrón no pilotas tú. Si quieres llevar el timón necesitas la Licencia de Navegación (se saca en 1 día, sin examen) y, antes de zarpar, te explicamos el barco, el fondeo y las normas de seguridad.",
         },
         {
           question: "¿Puedo ir y volver desde Calella en transporte público?",
@@ -2377,7 +2377,7 @@ export const es: Translations = {
           "Blanes es el puerto náutico más accesible desde Calella. A 20 minutos por la C-32 o N-II, con barcos con licencia, excursión con patrón y servicio profesional.",
         varietyBoats: "Flota Completa",
         varietyBoatsDesc:
-          "Barcos con licencia para quien tiene la Licencia de Navegación (curso de 1 día, sin examen) y excursión privada con patrón para quien prefiere no pilotar.",
+          "Barcos con licencia para quien tiene la Licencia de Navegación (se saca en 1 día, sin examen) y excursión privada con patrón para quien prefiere no pilotar.",
         fuelIncluded: "Precio Claro",
         fuelIncludedDesc:
           "IVA, amarre, limpieza, chalecos salvavidas y equipo de seguridad incluidos. El combustible se paga aparte.",
@@ -2420,7 +2420,7 @@ export const es: Translations = {
       hero: {
         title: "Alquiler de Barcos en la Costa Brava",
         subtitle:
-          "Descubre las mejores calas y playas de la Costa Brava a bordo de nuestros barcos. Salidas desde el Puerto de Blanes, en el corazón de la costa catalana. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón.",
+          "Descubre las mejores calas y playas de la Costa Brava a bordo de nuestros barcos. Salidas desde el Puerto de Blanes, en el corazón de la costa catalana. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón.",
         badgePort: "Puerto de Blanes",
         badgeCapacity: "Hasta 7 personas",
         badgeLicense: "Con titulín o con patrón",
@@ -2429,7 +2429,7 @@ export const es: Translations = {
         introP1:
           "La Costa Brava es uno de los destinos náuticos más espectaculares del Mediterráneo. Con más de 200 kilómetros de litoral entre Blanes y la frontera francesa, ofrece una combinación única de acantilados, calas de aguas cristalinas, pueblos medievales y una naturaleza que solo se puede apreciar desde el mar.",
         introP2:
-          "En Costa Brava Rent a Boat te ofrecemos el alquiler de barcos en la Costa Brava más sencillo: elige tu embarcación en el Puerto de Blanes y navega a tu ritmo. Para pilotar basta la Licencia de Navegación (curso de 1 día, sin examen); si no la tienes, sal con nuestro patrón. Antes de zarpar te explicamos el barco y te damos todo lo necesario para un día perfecto en el mar.",
+          "En Costa Brava Rent a Boat te ofrecemos el alquiler de barcos en la Costa Brava más sencillo: elige tu embarcación en el Puerto de Blanes y navega a tu ritmo. Para pilotar basta la Licencia de Navegación (se saca en 1 día, sin examen); si no la tienes, sal con nuestro patrón. Antes de zarpar te explicamos el barco y te damos todo lo necesario para un día perfecto en el mar.",
         introP3:
           "El precio incluye IVA, amarre, limpieza, seguro de responsabilidad civil y equipo de seguridad; el combustible se paga aparte según el consumo. Sin costes ocultos. Reserva hoy y descubre por qué miles de familias eligen la Costa Brava cada verano para sus aventuras náuticas.",
         whyChooseTitle: "Por qué elegir la Costa Brava para alquilar un barco",
@@ -2501,7 +2501,7 @@ export const es: Translations = {
       faq: {
         experienceQ: "Necesito experiencia previa para alquilar un barco en la Costa Brava?",
         experienceA:
-          "No, no necesitas experiencia previa. Con la excursión privada con patrón no pilotas tú. Para llevar el timón basta la Licencia de Navegación (curso de 1 día, sin examen) y ser mayor de 18 años; antes de salir te explicamos cómo maniobrar, fondear y usar el equipo de seguridad. Nuestro personal estará disponible por teléfono durante toda tu navegación.",
+          "No, no necesitas experiencia previa. Con la excursión privada con patrón no pilotas tú. Para llevar el timón basta la Licencia de Navegación (se saca en 1 día, sin examen) y ser mayor de 18 años; antes de salir te explicamos cómo maniobrar, fondear y usar el equipo de seguridad. Nuestro personal estará disponible por teléfono durante toda tu navegación.",
         distanceQ: "¿Hasta dónde puedo navegar desde Blanes?",
         distanceA:
           "Con la Licencia de Navegación, de día y cerca de la costa, llegas desde Blanes a Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min), Cala Treumal y Tossa de Mar (30-45 min) y, en jornada completa, a Sant Feliu de Guíxols. Con la excursión privada con patrón haces la ruta sin titulación.",
@@ -2523,12 +2523,12 @@ export const es: Translations = {
         {
           question: "¿Cuánto cuesta alquilar un barco desde Blanes si vivo en Tordera?",
           answer:
-            "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Los barcos con licencia van en packs de 2, 4 u 8 horas desde {licBaja2h} € y la excursión privada con patrón sale desde {excursionBaja2h} € (2 horas). El combustible se paga aparte.",
+            "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón. Los barcos con licencia van en packs de 2, 4 u 8 horas desde {licBaja2h} € y la excursión privada con patrón sale desde {excursionBaja2h} € (2 horas). El combustible se paga aparte.",
         },
         {
           question: "¿Necesito licencia de navegación?",
           answer:
-            "Sí. Desde el 1 de octubre de 2026 (RD 1188/2025) para pilotar cualquier barco a motor de alquiler hace falta titulación. Basta la Licencia de Navegación, el titulín: curso de 1 día, sin examen. Si no la tienes, reserva la excursión privada con patrón: él pilota y tú disfrutas.",
+            "Sí. Desde el 1 de octubre de 2026 (RD 1188/2025) para pilotar cualquier barco a motor de alquiler hace falta titulación. Basta la Licencia de Navegación, el titulín: se saca en 1 día, sin examen. Si no la tienes, reserva la excursión privada con patrón: él pilota y tú disfrutas.",
         },
         {
           question: "¿Hay parking en el Puerto de Blanes?",
@@ -2540,7 +2540,7 @@ export const es: Translations = {
         title:
           "Alquiler Barco Tordera | Puerto Blanes a 15 min | Titulín o Patrón",
         description:
-          "¿Alojado en Tordera? El Puerto de Blanes está a 15 min. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón.",
+          "¿Alojado en Tordera? El Puerto de Blanes está a 15 min. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón.",
         ogTitle: "Alquiler Barco Tordera | Delta del Tordera en Barco",
         ogDescription:
           "Desde Tordera al Puerto Blanes en 15 min. Con titulín o con patrón.",
@@ -2564,7 +2564,7 @@ export const es: Translations = {
           "El Puerto de Blanes está a solo 10 km de Tordera, lo que lo convierte en el punto de alquiler de barcos más cercano y accesible. Tanto si eres residente como si estás de paso, en 15 minutos puedes estar navegando por las aguas cristalinas de la Costa Brava. La conexión por carretera es directa y sin complicaciones.",
         whyCard2Title: "Con Titulín o con Patrón",
         whyCard2Desc:
-          "Con la Licencia de Navegación (curso de 1 día, sin examen) pilotas nuestros barcos con licencia para 6-7 personas. Si nadie del grupo tiene titulación, la excursión privada con patrón lleva hasta 6 personas.",
+          "Con la Licencia de Navegación (se saca en 1 día, sin examen) pilotas nuestros barcos con licencia para 6-7 personas. Si nadie del grupo tiene titulación, la excursión privada con patrón lleva hasta 6 personas.",
         whyCard3Title: "Precios claros, sin sorpresas",
         whyCard3Desc:
           "Packs de 2, 4 u 8 horas con IVA, amarre, limpieza y seguro incluidos. El combustible se paga aparte según el consumo real, en todos los barcos.",
@@ -2630,7 +2630,7 @@ export const es: Translations = {
         {
           question: "¿Cuánto cuesta alquilar un barco desde Blanes si estoy en Palafolls?",
           answer:
-            "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Los barcos con licencia van en packs de 2, 4 u 8 horas desde {licBaja2h} € y la excursión privada con patrón sale desde {excursionBaja2h} € (2 horas). El combustible se paga aparte.",
+            "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón. Los barcos con licencia van en packs de 2, 4 u 8 horas desde {licBaja2h} € y la excursión privada con patrón sale desde {excursionBaja2h} € (2 horas). El combustible se paga aparte.",
         },
         {
           question: "¿Puedo ir desde el camping de Palafolls al Puerto de Blanes fácilmente?",
@@ -2640,13 +2640,13 @@ export const es: Translations = {
         {
           question: "¿Necesito experiencia para alquilar un barco?",
           answer:
-            "No hace falta experiencia previa. Con la excursión privada con patrón no pilotas tú. Si quieres llevar el timón necesitas la Licencia de Navegación (curso de 1 día, sin examen) y, antes de zarpar, te explicamos el barco, el fondeo y las normas de seguridad.",
+            "No hace falta experiencia previa. Con la excursión privada con patrón no pilotas tú. Si quieres llevar el timón necesitas la Licencia de Navegación (se saca en 1 día, sin examen) y, antes de zarpar, te explicamos el barco, el fondeo y las normas de seguridad.",
         },
       ],
       seo: {
         title: "Alquiler Barco Palafolls | Puerto Blanes a 12 min | Titulín o Patrón",
         description:
-          "¿Alojado en Palafolls? El Puerto de Blanes está a 12 min. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón.",
+          "¿Alojado en Palafolls? El Puerto de Blanes está a 12 min. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón.",
         ogTitle: "Alquiler Barco Palafolls | 12 min al Puerto Blanes",
         ogDescription:
           "Desde Palafolls al Puerto Blanes en 12 min. Con titulín o con patrón.",
@@ -2736,12 +2736,12 @@ export const es: Translations = {
         {
           question: "¿Cuánto cuesta alquilar un barco desde Blanes si estoy en Pineda de Mar?",
           answer:
-            "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. Los barcos con licencia van en packs de 2, 4 u 8 horas desde {licBaja2h} € y la excursión privada con patrón sale desde {excursionBaja2h} € (2 horas). El combustible se paga aparte.",
+            "Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón. Los barcos con licencia van en packs de 2, 4 u 8 horas desde {licBaja2h} € y la excursión privada con patrón sale desde {excursionBaja2h} € (2 horas). El combustible se paga aparte.",
         },
         {
           question: "¿Necesito licencia de navegación para alquilar un barco?",
           answer:
-            "Sí. Desde el 1 de octubre de 2026 (RD 1188/2025) para pilotar cualquier barco a motor de alquiler hace falta titulación. Basta la Licencia de Navegación, el titulín: curso de 1 día, sin examen. Si no la tienes, reserva la excursión privada con patrón: él pilota y tú disfrutas.",
+            "Sí. Desde el 1 de octubre de 2026 (RD 1188/2025) para pilotar cualquier barco a motor de alquiler hace falta titulación. Basta la Licencia de Navegación, el titulín: se saca en 1 día, sin examen. Si no la tienes, reserva la excursión privada con patrón: él pilota y tú disfrutas.",
         },
         {
           question: "¿Puedo ir desde Pineda de Mar a Blanes en transporte público?",
@@ -2767,7 +2767,7 @@ export const es: Translations = {
       seo: {
         title: "Alquiler Barco Pineda de Mar | Puerto Blanes a 18 min | Titulín o Patrón",
         description:
-          "¿Alojado en Pineda de Mar? El Puerto de Blanes está a 18 min. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón.",
+          "¿Alojado en Pineda de Mar? El Puerto de Blanes está a 18 min. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón.",
         ogTitle: "Alquiler Barco Pineda de Mar | 18 min al Puerto Blanes",
         ogDescription:
           "Desde Pineda de Mar al Puerto Blanes en 18 min. Con titulín o con patrón.",
@@ -2781,7 +2781,7 @@ export const es: Translations = {
       sections: {
         heroTitle: "Alquiler de Barcos cerca de Pineda de Mar",
         heroSubtitle:
-          "Pineda de Mar es uno de los destinos turísticos más importantes de la costa del Maresme, con decenas de hoteles y resorts all-inclusive. El Puerto de Blanes, a solo 18 minutos por carretera o 12 minutos en tren, es el punto de alquiler de barcos más cercano. Disfruta de la Costa Brava con la Licencia de Navegación (curso de 1 día, sin examen) o con patrón.",
+          "Pineda de Mar es uno de los destinos turísticos más importantes de la costa del Maresme, con decenas de hoteles y resorts all-inclusive. El Puerto de Blanes, a solo 18 minutos por carretera o 12 minutos en tren, es el punto de alquiler de barcos más cercano. Disfruta de la Costa Brava con la Licencia de Navegación (se saca en 1 día, sin examen) o con patrón.",
         heroBadgeCar: "15 km / 18 min por carretera",
         heroBadgeTransport: "RENFE R1: 12 min",
         heroBadgeExtra: "Costa del Maresme",
@@ -2792,7 +2792,7 @@ export const es: Translations = {
           "Pineda de Mar no dispone de puerto deportivo ni de servicio de alquiler de embarcaciones. El Puerto de Blanes es el punto más cercano donde puedes alquilar un barco, a tan solo 15 km por la carretera N-II. Si estás alojado en uno de los muchos hoteles de Pineda, en menos de 20 minutos estarás navegando por las aguas cristalinas de la Costa Brava.",
         whyCard2Title: "Con Titulín o con Patrón",
         whyCard2Desc:
-          "Con la Licencia de Navegación (curso de 1 día, sin examen) pilotas nuestros barcos con licencia para 6-7 personas. Si nadie del grupo tiene titulación, la excursión privada con patrón lleva hasta 6 personas.",
+          "Con la Licencia de Navegación (se saca en 1 día, sin examen) pilotas nuestros barcos con licencia para 6-7 personas. Si nadie del grupo tiene titulación, la excursión privada con patrón lleva hasta 6 personas.",
         whyCard3Title: "Precios claros, sin sorpresas",
         whyCard3Desc:
           "Packs de 2, 4 u 8 horas con IVA, amarre, limpieza y seguro incluidos. El combustible se paga aparte según el consumo real, en todos los barcos.",
@@ -2866,13 +2866,13 @@ export const es: Translations = {
       "4 barcos sin licencia desde 85€/h en el Puerto de Blanes, gasolina incluida. Hasta 5 personas, sin carnet ni titulación, sin experiencia previa. Briefing de seguridad 15 minutos y a navegar por las calas de la Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina y Sa Boadella hasta Playa de Fenals (Lloret de Mar).",
     // Post-era copy (RD 1188/2025): the page picks these with eraCopy() from 2026-10-01.
     postEraHeroTitle: "Barcos sin licencia en Blanes: desde el 1 de octubre de 2026 ya no los alquilamos",
-    postEraHeroDescription: "Desde el 1 de octubre de 2026 la ley exige título náutico para alquilar cualquier barco a motor, y hemos retirado nuestros barcos pequeños sin licencia. Con el titulín, un curso de un día sin examen, llevas nuestras lanchas; y si no quieres llevar el timón, sales con patrón.",
-    postEraBadge: "Titulín en 1 día, sin examen",
+    postEraHeroDescription: "Desde el 1 de octubre de 2026 la ley exige título náutico para alquilar cualquier barco a motor, y hemos retirado nuestros barcos pequeños sin licencia. Con el titulín, que se saca en 1 día sin examen, llevas nuestras lanchas; y si no quieres llevar el timón, sales con patrón.",
+    postEraBadge: "Titulín o patrón",
     postEraCtaButton: "Ver lanchas con titulín",
     postEraNoticeTitle: "Qué cambia el 1 de octubre de 2026",
     postEraNoticeBody: "Hasta el 30 de septiembre de 2026 alquilábamos barcos pequeños sin ningún título. Desde el 1 de octubre la ley pide que el arrendatario tenga al menos la Licencia de Navegación, y esos barcos dejan de alquilarse. Con ella pilotas cualquier barco de hasta 6 metros a 2 millas de la costa, incluidas nuestras tres lanchas con licencia. Sin título, la alternativa es la excursión privada con patrón.",
-    postEraNoticeLink: "Cómo sacarte el titulín en un día",
-    postEraFaqCarnetAnswer: "Sí. Desde el 1 de octubre de 2026 (RD 1188/2025) para alquilar cualquier barco a motor hace falta un título náutico, y por eso ya no alquilamos barcos sin licencia. El mínimo es la Licencia de Navegación (titulín): un curso de un día, 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad, que expiden las escuelas náuticas autorizadas. Con ella pilotas nuestras tres lanchas con licencia. Si no tienes título, puedes salir con patrón en la excursión privada.",
+    postEraNoticeLink: "Qué es el titulín y qué lanchas permite",
+    postEraFaqCarnetAnswer: "Sí. Desde el 1 de octubre de 2026 (RD 1188/2025) para alquilar cualquier barco a motor hace falta un título náutico, y por eso ya no alquilamos barcos sin licencia. El mínimo es la Licencia de Navegación (titulín): se saca en un día, con 2 horas de teoría y 4 de prácticas, sin examen y sin caducidad, que expiden las escuelas náuticas autorizadas. Con ella pilotas nuestras tres lanchas con licencia. Si no tienes título, puedes salir con patrón en la excursión privada.",
     badgeNoLicense: "Sin Licencia Necesaria",
     badgePower: "Hasta 15 CV",
     badgeCapacity: "4-7 personas",
@@ -3280,12 +3280,12 @@ export const es: Translations = {
     // Card 2 — the titulín pack (course + rental)
     titulin: "Aún no, quiero sacármelo",
     titulinDesc:
-      "Te organizamos el curso y sales con nuestra flota. Un día, y navegas por tu cuenta muchos veranos.",
-    titulinBadge: "Curso de 1 día, sin examen",
+      "El titulín es el título náutico de iniciación. Con él pilotas nuestras lanchas con licencia, y lo expiden escuelas náuticas autorizadas.",
+    titulinBadge: "Se saca en 1 día, sin examen",
     titulinFeature1: "2 horas de teoría y 4 de prácticas a bordo",
     titulinFeature2: "Titulación en el acto, sin examen",
     titulinFeature3: "No caduca y es válida en toda España",
-    titulinFeature4: "Te la combinamos con tu primer alquiler",
+    titulinFeature4: "Con él llevas nuestras tres lanchas con licencia",
     titulinCta: "Cómo funciona",
     // Card 3 — captained excursion (no title needed, ever)
     captained: "No, y prefiero no llevar el timón",
@@ -3426,13 +3426,13 @@ export const es: Translations = {
         id: "normativa2026",
         question: "¿Es verdad que en 2026 se acaba el alquiler de barcos sin licencia?",
         answer:
-          "Sí, cambió la ley: el RD 1188/2025 exige un título náutico para alquilar cualquier embarcación a motor desde el 1 de octubre de 2026, y desde esa fecha ya no alquilamos barcos sin licencia. Basta la Licencia de Navegación (titulín), un curso de 1 día sin examen, o cualquier título superior o extranjero equivalente. La excursión con patrón no se ve afectada: ahí el barco lo gobierna un profesional.",
+          "Sí, cambió la ley: el RD 1188/2025 exige un título náutico para alquilar cualquier embarcación a motor desde el 1 de octubre de 2026, y desde esa fecha ya no alquilamos barcos sin licencia. Basta la Licencia de Navegación (titulín), que se saca en 1 día sin examen, o cualquier título superior o extranjero equivalente. La excursión con patrón no se ve afectada: ahí el barco lo gobierna un profesional.",
       },
       {
         id: "titulin",
         question: "¿Qué es el titulín y cómo me lo saco?",
         answer:
-          "El titulín es la Licencia de Navegación: el título náutico más rápido de España. Se consigue en un día con 2 horas de teoría y 4 de prácticas a bordo, sin examen, y no caduca. Permite llevar barcos de hasta 6 metros, de día y hasta 2 millas de un abrigo: en nuestra flota cubre la Mingolla Brava 19, la Trimarchi 57S y la Pacific Craft 625. Te organizamos el curso y lo combinamos con tu primer alquiler; escríbenos y te contamos cómo.",
+          "El titulín es la Licencia de Navegación: el título náutico más rápido de España. Se consigue en un día con 2 horas de teoría y 4 de prácticas a bordo, sin examen, y no caduca. Permite llevar barcos de hasta 6 metros, de día y hasta 2 millas de un abrigo: en nuestra flota cubre la Mingolla Brava 19, la Trimarchi 57S y la Pacific Craft 625.",
       },
       {
         id: "precios",
@@ -3444,7 +3444,7 @@ export const es: Translations = {
         id: "sin-licencia",
         question: "¿Puedo alquilar un barco sin tener licencia náutica?",
         answer:
-          "Desde el 1 de octubre de 2026, no: el RD 1188/2025 exige título a todo arrendatario de un barco a motor. La Licencia de Navegación (titulín) se saca en un día, sin examen, y te la organizamos nosotros. Si prefieres no titularte, la excursión con patrón no requiere título.",
+          "Desde el 1 de octubre de 2026, no: el RD 1188/2025 exige título a todo arrendatario de un barco a motor. La Licencia de Navegación (titulín) se saca en un día, sin examen, en una escuela náutica autorizada. Si prefieres no titularte, la excursión con patrón no requiere título.",
       },
       {
         id: "incluye",
@@ -3505,7 +3505,7 @@ export const es: Translations = {
         id: "diferencia-licencia",
         question: "¿Cuál es la diferencia entre barcos sin licencia y con licencia?",
         answer:
-          "Hasta el 30 de septiembre de 2026 alquilábamos barcos sin licencia de hasta 15 CV y 4-5 plazas. Desde el 1 de octubre de 2026 la ley exige título para alquilar, así que alquilamos nuestras lanchas con licencia: motores de 80-115 CV, hasta 7 personas y autonomía para llegar a Tossa de Mar, desde {licBaja2h}€ (gasolina no incluida). Basta la Licencia de Navegación, un curso de 1 día sin examen.",
+          "Hasta el 30 de septiembre de 2026 alquilábamos barcos sin licencia de hasta 15 CV y 4-5 plazas. Desde el 1 de octubre de 2026 la ley exige título para alquilar, así que alquilamos nuestras lanchas con licencia: motores de 80-115 CV, hasta 7 personas y autonomía para llegar a Tossa de Mar, desde {licBaja2h}€ (gasolina no incluida). Basta la Licencia de Navegación, que se saca en 1 día sin examen.",
       },
       {
         id: "precio-blanes-vs-lloret",
@@ -3643,7 +3643,7 @@ export const es: Translations = {
     certifiedCaptains: "Capitanes certificados",
     officialPort: "Puerto oficial de Blanes",
     registeredBusiness: "Empresa registrada en España",
-    maritimeInsurance: "Seguro marítimo completo",
+    maritimeInsurance: "Seguro de RC y accidentes de ocupantes",
     gdprCompliant: "Cumplimiento RGPD",
   },
   returnVisitor: {
@@ -3811,7 +3811,7 @@ export const es: Translations = {
     limitLabel: "FIN DEL TRAMO",
     limitBoxTitle: "¿Por qué el tramo termina en Fenals?",
     limitBoxBody:
-      "Hasta el 30 de septiembre de 2026, Playa de Fenals era el límite de los barcos sin licencia (2 millas de la costa, 5 nudos, 15 CV). Desde el 1 de octubre ya no se alquilan barcos sin titulación: con la Licencia de Navegación (curso de 1 día, sin examen) o con patrón, la ruta sigue hacia el norte.",
+      "Hasta el 30 de septiembre de 2026, Playa de Fenals era el límite de los barcos sin licencia (2 millas de la costa, 5 nudos, 15 CV). Desde el 1 de octubre ya no se alquilan barcos sin titulación: con la Licencia de Navegación (se saca en 1 día, sin examen) o con patrón, la ruta sigue hacia el norte.",
     noteNorthOfFenals:
       "Nota: la Playa de Lloret (centro), Cala Banys y Cala Canyelles están al norte de Fenals; con el titulín o con patrón también llegas.",
     conLicenciaTitle: "Con Licencia de Navegación (LN): la costa entera",
@@ -3824,7 +3824,7 @@ export const es: Translations = {
       tossa: "Tossa de Mar: Vila Vella medieval desde el mar (30-45 min aprox.)",
       platjaAro: "Sant Feliu de Guíxols, S'Agaró, Platja d'Aro (medio día / día completo)",
     },
-    ctaFleet: "Sácate el titulín en 1 día",
+    ctaFleet: "Qué es el titulín",
     ctaLicensed: "Barcos con Licencia de Navegación",
     internalLinks:
       '¿Quieres ver todas las rutas? Consulta <a href="/es/alquiler-barcos-blanes" class="underline text-primary hover:text-primary/80">Alquiler de barcos en Blanes</a>, la página de <a href="/es/alquiler-barcos-lloret-de-mar" class="underline text-primary hover:text-primary/80">alquiler de barcos en Lloret de Mar</a>, la extensión con licencia <a href="/es/alquiler-barcos-tossa-de-mar" class="underline text-primary hover:text-primary/80">a Tossa de Mar</a>, todas las <a href="/es/alquiler-barcos-costa-brava" class="underline text-primary hover:text-primary/80">rutas por la Costa Brava</a> y <a href="/es/alquiler-barcos-cerca-barcelona" class="underline text-primary hover:text-primary/80">alquiler de barcos cerca de Barcelona</a>. Precios completos en <a href="/es/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Cuánto cuesta alquilar un barco en Blanes</a>.',
@@ -3840,7 +3840,7 @@ export const es: Translations = {
       {
         question: "¿Necesito licencia de navegación para una excursión al atardecer?",
         answer:
-          "Sí: desde el 1 de octubre de 2026, para pilotar hace falta al menos la Licencia de Navegación (titulín), un curso de 1 día sin examen; con ella llevas cualquiera de nuestras lanchas. Si nadie del grupo tiene título, sal con patrón en la excursión privada: el barco lo lleva un profesional y vosotros solo miráis el atardecer.",
+          "Sí: desde el 1 de octubre de 2026, para pilotar hace falta al menos la Licencia de Navegación (titulín), que se saca en 1 día sin examen; con ella llevas cualquiera de nuestras lanchas. Si nadie del grupo tiene título, sal con patrón en la excursión privada: el barco lo lleva un profesional y vosotros solo miráis el atardecer.",
       },
       {
         question: "¿Es seguro estar en barco al atardecer y volver con poca luz?",
@@ -3948,7 +3948,7 @@ export const es: Translations = {
       "A diferencia de los cruceros al atardecer en grupo, el barco es solo vuestro. Elegís dónde fondear, cuánto tiempo quedaros y qué llevar a bordo. No hay guía que os meta prisa, ni otros turistas. Solo vosotros y el Mediterráneo en su momento más bonito.",
     whyAffordableTitle: "Con titulín o con patrón",
     whyAffordableDesc:
-      "Con la Licencia de Navegación, un curso de 1 día sin examen, llevas cualquiera de nuestras lanchas, de hasta 7 plazas. El precio es por barco, no por persona, así que repartido entre el grupo sale a buen precio. Si prefieres no llevar el timón, la excursión privada con patrón os lleva a las mejores vistas.",
+      "Con la Licencia de Navegación, que se saca en 1 día sin examen, llevas cualquiera de nuestras lanchas, de hasta 7 plazas. El precio es por barco, no por persona, así que repartido entre el grupo sale a buen precio. Si prefieres no llevar el timón, la excursión privada con patrón os lleva a las mejores vistas.",
     whyTemperatureTitle: "Temperatura perfecta al atardecer",
     whyTemperatureDesc:
       "A última hora de la tarde, el calor del día se ha suavizado. La brisa marina os mantiene cómodos. El agua está en su punto más cálido tras absorber sol todo el día. Es el momento ideal para estar en el agua, ya sea para nadar, flotar o simplemente contemplar cómo cambia el cielo de color.",
@@ -4075,7 +4075,7 @@ export const es: Translations = {
       "En una salida de 3-4 horas puedes visitar 2-3 calas diferentes. Cada una tiene un ecosistema distinto: praderas de posidonia, fondos rocosos, paredes verticales. Es como hacer tres excursiones de snorkel en una sola.",
     whyNoExpTitle: "Con titulín o con patrón",
     whyNoExpDesc:
-      "Con el titulín, un curso de 1 día sin examen, llevas una de nuestras lanchas, y antes de salir te explicamos el barco en 15 minutos. Si nadie del grupo tiene título, la excursión con patrón os lleva a las calas. El snorkel es la actividad acuática más accesible: solo necesitas máscara, tubo y ganas de descubrir.",
+      "Con el titulín, que se saca en 1 día sin examen, llevas una de nuestras lanchas, y antes de salir te explicamos el barco en 15 minutos. Si nadie del grupo tiene título, la excursión con patrón os lleva a las calas. El snorkel es la actividad acuática más accesible: solo necesitas máscara, tubo y ganas de descubrir.",
     spotsTitle: "Mejores calas para snorkel cerca de Blanes",
     equipmentTitle: "Equipo de snorkel incluido y disponible",
     includedTitle: "Incluido con todos los barcos",
@@ -4136,7 +4136,7 @@ export const es: Translations = {
       {
         question: "¿Necesito licencia de navegación para alquilar un barco familiar?",
         answer:
-          "Sí: desde el 1 de octubre de 2026 la ley exige al menos la Licencia de Navegación (titulín), un curso de 1 día sin examen, para alquilar cualquier barco a motor. Si nadie de la familia tiene título, la excursión privada con patrón es la opción: el barco lo lleva un profesional.",
+          "Sí: desde el 1 de octubre de 2026 la ley exige al menos la Licencia de Navegación (titulín), que se saca en 1 día sin examen, para alquilar cualquier barco a motor. Si nadie de la familia tiene título, la excursión privada con patrón es la opción: el barco lo lleva un profesional.",
       },
       {
         question: "¿Qué incluye el precio del alquiler?",
@@ -4198,7 +4198,7 @@ export const es: Translations = {
     heroTitle: "Alquiler de Barco para Familias en Costa Brava",
     heroDescription:
       "Una aventura segura y divertida para toda la familia. Lanchas con licencia desde el Puerto de Blanes, que llevas con el titulín, o excursión privada con patrón, con chalecos infantiles y calas protegidas perfectas para niños.",
-    badgeNoLicense: "Titulín en 1 día o patrón",
+    badgeNoLicense: "Titulín o patrón",
     badgeKidsVests: "Chalecos infantiles incluidos",
     badgeFuel: "Calas tranquilas para niños",
     whyTitle: "Por qué es perfecto para familias",
@@ -4207,7 +4207,7 @@ export const es: Translations = {
       "Alquilar un barco en familia es mucho más que un paseo por el mar. Es descubrir calas escondidas juntos, ver peces bajo el agua, hacer un picnic flotando en aguas turquesas y crear recuerdos que los niños contarán durante años. En la Costa Brava, la costa entre Blanes y Lloret ofrece el escenario perfecto.",
     whyNoStressTitle: "Sin estrés, sin complicaciones",
     whyNoStressDesc:
-      "Con el titulín, un curso de 1 día sin examen, llevas tú el timón, y antes de salir te explicamos el barco en 15 minutos. Si prefieres desconectar del todo, en la excursión privada lo lleva nuestro patrón. Solo necesitas venir con ganas de pasarlo bien.",
+      "Con el titulín, que se saca en 1 día sin examen, llevas tú el timón, y antes de salir te explicamos el barco en 15 minutos. Si prefieres desconectar del todo, en la excursión privada lo lleva nuestro patrón. Solo necesitas venir con ganas de pasarlo bien.",
     whyCalmCovesTitle: "Calas tranquilas para niños",
     whyCalmCovesDesc:
       "Recomendamos calas protegidas con agua poco profunda y sin oleaje. Cala Sant Francesc tiene fondo de arena ideal para que los niños se bañen con seguridad. Cala Bona ofrece aguas cristalinas perfectas para primeras experiencias de snorkel.",
@@ -4411,7 +4411,7 @@ export const es: Translations = {
       "Lleva crema solar, agua abundante, gorra y gafas de sol polarizadas (ayudan a ver peces en el agua). Una camiseta de manga larga te protege del sol durante las horas de pesca. No olvides la licencia de pesca impresa o en el móvil.",
     exploreTitle: "Explora más actividades y servicios",
     linkLicensed: "Barcos con licencia",
-    linkNoLicense: "Titulín en 1 día",
+    linkNoLicense: "Qué es el titulín",
     linkSnorkel: "Excursión de snorkel",
     linkPrices: "Precios y tarifas",
     linkBlanes: "Puerto de Blanes",
@@ -4436,7 +4436,7 @@ export const es: Translations = {
     hero: {
       title: "Alquiler de Barcos cerca de Barcelona",
       description:
-        "A solo 70 minutos de Barcelona, el Puerto de Blanes te ofrece la mejor experiencia náutica de la Costa Brava. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón.",
+        "A solo 70 minutos de Barcelona, el Puerto de Blanes te ofrece la mejor experiencia náutica de la Costa Brava. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón.",
       badgeDistance: "70 min desde Barcelona",
       badgeLicense: "Con titulín o con patrón",
       badgeWaters: "Aguas cristalinas",
@@ -4489,7 +4489,7 @@ export const es: Translations = {
     faqItems: [
       {
         question: "¿Puedo alquilar un barco sin licencia cerca de Barcelona?",
-        answer: "Desde el 1 de octubre de 2026 (RD 1188/2025) ya no: para pilotar un barco a motor de alquiler hace falta titulación. En Blanes, a 70 minutos de Barcelona por la AP-7, tienes dos opciones: alquilar con la Licencia de Navegación (curso de 1 día, sin examen) o salir con patrón en nuestra excursión privada, que no requiere titulación.",
+        answer: "Desde el 1 de octubre de 2026 (RD 1188/2025) ya no: para pilotar un barco a motor de alquiler hace falta titulación. En Blanes, a 70 minutos de Barcelona por la AP-7, tienes dos opciones: alquilar con la Licencia de Navegación (se saca en 1 día, sin examen) o salir con patrón en nuestra excursión privada, que no requiere titulación.",
       },
       {
         question: "¿Cuánto se tarda de Barcelona a Blanes?",
@@ -4569,17 +4569,17 @@ export const es: Translations = {
       sinLicencia: {
         question: "¿Puedo alquilar sin tener licencia náutica?",
         answer:
-          "Desde el 1 de octubre de 2026, no: el RD 1188/2025 exige título náutico para alquilar cualquier barco a motor, y hemos retirado nuestros barcos sin licencia. Basta la Licencia de Navegación (titulín), un curso de 1 día sin examen. Sin título, puedes salir con patrón en la excursión privada.",
+          "Desde el 1 de octubre de 2026, no: el RD 1188/2025 exige título náutico para alquilar cualquier barco a motor, y hemos retirado nuestros barcos sin licencia. Basta la Licencia de Navegación (titulín), que se saca en 1 día sin examen. Sin título, puedes salir con patrón en la excursión privada.",
       },
       normativa2026: {
         question: "¿Es verdad que en 2026 se acaba el alquiler de barcos sin licencia?",
         answer:
-          "Sí, cambió la ley: el RD 1188/2025 exige un título náutico para alquilar cualquier embarcación a motor desde el 1 de octubre de 2026, y desde esa fecha ya no alquilamos barcos sin licencia. Basta la Licencia de Navegación (titulín), un curso de 1 día sin examen, o cualquier título superior o extranjero equivalente. La excursión con patrón no se ve afectada: ahí el barco lo gobierna un profesional.",
+          "Sí, cambió la ley: el RD 1188/2025 exige un título náutico para alquilar cualquier embarcación a motor desde el 1 de octubre de 2026, y desde esa fecha ya no alquilamos barcos sin licencia. Basta la Licencia de Navegación (titulín), que se saca en 1 día sin examen, o cualquier título superior o extranjero equivalente. La excursión con patrón no se ve afectada: ahí el barco lo gobierna un profesional.",
       },
       titulin: {
         question: "¿Qué es el titulín y cómo me lo saco?",
         answer:
-          "El titulín es la Licencia de Navegación: el título náutico más rápido de España. Se consigue en un día con 2 horas de teoría y 4 de prácticas en una escuela náutica autorizada, sin examen, y no caduca. Permite llevar barcos de hasta 6 metros, de día y hasta 2 millas de un abrigo: en nuestra flota cubre la Mingolla Brava 19, la Trimarchi 57S y la Pacific Craft 625. Lo expide cualquier escuela náutica autorizada: escríbenos por WhatsApp y te lo organizamos en una de la zona si lo necesitas ya. Nuestra propia escuela, Escola Nàutica Blanes (escolanauticablanes.com), abrirá en el puerto de Blanes: todavía no está autorizada, así que de momento solo tiene lista de espera.",
+          "El titulín es la Licencia de Navegación: el título náutico más rápido de España. Se consigue en un día con 2 horas de teoría y 4 de prácticas en una escuela náutica autorizada, sin examen, y no caduca. Permite llevar barcos de hasta 6 metros, de día y hasta 2 millas de un abrigo: en nuestra flota cubre la Mingolla Brava 19, la Trimarchi 57S y la Pacific Craft 625. Lo expide cualquier escuela náutica autorizada. Nuestra propia escuela, Escola Nàutica Blanes (escolanauticablanes.com), abrirá en el puerto de Blanes: todavía no está autorizada, así que de momento solo tiene lista de espera.",
       },
       licenciasAceptadas: {
         question: "¿Qué licencias aceptan para barcos grandes?",
@@ -4709,7 +4709,7 @@ export const es: Translations = {
       diferenciaLicencia: {
         question: "¿Cuál es la diferencia entre barcos sin licencia y con licencia?",
         answer:
-          "Hasta el 30 de septiembre de 2026 alquilábamos barcos sin licencia de hasta 15 CV y 4-5 plazas. Desde el 1 de octubre de 2026 la ley exige título para alquilar, así que alquilamos nuestras lanchas con licencia: motores de 80-115 CV, hasta 7 personas y autonomía para llegar a Tossa de Mar, desde {licBaja2h}€ (gasolina no incluida). Basta la Licencia de Navegación, un curso de 1 día sin examen.",
+          "Hasta el 30 de septiembre de 2026 alquilábamos barcos sin licencia de hasta 15 CV y 4-5 plazas. Desde el 1 de octubre de 2026 la ley exige título para alquilar, así que alquilamos nuestras lanchas con licencia: motores de 80-115 CV, hasta 7 personas y autonomía para llegar a Tossa de Mar, desde {licBaja2h}€ (gasolina no incluida). Basta la Licencia de Navegación, que se saca en 1 día sin examen.",
       },
       precioBlanesVsLloret: {
         question: "¿Es más barato alquilar un barco en Blanes o en Lloret de Mar?",
@@ -4819,7 +4819,7 @@ export const es: Translations = {
     faq: {
       q1: "¿Cuánto cuesta alquilar un barco sin licencia en Blanes?",
       a1Template:
-        "Desde el 1 de octubre de 2026 ya no alquilamos barcos sin licencia: el RD 1188/2025 exige título náutico para alquilar cualquier barco a motor. Con la Licencia de Navegación (titulín, curso de 1 día sin examen) alquilas nuestras lanchas desde {licBaja2h} € las 2 horas en temporada baja; sin título, la excursión privada con patrón sale desde {excursionBaja2h} € las 2 horas.",
+        "Desde el 1 de octubre de 2026 ya no alquilamos barcos sin licencia: el RD 1188/2025 exige título náutico para alquilar cualquier barco a motor. Con la Licencia de Navegación (titulín, se saca en 1 día sin examen) alquilas nuestras lanchas desde {licBaja2h} € las 2 horas en temporada baja; sin título, la excursión privada con patrón sale desde {excursionBaja2h} € las 2 horas.",
       q2: "¿La gasolina está incluida en el precio?",
       a2: "No. Ninguno de nuestros barcos incluye la gasolina: se paga aparte según el consumo real de la salida.",
       q3: "¿Hay diferencia de precio entre temporada baja y alta?",
@@ -5627,8 +5627,8 @@ export const es: Translations = {
     categories: {
       licenseFree: {
         name: "Sin licencia: normativa 2026",
-        description: "Desde el 1 de octubre de 2026 ya no se alquilan barcos sin titulación. Qué opciones tienes: titulín en 1 día o salida con patrón.",
-        features: ["Titulín en 1 día", "Sin examen", "O sal con patrón"],
+        description: "Desde el 1 de octubre de 2026 ya no se alquilan barcos sin titulación. Qué opciones tienes: con el titulín pilotas tú, o sales con patrón.",
+        features: ["Con titulín", "Sin examen", "O sal con patrón"],
       },
       licensed: {
         name: "Barcos con licencia",
@@ -5713,7 +5713,7 @@ export const es: Translations = {
     faq: [
       {
         q: "¿Necesito licencia?",
-        a: "Sí: desde el 1 de octubre de 2026 la ley exige que quien pilota tenga al menos la Licencia de Navegación (titulín), un curso de 1 día sin examen. El resto del grupo va de pasajero. Estamos adaptando las salidas compartidas a esta norma: apúntate y te avisamos.",
+        a: "Sí: desde el 1 de octubre de 2026 la ley exige que quien pilota tenga al menos la Licencia de Navegación (titulín), que se saca en 1 día sin examen. El resto del grupo va de pasajero. Estamos adaptando las salidas compartidas a esta norma: apúntate y te avisamos.",
       },
       {
         q: "¿Cuánto cuesta?",
@@ -6165,22 +6165,22 @@ export const es: Translations = {
     conditionsLink: "Leer las condiciones generales del alquiler",
   },
   navigationLicensePage: {
-    seoTitle: "Licencia de Navegación (Titulín) en Blanes | Curso de 1 día",
+    seoTitle: "Licencia de Navegación (Titulín) en Blanes | Qué es y qué permite",
     seoDescription:
-      "Qué es la Licencia de Navegación (titulín), qué te permite y cómo sacártela en un día: 6 horas, sin examen. Desde octubre de 2026 la ley la pide para alquilar.",
+      "Qué es la Licencia de Navegación (titulín), qué te permite y qué lanchas llevas con ella. Sin examen. Desde octubre de 2026 la ley la pide para alquilar.",
     navLabel: "Titulín",
     hero: {
-      title: "La Licencia de Navegación: tu título náutico en un solo día",
+      title: "La Licencia de Navegación: qué es el titulín y qué lanchas puedes llevar",
       subtitle:
-        "El titulín es el título náutico más rápido de España: 6 horas de curso, sin examen, y no caduca. Te abre las lanchas de hasta 6 metros y, desde octubre de 2026, es la llave para seguir alquilando barcos por tu cuenta.",
+        "El titulín es el título náutico más rápido de España: se saca en 6 horas en una escuela náutica autorizada, sin examen, y no caduca. Te abre las lanchas de hasta 6 metros y, desde octubre de 2026, es la llave para seguir alquilando barcos por tu cuenta.",
     },
-    chips: ["Curso de 1 día (6 horas)", "Sin examen", "No caduca", "Válida en toda España"],
+    chips: ["Se saca en 1 día (6 horas)", "Sin examen", "No caduca", "Válida en toda España"],
     newRule: {
       title: "Cambio de ley: qué pasa el 1 de octubre de 2026",
       body:
         "El Real Decreto 1188/2025 modifica la normativa de titulaciones náuticas (RD 875/2014): desde el 1 de octubre de 2026, para alquilar cualquier embarcación a motor hace falta estar en posesión de un título náutico, también en los barcos pequeños que hasta entonces se alquilaban sin licencia. La exención de los barcos de hasta 5 metros y 15 CV queda solo para embarcaciones de uso privado.",
       note:
-        "Hasta el 30 de septiembre de 2026 alquilábamos barcos sin licencia; desde el 1 de octubre, ya no. Con la Licencia de Navegación, un curso de 1 día sin examen, llevas nuestras tres lanchas con licencia; sin título, sales con patrón en la excursión privada.",
+        "Hasta el 30 de septiembre de 2026 alquilábamos barcos sin licencia; desde el 1 de octubre, ya no. Con la Licencia de Navegación, que se saca en 1 día sin examen, llevas nuestras tres lanchas con licencia; sin título, sales con patrón en la excursión privada.",
     },
     whatIs: {
       title: "Qué es la Licencia de Navegación (el titulín)",
@@ -6218,7 +6218,7 @@ export const es: Translations = {
         },
       ],
       note:
-        "El curso se hace en escuelas náuticas de recreo autorizadas y federaciones náuticas. Nosotros te lo organizamos cerca de Blanes y lo combinamos con tu primer alquiler: sales titulado y con la lancha reservada el mismo viaje. Escríbenos y te orientamos sobre dónde sacártelo cerca de Blanes.",
+        "El curso lo dan escuelas náuticas de recreo autorizadas y federaciones náuticas, no nosotros: tú eliges dónde y cuándo sacártelo. Con el titulín en la mano, reservas la lancha que quieras de nuestra flota con licencia.",
     },
     fleet: {
       title: "Con el titulín, esta flota es tuya",
@@ -6230,7 +6230,7 @@ export const es: Translations = {
     faq: [
       {
         q: "¿Necesito ya un título para alquilar un barco?",
-        a: "Sí. Desde el 1 de octubre de 2026, el RD 1188/2025 exige un título náutico a quien alquila cualquier embarcación a motor, también los barcos de hasta 5 metros y 15 CV que antes se alquilaban sin titulación. La Licencia de Navegación es el más rápido de conseguir: un curso de 1 día, sin examen.",
+        a: "Sí. Desde el 1 de octubre de 2026, el RD 1188/2025 exige un título náutico a quien alquila cualquier embarcación a motor, también los barcos de hasta 5 metros y 15 CV que antes se alquilaban sin titulación. La Licencia de Navegación es el más rápido de conseguir: se saca en 1 día, sin examen.",
       },
       {
         q: "¿Cuánto dura el curso y hay examen?",
@@ -6259,12 +6259,12 @@ export const es: Translations = {
         "Con la excursión privada con patrón no necesitas ningún título, ni ahora ni con la nueva ley: un patrón profesional os lleva a calas y cuevas entre Blanes y Tossa de Mar mientras vosotros solo disfrutáis.",
       cta: "Ver la excursión con patrón",
     },
-    ctaTitle: "Te organizamos el titulín y tu primera salida",
+    ctaTitle: "Con el titulín en la mano, la lancha te espera",
     ctaText:
-      "Escríbenos por WhatsApp y montamos el pack: curso de un día cerca de Blanes, fechas disponibles, precio y la lancha reservada para cuando lo tengas en la mano.",
+      "Escríbenos por WhatsApp para ver fechas y lanchas disponibles. Si aún no tienes título, la excursión privada con patrón no requiere ninguno.",
     ctaButton: "Escríbenos por WhatsApp",
     whatsappMessage:
-      "Hola, quiero información sobre cómo sacarme la Licencia de Navegación (titulín) y alquilar un barco.",
+      "Hola, ya tengo (o voy a sacarme) la Licencia de Navegación (titulín) y quiero información para alquilar una lancha.",
   },
   // Oficina de reservas en Lloret (tienda de Coast Rent en el Centro Comercial Carabela, desde el
   // 1-feb-2027). La frase la monta CoastrentOfficeNote.tsx y el bodyFallback de seoInjector:
@@ -6549,9 +6549,9 @@ export const es: Translations = {
       "Para quien quiere desconectar del todo, celebra algo o no tiene titulación y quiere llegar hasta las cuevas de Tossa sin límites de potencia.",
     vsSelfDriveTitle: "Sin patrón: pilotas tú",
     vsSelfDriveText:
-      "Con la Licencia de Navegación (curso de 1 día, sin examen) o un título superior puedes alquilar nuestras lanchas de 80-115 cv y marcar tu propia ruta.",
+      "Con la Licencia de Navegación (se saca en 1 día, sin examen) o un título superior puedes alquilar nuestras lanchas de 80-115 cv y marcar tu propia ruta.",
     vsLinkLicensed: "Lanchas sin patrón (con titulación)",
-    vsLinkFree: "Titulín en 1 día",
+    vsLinkFree: "Qué es el titulín",
     faq: [
       {
         q: "¿Necesito licencia o experiencia para esta excursión?",
@@ -6743,9 +6743,9 @@ export const es: Translations = {
     newBadge: "Novedad",
   },
   titulinSection: {
-    title: "Sácate el titulín en un día y navega por tu cuenta",
-    subtitle: "6 horas de curso, sin examen y para toda la vida. Te lo organizamos cerca de Blanes y lo combinamos con tu primer alquiler: acabas el curso con el título en la mano y la lancha reservada.",
-    ctaPrimary: "Quiero sacarme el titulín",
+    title: "Qué es el titulín y qué lanchas puedes llevar",
+    subtitle: "Título náutico de iniciación: 6 horas de curso en una escuela autorizada, sin examen y para toda la vida. Con él pilotas nuestras tres lanchas con licencia.",
+    ctaPrimary: "Qué es el titulín",
     captainedLine: "¿Prefieres no llevar el timón?",
     captainedCta: "Sal con patrón profesional",
   },

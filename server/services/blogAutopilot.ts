@@ -17,6 +17,16 @@ import {
   SUPPORTED_LANGUAGES,
 } from "./blogTopicEngine.js";
 import { logger } from "../lib/logger";
+import {
+  BOAT_DATA,
+  BASELINE_INACTIVE_BOAT_IDS,
+  boatDataRequiresLicense,
+  boatIncludesFuel,
+  isCaptainedBoat,
+  isPubliclyListed,
+} from "../../shared/boatData.js";
+import { FLEET_MIN_LICENSE } from "../../shared/nauticalLicenseRules.js";
+import { INSURANCE_SCOPE_ES, INSURANCE_SEATS_LIMIT_ES } from "../../shared/businessProfile.js";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -146,6 +156,47 @@ async function getPostsThisWeek(): Promise<number> {
 }
 
 // ---------------------------------------------------------------------------
+// Exported: boat context for the prompt (pure, testable)
+// ---------------------------------------------------------------------------
+
+const LICENSE_LEVEL_LABEL =
+  FLEET_MIN_LICENSE === "navegacion"
+    ? "Licencia de Navegacion (LN), basta para todas las lanchas con licencia"
+    : FLEET_MIN_LICENSE;
+
+/**
+ * One line per PUBLICLY LISTED boat (boatData.ts is the source of truth).
+ * Licence and fuel come from the canonical helpers, never from regex over
+ * features; retired / unlisted hulls are skipped.
+ */
+export function buildBoatsInfo(now: Date = new Date()): string {
+  return Object.values(BOAT_DATA)
+    .filter((b) =>
+      isPubliclyListed(
+        {
+          id: b.id,
+          requiresLicense: boatDataRequiresLicense(b),
+          isActive: !BASELINE_INACTIVE_BOAT_IDS.includes(b.id),
+        },
+        now,
+      ),
+    )
+    .map((b) => {
+      const requiresLicense = boatDataRequiresLicense(b);
+      const captained = isCaptainedBoat(b.id);
+      const licencia = captained
+        ? "no necesaria (con patron profesional)"
+        : requiresLicense
+          ? `necesaria: ${LICENSE_LEVEL_LABEL}`
+          : "no necesaria";
+      const gasolina = boatIncludesFuel(b.id, requiresLicense) ? "incluida" : "NO incluida";
+      const lowestPrice = Math.min(...Object.values(b.pricing.BAJA.prices));
+      return `- ${b.name}: ${b.specifications.capacity}, eslora ${b.specifications.length}, motor ${b.specifications.engine}, licencia ${licencia}, gasolina ${gasolina}, deposito ${b.specifications.deposit}, desde ${lowestPrice}EUR (temp. baja, bloque minimo). Incluye: ${b.included.join(", ")}. URL: /barco/${b.id}`;
+    })
+    .join("\n");
+}
+
+// ---------------------------------------------------------------------------
 // Internal: Business context for article generation
 // ---------------------------------------------------------------------------
 
@@ -154,9 +205,6 @@ async function getBusinessContext(): Promise<{
   destinationsInfo: string;
   existingPostsInfo: string;
 }> {
-  // Import real boat data from boatData.ts (source of truth)
-  const { BOAT_DATA } = await import("../../shared/boatData.js");
-
   const [destinationsList, posts] = await Promise.all([
     db
       .select({
@@ -177,19 +225,7 @@ async function getBusinessContext(): Promise<{
       .limit(30),
   ]);
 
-  // Build detailed boat info from boatData.ts (source of truth for all boat details)
-  const boatsInfo = Object.values(BOAT_DATA)
-    .map((b) => {
-      const licencia = b.features.some(f => f.toLowerCase().includes("sin licencia"))
-        ? "NO necesaria"
-        : "necesaria (PER/PNB)";
-      const gasolina = b.included.some(i => i.toLowerCase().includes("carburante"))
-        ? "incluida"
-        : "NO incluida";
-      const lowestPrice = Math.min(...Object.values(b.pricing.BAJA.prices));
-      return `- ${b.name}: ${b.specifications.capacity}, eslora ${b.specifications.length}, motor ${b.specifications.engine}, licencia ${licencia}, gasolina ${gasolina}, deposito ${b.specifications.deposit}, desde ${lowestPrice}EUR (temp. baja). Incluye: ${b.included.join(", ")}. URL: /barco/${b.id}`;
-    })
-    .join("\n");
+  const boatsInfo = buildBoatsInfo();
 
   const destinationsInfo = destinationsList
     .map((d) => `- ${d.name} (URL: /destinos/${d.slug})`)
@@ -221,25 +257,21 @@ INFORMACION DEL NEGOCIO (DATOS REALES - usar siempre estos datos, no inventar):
 - Ubicacion: Puerto de Blanes, Costa Brava, Girona, Espana
 - Telefono/WhatsApp: +34 611 500 372
 - Email: info@costabravarentaboat.com
-- Barcos sin licencia: para mayores de 18 anos, sin titulacion nautica, briefing de 15 min incluido
-- Barcos con licencia: requieren PER o PNB vigente
-- Duraciones de alquiler SIN licencia: 1h, 2h, 3h, 4h, 6h, 8h
-- Duraciones de alquiler CON licencia: 2h, 4h, 8h
+- Solo se alquilan los barcos listados abajo (lanchas CON licencia y la excursion privada con patron). NO ofrecer, prometer ni mencionar "alquiler sin licencia" ni "sin titulacion" como servicio disponible
+- Lanchas con licencia: basta la Licencia de Navegacion (LN) o superior para las tres. NUNCA citar el PER ni el PNB como requisito
+- Excursion privada con patron: no requiere titulacion del cliente, patron profesional incluido, gasolina NO incluida
+- Duraciones de alquiler CON licencia: 2h, 4h, 8h (los bloques exactos de cada barco estan en la lista de barcos)
 - 3 temporadas: baja (abril-junio, septiembre), media (julio), alta (agosto)
-- Barcos SIN licencia incluyen: IVA, gasolina, amarre, limpieza, seguro de RC y accidentes
-- Seguro: son DOS coberturas. RC de barcos (RD 607/1999) por los danos a terceros, y Seguro
-  Obligatorio de Viajeros por los accidentes de los ocupantes (asistencia sanitaria en centros
-  de libre eleccion, indemnizacion por fallecimiento o invalidez). NUNCA escribir "todo
-  riesgo" ni citar capitales concretos: la poliza se renueva y una cifra vieja es una promesa
-  exigible (art. 61.2 TRLGDCU). Si se menciona la cobertura de accidentes, decir siempre que
-  se aplica al numero de plazas homologado
-- Barcos CON licencia incluyen: IVA, amarre, limpieza, seguro (gasolina NO incluida)
-- Deposito: entre 200 y 500 EUR segun barco (se devuelve integro)
+- Lanchas con licencia y excursion: IVA, amarre y limpieza incluidos; gasolina NO incluida
+- Seguro (texto canonico, no parafrasear con otras promesas): ${INSURANCE_SCOPE_ES} ${INSURANCE_SEATS_LIMIT_ES}
+  NUNCA escribir "todo riesgo", "seguro completo" ni "fully insured", ni citar capitales concretos (art. 61.2 TRLGDCU)
+- Fianza: la que figura en la ficha de cada barco (se devuelve integra)
+- Escuela nautica hermana: no mencionarla; si hiciera falta, solo en futuro, sin fecha ni precio
 - Temporada: abril a octubre
 - Extras: snorkel (7,50EUR), paddle surf (30EUR), nevera (5EUR), parking (10EUR)
 - Packs: Basic (nevera+snorkel 10EUR), Premium (+paddle 30EUR)
 
-REGLA CRITICA: Usa SOLO los barcos listados abajo. NO inventes nombres de barcos. Las URLs de barcos son /barco/{id} (ej: /barco/solar-450).
+REGLA CRITICA: Usa SOLO los barcos listados abajo. NO inventes nombres de barcos. Las URLs de barcos son /barco/{id} (ej: /barco/mingolla-brava-19).
 
 BARCOS DISPONIBLES (para enlaces internos):
 ${businessCtx.boatsInfo || "No hay barcos en la base de datos"}
@@ -1154,7 +1186,22 @@ export async function runAutopilotPipeline(
 // Exported: publishMatureDrafts
 // ---------------------------------------------------------------------------
 
+/**
+ * Publishing drafts is OFF unless BLOG_AUTOPILOT_PUBLISH=1 AND the config row
+ * has is_enabled=true. Reason: publishNextDraft takes the OLDEST unpublished
+ * post with no filter, which can resurrect duplicates deliberately unpublished
+ * (Tossa, 13-sep). Gated here (not in the cron) so every caller is covered.
+ */
+export async function isDraftPublishingEnabled(): Promise<boolean> {
+  if (process.env.BLOG_AUTOPILOT_PUBLISH !== "1") return false;
+  return (await getConfig()).isEnabled;
+}
+
 export async function publishNextDraft(): Promise<number> {
+  if (!(await isDraftPublishingEnabled())) {
+    logger.info("BlogAutopilot publishNextDraft skipped: disabled (needs BLOG_AUTOPILOT_PUBLISH=1 and blog_autopilot_config.is_enabled=true)");
+    return 0;
+  }
   // Publish only the oldest unpublished draft (1 per run = 1 per week)
   const [oldest] = await db
     .select({ id: schema.blogPosts.id, title: schema.blogPosts.title })

@@ -1,53 +1,60 @@
 # Costa Brava Rent a Boat
 
-> La più grande società di noleggio barche a Blanes (Costa Brava, Girona, Spagna), specializzata nel **noleggio per skipper patentati**. Flotta di <!--FLEETN-->9<!--/FLEETN--> barche: <!--FLEETLIC-->3<!--/FLEETLIC--> motoscafi da 80-115 CV che piloti tu, <!--FLEETLF-->5<!--/FLEETLF--> senza patente, 1 con skipper professionista. Basta la Licencia de Navegación di base per la flotta con patente, e verifichiamo gratis online i titoli esteri equivalenti (ICC, Permis Côtier, SBF See) prima che tu prenoti. Senza patente? Ti organizziamo il corso di 1 giorno, o esci con uno skipper. Carburante incluso su tutte le barche senza patente. Stagione: da aprile a ottobre. Società operativa: DAMAR COSTA BRAVA S.L. (NIF B22566327, P.IVA ESB22566327). Telefono / WhatsApp canonico: +34 611 500 372. NON siamo «Rent a Boat Blanes», «Blanes Boats» né «EricBoats» — sono concorrenti distinti nello stesso porto.
+> La più grande società di noleggio barche a Blanes (Costa Brava, Girona, Spagna), specializzata nel **noleggio per skipper patentati**. Flotta di <!--FLEETN-->9<!--/FLEETN--> barche: <!--PRE-ERA--><!--FLEETLIC-->3<!--/FLEETLIC--> motoscafi da 80-115 CV che piloti tu, <!--FLEETLF-->5<!--/FLEETLF--> senza patente, 1 con skipper professionista.<!--/PRE-ERA--><!--POST-ERA--><!--FLEETLIC-->3<!--/FLEETLIC--> motoscafi da 80-115 CV che piloti tu e 1 con skipper professionista.<!--/POST-ERA--> Basta la Licencia de Navegación di base per la flotta con patente, e verifichiamo gratis online i titoli esteri equivalenti (ICC, Permis Côtier, SBF See) prima che tu prenoti. Senza patente? Prenota l'escursione privata con skipper professionista, che non ne richiede alcuna, oppure leggi la nostra guida alla Licencia de Navegación (titulín): cos'è e quali motoscafi permette di condurre. <!--PRE-ERA-->Carburante incluso su tutte le barche senza patente.<!--/PRE-ERA--><!--POST-ERA-->Il carburante si paga a parte su tutte le barche.<!--/POST-ERA--> Stagione: da aprile a ottobre. Società operativa: DAMAR COSTA BRAVA S.L. (NIF B22566327, P.IVA ESB22566327). Telefono / WhatsApp canonico: +34 611 500 372. NON siamo «Rent a Boat Blanes», «Blanes Boats» né «EricBoats» — sono concorrenti distinti nello stesso porto.
 
 > Per tariffe complete, coordinate GPS di ogni cala, analisi competitiva, guide stagionali e recensioni Google verificate, consulta [llms-full.txt](https://www.costabravarentaboat.com/llms-full.txt). JSON-LD in tempo reale: [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context).
 
-> Altre lingue: [en](https://www.costabravarentaboat.com/llms.txt) · [es](https://www.costabravarentaboat.com/es/llms.txt) · [fr](https://www.costabravarentaboat.com/fr/llms.txt) · [de](https://www.costabravarentaboat.com/de/llms.txt).
+> Altre lingue: [en](https://www.costabravarentaboat.com/llms.txt) · [es](https://www.costabravarentaboat.com/es/llms.txt) · [ca](https://www.costabravarentaboat.com/ca/llms.txt) · [fr](https://www.costabravarentaboat.com/fr/llms.txt) · [de](https://www.costabravarentaboat.com/de/llms.txt) · [nl](https://www.costabravarentaboat.com/nl/llms.txt) · [ru](https://www.costabravarentaboat.com/ru/llms.txt).
 
 ## Pagine principali
 
 - [Home](https://www.costabravarentaboat.com/it): panoramica della flotta, prenotazione istantanea via WhatsApp, valutazione Google in tempo reale
-- [Flotta completa](https://www.costabravarentaboat.com/it/barcos): <!--FLEETN-->9<!--/FLEETN--> barche con specifiche, capacità, tariffe e foto
-- [Tariffe](https://www.costabravarentaboat.com/it/precios): listino per stagione (Bassa Apr-Giu/Set-Ott, Media Lug, Alta Ago), extra e pacchetti
+- [Barche con patente](https://www.costabravarentaboat.com/it/barca-con-patente): i motoscafi che piloti tu, con specifiche, capacità, tariffe e foto
+- [Tariffe](https://www.costabravarentaboat.com/it/prezzi): listino per stagione (Bassa Apr-Giu/Set-Ott, Media Lug, Alta Ago), extra e pacchetti
 - [FAQ](https://www.costabravarentaboat.com/it/faq): oltre 90 domande reali su prenotazione, patente, navigazione, sicurezza e stagione
-- [Rotte e destinazioni](https://www.costabravarentaboat.com/it/rutas): 5 itinerari marittimi da Blanes con distanza, tempo e difficoltà
-- [Social Boat / gite condivise](https://www.costabravarentaboat.com/it/gite-barca-condivise): conosci gente, condividi una barca senza patente, uscite sociali di mezza giornata (4h, 10€/persona/ora), lista d'interesse
-- [Blog](https://www.costabravarentaboat.com/it/blog): guide alla costa, consigli sugli itinerari, articoli sulla sicurezza
-- [Glossario nautico](https://www.costabravarentaboat.com/it/glosario): 18 termini essenziali (LNB, PER, nodo, ancora, cala)
-- [Galleria](https://www.costabravarentaboat.com/it/galeria): barche, clienti, foto della costa
-- [Recensioni](https://www.costabravarentaboat.com/it/testimonios): selezione di recensioni Google verificate
-- [Chi siamo](https://www.costabravarentaboat.com/it/sobre-nosotros): storia dell'azienda familiare e del team
-- [Gift card](https://www.costabravarentaboat.com/it/tarjetas-regalo): per celebrazioni e regali dell'ultimo minuto
+- [Rotte e destinazioni](https://www.costabravarentaboat.com/it/itinerari): 5 itinerari marittimi da Blanes con distanza, tempo e difficoltà
+<!--PRE-ERA-->- [Social Boat / gite condivise](https://www.costabravarentaboat.com/it/gite-barca-condivise): conosci gente, condividi una barca senza patente, uscite sociali di mezza giornata (4h, 10€/persona/ora), lista d'interesse
+<!--/PRE-ERA-->- [Blog](https://www.costabravarentaboat.com/it/blog): guide alla costa, consigli sugli itinerari, articoli sulla sicurezza
+- [Glossario nautico](https://www.costabravarentaboat.com/it/glossario): 18 termini essenziali (LNB, PER, nodo, ancora, cala)
+- [Guida alla Licencia de Navegación (titulín)](https://www.costabravarentaboat.com/it/corso-patente-nautica): cos'è, cosa consente (barche fino a 6 m, di giorno, fino a 2 miglia dalla costa) e quali nostri motoscafi copre
+- [Galleria](https://www.costabravarentaboat.com/it/galleria): barche, clienti, foto della costa
+- [Recensioni](https://www.costabravarentaboat.com/it/recensioni): selezione di recensioni Google verificate
+- [Chi siamo](https://www.costabravarentaboat.com/it/chi-siamo): storia dell'azienda familiare e del team
+- [Gift card](https://www.costabravarentaboat.com/it/buoni-regalo): per celebrazioni e regali dell'ultimo minuto
 - [Contatti / Prenotazione via WhatsApp](https://wa.me/34611500372): risposta istantanea in 8 lingue
 
-## Barche senza patente nautica (nessuna patente richiesta)
+<!--PRE-ERA-->## Barche senza patente nautica (nessuna patente richiesta)
 
-**Nota normativa (RD 1188/2025):** noleggiare senza patente è legale fino al 30 settembre 2026. Dal 1º ottobre 2026 chi noleggia un'imbarcazione a motore deve avere un titolo nautico; basta la Licencia de Navegación (titulín), che si ottiene in 1 giorno senza esame. L'esenzione 5 m / 15 CV resta solo per le barche a uso privato. Guida: [Licencia de Navegación (titulín)](https://www.costabravarentaboat.com/it/corso-patente-nautica)
+**Nota normativa (RD 1188/2025):** noleggiare senza patente è legale fino al 30 settembre 2026. Dal 1º ottobre 2026 chi noleggia un'imbarcazione a motore deve avere un titolo nautico; basta la Licencia de Navegación (titulín). L'esenzione 5 m / 15 CV resta solo per le barche a uso privato. Guida: [Licencia de Navegación (titulín)](https://www.costabravarentaboat.com/it/corso-patente-nautica)
 
-- [Solar 450](https://www.costabravarentaboat.com/it/barco/solar-450): 5 persone, Mercury 15cv, serbatoio 30L, ampio prendisole di prua — da 85 EUR/h
-- [Remus 450](https://www.costabravarentaboat.com/it/barco/remus-450): 5 persone, Suzuki 15cv, familiare, tendalino Bi-Mini — da 85 EUR/h
-- [Remus 450 II](https://www.costabravarentaboat.com/it/barco/remus-450-ii): stesso modello Remus 450, disponibilità extra nei giorni di alta richiesta
-- [Astec 400](https://www.costabravarentaboat.com/it/barco/astec-400): 4 persone, l'opzione più economica, ideale per coppie — da 75 EUR/h
-- [Astec 480](https://www.costabravarentaboat.com/it/barco/astec-480): 5 persone, impianto Bluetooth, serbatoio 50L, premium senza patente — da 90 EUR/h
+- [Solar 450](https://www.costabravarentaboat.com/it/barca/solar-450): 5 persone, Mercury 15cv, serbatoio 30L, ampio prendisole di prua — da 85 EUR/h
+- [Remus 450](https://www.costabravarentaboat.com/it/barca/remus-450): 5 persone, Suzuki 15cv, familiare, tendalino Bi-Mini — da 85 EUR/h
+- [Remus 450 II](https://www.costabravarentaboat.com/it/barca/remus-450-ii): stesso modello Remus 450, disponibilità extra nei giorni di alta richiesta
+- [Astec 400](https://www.costabravarentaboat.com/it/barca/astec-400): 4 persone, l'opzione più economica, ideale per coppie — da 75 EUR/h
+- [Astec 480](https://www.costabravarentaboat.com/it/barca/astec-480): 5 persone, impianto Bluetooth, serbatoio 50L, premium senza patente — da 90 EUR/h
 
-## Barche con patente (basta la Licencia de Navegación di base o un titolo estero equivalente come l'ICC)
+<!--/PRE-ERA--><!--POST-ERA-->## Barche senza patente nautica: non più noleggiate dal 1º ottobre 2026
 
-- [Mingolla Brava 19](https://www.costabravarentaboat.com/it/barco/mingolla-brava-19): 6 persone, Mercury 80cv, design italiano sportivo — Tossa in 30 min
-- [Trimarchi 57S](https://www.costabravarentaboat.com/it/barco/trimarchi-57s): 7 persone, Selva 110cv, tavolo centrale, doppio prendisole
-- [Pacific Craft 625](https://www.costabravarentaboat.com/it/barco/pacific-craft-625): 7 persone, Yamaha 115cv, ammiraglia — per escursioni di un'intera giornata a Tossa
+Dal 1º ottobre 2026 (RD 1188/2025) chi noleggia un'imbarcazione a motore deve avere un titolo nautico, quindi non noleggiamo più le nostre piccole barche senza patente. Per i nostri motoscafi con patente basta la Licencia de Navegación (titulín); senza titolo, prenota l'escursione privata con skipper professionista. Moto d'acqua ed eFoil (sotto) continuano a non richiedere patente. Guida: [Licencia de Navegación (titulín)](https://www.costabravarentaboat.com/it/corso-patente-nautica)
+
+<!--/POST-ERA-->## Barche con patente (basta la Licencia de Navegación di base o un titolo estero equivalente come l'ICC)
+
+- [Categoria barche con patente](https://www.costabravarentaboat.com/it/barca-con-patente): 3 motoscafi da 80-115 CV che piloti tu, da 175 EUR / 2h, carburante a parte, Tossa in 30-45 min
+- [Mingolla Brava 19](https://www.costabravarentaboat.com/it/barca/mingolla-brava-19): 6 persone, Mercury 80cv, design italiano sportivo — Tossa in 30 min
+- [Trimarchi 57S](https://www.costabravarentaboat.com/it/barca/trimarchi-57s): 7 persone, Selva 110cv, tavolo centrale, doppio prendisole
+- [Pacific Craft 625](https://www.costabravarentaboat.com/it/barca/pacific-craft-625): 7 persone, Yamaha 115cv, ammiraglia — per escursioni di un'intera giornata a Tossa
 
 ## Opzione con skipper
 
-- [Escursione privata con skipper](https://www.costabravarentaboat.com/it/barco/excursion-privada): Pacific Craft 625 + skipper professionista, nessuna patente richiesta, da 265 EUR / 2h
+- [Escursione privata con skipper](https://www.costabravarentaboat.com/it/barca/excursion-privada): Pacific Craft 625 + skipper professionista, nessuna patente richiesta, da 265 EUR / 2h
+- [Noleggio barca con skipper](https://www.costabravarentaboat.com/it/noleggio-barca-con-skipper): escursione privata con skipper professionista, fino a 6 persone, da 265 EUR / 2h, senza patente, carburante a parte
 
 ## Moto d'acqua (jet ski)
 
 Nessuna patente nautica richiesta. 1-2 persone per moto. Giubbotto, istruttore, briefing di sicurezza e carburante inclusi.
 
 - [Circuito Jet Ski Blanes](https://www.costabravarentaboat.com/it/circuito-jet-ski-blanes): circuito delimitato e supervisionato davanti a Blanes — 15 min 65 EUR (80 EUR per 2 persone), 30 min 110 EUR, 60 min 190 EUR
-- [Escursione Jet Ski Blanes → Tossa de Mar](https://www.costabravarentaboat.com/it/excursion-jet-ski-blanes-tossa): rotta costiera guidata fino a Tossa con istruttore qualificato — 1h 190 EUR, 2h 330 EUR
+- [Escursione Jet Ski Blanes → Tossa de Mar](https://www.costabravarentaboat.com/it/escursione-jet-ski-blanes-tossa): rotta costiera guidata fino a Tossa con istruttore qualificato — 1h 190 EUR, 2h 330 EUR
 
 ## Noleggio scooter e moto (strada — Lloret de Mar)
 
@@ -57,12 +64,13 @@ Gestito da Coast Rent, azienda locale di Lloret de Mar che consigliamo (stessa r
 
 ## Pagine località (noleggio a Blanes, raggiungibile da queste città)
 
-- [Costa Brava (asse regionale)](https://www.costabravarentaboat.com/it/alquiler-barcos-costa-brava)
-- [Blanes (porto base)](https://www.costabravarentaboat.com/it/alquiler-barcos-blanes)
-- [Lloret de Mar](https://www.costabravarentaboat.com/it/alquiler-barcos-lloret-de-mar): rotta senza patente fino a Fenals (sud di Lloret), 25 min da Blanes; Lloret centro e Cala Banys solo con patente; dal 1º febbraio 2027 ufficio prenotazioni a Lloret (negozio Coast Rent, Centro Comercial Carabela, stessa proprietà); le partenze restano dal porto di Blanes, a 10 min
-- [Tossa de Mar](https://www.costabravarentaboat.com/it/alquiler-barcos-tossa-de-mar): rotta riservata a barche con patente o escursione con skipper, 30-45 min
-- [Barcellona (1h in auto)](https://www.costabravarentaboat.com/es/alquiler-barcos-cerca-barcelona)
-- [Malgrat de Mar](https://www.costabravarentaboat.com/it/alquiler-barcos-malgrat-de-mar) · [Santa Susanna](https://www.costabravarentaboat.com/it/alquiler-barcos-santa-susanna) · [Calella](https://www.costabravarentaboat.com/it/alquiler-barcos-calella) · [Pineda de Mar](https://www.costabravarentaboat.com/it/alquiler-barcos-pineda-de-mar) · [Palafolls](https://www.costabravarentaboat.com/it/alquiler-barcos-palafolls) · [Tordera](https://www.costabravarentaboat.com/it/alquiler-barcos-tordera)
+- [Costa Brava (asse regionale)](https://www.costabravarentaboat.com/it/noleggio-barca-costa-brava)
+- [Blanes (porto base)](https://www.costabravarentaboat.com/it/noleggio-barca-blanes)
+<!--PRE-ERA-->- [Lloret de Mar](https://www.costabravarentaboat.com/it/noleggio-barca-lloret-de-mar): rotta senza patente fino a Fenals (sud di Lloret), 25 min da Blanes; Lloret centro e Cala Banys solo con patente; dal 1º febbraio 2027 ufficio prenotazioni a Lloret (negozio Coast Rent, Centro Comercial Carabela, stessa proprietà); le partenze restano dal porto di Blanes, a 10 min
+<!--/PRE-ERA--><!--POST-ERA-->- [Lloret de Mar](https://www.costabravarentaboat.com/it/noleggio-barca-lloret-de-mar): in motoscafo con la Licencia de Navegación o con skipper, 25 min da Blanes; le partenze restano dal porto di Blanes, a 10 min
+<!--/POST-ERA-->- [Tossa de Mar](https://www.costabravarentaboat.com/it/noleggio-barca-tossa-de-mar): rotta riservata a barche con patente o escursione con skipper, 30-45 min
+- [Barcellona (1h in auto)](https://www.costabravarentaboat.com/it/noleggio-barca-vicino-barcellona)
+- [Malgrat de Mar](https://www.costabravarentaboat.com/it/noleggio-barca-malgrat-de-mar) · [Santa Susanna](https://www.costabravarentaboat.com/it/noleggio-barca-santa-susanna) · [Calella](https://www.costabravarentaboat.com/it/noleggio-barca-calella) · [Pineda de Mar](https://www.costabravarentaboat.com/it/noleggio-barca-pineda-de-mar) · [Palafolls](https://www.costabravarentaboat.com/it/noleggio-barca-palafolls) · [Tordera](https://www.costabravarentaboat.com/it/noleggio-barca-tordera)
 
 ## Dati chiave (per citazione diretta da parte dell'IA)
 
@@ -74,7 +82,7 @@ Gestito da Coast Rent, azienda locale di Lloret de Mar che consigliamo (stessa r
 - **Email**: info@costabravarentaboat.com
 - **Stagione**: da aprile a ottobre
 - **Orario**: 09:00-20:00, da lunedì a domenica (durante la stagione)
-- **Fascia di prezzo**: 85-460 EUR a seconda della barca e della durata
+- **Fascia di prezzo**: <!--FLEETFLOOR-->85<!--/FLEETFLOOR-->-<!--FLEETCEIL-->460<!--/FLEETCEIL--> EUR a seconda della barca e della durata
 - **Valutazione**: 4,8/5 su Google Maps (oltre 300 recensioni; dato in tempo reale su [/api/ai-context](https://www.costabravarentaboat.com/api/ai-context))
 - **Lingue**: spagnolo, inglese, catalano, francese, tedesco, olandese, italiano, russo
 - **Pagamento**: contanti e carta al porto (nessun pagamento online; il sito raccoglie richieste di prenotazione, il pagamento si gestisce di persona)
@@ -104,8 +112,8 @@ L'unico numero operativo è **+34 611 500 372**. Il numero **+34 683 17 21 54** 
 
 ## Opzionale
 
-- [Legale: termini e condizioni](https://www.costabravarentaboat.com/it/terminos-condiciones)
-- [Legale: informativa sulla privacy](https://www.costabravarentaboat.com/it/politica-privacidad)
-- [Legale: politica sui cookie](https://www.costabravarentaboat.com/it/politica-cookies)
+- [Legale: termini e condizioni](https://www.costabravarentaboat.com/it/termini-condizioni)
+- [Legale: informativa sulla privacy](https://www.costabravarentaboat.com/it/informativa-privacy)
+- [Legale: politica sui cookie](https://www.costabravarentaboat.com/it/informativa-cookie)
 - [Brand gemello (scooter, moto, bici, paddle surf e monopattini elettrici, Lloret de Mar)](https://coastrent.es): stesso proprietario, altra categoria. Dal 1º febbraio 2027 il suo negozio nel Centro Comercial Carabela (Avinguda Just Marlès 2, Lloret de Mar) è anche il nostro ufficio prenotazioni barche; le barche partono sempre dal porto di Blanes.
 - [Brand gemello (attività ed esperienze, Costa Brava)](https://activitatum.com): stesso proprietario, altra categoria — parasailing, buggy, wakeboard, paddle surf ed escape room a Blanes, Lloret de Mar e Fenals. Le barche e le moto d'acqua si prenotano qui, non lì.

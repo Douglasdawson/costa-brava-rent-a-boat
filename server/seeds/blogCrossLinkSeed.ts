@@ -471,7 +471,7 @@ Combinar ambas experiencias es como ver una pelicula en 3D despues de verla en 2
 #### Que incluye el barco
 
 - Gasolina (incluida en barcos sin licencia)
-- Seguro de responsabilidad civil y accidentes
+- Seguro de responsabilidad civil y cobertura de accidentes para los ocupantes (segun las plazas homologadas del barco)
 - Equipo de seguridad
 - Briefing personalizado
 
@@ -547,7 +547,7 @@ Para grupos mas grandes, recomendamos un [barco con licencia](/es/barcos-con-lic
 
 - **[Trimarchi 57S](/es/barco/trimarchi-57s):** 7 personas, 110cv, desde 175EUR/2h
 - **[Pacific Craft 625](/es/barco/pacific-craft-625):** 7 personas, 115cv, desde 200EUR/2h
-- **[Excursion privada con capitan](/es/barco/excursion-privada):** 7 personas, desde 240EUR/2h -- el capitan os lleva a las mejores calas y vosotros solo teneis que disfrutar
+- **[Excursion privada con capitan](/es/barco/excursion-privada):** 6 personas, desde 265EUR/2h -- el capitan os lleva a las mejores calas y vosotros solo teneis que disfrutar
 
 **Nota:** Los barcos con licencia no incluyen gasolina. Presupuestar unos 40-80EUR adicionales segun la ruta.
 
@@ -646,7 +646,7 @@ Combining both experiences is like watching a film in 3D after seeing it in 2D: 
 #### What's included with the boat
 
 - Fuel (included on boats without licence)
-- Insurance for all passengers
+- Civil liability insurance and accident cover for occupants (up to the boat's approved number of seats)
 - Safety equipment
 - Personalised briefing
 
@@ -722,7 +722,7 @@ For larger groups, we recommend a [licensed boat](/en/boats-with-license) that t
 
 - **[Trimarchi 57S](/en/boat/trimarchi-57s):** 7 people, 110hp, from 175EUR/2h
 - **[Pacific Craft 625](/en/boat/pacific-craft-625):** 7 people, 115hp, from 200EUR/2h
-- **[Private excursion with captain](/en/boat/excursion-privada):** 7 people, from 240EUR/2h -- the captain takes you to the best coves and all you have to do is enjoy
+- **[Private excursion with captain](/en/boat/excursion-privada):** 6 people, from 265EUR/2h -- the captain takes you to the best coves and all you have to do is enjoy
 
 **Note:** Licensed boats do not include fuel. Budget an additional 40-80EUR depending on the route.
 
@@ -822,7 +822,7 @@ Combinar ambas experiencias es como ver una pelicula en 3D despues de verla en 2
 #### Que incluye el barco
 
 - Gasolina (incluida en barcos sin licencia)
-- Seguro de responsabilidad civil y accidentes
+- Seguro de responsabilidad civil y cobertura de accidentes para los ocupantes (segun las plazas homologadas del barco)
 - Equipo de seguridad
 - Briefing personalizado
 
@@ -898,7 +898,7 @@ Para grupos mas grandes, recomendamos un [barco con licencia](/es/barcos-con-lic
 
 - **[Trimarchi 57S](/es/barco/trimarchi-57s):** 7 personas, 110cv, desde 175EUR/2h
 - **[Pacific Craft 625](/es/barco/pacific-craft-625):** 7 personas, 115cv, desde 200EUR/2h
-- **[Excursion privada con capitan](/es/barco/excursion-privada):** 7 personas, desde 240EUR/2h -- el capitan os lleva a las mejores calas y vosotros solo teneis que disfrutar
+- **[Excursion privada con capitan](/es/barco/excursion-privada):** 6 personas, desde 265EUR/2h -- el capitan os lleva a las mejores calas y vosotros solo teneis que disfrutar
 
 **Nota:** Los barcos con licencia no incluyen gasolina. Presupuestar unos 40-80EUR adicionales segun la ruta.
 

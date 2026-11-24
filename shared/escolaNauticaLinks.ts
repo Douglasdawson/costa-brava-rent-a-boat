@@ -61,7 +61,7 @@ const COPY: Record<string, Omit<EscolaNauticaHandoff, "url">> = {
   es: {
     title: "Nuestra escuela náutica abrirá en el puerto de Blanes",
     body:
-      "El curso lo dan escuelas náuticas autorizadas y una de ellas será la nuestra: Escola Nàutica Blanes, de la misma empresa que Costa Brava Rent a Boat, en el puerto de Blanes. Todavía no está autorizada, así que no hay matrícula abierta ni precio: en su web puedes ver cómo es el día de prácticas, con qué barcos se enseña y qué límites tiene el título, y dejar tu correo en la lista de espera. Si lo necesitas antes (desde el 1 de octubre de 2026 la ley ya pide título para alquilar), escríbenos por WhatsApp y te lo organizamos en una escuela autorizada de la zona, sin esperar a la nuestra.",
+      "El curso lo dan escuelas náuticas autorizadas y una de ellas será la nuestra: Escola Nàutica Blanes, de la misma empresa que Costa Brava Rent a Boat, en el puerto de Blanes. Todavía no está autorizada, así que no hay matrícula abierta ni precio: en su web puedes ver cómo es el día de prácticas, con qué barcos se enseña y qué límites tiene el título, y dejar tu correo en la lista de espera. Si lo necesitas antes (desde el 1 de octubre de 2026 la ley ya pide título para alquilar), escríbenos por WhatsApp y te orientamos sobre las escuelas autorizadas de la zona, sin esperar a la nuestra.",
     cta: "Conocer Escola Nàutica Blanes",
     finalTitle: "El titulín, con la escuela de la casa",
     finalBody:
@@ -70,7 +70,7 @@ const COPY: Record<string, Omit<EscolaNauticaHandoff, "url">> = {
   ca: {
     title: "La nostra escola nàutica obrirà al port de Blanes",
     body:
-      "El curs el fan escoles nàutiques autoritzades i una d'elles serà la nostra: Escola Nàutica Blanes, de la mateixa empresa que Costa Brava Rent a Boat, al port de Blanes. Encara no està autoritzada, així que no hi ha matrícula oberta ni preu: al seu web pots veure com és el dia de pràctiques, amb quins vaixells s'ensenya i quins límits té el títol, i deixar el teu correu a la llista d'espera. Si el necessites abans (des de l'1 d'octubre del 2026 la llei ja demana títol per llogar), escriu-nos per WhatsApp i te l'organitzem en una escola autoritzada de la zona.",
+      "El curs el fan escoles nàutiques autoritzades i una d'elles serà la nostra: Escola Nàutica Blanes, de la mateixa empresa que Costa Brava Rent a Boat, al port de Blanes. Encara no està autoritzada, així que no hi ha matrícula oberta ni preu: al seu web pots veure com és el dia de pràctiques, amb quins vaixells s'ensenya i quins límits té el títol, i deixar el teu correu a la llista d'espera. Si el necessites abans (des de l'1 d'octubre del 2026 la llei ja demana títol per llogar), escriu-nos per WhatsApp i t'orientem sobre les escoles autoritzades de la zona, sense esperar la nostra.",
     cta: "Conèixer Escola Nàutica Blanes",
     finalTitle: "El titulí, amb l'escola de la casa",
     finalBody:
@@ -79,7 +79,7 @@ const COPY: Record<string, Omit<EscolaNauticaHandoff, "url">> = {
   en: {
     title: "Our own nautical school will open in Blanes harbour",
     body:
-      "The course is run by authorised nautical schools and one of them will be ours: Escola Nàutica Blanes, part of the same company as Costa Brava Rent a Boat, in Blanes harbour. It is not authorised yet, so enrolment is not open and there is no price: the site explains what the practice day looks like, which boats you train on and what the licence lets you do, and you can leave your email on the waiting list. If you need the licence sooner (from 1 October 2026 the law requires one in order to rent), message us on WhatsApp and we will arrange it at an authorised school nearby.",
+      "The course is run by authorised nautical schools and one of them will be ours: Escola Nàutica Blanes, part of the same company as Costa Brava Rent a Boat, in Blanes harbour. It is not authorised yet, so enrolment is not open and there is no price: the site explains what the practice day looks like, which boats you train on and what the licence lets you do, and you can leave your email on the waiting list. If you need the licence sooner (from 1 October 2026 the law requires one in order to rent), message us on WhatsApp and we will point you to the authorised schools nearby, without waiting for ours.",
     cta: "Visit Escola Nàutica Blanes",
     finalTitle: "The titulín, with our own school",
     finalBody:

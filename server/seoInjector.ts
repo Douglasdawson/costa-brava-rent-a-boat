@@ -456,51 +456,51 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     // baseline 70€ (applyFleetStatsToText lo reescribe al floor vivo).
     es: {
       title: `Alquiler Barco Costa Brava · Lanchas con Titulación · ★${BUSINESS_RATING_STR} Blanes`,
-      description: `Alquila una lancha en la Costa Brava desde el Puerto de Blanes: hasta 115CV, 7 plazas y rumbo libre hasta Tossa de Mar. Basta la Licencia de Navegación y verificamos títulos extranjeros online. ¿Sin título? Te lo sacamos en 1 día o sales con patrón. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas).`,
+      description: `Alquila una lancha en la Costa Brava desde el Puerto de Blanes: hasta 115CV, 7 plazas y rumbo libre hasta Tossa de Mar. Basta la Licencia de Navegación y verificamos títulos extranjeros online. ¿Sin título? Sales con patrón; con el titulín pilotas tú. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas).`,
       ogTitle: `Costa Brava Rent a Boat ${SEASON_YEAR} | Alquiler Barco con Titulación · ★${BUSINESS_RATING_STR} · Blanes`,
-      ogDescription: `Alquiler de embarcaciones con titulación en la Costa Brava desde Blanes. Hasta 115CV y 7 plazas. Titulín en 1 día o salida con patrón. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas). Reserva WhatsApp.`,
+      ogDescription: `Alquiler de embarcaciones con titulación en la Costa Brava desde Blanes. Hasta 115CV y 7 plazas. Con titulín o salida con patrón. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reseñas). Reserva WhatsApp.`,
     },
     en: {
       title: `Costa Brava Boat Rental · Licensed Powerboats · ★${BUSINESS_RATING_STR} Blanes`,
-      description: `Rent a powerboat on the Costa Brava from Blanes: up to 115HP, 7 seats and free rein to Tossa de Mar. The basic Navigation Licence is enough and we verify foreign titles online. No licence? We get you one in a day, or you sail with a skipper. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews).`,
+      description: `Rent a powerboat on the Costa Brava from Blanes: up to 115HP, 7 seats and free rein to Tossa de Mar. The basic Navigation Licence is enough and we verify foreign titles online. No licence? You go out with a skipper; with the titulín you take the helm. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews).`,
       ogTitle: `Costa Brava Rent a Boat ${SEASON_YEAR} | Licensed Boat Rental · ★${BUSINESS_RATING_STR} · Blanes`,
-      ogDescription: `Boat rental with a licence on the Costa Brava from Blanes. Up to 115HP and 7 seats. Licence in 1 day, or sail with a skipper. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Book on WhatsApp.`,
+      ogDescription: `Boat rental with a licence on the Costa Brava from Blanes. Up to 115HP and 7 seats. With the titulín, or sail with a skipper. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Book on WhatsApp.`,
     },
     fr: {
       title: `Location Bateau Blanes · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Avis · Costa Brava avec Permis`,
-      description: `Louez un bateau sur la Costa Brava depuis Blanes : jusqu'à 115CV, 7 places et cap libre jusqu'à Tossa de Mar. La Licencia de Navegación suffit et nous vérifions les titres étrangers en ligne. Pas de permis ? Nous l'obtenons en 1 jour, ou vous partez avec un skipper. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis).`,
+      description: `Louez un bateau sur la Costa Brava depuis Blanes : jusqu'à 115CV, 7 places et cap libre jusqu'à Tossa de Mar. La Licencia de Navegación suffit et nous vérifions les titres étrangers en ligne. Pas de permis ? Vous partez avec un skipper ; avec le titulín, vous pilotez. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis).`,
       ogTitle: `Location Bateau Blanes ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Costa Brava avec Permis`,
-      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Location de bateaux avec permis au Port de Blanes, Costa Brava. Jusqu'à 115CV. Permis en 1 jour ou skipper à bord. Réservation WhatsApp.`,
+      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Location de bateaux avec permis au Port de Blanes, Costa Brava. Jusqu'à 115CV. Avec titulín ou skipper à bord. Réservation WhatsApp.`,
     },
     de: {
       title: `Bootsverleih Costa Brava · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Bewertungen · Blanes mit Schein`,
-      description: `Boot mieten an der Costa Brava ab Blanes: bis 115PS, 7 Plätze und freie Fahrt bis Tossa de Mar. Die Licencia de Navegación genügt, ausländische Scheine prüfen wir online. Keinen Schein? Wir besorgen ihn an einem Tag, oder Sie fahren mit Skipper. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen).`,
+      description: `Boot mieten an der Costa Brava ab Blanes: bis 115PS, 7 Plätze und freie Fahrt bis Tossa de Mar. Die Licencia de Navegación genügt, ausländische Scheine prüfen wir online. Keinen Schein? Sie fahren mit Skipper; mit dem Titulín steuern Sie selbst. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen).`,
       ogTitle: `Bootsverleih Costa Brava ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Blanes mit Schein`,
-      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Bootsverleih mit Bootsführerschein ab Hafen Blanes, Costa Brava. Bis 115PS. Schein an 1 Tag oder Skipper an Bord.`,
+      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Bootsverleih mit Bootsführerschein ab Hafen Blanes, Costa Brava. Bis 115PS. Mit Titulín oder Skipper an Bord.`,
     },
     ca: {
       title: `Lloguer Barques Costa Brava · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Ressenyes · Blanes amb Titulació`,
-      description: `Lloga una llanxa a la Costa Brava des del Port de Blanes: fins a 115CV, 7 places i rumb lliure fins a Tossa de Mar. N'hi ha prou amb la Llicència de Navegació i verifiquem títols estrangers en línia. Sense títol? Te'l traiem en 1 dia o surts amb patró. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes).`,
+      description: `Lloga una llanxa a la Costa Brava des del Port de Blanes: fins a 115CV, 7 places i rumb lliure fins a Tossa de Mar. N'hi ha prou amb la Llicència de Navegació i verifiquem títols estrangers en línia. Sense títol? Surts amb patró; amb el titulí pilotes tu. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes).`,
       ogTitle: `Lloguer Barques Costa Brava ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Blanes amb Titulació`,
-      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Lloguer d'embarcacions amb titulació des del Port de Blanes. Fins a 115CV. Titulín en 1 dia o patró a bord.`,
+      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Lloguer d'embarcacions amb titulació des del Port de Blanes. Fins a 115CV. Amb titulín o patró a bord.`,
     },
     nl: {
       title: `Boot Huren Blanes Costa Brava · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Reviews · met Vaarbewijs`,
-      description: `Boot huren aan de Costa Brava vanuit Blanes: tot 115pk, 7 plaatsen en vrije vaart tot Tossa de Mar. De Licencia de Navegación volstaat en buitenlandse vaarbewijzen verifiëren wij online. Geen vaarbewijs? Wij regelen het in 1 dag, of je vaart met een schipper. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen).`,
+      description: `Boot huren aan de Costa Brava vanuit Blanes: tot 115pk, 7 plaatsen en vrije vaart tot Tossa de Mar. De Licencia de Navegación volstaat en buitenlandse vaarbewijzen verifiëren wij online. Geen vaarbewijs? Je vaart met een schipper; met de titulín stuur je zelf. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen).`,
       ogTitle: `Boot Huren Blanes Costa Brava ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · met Vaarbewijs`,
-      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen). Boot huren met vaarbewijs in Blanes aan de Costa Brava. Tot 115pk. Vaarbewijs in 1 dag of schipper aan boord.`,
+      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen). Boot huren met vaarbewijs in Blanes aan de Costa Brava. Tot 115pk. Met titulín of schipper aan boord.`,
     },
     it: {
       title: `Noleggio Barche Costa Brava · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} Recensioni · Blanes con Patente`,
-      description: `Noleggia un motoscafo sulla Costa Brava da Blanes: fino a 115CV, 7 posti e rotta libera fino a Tossa de Mar. Basta la Licencia de Navegación e verifichiamo i titoli esteri online. Senza patente? Te la facciamo prendere in 1 giorno, o esci con uno skipper. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni).`,
+      description: `Noleggia un motoscafo sulla Costa Brava da Blanes: fino a 115CV, 7 posti e rotta libera fino a Tossa de Mar. Basta la Licencia de Navegación e verifichiamo i titoli esteri online. Senza patente? Esci con uno skipper; con il titulín guidi tu. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni).`,
       ogTitle: `Noleggio Barche Costa Brava ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Blanes con Patente`,
-      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Noleggio imbarcazioni con patente dal Porto di Blanes, Costa Brava. Fino a 115CV. Patente in 1 giorno o skipper a bordo.`,
+      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Noleggio imbarcazioni con patente dal Porto di Blanes, Costa Brava. Fino a 115CV. Con titulín o skipper a bordo.`,
     },
     ru: {
       title: `Аренда Лодок Коста-Брава · ${BUSINESS_RATING_STR}★ ${BUSINESS_REVIEW_COUNT_STR} отзывов · Бланес с правами`,
-      description: `Аренда катера на Коста-Браве из Бланеса: до 115 л.с., 7 мест и свободный курс до Тосса-де-Мар. Достаточно Licencia de Navegación, иностранные удостоверения проверяем онлайн. Нет прав? Получим их за 1 день, или вы выходите в море с капитаном. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} отзывов).`,
+      description: `Аренда катера на Коста-Браве из Бланеса: до 115 л.с., 7 мест и свободный курс до Тосса-де-Мар. Достаточно Licencia de Navegación, иностранные удостоверения проверяем онлайн. Нет прав? Выходите с капитаном; с titulín управляете сами. ★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} отзывов).`,
       ogTitle: `Аренда Лодок Коста-Брава ${SEASON_YEAR} · ${BUSINESS_RATING_STR}★ Google · Бланес с правами`,
-      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} отзывов). Аренда судов с правами из порта Бланес, Коста-Брава. До 115 л.с. Права за 1 день или капитан на борту.`,
+      ogDescription: `★${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} отзывов). Аренда судов с правами из порта Бланес, Коста-Брава. До 115 л.с. С titulín или капитан на борту.`,
     },
   },
   "/ai-citations": {
@@ -2888,7 +2888,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
       const licensedLabel = tHome.boats?.withLicense ?? (isEn ? "Licensed boats" : "Barcos con licencia");
       const licensedHref = `${BASE_URL}/${lang}/${getSlugForPage("categoryLicensed", lang)}`;
       const titulinLabel = tHome.navigationLicensePage?.navLabel
-        ?? (isEn ? "Get your licence in 1 day" : "Sácate el titulín en 1 día");
+        ?? (isEn ? "What the titulín is" : "Qué es el titulín");
       const titulinHref = `${BASE_URL}/${lang}/${getSlugForPage("navigationLicense", lang)}`;
       const captainedLabel = tHome.captainedPage?.crossLinkLabel
         ?? (isEn ? "Boat with skipper" : "Barco con patrón");

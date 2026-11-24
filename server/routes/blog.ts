@@ -7,6 +7,12 @@ import { notifySubscribersOfNewPost } from "../services/blogNotifier";
 import { notifyIndexNow } from "../seo/indexnow";
 import { fetchUnsplashImage } from "../services/blogAutopilot";
 
+/** Public visibility of a single post: published and not scheduled in the future. */
+export function isBlogPostPublic(post: { isPublished: boolean; publishedAt?: Date | string | null }, now: Date = new Date()): boolean {
+  if (!post.isPublished) return false;
+  return !post.publishedAt || new Date(post.publishedAt) <= now;
+}
+
 export function registerBlogRoutes(app: Express) {
   // ===== PUBLIC ROUTES =====
 
@@ -109,7 +115,9 @@ ${entries}
   app.get("/api/blog/:slug", async (req, res) => {
     try {
       const post = await storage.getBlogPostBySlug(req.params.slug);
-      if (!post) {
+      // Drafts and scheduled posts must not leak through the public route.
+      // Only consumer is the public blog-detail page; the CRM reads /api/admin/blog.
+      if (!post || !isBlogPostPublic(post)) {
         return res.status(404).json({ message: "Blog post not found" });
       }
       res.json(post);

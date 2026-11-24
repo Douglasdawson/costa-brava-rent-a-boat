@@ -33,18 +33,18 @@ export const fr: Translations = {
   hero: {
     title: "Location de bateaux avec permis \u00E0 Blanes, Costa Brava",
     subtitle:
-      "Louez un bateau \u00E0 moteur au port de Blanes et pilotez-le vous-m\u00EAme : jusqu'\u00E0 115 CV, 7 places et cap libre jusqu'\u00E0 Tossa de Mar. La Licencia de Navegaci\u00F3n de base ou un titre \u00E9tranger \u00E9quivalent suffit, et nous le v\u00E9rifions en ligne avant votre r\u00E9servation. Pas encore de permis ? Nous organisons le cours d'une journ\u00E9e, ou vous partez avec un skipper professionnel.",
+      "Louez un bateau à moteur au port de Blanes et pilotez-le vous-même : jusqu'à 115 CV, 7 places et cap libre jusqu'à Tossa de Mar. La Licencia de Navegación de base ou un titre étranger équivalent suffit, et nous le vérifions en ligne avant votre réservation. Pas encore de permis ? Vous partez avec un skipper professionnel.",
     subtitleLine1:
       "Bateaux jusqu'\u00E0 115 CV pour skippers dipl\u00F4m\u00E9s, cap libre jusqu'\u00E0 Tossa de Mar.",
     subtitleLine2:
-      "Pas encore de permis ? Nous vous l'obtenons en un jour, ou vous partez avec un skipper.",
+      "Pas encore de permis ? Vous partez avec un skipper professionnel, ou avec le titulín vous pilotez vous-même.",
     subtitleMobile: "Bateaux avec permis depuis Blanes. Cap libre jusqu'\u00E0 Tossa de Mar.",
     specsLine: "Jusqu'\u00E0 115 CV \u00B7 7 places \u00B7 Cap libre jusqu'\u00E0 Tossa de Mar et au-del\u00E0",
     licenseNote:
       "La Licencia de Navegaci\u00F3n de base suffit. Nous v\u00E9rifions les titres \u00E9trangers en ligne avant la r\u00E9servation.",
     bookNow: "Voir Disponibilit\u00E9s",
     findYourBoat: "R\u00E9server maintenant",
-    ctaTitulin: "Obtenez votre permis en 1 jour",
+    ctaTitulin: "Qu'est-ce que le titulín",
     licenseFreeUntil:
       "Pas encore de permis ? Jusqu'au 30 septembre, vous pouvez encore louer sans titre.",
     licenseFreeUntilCta: "Voir les bateaux sans permis",
@@ -61,11 +61,11 @@ export const fr: Translations = {
     experience: "+5 ans exp.",
     instantConfirmation: "Confirmation imm\u00E9diate",
     marqueeText:
-      "Location de Bateaux \u00E0 Blanes | Avec Permis | Permis en 1 Jour | Avec Skipper",
+      "Location de Bateaux à Blanes | Avec Permis | Titulín | Avec Skipper",
     askWhatsApp: "Demandez-nous sur WhatsApp",
     testimonialQuote: "Exp\u00E9rience incroyable, nous reviendrons",
     testimonialQuoteShort: "Nous reviendrons",
-    summaryGeoPostEra: "Costa Brava Rent a Boat loue depuis le port de Blanes des bateaux à moteur de 80 à 115 CV pour skippers diplômés et une excursion privée avec capitaine, ainsi que des jet skis et de l'eFoil. Depuis le 1er octobre 2026, le RD 1188/2025 exige un permis bateau pour louer : la Licencia de Navegación, une formation d'un jour sans examen, suffit, tout comme un permis étranger équivalent que nous vérifions en ligne. Accueil en 8 langues. Saison d'avril à octobre.",
+    summaryGeoPostEra: "Costa Brava Rent a Boat loue depuis le port de Blanes des bateaux à moteur de 80 à 115 CV pour skippers diplômés et une excursion privée avec capitaine, ainsi que des jet skis et de l'eFoil. Depuis le 1er octobre 2026, le RD 1188/2025 exige un permis bateau pour louer : la Licencia de Navegación, que l'on obtient en 1 jour sans examen, suffit, tout comme un permis étranger équivalent que nous vérifions en ligne. Accueil en 8 langues. Saison d'avril à octobre.",
     summaryGeo:
       "Costa Brava Rent a Boat exploite la plus grande flotte de location de bateaux du Port de Blanes avec 9 bateaux : 3 bateaux \u00E0 moteur de 80 \u00E0 115 CV pour skippers dipl\u00F4m\u00E9s, 5 bateaux sans permis (louables jusqu'au 30 septembre 2026, date \u00E0 laquelle le RD 1188/2025 exige un titre nautique de tout locataire) et 1 excursion priv\u00E9e avec capitaine. La Licencia de Navegaci\u00F3n, le titul\u00EDn d'une journ\u00E9e sans examen, ou un titre \u00E9tranger \u00E9quivalent que nous v\u00E9rifions en ligne. Service en 8 langues. Saison d'avril \u00E0 octobre. 4,8\u2605 sur Google avec plus de 300 avis.",
   },
@@ -127,8 +127,8 @@ export const fr: Translations = {
     title: "Pourquoi Choisir Costa Brava Rent a Boat",
     subtitle: "Tout ce dont vous avez besoin pour une expérience parfaite en mer",
     withoutLicense: {
-      title: "Le Permis en une Seule Journ\u00E9e",
-      description: "Cours de 6 heures, sans examen et sans expiration. Nous l'organisons pour vous.",
+      title: "Qu'est-ce que le Titulín",
+      description: "Titre nautique d'initiation, sans examen et sans expiration. Délivré par des écoles nautiques agréées.",
     },
     withLicense: {
       title: "Bateaux pour Skippers Dipl\u00F4m\u00E9s",
@@ -269,7 +269,7 @@ export const fr: Translations = {
   footer: {
     company: "Costa Brava Rent a Boat - Blanes",
     description: "Location de bateaux avec et sans permis à Blanes, Costa Brava.",
-    descriptionPostEra: "Location de bateaux avec permis à Blanes, Costa Brava. Permis en 1 jour ou sortie avec skipper.",
+    descriptionPostEra: "Location de bateaux avec permis à Blanes, Costa Brava. Avec le titulín ou sortie avec skipper.",
     quickLinks: "Liens Rapides",
     contact: "Contact",
     followUs: "Suivez-Nous",
@@ -969,7 +969,7 @@ export const fr: Translations = {
         needsIcc: "Ton pays délivre l'ICC. Demande-le à ta fédération nautique avant de partir.",
         notRecognized: "Ton permis national n'est pas reconnu directement en Espagne. Écris-nous sur WhatsApp et on regarde les options ensemble.",
         insufficient: "Ton permis se situe en dessous de la Licencia de Navegación espagnole (LN), le minimum pour notre flotte avec permis. Pense à obtenir la LN ou un titre supérieur.",
-        inlandOnly: "Ton permis autorise rivières et lacs, pas la navigation maritime, il ne sert donc pas pour nos bateaux. Avec la Licencia de Navegación (formation d'un jour, sans examen), tu pourras les piloter, ou tu peux partir avec skipper lors de l'excursion privée.",
+        inlandOnly: "Ton permis autorise rivières et lacs, pas la navigation maritime, il ne sert donc pas pour nos bateaux. Avec la Licencia de Navegación (s'obtient en 1 jour, sans examen), tu pourras les piloter, ou tu peux partir avec skipper lors de l'excursion privée.",
       },
       pill: {
         valid: "Valide",
@@ -1083,12 +1083,12 @@ export const fr: Translations = {
     heroTitle: "Bateaux Sans Permis à Blanes",
     // Post-era copy (RD 1188/2025): the page picks these with eraCopy() from 2026-10-01.
     postEraHeroTitle: "Bateaux sans permis à Blanes : depuis le 1er octobre 2026, nous ne les louons plus",
-    postEraHeroDescription: "Depuis le 1er octobre 2026, la loi exige un permis bateau pour louer tout bateau à moteur, et nous avons retiré nos petits bateaux sans permis. Avec le titulín, une formation d'un jour sans examen, vous pilotez nos bateaux à moteur ; et si vous préférez ne pas prendre la barre, vous partez avec un skipper.",
-    postEraBadge: "Titulín en 1 jour, sans examen",
+    postEraHeroDescription: "Depuis le 1er octobre 2026, la loi exige un permis bateau pour louer tout bateau à moteur, et nous avons retiré nos petits bateaux sans permis. Avec le titulín, que l'on obtient en 1 jour sans examen, vous pilotez nos bateaux à moteur ; et si vous préférez ne pas prendre la barre, vous partez avec un skipper.",
+    postEraBadge: "Titulín ou skipper",
     postEraCtaButton: "Voir les bateaux à moteur avec titulín",
     postEraNoticeTitle: "Ce qui change le 1er octobre 2026",
     postEraNoticeBody: "Jusqu'au 30 septembre 2026, nous louions des petits bateaux sans aucun titre. Depuis le 1er octobre, la loi exige que le locataire possède au moins la Licencia de Navegación, et ces bateaux ne se louent plus. Avec elle, vous pilotez tout bateau jusqu'à 6 mètres à 2 milles de la côte, y compris nos trois bateaux à moteur avec permis. Sans titre, l'alternative est l'excursion privée avec skipper.",
-    postEraNoticeLink: "Comment obtenir le titulín en une journée",
+    postEraNoticeLink: "Qu'est-ce que le titulín et quels bateaux il permet",
     postEraFaqCarnetAnswer: "Oui. Depuis le 1er octobre 2026 (décret royal 1188/2025), louer un bateau à moteur exige un titre nautique, c'est pourquoi nous ne louons plus de bateaux sans permis. Le minimum est la Licencia de Navegación (titulín) : un cours d'une journée, 2 heures de théorie et 4 de pratique, sans examen ni expiration, délivré par les écoles nautiques agréées. Elle couvre nos trois bateaux à moteur avec permis. Sans permis, vous pouvez partir avec un skipper lors de l'excursion privée.",
     heroDescription:
       "4 bateaux sans permis dès 85€/h au Port de Blanes, carburant inclus. Jusqu'à 5 personnes, sans permis ni titulation, sans expérience préalable. Briefing de sécurité de 15 min et c'est parti pour naviguer dans les criques de la Costa Brava : Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina et Sa Boadella jusqu'à la plage de Fenals (Lloret de Mar).",
@@ -1441,12 +1441,12 @@ export const fr: Translations = {
     licenseFeature4: "Nous v\u00E9rifions les titres \u00E9trangers en ligne",
     titulin: "Pas encore, je veux le passer",
     titulinDesc:
-      "Nous organisons le cours et vous partez avec notre flotte. Une journ\u00E9e, et vous naviguez seul pendant des \u00E9t\u00E9s.",
-    titulinBadge: "Cours d'1 jour, sans examen",
+      "Le titulín est le titre nautique d'initiation. Il permet de piloter nos bateaux avec permis, et il est délivré par des écoles nautiques agréées.",
+    titulinBadge: "S'obtient en 1 jour, sans examen",
     titulinFeature1: "2 heures de th\u00E9orie et 4 de pratique \u00E0 bord",
     titulinFeature2: "Titre d\u00E9livr\u00E9 sur place, sans examen",
     titulinFeature3: "N'expire jamais, valable dans toute l'Espagne",
-    titulinFeature4: "Nous le combinons \u00E0 votre premi\u00E8re location",
+    titulinFeature4: "Il couvre nos trois bateaux avec permis",
     titulinCta: "Comment \u00E7a marche",
     captained: "Non, et je pr\u00E9f\u00E8re ne pas barrer",
     captainedDesc:
@@ -1577,13 +1577,13 @@ export const fr: Translations = {
         id: "normativa2026",
         question: "Est-il vrai qu'en 2026 la location de bateaux sans permis prend fin ?",
         answer:
-          "Oui, la loi a changé : le RD 1188/2025 exige un titre nautique pour louer tout bateau à moteur depuis le 1er octobre 2026, et depuis cette date nous ne louons plus de bateaux sans permis. La Licencia de Navegación (titulín) suffit, un cours d'1 jour sans examen, ou tout titre supérieur ou étranger équivalent. L'excursion avec skipper n'est pas concernée : là, un professionnel barre le bateau.",
+          "Oui, la loi a changé : le RD 1188/2025 exige un titre nautique pour louer tout bateau à moteur depuis le 1er octobre 2026, et depuis cette date nous ne louons plus de bateaux sans permis. La Licencia de Navegación (titulín) suffit (on l'obtient en 1 jour, sans examen), ou tout titre supérieur ou étranger équivalent. L'excursion avec skipper n'est pas concernée : là, un professionnel barre le bateau.",
       },
       {
         id: "titulin",
         question: "Qu'est-ce que le titul\u00EDn et comment l'obtenir ?",
         answer:
-          "Le titul\u00EDn est la Licencia de Navegaci\u00F3n : le titre nautique le plus rapide d'Espagne. On l'obtient en un jour avec 2 heures de th\u00E9orie et 4 de pratique \u00E0 bord, sans examen, et il n'expire jamais. Il permet de mener des bateaux jusqu'\u00E0 6 m\u00E8tres, de jour et jusqu'\u00E0 2 milles d'un abri : dans notre flotte, le Mingolla Brava 19, le Trimarchi 57S et le Pacific Craft 625. Nous organisons le cours et le combinons \u00E0 votre premi\u00E8re location ; \u00E9crivez-nous et nous vous expliquons.",
+          "Le titulín est la Licencia de Navegación : le titre nautique le plus rapide d'Espagne. On l'obtient en un jour avec 2 heures de théorie et 4 de pratique à bord, sans examen, et il n'expire jamais. Il permet de mener des bateaux jusqu'à 6 mètres, de jour et jusqu'à 2 milles d'un abri : dans notre flotte, le Mingolla Brava 19, le Trimarchi 57S et le Pacific Craft 625.",
       },
       {
         id: "precios",
@@ -1595,7 +1595,7 @@ export const fr: Translations = {
         id: "sin-licencia",
         question: "Puis-je louer un bateau sans permis nautique ?",
         answer:
-          "Depuis le 1er octobre 2026, non : le RD 1188/2025 exige un titre de tout locataire d'un bateau à moteur. La Licencia de Navegación (titulín) s'obtient en une journée, sans examen, et nous l'organisons pour vous. Si vous préférez ne pas passer de titre, l'excursion avec skipper n'en exige aucun.",
+          "Depuis le 1er octobre 2026, non : le RD 1188/2025 exige un titre de tout locataire d'un bateau à moteur. La Licencia de Navegación (titulín) s'obtient en une journée, sans examen, dans une école nautique agréée. Si vous préférez ne pas passer de titre, l'excursion avec skipper n'en exige aucun.",
       },
       {
         id: "incluye",
@@ -1721,7 +1721,7 @@ export const fr: Translations = {
     certifiedCaptains: "Capitaines certifiés",
     officialPort: "Port officiel de Blanes",
     registeredBusiness: "Entreprise enregistrée en Espagne",
-    maritimeInsurance: "Assurance maritime complète",
+    maritimeInsurance: "Assurance RC et accidents des occupants",
     gdprCompliant: "Conforme au RGPD",
   },
   reciprocity: {
@@ -1836,7 +1836,7 @@ export const fr: Translations = {
     limitLabel: "FIN DU TRONÇON",
     limitBoxTitle: "Pourquoi ce tronçon s'arrête-t-il à Fenals ?",
     limitBoxBody:
-      "Jusqu'au 30 septembre 2026, la plage de Fenals était la limite des bateaux sans permis (2 milles de la côte, 5 nœuds, 15 CV). Depuis le 1er octobre, plus aucun bateau ne se loue sans permis : avec la Licencia de Navegación (cours d'1 jour, sans examen) ou avec un skipper, la route continue vers le nord.",
+      "Jusqu'au 30 septembre 2026, la plage de Fenals était la limite des bateaux sans permis (2 milles de la côte, 5 nœuds, 15 CV). Depuis le 1er octobre, plus aucun bateau ne se loue sans permis : avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou avec un skipper, la route continue vers le nord.",
     noteNorthOfFenals:
       "Note : la plage de Lloret (centre), Cala Banys et Cala Canyelles sont au nord de Fenals ; avec le titulín ou avec un skipper, vous y arrivez aussi.",
     conLicenciaTitle:
@@ -1851,7 +1851,7 @@ export const fr: Translations = {
       platjaAro: "Sant Feliu de Guíxols, S'Agaró, Platja d'Aro (demi-journée / journée complète)",
     },
     ctaFleet:
-      "Obtenez votre permis en 1 jour",
+      "Qu'est-ce que le titulín",
     ctaLicensed: "Bateaux avec Licencia de Navegación",
     internalLinks:
       'Vous voulez voir toutes les routes ? Consultez la <a href="/fr/location-bateau-blanes" class="underline text-primary hover:text-primary/80">location de bateaux à Blanes</a>, la <a href="/fr/location-bateau-lloret-de-mar" class="underline text-primary hover:text-primary/80">location de bateau à Lloret de Mar</a>, l\'extension avec permis <a href="/fr/location-bateau-tossa-de-mar" class="underline text-primary hover:text-primary/80">jusqu\'à Tossa de Mar</a>, toutes les <a href="/fr/location-bateau-costa-brava" class="underline text-primary hover:text-primary/80">routes sur la Costa Brava</a> et la <a href="/fr/location-bateau-pres-barcelone" class="underline text-primary hover:text-primary/80">location de bateau près de Barcelone</a>. Tarifs complets dans <a href="/fr/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Combien coûte la location d\'un bateau à Blanes</a>.',
@@ -1995,7 +1995,7 @@ export const fr: Translations = {
     faq: {
       q1: "Combien coûte la location d'un bateau sans permis à Blanes ?",
       a1Template:
-        "Depuis le 1er octobre 2026, nous ne louons plus de bateaux sans permis : le RD 1188/2025 exige un titre nautique pour louer tout bateau à moteur. Avec la Licencia de Navegación (titulín, formation d'un jour sans examen), vous louez nos bateaux à moteur à partir de {licBaja2h} € les 2 heures en basse saison ; sans titre, l'excursion privée avec skipper est à partir de {excursionBaja2h} € les 2 heures.",
+        "Depuis le 1er octobre 2026, nous ne louons plus de bateaux sans permis : le RD 1188/2025 exige un titre nautique pour louer tout bateau à moteur. Avec la Licencia de Navegación (titulín, s'obtient en 1 jour sans examen), vous louez nos bateaux à moteur à partir de {licBaja2h} € les 2 heures en basse saison ; sans titre, l'excursion privée avec skipper est à partir de {excursionBaja2h} € les 2 heures.",
       q2: "Le carburant est-il inclus dans le tarif ?",
       a2: "Non. Aucun de nos bateaux n'inclut le carburant : il se paie à part, selon la consommation réelle de la sortie.",
       q3: "Y a-t-il une différence de tarif entre basse et haute saison ?",
@@ -2014,7 +2014,7 @@ export const fr: Translations = {
     hero: {
       title: "Location de Bateaux près de Barcelone",
       description:
-        "À seulement 70 minutes de Barcelone, le port de Blanes vous offre la meilleure expérience nautique de la Costa Brava. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d'1 jour, sans examen) ou partez avec un skipper.",
+        "À seulement 70 minutes de Barcelone, le port de Blanes vous offre la meilleure expérience nautique de la Costa Brava. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper.",
       badgeDistance: "70 min depuis Barcelone",
       badgeLicense: "Avec titulín ou skipper",
       badgeWaters: "Eaux cristallines",
@@ -2067,7 +2067,7 @@ export const fr: Translations = {
     faqItems: [
       {
         question: "Puis-je louer un bateau sans permis près de Barcelone ?",
-        answer: "Plus depuis le 1er octobre 2026 (RD 1188/2025) : il faut un permis pour piloter un bateau à moteur de location. À Blanes, à 70 minutes de Barcelone par l'AP-7, vous avez deux options : louer avec la Licencia de Navegación (cours d'1 jour, sans examen) ou sortir avec un skipper lors de notre excursion privée, qui ne demande aucun permis.",
+        answer: "Plus depuis le 1er octobre 2026 (RD 1188/2025) : il faut un permis pour piloter un bateau à moteur de location. À Blanes, à 70 minutes de Barcelone par l'AP-7, vous avez deux options : louer avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou sortir avec un skipper lors de notre excursion privée, qui ne demande aucun permis.",
       },
       {
         question: "Combien de temps faut-il de Barcelone à Blanes ?",
@@ -2182,7 +2182,7 @@ export const fr: Translations = {
       {
         question: "Ai-je besoin d'un permis bateau pour une excursion au coucher du soleil ?",
         answer:
-          "Oui : depuis le 1er octobre 2026, il faut au moins la Licencia de Navegación (titulín) pour piloter, une formation d'un jour sans examen ; avec elle, vous pilotez n'importe lequel de nos bateaux à moteur. Si personne du groupe n'a de titre, partez avec skipper lors de l'excursion privée : un professionnel mène le bateau et vous n'avez qu'à admirer le coucher de soleil.",
+          "Oui : depuis le 1er octobre 2026, il faut au moins la Licencia de Navegación (titulín) pour piloter (on l'obtient en 1 jour, sans examen) ; avec elle, vous pilotez n'importe lequel de nos bateaux à moteur. Si personne du groupe n'a de titre, partez avec skipper lors de l'excursion privée : un professionnel mène le bateau et vous n'avez qu'à admirer le coucher de soleil.",
       },
       {
         question:
@@ -2290,7 +2290,7 @@ export const fr: Translations = {
       "Contrairement aux croisières coucher de soleil en groupe, le bateau est rien que pour vous. Vous choisissez où mouiller, combien de temps rester et ce que vous apportez à bord. Pas de guide qui vous presse, pas d'autres touristes. Juste vous et la Méditerranée dans son plus beau moment.",
     whyAffordableTitle: "Avec titulín ou avec skipper",
     whyAffordableDesc:
-      "Avec la Licencia de Navegación, une formation d'un jour sans examen, vous pilotez n'importe lequel de nos bateaux à moteur, jusqu'à 7 places. Le prix est par bateau, pas par personne : partagé entre le groupe, il revient à un bon prix. Si vous préférez ne pas tenir la barre, l'excursion privée avec skipper vous emmène vers les plus belles vues.",
+      "Avec la Licencia de Navegación, que l'on obtient en 1 jour sans examen, vous pilotez n'importe lequel de nos bateaux à moteur, jusqu'à 7 places. Le prix est par bateau, pas par personne : partagé entre le groupe, il revient à un bon prix. Si vous préférez ne pas tenir la barre, l'excursion privée avec skipper vous emmène vers les plus belles vues.",
     whyTemperatureTitle: "Température parfaite au coucher du soleil",
     whyTemperatureDesc:
       "En fin d'après-midi, la chaleur du jour s'est atténuée. La brise marine vous garde à l'aise. L'eau est à son point le plus chaud après avoir absorbé le soleil toute la journée. C'est le moment idéal pour être dans l'eau, que ce soit pour nager, flotter ou simplement contempler le ciel qui change de couleur.",
@@ -2419,7 +2419,7 @@ export const fr: Translations = {
       "Lors d'une sortie de 3-4 heures, vous pouvez visiter 2-3 criques différentes. Chacune a un écosystème distinct : prairies de posidonie, fonds rocheux, parois verticales. C'est comme faire trois excursions de snorkeling en une seule.",
     whyNoExpTitle: "Avec titulín ou avec skipper",
     whyNoExpDesc:
-      "Avec le titulín, une formation d'un jour sans examen, vous pilotez l'un de nos bateaux à moteur, et avant le départ nous vous expliquons le bateau en 15 minutes. Si personne du groupe n'a de titre, l'excursion avec skipper vous emmène dans les criques. Le snorkeling est l'activité aquatique la plus accessible : il vous suffit d'un masque, d'un tuba et de l'envie de découvrir.",
+      "Avec le titulín, que l'on obtient en 1 jour sans examen, vous pilotez l'un de nos bateaux à moteur, et avant le départ nous vous expliquons le bateau en 15 minutes. Si personne du groupe n'a de titre, l'excursion avec skipper vous emmène dans les criques. Le snorkeling est l'activité aquatique la plus accessible : il vous suffit d'un masque, d'un tuba et de l'envie de découvrir.",
     spotsTitle: "Meilleures criques de snorkeling près de Blanes",
     equipmentTitle: "Équipement de snorkeling inclus et disponible",
     includedTitle: "Inclus avec tous les bateaux",
@@ -2479,7 +2479,7 @@ export const fr: Translations = {
       {
         question: "Ai-je besoin d'un permis bateau pour louer un bateau familial ?",
         answer:
-          "Oui : depuis le 1er octobre 2026, la loi exige au moins la Licencia de Navegación (titulín), une formation d'un jour sans examen, pour louer tout bateau à moteur. Si personne dans la famille n'a de titre, l'excursion privée avec skipper est la solution : un professionnel mène le bateau.",
+          "Oui : depuis le 1er octobre 2026, la loi exige au moins la Licencia de Navegación (titulín), que l'on obtient en 1 jour sans examen, pour louer tout bateau à moteur. Si personne dans la famille n'a de titre, l'excursion privée avec skipper est la solution : un professionnel mène le bateau.",
       },
       {
         question: "Qu'est-ce qui est inclus dans le prix de la location ?",
@@ -2535,7 +2535,7 @@ export const fr: Translations = {
     heroTitle: "Location de Bateau en Famille sur la Costa Brava",
     heroDescription:
       "Une aventure sûre et amusante pour toute la famille. Bateaux à moteur avec permis depuis le Port de Blanes, que vous pilotez avec le titulín, ou excursion privée avec skipper, avec gilets de sauvetage pour enfants et criques protégées parfaites pour les petits.",
-    badgeNoLicense: "Titulín en 1 jour ou skipper",
+    badgeNoLicense: "Titulín ou skipper",
     badgeKidsVests: "Gilets enfants inclus",
     badgeFuel: "Criques calmes pour les enfants",
     whyTitle: "Pourquoi c'est parfait pour les familles",
@@ -2544,7 +2544,7 @@ export const fr: Translations = {
       "Louer un bateau en famille, c'est bien plus qu'une promenade sur la mer. C'est découvrir des criques cachées ensemble, observer les poissons sous l'eau, pique-niquer en flottant dans des eaux turquoise et créer des souvenirs que les enfants raconteront pendant des années. Sur la Costa Brava, la côte entre Blanes et Lloret offre le décor parfait.",
     whyNoStressTitle: "Sans stress, sans complications",
     whyNoStressDesc:
-      "Avec le titulín, une formation d'un jour sans examen, c'est vous qui tenez la barre, et avant le départ nous vous expliquons le bateau en 15 minutes. Si vous préférez déconnecter complètement, lors de l'excursion privée c'est notre skipper qui pilote. Il vous suffit de venir avec l'envie de passer du bon temps.",
+      "Avec le titulín, que l'on obtient en 1 jour sans examen, c'est vous qui tenez la barre, et avant le départ nous vous expliquons le bateau en 15 minutes. Si vous préférez déconnecter complètement, lors de l'excursion privée c'est notre skipper qui pilote. Il vous suffit de venir avec l'envie de passer du bon temps.",
     whyCalmCovesTitle: "Criques tranquilles pour les enfants",
     whyCalmCovesDesc:
       "Nous recommandons des criques protégées avec eau peu profonde et sans houle. Cala Sant Francesc a un fond de sable idéal pour que les enfants se baignent en toute sécurité. Cala Bona offre des eaux cristallines parfaites pour les premières expériences de snorkeling.",
@@ -2747,7 +2747,7 @@ export const fr: Translations = {
       "Emportez de la crème solaire, de l'eau en abondance, une casquette et des lunettes de soleil polarisées (elles aident à voir les poissons dans l'eau). Un t-shirt à manches longues vous protège du soleil pendant les heures de pêche. N'oubliez pas le permis de pêche imprimé ou sur votre téléphone.",
     exploreTitle: "Explorez plus d'activités et de services",
     linkLicensed: "Bateaux avec permis",
-    linkNoLicense: "Titulín en 1 jour",
+    linkNoLicense: "Qu'est-ce que le titulín",
     linkSnorkel: "Excursion snorkeling",
     linkPrices: "Prix et tarifs",
     linkBlanes: "Port de Blanes",
@@ -2814,17 +2814,17 @@ export const fr: Translations = {
       sinLicencia: {
         question: "Puis-je louer un bateau sans permis nautique ?",
         answer:
-          "Depuis le 1er octobre 2026, non : le RD 1188/2025 exige un titre nautique pour louer tout bateau à moteur, et nous avons retiré nos bateaux sans permis. La Licencia de Navegación (titulín) suffit, une formation d'un jour sans examen. Sans titre, vous pouvez partir avec skipper lors de l'excursion privée.",
+          "Depuis le 1er octobre 2026, non : le RD 1188/2025 exige un titre nautique pour louer tout bateau à moteur, et nous avons retiré nos bateaux sans permis. La Licencia de Navegación (titulín) suffit (on l'obtient en 1 jour, sans examen). Sans titre, vous pouvez partir avec skipper lors de l'excursion privée.",
       },
       normativa2026: {
         question: "Est-il vrai que la location de bateaux sans permis se termine en 2026 ?",
         answer:
-          "Oui, la loi a changé : le décret royal 1188/2025 exige un titre nautique pour louer tout bateau à moteur depuis le 1er octobre 2026, et depuis cette date nous ne louons plus de bateaux sans permis. La Licencia de Navegación (titulín), un cours d'1 jour sans examen, suffit, tout comme un titre supérieur ou étranger équivalent. L'excursion avec skipper n'est pas concernée : là, c'est un professionnel qui pilote.",
+          "Oui, la loi a changé : le décret royal 1188/2025 exige un titre nautique pour louer tout bateau à moteur depuis le 1er octobre 2026, et depuis cette date nous ne louons plus de bateaux sans permis. La Licencia de Navegación (titulín), que l'on obtient en 1 jour sans examen, suffit, tout comme un titre supérieur ou étranger équivalent. L'excursion avec skipper n'est pas concernée : là, c'est un professionnel qui pilote.",
       },
       titulin: {
         question: "Qu'est-ce que le titulín et comment l'obtenir ?",
         answer:
-          "Le titulín est la Licencia de Navegación : le permis bateau le plus rapide d'Espagne. Il s'obtient en une journée avec 2 heures de théorie et 4 heures de pratique dans une école nautique agréée, sans examen, et il n'expire jamais. Il permet de piloter des bateaux jusqu'à 6 mètres, de jour et jusqu'à 2 milles d'un abri : dans notre flotte, il couvre la Mingolla Brava 19, la Trimarchi 57S et la Pacific Craft 625. Écrivez-nous et nous vous indiquerons où le passer près de Blanes.",
+          "Le titulín est la Licencia de Navegación : le permis bateau le plus rapide d'Espagne. Il s'obtient en une journée avec 2 heures de théorie et 4 heures de pratique dans une école nautique agréée, sans examen, et il n'expire jamais. Il permet de piloter des bateaux jusqu'à 6 mètres, de jour et jusqu'à 2 milles d'un abri : dans notre flotte, il couvre la Mingolla Brava 19, la Trimarchi 57S et la Pacific Craft 625.",
       },
       licenciasAceptadas: {
         question: "Quels permis acceptez-vous pour les grands bateaux ?",
@@ -2954,7 +2954,7 @@ export const fr: Translations = {
       diferenciaLicencia: {
         question: "Quelle est la différence entre les bateaux sans permis et avec permis ?",
         answer:
-          "Jusqu'au 30 septembre 2026, nous louions des bateaux sans permis jusqu'à 15 CV et 4-5 places. Depuis le 1er octobre 2026, la loi exige un titre pour louer, nous louons donc nos bateaux à moteur avec permis : moteurs de 80-115 CV, jusqu'à 7 personnes et l'autonomie pour rejoindre Tossa de Mar, à partir de {licBaja2h}€ (carburant non inclus). La Licencia de Navegación suffit, une formation d'un jour sans examen.",
+          "Jusqu'au 30 septembre 2026, nous louions des bateaux sans permis jusqu'à 15 CV et 4-5 places. Depuis le 1er octobre 2026, la loi exige un titre pour louer, nous louons donc nos bateaux à moteur avec permis : moteurs de 80-115 CV, jusqu'à 7 personnes et l'autonomie pour rejoindre Tossa de Mar, à partir de {licBaja2h}€ (carburant non inclus). La Licencia de Navegación suffit (on l'obtient en 1 jour, sans examen).",
       },
       precioBlanesVsLloret: {
         question: "Est-il moins cher de louer un bateau à Blanes ou à Lloret de Mar ?",
@@ -3356,8 +3356,8 @@ export const fr: Translations = {
     categories: {
       licenseFree: {
         name: "Sans permis : règles 2026",
-        description: "Depuis le 1er octobre 2026, plus aucun bateau ne se loue sans permis. Vos options : le titulín en 1 jour ou une sortie avec skipper.",
-        features: ["Titulín en 1 jour", "Sans examen", "Ou sortez avec skipper"],
+        description: "Depuis le 1er octobre 2026, plus aucun bateau ne se loue sans permis. Vos options : piloter vous-même avec le titulín, ou sortir avec skipper.",
+        features: ["Avec le titulín", "Sans examen", "Ou sortez avec skipper"],
       },
       licensed: {
         name: "Bateaux avec permis",
@@ -3442,7 +3442,7 @@ export const fr: Translations = {
     faq: [
       {
         q: "Ai-je besoin d'un permis ?",
-        a: "Oui : depuis le 1er octobre 2026, la loi exige que la personne qui pilote ait au moins la Licencia de Navegación (titulín), une formation d'un jour sans examen. Le reste du groupe est passager. Nous adaptons les sorties partagées à cette règle : inscrivez-vous et nous vous préviendrons.",
+        a: "Oui : depuis le 1er octobre 2026, la loi exige que la personne qui pilote ait au moins la Licencia de Navegación (titulín), que l'on obtient en 1 jour sans examen. Le reste du groupe est passager. Nous adaptons les sorties partagées à cette règle : inscrivez-vous et nous vous préviendrons.",
       },
       {
         q: "Combien ça coûte ?",
@@ -3619,7 +3619,7 @@ export const fr: Translations = {
       ],
       scooters: [
         { title: "Location de bateaux à Lloret de Mar", description: "Plages et criques spectaculaires depuis le port de Blanes" },
-        { title: "Bateaux avec permis", description: "Pilotez avec le titulín, une formation d'un jour sans examen" },
+        { title: "Bateaux avec permis", description: "Pilotez avec le titulín, que l'on obtient en 1 jour sans examen" },
         { title: "Location de jet ski sans permis", description: "Circuit et excursion guidée en jet ski depuis Blanes" },
         { title: "Excursion à Tossa de Mar", description: "Découvrez la Vila Vella et ses criques cristallines" },
       ],
@@ -3652,14 +3652,14 @@ export const fr: Translations = {
           },
         ],
         boatsTitle: 'Quel bateau choisir pour faire du snorkeling',
-        boatsIntro: "Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (formation d'un jour, sans examen) ou vous partez avec skipper. Avec le titulín, vous pilotez l'un de nos trois bateaux à moteur avec permis, de 6 ou 7 places ; lors de l'excursion privée avec skipper, jusqu'à 6 personnes, personne du groupe n'a besoin de titre.",
+        boatsIntro: "Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou vous partez avec skipper. Avec le titulín, vous pilotez l'un de nos trois bateaux à moteur avec permis, de 6 ou 7 places ; lors de l'excursion privée avec skipper, jusqu'à 6 personnes, personne du groupe n'a besoin de titre.",
         practicalTitle: 'Informations pratiques',
         practicalBody: "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Toutes ces criques sont à quelques minutes du port. Apportez vos lunettes et tuba, protection solaire et eau. Pensez à mouiller sur le sable, jamais sur les herbiers de posidonie.",
         faqTitle: 'Questions fréquentes',
         faq: [
           {
             q: 'Ai-je besoin d\'un permis pour faire du snorkeling en bateau depuis Blanes ?',
-            a: "Oui : depuis le 1er octobre 2026, il faut au moins la Licencia de Navegación (titulín) pour piloter, une formation d'un jour sans examen. Si personne du groupe n'a de titre, l'excursion privée avec skipper vous emmène dans les criques.",
+            a: "Oui : depuis le 1er octobre 2026, il faut au moins la Licencia de Navegación (titulín) pour piloter (on l'obtient en 1 jour, sans examen). Si personne du groupe n'a de titre, l'excursion privée avec skipper vous emmène dans les criques.",
           },
           {
             q: 'L\'équipement de snorkeling est-il inclus ?',
@@ -3778,7 +3778,7 @@ export const fr: Translations = {
           },
         ],
         boatsTitle: 'Quel bateau choisir selon jusqu\'où vous voulez aller',
-        boatsIntro: "Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (formation d'un jour, sans examen) ou vous partez avec skipper. Nos bateaux à moteur avec permis vous donnent l'autonomie pour enchaîner les criques de Blanes, Lloret et Tossa dans la journée ; lors de l'excursion privée, c'est notre skipper qui mène la route.",
+        boatsIntro: "Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou vous partez avec skipper. Nos bateaux à moteur avec permis vous donnent l'autonomie pour enchaîner les criques de Blanes, Lloret et Tossa dans la journée ; lors de l'excursion privée, c'est notre skipper qui mène la route.",
         practicalTitle: 'Informations pratiques',
         practicalBody: "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Avec un bateau avec permis, vous rejoignez Lloret en environ 25 minutes et Tossa en 30-45 minutes. Apportez vos lunettes et tuba, protection solaire et eau. Mouillez toujours sur le sable, jamais sur la posidonie.",
         faqTitle: 'Questions fréquentes',
@@ -3810,14 +3810,14 @@ export const fr: Translations = {
         ],
         boatsTitle: "Quel bateau choisir pour partir en famille",
         boatsIntro:
-          "Pour les familles, nous recommandons des bateaux spacieux et stables, de 6 ou 7 places. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (formation d'un jour, sans examen) ou vous partez avec skipper lors de l'excursion privée, où personne du groupe n'a besoin de titre.",
+          "Pour les familles, nous recommandons des bateaux spacieux et stables, de 6 ou 7 places. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou vous partez avec skipper lors de l'excursion privée, où personne du groupe n'a besoin de titre.",
         practicalTitle: "Informations pratiques",
         practicalBody:
           "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Nous fournissons des gilets de sauvetage de toutes les tailles, y compris pour enfants. Apportez protection solaire, casquette, eau et de quoi grignoter. Les criques proches de Blanes sont à quelques minutes du port.",
         faqTitle: "Questions fréquentes",
         faq: [
           { q: "Est-il sûr de partir en bateau avec des enfants ?", a: "Oui. Nous fournissons des gilets de sauvetage pour enfants, les criques proches sont calmes et peu profondes, et nous vous expliquons la conduite et la sécurité avant le départ." },
-          { q: "Faut-il un permis pour partir en famille depuis Blanes ?", a: "Oui : depuis le 1er octobre 2026, la personne qui pilote doit avoir au moins la Licencia de Navegación (titulín), une formation d'un jour sans examen. Si personne dans la famille n'a de titre, l'excursion privée avec skipper est la solution : c'est notre skipper qui mène le bateau." },
+          { q: "Faut-il un permis pour partir en famille depuis Blanes ?", a: "Oui : depuis le 1er octobre 2026, la personne qui pilote doit avoir au moins la Licencia de Navegación (titulín), que l'on obtient en 1 jour sans examen. Si personne dans la famille n'a de titre, l'excursion privée avec skipper est la solution : c'est notre skipper qui mène le bateau." },
         ],
         ctaTitle: "Réservez votre journée en bateau en famille à Blanes",
         ctaText: "Choisissez date et bateau, et profitez d'une journée en mer avec les vôtres au départ du port de Blanes.",
@@ -3891,7 +3891,7 @@ export const fr: Translations = {
         ],
         boatsTitle: "Quel bateau choisir selon jusqu'où vous voulez aller",
         boatsIntro:
-          "Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (formation d'un jour, sans examen) ou vous partez avec skipper. Nos bateaux à moteur avec permis, spacieux et jusqu'à 7 places, rejoignent Lloret et Tossa ; l'excursion privée avec skipper accueille jusqu'à 6 personnes.",
+          "Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou vous partez avec skipper. Nos bateaux à moteur avec permis, spacieux et jusqu'à 7 places, rejoignent Lloret et Tossa ; l'excursion privée avec skipper accueille jusqu'à 6 personnes.",
         practicalTitle: "Informations pratiques",
         practicalBody:
           "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Avec un bateau avec permis, vous rejoignez Lloret en environ 25 minutes et Tossa en 30-45 minutes. Nous fournissons des gilets de toutes les tailles.",
@@ -3918,14 +3918,14 @@ export const fr: Translations = {
         ],
         boatsTitle: "Quel bateau choisir pour le coucher du soleil",
         boatsIntro:
-          "Pour le coucher du soleil, nous recommandons une sortie courte et détendue près de Blanes. Depuis le 1er octobre 2026, vous louez l'un de nos bateaux à moteur avec la Licencia de Navegación (formation d'un jour, sans examen), ou vous partez avec skipper lors de l'excursion privée.",
+          "Pour le coucher du soleil, nous recommandons une sortie courte et détendue près de Blanes. Depuis le 1er octobre 2026, vous louez l'un de nos bateaux à moteur avec la Licencia de Navegación (s'obtient en 1 jour, sans examen), ou vous partez avec skipper lors de l'excursion privée.",
         practicalTitle: "Informations pratiques",
         practicalBody:
           "Saison d'avril à octobre, avec des départs jusqu'à 20h00 depuis le port de Blanes ; la fin d'après-midi est le créneau qui offre la plus belle lumière. Sur la Costa Brava le soleil se couche derrière la côte, vous profiterez donc de la lumière dorée et des falaises illuminées plus que du coucher sur l'eau. Apportez une veste légère : il rafraîchit en soirée.",
         faqTitle: "Questions fréquentes",
         faq: [
           { q: "À quelle heure a lieu le départ au coucher du soleil ?", a: "Nous opérons jusqu'à 20h00 ; la fin d'après-midi est le créneau qui offre la lumière dorée. Nous vous recommandons de réserver 1 ou 2 heures en fin de journée." },
-          { q: "Ai-je besoin d'un permis ?", a: "Oui : depuis le 1er octobre 2026, il faut au moins la Licencia de Navegación (titulín), une formation d'un jour sans examen. Sans titre, vous pouvez partir avec skipper lors de l'excursion privée." },
+          { q: "Ai-je besoin d'un permis ?", a: "Oui : depuis le 1er octobre 2026, il faut au moins la Licencia de Navegación (titulín), que l'on obtient en 1 jour sans examen. Sans titre, vous pouvez partir avec skipper lors de l'excursion privée." },
         ],
         ctaTitle: "Réservez votre balade au coucher du soleil à Blanes",
         ctaText: "Choisissez date et bateau, et profitez de l'heure dorée en mer au départ du port de Blanes.",
@@ -3999,7 +3999,7 @@ export const fr: Translations = {
         ],
         boatsTitle: "Quel bateau choisir selon jusqu'où vous voulez aller",
         boatsIntro:
-          "Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (formation d'un jour, sans examen) ou vous partez avec skipper. Avec nos bateaux à moteur avec permis, vous parcourez le tronçon jusqu'à Lloret et Tossa ; lors de l'excursion privée, c'est notre skipper qui mène la balade.",
+          "Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou vous partez avec skipper. Avec nos bateaux à moteur avec permis, vous parcourez le tronçon jusqu'à Lloret et Tossa ; lors de l'excursion privée, c'est notre skipper qui mène la balade.",
         practicalTitle: "Informations pratiques",
         practicalBody:
           "Saison d'avril à octobre, avec des départs jusqu'à 20h00 depuis le port de Blanes. Sur cette côte le soleil se couche derrière la terre : vous profiterez de la lumière dorée et des villages et falaises illuminés. Avec un bateau avec permis, vous rejoignez Lloret ou Tossa. Apportez une veste légère.",
@@ -4107,7 +4107,7 @@ export const fr: Translations = {
         ],
         boatsTitle: "Quel bateau choisir pour pêcher le long de la côte",
         boatsIntro:
-          "Pour la pêche, nous utilisons des bateaux avec permis, dotés de l'autonomie nécessaire pour parcourir la côte entre les zones. La Licencia de Navegación (titulín), une formation d'un jour sans examen, suffit.",
+          "Pour la pêche, nous utilisons des bateaux avec permis, dotés de l'autonomie nécessaire pour parcourir la côte entre les zones. La Licencia de Navegación (titulín), que l'on obtient en 1 jour sans examen, suffit.",
         practicalTitle: "Informations pratiques et réglementation",
         practicalBody:
           "Saison d'avril à octobre, départs de 09h00 à 20h00 depuis le port de Blanes. Il vous faut la licence de pêche récréative de Catalogne (à la charge du client). Respectez les tailles minimales, les espèces protégées et, tout particulièrement, les zones réglementées comme la réserve de Tossa. Le matériel de pêche n'est pas inclus.",
@@ -4836,22 +4836,22 @@ export const fr: Translations = {
     conditionsLink: "Lire les conditions générales de location",
   },
   navigationLicensePage: {
-    seoTitle: "Permis bateau espagnol (Titulín) à Blanes | Cours d'1 jour",
+    seoTitle: "Permis bateau espagnol (Titulín) à Blanes | Ce qu'il permet",
     seoDescription:
-      "La Licencia de Navegación (titulín) : ce qu'elle permet et comment l'obtenir en un jour, 6 heures sans examen. Dès octobre 2026, la loi l'exige pour louer.",
+      "La Licencia de Navegación (titulín) : ce qu'elle permet et quels bateaux vous pouvez piloter. Sans examen. Dès octobre 2026, la loi l'exige pour louer.",
     navLabel: "Permis bateau",
     hero: {
-      title: "La Licencia de Navegación : votre permis bateau en une seule journée",
+      title: "La Licencia de Navegación : ce qu'est le titulín et quels bateaux vous pouvez piloter",
       subtitle:
-        "Le titulín est le permis bateau le plus rapide d'Espagne : 6 heures de cours, sans examen, et il n'expire jamais. Il ouvre les bateaux à moteur jusqu'à 6 mètres et, dès octobre 2026, c'est la clé pour continuer à louer un bateau par vous-même.",
+        "Le titulín est le permis bateau le plus rapide d'Espagne : 6 heures dans une école nautique agréée, sans examen, et il n'expire jamais. Il ouvre les bateaux à moteur jusqu'à 6 mètres et, dès octobre 2026, c'est la clé pour continuer à louer un bateau par vous-même.",
     },
-    chips: ["Cours d'1 jour (6 heures)", "Sans examen", "N'expire jamais", "Valable dans toute l'Espagne"],
+    chips: ["S'obtient en 1 jour (6 heures)", "Sans examen", "N'expire jamais", "Valable dans toute l'Espagne"],
     newRule: {
       title: "Changement de loi : ce qui se passe le 1er octobre 2026",
       body:
         "Le décret royal 1188/2025 modifie la réglementation espagnole des titres nautiques (RD 875/2014) : depuis le 1er octobre 2026, il faut un titre nautique pour louer tout bateau à moteur, y compris les petits bateaux qui se louaient jusqu'alors sans permis. L'exemption des bateaux jusqu'à 5 mètres et 15 CV ne vaut plus que pour les bateaux à usage privé.",
       note:
-        "Jusqu'au 30 septembre 2026, nous louions des bateaux sans permis ; depuis le 1er octobre, ce n'est plus le cas. Avec la Licencia de Navegación, une formation d'un jour sans examen, vous pilotez nos trois bateaux à moteur avec permis ; sans titre, vous partez avec skipper lors de l'excursion privée.",
+        "Jusqu'au 30 septembre 2026, nous louions des bateaux sans permis ; depuis le 1er octobre, ce n'est plus le cas. Avec la Licencia de Navegación, que l'on obtient en 1 jour sans examen, vous pilotez nos trois bateaux à moteur avec permis ; sans titre, vous partez avec skipper lors de l'excursion privée.",
     },
     whatIs: {
       title: "Qu'est-ce que la Licencia de Navegación (le titulín)",
@@ -4889,7 +4889,7 @@ export const fr: Translations = {
         },
       ],
       note:
-        "Le cours est assuré par des écoles nautiques de plaisance agréées et des fédérations. Nous l organisons pour vous près de Blanes et le combinons à votre première location : vous repartez diplômé et avec le bateau déjà réservé pour le même séjour. Écrivez-nous et nous vous orienterons vers une école agréée près de Blanes.",
+        "Le cours est assuré par des écoles nautiques de plaisance agréées et des fédérations, pas par nous : vous choisissez où et quand le passer. Avec le titulín en main, vous réservez le bateau de votre choix dans notre flotte avec permis.",
     },
     fleet: {
       title: "Avec le titulín, cette flotte est à vous",
@@ -4901,7 +4901,7 @@ export const fr: Translations = {
     faq: [
       {
         q: "Ai-je déjà besoin d'un permis pour louer un bateau ?",
-        a: "Oui. Depuis le 1er octobre 2026, le RD 1188/2025 exige un titre nautique de toute personne qui loue un bateau à moteur, y compris les bateaux jusqu'à 5 mètres et 15 CV qui se louaient auparavant sans titre. La Licencia de Navegación est le plus rapide à obtenir : une formation d'un jour, sans examen.",
+        a: "Oui. Depuis le 1er octobre 2026, le RD 1188/2025 exige un titre nautique de toute personne qui loue un bateau à moteur, y compris les bateaux jusqu'à 5 mètres et 15 CV qui se louaient auparavant sans titre. La Licencia de Navegación est le plus rapide à obtenir : on l'obtient en 1 jour, sans examen.",
       },
       {
         q: "Combien dure le cours et y a-t-il un examen ?",
@@ -4930,12 +4930,12 @@ export const fr: Translations = {
         "Avec l'excursion privée avec skipper, aucun titre n'est nécessaire, ni maintenant ni avec la nouvelle loi : un skipper professionnel vous emmène dans les criques et grottes marines entre Blanes et Tossa de Mar pendant que vous profitez simplement.",
       cta: "Voir l'excursion avec skipper",
     },
-    ctaTitle: "Nous organisons votre titulín et votre première sortie",
+    ctaTitle: "Avec le titulín en main, le bateau vous attend",
     ctaText:
-      "Écrivez-nous sur WhatsApp et nous montons le pack : cours d une journée près de Blanes, dates disponibles, prix et le bateau réservé pour le moment où vous aurez le permis en main.",
+      "Écrivez-nous sur WhatsApp pour voir les dates et les bateaux disponibles. Si vous n'avez pas encore de permis, l'excursion privée avec skipper n'en exige aucun.",
     ctaButton: "Écrivez-nous sur WhatsApp",
     whatsappMessage:
-      "Bonjour, je voudrais des informations pour obtenir la Licencia de Navegación (titulín) et louer un bateau.",
+      "Bonjour, j'ai (ou je vais passer) la Licencia de Navegación (titulín) et je voudrais des informations pour louer un bateau.",
   },
   activitiesPage: {
     seoTitle: "Que faire à Blanes et Lloret de Mar en plus du bateau | Activités",
@@ -5214,9 +5214,9 @@ export const fr: Translations = {
       "Pour qui veut déconnecter complètement, fête quelque chose ou n'a pas de titre nautique et veut arriver jusqu'aux grottes de Tossa sans limite de puissance.",
     vsSelfDriveTitle: "Sans skipper : vous pilotez",
     vsSelfDriveText:
-      "Avec la Licencia de Navegación (formation d'un jour, sans examen) ou un titre supérieur, vous pouvez louer nos bateaux à moteur de 80-115 CV et tracer votre propre route.",
+      "Avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou un titre supérieur, vous pouvez louer nos bateaux à moteur de 80-115 CV et tracer votre propre route.",
     vsLinkLicensed: "Bateaux à moteur sans skipper (avec titre nautique)",
-    vsLinkFree: "Titulín en 1 jour",
+    vsLinkFree: "Qu'est-ce que le titulín",
     faq: [
       {
         q: "Faut-il un permis ou de l'expérience pour cette excursion ?",
@@ -5421,31 +5421,31 @@ export const fr: Translations = {
       },
       malgrat: {
         title: 'Bateaux populaires à louer depuis le Port de Blanes',
-        description: 'À 10 minutes de Malgrat de Mar. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper. Voici les bateaux qui vous emmènent à Lloret et à Tossa de Mar.',
+        description: "À 10 minutes de Malgrat de Mar. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper. Voici les bateaux qui vous emmènent à Lloret et à Tossa de Mar.",
       },
       santaSusanna: {
         title: 'Bateaux populaires à louer depuis le Port de Blanes',
-        description: 'À 15 minutes de Santa Susanna. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper. Voici les bateaux qui vous emmènent à Lloret et à Tossa de Mar.',
+        description: "À 15 minutes de Santa Susanna. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper. Voici les bateaux qui vous emmènent à Lloret et à Tossa de Mar.",
       },
       calella: {
         title: 'Bateaux populaires à louer depuis le Port de Blanes',
-        description: 'À 20 minutes de Calella. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper. Voici les bateaux qui vous emmènent à Lloret et à Tossa de Mar.',
+        description: "À 20 minutes de Calella. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper. Voici les bateaux qui vous emmènent à Lloret et à Tossa de Mar.",
       },
       pineda: {
         title: 'Bateaux populaires à louer depuis le port de Blanes',
-        description: 'Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper. Voici les bateaux qui vous emmènent à Lloret et à Tossa de Mar.',
+        description: "Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper. Voici les bateaux qui vous emmènent à Lloret et à Tossa de Mar.",
       },
       palafolls: {
         title: 'Bateaux populaires à louer depuis le port de Blanes',
-        description: 'Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper. Voici les bateaux qui vous emmènent à Lloret et à Tossa de Mar.',
+        description: "Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper. Voici les bateaux qui vous emmènent à Lloret et à Tossa de Mar.",
       },
       tordera: {
         title: 'Bateaux populaires à louer depuis le port de Blanes',
-        description: 'Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper. Voici les bateaux qui vous emmènent à Lloret et à Tossa de Mar.',
+        description: "Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper. Voici les bateaux qui vous emmènent à Lloret et à Tossa de Mar.",
       },
       tossa: {
         title: 'Bateaux pour votre itinéraire vers Tossa de Mar',
-        description: 'Voici les bateaux qui vont jusqu\'à Tossa de Mar : avec la Licencia de Navegación, qui s\'obtient en un cours d\'1 jour sans examen, ou avec notre excursion privée avec capitaine, sans aucun permis.',
+        description: "Voici les bateaux qui vont jusqu'à Tossa de Mar : avec la Licencia de Navegación, qui s'obtient en 1 jour, sans examen, ou avec notre excursion privée avec capitaine, sans aucun permis.",
       },
     },
   },
@@ -5462,7 +5462,7 @@ export const fr: Translations = {
       faqItems: [
         {
           question: 'Ai-je besoin d\'un permis pour louer un bateau à Blanes ?',
-          answer: 'Oui. Depuis le 1er octobre 2026 (RD 1188/2025), il faut un permis pour piloter tout bateau à moteur de location. La Licencia de Navegación, le titulín, suffit : un cours d\'1 jour, sans examen. Si vous ne l\'avez pas, réservez l\'excursion privée avec skipper : il pilote, vous profitez.',
+          answer: "Oui. Depuis le 1er octobre 2026 (RD 1188/2025), il faut un permis pour piloter tout bateau à moteur de location. La Licencia de Navegación, le titulín, suffit : on l'obtient en 1 jour, sans examen. Si vous ne l'avez pas, réservez l'excursion privée avec skipper : il pilote, vous profitez.",
         },
         {
           question: 'Combien coûte la location d\'un bateau au Port de Blanes ?',
@@ -5499,7 +5499,7 @@ export const fr: Translations = {
       ],
       hero: {
         title: 'Location de Bateaux à Blanes',
-        subtitle: 'Location de bateaux directement au port de Blanes. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper : bateaux pour 6-7 personnes et excursion privée jusqu\'à 6. Parking gratuit à 100 m de l\'amarrage. D\'ici vous naviguez vers Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min), Lloret de Mar (15-25 min) et Tossa de Mar (30-45 min).',
+        subtitle: "Location de bateaux directement au port de Blanes. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper : bateaux pour 6-7 personnes et excursion privée jusqu'à 6. Parking gratuit à 100 m de l'amarrage. D'ici vous naviguez vers Sa Palomera (5 min), Cala Sant Francesc (8 min), Cala Treumal (15 min), Lloret de Mar (15-25 min) et Tossa de Mar (30-45 min).",
         badgePort: 'Port de Blanes',
         badgeCapacity: 'Jusqu\'à 7 personnes',
         badgeDuration: 'Durée 2h-8h',
@@ -5548,7 +5548,7 @@ export const fr: Translations = {
         fleetViewDetails: 'Voir détails',
         guideTitle: 'Guide Complet : Louer un Bateau à Blanes',
         guideRequirementsTitle: 'Conditions pour louer un bateau',
-        guideRequirementsText: 'Depuis le 1er octobre 2026 (RD 1188/2025), il faut un permis nautique pour piloter un bateau à moteur de location. La Licencia de Navegación suffit (le titulín : un cours d\'1 jour, sans examen) ; PNB, PER ou équivalents européens sont aussi valables. Vous devez aussi avoir plus de 18 ans et présenter une pièce d\'identité ou un passeport. Avant le départ, nous vous expliquons le bateau, le mouillage et l\'équipement de sécurité. Sans permis, l\'excursion privée avec skipper ne l\'exige pas.',
+        guideRequirementsText: "Depuis le 1er octobre 2026 (RD 1188/2025), il faut un permis nautique pour piloter un bateau à moteur de location. La Licencia de Navegación suffit (le titulín : on l'obtient en 1 jour, sans examen) ; PNB, PER ou équivalents européens sont aussi valables. Vous devez aussi avoir plus de 18 ans et présenter une pièce d'identité ou un passeport. Avant le départ, nous vous expliquons le bateau, le mouillage et l'équipement de sécurité. Sans permis, l'excursion privée avec skipper ne l'exige pas.",
         guideSeasonTitle: 'Saison et horaires',
         guideSeasonText: 'La saison de navigation à Blanes s\'étend d\'avril à octobre. Nous proposons trois créneaux : matin (9h-13h), après-midi (14h-18h) et journée complète (9h-18h). Juin et septembre sont idéaux : températures agréables, mer calme et moins de monde. Juillet et août sont en haute saison avec les meilleures conditions de baignade mais une demande plus forte.',
         guideIncludedTitle: 'Ce qui est inclus',
@@ -5598,7 +5598,7 @@ export const fr: Translations = {
       faqItems: [
         {
           question: 'Ai-je besoin d\'un permis ou d\'expérience pour aller à Lloret en bateau ?',
-          answer: 'Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper. Avec le titulín, vous pilotez jusqu\'à la plage de Lloret en 15-25 minutes environ ; avec l\'excursion privée avec skipper, ni permis ni expérience ne sont nécessaires.',
+          answer: "Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper. Avec le titulín, vous pilotez jusqu'à la plage de Lloret en 15-25 minutes environ ; avec l'excursion privée avec skipper, ni permis ni expérience ne sont nécessaires.",
         },
         {
           question: 'Jusqu\'où puis-je aller en bateau de Blanes vers Lloret ?',
@@ -5627,7 +5627,7 @@ export const fr: Translations = {
       ],
       hero: {
         title: 'Location de Bateaux à Lloret de Mar : Route depuis Blanes avec Permis ou Skipper',
-        subtitle: 'Du port de Blanes à la plage de Lloret, avec sept criques sauvages de la Costa Brava en chemin. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper.',
+        subtitle: "Du port de Blanes à la plage de Lloret, avec sept criques sauvages de la Costa Brava en chemin. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper.",
         badgeFrom: 'Depuis le Port de Blanes',
         badgeTime: '15-25 min de navigation',
         badgeCapacity: 'Jusqu\'à 7 personnes par bateau',
@@ -5761,7 +5761,7 @@ export const fr: Translations = {
         ctaDescription: 'Réservez votre bateau depuis le Port de Blanes et vivez l\'expérience unique d\'arriver par la mer au plus beau village médiéval de la Costa Brava.',
         ctaButton: 'Réserver une Excursion à Tossa',
         warningTitle: 'Deux façons d\'aller à Tossa depuis Blanes',
-        warningBody: 'Depuis le 1er octobre 2026, les bateaux sans permis ne se louent plus. Pour aller à Tossa depuis Blanes, vous avez deux options : (1) location sans skipper avec la Licencia de Navegación (forfaits 2 h / 4 h / 8 h dès {licBaja2h} € avec Mingolla Brava 19, Trimarchi 57S ou Pacific Craft 625, TVA, amarrage, nettoyage et assurance inclus ; carburant et caution de 500 € en sus), ou (2) l\'<a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Excursion Privée avec Capitaine</a> (Pacific Craft 625 + skipper, 4 h maximum, jusqu\'à 6 pers., dès {excursionBaja4h} € avec TVA, skipper, amarrage, nettoyage et assurance inclus ; carburant en sus). Si vous n\'avez pas encore le permis, la Licencia de Navegación s\'obtient en un cours d\'1 jour, sans examen.',
+        warningBody: "Depuis le 1er octobre 2026, les bateaux sans permis ne se louent plus. Pour aller à Tossa depuis Blanes, vous avez deux options : (1) location sans skipper avec la Licencia de Navegación (forfaits 2 h / 4 h / 8 h dès {licBaja2h} € avec Mingolla Brava 19, Trimarchi 57S ou Pacific Craft 625, TVA, amarrage, nettoyage et assurance inclus ; carburant et caution de 500 € en sus), ou (2) l'<a href=\"/es/barco/excursion-privada\" class=\"underline font-medium text-foreground hover:text-primary\">Excursion Privée avec Capitaine</a> (Pacific Craft 625 + skipper, 4 h maximum, jusqu'à 6 pers., dès {excursionBaja4h} € avec TVA, skipper, amarrage, nettoyage et assurance inclus ; carburant en sus). Si vous n'avez pas encore le permis, la Licencia de Navegación s'obtient en 1 jour, sans examen.",
         crossLinkingText: 'Nous offrons également nos services aux touristes séjournant à <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> et <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Depuis ces villes de la côte du Maresme, le Port de Blanes est accessible en 10-20 minutes en voiture.',
         relatedTitle: 'Services et destinations associés',
         relatedCostaBrava: 'Plus de destinations en Costa Brava',
@@ -5785,7 +5785,7 @@ export const fr: Translations = {
         closestPort: 'Le Port le Plus Proche',
         closestPortDesc: 'Blanes est le port de plaisance le plus proche de Malgrat de Mar, à seulement 10 minutes par la N-II. Bateaux avec permis et excursion avec skipper, prêts à appareiller avec tout le confort.',
         varietyBoats: 'Avec Permis ou Skipper',
-        varietyBoatsDesc: 'Bateaux pour 6-7 personnes que vous pilotez avec la Licencia de Navegación (cours d\'1 jour, sans examen), ou excursion privée avec skipper jusqu\'à 6 personnes.',
+        varietyBoatsDesc: "Bateaux pour 6-7 personnes que vous pilotez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen), ou excursion privée avec skipper jusqu'à 6 personnes.",
         fuelIncluded: 'Prix Clairs',
         fuelIncludedDesc: 'Forfaits de 2, 4 ou 8 heures, TVA, amarrage, nettoyage et assurance inclus. Le carburant se paie à part selon la consommation réelle.',
         noExperience: 'Sans Permis ? Partez avec un Skipper',
@@ -5819,11 +5819,11 @@ export const fr: Translations = {
         },
         {
           question: 'Combien coûte la location d\'un bateau depuis Blanes ?',
-          answer: 'Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper. Les bateaux avec permis se louent en forfaits de 2, 4 ou 8 heures dès {licBaja2h} € et l\'excursion privée avec skipper dès {excursionBaja2h} € (2 heures). Le carburant se paie à part.',
+          answer: "Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper. Les bateaux avec permis se louent en forfaits de 2, 4 ou 8 heures dès {licBaja2h} € et l'excursion privée avec skipper dès {excursionBaja2h} € (2 heures). Le carburant se paie à part.",
         },
         {
           question: 'Ai-je besoin d\'un permis de navigation ?',
-          answer: 'Oui. Depuis le 1er octobre 2026 (RD 1188/2025), il faut un permis pour piloter tout bateau à moteur de location. La Licencia de Navegación, le titulín, suffit : un cours d\'1 jour, sans examen. Si vous ne l\'avez pas, réservez l\'excursion privée avec skipper : il pilote, vous profitez.',
+          answer: "Oui. Depuis le 1er octobre 2026 (RD 1188/2025), il faut un permis pour piloter tout bateau à moteur de location. La Licencia de Navegación, le titulín, suffit : on l'obtient en 1 jour, sans examen. Si vous ne l'avez pas, réservez l'excursion privée avec skipper : il pilote, vous profitez.",
         },
         {
           question: 'Y a-t-il un parking au Port de Blanes ?',
@@ -5851,11 +5851,11 @@ export const fr: Translations = {
         },
         {
           question: 'Combien coûte la location d\'un bateau depuis Blanes si je suis à Santa Susanna ?',
-          answer: 'Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper. Les bateaux avec permis se louent en forfaits de 2, 4 ou 8 heures dès {licBaja2h} € et l\'excursion privée avec skipper dès {excursionBaja2h} € (2 heures). Le carburant se paie à part.',
+          answer: "Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper. Les bateaux avec permis se louent en forfaits de 2, 4 ou 8 heures dès {licBaja2h} € et l'excursion privée avec skipper dès {excursionBaja2h} € (2 heures). Le carburant se paie à part.",
         },
         {
           question: 'Ai-je besoin d\'un permis de navigation pour louer un bateau ?',
-          answer: 'Oui. Depuis le 1er octobre 2026 (RD 1188/2025), il faut un permis pour piloter tout bateau à moteur de location. La Licencia de Navegación, le titulín, suffit : un cours d\'1 jour, sans examen. Si vous ne l\'avez pas, réservez l\'excursion privée avec skipper : il pilote, vous profitez.',
+          answer: "Oui. Depuis le 1er octobre 2026 (RD 1188/2025), il faut un permis pour piloter tout bateau à moteur de location. La Licencia de Navegación, le titulín, suffit : on l'obtient en 1 jour, sans examen. Si vous ne l'avez pas, réservez l'excursion privée avec skipper : il pilote, vous profitez.",
         },
         {
           question: 'Est-il facile d\'accéder en transports en commun depuis Santa Susanna ?',
@@ -5867,7 +5867,7 @@ export const fr: Translations = {
         },
         {
           question: 'Quelle est la meilleure excursion en bateau si je séjourne à Santa Susanna ?',
-          answer: 'Depuis Blanes, nous recommandons : (a) excursion privée avec skipper 4h jusqu\'à Tossa et Cala Bona (dès {excursionBaja4h} €, idéale sans permis ni expérience nautique) ; (b) bateau avec Licencia de Navegación (LN) 4h pour mouiller dans 2-3 criques entre Blanes et Lloret ou monter jusqu\'à Tossa (dès 255 € / 4h). Si personne du groupe n\'a de permis, le titulín s\'obtient en un cours d\'1 jour, sans examen.',
+          answer: "Depuis Blanes, nous recommandons : (a) excursion privée avec skipper 4h jusqu'à Tossa et Cala Bona (dès {excursionBaja4h} €, idéale sans permis ni expérience nautique) ; (b) bateau avec Licencia de Navegación (LN) 4h pour mouiller dans 2-3 criques entre Blanes et Lloret ou monter jusqu'à Tossa (dès 255 € / 4h). Si personne du groupe n'a de permis, le titulín s'obtient en 1 jour, sans examen.",
         },
         {
           question: 'Puis-je faire une excursion en bateau au coucher du soleil depuis Santa Susanna ?',
@@ -5927,11 +5927,11 @@ export const fr: Translations = {
         },
         {
           question: 'Combien coûte la location d\'un bateau depuis Blanes si je suis à Calella ?',
-          answer: 'Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper. Les bateaux avec permis se louent en forfaits de 2, 4 ou 8 heures dès {licBaja2h} € et l\'excursion privée avec skipper dès {excursionBaja2h} € (2 heures). Le carburant se paie à part.',
+          answer: "Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper. Les bateaux avec permis se louent en forfaits de 2, 4 ou 8 heures dès {licBaja2h} € et l'excursion privée avec skipper dès {excursionBaja2h} € (2 heures). Le carburant se paie à part.",
         },
         {
           question: 'Ai-je besoin d\'expérience préalable pour louer un bateau ?',
-          answer: 'Aucune expérience préalable n\'est nécessaire. Avec l\'excursion privée avec skipper, vous ne pilotez pas. Pour prendre la barre, il faut la Licencia de Navegación (cours d\'1 jour, sans examen) et, avant le départ, nous vous expliquons le bateau, le mouillage et les règles de sécurité.',
+          answer: "Aucune expérience préalable n'est nécessaire. Avec l'excursion privée avec skipper, vous ne pilotez pas. Pour prendre la barre, il faut la Licencia de Navegación (s'obtient en 1 jour, sans examen) et, avant le départ, nous vous expliquons le bateau, le mouillage et les règles de sécurité.",
         },
         {
           question: 'Puis-je faire l\'aller-retour depuis Calella en transports en commun ?',
@@ -5963,7 +5963,7 @@ export const fr: Translations = {
         closestPort: 'Le Port le Plus Proche',
         closestPortDesc: 'Blanes est le port de plaisance le plus accessible depuis Calella. À 20 minutes par la C-32 ou la N-II, avec bateaux avec permis, excursion avec skipper et service professionnel.',
         varietyBoats: 'Flotte Complète',
-        varietyBoatsDesc: 'Bateaux avec permis pour les titulaires de la Licencia de Navegación (cours d\'1 jour, sans examen) et excursion privée avec skipper pour ceux qui préfèrent ne pas piloter.',
+        varietyBoatsDesc: "Bateaux avec permis pour les titulaires de la Licencia de Navegación (s'obtient en 1 jour, sans examen) et excursion privée avec skipper pour ceux qui préfèrent ne pas piloter.",
         fuelIncluded: 'Prix Clair',
         fuelIncludedDesc: 'TVA, amarrage, nettoyage, gilets de sauvetage et équipement de sécurité inclus. Le carburant se paie à part.',
         noExperience: 'Pour Tous les Niveaux',
@@ -5994,14 +5994,14 @@ export const fr: Translations = {
     costaBrava: {
       hero: {
         title: 'Location de Bateaux sur la Costa Brava',
-        subtitle: 'Découvrez les plus belles criques et plages de la Costa Brava à bord de nos bateaux. Départs du port de Blanes, au cœur de la côte catalane. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper.',
+        subtitle: "Découvrez les plus belles criques et plages de la Costa Brava à bord de nos bateaux. Départs du port de Blanes, au cœur de la côte catalane. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper.",
         badgePort: 'Port de Blanes',
         badgeCapacity: 'Jusqu\'à 7 personnes',
         badgeLicense: 'Avec titulín ou skipper',
       },
       sections: {
         introP1: 'La Costa Brava est l\'une des destinations nautiques les plus spectaculaires de la Méditerranée. Avec plus de 200 kilomètres de littoral entre Blanes et la frontière française, elle offre une combinaison unique de falaises, criques aux eaux cristallines, villages médiévaux et une nature que l\'on ne peut apprécier que depuis la mer.',
-        introP2: 'Chez Costa Brava Rent a Boat, nous vous proposons la location de bateau la plus simple de la Costa Brava : choisissez votre bateau au port de Blanes et naviguez à votre rythme. Pour piloter, la Licencia de Navegación suffit (cours d\'1 jour, sans examen) ; sinon, partez avec notre skipper. Avant le départ, nous vous expliquons le bateau et vous donnons tout le nécessaire pour une journée parfaite en mer.',
+        introP2: "Chez Costa Brava Rent a Boat, nous vous proposons la location de bateau la plus simple de la Costa Brava : choisissez votre bateau au port de Blanes et naviguez à votre rythme. Pour piloter, la Licencia de Navegación suffit (s'obtient en 1 jour, sans examen) ; sinon, partez avec notre skipper. Avant le départ, nous vous expliquons le bateau et vous donnons tout le nécessaire pour une journée parfaite en mer.",
         introP3: 'Le prix comprend la TVA, l\'amarrage, le nettoyage, l\'assurance responsabilité civile et l\'équipement de sécurité ; le carburant se paie à part selon la consommation. Sans frais cachés. Réservez dès aujourd\'hui et découvrez pourquoi des milliers de familles choisissent la Costa Brava chaque été pour leurs aventures nautiques.',
         whyChooseTitle: 'Pourquoi choisir la Costa Brava pour louer un bateau',
         covesTitle: 'Criques et plages inaccessibles par voie terrestre',
@@ -6055,7 +6055,7 @@ export const fr: Translations = {
       },
       faq: {
         experienceQ: 'Ai-je besoin d\'expérience pour louer un bateau sur la Costa Brava ?',
-        experienceA: 'Non, aucune expérience préalable n\'est nécessaire. Avec l\'excursion privée avec skipper, vous ne pilotez pas. Pour prendre la barre, la Licencia de Navegación suffit (cours d\'1 jour, sans examen) et il faut avoir plus de 18 ans ; avant le départ, nous vous montrons comment manœuvrer, mouiller et utiliser l\'équipement de sécurité. Notre équipe reste joignable par téléphone pendant toute la sortie.',
+        experienceA: "Non, aucune expérience préalable n'est nécessaire. Avec l'excursion privée avec skipper, vous ne pilotez pas. Pour prendre la barre, la Licencia de Navegación suffit (s'obtient en 1 jour, sans examen) et il faut avoir plus de 18 ans ; avant le départ, nous vous montrons comment manœuvrer, mouiller et utiliser l'équipement de sécurité. Notre équipe reste joignable par téléphone pendant toute la sortie.",
         distanceQ: 'Jusqu\'où puis-je naviguer depuis Blanes ?',
         distanceA: 'Avec la Licencia de Navegación, de jour et près de la côte, vous atteignez depuis Blanes Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min), Cala Treumal et Tossa de Mar (30-45 min) et, à la journée, Sant Feliu de Guíxols. Avec l\'excursion privée avec skipper, vous faites la route sans permis.',
         weatherQ: 'Que se passe-t-il en cas de mauvais temps le jour de ma réservation ?',
@@ -6072,11 +6072,11 @@ export const fr: Translations = {
         },
         {
           question: 'Combien coûte la location d\'un bateau depuis Blanes si j\'habite à Tordera ?',
-          answer: 'Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper. Les bateaux avec permis se louent en forfaits de 2, 4 ou 8 heures dès {licBaja2h} € et l\'excursion privée avec skipper dès {excursionBaja2h} € (2 heures). Le carburant se paie à part.',
+          answer: "Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper. Les bateaux avec permis se louent en forfaits de 2, 4 ou 8 heures dès {licBaja2h} € et l'excursion privée avec skipper dès {excursionBaja2h} € (2 heures). Le carburant se paie à part.",
         },
         {
           question: 'Ai-je besoin d\'un permis de navigation ?',
-          answer: 'Oui. Depuis le 1er octobre 2026 (RD 1188/2025), il faut un permis pour piloter tout bateau à moteur de location. La Licencia de Navegación, le titulín, suffit : un cours d\'1 jour, sans examen. Si vous ne l\'avez pas, réservez l\'excursion privée avec skipper : il pilote, vous profitez.',
+          answer: "Oui. Depuis le 1er octobre 2026 (RD 1188/2025), il faut un permis pour piloter tout bateau à moteur de location. La Licencia de Navegación, le titulín, suffit : on l'obtient en 1 jour, sans examen. Si vous ne l'avez pas, réservez l'excursion privée avec skipper : il pilote, vous profitez.",
         },
         {
           question: 'Y a-t-il un parking au Port de Blanes ?',
@@ -6084,8 +6084,8 @@ export const fr: Translations = {
         },
       ],
       seo: {
-        title: 'Location Bateau Tordera | Port Blanes à 15 min | Permis en 1 jour ou Skipper',
-        description: 'En séjour à Tordera ? Le port de Blanes est à 15 min. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper.',
+        title: "Location Bateau Tordera | Port Blanes à 15 min | Permis ou Skipper",
+        description: "En séjour à Tordera ? Le port de Blanes est à 15 min. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper.",
         ogTitle: 'Location Bateau Tordera | Delta du Tordera en Bateau',
         ogDescription: 'De Tordera au port de Blanes en 15 min. Avec le titulín ou avec un skipper.',
       },
@@ -6104,7 +6104,7 @@ export const fr: Translations = {
         whyCard1Title: 'Votre port le plus proche',
         whyCard1Desc: 'Le Port de Blanes se trouve à seulement 10 km de Tordera, ce qui en fait le point de location de bateaux le plus proche et accessible. Que vous soyez résident ou de passage, en 15 minutes vous pouvez naviguer sur les eaux cristallines de la Costa Brava. La liaison routière est directe et sans complications.',
         whyCard2Title: 'Avec Permis ou Skipper',
-        whyCard2Desc: 'Avec la Licencia de Navegación (cours d\'1 jour, sans examen), vous pilotez nos bateaux pour 6-7 personnes. Si personne du groupe n\'a de permis, l\'excursion privée avec skipper accueille jusqu\'à 6 personnes.',
+        whyCard2Desc: "Avec la Licencia de Navegación (s'obtient en 1 jour, sans examen), vous pilotez nos bateaux pour 6-7 personnes. Si personne du groupe n'a de permis, l'excursion privée avec skipper accueille jusqu'à 6 personnes.",
         whyCard3Title: 'Prix clairs, sans surprises',
         whyCard3Desc: 'Forfaits de 2, 4 ou 8 heures, TVA, amarrage, nettoyage et assurance inclus. Le carburant se paie à part selon la consommation réelle, sur tous les bateaux.',
         whyCard4Title: 'Aucune expérience préalable nécessaire',
@@ -6155,7 +6155,7 @@ export const fr: Translations = {
         },
         {
           question: 'Combien coûte la location d\'un bateau depuis Blanes si je suis à Palafolls ?',
-          answer: 'Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper. Les bateaux avec permis se louent en forfaits de 2, 4 ou 8 heures dès {licBaja2h} € et l\'excursion privée avec skipper dès {excursionBaja2h} € (2 heures). Le carburant se paie à part.',
+          answer: "Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper. Les bateaux avec permis se louent en forfaits de 2, 4 ou 8 heures dès {licBaja2h} € et l'excursion privée avec skipper dès {excursionBaja2h} € (2 heures). Le carburant se paie à part.",
         },
         {
           question: 'Puis-je aller depuis le camping de Palafolls au Port de Blanes facilement ?',
@@ -6163,12 +6163,12 @@ export const fr: Translations = {
         },
         {
           question: 'Ai-je besoin d\'expérience pour louer un bateau ?',
-          answer: 'Aucune expérience préalable n\'est nécessaire. Avec l\'excursion privée avec skipper, vous ne pilotez pas. Pour prendre la barre, il faut la Licencia de Navegación (cours d\'1 jour, sans examen) et, avant le départ, nous vous expliquons le bateau, le mouillage et les règles de sécurité.',
+          answer: "Aucune expérience préalable n'est nécessaire. Avec l'excursion privée avec skipper, vous ne pilotez pas. Pour prendre la barre, il faut la Licencia de Navegación (s'obtient en 1 jour, sans examen) et, avant le départ, nous vous expliquons le bateau, le mouillage et les règles de sécurité.",
         },
       ],
       seo: {
-        title: 'Location Bateau Palafolls | Port Blanes à 12 min | Permis en 1 jour ou Skipper',
-        description: 'En séjour à Palafolls ? Le port de Blanes est à 12 min. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper.',
+        title: "Location Bateau Palafolls | Port Blanes à 12 min | Permis ou Skipper",
+        description: "En séjour à Palafolls ? Le port de Blanes est à 12 min. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper.",
         ogTitle: 'Location Bateau Palafolls | 12 min du Port de Blanes',
         ogDescription: 'De Palafolls au port de Blanes en 12 min. Avec le titulín ou avec un skipper.',
       },
@@ -6238,11 +6238,11 @@ export const fr: Translations = {
         },
         {
           question: 'Combien coûte la location d\'un bateau depuis Blanes si je suis à Pineda de Mar ?',
-          answer: 'Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper. Les bateaux avec permis se louent en forfaits de 2, 4 ou 8 heures dès {licBaja2h} € et l\'excursion privée avec skipper dès {excursionBaja2h} € (2 heures). Le carburant se paie à part.',
+          answer: "Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper. Les bateaux avec permis se louent en forfaits de 2, 4 ou 8 heures dès {licBaja2h} € et l'excursion privée avec skipper dès {excursionBaja2h} € (2 heures). Le carburant se paie à part.",
         },
         {
           question: 'Ai-je besoin d\'un permis de navigation pour louer un bateau ?',
-          answer: 'Oui. Depuis le 1er octobre 2026 (RD 1188/2025), il faut un permis pour piloter tout bateau à moteur de location. La Licencia de Navegación, le titulín, suffit : un cours d\'1 jour, sans examen. Si vous ne l\'avez pas, réservez l\'excursion privée avec skipper : il pilote, vous profitez.',
+          answer: "Oui. Depuis le 1er octobre 2026 (RD 1188/2025), il faut un permis pour piloter tout bateau à moteur de location. La Licencia de Navegación, le titulín, suffit : on l'obtient en 1 jour, sans examen. Si vous ne l'avez pas, réservez l'excursion privée avec skipper : il pilote, vous profitez.",
         },
         {
           question: 'Puis-je aller de Pineda de Mar à Blanes en transports en commun ?',
@@ -6262,8 +6262,8 @@ export const fr: Translations = {
         },
       ],
       seo: {
-        title: 'Location Bateau Pineda de Mar | Port Blanes à 18 min | Permis en 1 jour ou Skipper',
-        description: 'En séjour à Pineda de Mar ? Le port de Blanes est à 18 min. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou partez avec un skipper.',
+        title: "Location Bateau Pineda de Mar | Port Blanes à 18 min | Permis ou Skipper",
+        description: "En séjour à Pineda de Mar ? Le port de Blanes est à 18 min. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper.",
         ogTitle: 'Location Bateau Pineda de Mar | 18 min du Port de Blanes',
         ogDescription: 'De Pineda de Mar au port de Blanes en 18 min. Avec le titulín ou avec un skipper.',
       },
@@ -6274,7 +6274,7 @@ export const fr: Translations = {
       breadcrumbName: 'Location Bateaux Pineda de Mar',
       sections: {
         heroTitle: 'Location de Bateaux près de Pineda de Mar',
-        heroSubtitle: 'Pineda de Mar est l\'une des destinations touristiques majeures de la côte du Maresme, avec des dizaines d\'hôtels et de resorts tout compris. Le port de Blanes, à seulement 18 minutes par la route ou 12 minutes en train, est le point de location de bateaux le plus proche. Profitez de la Costa Brava avec la Licencia de Navegación (cours d\'1 jour, sans examen) ou avec un skipper.',
+        heroSubtitle: "Pineda de Mar est l'une des destinations touristiques majeures de la côte du Maresme, avec des dizaines d'hôtels et de resorts tout compris. Le port de Blanes, à seulement 18 minutes par la route ou 12 minutes en train, est le point de location de bateaux le plus proche. Profitez de la Costa Brava avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou avec un skipper.",
         heroBadgeCar: '15 km / 18 min en voiture',
         heroBadgeTransport: 'RENFE R1 : 12 min',
         heroBadgeExtra: 'Côte du Maresme',
@@ -6283,7 +6283,7 @@ export const fr: Translations = {
         whyCard1Title: 'Le port le plus proche avec location de bateaux',
         whyCard1Desc: 'Pineda de Mar ne dispose ni de port de plaisance ni de service de location d\'embarcations. Le Port de Blanes est le point le plus proche où vous pouvez louer un bateau, à seulement 15 km par la route N-II. Si vous êtes logé dans l\'un des nombreux hôtels de Pineda, en moins de 20 minutes vous naviguerez sur les eaux cristallines de la Costa Brava.',
         whyCard2Title: 'Avec Permis ou Skipper',
-        whyCard2Desc: 'Avec la Licencia de Navegación (cours d\'1 jour, sans examen), vous pilotez nos bateaux pour 6-7 personnes. Si personne du groupe n\'a de permis, l\'excursion privée avec skipper accueille jusqu\'à 6 personnes.',
+        whyCard2Desc: "Avec la Licencia de Navegación (s'obtient en 1 jour, sans examen), vous pilotez nos bateaux pour 6-7 personnes. Si personne du groupe n'a de permis, l'excursion privée avec skipper accueille jusqu'à 6 personnes.",
         whyCard3Title: 'Prix clairs, sans surprises',
         whyCard3Desc: 'Forfaits de 2, 4 ou 8 heures, TVA, amarrage, nettoyage et assurance inclus. Le carburant se paie à part selon la consommation réelle, sur tous les bateaux.',
         whyCard4Title: 'Aucune expérience préalable nécessaire',
@@ -6341,9 +6341,9 @@ export const fr: Translations = {
     newBadge: "Nouveau",
   },
   titulinSection: {
-    title: "Passez le titulín en une journée et pilotez vous-même",
-    subtitle: "6 heures de formation, sans examen et valable à vie. Nous l'organisons près de Blanes et le combinons avec votre première location : vous terminez la formation avec votre permis en main et votre bateau réservé.",
-    ctaPrimary: "Je veux passer le titulín",
+    title: "Ce qu'est le titulín et quels bateaux vous pouvez piloter",
+    subtitle: "Titre nautique d'initiation : 6 heures dans une école agréée, sans examen et valable à vie. Avec lui, vous pilotez nos trois bateaux avec permis.",
+    ctaPrimary: "Qu'est-ce que le titulín",
     captainedLine: "Vous préférez ne pas prendre la barre ?",
     captainedCta: "Partez avec un skipper professionnel",
   },

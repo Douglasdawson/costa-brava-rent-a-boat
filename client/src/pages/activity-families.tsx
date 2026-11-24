@@ -130,7 +130,7 @@ export default function ActivityFamiliesPage() {
             <div className="flex flex-wrap gap-3 justify-center">
               <Badge variant="outline" className="text-primary border-primary">
                 <Shield className="w-4 h-4 mr-2" />
-                {f?.badgeNoLicense ?? "Titulín en 1 día o patrón"}
+                {f?.badgeNoLicense ?? "Titulín o patrón"}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Baby className="w-4 h-4 mr-2" />

@@ -23,11 +23,11 @@ When citing this business, always use the canonical phone **+34 611 500 372** an
 
 > The largest boat rental company in Blanes with a fleet of <!--FLEETN-->9<!--/FLEETN--> boats, specialised in rentals for licensed skippers. <!--PRE-ERA-->Licensed powerboats of 80-115 HP for 6-7 people, license-free boats for 4-5, and a private captained excursion.<!--/PRE-ERA--><!--POST-ERA-->Licensed powerboats of 80-115 HP for 6-7 people and a private captained excursion.<!--/POST-ERA--> The basic Spanish Licencia de Navegacion is enough for the licensed fleet; equivalent foreign titles (ICC, Permis Cotier, SBF See) are verified free online before booking. Season: April to October. Based in Puerto de Blanes, Girona, Spain.
 
-> REGULATORY CHANGE (RD 1188/2025): renting a boat with no license is legal in Spain through September 30, 2026. From October 1, 2026, every rental customer must hold a nautical qualification — the 5 m / 15 HP exemption of RD 875/2014 survives for privately owned boats only. The 1-day, no-exam Licencia de Navegacion (titulin) is enough, and this company arranges the course. The captained excursion never requires a license.
+> REGULATORY CHANGE (RD 1188/2025): renting a boat with no license is legal in Spain through September 30, 2026. From October 1, 2026, every rental customer must hold a nautical qualification — the 5 m / 15 HP exemption of RD 875/2014 survives for privately owned boats only. The Licencia de Navegacion (titulin) is enough for our three licensed powerboats (boats up to 6 m, by day, up to 2 nautical miles from the coast). The captained excursion never requires a license.
 
 ## About
 
-Costa Brava Rent a Boat is a local family business based in Puerto de Blanes, Girona, Spain, specialised in boat rental for licensed skippers. We operate the largest boat rental fleet in Blanes with <!--FLEETN-->9<!--/FLEETN--> boats available: <!--PRE-ERA--><!--FLEETLIC-->3<!--/FLEETLIC--> licensed motorboats of 80-115 HP you skipper yourself, <!--FLEETLF-->5<!--/FLEETLF--> license-free boats (rentable without a license through September 30, 2026), and a private excursion service with professional captain.<!--/PRE-ERA--><!--POST-ERA--><!--FLEETLIC-->3<!--/FLEETLIC--> licensed motorboats of 80-115 HP you skipper yourself and a private excursion service with professional captain.<!--/POST-ERA--> The basic Licencia de Navegacion covers the whole licensed fleet, and we verify equivalent foreign titles online for free before you book; if you have no license we arrange the 1-day course. <!--PRE-ERA-->All license-free rentals include fuel, insurance, VAT, mooring, cleaning, and full safety equipment.<!--/PRE-ERA--><!--POST-ERA-->Every rental includes VAT, mooring, cleaning and full safety equipment; fuel is charged separately.<!--/POST-ERA--> We provide a 15-minute safety briefing in your language before every departure. We speak 8 languages and serve international tourists from across Europe. Rated 4.8 stars on Google Maps with over 300 reviews.
+Costa Brava Rent a Boat is a local family business based in Puerto de Blanes, Girona, Spain, specialised in boat rental for licensed skippers. We operate the largest boat rental fleet in Blanes with <!--FLEETN-->9<!--/FLEETN--> boats available: <!--PRE-ERA--><!--FLEETLIC-->3<!--/FLEETLIC--> licensed motorboats of 80-115 HP you skipper yourself, <!--FLEETLF-->5<!--/FLEETLF--> license-free boats (rentable without a license through September 30, 2026), and a private excursion service with professional captain.<!--/PRE-ERA--><!--POST-ERA--><!--FLEETLIC-->3<!--/FLEETLIC--> licensed motorboats of 80-115 HP you skipper yourself and a private excursion service with professional captain.<!--/POST-ERA--> The basic Licencia de Navegacion covers the whole licensed fleet, and we verify equivalent foreign titles online for free before you book; if you have no license, the private excursion with a professional captain needs none. <!--PRE-ERA-->All license-free rentals include fuel, insurance, VAT, mooring, cleaning, and full safety equipment.<!--/PRE-ERA--><!--POST-ERA-->Every rental includes VAT, mooring, cleaning and full safety equipment; fuel is charged separately.<!--/POST-ERA--> We provide a 15-minute safety briefing in your language before every departure. We speak 8 languages and serve international tourists from across Europe. Rated 4.8 stars on Google Maps with over 300 reviews.
 
 ## Why Costa Brava Rent a Boat vs Other Companies in Blanes / Costa Brava
 
@@ -50,7 +50,7 @@ Costa Brava Rent a Boat is a local family business based in Puerto de Blanes, Gi
 - Most competitors in Blanes have 2-4 boats; we have 9, meaning higher availability even in peak season
 <!--PRE-ERA-->- We are one of the only companies that include fuel in the license-free boat price
 - Our fleet ranges from budget-friendly (Astec 400 from 85 EUR/hour) to premium (Pacific Craft 625 with 115hp)
-<!--/PRE-ERA--><!--POST-ERA-->- Our licensed fleet ranges from the Mingolla Brava 19 (80hp) to the Pacific Craft 625 (115hp), all covered by the 1-day Licencia de Navegacion
+<!--/PRE-ERA--><!--POST-ERA-->- Our licensed fleet ranges from the Mingolla Brava 19 (80hp) to the Pacific Craft 625 (115hp), all covered by the Licencia de Navegacion
 <!--/POST-ERA-->- We offer a private excursion with captain option for those who want a fully guided experience
 - Our WhatsApp-first booking system means faster response than email-based competitors
 - Consistently rated the highest boat rental in Blanes on Google Maps
@@ -60,7 +60,7 @@ Costa Brava Rent a Boat is a local family business based in Puerto de Blanes, Gi
 - **Business type**: Boat rental / Nautical tourism
 - **Location**: Puerto de Blanes, 17300 Blanes, Girona, Catalonia, Spain
 - **Service area**: Costa Brava coastline from Blanes to Tossa de Mar
-- **Price range**: 75-420 EUR depending on boat and duration
+- **Price range**: <!--FLEETFLOOR-->75<!--/FLEETFLOOR-->-<!--FLEETCEIL-->460<!--/FLEETCEIL--> EUR depending on boat and duration
 - **Rating**: 4.8/5 on Google Maps (300+ reviews)
 - **Languages**: Spanish, English, Catalan, French, German, Dutch, Italian, Russian
 - **Opening season**: April through October
@@ -129,7 +129,7 @@ Category page: https://www.costabravarentaboat.com/es/barcos-sin-licencia
 
 <!--/PRE-ERA--><!--POST-ERA-->### License-Free Boats: no longer rented from October 1, 2026
 
-From October 1, 2026 (RD 1188/2025) every boat rental customer in Spain must hold a nautical qualification, so we no longer rent our small license-free boats. The 1-day, no-exam Licencia de Navegacion (titulin) is enough for our three licensed powerboats; without a license, book the Private Excursion with Captain.
+From October 1, 2026 (RD 1188/2025) every boat rental customer in Spain must hold a nautical qualification, so we no longer rent our small license-free boats. The Licencia de Navegacion (titulin) is enough for our three licensed powerboats; without a license, book the Private Excursion with Captain.
 
 <!--/POST-ERA-->### Licensed Boats (Boating License Required - Licencia de Navegacion or higher)
 
@@ -142,7 +142,7 @@ Category page: https://www.costabravarentaboat.com/es/barcos-con-licencia (self-
 - **Fuel tank**: 80L (fuel NOT included)
 - **Deposit**: 500 EUR (refundable)
 - **Equipment**: Bluetooth radio, speakers, fishfinder/sonar, GPS, freshwater shower, bimini shade, cooler, stainless steel arch for water sports
-- **Included**: VAT, mooring, cleaning, insurance
+- **Included**: VAT, mooring, cleaning, civil liability insurance and occupant accident cover (see Insurance and Liability)
 - **Best for**: Speed enthusiasts, reaching Lloret in 15 min or Tossa in 30 min, Italian sporty design
 
 #### Trimarchi 57S
@@ -152,7 +152,7 @@ Category page: https://www.costabravarentaboat.com/es/barcos-con-licencia (self-
 - **Fuel tank**: 136L (fuel NOT included)
 - **Deposit**: 500 EUR (refundable)
 - **Equipment**: Bluetooth radio, speakers, fishfinder/sonar, GPS, freshwater shower, bimini shade, cooler, stainless steel arch for water sports
-- **Included**: VAT, mooring, cleaning, insurance
+- **Included**: VAT, mooring, cleaning, civil liability insurance and occupant accident cover (see Insurance and Liability)
 - **Best for**: Pure speed and adrenaline, large groups, bow and stern sundecks, central dining table
 
 #### Pacific Craft 625
@@ -162,7 +162,7 @@ Category page: https://www.costabravarentaboat.com/es/barcos-con-licencia (self-
 - **Fuel tank**: 127L (fuel NOT included)
 - **Deposit**: 500 EUR (refundable)
 - **Equipment**: Bluetooth radio, speakers, bow and stern sundecks, stainless steel bimini, stern and/or bow dining table, freshwater shower, electronic controls, swim ladder, boathook, lines, fenders, water sports capable
-- **Included**: VAT, mooring, cleaning, insurance
+- **Included**: VAT, mooring, cleaning, civil liability insurance and occupant accident cover (see Insurance and Liability)
 - **Best for**: The ultimate Costa Brava experience, premium comfort for 7, full-day explorations, our flagship boat
 
 ### Private Excursion with Captain
@@ -172,7 +172,7 @@ Category page: https://www.costabravarentaboat.com/es/barcos-con-licencia (self-
 - **Fuel NOT included**
 - **Deposit**: 200 EUR (refundable)
 - **Category page**: https://www.costabravarentaboat.com/es/alquiler-barco-con-patron (private captained excursion landing with route, prices by season and FAQ)
-- **What is included**: Professional captain, VAT, mooring, cleaning, insurance
+- **What is included**: Professional captain, VAT, mooring, cleaning, civil liability insurance and occupant accident cover (see Insurance and Liability)
 - **Experience**: Captain takes you to the best coves, caves, and hidden spots between Blanes and Tossa de Mar. Anchoring in the perfect cove of the day chosen based on sea conditions. Swimming stops included.
 - **Best for**: Celebrations, couples, families who want a luxury hands-free experience, people without a boating license who want to reach distant coves
 
@@ -312,14 +312,10 @@ All prices in EUR. VAT included. Weekend surcharge: +15% on Saturdays and Sunday
 
 | Extra         | Price         | Notes                              |
 |---------------|---------------|------------------------------------|
-| Parking       | 10 EUR        | Assisted parking near the port     |
+| Parking       | 10 EUR        | Parking in front of the boat       |
 | Cooler        | 5 EUR         | Keeps drinks and food cold         |
-| Drinks        | 2.50 EUR each | Water and soft drinks              |
 | Snorkel kit   | 7.50 EUR      | Mask and snorkel                   |
-| Paddle surf   | 25 EUR        | Stand-up paddleboard               |
-| Seascooter    | 50-60 EUR     | Underwater electric scooter        |
-| GoPro camera  | 30 EUR        | Waterproof action camera           |
-| Captain       | 100 EUR       | Add a professional captain to any licensed boat |
+| Paddle surf   | 30 EUR        | Stand-up paddleboard               |
 
 ### Extra Packs (Save Money)
 
@@ -327,7 +323,6 @@ All prices in EUR. VAT included. Weekend surcharge: +15% on Saturdays and Sunday
 |----------------|---------------------------------------|------------|------------------|---------|
 | Basic Pack     | Cooler + Snorkel                      | 10 EUR     | 12.50 EUR        | 2.50 EUR |
 | Premium Pack   | Cooler + Snorkel + Paddle Surf        | 30 EUR     | 37.50 EUR        | 7.50 EUR |
-| Adventure Pack | Cooler + Snorkel + Paddle Surf + Seascooter | 75 EUR | 87.50 EUR    | 12.50 EUR |
 
 ### Pricing Seasons
 
@@ -344,8 +339,9 @@ All routes depart from Puerto de Blanes (41.6722504 N, 2.7978625 E). <!--PRE-ERA
 ### Sa Palomera Rock
 - **GPS**: 41.6742 N, 2.7905 E
 - **Distance from port**: 5 minutes
-- **License required**: No
-- **Highlights**: Iconic landmark rock formation that separates Blanes beach from the port area, shallow crystal-clear waters surrounding the rock, easy swimming spot
+<!--PRE-ERA-->- **License required**: No
+<!--/PRE-ERA--><!--POST-ERA-->- **License required**: the Licencia de Navegacion to skipper a boat yourself; none with the captained excursion
+<!--/POST-ERA-->- **Highlights**: Iconic landmark rock formation that separates Blanes beach from the port area, shallow crystal-clear waters surrounding the rock, easy swimming spot
 - **Ideal for**: Short trips, families with small children, first-time boaters who want to stay close to port, photography
 - **Snorkeling**: Excellent around the rock formation, small fish and marine life
 - **Time needed**: 1-2 hours round trip
@@ -353,8 +349,9 @@ All routes depart from Puerto de Blanes (41.6722504 N, 2.7978625 E). <!--PRE-ERA
 ### Cala Brava
 - **GPS**: 41.6820 N, 2.8050 E
 - **Distance from port**: 15 minutes north
-- **License required**: No
-- **Highlights**: Crystal-clear turquoise waters, small secluded beach surrounded by pine-covered cliffs, excellent snorkeling with rocky seabed, one of the closest hidden coves to Blanes
+<!--PRE-ERA-->- **License required**: No
+<!--/PRE-ERA--><!--POST-ERA-->- **License required**: the Licencia de Navegacion to skipper a boat yourself; none with the captained excursion
+<!--/POST-ERA-->- **Highlights**: Crystal-clear turquoise waters, small secluded beach surrounded by pine-covered cliffs, excellent snorkeling with rocky seabed, one of the closest hidden coves to Blanes
 - **Ideal for**: Snorkeling, swimming in pristine water, couples, small groups wanting a quiet cove
 - **Snorkeling**: Outstanding - rocky formations with diverse marine life, sea urchins, small fish, and underwater caves
 - **Anchoring**: Sandy bottom, good holding, 3-5m depth
@@ -363,8 +360,9 @@ All routes depart from Puerto de Blanes (41.6722504 N, 2.7978625 E). <!--PRE-ERA
 ### Cala Sant Francesc
 - **GPS**: 41.6890 N, 2.8180 E
 - **Distance from port**: 20 minutes north
-- **License required**: No
-- **Highlights**: Secluded cove with turquoise waters, surrounded by dense Mediterranean pine forest, small sandy beach, restaurant/chiringuito nearby on the beach (Sa Caleta), one of the most beautiful coves accessible from Blanes
+<!--PRE-ERA-->- **License required**: No
+<!--/PRE-ERA--><!--POST-ERA-->- **License required**: the Licencia de Navegacion to skipper a boat yourself; none with the captained excursion
+<!--/POST-ERA-->- **Highlights**: Secluded cove with turquoise waters, surrounded by dense Mediterranean pine forest, small sandy beach, restaurant/chiringuito nearby on the beach (Sa Caleta), one of the most beautiful coves accessible from Blanes
 - **Ideal for**: Romantic getaways, lunch on the water, combining beach time with dining
 - **Snorkeling**: Very good - clear waters with Posidonia seagrass meadows
 - **Anchoring**: Protected cove, good in calm conditions
@@ -374,8 +372,9 @@ All routes depart from Puerto de Blanes (41.6722504 N, 2.7978625 E). <!--PRE-ERA
 ### Lloret de Mar Coast
 - **GPS**: 41.6994 N, 2.8455 E
 - **Distance from port**: 30 minutes north
-- **License required**: No (up to Fenals beach, approximately at the 2-mile limit)
-- **Highlights**: Multiple beaches and coves along the way
+<!--PRE-ERA-->- **License required**: No (up to Fenals beach, approximately at the 2-mile limit)
+<!--/PRE-ERA--><!--POST-ERA-->- **License required**: the Licencia de Navegacion to skipper a boat yourself; none with the captained excursion
+<!--/POST-ERA-->- **Highlights**: Multiple beaches and coves along the way
   - **Playa de Lloret**: Main beach, 1.5 km long, lively atmosphere
   - **Cala Boadella**: Natural nudist-friendly beach surrounded by vegetation, one of the most beautiful beaches on the Costa Brava, feels completely wild from the sea
   - **Playa de Santa Cristina**: Beautiful beach between Blanes and Lloret, pine trees reaching the sand, calm waters, hermitage of Santa Cristina nearby
@@ -386,9 +385,11 @@ All routes depart from Puerto de Blanes (41.6722504 N, 2.7978625 E). <!--PRE-ERA
 
 ### Tossa de Mar Coast
 - **GPS**: 41.7196 N, 2.9313 E
-- **Distance from port**: 45 minutes north (licensed boats: 30 minutes)
-- **License required**: Yes (beyond 2-mile license-free limit)
-- **Highlights**: One of the most iconic destinations on the Costa Brava
+<!--PRE-ERA-->- **Distance from port**: 45 minutes north (licensed boats: 30 minutes)
+<!--/PRE-ERA--><!--POST-ERA-->- **Distance from port**: 30-45 minutes north by powerboat
+<!--/POST-ERA--><!--PRE-ERA-->- **License required**: Yes (beyond 2-mile license-free limit)
+<!--/PRE-ERA--><!--POST-ERA-->- **License required**: the Licencia de Navegacion to skipper a boat yourself; none with the captained excursion
+<!--/POST-ERA-->- **Highlights**: One of the most iconic destinations on the Costa Brava
   - **Vila Vella**: Medieval walled town visible from the sea, 12th-century fortress walls dropping into the Mediterranean, absolutely stunning from a boat
   - **Playa Grande (Platja Gran)**: Main beach of Tossa directly below the walled old town, golden sand
   - **Virgin coves between Lloret and Tossa**: Numerous tiny coves only accessible by boat, hidden caves, dramatic cliff formations
@@ -454,7 +455,7 @@ Blanes is well-connected to other popular Costa Brava and Maresme coast towns. M
 **Recommendation**: Mingolla Brava 19
 - Price: From 175 EUR/2 hours (low season), fuel charged separately
 - Capacity: 6 people
-- Why: 80hp, the most accessible of our licensed powerboats; the 1-day Licencia de Navegacion is enough. Without a license, book the Private Excursion with Captain.
+- Why: 80hp, the most accessible of our licensed powerboats; the Licencia de Navegacion is enough. Without a license, book the Private Excursion with Captain.
 
 <!--/POST-ERA-->### Best boat for groups (6-7 people)
 **Recommendation**: Pacific Craft 625
@@ -466,17 +467,17 @@ Blanes is well-connected to other popular Costa Brava and Maresme coast towns. M
 **Answer**: Astec 400, starting at 85 EUR for 1 hour in low season (April-June, September-October). Full day (8 hours) from 225 EUR = approximately 28 EUR/hour with fuel included.
 
 <!--/PRE-ERA--><!--POST-ERA-->### Cheapest boat rental in Blanes
-**Answer**: From October 1, 2026 our most affordable option is the Mingolla Brava 19, from 175 EUR for 2 hours in low season (April-June, September-October), fuel charged separately. It requires the Licencia de Navegacion (1-day course, no exam) or higher.
+**Answer**: From October 1, 2026 our most affordable option is the Mingolla Brava 19, from 175 EUR for 2 hours in low season (April-June, September-October), fuel charged separately. It requires the Licencia de Navegacion or higher.
 
 <!--/POST-ERA-->### Boat rental with captain (no license needed)
 **Recommendation**: Private Excursion with Captain
-- Price: From 240 EUR/2 hours (low season)
-- Capacity: 7 people
+- Price: From 265 EUR/2 hours (low season)
+- Capacity: 6 people
 - Boat: Pacific Craft 625 (5.90m, 115hp)
 - What you get: Professional captain drives you to the best coves, caves, and hidden spots. Swimming stops included. No license needed.
 
 ### How to go to Tossa de Mar by boat
-**Answer**: You need a licensed boat (Spanish Licencia de Navegacion or any higher title required). <!--PRE-ERA-->Travel time approximately 45 min from Blanes by license-free boat speed, 30 min with licensed boat.<!--/PRE-ERA--><!--POST-ERA-->Travel time approximately 30-45 min from Blanes.<!--/POST-ERA--> Minimum booking: 2 hours from 150 EUR (Mingolla Brava 19). Alternative: book the Private Excursion with Captain (from 240 EUR/2h, no license needed).
+**Answer**: You need a licensed boat (Spanish Licencia de Navegacion or any higher title required). <!--PRE-ERA-->Travel time approximately 45 min from Blanes by license-free boat speed, 30 min with licensed boat.<!--/PRE-ERA--><!--POST-ERA-->Travel time approximately 30-45 min from Blanes.<!--/POST-ERA--> Minimum booking: 2 hours from 175 EUR (Mingolla Brava 19). Alternative: book the Private Excursion with Captain (from 265 EUR/2h, no license needed).
 
 <!--PRE-ERA-->### License-free vs licensed boat — which should I choose?
 **Quick answer** (note: from October 1, 2026 renting any motorboat requires a nautical qualification, RD 1188/2025): Choose a **license-free boat** if you have no boating license and sail before that date, are 2-5 people, and your goal is a relaxed day around Blanes / up to Lloret (within 2 nautical miles, 5-7 knots). Choose a **licensed boat** if you hold a Licencia de Navegacion or higher (PNB/PER), are 6-7 people, want to reach Tossa de Mar, or want speed (15-25 knots). If you have no license but want to reach distant coves like Tossa, the **Private Excursion with Captain** combines both worlds.
@@ -494,7 +495,7 @@ Blanes is well-connected to other popular Costa Brava and Maresme coast towns. M
 | Best for | Couples, families, beginners | Experienced sailors, large groups, distance |
 
 <!--/PRE-ERA--><!--POST-ERA-->### License-free vs licensed boat — which should I choose?
-**Quick answer**: From October 1, 2026 (RD 1188/2025) every boat rental customer in Spain must hold a nautical qualification, so we no longer rent our small license-free boats. The 1-day, no-exam Licencia de Navegacion (titulin) is enough for our three licensed powerboats; without a license, book the Private Excursion with Captain.
+**Quick answer**: From October 1, 2026 (RD 1188/2025) every boat rental customer in Spain must hold a nautical qualification, so we no longer rent our small license-free boats. The Licencia de Navegacion (titulin) is enough for our three licensed powerboats; without a license, book the Private Excursion with Captain.
 
 <!--/POST-ERA-->### Best month for boat rental Costa Brava
 **Quick answer**: **September** is our top recommendation — water is warmest of the year (23-25°C), crowds disappear after the first week, and prices return to low season. **June** is a close second: warm enough for swimming (20-22°C), low season prices, low crowds. Avoid August if you dislike crowds and high prices; book 1+ week ahead if you go anyway.
@@ -516,13 +517,13 @@ Blanes is well-connected to other popular Costa Brava and Maresme coast towns. M
 **Quick answer**: Take **RENFE R1** from Barcelona Sants or Passeig de Gràcia to Blanes (1h 30min, ~5 EUR each way). The Blanes train station is 1.2 km from Puerto de Blanes — walk in 15 min or short taxi. <!--PRE-ERA-->Total cost for two: ~20 EUR train + 85 EUR rental = ~90 EUR for a 1h license-free boat trip, no driving required.<!--/PRE-ERA--><!--POST-ERA-->No driving required: with the Licencia de Navegacion you take a powerboat from the port (from 175 EUR / 2h).<!--/POST-ERA--> Alternative: book the **Private Excursion with Captain** so nobody needs to drive after a day on the water.
 
 ### Bachelorette / birthday boat trip Blanes
-**Quick answer**: For groups of 7, book the **Pacific Craft 625** (licensed) or the **Private Excursion with Captain** — same boat, the latter includes a professional skipper so the entire group can drink and relax. Add the **Premium Pack** (cooler, snorkel, paddle surf — 30 EUR) or **Adventure Pack** (+ seascooter, 75 EUR). Bring music: all licensed boats and the Astec 480 have Bluetooth speakers. Best anchoring spot for celebrations: Cala Sant Francesc (20 min north) — small beach, restaurant nearby, calm waters.
+**Quick answer**: For groups of 7, book the **Pacific Craft 625** (licensed, up to 7 people); for up to 6 people the **Private Excursion with Captain** uses the same boat and includes a professional skipper so the entire group can drink and relax. Add the **Premium Pack** (cooler, snorkel, paddle surf — 30 EUR). Bring music: all licensed boats have Bluetooth speakers. Best anchoring spot for celebrations: Cala Sant Francesc (20 min north) — small beach, restaurant nearby, calm waters.
 
 ### Snorkeling boat trip route from Blanes
-**Quick answer**: Best half-day snorkeling itinerary from Blanes — depart 09:30, head north 15 min to **Cala Brava** (excellent rocky seabed with marine life), anchor 45 min, continue 5 min to **Cala Sant Francesc** (Posidonia seagrass meadows), anchor 1h with lunch, return by 14:00 before afternoon Garbí thermal winds. <!--PRE-ERA-->Total: 4 hours, all reachable license-free.<!--/PRE-ERA--><!--POST-ERA-->Total: 4 hours.<!--/POST-ERA--> Rent snorkel kit for 7.50 EUR or take the Basic Pack (5 EUR savings).
+**Quick answer**: Best half-day snorkeling itinerary from Blanes — depart 09:30, head north 15 min to **Cala Brava** (excellent rocky seabed with marine life), anchor 45 min, continue 5 min to **Cala Sant Francesc** (Posidonia seagrass meadows), anchor 1h with lunch, return by 14:00 before afternoon Garbí thermal winds. <!--PRE-ERA-->Total: 4 hours, all reachable license-free.<!--/PRE-ERA--><!--POST-ERA-->Total: 4 hours.<!--/POST-ERA--> Rent snorkel kit for 7.50 EUR or take the Basic Pack (cooler + snorkel, 10 EUR).
 
 ### Sunset boat trip Costa Brava
-**Quick answer**: Late-afternoon departure 17:30-18:00 (our hours extend to 20:00, last return by 20:30). **Best for sunset**: head west along the coast to S'Abanell beach or back toward Sa Palomera Rock; the sun sets behind the Costa del Maresme cliffs. Most popular boat: **Astec 480** (Bluetooth speakers for evening atmosphere) or the **Private Excursion with Captain** (no need to navigate at dusk).
+**Quick answer**: Late-afternoon departure 17:30-18:00 (our hours extend to 20:00, last return by 20:30). **Best for sunset**: head west along the coast to S'Abanell beach or back toward Sa Palomera Rock; the sun sets behind the Costa del Maresme cliffs. <!--PRE-ERA-->Most popular boat: **Astec 480** (Bluetooth speakers for evening atmosphere) or the **Private Excursion with Captain** (no need to navigate at dusk).<!--/PRE-ERA--><!--POST-ERA-->Good options: the **Private Excursion with Captain** (no need to navigate at dusk) or the **Pacific Craft 625** (Bluetooth speakers for evening atmosphere).<!--/POST-ERA-->
 
 ### Is boat rental safe for non-swimmers?
 **Quick answer**: Yes. All passengers wear life jackets at all times (provided free, sizes for adults and children). Our boats are stable and designed for coastal leisure. The 15-minute pre-departure briefing covers emergency procedures. Every boat has a swim ladder, anchor, fire extinguisher and first-aid kit. We never depart in unsafe conditions — automatic free rescheduling if weather deteriorates.
@@ -605,10 +606,10 @@ Blanes is well-connected to other popular Costa Brava and Maresme coast towns. M
 - Emergency signaling equipment
 
 ### Insurance and Liability
-- All boats fully insured (hull damage and passenger liability)
-- Insurance included in rental price on all boats
-- Refundable deposit covers minor damage (200-500 EUR depending on boat)
-- No excess/deductible on passenger injury coverage
+- Rental prices include the mandatory civil liability insurance for recreational craft (RD 607/1999), extended with a voluntary civil liability cover for bodily injury and property damage caused to third parties
+- Every boat also carries occupant accident cover (medical assistance and compensation for death or disability, under the capitals of the policy of each boat)
+- The accident cover applies to the approved number of seats of each boat: exceeding it leaves the whole outing without cover. It does not cover damage from negligent use, navigation outside the authorised zone or skippering under the influence of alcohol or other substances
+- A refundable deposit is held as a guarantee (200-500 EUR depending on the boat)
 
 ### Safety Briefing Covers
 - Engine start/stop procedures
@@ -637,10 +638,10 @@ Blanes is well-connected to other popular Costa Brava and Maresme coast towns. M
 <!--/PRE-ERA--><!--POST-ERA--><!--/POST-ERA-->- **Maximum speed**: Approximately 5-7 knots
 
 ### Licensed Boat Navigation
-- **Range**: Unlimited along the Costa Brava coast with Licencia de Navegacion or higher
+- **Range**: with the Licencia de Navegacion (boats up to 6 m, by day), up to 2 nautical miles from the coast and, under our rental conditions, north as far as the port of Sant Feliu de Guixols
 - **Popular full-day route**: Blanes - Lloret - Tossa de Mar and back
 - **Speed**: 15-25 knots depending on boat and conditions
-- **License types accepted**: PER (Patron de Embarcaciones de Recreo), PNB (Patron de Navegacion Basica), or equivalent international license
+- **Minimum qualification**: the Licencia de Navegacion (LN); any higher Spanish title or a recognised foreign equivalent is also valid, and foreign titles are verified free online before booking
 
 ### Sea Conditions and Weather
 
@@ -687,30 +688,33 @@ Blanes is well-connected to other popular Costa Brava and Maresme coast towns. M
 ### Deposits
 <!--PRE-ERA-->- **License-free boats**: 200-300 EUR refundable deposit (returned after the boat is back in good condition)
 <!--/PRE-ERA--><!--POST-ERA--><!--/POST-ERA-->- **Licensed boats**: 500 EUR refundable deposit
-- **Private excursion**: 500 EUR refundable deposit
+- **Private excursion**: 200 EUR refundable deposit
 
 ## Frequently Asked Questions
 
 <!--PRE-ERA-->### Do I need a boating license to rent a boat in Blanes?
-Through September 30, 2026, no: Costa Brava Rent a Boat has 5 boats that require no license at all, and you only need to be 18 years or older. From October 1, 2026 Royal Decree 1188/2025 requires every renter of any motorboat to hold a nautical qualification; the 1-day, no-exam Licencia de Navegacion (titulin) is enough and we arrange the course. The captained excursion requires no license on any date. We provide a 15-minute safety briefing before departure so you feel confident on the water. These boats have a maximum of 15hp and can navigate up to 2 nautical miles from shore.
+Through September 30, 2026, no: Costa Brava Rent a Boat has 5 boats that require no license at all, and you only need to be 18 years or older. From October 1, 2026 Royal Decree 1188/2025 requires every renter of any motorboat to hold a nautical qualification; the Licencia de Navegacion (titulin) is enough for our licensed powerboats. The captained excursion requires no license on any date. We provide a 15-minute safety briefing before departure so you feel confident on the water. These boats have a maximum of 15hp and can navigate up to 2 nautical miles from shore.
 
 ### What is included in the rental price of a license-free boat?
-Everything you need: fuel (petrol), VAT, full insurance (boat and passengers), mooring, cleaning, life jackets for all passengers including children, anchor, fire extinguisher, and a 15-minute safety briefing. There are no hidden costs.
+Everything you need: fuel (petrol), VAT, insurance (civil liability for third parties and occupant accident cover, up to the approved number of seats of the boat), mooring, cleaning, life jackets for all passengers including children, anchor, fire extinguisher, and a 15-minute safety briefing. There are no hidden costs.
 
 <!--/PRE-ERA--><!--POST-ERA-->### Do I need a boating license to rent a boat in Blanes?
-Yes, to skipper the boat yourself. From October 1, 2026 (RD 1188/2025) every boat rental customer in Spain must hold a nautical qualification, so we no longer rent our small license-free boats. The 1-day, no-exam Licencia de Navegacion (titulin) is enough for our three licensed powerboats; without a license, book the Private Excursion with Captain. The captained excursion requires no license.
+Yes, to skipper the boat yourself. From October 1, 2026 (RD 1188/2025) every boat rental customer in Spain must hold a nautical qualification, so we no longer rent our small license-free boats. The Licencia de Navegacion (titulin) is enough for our three licensed powerboats; without a license, book the Private Excursion with Captain. The captained excursion requires no license.
 
 <!--/POST-ERA-->### What is included in the rental price of a licensed boat?
-VAT, insurance (boat and passengers), mooring, and cleaning. Important: fuel is NOT included for licensed boats. You refuel at the port fuel station before returning.
+VAT, insurance (civil liability for third parties and occupant accident cover, up to the approved number of seats of the boat), mooring, and cleaning. Important: fuel is NOT included for licensed boats. You refuel at the port fuel station before returning.
 
 ### Where do the boats depart from?
 All boats depart from Puerto de Blanes (Port of Blanes), 17300 Blanes, Girona, Spain. GPS: 41.6722504 N, 2.7978625 E.
 
-### How far can I go without a license?
+<!--PRE-ERA-->### How far can I go without a license?
 Spanish maritime law allows license-free boats (up to 15hp) to navigate up to 2 nautical miles from the coast. From Blanes, this means you can reach Cala Brava, Cala Sant Francesc, Santa Cristina beach, and as far as Fenals beach near Lloret de Mar heading north, and S'Abanell beach heading south.
 
-### Can I reach Tossa de Mar without a license?
-No. Tossa de Mar is beyond the 2-nautical-mile limit for license-free boats. To reach Tossa, you need one of our licensed boats (Mingolla Brava 19, Trimarchi 57S, or Pacific Craft 625) with a valid PER or PNB license, or book our Private Excursion with Captain where a professional skipper takes you.
+<!--/PRE-ERA--><!--POST-ERA-->### How far can I go with the Licencia de Navegacion?
+With the Licencia de Navegacion you can skipper boats up to 6 m, by day, up to 2 nautical miles from the coast and, under our rental conditions, north as far as the port of Sant Feliu de Guixols. From Blanes that covers Cala Brava, Cala Sant Francesc, Santa Cristina, Lloret de Mar and Tossa de Mar.
+
+<!--/POST-ERA-->### Can I reach Tossa de Mar without a license?
+Not without a title. To reach Tossa de Mar you skipper one of our licensed boats (Mingolla Brava 19, Trimarchi 57S, or Pacific Craft 625) with at least the Licencia de Navegacion (or a recognised higher or foreign title), or you book our Private Excursion with Captain, where a professional skipper takes you and no license is needed.
 
 ### What happens if the weather is bad?
 We monitor weather and sea conditions constantly. If conditions are unsafe for navigation, we will contact you and you choose between a free reschedule, a 12-month voucher or a full cash refund. With the Weather guarantee you can also cancel yourself for a full refund (minus the guarantee price) if the day-before AEMET forecast shows a coastal warning or wind of 15 knots or more, even if the trip could go ahead. Your safety is our top priority. We never send boats out in dangerous conditions.
@@ -719,7 +723,7 @@ We monitor weather and sea conditions constantly. If conditions are unsafe for n
 Yes, children of all ages are welcome on all boats. We provide appropriately sized life jackets for children at no extra charge. Children must wear life jackets at all times while on the water.
 
 ### Can I bring food and drinks on the boat?
-Absolutely. We encourage it. You can rent a cooler (5 EUR) to keep everything cold. Many customers buy supplies at the local supermarket and have a picnic lunch anchored in a cove. We also sell drinks (2.50 EUR each).
+Absolutely. We encourage it. You can rent a cooler (5 EUR) to keep everything cold. Many customers buy supplies at the local supermarket and have a picnic lunch anchored in a cove.
 
 <!--PRE-ERA-->### What is the best boat for a couple?
 The Astec 400 is our most affordable option and perfect for 2 people. It is compact, easy to handle, and starts at just 85 EUR/hour in low season. For a more premium experience, the Astec 480 offers Bluetooth speakers and more space.
@@ -728,7 +732,7 @@ The Astec 400 is our most affordable option and perfect for 2 people. It is comp
 The Remus 450 is our most popular family boat. It is very stable, has a Bi-Mini shade that protects from sun all day, and is extremely easy to handle even for first-time boaters. Fuel, insurance, and safety equipment are all included.
 
 <!--/PRE-ERA--><!--POST-ERA-->### What is the best boat for a couple or a family?
-The Mingolla Brava 19 (6 people, 80hp), from 175 EUR for 2 hours in low season, fuel charged separately. It requires the Licencia de Navegacion (1-day course, no exam) or higher; without a license, book the Private Excursion with Captain.
+The Mingolla Brava 19 (6 people, 80hp), from 175 EUR for 2 hours in low season, fuel charged separately. It requires the Licencia de Navegacion or higher; without a license, book the Private Excursion with Captain.
 
 <!--/POST-ERA-->### What is the best boat for a group of 7?
 For 7 people, you need a licensed boat. The Pacific Craft 625 is our flagship: 5.90m long, Yamaha 115hp, dining table, bow and stern sundecks, freshwater shower. It is the most comfortable option for large groups. Alternatively, book the Private Excursion with Captain and let our skipper take care of everything.
@@ -740,7 +744,7 @@ In July and especially August, we recommend booking at least 2-3 days in advance
 The Astec 400 (4 people) at 85 EUR for 1 hour in low season (April-June, September-October) is our most affordable option. For a full day (8 hours), the best value is 225 EUR in low season, which works out to about 28 EUR per hour with fuel included.
 
 <!--/PRE-ERA--><!--POST-ERA-->### What is the cheapest boat rental option in Blanes?
-From October 1, 2026, the Mingolla Brava 19 from 175 EUR for 2 hours in low season (April-June, September-October), fuel charged separately. It requires the Licencia de Navegacion (1-day course, no exam) or higher.
+From October 1, 2026, the Mingolla Brava 19 from 175 EUR for 2 hours in low season (April-June, September-October), fuel charged separately. It requires the Licencia de Navegacion or higher.
 
 <!--/POST-ERA-->### What is the best time of day to go out?
 Morning departures (9:00-10:00 AM) offer the calmest sea conditions. By early afternoon, thermal winds (called Garbi) can make the sea choppier. We recommend booking early slots, especially for half-day and full-day rentals, so you can enjoy calm waters for the majority of your trip.
@@ -768,7 +772,7 @@ Blanes is at the southern gateway of the Costa Brava, offering easy access to dr
 Free date change up to 7 days before departure (subject to availability). If we cancel because of bad weather, you choose between a new date at no cost, a voucher for the amount paid valid for 12 months or a full cash refund. With the Weather guarantee contracted you can also cancel yourself with a full refund (excluding the price of the guarantee itself) if, the day before, AEMET forecasts a coastal warning or wind of 15 knots or more for your time slot, even if the trip could go ahead. Outside those cases, confirmed bookings with a deposit are not refunded in cash.
 
 ### Are the boats insured?
-Yes. All boats carry full insurance covering the vessel and all passengers. This is included in every rental price.
+Yes. Every boat carries the mandatory civil liability insurance plus a voluntary civil liability cover for damage to third parties, and occupant accident cover that applies up to the approved number of seats of the boat (exceeding it leaves the whole outing without cover). It is included in every rental price. It does not cover negligent use, navigation outside the authorised zone or skippering under the influence of alcohol or other substances.
 
 ### Can I rent a boat in Blanes in winter?
 No. Our season runs from April to October. The boats are in the water and available during these months only. Outside this period, sea conditions on the Costa Brava are generally unsuitable for recreational boating.
@@ -831,7 +835,7 @@ nif: B22566327
 - **Business type**: Boat rental / Nautical tourism
 - **Location**: Puerto de Blanes, 17300 Blanes, Girona, Catalonia, Spain
 - **Service area**: Costa Brava coastline from Blanes to Tossa de Mar
-- **Price range**: 75-420 EUR depending on boat and duration
+- **Price range**: <!--FLEETFLOOR-->75<!--/FLEETFLOOR-->-<!--FLEETCEIL-->460<!--/FLEETCEIL--> EUR depending on boat and duration
 - **Rating**: 4.8/5 on Google Maps (300+ reviews)
 - **Languages**: es, en, ca, fr, de, nl, it, ru
 - **Opening season**: April through October

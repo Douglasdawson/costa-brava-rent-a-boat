@@ -3,7 +3,7 @@
  * nautical qualification, so every title/description that still promises "sin licencia"
  * has to tell the truth from that day on: the small licence-free boats (up to 15 HP) are
  * withdrawn from rental. What remains is the licensed fleet, rented with the Licencia de
- * Navegación (titulín, a 1-day course), and the excursion with a skipper. No rentable boat
+ * Navegación (titulín), and the excursion with a skipper. No rentable boat
  * includes fuel after that day, so no entry may promise it.
  *
  * ONE map, keyed by the server's STATIC_META key, consumed by both `server/seoInjector.ts`
@@ -34,35 +34,35 @@ const R = BUSINESS_RATING_STR;
 const TOWN: Record<string, (name: string, min: number) => PostEraFields> = {
   es: (n, m) => ({
     title: `Alquiler Barco ${n} | Puerto Blanes a ${m} min | Titulín o Patrón`,
-    description: `¿Alojado en ${n}? El Puerto de Blanes está a ${m} min. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón. ★${R} Google.`,
+    description: `¿Alojado en ${n}? El Puerto de Blanes está a ${m} min. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (se saca en 1 día, sin examen) o sales con patrón. ★${R} Google.`,
   }),
   en: (n, m) => ({
-    title: `Boat Rental ${n} | Blanes Port ${m} min | Licence in 1 Day or Skipper`,
-    description: `Staying in ${n}? Blanes Port is ${m} min away. From 1 October 2026 you rent with the Licencia de Navegación (1-day course, no exam) or sail with a skipper. ★${R} Google.`,
+    title: `Boat Rental ${n} | Blanes Port ${m} min | Licence or Skipper`,
+    description: `Staying in ${n}? Blanes Port is ${m} min away. From 1 October 2026 you rent with the Licencia de Navegación (obtained in 1 day, no exam) or sail with a skipper. ★${R} Google.`,
   }),
   ca: (n, m) => ({
     title: `Lloguer Barca ${n} | Port Blanes a ${m} min | Titulí o Patró`,
-    description: `Allotjat a ${n}? El Port de Blanes és a ${m} min. Des de l'1 d'octubre de 2026 llogues amb la Llicència de Navegació (curs d'1 dia, sense examen) o surts amb patró. ★${R} Google.`,
+    description: `Allotjat a ${n}? El Port de Blanes és a ${m} min. Des de l'1 d'octubre de 2026 llogues amb la Llicència de Navegació (es treu en 1 dia, sense examen) o surts amb patró. ★${R} Google.`,
   }),
   fr: (n, m) => ({
-    title: `Location Bateau ${n} | Port Blanes à ${m} min | Permis en 1 jour ou Skipper`,
-    description: `En séjour à ${n} ? Le port de Blanes est à ${m} min. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (cours d'1 jour, sans examen) ou partez avec un skipper. ★${R} Google.`,
+    title: `Location Bateau ${n} | Port Blanes à ${m} min | Permis ou Skipper`,
+    description: `En séjour à ${n} ? Le port de Blanes est à ${m} min. Depuis le 1er octobre 2026, vous louez avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou partez avec un skipper. ★${R} Google.`,
   }),
   de: (n, m) => ({
-    title: `Bootsverleih ${n} | Hafen Blanes ${m} Min | Schein an 1 Tag oder Skipper`,
-    description: `Urlaub in ${n}? Der Hafen Blanes ist ${m} Min entfernt. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper. ★${R} Google.`,
+    title: `Bootsverleih ${n} | Hafen Blanes ${m} Min | Schein oder Skipper`,
+    description: `Urlaub in ${n}? Der Hafen Blanes ist ${m} Min entfernt. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper. ★${R} Google.`,
   }),
   nl: (n, m) => ({
-    title: `Bootverhuur ${n} | Haven Blanes op ${m} min | Vaarbewijs in 1 dag of Schipper`,
-    description: `Op vakantie in ${n}? De haven van Blanes is ${m} min verderop. Sinds 1 oktober 2026 huur je met de Licencia de Navegación (cursus van 1 dag, zonder examen) of vaar je met een schipper. ★${R} Google.`,
+    title: `Bootverhuur ${n} | Haven Blanes op ${m} min | Vaarbewijs of Schipper`,
+    description: `Op vakantie in ${n}? De haven van Blanes is ${m} min verderop. Sinds 1 oktober 2026 huur je met de Licencia de Navegación (te halen in 1 dag, zonder examen) of vaar je met een schipper. ★${R} Google.`,
   }),
   it: (n, m) => ({
-    title: `Noleggio Barca ${n} | Porto Blanes a ${m} min | Patente in 1 giorno o Skipper`,
-    description: `In vacanza a ${n}? Il porto di Blanes è a ${m} min. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (corso di 1 giorno, senza esame) o esci con uno skipper. ★${R} Google.`,
+    title: `Noleggio Barca ${n} | Porto Blanes a ${m} min | Patente o Skipper`,
+    description: `In vacanza a ${n}? Il porto di Blanes è a ${m} min. Dal 1 ottobre 2026 noleggi con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o esci con uno skipper. ★${R} Google.`,
   }),
   ru: (n, m) => ({
-    title: `Аренда Лодки ${n} | Порт Бланес ${m} мин | Права за 1 день или Капитан`,
-    description: `Отдыхаете в ${n}? Порт Бланеса в ${m} мин. С 1 октября 2026 года аренда с Licencia de Navegación (курс за 1 день, без экзамена) или выход с капитаном. ★${R} Google.`,
+    title: `Аренда Лодки ${n} | Порт Бланес ${m} мин | Права или Капитан`,
+    description: `Отдыхаете в ${n}? Порт Бланеса в ${m} мин. С 1 октября 2026 года аренда с Licencia de Navegación (получают за 1 день, без экзамена) или выход с капитаном. ★${R} Google.`,
   }),
 };
 
@@ -83,14 +83,14 @@ function allLangs(fields: PostEraFields): LangMap {
 
 /** Activity pages: per-language head + lead sentence, the same titulín-or-skipper tail. */
 const ACTIVITY_TAIL: Record<string, { title: string; desc: string }> = {
-  es: { title: "Con Titulín o Patrón", desc: `Con titulín (curso de 1 día) o con patrón desde octubre de 2026. ★${R} Google.` },
-  en: { title: "Licence in 1 Day or Skipper", desc: `With the titulín (1-day licence) or with a skipper from October 2026. ★${R} Google.` },
-  ca: { title: "Amb Titulí o Patró", desc: `Amb titulí (curs d'1 dia) o amb patró des d'octubre de 2026. ★${R} Google.` },
-  fr: { title: "Permis en 1 jour ou Skipper", desc: `Avec le titulín (permis en 1 jour) ou avec skipper depuis octobre 2026. ★${R} Google.` },
-  de: { title: "Schein an 1 Tag oder Skipper", desc: `Mit dem Titulín (Schein an 1 Tag) oder mit Skipper seit Oktober 2026. ★${R} Google.` },
-  nl: { title: "Vaarbewijs in 1 dag of Schipper", desc: `Met de titulín (vaarbewijs in 1 dag) of met schipper sinds oktober 2026. ★${R} Google.` },
-  it: { title: "Patente in 1 giorno o Skipper", desc: `Con il titulín (patente in 1 giorno) o con skipper da ottobre 2026. ★${R} Google.` },
-  ru: { title: "Права за 1 день или Капитан", desc: `С titulín (права за 1 день) или с капитаном с октября 2026 года. ★${R} Google.` },
+  es: { title: "Con Titulín o Patrón", desc: `Con titulín (se saca en 1 día) o con patrón desde octubre de 2026. ★${R} Google.` },
+  en: { title: "Licence or Skipper", desc: `With the titulín (obtained in 1 day) or with a skipper from October 2026. ★${R} Google.` },
+  ca: { title: "Amb Titulí o Patró", desc: `Amb titulí (es treu en 1 dia) o amb patró des d'octubre de 2026. ★${R} Google.` },
+  fr: { title: "Permis ou Skipper", desc: `Avec le titulín (s'obtient en 1 jour) ou avec skipper depuis octobre 2026. ★${R} Google.` },
+  de: { title: "Schein oder Skipper", desc: `Mit dem Titulín (an 1 Tag erhältlich) oder mit Skipper seit Oktober 2026. ★${R} Google.` },
+  nl: { title: "Vaarbewijs of Schipper", desc: `Met de titulín (te halen in 1 dag) of met schipper sinds oktober 2026. ★${R} Google.` },
+  it: { title: "Patente o Skipper", desc: `Con il titulín (si ottiene in 1 giorno) o con skipper da ottobre 2026. ★${R} Google.` },
+  ru: { title: "Права или Капитан", desc: `С titulín (получают за 1 день) или с капитаном с октября 2026 года. ★${R} Google.` },
 };
 
 function activity(copy: Record<(typeof LANGS)[number], [head: string, lead: string]>): LangMap {
@@ -105,116 +105,116 @@ function activity(copy: Record<(typeof LANGS)[number], [head: string, lead: stri
 export const POST_ERA_META: Record<string, LangMap> = {
   "/barcos-sin-licencia": {
     es: {
-      title: `Barcos Sin Licencia Blanes: desde octubre 2026, Titulín en 1 día o Patrón · ★${R}`,
-      description: `Desde el 1 de octubre de 2026 ya no alquilamos barcos sin licencia en Blanes: la ley exige título para alquilar cualquier barco a motor. Con el titulín (curso de 1 día, sin examen) llevas nuestras lanchas, o sales con patrón profesional. ★${R} Google.`,
+      title: `Barcos Sin Licencia Blanes: desde octubre 2026, Titulín o Patrón · ★${R}`,
+      description: `Desde el 1 de octubre de 2026 ya no alquilamos barcos sin licencia en Blanes: la ley exige título para alquilar cualquier barco a motor. Con el titulín (se saca en 1 día, sin examen) llevas nuestras lanchas, o sales con patrón profesional. ★${R} Google.`,
     },
     en: {
-      title: `Licence-Free Boats Blanes: from October 2026, Titulín in 1 Day or Skipper · ★${R}`,
-      description: `From 1 October 2026 we no longer rent licence-free boats in Blanes: Spanish law requires a licence to rent any motorboat. With the titulín (1-day course, no exam) you skipper our motorboats yourself, or sail with a professional skipper. ★${R} Google.`,
+      title: `Licence-Free Boats Blanes: from October 2026, Titulín or Skipper · ★${R}`,
+      description: `From 1 October 2026 we no longer rent licence-free boats in Blanes: Spanish law requires a licence to rent any motorboat. With the titulín (obtained in 1 day, no exam) you skipper our motorboats yourself, or sail with a professional skipper. ★${R} Google.`,
     },
     ca: {
-      title: `Barques Sense Llicència Blanes: des d'octubre 2026, Titulí en 1 dia o Patró · ★${R}`,
-      description: `Des de l'1 d'octubre de 2026 ja no lloguem barques sense llicència a Blanes: la llei exigeix títol per llogar qualsevol embarcació a motor. Amb el titulí (curs d'1 dia, sense examen) portes les nostres llanxes, o surts amb patró professional. ★${R} Google.`,
+      title: `Barques Sense Llicència Blanes: des d'octubre 2026, Titulí o Patró · ★${R}`,
+      description: `Des de l'1 d'octubre de 2026 ja no lloguem barques sense llicència a Blanes: la llei exigeix títol per llogar qualsevol embarcació a motor. Amb el titulí (es treu en 1 dia, sense examen) portes les nostres llanxes, o surts amb patró professional. ★${R} Google.`,
     },
     fr: {
-      title: `Bateaux Sans Permis Blanes : depuis octobre 2026, Titulín en 1 jour ou Skipper · ★${R}`,
-      description: `Depuis le 1er octobre 2026, nous ne louons plus de bateaux sans permis à Blanes : la loi espagnole exige un permis pour louer tout bateau à moteur. Avec le titulín (cours d'1 jour, sans examen), vous pilotez nos bateaux à moteur, ou partez avec un skipper professionnel. ★${R} Google.`,
+      title: `Bateaux Sans Permis Blanes : depuis octobre 2026, Titulín ou Skipper · ★${R}`,
+      description: `Depuis le 1er octobre 2026, nous ne louons plus de bateaux sans permis à Blanes : la loi espagnole exige un permis pour louer tout bateau à moteur. Avec le titulín (s'obtient en 1 jour, sans examen), vous pilotez nos bateaux à moteur, ou partez avec un skipper professionnel. ★${R} Google.`,
     },
     de: {
-      title: `Boote ohne Führerschein Blanes: seit Oktober 2026 Titulín an 1 Tag oder Skipper · ★${R}`,
-      description: `Seit dem 1. Oktober 2026 vermieten wir in Blanes keine führerscheinfreien Boote mehr: Das spanische Gesetz verlangt für jede Motorbootmiete einen Schein. Mit dem Titulín (1-Tages-Kurs, ohne Prüfung) fahren Sie unsere Motorboote selbst, oder Sie fahren mit einem professionellen Skipper. ★${R} Google.`,
+      title: `Boote ohne Führerschein Blanes: seit Oktober 2026 Titulín oder Skipper · ★${R}`,
+      description: `Seit dem 1. Oktober 2026 vermieten wir in Blanes keine führerscheinfreien Boote mehr: Das spanische Gesetz verlangt für jede Motorbootmiete einen Schein. Mit dem Titulín (an 1 Tag erhältlich, ohne Prüfung) fahren Sie unsere Motorboote selbst, oder Sie fahren mit einem professionellen Skipper. ★${R} Google.`,
     },
     nl: {
-      title: `Boten zonder vaarbewijs Blanes: sinds oktober 2026 Titulín in 1 dag of Schipper · ★${R}`,
-      description: `Sinds 1 oktober 2026 verhuren we in Blanes geen boten zonder vaarbewijs meer: de Spaanse wet eist een vaarbewijs om een motorboot te huren. Met de titulín (cursus van 1 dag, zonder examen) vaar je zelf met onze motorboten, of je vaart met een professionele schipper. ★${R} Google.`,
+      title: `Boten zonder vaarbewijs Blanes: sinds oktober 2026 Titulín of Schipper · ★${R}`,
+      description: `Sinds 1 oktober 2026 verhuren we in Blanes geen boten zonder vaarbewijs meer: de Spaanse wet eist een vaarbewijs om een motorboot te huren. Met de titulín (te halen in 1 dag, zonder examen) vaar je zelf met onze motorboten, of je vaart met een professionele schipper. ★${R} Google.`,
     },
     it: {
-      title: `Barche senza patente Blanes: da ottobre 2026 Titulín in 1 giorno o Skipper · ★${R}`,
-      description: `Dal 1 ottobre 2026 non noleggiamo più barche senza patente a Blanes: la legge spagnola richiede una patente per noleggiare qualsiasi barca a motore. Con il titulín (corso di 1 giorno, senza esame) guidi i nostri motoscafi, oppure esci con uno skipper professionista. ★${R} Google.`,
+      title: `Barche senza patente Blanes: da ottobre 2026 Titulín o Skipper · ★${R}`,
+      description: `Dal 1 ottobre 2026 non noleggiamo più barche senza patente a Blanes: la legge spagnola richiede una patente per noleggiare qualsiasi barca a motore. Con il titulín (si ottiene in 1 giorno, senza esame) guidi i nostri motoscafi, oppure esci con uno skipper professionista. ★${R} Google.`,
     },
     ru: {
-      title: `Лодки без прав Бланес: с октября 2026 Titulín за 1 день или капитан · ★${R}`,
-      description: `С 1 октября 2026 года мы больше не сдаём лодки без прав в Бланесе: закон Испании требует права для аренды любой моторной лодки. С titulín (курс за 1 день, без экзамена) вы сами управляете нашими катерами или выходите с профессиональным капитаном. ★${R} Google.`,
+      title: `Лодки без прав Бланес: с октября 2026 Titulín или капитан · ★${R}`,
+      description: `С 1 октября 2026 года мы больше не сдаём лодки без прав в Бланесе: закон Испании требует права для аренды любой моторной лодки. С titulín (получают за 1 день, без экзамена) вы сами управляете нашими катерами или выходите с профессиональным капитаном. ★${R} Google.`,
     },
   },
   "/alquiler-barcos-blanes": {
     es: {
-      title: "Alquiler Barcos Puerto Blanes | Con Titulín (1 día) o Patrón",
-      description: `Alquila barco en el Puerto de Blanes. Desde el 1 de octubre de 2026 con la Licencia de Navegación (curso de 1 día, sin examen) o con patrón. Parking gratis. ★${R} Google.`,
+      title: "Alquiler Barcos Puerto Blanes | Con Titulín o Patrón",
+      description: `Alquila barco en el Puerto de Blanes. Desde el 1 de octubre de 2026 con la Licencia de Navegación (se saca en 1 día, sin examen) o con patrón. Parking gratis. ★${R} Google.`,
     },
     en: {
-      title: "Boat Rental Blanes Port | Licence in 1 Day or Skipper",
-      description: `Rent a boat at Blanes Port. From 1 October 2026 with the Licencia de Navegación (1-day course, no exam) or with a skipper. Free parking. ★${R} Google.`,
+      title: "Boat Rental Blanes Port | Licence or Skipper",
+      description: `Rent a boat at Blanes Port. From 1 October 2026 with the Licencia de Navegación (obtained in 1 day, no exam) or with a skipper. Free parking. ★${R} Google.`,
     },
     ca: {
-      title: "Lloguer Barques Port de Blanes | Amb Titulí (1 dia) o Patró",
-      description: `Lloga barca al Port de Blanes. Des de l'1 d'octubre de 2026 amb la Llicència de Navegació (curs d'1 dia, sense examen) o amb patró. Pàrquing gratis. ★${R} Google.`,
+      title: "Lloguer Barques Port de Blanes | Amb Titulí o Patró",
+      description: `Lloga barca al Port de Blanes. Des de l'1 d'octubre de 2026 amb la Llicència de Navegació (es treu en 1 dia, sense examen) o amb patró. Pàrquing gratis. ★${R} Google.`,
     },
     fr: {
-      title: "Location Bateaux Blanes | Permis en 1 jour ou Skipper",
-      description: `Louez un bateau au port de Blanes. Depuis le 1er octobre 2026 avec la Licencia de Navegación (cours d'1 jour, sans examen) ou avec skipper. Parking gratuit. ★${R} Google.`,
+      title: "Location Bateaux Blanes | Permis ou Skipper",
+      description: `Louez un bateau au port de Blanes. Depuis le 1er octobre 2026 avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou avec skipper. Parking gratuit. ★${R} Google.`,
     },
     de: {
-      title: "Bootsverleih Hafen Blanes | Schein an 1 Tag oder Skipper",
-      description: `Boot mieten im Hafen Blanes. Seit dem 1. Oktober 2026 mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder mit Skipper. Parken gratis. ★${R} Google.`,
+      title: "Bootsverleih Hafen Blanes | Schein oder Skipper",
+      description: `Boot mieten im Hafen Blanes. Seit dem 1. Oktober 2026 mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder mit Skipper. Parken gratis. ★${R} Google.`,
     },
     nl: {
-      title: "Bootverhuur Blanes | Vaarbewijs in 1 dag of Schipper",
-      description: `Huur een boot in de haven van Blanes. Sinds 1 oktober 2026 met de Licencia de Navegación (cursus van 1 dag, zonder examen) of met schipper. Gratis parkeren. ★${R} Google.`,
+      title: "Bootverhuur Blanes | Vaarbewijs of Schipper",
+      description: `Huur een boot in de haven van Blanes. Sinds 1 oktober 2026 met de Licencia de Navegación (te halen in 1 dag, zonder examen) of met schipper. Gratis parkeren. ★${R} Google.`,
     },
     it: {
-      title: "Noleggio Barche Blanes | Patente in 1 giorno o Skipper",
-      description: `Noleggia una barca nel porto di Blanes. Dal 1 ottobre 2026 con la Licencia de Navegación (corso di 1 giorno, senza esame) o con skipper. Parcheggio gratuito. ★${R} Google.`,
+      title: "Noleggio Barche Blanes | Patente o Skipper",
+      description: `Noleggia una barca nel porto di Blanes. Dal 1 ottobre 2026 con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o con skipper. Parcheggio gratuito. ★${R} Google.`,
     },
     ru: {
-      title: "Аренда Лодок Порт Бланес | Права за 1 день или Капитан",
-      description: `Аренда лодки в порту Бланеса. С 1 октября 2026 года с Licencia de Navegación (курс за 1 день, без экзамена) или с капитаном. Бесплатная парковка. ★${R} Google.`,
+      title: "Аренда Лодок Порт Бланес | Права или Капитан",
+      description: `Аренда лодки в порту Бланеса. С 1 октября 2026 года с Licencia de Navegación (получают за 1 день, без экзамена) или с капитаном. Бесплатная парковка. ★${R} Google.`,
     },
   },
   "/alquiler-barcos-lloret-de-mar": {
     es: {
       title: `Alquilar Barco Lloret de Mar · Santa Cristina 25 min · Titulín o Patrón · ★${R}`,
-      description: `Alquiler de barco a Lloret de Mar desde Blanes: Santa Cristina y Sa Boadella a 25 min. Desde el 1 de octubre de 2026 con la Licencia de Navegación (curso de 1 día) o con patrón. ★${R} Google. Reserva WhatsApp.`,
+      description: `Alquiler de barco a Lloret de Mar desde Blanes: Santa Cristina y Sa Boadella a 25 min. Desde el 1 de octubre de 2026 con la Licencia de Navegación (se saca en 1 día) o con patrón. ★${R} Google. Reserva WhatsApp.`,
     },
     en: {
-      title: `Boat Rental Lloret de Mar · Santa Cristina 25 min · Licence in 1 Day or Skipper · ★${R}`,
-      description: `Boat rental to Lloret de Mar from Blanes: Santa Cristina and Sa Boadella in 25 min. From 1 October 2026 with the Licencia de Navegación (1-day course) or with a skipper. ★${R} Google. Book on WhatsApp.`,
+      title: `Boat Rental Lloret de Mar · Santa Cristina 25 min · Licence or Skipper · ★${R}`,
+      description: `Boat rental to Lloret de Mar from Blanes: Santa Cristina and Sa Boadella in 25 min. From 1 October 2026 with the Licencia de Navegación (obtained in 1 day) or with a skipper. ★${R} Google. Book on WhatsApp.`,
     },
     ca: {
       title: `Lloguer de Vaixell a Lloret de Mar · Santa Cristina 25 min · Titulí o Patró · ★${R}`,
-      description: `Lloguer de vaixell a Lloret de Mar des de Blanes: Santa Cristina i Sa Boadella a 25 min. Des de l'1 d'octubre de 2026 amb la Llicència de Navegació (curs d'1 dia) o amb patró. ★${R} Google. Reserva per WhatsApp.`,
+      description: `Lloguer de vaixell a Lloret de Mar des de Blanes: Santa Cristina i Sa Boadella a 25 min. Des de l'1 d'octubre de 2026 amb la Llicència de Navegació (es treu en 1 dia) o amb patró. ★${R} Google. Reserva per WhatsApp.`,
     },
     fr: {
-      title: `Location de Bateau à Lloret de Mar · Santa Cristina 25 min · Permis en 1 jour ou Skipper · ★${R}`,
-      description: `Location de bateau vers Lloret de Mar depuis Blanes : Santa Cristina et Sa Boadella en 25 min. Depuis le 1er octobre 2026 avec la Licencia de Navegación (cours d'1 jour) ou avec skipper. ★${R} Google. Réservez sur WhatsApp.`,
+      title: `Location de Bateau à Lloret de Mar · Santa Cristina 25 min · Permis ou Skipper · ★${R}`,
+      description: `Location de bateau vers Lloret de Mar depuis Blanes : Santa Cristina et Sa Boadella en 25 min. Depuis le 1er octobre 2026 avec la Licencia de Navegación (s'obtient en 1 jour) ou avec skipper. ★${R} Google. Réservez sur WhatsApp.`,
     },
     de: {
-      title: `Boot Mieten Lloret de Mar · Santa Cristina 25 Min · Schein an 1 Tag oder Skipper · ★${R}`,
-      description: `Boot mieten nach Lloret de Mar ab Blanes: Santa Cristina und Sa Boadella in 25 Min. Seit dem 1. Oktober 2026 mit der Licencia de Navegación (1-Tages-Kurs) oder mit Skipper. ★${R} Google. Buchung per WhatsApp.`,
+      title: `Boot Mieten Lloret de Mar · Santa Cristina 25 Min · Schein oder Skipper · ★${R}`,
+      description: `Boot mieten nach Lloret de Mar ab Blanes: Santa Cristina und Sa Boadella in 25 Min. Seit dem 1. Oktober 2026 mit der Licencia de Navegación (an 1 Tag erhältlich) oder mit Skipper. ★${R} Google. Buchung per WhatsApp.`,
     },
     nl: {
-      title: `Boot Huren Lloret de Mar · Santa Cristina 25 min · Vaarbewijs in 1 dag of Schipper · ★${R}`,
-      description: `Boot huren naar Lloret de Mar vanaf Blanes: Santa Cristina en Sa Boadella in 25 min. Sinds 1 oktober 2026 met de Licencia de Navegación (cursus van 1 dag) of met schipper. ★${R} Google. Boek via WhatsApp.`,
+      title: `Boot Huren Lloret de Mar · Santa Cristina 25 min · Vaarbewijs of Schipper · ★${R}`,
+      description: `Boot huren naar Lloret de Mar vanaf Blanes: Santa Cristina en Sa Boadella in 25 min. Sinds 1 oktober 2026 met de Licencia de Navegación (te halen in 1 dag) of met schipper. ★${R} Google. Boek via WhatsApp.`,
     },
     it: {
-      title: `Noleggio Barca a Lloret de Mar · Santa Cristina 25 min · Patente in 1 giorno o Skipper · ★${R}`,
-      description: `Noleggio barca verso Lloret de Mar da Blanes: Santa Cristina e Sa Boadella in 25 min. Dal 1 ottobre 2026 con la Licencia de Navegación (corso di 1 giorno) o con skipper. ★${R} Google. Prenota su WhatsApp.`,
+      title: `Noleggio Barca a Lloret de Mar · Santa Cristina 25 min · Patente o Skipper · ★${R}`,
+      description: `Noleggio barca verso Lloret de Mar da Blanes: Santa Cristina e Sa Boadella in 25 min. Dal 1 ottobre 2026 con la Licencia de Navegación (si ottiene in 1 giorno) o con skipper. ★${R} Google. Prenota su WhatsApp.`,
     },
     ru: {
-      title: `Аренда Лодки в Льорет-де-Мар · Санта-Кристина 25 мин · Права за 1 день или Капитан · ★${R}`,
-      description: `Аренда лодки в Льорет-де-Мар из Бланеса: Санта-Кристина и Са-Боаделья за 25 минут. С 1 октября 2026 года с Licencia de Navegación (курс за 1 день) или с капитаном. ★${R} Google. Бронь в WhatsApp.`,
+      title: `Аренда Лодки в Льорет-де-Мар · Санта-Кристина 25 мин · Права или Капитан · ★${R}`,
+      description: `Аренда лодки в Льорет-де-Мар из Бланеса: Санта-Кристина и Са-Боаделья за 25 минут. С 1 октября 2026 года с Licencia de Navegación (получают за 1 день) или с капитаном. ★${R} Google. Бронь в WhatsApp.`,
     },
   },
   "/alquiler-barcos-tossa-de-mar": {
     nl: {
-      description: `Vaar naar Tossa de Mar vanaf Blanes met een motorboot. Sinds 1 oktober 2026 met de Licencia de Navegación (vaarbewijs in 1 dag) of met schipper. ★${R} Google. Boek via WhatsApp.`,
+      description: `Vaar naar Tossa de Mar vanaf Blanes met een motorboot. Sinds 1 oktober 2026 met de Licencia de Navegación (te halen in 1 dag) of met schipper. ★${R} Google. Boek via WhatsApp.`,
     },
-    en: { ogDescription: `Tossa by boat from Blanes: Vila Vella, Mar d'en Roig and Cala Llevadó. With the Licencia de Navegación (1-day course) or with a skipper. ★${R} Google.` },
-    ca: { ogDescription: `Tossa en barca des de Blanes: Vila Vella, Mar d'en Roig i Cala Llevadó. Amb la Llicència de Navegació (curs d'1 dia) o amb patró. ★${R} Google.` },
-    fr: { ogDescription: `Tossa en bateau depuis Blanes : Vila Vella, Mar d'en Roig et Cala Llevadó. Avec la Licencia de Navegación (cours d'1 jour) ou avec skipper. ★${R} Google.` },
-    de: { ogDescription: `Tossa mit dem Boot ab Blanes: Vila Vella, Mar d'en Roig und Cala Llevadó. Mit der Licencia de Navegación (1-Tages-Kurs) oder mit Skipper. ★${R} Google.` },
-    it: { ogDescription: `Tossa in barca da Blanes: Vila Vella, Mar d'en Roig e Cala Llevadó. Con la Licencia de Navegación (corso di 1 giorno) o con skipper. ★${R} Google.` },
-    ru: { ogDescription: `Тосса на лодке из Бланеса: Вила-Велья, Мар-ден-Роиг и Кала-Льевадо. С Licencia de Navegación (курс за 1 день) или с капитаном. ★${R} Google.` },
+    en: { ogDescription: `Tossa by boat from Blanes: Vila Vella, Mar d'en Roig and Cala Llevadó. With the Licencia de Navegación (obtained in 1 day) or with a skipper. ★${R} Google.` },
+    ca: { ogDescription: `Tossa en barca des de Blanes: Vila Vella, Mar d'en Roig i Cala Llevadó. Amb la Llicència de Navegació (es treu en 1 dia) o amb patró. ★${R} Google.` },
+    fr: { ogDescription: `Tossa en bateau depuis Blanes : Vila Vella, Mar d'en Roig et Cala Llevadó. Avec la Licencia de Navegación (s'obtient en 1 jour) ou avec skipper. ★${R} Google.` },
+    de: { ogDescription: `Tossa mit dem Boot ab Blanes: Vila Vella, Mar d'en Roig und Cala Llevadó. Mit der Licencia de Navegación (an 1 Tag erhältlich) oder mit Skipper. ★${R} Google.` },
+    it: { ogDescription: `Tossa in barca da Blanes: Vila Vella, Mar d'en Roig e Cala Llevadó. Con la Licencia de Navegación (si ottiene in 1 giorno) o con skipper. ★${R} Google.` },
+    ru: { ogDescription: `Тосса на лодке из Бланеса: Вила-Велья, Мар-ден-Роиг и Кала-Льевадо. С Licencia de Navegación (получают за 1 день) или с капитаном. ★${R} Google.` },
   },
   "/alquiler-barcos-malgrat-de-mar": town("Malgrat de Mar", 10),
   "/alquiler-barcos-santa-susanna": town("Santa Susanna", 15),
@@ -226,49 +226,49 @@ export const POST_ERA_META: Record<string, LangMap> = {
   "/alquiler-barcos-costa-brava": {
     es: {
       title: `Alquiler Barcos Costa Brava | Titulín en 1 Día o Patrón | ★${R}`,
-      description: `Alquila barco en la Costa Brava desde el Puerto de Blanes. Desde el 1 de octubre de 2026 con la Licencia de Navegación (curso de 1 día, sin examen) o con patrón. ★${R} Google.`,
+      description: `Alquila barco en la Costa Brava desde el Puerto de Blanes. Desde el 1 de octubre de 2026 con la Licencia de Navegación (se saca en 1 día, sin examen) o con patrón. ★${R} Google.`,
     },
     en: {
-      title: `Boat Rental Costa Brava | Licence in 1 Day or Skipper | ★${R}`,
-      description: `Rent a boat on the Costa Brava from Blanes Port. From 1 October 2026 with the Licencia de Navegación (1-day course, no exam) or with a skipper. ★${R} Google.`,
+      title: `Boat Rental Costa Brava | Licence or Skipper | ★${R}`,
+      description: `Rent a boat on the Costa Brava from Blanes Port. From 1 October 2026 with the Licencia de Navegación (obtained in 1 day, no exam) or with a skipper. ★${R} Google.`,
     },
     ca: {
       title: `Lloguer Barques Costa Brava | Titulí en 1 Dia o Patró | ★${R}`,
-      description: `Lloga barca a la Costa Brava des del Port de Blanes. Des de l'1 d'octubre de 2026 amb la Llicència de Navegació (curs d'1 dia, sense examen) o amb patró. ★${R} Google.`,
+      description: `Lloga barca a la Costa Brava des del Port de Blanes. Des de l'1 d'octubre de 2026 amb la Llicència de Navegació (es treu en 1 dia, sense examen) o amb patró. ★${R} Google.`,
     },
     fr: {
-      title: `Location Bateaux Costa Brava | Permis en 1 jour ou Skipper | ★${R}`,
-      description: `Louez un bateau sur la Costa Brava depuis le port de Blanes. Depuis le 1er octobre 2026 avec la Licencia de Navegación (cours d'1 jour, sans examen) ou avec skipper. ★${R} Google.`,
+      title: `Location Bateaux Costa Brava | Permis ou Skipper | ★${R}`,
+      description: `Louez un bateau sur la Costa Brava depuis le port de Blanes. Depuis le 1er octobre 2026 avec la Licencia de Navegación (s'obtient en 1 jour, sans examen) ou avec skipper. ★${R} Google.`,
     },
     de: {
-      title: `Bootsverleih Costa Brava | Schein an 1 Tag oder Skipper | ★${R}`,
-      description: `Boot mieten an der Costa Brava ab Hafen Blanes. Seit dem 1. Oktober 2026 mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder mit Skipper. ★${R} Google.`,
+      title: `Bootsverleih Costa Brava | Schein oder Skipper | ★${R}`,
+      description: `Boot mieten an der Costa Brava ab Hafen Blanes. Seit dem 1. Oktober 2026 mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder mit Skipper. ★${R} Google.`,
     },
     nl: {
-      title: `Bootverhuur Costa Brava | Vaarbewijs in 1 dag of Schipper | ★${R}`,
-      description: `Huur een boot aan de Costa Brava vanuit de haven van Blanes. Sinds 1 oktober 2026 met de Licencia de Navegación (cursus van 1 dag, zonder examen) of met schipper. ★${R} Google.`,
+      title: `Bootverhuur Costa Brava | Vaarbewijs of Schipper | ★${R}`,
+      description: `Huur een boot aan de Costa Brava vanuit de haven van Blanes. Sinds 1 oktober 2026 met de Licencia de Navegación (te halen in 1 dag, zonder examen) of met schipper. ★${R} Google.`,
     },
     it: {
-      title: `Noleggio Barche Costa Brava | Patente in 1 giorno o Skipper | ★${R}`,
-      description: `Noleggia una barca sulla Costa Brava dal porto di Blanes. Dal 1 ottobre 2026 con la Licencia de Navegación (corso di 1 giorno, senza esame) o con skipper. ★${R} Google.`,
+      title: `Noleggio Barche Costa Brava | Patente o Skipper | ★${R}`,
+      description: `Noleggia una barca sulla Costa Brava dal porto di Blanes. Dal 1 ottobre 2026 con la Licencia de Navegación (si ottiene in 1 giorno, senza esame) o con skipper. ★${R} Google.`,
     },
     ru: {
-      title: `Аренда Лодок Коста-Брава | Права за 1 день или Капитан | ★${R}`,
-      description: `Аренда лодки на Коста-Браве из порта Бланеса. С 1 октября 2026 года с Licencia de Navegación (курс за 1 день, без экзамена) или с капитаном. ★${R} Google.`,
+      title: `Аренда Лодок Коста-Брава | Права или Капитан | ★${R}`,
+      description: `Аренда лодки на Коста-Браве из порта Бланеса. С 1 октября 2026 года с Licencia de Navegación (получают за 1 день, без экзамена) или с капитаном. ★${R} Google.`,
     },
   },
   "/precios": {
     es: {
       ogTitle: "Precios Alquiler Barcos Costa Brava | Con Titulín o Patrón",
-      description: `Precios de alquiler de barcos en Blanes por temporada y duración. Desde el 1 de octubre de 2026 todos los barcos se alquilan con título: titulín en 1 día o salida con patrón. ★${R} Google.`,
+      description: `Precios de alquiler de barcos en Blanes por temporada y duración. Desde el 1 de octubre de 2026 todos los barcos se alquilan con título: titulín o salida con patrón. ★${R} Google.`,
     },
-    en: { description: `Boat rental prices in Blanes by season and duration. From 1 October 2026 every boat is rented with a licence: titulín in 1 day or sail with a skipper. ★${R} Google.` },
-    ca: { description: `Preus de lloguer de barques a Blanes per temporada i durada. Des de l'1 d'octubre de 2026 totes les barques es lloguen amb títol: titulí en 1 dia o sortida amb patró. ★${R} Google.` },
-    fr: { description: `Tarifs de location de bateaux à Blanes par saison et durée. Depuis le 1er octobre 2026, chaque bateau se loue avec un permis : titulín en 1 jour ou sortie avec skipper. ★${R} Google.` },
-    de: { description: `Bootsverleih-Preise in Blanes nach Saison und Dauer. Seit dem 1. Oktober 2026 wird jedes Boot mit Schein vermietet: Titulín an 1 Tag oder Ausfahrt mit Skipper. ★${R} Google.` },
-    nl: { description: `Bootverhuurprijzen in Blanes per seizoen en duur. Sinds 1 oktober 2026 wordt elke boot met vaarbewijs verhuurd: titulín in 1 dag of varen met schipper. ★${R} Google.` },
-    it: { description: `Prezzi di noleggio barche a Blanes per stagione e durata. Dal 1 ottobre 2026 ogni barca si noleggia con patente: titulín in 1 giorno o uscita con skipper. ★${R} Google.` },
-    ru: { description: `Цены на аренду лодок в Бланесе по сезону и длительности. С 1 октября 2026 года все лодки сдаются с правами: titulín за 1 день или выход с капитаном. ★${R} Google.` },
+    en: { description: `Boat rental prices in Blanes by season and duration. From 1 October 2026 every boat is rented with a licence: titulín or sail with a skipper. ★${R} Google.` },
+    ca: { description: `Preus de lloguer de barques a Blanes per temporada i durada. Des de l'1 d'octubre de 2026 totes les barques es lloguen amb títol: titulí o sortida amb patró. ★${R} Google.` },
+    fr: { description: `Tarifs de location de bateaux à Blanes par saison et durée. Depuis le 1er octobre 2026, chaque bateau se loue avec un permis : titulín ou sortie avec skipper. ★${R} Google.` },
+    de: { description: `Bootsverleih-Preise in Blanes nach Saison und Dauer. Seit dem 1. Oktober 2026 wird jedes Boot mit Schein vermietet: Titulín oder Ausfahrt mit Skipper. ★${R} Google.` },
+    nl: { description: `Bootverhuurprijzen in Blanes per seizoen en duur. Sinds 1 oktober 2026 wordt elke boot met vaarbewijs verhuurd: titulín of varen met schipper. ★${R} Google.` },
+    it: { description: `Prezzi di noleggio barche a Blanes per stagione e durata. Dal 1 ottobre 2026 ogni barca si noleggia con patente: titulín o uscita con skipper. ★${R} Google.` },
+    ru: { description: `Цены на аренду лодок в Бланесе по сезону и длительности. С 1 октября 2026 года все лодки сдаются с правами: titulín или выход с капитаном. ★${R} Google.` },
   },
   "/salidas-compartidas": {
     es: { description: "Navega y conoce gente nueva desde Blanes. Comparte un barco pequeño (con titulín desde octubre de 2026), reparte el coste y disfruta de 4 horas de calas." },
@@ -331,12 +331,12 @@ export const POST_ERA_META: Record<string, LangMap> = {
     ru: ["Рыбалка на Лодке Бланес", "Любительская рыбалка на лодке из Бланеса: сибас, дорада и сарг в водах Коста-Бравы."],
   }),
   "/boat-rental-costa-brava": allLangs({
-    title: "Boat Rental Costa Brava | Licence in 1 Day or Skipper, Blanes",
-    description: `Rent a boat in Blanes, Costa Brava. From 1 October 2026 every renter needs the Licencia de Navegación (1-day course, no exam) or sails with a skipper. ★${R} Google.`,
+    title: "Boat Rental Costa Brava | Licence or Skipper, Blanes",
+    description: `Rent a boat in Blanes, Costa Brava. From 1 October 2026 every renter needs the Licencia de Navegación (obtained in 1 day, no exam) or sails with a skipper. ★${R} Google.`,
   }),
   "/boat-rental-blanes": allLangs({
-    title: "Boat Rental Blanes Port | Licence in 1 Day or Skipper",
-    description: `Rent a boat at Blanes Port. From 1 October 2026 with the Licencia de Navegación (1-day course, no exam) or with a skipper. April to October. ★${R} Google.`,
+    title: "Boat Rental Blanes Port | Licence or Skipper",
+    description: `Rent a boat at Blanes Port. From 1 October 2026 with the Licencia de Navegación (obtained in 1 day, no exam) or with a skipper. April to October. ★${R} Google.`,
   }),
 };
 

@@ -92,10 +92,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // de STATIC_META["/"] en server/seoInjector.ts; si divergen, Google ve
       // un title en el SSR y otro al hidratar.
       title: `Alquiler Barco Costa Brava \u00b7 Lanchas con Titulaci\u00f3n \u00b7 \u2605${BUSINESS_RATING_STR} Blanes`,
-      description: `Alquila una lancha en la Costa Brava desde el Puerto de Blanes: hasta 115CV, 7 plazas y rumbo libre hasta Tossa de Mar. Basta la Licencia de Navegaci\u00f3n y verificamos t\u00edtulos extranjeros online. \u00bfSin t\u00edtulo? Te lo sacamos en 1 d\u00eda o sales con patr\u00f3n. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as).`,
+      description: `Alquila una lancha en la Costa Brava desde el Puerto de Blanes: hasta 115CV, 7 plazas y rumbo libre hasta Tossa de Mar. Basta la Licencia de Navegaci\u00f3n y verificamos t\u00edtulos extranjeros online. \u00bfSin t\u00edtulo? Sales con patr\u00f3n; con el titul\u00edn pilotas t\u00fa. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as).`,
       keywords: "alquiler barco costa brava, alquiler barcos costa brava, alquilar barco costa brava, alquiler barco blanes, alquiler embarcaciones costa brava, alquiler lancha costa brava, alquiler barco con titulacion, alquiler barco con licencia costa brava, licencia de navegacion titulin, rent a boat costa brava",
       ogTitle: `Costa Brava Rent a Boat ${SEASON_YEAR} | Alquiler Barco con Titulaci\u00f3n \u00b7 \u2605${BUSINESS_RATING_STR} \u00b7 Blanes`,
-      ogDescription: `Alquiler de embarcaciones con titulaci\u00f3n en la Costa Brava desde Blanes. Hasta 115CV y 7 plazas. Titul\u00edn en 1 d\u00eda o salida con patr\u00f3n. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Reserva WhatsApp.`
+      ogDescription: `Alquiler de embarcaciones con titulaci\u00f3n en la Costa Brava desde Blanes. Hasta 115CV y 7 plazas. Con titul\u00edn o salida con patr\u00f3n. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Reserva WhatsApp.`
     },
     booking: {
       title: "Solicitar Reserva de Barco en Blanes | Costa Brava",
@@ -351,10 +351,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // de STATIC_META["/"] en server/seoInjector.ts; si divergen, Google ve
       // un title en el SSR y otro al hidratar.
       title: `Costa Brava Boat Rental \u00b7 Licensed Powerboats \u00b7 \u2605${BUSINESS_RATING_STR} Blanes`,
-      description: `Rent a powerboat on the Costa Brava from Blanes: up to 115HP, 7 seats and free rein to Tossa de Mar. The basic Navigation Licence is enough and we verify foreign titles online. No licence? We get you one in a day, or you sail with a skipper. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews).`,
+      description: `Rent a powerboat on the Costa Brava from Blanes: up to 115HP, 7 seats and free rein to Tossa de Mar. The basic Navigation Licence is enough and we verify foreign titles online. No licence? You go out with a skipper; with the titulín you take the helm. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews).`,
       keywords: "costa brava boat rental, boat rental costa brava, rent a boat costa brava, boat hire blanes, licensed boat rental spain, powerboat rental costa brava, spanish boat licence course, rent boat with licence blanes",
       ogTitle: `Costa Brava Rent a Boat ${SEASON_YEAR} | Licensed Boat Rental \u00b7 \u2605${BUSINESS_RATING_STR} \u00b7 Blanes`,
-      ogDescription: `Boat rental with a licence on the Costa Brava from Blanes. Up to 115HP and 7 seats. Licence in 1 day, or sail with a skipper. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Book on WhatsApp.`
+      ogDescription: `Boat rental with a licence on the Costa Brava from Blanes. Up to 115HP and 7 seats. With the titulín, or sail with a skipper. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} reviews). Book on WhatsApp.`
     },
     booking: {
       title: "Book Your Boat in Blanes | Costa Brava",
@@ -577,10 +577,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // de STATIC_META["/"] en server/seoInjector.ts; si divergen, Google ve
       // un title en el SSR y otro al hidratar.
       title: `Lloguer Barques Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Ressenyes \u00b7 Blanes amb Titulaci\u00f3`,
-      description: `Lloga una llanxa a la Costa Brava des del Port de Blanes: fins a 115CV, 7 places i rumb lliure fins a Tossa de Mar. N'hi ha prou amb la Llic\u00e8ncia de Navegaci\u00f3 i verifiquem t\u00edtols estrangers en l\u00ednia. Sense t\u00edtol? Te'l traiem en 1 dia o surts amb patr\u00f3. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes).`,
+      description: `Lloga una llanxa a la Costa Brava des del Port de Blanes: fins a 115CV, 7 places i rumb lliure fins a Tossa de Mar. N'hi ha prou amb la Llic\u00e8ncia de Navegaci\u00f3 i verifiquem t\u00edtols estrangers en l\u00ednia. Sense t\u00edtol? Surts amb patr\u00f3; amb el titul\u00ed pilotes tu. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes).`,
       keywords: "lloguer barques costa brava, llogar vaixell costa brava, lloguer vaixells blanes, lloguer embarcacions amb titulacio, llicencia de navegacio titulin, lloguer llanxa costa brava",
       ogTitle: `Lloguer Barques Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 Blanes amb Titulaci\u00f3`,
-      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Lloguer d'embarcacions amb titulaci\u00f3 des del Port de Blanes. Fins a 115CV. Titul\u00edn en 1 dia o patr\u00f3 a bord.`
+      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} ressenyes). Lloguer d'embarcacions amb titulaci\u00f3 des del Port de Blanes. Fins a 115CV. Amb titul\u00edn o patr\u00f3 a bord.`
     },
     booking: {
       title: "Sol·licitar Reserva de Barca a Blanes | Costa Brava",
@@ -745,10 +745,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // de STATIC_META["/"] en server/seoInjector.ts; si divergen, Google ve
       // un title en el SSR y otro al hidratar.
       title: `Location Bateau Blanes \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Avis \u00b7 Costa Brava avec Permis`,
-      description: `Louez un bateau sur la Costa Brava depuis Blanes : jusqu'\u00e0 115CV, 7 places et cap libre jusqu'\u00e0 Tossa de Mar. La Licencia de Navegaci\u00f3n suffit et nous v\u00e9rifions les titres \u00e9trangers en ligne. Pas de permis ? Nous l'obtenons en 1 jour, ou vous partez avec un skipper. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis).`,
+      description: `Louez un bateau sur la Costa Brava depuis Blanes : jusqu'\u00e0 115CV, 7 places et cap libre jusqu'\u00e0 Tossa de Mar. La Licencia de Navegaci\u00f3n suffit et nous v\u00e9rifions les titres \u00e9trangers en ligne. Pas de permis ? Vous partez avec un skipper ; avec le titulín, vous pilotez. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis).`,
       keywords: "location bateau costa brava, louer bateau costa brava, location bateau blanes, location bateau avec permis, permis bateau espagne 1 jour, licencia de navegacion titulin, location vedette costa brava",
       ogTitle: `Location Bateau Blanes ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 Costa Brava avec Permis`,
-      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Location de bateaux avec permis au Port de Blanes, Costa Brava. Jusqu'\u00e0 115CV. Permis en 1 jour ou skipper \u00e0 bord. R\u00e9servation WhatsApp.`
+      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} avis). Location de bateaux avec permis au Port de Blanes, Costa Brava. Jusqu'\u00e0 115CV. Avec titul\u00edn ou skipper \u00e0 bord. R\u00e9servation WhatsApp.`
     },
     booking: {
       title: "Réserver Votre Bateau à Blanes | Costa Brava",
@@ -909,10 +909,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // de STATIC_META["/"] en server/seoInjector.ts; si divergen, Google ve
       // un title en el SSR y otro al hidratar.
       title: `Bootsverleih Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Bewertungen \u00b7 Blanes mit Schein`,
-      description: `Boot mieten an der Costa Brava ab Blanes: bis 115PS, 7 Pl\u00e4tze und freie Fahrt bis Tossa de Mar. Die Licencia de Navegaci\u00f3n gen\u00fcgt, ausl\u00e4ndische Scheine pr\u00fcfen wir online. Keinen Schein? Wir besorgen ihn an einem Tag, oder Sie fahren mit Skipper. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen).`,
+      description: `Boot mieten an der Costa Brava ab Blanes: bis 115PS, 7 Pl\u00e4tze und freie Fahrt bis Tossa de Mar. Die Licencia de Navegaci\u00f3n gen\u00fcgt, ausl\u00e4ndische Scheine pr\u00fcfen wir online. Keinen Schein? Sie fahren mit Skipper; mit dem Titulín steuern Sie selbst. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen).`,
       keywords: "bootsverleih costa brava, boot mieten costa brava, bootsverleih blanes, boot mieten mit f\u00fchrerschein, bootsf\u00fchrerschein spanien 1 tag, licencia de navegacion titulin, motorboot mieten costa brava",
       ogTitle: `Bootsverleih Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 Blanes mit Schein`,
-      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Bootsverleih mit Bootsf\u00fchrerschein ab Hafen Blanes, Costa Brava. Bis 115PS. Schein an 1 Tag oder Skipper an Bord.`
+      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} Bewertungen). Bootsverleih mit Bootsf\u00fchrerschein ab Hafen Blanes, Costa Brava. Bis 115PS. Mit Titulín oder Skipper an Bord.`
     },
     booking: {
       title: "Ihr Boot in Blanes Buchen | Costa Brava",
@@ -1073,10 +1073,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // de STATIC_META["/"] en server/seoInjector.ts; si divergen, Google ve
       // un title en el SSR y otro al hidratar.
       title: `Boot Huren Blanes Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Reviews \u00b7 met Vaarbewijs`,
-      description: `Boot huren aan de Costa Brava vanuit Blanes: tot 115pk, 7 plaatsen en vrije vaart tot Tossa de Mar. De Licencia de Navegaci\u00f3n volstaat en buitenlandse vaarbewijzen verifi\u00ebren wij online. Geen vaarbewijs? Wij regelen het in 1 dag, of je vaart met een schipper. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen).`,
+      description: `Boot huren aan de Costa Brava vanuit Blanes: tot 115pk, 7 plaatsen en vrije vaart tot Tossa de Mar. De Licencia de Navegaci\u00f3n volstaat en buitenlandse vaarbewijzen verifi\u00ebren wij online. Geen vaarbewijs? Je vaart met een schipper; met de titulín stuur je zelf. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen).`,
       keywords: "boot huren costa brava, bootverhuur costa brava, boot huren blanes, boot huren met vaarbewijs, vaarbewijs spanje 1 dag, licencia de navegacion titulin, motorboot huren costa brava",
       ogTitle: `Boot Huren Blanes Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 met Vaarbewijs`,
-      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen). Boot huren met vaarbewijs in Blanes aan de Costa Brava. Tot 115pk. Vaarbewijs in 1 dag of schipper aan boord.`
+      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} beoordelingen). Boot huren met vaarbewijs in Blanes aan de Costa Brava. Tot 115pk. Met titulín of schipper aan boord.`
     },
     booking: {
       title: "Boot Reserveren Blanes | Costa Brava Rent a Boat",
@@ -1237,10 +1237,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // de STATIC_META["/"] en server/seoInjector.ts; si divergen, Google ve
       // un title en el SSR y otro al hidratar.
       title: `Noleggio Barche Costa Brava \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} Recensioni \u00b7 Blanes con Patente`,
-      description: `Noleggia un motoscafo sulla Costa Brava da Blanes: fino a 115CV, 7 posti e rotta libera fino a Tossa de Mar. Basta la Licencia de Navegaci\u00f3n e verifichiamo i titoli esteri online. Senza patente? Te la facciamo prendere in 1 giorno, o esci con uno skipper. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni).`,
+      description: `Noleggia un motoscafo sulla Costa Brava da Blanes: fino a 115CV, 7 posti e rotta libera fino a Tossa de Mar. Basta la Licencia de Navegaci\u00f3n e verifichiamo i titoli esteri online. Senza patente? Esci con uno skipper; con il titulín guidi tu. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni).`,
       keywords: "noleggio barche costa brava, noleggiare barca costa brava, noleggio barche blanes, noleggio barca con patente, patente nautica spagna 1 giorno, licencia de navegacion titulin, noleggio motoscafo costa brava",
       ogTitle: `Noleggio Barche Costa Brava ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 Blanes con Patente`,
-      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Noleggio imbarcazioni con patente dal Porto di Blanes, Costa Brava. Fino a 115CV. Patente in 1 giorno o skipper a bordo.`
+      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} recensioni). Noleggio imbarcazioni con patente dal Porto di Blanes, Costa Brava. Fino a 115CV. Con titulín o skipper a bordo.`
     },
     booking: {
       title: "Prenota la Tua Barca a Blanes | Costa Brava",
@@ -1401,10 +1401,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       // de STATIC_META["/"] en server/seoInjector.ts; si divergen, Google ve
       // un title en el SSR y otro al hidratar.
       title: `\u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 \u00b7 ${BUSINESS_RATING_STR}\u2605 ${BUSINESS_REVIEW_COUNT_STR} \u043e\u0442\u0437\u044b\u0432\u043e\u0432 \u00b7 \u0411\u043b\u0430\u043d\u0435\u0441 \u0441 \u043f\u0440\u0430\u0432\u0430\u043c\u0438`,
-      description: `\u0410\u0440\u0435\u043d\u0434\u0430 \u043a\u0430\u0442\u0435\u0440\u0430 \u043d\u0430 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0435 \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430: \u0434\u043e 115 \u043b.\u0441., 7 \u043c\u0435\u0441\u0442 \u0438 \u0441\u0432\u043e\u0431\u043e\u0434\u043d\u044b\u0439 \u043a\u0443\u0440\u0441 \u0434\u043e \u0422\u043e\u0441\u0441\u0430-\u0434\u0435-\u041c\u0430\u0440. \u0414\u043e\u0441\u0442\u0430\u0442\u043e\u0447\u043d\u043e Licencia de Navegaci\u00f3n, \u0438\u043d\u043e\u0441\u0442\u0440\u0430\u043d\u043d\u044b\u0435 \u0443\u0434\u043e\u0441\u0442\u043e\u0432\u0435\u0440\u0435\u043d\u0438\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c \u043e\u043d\u043b\u0430\u0439\u043d. \u041d\u0435\u0442 \u043f\u0440\u0430\u0432? \u041f\u043e\u043b\u0443\u0447\u0438\u043c \u0438\u0445 \u0437\u0430 1 \u0434\u0435\u043d\u044c, \u0438\u043b\u0438 \u0432\u044b\u0445\u043e\u0434\u0438\u0442\u0435 \u0441 \u043a\u0430\u043f\u0438\u0442\u0430\u043d\u043e\u043c. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} \u043e\u0442\u0437\u044b\u0432\u043e\u0432).`,
+      description: `\u0410\u0440\u0435\u043d\u0434\u0430 \u043a\u0430\u0442\u0435\u0440\u0430 \u043d\u0430 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0435 \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430: \u0434\u043e 115 \u043b.\u0441., 7 \u043c\u0435\u0441\u0442 \u0438 \u0441\u0432\u043e\u0431\u043e\u0434\u043d\u044b\u0439 \u043a\u0443\u0440\u0441 \u0434\u043e \u0422\u043e\u0441\u0441\u0430-\u0434\u0435-\u041c\u0430\u0440. \u0414\u043e\u0441\u0442\u0430\u0442\u043e\u0447\u043d\u043e Licencia de Navegaci\u00f3n, \u0438\u043d\u043e\u0441\u0442\u0440\u0430\u043d\u043d\u044b\u0435 \u0443\u0434\u043e\u0441\u0442\u043e\u0432\u0435\u0440\u0435\u043d\u0438\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c \u043e\u043d\u043b\u0430\u0439\u043d. \u041d\u0435\u0442 \u043f\u0440\u0430\u0432? \u0412\u044b\u0445\u043e\u0434\u0438\u0442\u0435 \u0441 \u043a\u0430\u043f\u0438\u0442\u0430\u043d\u043e\u043c; \u0441 titul\u00edn \u0443\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442\u0435 \u0441\u0430\u043c\u0438. \u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} \u043e\u0442\u0437\u044b\u0432\u043e\u0432).`,
       keywords: "\u0430\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a \u043a\u043e\u0441\u0442\u0430 \u0431\u0440\u0430\u0432\u0430, \u0430\u0440\u0435\u043d\u0434\u0430 \u043a\u0430\u0442\u0435\u0440\u0430 \u0411\u043b\u0430\u043d\u0435\u0441, \u0430\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043a\u0438 \u0441 \u043f\u0440\u0430\u0432\u0430\u043c\u0438, licencia de navegacion titulin, \u043c\u043e\u0440\u0441\u043a\u0438\u0435 \u043f\u0440\u0430\u0432\u0430 \u0418\u0441\u043f\u0430\u043d\u0438\u044f",
       ogTitle: `\u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 ${SEASON_YEAR} \u00b7 ${BUSINESS_RATING_STR}\u2605 Google \u00b7 \u0411\u043b\u0430\u043d\u0435\u0441 \u0441 \u043f\u0440\u0430\u0432\u0430\u043c\u0438`,
-      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} \u043e\u0442\u0437\u044b\u0432\u043e\u0432). \u0410\u0440\u0435\u043d\u0434\u0430 \u0441\u0443\u0434\u043e\u0432 \u0441 \u043f\u0440\u0430\u0432\u0430\u043c\u0438 \u0438\u0437 \u043f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441, \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430. \u0414\u043e 115 \u043b.\u0441. \u041f\u0440\u0430\u0432\u0430 \u0437\u0430 1 \u0434\u0435\u043d\u044c \u0438\u043b\u0438 \u043a\u0430\u043f\u0438\u0442\u0430\u043d \u043d\u0430 \u0431\u043e\u0440\u0442\u0443.`
+      ogDescription: `\u2605${BUSINESS_RATING_STR} Google (${BUSINESS_REVIEW_COUNT_STR} \u043e\u0442\u0437\u044b\u0432\u043e\u0432). \u0410\u0440\u0435\u043d\u0434\u0430 \u0441\u0443\u0434\u043e\u0432 \u0441 \u043f\u0440\u0430\u0432\u0430\u043c\u0438 \u0438\u0437 \u043f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441, \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430. \u0414\u043e 115 \u043b.\u0441. \u0421 titul\u00edn \u0438\u043b\u0438 \u043a\u0430\u043f\u0438\u0442\u0430\u043d \u043d\u0430 \u0431\u043e\u0440\u0442\u0443.`
     },
     booking: {
       title: "Забронировать Лодку в Бланесе | Коста-Брава",

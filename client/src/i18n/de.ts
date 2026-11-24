@@ -33,18 +33,18 @@ export const de: Translations = {
   hero: {
     title: "Bootsverleih mit Bootsf\u00FChrerschein in Blanes, Costa Brava",
     subtitle:
-      "Mieten Sie ein Motorboot im Hafen von Blanes und steuern Sie es selbst: bis zu 115 PS, 7 Pl\u00E4tze und freie Fahrt bis Tossa de Mar. Die einfache Licencia de Navegaci\u00F3n oder ein gleichwertiger ausl\u00E4ndischer Schein gen\u00FCgt, und wir pr\u00FCfen ihn online vor Ihrer Buchung. Noch keinen Schein? Wir organisieren den Eintageskurs, oder Sie fahren mit einem professionellen Skipper.",
+      "Mieten Sie ein Motorboot im Hafen von Blanes und steuern Sie es selbst: bis zu 115 PS, 7 Plätze und freie Fahrt bis Tossa de Mar. Die einfache Licencia de Navegación oder ein gleichwertiger ausländischer Schein genügt, und wir prüfen ihn online vor Ihrer Buchung. Noch keinen Schein? Dann fahren Sie mit einem professionellen Skipper.",
     subtitleLine1:
       "Motorboote bis 115 PS f\u00FCr Skipper mit Schein, freie Fahrt bis Tossa de Mar.",
     subtitleLine2:
-      "Noch keinen Schein? Wir besorgen ihn an einem Tag, oder Sie fahren mit Skipper.",
+      "Noch keinen Schein? Sie fahren mit Skipper, oder mit dem Titulín steuern Sie selbst.",
     subtitleMobile: "Motorboote mit Schein ab Blanes. Freie Fahrt bis Tossa de Mar.",
     specsLine: "Bis 115 PS \u00B7 7 Pl\u00E4tze \u00B7 Freie Fahrt bis Tossa de Mar und dar\u00FCber hinaus",
     licenseNote:
       "Die einfache Licencia de Navegaci\u00F3n gen\u00FCgt. Ausl\u00E4ndische Scheine pr\u00FCfen wir online vor der Buchung.",
     bookNow: "Verf\u00FCgbarkeit pr\u00FCfen",
     findYourBoat: "Jetzt buchen",
-    ctaTitulin: "Bootsschein an 1 Tag",
+    ctaTitulin: "Was der Titulín ist",
     licenseFreeUntil:
       "Noch keinen Schein? Bis zum 30. September k\u00F6nnen Sie noch ohne mieten.",
     licenseFreeUntilCta: "Boote ohne F\u00FChrerschein ansehen",
@@ -61,11 +61,11 @@ export const de: Translations = {
     experience: "+5 Jahre Erfahrung",
     instantConfirmation: "Sofortige Best\u00E4tigung",
     marqueeText:
-      "Bootsverleih in Blanes | Mit F\u00FChrerschein | Schein an 1 Tag | Mit Skipper",
+      "Bootsverleih in Blanes | Mit Führerschein | Titulín | Mit Skipper",
     askWhatsApp: "Fragen Sie uns per WhatsApp",
     testimonialQuote: "Unglaubliche Erfahrung, wir kommen wieder",
     testimonialQuoteShort: "Wir kommen wieder",
-    summaryGeoPostEra: "Costa Brava Rent a Boat vermietet im Hafen von Blanes Motorboote mit 80 bis 115 PS für Skipper mit Schein und eine private Ausfahrt mit Kapitän, dazu Jetskis und eFoil. Seit dem 1. Oktober 2026 verlangt das RD 1188/2025 für die Miete einen Bootsführerschein: Es reicht die Licencia de Navegación, ein eintägiger Kurs ohne Prüfung, oder ein gleichwertiger ausländischer Schein, den wir online prüfen. Service in 8 Sprachen. Saison von April bis Oktober.",
+    summaryGeoPostEra: "Costa Brava Rent a Boat vermietet im Hafen von Blanes Motorboote mit 80 bis 115 PS für Skipper mit Schein und eine private Ausfahrt mit Kapitän, dazu Jetskis und eFoil. Seit dem 1. Oktober 2026 verlangt das RD 1188/2025 für die Miete einen Bootsführerschein: Es reicht die Licencia de Navegación, an 1 Tag ohne Prüfung erhältlich, oder ein gleichwertiger ausländischer Schein, den wir online prüfen. Service in 8 Sprachen. Saison von April bis Oktober.",
     summaryGeo:
       "Costa Brava Rent a Boat betreibt die gr\u00F6\u00DFte Bootsverleihflotte im Hafen von Blanes mit 9 Boote: 3 Motorboote von 80 bis 115 PS f\u00FCr Skipper mit Schein, 5 Boote ohne F\u00FChrerschein (mietbar bis zum 30. September 2026, wenn das RD 1188/2025 von jedem Mieter einen Bootsf\u00FChrerschein verlangt) und 1 Privatausflug mit Skipper. Die Licencia de Navegaci\u00F3n, der eint\u00E4gige Titul\u00EDn ohne Pr\u00FCfung, oder ein gleichwertiger ausl\u00E4ndischer Schein, den wir online pr\u00FCfen. Beratung in 8 Sprachen. Saison April bis Oktober. 4,8\u2605 bei Google mit \u00FCber 300 Bewertungen.",
   },
@@ -127,8 +127,8 @@ export const de: Translations = {
     title: "Warum Costa Brava Rent a Boat Wählen",
     subtitle: "Alles was Sie für ein perfektes Seeerlebnis brauchen",
     withoutLicense: {
-      title: "Der Schein an einem Tag",
-      description: "6-Stunden-Kurs, ohne Pr\u00FCfung und ohne Ablaufdatum. Wir organisieren ihn f\u00FCr Sie.",
+      title: "Was der Titulín ist",
+      description: "Einsteiger-Bootsschein, ohne Prüfung und ohne Ablaufdatum. Ausgestellt von zugelassenen Wassersportschulen.",
     },
     withLicense: {
       title: "Motorboote f\u00FCr Skipper mit Schein",
@@ -268,7 +268,7 @@ export const de: Translations = {
   footer: {
     company: "Costa Brava Rent a Boat - Blanes",
     description: "Bootsverleih mit und ohne Führerschein in Blanes, Costa Brava.",
-    descriptionPostEra: "Bootsverleih mit Bootsführerschein in Blanes, Costa Brava. Schein an 1 Tag oder Ausfahrt mit Skipper.",
+    descriptionPostEra: "Bootsverleih mit Bootsführerschein in Blanes, Costa Brava. Mit Titulín oder Ausfahrt mit Skipper.",
     quickLinks: "Schnelllinks",
     contact: "Kontakt",
     followUs: "Folgen Sie Uns",
@@ -967,7 +967,7 @@ export const de: Translations = {
         needsIcc: "Dein Land stellt das ICC aus. Beantrage es bei deinem Wassersportverband vor der Reise.",
         notRecognized: "Dein nationaler Schein wird in Spanien nicht direkt anerkannt. Schreib uns auf WhatsApp und wir prüfen die Optionen.",
         insufficient: "Dein Schein liegt unterhalb der spanischen Licencia de Navegación (LN), dem Minimum für unsere Flotte mit Führerschein. Überlege, die LN oder einen höheren Schein zu erwerben.",
-        inlandOnly: "Dein Schein berechtigt zu Flüssen und Seen, nicht zur Seefahrt, und gilt daher nicht für unsere Boote. Mit der Licencia de Navegación (Tageskurs ohne Prüfung) kannst du sie steuern, oder du fährst mit Skipper auf der privaten Tour.",
+        inlandOnly: "Dein Schein berechtigt zu Flüssen und Seen, nicht zur Seefahrt, und gilt daher nicht für unsere Boote. Mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) kannst du sie steuern, oder du fährst mit Skipper auf der privaten Tour.",
       },
       pill: {
         valid: "Gültig",
@@ -1080,12 +1080,12 @@ export const de: Translations = {
     heroTitle: "Boote Ohne Führerschein in Blanes",
     // Post-era copy (RD 1188/2025): the page picks these with eraCopy() from 2026-10-01.
     postEraHeroTitle: "Boote ohne Führerschein in Blanes: seit dem 1. Oktober 2026 vermieten wir sie nicht mehr",
-    postEraHeroDescription: "Seit dem 1. Oktober 2026 schreibt das Gesetz für die Miete jedes Motorboots einen Bootsführerschein vor, deshalb haben wir unsere kleinen führerscheinfreien Boote aus der Vermietung genommen. Mit dem Titulín, einem eintägigen Kurs ohne Prüfung, fahren Sie unsere Motorboote; und wer nicht selbst steuern möchte, fährt mit Skipper.",
-    postEraBadge: "Titulín an 1 Tag, ohne Prüfung",
+    postEraHeroDescription: "Seit dem 1. Oktober 2026 schreibt das Gesetz für die Miete jedes Motorboots einen Bootsführerschein vor, deshalb haben wir unsere kleinen führerscheinfreien Boote aus der Vermietung genommen. Mit dem Titulín, an 1 Tag ohne Prüfung erhältlich, fahren Sie unsere Motorboote; und wer nicht selbst steuern möchte, fährt mit Skipper.",
+    postEraBadge: "Titulín oder Skipper",
     postEraCtaButton: "Motorboote mit Titulín ansehen",
     postEraNoticeTitle: "Was sich am 1. Oktober 2026 ändert",
     postEraNoticeBody: "Bis zum 30. September 2026 haben wir kleine Boote ganz ohne Schein vermietet. Seit dem 1. Oktober verlangt das Gesetz vom Mieter mindestens die Licencia de Navegación, und diese Boote werden nicht mehr vermietet. Damit steuern Sie jedes Boot bis 6 Meter innerhalb von 2 Seemeilen vor der Küste, auch unsere drei führerscheinpflichtigen Motorboote. Ohne Schein bleibt die private Tour mit Skipper.",
-    postEraNoticeLink: "So bekommen Sie den Titulín an einem Tag",
+    postEraNoticeLink: "Was der Titulín ist und welche Boote er erlaubt",
     postEraFaqCarnetAnswer: "Ja. Seit dem 1. Oktober 2026 (Königliches Dekret 1188/2025) braucht man zum Mieten jedes Motorboots einen Bootsführerschein, deshalb vermieten wir keine führerscheinfreien Boote mehr. Das Minimum ist die Licencia de Navegación (Titulín): ein Tageskurs mit 2 Stunden Theorie und 4 Stunden Praxis, ohne Prüfung, unbefristet, ausgestellt von zugelassenen Bootsschulen. Damit fahren Sie unsere drei führerscheinpflichtigen Motorboote. Ohne Schein können Sie bei der privaten Tour mit Skipper mitfahren.",
     heroDescription:
       "4 führerscheinfreie Boote ab 85€/h im Hafen Blanes, Kraftstoff inklusive. Bis zu 5 Personen, ohne Führerschein oder Bootsschein, ohne Vorerfahrung. 15-minütige Sicherheitseinweisung und los geht's zu den Buchten der Costa Brava: Sa Palomera, Sant Francesc, Cala Treumal, Santa Cristina und Sa Boadella bis zum Strand von Fenals (Lloret de Mar).",
@@ -1438,12 +1438,12 @@ export const de: Translations = {
     licenseFeature4: "Ausl\u00E4ndische Scheine pr\u00FCfen wir online",
     titulin: "Noch nicht, ich will einen machen",
     titulinDesc:
-      "Wir organisieren den Kurs und Sie fahren mit unserer Flotte. Ein Tag, und Sie steuern viele Sommer lang selbst.",
-    titulinBadge: "Eintageskurs, ohne Pr\u00FCfung",
+      "Der Titulín ist der Einsteiger-Bootsschein. Mit ihm steuern Sie unsere Boote mit Lizenz, und zugelassene Wassersportschulen stellen ihn aus.",
+    titulinBadge: "An 1 Tag, ohne Prüfung",
     titulinFeature1: "2 Stunden Theorie und 4 an Bord",
     titulinFeature2: "Schein sofort ausgestellt, ohne Pr\u00FCfung",
     titulinFeature3: "L\u00E4uft nie ab, gilt in ganz Spanien",
-    titulinFeature4: "Wir kombinieren ihn mit Ihrer ersten Miete",
+    titulinFeature4: "Er deckt unsere drei Boote mit Lizenz ab",
     titulinCta: "So funktioniert es",
     captained: "Nein, und ich m\u00F6chte nicht steuern",
     captainedDesc:
@@ -1574,13 +1574,13 @@ export const de: Translations = {
         id: "normativa2026",
         question: "Stimmt es, dass 2026 die f\u00FChrerscheinfreie Bootsmiete endet?",
         answer:
-          "Ja, das Gesetz hat sich geändert: Das RD 1188/2025 verlangt seit dem 1. Oktober 2026 einen Bootsführerschein für die Miete jedes Motorboots, und seitdem vermieten wir keine führerscheinfreien Boote mehr. Es genügt die Licencia de Navegación (Titulín), ein Tageskurs ohne Prüfung, oder jeder höhere oder gleichwertige ausländische Schein. Der Ausflug mit Skipper ist nicht betroffen: Dort führt ein Profi das Boot.",
+          "Ja, das Gesetz hat sich geändert: Das RD 1188/2025 verlangt seit dem 1. Oktober 2026 einen Bootsführerschein für die Miete jedes Motorboots, und seitdem vermieten wir keine führerscheinfreien Boote mehr. Es genügt die Licencia de Navegación (Titulín), an 1 Tag ohne Prüfung erhältlich, oder jeder höhere oder gleichwertige ausländische Schein. Der Ausflug mit Skipper ist nicht betroffen: Dort führt ein Profi das Boot.",
       },
       {
         id: "titulin",
         question: "Was ist der Titul\u00EDn und wie bekomme ich ihn?",
         answer:
-          "Der Titul\u00EDn ist die Licencia de Navegaci\u00F3n: der schnellste Bootsschein Spaniens. Man erh\u00E4lt ihn an einem Tag mit 2 Stunden Theorie und 4 Stunden Praxis an Bord, ohne Pr\u00FCfung, und er l\u00E4uft nie ab. Er erlaubt Boote bis 6 Meter, tags\u00FCber und bis 2 Seemeilen von einem Schutzhafen: in unserer Flotte die Mingolla Brava 19, die Trimarchi 57S und die Pacific Craft 625. Wir organisieren den Kurs und kombinieren ihn mit Ihrer ersten Miete; schreiben Sie uns und wir erkl\u00E4ren es Ihnen.",
+          "Der Titulín ist die Licencia de Navegación: der schnellste Bootsschein Spaniens. Man erhält ihn an einem Tag mit 2 Stunden Theorie und 4 Stunden Praxis an Bord, ohne Prüfung, und er läuft nie ab. Er erlaubt Boote bis 6 Meter, tagsüber und bis 2 Seemeilen von einem Schutzhafen: in unserer Flotte die Mingolla Brava 19, die Trimarchi 57S und die Pacific Craft 625.",
       },
       {
         id: "precios",
@@ -1592,7 +1592,7 @@ export const de: Translations = {
         id: "sin-licencia",
         question: "Kann ich ein Boot ohne Bootsf\u00FChrerschein mieten?",
         answer:
-          "Seit dem 1. Oktober 2026 nicht mehr: Das RD 1188/2025 verlangt von jedem Mieter eines Motorboots einen Schein. Die Licencia de Navegación (Titulín) machen Sie an einem Tag, ohne Prüfung, und wir organisieren sie für Sie. Wenn Sie lieber keinen Schein machen möchten: Der Ausflug mit Skipper braucht keinen.",
+          "Seit dem 1. Oktober 2026 nicht mehr: Das RD 1188/2025 verlangt von jedem Mieter eines Motorboots einen Schein. Die Licencia de Navegación (Titulín) machen Sie an einem Tag, ohne Prüfung, an einer zugelassenen Wassersportschule. Wenn Sie lieber keinen Schein machen möchten: Der Ausflug mit Skipper braucht keinen.",
       },
       {
         id: "incluye",
@@ -1718,7 +1718,7 @@ export const de: Translations = {
     certifiedCaptains: "Zertifizierte Kapitäne",
     officialPort: "Offizieller Hafen von Blanes",
     registeredBusiness: "Registriertes Unternehmen in Spanien",
-    maritimeInsurance: "Vollständige Seeversicherung",
+    maritimeInsurance: "Haftpflicht- und Insassen-Unfallschutz",
     gdprCompliant: "DSGVO-konform",
   },
   reciprocity: {
@@ -1833,7 +1833,7 @@ export const de: Translations = {
     limitLabel: "ENDE DES ABSCHNITTS",
     limitBoxTitle: "Warum endet der Abschnitt in Fenals?",
     limitBoxBody:
-      "Bis zum 30. September 2026 war der Strand von Fenals die Grenze für führerscheinfreie Boote (2 Meilen vor der Küste, 5 Knoten, 15 PS). Seit dem 1. Oktober werden keine Boote mehr ohne Schein vermietet: Mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder mit Skipper geht die Route weiter nach Norden.",
+      "Bis zum 30. September 2026 war der Strand von Fenals die Grenze für führerscheinfreie Boote (2 Meilen vor der Küste, 5 Knoten, 15 PS). Seit dem 1. Oktober werden keine Boote mehr ohne Schein vermietet: Mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder mit Skipper geht die Route weiter nach Norden.",
     noteNorthOfFenals:
       "Hinweis: Der Strand von Lloret (Zentrum), Cala Banys und Cala Canyelles liegen nördlich von Fenals; mit dem Titulín oder mit Skipper erreichen Sie sie ebenfalls.",
     conLicenciaTitle:
@@ -1848,7 +1848,7 @@ export const de: Translations = {
       platjaAro: "Sant Feliu de Guíxols, S'Agaró, Platja d'Aro (halb- / ganztägig)",
     },
     ctaFleet:
-      "Bootsschein an 1 Tag",
+      "Was der Titulín ist",
     ctaLicensed: "Boote mit Licencia de Navegación",
     internalLinks:
       'Möchten Sie alle Routen sehen? Schauen Sie sich <a href="/de/boot-mieten-blanes" class="underline text-primary hover:text-primary/80">Bootsverleih in Blanes</a> an, <a href="/de/boot-mieten-lloret-de-mar" class="underline text-primary hover:text-primary/80">Boot mieten in Lloret de Mar</a>, die lizenzierte Erweiterung <a href="/de/boot-mieten-tossa-de-mar" class="underline text-primary hover:text-primary/80">nach Tossa de Mar</a>, alle <a href="/de/boot-mieten-costa-brava" class="underline text-primary hover:text-primary/80">Routen entlang der Costa Brava</a> und <a href="/de/boot-mieten-nahe-barcelona" class="underline text-primary hover:text-primary/80">Bootsverleih nahe Barcelona</a>. Vollständige Preise in <a href="/de/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Was kostet es, ein Boot in Blanes zu mieten</a>.',
@@ -1992,7 +1992,7 @@ export const de: Translations = {
     faq: {
       q1: "Was kostet es, ein Boot ohne Führerschein in Blanes zu mieten?",
       a1Template:
-        "Seit dem 1. Oktober 2026 vermieten wir keine führerscheinfreien Boote mehr: Das RD 1188/2025 verlangt für die Miete jedes Motorboots einen Bootsführerschein. Mit der Licencia de Navegación (Titulín, Tageskurs ohne Prüfung) mieten Sie unsere Motorboote ab {licBaja2h} € für 2 Stunden in der Nebensaison; ohne Schein kostet die private Tour mit Skipper ab {excursionBaja2h} € für 2 Stunden.",
+        "Seit dem 1. Oktober 2026 vermieten wir keine führerscheinfreien Boote mehr: Das RD 1188/2025 verlangt für die Miete jedes Motorboots einen Bootsführerschein. Mit der Licencia de Navegación (Titulín, an 1 Tag erhältlich, ohne Prüfung) mieten Sie unsere Motorboote ab {licBaja2h} € für 2 Stunden in der Nebensaison; ohne Schein kostet die private Tour mit Skipper ab {excursionBaja2h} € für 2 Stunden.",
       q2: "Ist das Benzin im Preis inbegriffen?",
       a2: "Nein. Bei keinem unserer Boote ist das Benzin inbegriffen: Es wird nach dem tatsächlichen Verbrauch der Ausfahrt separat abgerechnet.",
       q3: "Gibt es einen Preisunterschied zwischen Neben- und Hochsaison?",
@@ -2011,7 +2011,7 @@ export const de: Translations = {
     hero: {
       title: "Bootsverleih in der Nähe von Barcelona",
       description:
-        "Nur 70 Minuten von Barcelona bietet Ihnen der Hafen Blanes das beste Bootserlebnis der Costa Brava. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper.",
+        "Nur 70 Minuten von Barcelona bietet Ihnen der Hafen Blanes das beste Bootserlebnis der Costa Brava. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper.",
       badgeDistance: "70 Min. von Barcelona",
       badgeLicense: "Mit Titulín oder Skipper",
       badgeWaters: "Kristallklares Wasser",
@@ -2064,7 +2064,7 @@ export const de: Translations = {
     faqItems: [
       {
         question: "Kann ich in der Nähe von Barcelona ein Boot ohne Führerschein mieten?",
-        answer: "Seit dem 1. Oktober 2026 (RD 1188/2025) nicht mehr: Für ein gemietetes Motorboot brauchen Sie einen Schein. In Blanes, 70 Minuten von Barcelona über die AP-7, haben Sie zwei Optionen: mit der Licencia de Navegación mieten (1-Tages-Kurs, ohne Prüfung) oder mit Skipper auf unserer privaten Tour hinausfahren, für die Sie keinen Schein brauchen.",
+        answer: "Seit dem 1. Oktober 2026 (RD 1188/2025) nicht mehr: Für ein gemietetes Motorboot brauchen Sie einen Schein. In Blanes, 70 Minuten von Barcelona über die AP-7, haben Sie zwei Optionen: mit der Licencia de Navegación mieten (an 1 Tag erhältlich, ohne Prüfung) oder mit Skipper auf unserer privaten Tour hinausfahren, für die Sie keinen Schein brauchen.",
       },
       {
         question: "Wie lange dauert die Fahrt von Barcelona nach Blanes?",
@@ -2179,7 +2179,7 @@ export const de: Translations = {
       {
         question: "Brauche ich einen Bootsführerschein für einen Sonnenuntergangsausflug?",
         answer:
-          "Ja: Seit dem 1. Oktober 2026 braucht man zum Steuern mindestens die Licencia de Navegación (Titulín), einen Tageskurs ohne Prüfung; damit fahren Sie jedes unserer Motorboote. Hat niemand in der Gruppe einen Schein, fahren Sie mit Skipper auf der privaten Tour: Ein Profi steuert das Boot und Sie genießen einfach den Sonnenuntergang.",
+          "Ja: Seit dem 1. Oktober 2026 braucht man zum Steuern mindestens die Licencia de Navegación (Titulín), an 1 Tag ohne Prüfung erhältlich; damit fahren Sie jedes unserer Motorboote. Hat niemand in der Gruppe einen Schein, fahren Sie mit Skipper auf der privaten Tour: Ein Profi steuert das Boot und Sie genießen einfach den Sonnenuntergang.",
       },
       {
         question:
@@ -2289,7 +2289,7 @@ export const de: Translations = {
       "Anders als bei Gruppen-Sonnenuntergangstouren gehört das Boot nur Ihnen. Sie entscheiden, wo Sie ankern, wie lange Sie bleiben und was Sie an Bord mitbringen. Kein Reiseleiter, der Sie drängt, keine anderen Touristen. Nur Sie und das Mittelmeer in seinem schönsten Moment.",
     whyAffordableTitle: "Mit Titulín oder mit Skipper",
     whyAffordableDesc:
-      "Mit der Licencia de Navegación, einem Tageskurs ohne Prüfung, fahren Sie jedes unserer Motorboote mit bis zu 7 Plätzen. Der Preis gilt pro Boot, nicht pro Person, und geteilt durch die Gruppe ist er günstig. Wenn Sie lieber nicht selbst steuern, bringt Sie die private Tour mit Skipper zu den schönsten Aussichten.",
+      "Mit der Licencia de Navegación, an 1 Tag ohne Prüfung erhältlich, fahren Sie jedes unserer Motorboote mit bis zu 7 Plätzen. Der Preis gilt pro Boot, nicht pro Person, und geteilt durch die Gruppe ist er günstig. Wenn Sie lieber nicht selbst steuern, bringt Sie die private Tour mit Skipper zu den schönsten Aussichten.",
     whyTemperatureTitle: "Perfekte Abendtemperatur",
     whyTemperatureDesc:
       "Am späten Nachmittag hat sich die Tageshitze gelegt. Die Meeresbrise hält Sie angenehm kühl. Das Wasser ist nach einem Tag voller Sonneneinstrahlung am wärmsten. Es ist der ideale Moment, um im Wasser zu sein – ob zum Schwimmen, Treiben oder einfach zuzuschauen, wie der Himmel die Farben wechselt.",
@@ -2417,7 +2417,7 @@ export const de: Translations = {
       "Bei einer 3-4-stündigen Ausfahrt können Sie 2-3 verschiedene Buchten besuchen. Jede hat ein eigenes Ökosystem: Posidonia-Wiesen, felsige Böden, senkrechte Wände. Es ist wie drei Schnorchelausflüge in einem.",
     whyNoExpTitle: "Mit Titulín oder mit Skipper",
     whyNoExpDesc:
-      "Mit dem Titulín, einem Tageskurs ohne Prüfung, steuern Sie eines unserer Motorboote, und vor der Abfahrt erklären wir Ihnen das Boot in 15 Minuten. Hat niemand in der Gruppe einen Schein, bringt Sie die Tour mit Skipper zu den Buchten. Schnorcheln ist die zugänglichste Wasseraktivität: Sie brauchen nur Maske, Schnorchel und Lust zu entdecken.",
+      "Mit dem Titulín, an 1 Tag ohne Prüfung erhältlich, steuern Sie eines unserer Motorboote, und vor der Abfahrt erklären wir Ihnen das Boot in 15 Minuten. Hat niemand in der Gruppe einen Schein, bringt Sie die Tour mit Skipper zu den Buchten. Schnorcheln ist die zugänglichste Wasseraktivität: Sie brauchen nur Maske, Schnorchel und Lust zu entdecken.",
     spotsTitle: "Beste Schnorchelbuchten in der Nähe von Blanes",
     equipmentTitle: "Schnorchelausrüstung inklusive und verfügbar",
     includedTitle: "Bei jedem Boot inbegriffen",
@@ -2477,7 +2477,7 @@ export const de: Translations = {
       {
         question: "Brauche ich einen Bootsführerschein, um ein Familienboot zu mieten?",
         answer:
-          "Ja: Seit dem 1. Oktober 2026 verlangt das Gesetz für die Miete jedes Motorboots mindestens die Licencia de Navegación (Titulín), einen Tageskurs ohne Prüfung. Hat niemand in der Familie einen Schein, ist die private Tour mit Skipper die Lösung: Ein Profi steuert das Boot.",
+          "Ja: Seit dem 1. Oktober 2026 verlangt das Gesetz für die Miete jedes Motorboots mindestens die Licencia de Navegación (Titulín), an 1 Tag ohne Prüfung erhältlich. Hat niemand in der Familie einen Schein, ist die private Tour mit Skipper die Lösung: Ein Profi steuert das Boot.",
       },
       {
         question: "Was ist im Mietpreis enthalten?",
@@ -2539,7 +2539,7 @@ export const de: Translations = {
     heroTitle: "Bootsverleih für Familien an der Costa Brava",
     heroDescription:
       "Ein sicheres und spaßiges Abenteuer für die ganze Familie. Motorboote mit Führerschein ab dem Hafen von Blanes, die Sie mit dem Titulín steuern, oder die private Tour mit Skipper, mit Kinder-Schwimmwesten und geschützten Buchten, die perfekt für Kinder sind.",
-    badgeNoLicense: "Titulín an 1 Tag oder Skipper",
+    badgeNoLicense: "Titulín oder Skipper",
     badgeKidsVests: "Kinder-Schwimmwesten inklusive",
     badgeFuel: "Ruhige Buchten für Kinder",
     whyTitle: "Warum es perfekt für Familien ist",
@@ -2548,7 +2548,7 @@ export const de: Translations = {
       "Ein Boot als Familie zu mieten ist viel mehr als eine Fahrt über das Meer. Es bedeutet, gemeinsam versteckte Buchten zu entdecken, Fische unter Wasser zu beobachten, ein Picknick auf türkisblauem Wasser zu genießen und Erinnerungen zu schaffen, von denen die Kinder noch jahrelang erzählen werden. An der Costa Brava bietet die Küste zwischen Blanes und Lloret die perfekte Kulisse.",
     whyNoStressTitle: "Kein Stress, keine Komplikationen",
     whyNoStressDesc:
-      "Mit dem Titulín, einem Tageskurs ohne Prüfung, steuern Sie selbst, und vor der Abfahrt erklären wir Ihnen das Boot in 15 Minuten. Wenn Sie komplett abschalten möchten, steuert auf der privaten Tour unser Skipper. Sie müssen nur mit Lust auf Spaß kommen.",
+      "Mit dem Titulín, an 1 Tag ohne Prüfung erhältlich, steuern Sie selbst, und vor der Abfahrt erklären wir Ihnen das Boot in 15 Minuten. Wenn Sie komplett abschalten möchten, steuert auf der privaten Tour unser Skipper. Sie müssen nur mit Lust auf Spaß kommen.",
     whyCalmCovesTitle: "Ruhige Buchten für Kinder",
     whyCalmCovesDesc:
       "Wir empfehlen geschützte Buchten mit flachem, wellenfreiem Wasser. Cala Sant Francesc hat einen Sanduntergrund, ideal für sicheres Baden für Kinder. Cala Bona bietet kristallklares Wasser, perfekt für erste Schnorchelerlebnisse.",
@@ -2750,7 +2750,7 @@ export const de: Translations = {
       "Bringen Sie Sonnencreme, viel Wasser, Kappe und polarisierte Sonnenbrille mit (helfen, Fische im Wasser zu sehen). Ein langärmeliges Shirt schützt während der Angelstunden vor der Sonne. Vergessen Sie nicht, den Angelschein ausgedruckt oder auf dem Handy dabei zu haben.",
     exploreTitle: "Weitere Aktivitäten und Angebote entdecken",
     linkLicensed: "Boote mit Führerschein",
-    linkNoLicense: "Titulín an 1 Tag",
+    linkNoLicense: "Was der Titulín ist",
     linkSnorkel: "Schnorchelausflug",
     linkPrices: "Preise und Tarife",
     linkBlanes: "Hafen von Blanes",
@@ -2816,17 +2816,17 @@ export const de: Translations = {
       sinLicencia: {
         question: "Kann ich ein Boot ohne Bootsf\u00FChrerschein mieten?",
         answer:
-          "Seit dem 1. Oktober 2026 nicht mehr: Das RD 1188/2025 verlangt für die Miete jedes Motorboots einen Bootsführerschein, und wir haben unsere führerscheinfreien Boote aus der Vermietung genommen. Es genügt die Licencia de Navegación (Titulín), ein Tageskurs ohne Prüfung. Ohne Schein können Sie mit Skipper auf der privaten Tour fahren.",
+          "Seit dem 1. Oktober 2026 nicht mehr: Das RD 1188/2025 verlangt für die Miete jedes Motorboots einen Bootsführerschein, und wir haben unsere führerscheinfreien Boote aus der Vermietung genommen. Es genügt die Licencia de Navegación (Titulín), an 1 Tag ohne Prüfung erhältlich. Ohne Schein können Sie mit Skipper auf der privaten Tour fahren.",
       },
       normativa2026: {
         question: "Stimmt es, dass 2026 das führerscheinfreie Bootmieten endet?",
         answer:
-          "Ja, das Gesetz hat sich geändert: Das RD 1188/2025 verlangt seit dem 1. Oktober 2026 einen Bootsführerschein für die Miete jedes Motorboots, und seitdem vermieten wir keine führerscheinfreien Boote mehr. Es genügt die Licencia de Navegación (Titulín), ein Tageskurs ohne Prüfung, oder jeder höhere oder gleichwertige ausländische Schein. Der Ausflug mit Skipper ist nicht betroffen: Dort führt ein Profi das Boot.",
+          "Ja, das Gesetz hat sich geändert: Das RD 1188/2025 verlangt seit dem 1. Oktober 2026 einen Bootsführerschein für die Miete jedes Motorboots, und seitdem vermieten wir keine führerscheinfreien Boote mehr. Es genügt die Licencia de Navegación (Titulín), an 1 Tag ohne Prüfung erhältlich, oder jeder höhere oder gleichwertige ausländische Schein. Der Ausflug mit Skipper ist nicht betroffen: Dort führt ein Profi das Boot.",
       },
       titulin: {
         question: "Was ist der Titulín und wie bekomme ich ihn?",
         answer:
-          "Der Titulín ist die Licencia de Navegación: Spaniens schnellster Bootsführerschein. Sie erhalten ihn an einem Tag mit 2 Stunden Theorie und 4 Stunden Praxis in einer zugelassenen Wassersportschule, ohne Prüfung, und er läuft nie ab. Er erlaubt Boote bis 6 Meter, bei Tag und bis zu 2 Meilen von einem Schutzort: In unserer Flotte deckt er die Mingolla Brava 19, die Trimarchi 57S und die Pacific Craft 625 ab. Schreiben Sie uns und wir sagen Ihnen, wo Sie ihn in der Nähe von Blanes machen können.",
+          "Der Titulín ist die Licencia de Navegación: Spaniens schnellster Bootsführerschein. Sie erhalten ihn an einem Tag mit 2 Stunden Theorie und 4 Stunden Praxis in einer zugelassenen Wassersportschule, ohne Prüfung, und er läuft nie ab. Er erlaubt Boote bis 6 Meter, bei Tag und bis zu 2 Meilen von einem Schutzort: In unserer Flotte deckt er die Mingolla Brava 19, die Trimarchi 57S und die Pacific Craft 625 ab.",
       },
       licenciasAceptadas: {
         question: "Welche Lizenzen akzeptieren Sie für größere Boote?",
@@ -2956,7 +2956,7 @@ export const de: Translations = {
       diferenciaLicencia: {
         question: "Was ist der Unterschied zwischen Booten ohne und mit Führerschein?",
         answer:
-          "Bis zum 30. September 2026 haben wir führerscheinfreie Boote bis 15 PS und 4-5 Plätze vermietet. Seit dem 1. Oktober 2026 verlangt das Gesetz für die Miete einen Schein, deshalb vermieten wir unsere führerscheinpflichtigen Motorboote: Motoren mit 80-115 PS, bis zu 7 Personen und genug Reichweite bis Tossa de Mar, ab {licBaja2h}€ (Treibstoff nicht inbegriffen). Es genügt die Licencia de Navegación, ein Tageskurs ohne Prüfung.",
+          "Bis zum 30. September 2026 haben wir führerscheinfreie Boote bis 15 PS und 4-5 Plätze vermietet. Seit dem 1. Oktober 2026 verlangt das Gesetz für die Miete einen Schein, deshalb vermieten wir unsere führerscheinpflichtigen Motorboote: Motoren mit 80-115 PS, bis zu 7 Personen und genug Reichweite bis Tossa de Mar, ab {licBaja2h}€ (Treibstoff nicht inbegriffen). Es genügt die Licencia de Navegación, an 1 Tag ohne Prüfung erhältlich.",
       },
       precioBlanesVsLloret: {
         question: "Ist es günstiger, ein Boot in Blanes oder in Lloret de Mar zu mieten?",
@@ -3358,8 +3358,8 @@ export const de: Translations = {
     categories: {
       licenseFree: {
         name: "Ohne Führerschein: Regeln 2026",
-        description: "Seit dem 1. Oktober 2026 werden keine Boote mehr ohne Schein vermietet. Ihre Optionen: Titulín an 1 Tag oder Ausfahrt mit Skipper.",
-        features: ["Titulín an 1 Tag", "Ohne Prüfung", "Oder mit Skipper"],
+        description: "Seit dem 1. Oktober 2026 werden keine Boote mehr ohne Schein vermietet. Ihre Optionen: mit dem Titulín selbst steuern oder mit Skipper ausfahren.",
+        features: ["Mit Titulín", "Ohne Prüfung", "Oder mit Skipper"],
       },
       licensed: {
         name: "Boote mit Führerschein",
@@ -3447,7 +3447,7 @@ export const de: Translations = {
     faq: [
       {
         q: "Brauche ich einen Führerschein?",
-        a: "Ja: Seit dem 1. Oktober 2026 schreibt das Gesetz vor, dass wer steuert, mindestens die Licencia de Navegación (Titulín) hat, einen Tageskurs ohne Prüfung. Der Rest der Gruppe fährt als Passagier mit. Wir passen die geteilten Fahrten gerade an diese Regel an: Tragen Sie sich ein und wir melden uns.",
+        a: "Ja: Seit dem 1. Oktober 2026 schreibt das Gesetz vor, dass wer steuert, mindestens die Licencia de Navegación (Titulín) hat, an 1 Tag ohne Prüfung erhältlich. Der Rest der Gruppe fährt als Passagier mit. Wir passen die geteilten Fahrten gerade an diese Regel an: Tragen Sie sich ein und wir melden uns.",
       },
       {
         q: "Was kostet es?",
@@ -3624,7 +3624,7 @@ export const de: Translations = {
       ],
       scooters: [
         { title: "Bootsverleih in Lloret de Mar", description: "Spektakuläre Strände und Buchten ab dem Hafen von Blanes" },
-        { title: "Boote mit Führerschein", description: "Selbst steuern mit dem Titulín, einem Tageskurs ohne Prüfung" },
+        { title: "Boote mit Führerschein", description: "Selbst steuern mit dem Titulín, an 1 Tag ohne Prüfung erhältlich" },
         { title: "Jetski-Verleih ohne Führerschein", description: "Rundkurs und geführte Jetski-Tour ab Blanes" },
         { title: "Ausflug nach Tossa de Mar", description: "Entdecken Sie die Vila Vella und ihre kristallklaren Buchten" },
       ],
@@ -3657,14 +3657,14 @@ export const de: Translations = {
           },
         ],
         boatsTitle: 'Welches Boot zum Schnorcheln wählen',
-        boatsIntro: "Seit dem 1. Oktober 2026 mietest du mit der Licencia de Navegación (Tageskurs ohne Prüfung) oder fährst mit Skipper. Mit dem Titulín steuerst du eines unserer drei führerscheinpflichtigen Motorboote mit 6 oder 7 Plätzen; auf der privaten Tour mit Skipper, für bis zu 6 Personen, braucht niemand aus der Gruppe einen Schein.",
+        boatsIntro: "Seit dem 1. Oktober 2026 mietest du mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fährst mit Skipper. Mit dem Titulín steuerst du eines unserer drei führerscheinpflichtigen Motorboote mit 6 oder 7 Plätzen; auf der privaten Tour mit Skipper, für bis zu 6 Personen, braucht niemand aus der Gruppe einen Schein.",
         practicalTitle: 'Praktische Informationen',
         practicalBody: "Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Alle diese Buchten liegen nur wenige Minuten vom Hafen entfernt. Bring deine Taucherbrille und Schnorchel, Sonnenschutz und Wasser mit. Denk daran, über Sand zu ankern, niemals über Seegraswiesen.",
         faqTitle: 'Häufig gestellte Fragen',
         faq: [
           {
             q: 'Brauche ich einen Führerschein, um mit dem Boot von Blanes aus zu schnorcheln?',
-            a: "Ja: Seit dem 1. Oktober 2026 brauchst du zum Steuern mindestens die Licencia de Navegación (Titulín), einen Tageskurs ohne Prüfung. Hat niemand aus der Gruppe einen Schein, bringt euch die private Tour mit Skipper zu den Buchten.",
+            a: "Ja: Seit dem 1. Oktober 2026 brauchst du zum Steuern mindestens die Licencia de Navegación (Titulín), an 1 Tag ohne Prüfung erhältlich. Hat niemand aus der Gruppe einen Schein, bringt euch die private Tour mit Skipper zu den Buchten.",
           },
           {
             q: 'Ist die Schnorchelausrüstung inbegriffen?',
@@ -3783,7 +3783,7 @@ export const de: Translations = {
           },
         ],
         boatsTitle: 'Welches Boot wählen, je nachdem wie weit du fahren möchtest',
-        boatsIntro: "Seit dem 1. Oktober 2026 mietest du mit der Licencia de Navegación (Tageskurs ohne Prüfung) oder fährst mit Skipper. Unsere führerscheinpflichtigen Motorboote geben dir die Freiheit, an einem Tag Buchten von Blanes, Lloret und Tossa zu verbinden; auf der privaten Tour übernimmt unser Skipper die Route.",
+        boatsIntro: "Seit dem 1. Oktober 2026 mietest du mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fährst mit Skipper. Unsere führerscheinpflichtigen Motorboote geben dir die Freiheit, an einem Tag Buchten von Blanes, Lloret und Tossa zu verbinden; auf der privaten Tour übernimmt unser Skipper die Route.",
         practicalTitle: 'Praktische Informationen',
         practicalBody: "Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Mit einem führerscheinpflichtigen Boot erreichst du Lloret in etwa 25 Minuten und Tossa in 30-45 Minuten. Bring deine Taucherbrille und Schnorchel, Sonnenschutz und Wasser mit. Ankere immer über Sand, niemals über Seegras.",
         faqTitle: 'Häufig gestellte Fragen',
@@ -3815,14 +3815,14 @@ export const de: Translations = {
         ],
         boatsTitle: 'Welches Boot für einen Familienausflug wählen',
         boatsIntro:
-          "Für Familien empfehlen wir geräumige, stabile Boote mit 6 oder 7 Plätzen. Seit dem 1. Oktober 2026 mietest du mit der Licencia de Navegación (Tageskurs ohne Prüfung) oder fährst mit Skipper auf der privaten Tour, bei der niemand aus der Gruppe einen Schein braucht.",
+          "Für Familien empfehlen wir geräumige, stabile Boote mit 6 oder 7 Plätzen. Seit dem 1. Oktober 2026 mietest du mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fährst mit Skipper auf der privaten Tour, bei der niemand aus der Gruppe einen Schein braucht.",
         practicalTitle: 'Praktische Informationen',
         practicalBody:
           "Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Wir haben Schwimmwesten in allen Größen an Bord, auch für Kinder. Bring Sonnenschutz, Mütze, Wasser und einen Snack mit. Die Buchten rund um Blanes liegen nur wenige Minuten vom Hafen entfernt.",
         faqTitle: 'Häufig gestellte Fragen',
         faq: [
           { q: 'Ist es sicher, mit Kindern Boot zu fahren?', a: 'Ja. Wir stellen Rettungswesten für Kinder, die nahegelegenen Buchten sind ruhig und flach, und wir erklären dir vor der Abfahrt die Bedienung und die Sicherheit.' },
-          { q: 'Braucht man für einen Familienausflug ab Blanes einen Führerschein?', a: "Ja: Seit dem 1. Oktober 2026 braucht, wer steuert, mindestens die Licencia de Navegación (Titulín), einen Tageskurs ohne Prüfung. Hat niemand in der Familie einen Schein, ist die private Tour mit Skipper die Lösung: Unser Skipper steuert das Boot." },
+          { q: 'Braucht man für einen Familienausflug ab Blanes einen Führerschein?', a: "Ja: Seit dem 1. Oktober 2026 braucht, wer steuert, mindestens die Licencia de Navegación (Titulín), an 1 Tag ohne Prüfung erhältlich. Hat niemand in der Familie einen Schein, ist die private Tour mit Skipper die Lösung: Unser Skipper steuert das Boot." },
         ],
         ctaTitle: 'Buche deinen Familien-Bootstag in Blanes',
         ctaText: 'Wähle Datum und Boot und genieße einen Tag auf dem Meer mit deinen Liebsten ab dem Hafen Blanes.',
@@ -3896,7 +3896,7 @@ export const de: Translations = {
         ],
         boatsTitle: 'Welches Boot wählen, je nachdem wie weit du fahren möchtest',
         boatsIntro:
-          "Seit dem 1. Oktober 2026 mietest du mit der Licencia de Navegación (Tageskurs ohne Prüfung) oder fährst mit Skipper. Unsere führerscheinpflichtigen Motorboote, geräumig und mit bis zu 7 Plätzen, erreichen Lloret und Tossa; die private Tour mit Skipper bietet Platz für bis zu 6 Personen.",
+          "Seit dem 1. Oktober 2026 mietest du mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fährst mit Skipper. Unsere führerscheinpflichtigen Motorboote, geräumig und mit bis zu 7 Plätzen, erreichen Lloret und Tossa; die private Tour mit Skipper bietet Platz für bis zu 6 Personen.",
         practicalTitle: 'Praktische Informationen',
         practicalBody:
           "Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Mit einem führerscheinpflichtigen Boot erreichst du Lloret in etwa 25 Minuten und Tossa in 30-45 Minuten. Wir haben Schwimmwesten in allen Größen an Bord.",
@@ -3923,14 +3923,14 @@ export const de: Translations = {
         ],
         boatsTitle: 'Welches Boot für den Sonnenuntergang wählen',
         boatsIntro:
-          "Für den Sonnenuntergang empfehlen wir eine kurze, entspannte Ausfahrt rund um Blanes. Seit dem 1. Oktober 2026 mietest du mit der Licencia de Navegación (Tageskurs ohne Prüfung) eines unserer Motorboote oder fährst mit Skipper auf der privaten Tour.",
+          "Für den Sonnenuntergang empfehlen wir eine kurze, entspannte Ausfahrt rund um Blanes. Seit dem 1. Oktober 2026 mietest du mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) eines unserer Motorboote oder fährst mit Skipper auf der privaten Tour.",
         practicalTitle: 'Praktische Informationen',
         practicalBody:
           'Saison von April bis Oktober, mit Abfahrten bis 20:00 Uhr ab Hafen Blanes; die Zeit am späten Nachmittag schenkt das beste Licht. An der Costa Brava geht die Sonne hinter der Küste unter, du genießt also eher das goldene Licht und die beleuchteten Klippen als den Sonnenuntergang über dem Wasser. Bring eine leichte Jacke mit: Am Abend wird es kühler.',
         faqTitle: 'Häufig gestellte Fragen',
         faq: [
           { q: 'Um welche Uhrzeit ist die Abfahrt bei Sonnenuntergang?', a: 'Wir fahren bis 20:00 Uhr; die letzte Zeit am Nachmittag bietet das goldene Licht. Wir empfehlen, 1 oder 2 Stunden am späten Tag zu buchen.' },
-          { q: 'Brauche ich einen Führerschein?', a: "Ja: Seit dem 1. Oktober 2026 braucht man mindestens die Licencia de Navegación (Titulín), einen Tageskurs ohne Prüfung. Ohne Schein kannst du mit Skipper auf der privaten Tour fahren." },
+          { q: 'Brauche ich einen Führerschein?', a: "Ja: Seit dem 1. Oktober 2026 braucht man mindestens die Licencia de Navegación (Titulín), an 1 Tag ohne Prüfung erhältlich. Ohne Schein kannst du mit Skipper auf der privaten Tour fahren." },
         ],
         ctaTitle: 'Buche deinen Ausflug bei Sonnenuntergang in Blanes',
         ctaText: 'Wähle Datum und Boot und genieße die goldene Stunde auf dem Meer ab dem Hafen Blanes.',
@@ -4004,7 +4004,7 @@ export const de: Translations = {
         ],
         boatsTitle: 'Welches Boot wählen, je nachdem wie weit du fahren möchtest',
         boatsIntro:
-          "Seit dem 1. Oktober 2026 mietest du mit der Licencia de Navegación (Tageskurs ohne Prüfung) oder fährst mit Skipper. Mit unseren führerscheinpflichtigen Motorbooten fährst du die Strecke bis Lloret und Tossa; auf der privaten Tour übernimmt unser Skipper die Fahrt.",
+          "Seit dem 1. Oktober 2026 mietest du mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fährst mit Skipper. Mit unseren führerscheinpflichtigen Motorbooten fährst du die Strecke bis Lloret und Tossa; auf der privaten Tour übernimmt unser Skipper die Fahrt.",
         practicalTitle: 'Praktische Informationen',
         practicalBody:
           "Saison von April bis Oktober, mit Abfahrten bis 20:00 Uhr ab Hafen Blanes. An dieser Küste geht die Sonne hinter dem Land unter: Du genießt das goldene Licht und die angestrahlten Dörfer und Klippen. Mit einem führerscheinpflichtigen Boot erreichst du Lloret oder Tossa. Bring eine leichte Jacke mit.",
@@ -4112,7 +4112,7 @@ export const de: Translations = {
         ],
         boatsTitle: 'Welches Boot zum Angeln entlang der Küste wählen',
         boatsIntro:
-          "Zum Angeln nutzen wir führerscheinpflichtige Boote mit der nötigen Reichweite, um die Küste zwischen den Angelgebieten abzufahren. Es genügt die Licencia de Navegación (Titulín), ein Tageskurs ohne Prüfung.",
+          "Zum Angeln nutzen wir führerscheinpflichtige Boote mit der nötigen Reichweite, um die Küste zwischen den Angelgebieten abzufahren. Es genügt die Licencia de Navegación (Titulín), an 1 Tag ohne Prüfung erhältlich.",
         practicalTitle: 'Praktische Informationen und Vorschriften',
         practicalBody:
           'Saison von April bis Oktober, Abfahrten von 09:00 bis 20:00 Uhr ab Hafen Blanes. Du benötigst die katalanische Lizenz für die Freizeitfischerei (zu Lasten des Kunden). Beachte Mindestgrößen, geschützte Arten und ganz besonders die regulierten Zonen wie das Reservat von Tossa. Die Angelausrüstung ist nicht inbegriffen.',
@@ -4841,22 +4841,22 @@ export const de: Translations = {
     conditionsLink: "Allgemeine Mietbedingungen lesen",
   },
   navigationLicensePage: {
-    seoTitle: "Spanischer Bootsführerschein (Titulín) in Blanes | 1-Tages-Kurs",
+    seoTitle: "Spanischer Bootsführerschein (Titulín) in Blanes | Was er erlaubt",
     seoDescription:
-      "Was die Licencia de Navegación (Titulín) ist, was sie erlaubt und wie Sie sie an einem Tag bekommen: 6 Stunden, ohne Prüfung. Ab Oktober 2026 fürs Mieten Pflicht.",
+      "Was die Licencia de Navegación (Titulín) ist, was sie erlaubt und welche Boote Sie damit fahren. Ohne Prüfung. Ab Oktober 2026 fürs Mieten Pflicht.",
     navLabel: "Bootsführerschein",
     hero: {
-      title: "Die Licencia de Navegación: Ihr Bootsführerschein an einem einzigen Tag",
+      title: "Die Licencia de Navegación: was der Titulín ist und welche Boote Sie damit fahren",
       subtitle:
-        "Der Titulín ist Spaniens schnellster Bootsführerschein: 6 Stunden Kurs, keine Prüfung, und er läuft nie ab. Er öffnet Ihnen Motorboote bis 6 Meter und ist ab Oktober 2026 der Schlüssel, um weiterhin selbst Boote zu mieten.",
+        "Der Titulín ist Spaniens schnellster Bootsführerschein: 6 Stunden an einer zugelassenen Wassersportschule, keine Prüfung, und er läuft nie ab. Er öffnet Ihnen Motorboote bis 6 Meter und ist ab Oktober 2026 der Schlüssel, um weiterhin selbst Boote zu mieten.",
     },
-    chips: ["1-Tages-Kurs (6 Stunden)", "Keine Prüfung", "Läuft nie ab", "Gültig in ganz Spanien"],
+    chips: ["An 1 Tag (6 Stunden)", "Keine Prüfung", "Läuft nie ab", "Gültig in ganz Spanien"],
     newRule: {
       title: "Gesetzesänderung: was am 1. Oktober 2026 passiert",
       body:
         "Das Königliche Dekret 1188/2025 ändert die spanischen Regeln für Sportbootführerscheine (RD 875/2014): Seit dem 1. Oktober 2026 ist zum Mieten jedes Motorboots ein Bootsführerschein erforderlich, auch bei den kleinen Booten, die bis dahin führerscheinfrei vermietet wurden. Die Ausnahme für Boote bis 5 Meter und 15 PS gilt nur noch für privat genutzte Boote.",
       note:
-        "Bis zum 30. September 2026 haben wir führerscheinfreie Boote vermietet; seit dem 1. Oktober nicht mehr. Mit der Licencia de Navegación, einem Tageskurs ohne Prüfung, steuern Sie unsere drei führerscheinpflichtigen Motorboote; ohne Schein fahren Sie mit Skipper auf der privaten Tour.",
+        "Bis zum 30. September 2026 haben wir führerscheinfreie Boote vermietet; seit dem 1. Oktober nicht mehr. Mit der Licencia de Navegación, an 1 Tag ohne Prüfung erhältlich, steuern Sie unsere drei führerscheinpflichtigen Motorboote; ohne Schein fahren Sie mit Skipper auf der privaten Tour.",
     },
     whatIs: {
       title: "Was die Licencia de Navegación (der Titulín) ist",
@@ -4894,7 +4894,7 @@ export const de: Translations = {
         },
       ],
       note:
-        "Der Kurs findet an autorisierten Wassersportschulen und Verbänden statt. Wir organisieren ihn für Sie in der Nähe von Blanes und kombinieren ihn mit Ihrer ersten Miete: Sie gehen mit Schein und bereits gebuchtem Boot aus derselben Reise. Schreiben Sie uns, und wir nennen Ihnen eine autorisierte Schule in der Nähe von Blanes.",
+        "Der Kurs findet an zugelassenen Wassersportschulen und Verbänden statt, nicht bei uns: Sie wählen, wo und wann Sie ihn machen. Mit dem Titulín in der Hand buchen Sie jedes Boot unserer Flotte mit Lizenz.",
     },
     fleet: {
       title: "Mit dem Titulín gehört diese Flotte Ihnen",
@@ -4906,7 +4906,7 @@ export const de: Translations = {
     faq: [
       {
         q: "Brauche ich jetzt schon einen Führerschein, um ein Boot zu mieten?",
-        a: "Ja. Seit dem 1. Oktober 2026 verlangt das RD 1188/2025 von jedem Mieter eines Motorboots einen Bootsführerschein, auch für Boote bis 5 Meter und 15 PS, die früher ohne Schein gemietet wurden. Die Licencia de Navegación ist am schnellsten zu bekommen: ein Tageskurs ohne Prüfung.",
+        a: "Ja. Seit dem 1. Oktober 2026 verlangt das RD 1188/2025 von jedem Mieter eines Motorboots einen Bootsführerschein, auch für Boote bis 5 Meter und 15 PS, die früher ohne Schein gemietet wurden. Die Licencia de Navegación ist am schnellsten zu bekommen: an 1 Tag erhältlich, ohne Prüfung.",
       },
       {
         q: "Wie lange dauert der Kurs und gibt es eine Prüfung?",
@@ -4935,12 +4935,12 @@ export const de: Translations = {
         "Beim privaten Ausflug mit Skipper brauchen Sie keinerlei Schein, weder jetzt noch mit dem neuen Gesetz: Ein professioneller Skipper bringt Sie zu Buchten und Meereshöhlen zwischen Blanes und Tossa de Mar, während Sie einfach nur genießen.",
       cta: "Ausflug mit Skipper ansehen",
     },
-    ctaTitle: "Wir organisieren Ihren Titulín und Ihre erste Ausfahrt",
+    ctaTitle: "Mit dem Titulín in der Hand wartet das Boot",
     ctaText:
-      "Schreiben Sie uns per WhatsApp und wir stellen das Paket zusammen: Eintageskurs in der Nähe von Blanes, freie Termine, Preis und das Boot gebucht für den Moment, in dem Sie den Schein in der Hand halten.",
+      "Schreiben Sie uns per WhatsApp, um freie Termine und verfügbare Boote zu sehen. Wenn Sie noch keinen Schein haben, braucht die private Tour mit Skipper keinen.",
     ctaButton: "Schreiben Sie uns per WhatsApp",
     whatsappMessage:
-      "Hallo, ich möchte Informationen zur Licencia de Navegación (Titulín) und zum Mieten eines Boots.",
+      "Hallo, ich habe (oder mache demnächst) die Licencia de Navegación (Titulín) und möchte Informationen zum Mieten eines Boots.",
   },
   activitiesPage: {
     seoTitle: "Was man in Blanes und Lloret de Mar außer Boot fahren machen kann | Aktivitäten",
@@ -5219,9 +5219,9 @@ export const de: Translations = {
       "Für alle, die komplett abschalten wollen, etwas zu feiern haben oder keinen Bootsführerschein besitzen und trotzdem ohne Leistungsgrenze bis zu den Höhlen von Tossa fahren möchten.",
     vsSelfDriveTitle: "Ohne Skipper: Sie steuern selbst",
     vsSelfDriveText:
-      "Mit der Licencia de Navegación (Tageskurs ohne Prüfung) oder einem höheren Schein können Sie unsere Motorboote mit 80-115 PS mieten und Ihre eigene Route festlegen.",
+      "Mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder einem höheren Schein können Sie unsere Motorboote mit 80-115 PS mieten und Ihre eigene Route festlegen.",
     vsLinkLicensed: "Boote ohne Skipper (mit Bootsführerschein)",
-    vsLinkFree: "Titulín an 1 Tag",
+    vsLinkFree: "Was der Titulín ist",
     faq: [
       {
         q: "Brauche ich einen Bootsführerschein oder Erfahrung für diese Bootstour?",
@@ -5426,31 +5426,31 @@ export const de: Translations = {
       },
       malgrat: {
         title: 'Beliebte Boote zur Miete ab Hafen von Blanes',
-        description: '10 Minuten von Malgrat de Mar. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper. Mit diesen Booten kommen Sie nach Lloret und Tossa de Mar.',
+        description: "10 Minuten von Malgrat de Mar. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper. Mit diesen Booten kommen Sie nach Lloret und Tossa de Mar.",
       },
       santaSusanna: {
         title: 'Beliebte Boote zur Miete ab Hafen von Blanes',
-        description: '15 Minuten von Santa Susanna. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper. Mit diesen Booten kommen Sie nach Lloret und Tossa de Mar.',
+        description: "15 Minuten von Santa Susanna. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper. Mit diesen Booten kommen Sie nach Lloret und Tossa de Mar.",
       },
       calella: {
         title: 'Beliebte Boote zur Miete ab Hafen von Blanes',
-        description: '20 Minuten von Calella. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper. Mit diesen Booten kommen Sie nach Lloret und Tossa de Mar.',
+        description: "20 Minuten von Calella. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper. Mit diesen Booten kommen Sie nach Lloret und Tossa de Mar.",
       },
       pineda: {
         title: 'Beliebte Boote zum Mieten ab dem Hafen von Blanes',
-        description: 'Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper. Mit diesen Booten kommen Sie nach Lloret und Tossa de Mar.',
+        description: "Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper. Mit diesen Booten kommen Sie nach Lloret und Tossa de Mar.",
       },
       palafolls: {
         title: 'Beliebte Boote zum Mieten ab dem Hafen von Blanes',
-        description: 'Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper. Mit diesen Booten kommen Sie nach Lloret und Tossa de Mar.',
+        description: "Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper. Mit diesen Booten kommen Sie nach Lloret und Tossa de Mar.",
       },
       tordera: {
         title: 'Beliebte Boote zum Mieten ab dem Hafen von Blanes',
-        description: 'Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper. Mit diesen Booten kommen Sie nach Lloret und Tossa de Mar.',
+        description: "Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper. Mit diesen Booten kommen Sie nach Lloret und Tossa de Mar.",
       },
       tossa: {
         title: 'Boote für Ihre Route nach Tossa de Mar',
-        description: 'Diese Boote erreichen Tossa de Mar: mit der Licencia de Navegación, die Sie in einem 1-Tages-Kurs ohne Prüfung erwerben, oder mit unserer privaten Tour mit Skipper, für die Sie keinen Schein brauchen.',
+        description: "Diese Boote erreichen Tossa de Mar: mit der Licencia de Navegación, die Sie an 1 Tag ohne Prüfung erwerben, oder mit unserer privaten Tour mit Skipper, für die Sie keinen Schein brauchen.",
       },
     },
   },
@@ -5467,7 +5467,7 @@ export const de: Translations = {
       faqItems: [
         {
           question: 'Brauche ich einen Führerschein, um in Blanes ein Boot zu mieten?',
-          answer: 'Ja. Seit dem 1. Oktober 2026 (RD 1188/2025) brauchen Sie für jedes gemietete Motorboot einen Schein. Die Licencia de Navegación, das Titulín, genügt: ein 1-Tages-Kurs ohne Prüfung. Ohne Schein buchen Sie die private Tour mit Skipper: Er fährt, Sie genießen.',
+          answer: "Ja. Seit dem 1. Oktober 2026 (RD 1188/2025) brauchen Sie für jedes gemietete Motorboot einen Schein. Die Licencia de Navegación, das Titulín, genügt: an 1 Tag erhältlich, ohne Prüfung. Ohne Schein buchen Sie die private Tour mit Skipper: Er fährt, Sie genießen.",
         },
         {
           question: 'Wie viel kostet es, im Hafen von Blanes ein Boot zu mieten?',
@@ -5504,7 +5504,7 @@ export const de: Translations = {
       ],
       hero: {
         title: 'Bootsverleih in Blanes',
-        subtitle: 'Bootsverleih direkt im Hafen Blanes. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper: Boote für 6-7 Personen und private Tour für bis zu 6. Kostenloses Parken 100 m vom Liegeplatz. Von hier fahren Sie nach Sa Palomera (5 Min.), Cala Sant Francesc (8 Min.), Cala Treumal (15 Min.), Lloret de Mar (15-25 Min.) und Tossa de Mar (30-45 Min.).',
+        subtitle: "Bootsverleih direkt im Hafen Blanes. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper: Boote für 6-7 Personen und private Tour für bis zu 6. Kostenloses Parken 100 m vom Liegeplatz. Von hier fahren Sie nach Sa Palomera (5 Min.), Cala Sant Francesc (8 Min.), Cala Treumal (15 Min.), Lloret de Mar (15-25 Min.) und Tossa de Mar (30-45 Min.).",
         badgePort: 'Hafen Blanes',
         badgeCapacity: 'Bis zu 7 Personen',
         badgeDuration: '2-8 Std. Dauer',
@@ -5553,7 +5553,7 @@ export const de: Translations = {
         fleetViewDetails: 'Details ansehen',
         guideTitle: 'Kompletter Leitfaden: Boot Mieten in Blanes',
         guideRequirementsTitle: 'Voraussetzungen für die Bootsmiete',
-        guideRequirementsText: 'Seit dem 1. Oktober 2026 (RD 1188/2025) brauchen Sie für ein gemietetes Motorboot einen Bootsführerschein. Die Licencia de Navegación genügt (das Titulín: ein 1-Tages-Kurs ohne Prüfung); PNB, PER oder europäische Äquivalente gelten ebenfalls. Außerdem müssen Sie über 18 sein und einen Ausweis oder Reisepass vorlegen. Vor dem Ablegen erklären wir Ihnen Boot, Ankern und Sicherheitsausrüstung. Ohne Schein ist die private Tour mit Skipper die Lösung, dafür brauchen Sie keinen.',
+        guideRequirementsText: "Seit dem 1. Oktober 2026 (RD 1188/2025) brauchen Sie für ein gemietetes Motorboot einen Bootsführerschein. Die Licencia de Navegación genügt (das Titulín: an 1 Tag erhältlich, ohne Prüfung); PNB, PER oder europäische Äquivalente gelten ebenfalls. Außerdem müssen Sie über 18 sein und einen Ausweis oder Reisepass vorlegen. Vor dem Ablegen erklären wir Ihnen Boot, Ankern und Sicherheitsausrüstung. Ohne Schein ist die private Tour mit Skipper die Lösung, dafür brauchen Sie keinen.",
         guideSeasonTitle: 'Saison und Oeffnungszeiten',
         guideSeasonText: 'Die Bootssaison in Blanes laeuft von April bis Oktober. Wir bieten drei Zeitfenster an: Vormittag (9:00-13:00), Nachmittag (14:00-18:00) und ganzer Tag (9:00-18:00). Juni und September sind ideal zum Segeln: angenehme Temperaturen, ruhige See und weniger Andrang.',
         guideIncludedTitle: 'Was ist inbegriffen',
@@ -5603,7 +5603,7 @@ export const de: Translations = {
       faqItems: [
         {
           question: 'Brauche ich einen Führerschein oder Erfahrung, um mit dem Boot nach Lloret zu fahren?',
-          answer: 'Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper. Mit dem Titulín fahren Sie selbst in etwa 15-25 Minuten zum Strand von Lloret; bei der privaten Tour mit Skipper brauchen Sie weder Schein noch Erfahrung.',
+          answer: "Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper. Mit dem Titulín fahren Sie selbst in etwa 15-25 Minuten zum Strand von Lloret; bei der privaten Tour mit Skipper brauchen Sie weder Schein noch Erfahrung.",
         },
         {
           question: 'Wie weit komme ich mit dem Boot von Blanes Richtung Lloret?',
@@ -5632,7 +5632,7 @@ export const de: Translations = {
       ],
       hero: {
         title: 'Bootsverleih Lloret de Mar: Route ab Blanes mit Schein oder Skipper',
-        subtitle: 'Vom Hafen Blanes bis zum Strand von Lloret, mit sieben unberührten Buchten der Costa Brava unterwegs. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper.',
+        subtitle: "Vom Hafen Blanes bis zum Strand von Lloret, mit sieben unberührten Buchten der Costa Brava unterwegs. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper.",
         badgeFrom: 'Ab Hafen Blanes',
         badgeTime: '15-25 Min. Fahrt',
         badgeCapacity: 'Bis zu 7 Personen pro Boot',
@@ -5692,7 +5692,7 @@ export const de: Translations = {
       faqItems: [
         {
           question: 'Kann ich mit dem Boot von Blanes nach Tossa de Mar fahren?',
-          answer: 'Ja. Mit der Licencia de Navegación (LN), dem Titulín aus einem 1-Tages-Kurs ohne Prüfung, fahren Sie eines unserer Boote in 30-45 Minuten nach Tossa. Ohne Schein buchen Sie die private Tour mit Skipper. Seit dem 1. Oktober 2026 werden keine führerscheinfreien Boote mehr vermietet.',
+          answer: "Ja. Mit der Licencia de Navegación (LN), dem an 1 Tag ohne Prüfung erhältlichen Titulín, fahren Sie eines unserer Boote in 30-45 Minuten nach Tossa. Ohne Schein buchen Sie die private Tour mit Skipper. Seit dem 1. Oktober 2026 werden keine führerscheinfreien Boote mehr vermietet.",
         },
         {
           question: 'Wie lange dauert die Fahrt mit dem Boot von Blanes nach Tossa?',
@@ -5766,7 +5766,7 @@ export const de: Translations = {
         ctaDescription: 'Buchen Sie Ihr Boot ab dem Hafen von Blanes und erleben Sie das einzigartige Erlebnis, auf dem Seeweg das schönste mittelalterliche Dorf der Costa Brava zu erreichen.',
         ctaButton: 'Ausflug nach Tossa buchen',
         warningTitle: 'Zwei Wege von Blanes nach Tossa',
-        warningBody: 'Seit dem 1. Oktober 2026 werden keine führerscheinfreien Boote mehr vermietet. Um von Blanes nach Tossa zu kommen, haben Sie zwei Möglichkeiten: (1) Selbstfahrer-Miete mit der Licencia de Navegación (feste Pakete 2 h / 4 h / 8 h ab {licBaja2h} € mit Mingolla Brava 19, Trimarchi 57S oder Pacific Craft 625, MwSt., Liegeplatz, Reinigung und Versicherung inklusive; Treibstoff und 500 € Kaution extra), oder (2) die <a href="/es/barco/excursion-privada" class="underline font-medium text-foreground hover:text-primary">Private Bootsfahrt mit Kapitän</a> (Pacific Craft 625 + Skipper, max. 4 h, bis zu 6 Pers., ab {excursionBaja4h} € inkl. MwSt., Skipper, Liegeplatz, Reinigung und Versicherung; Treibstoff extra). Wenn Sie den Schein noch nicht haben: Die Licencia de Navegación erwerben Sie in einem 1-Tages-Kurs ohne Prüfung.',
+        warningBody: "Seit dem 1. Oktober 2026 werden keine führerscheinfreien Boote mehr vermietet. Um von Blanes nach Tossa zu kommen, haben Sie zwei Möglichkeiten: (1) Selbstfahrer-Miete mit der Licencia de Navegación (feste Pakete 2 h / 4 h / 8 h ab {licBaja2h} € mit Mingolla Brava 19, Trimarchi 57S oder Pacific Craft 625, MwSt., Liegeplatz, Reinigung und Versicherung inklusive; Treibstoff und 500 € Kaution extra), oder (2) die <a href=\"/es/barco/excursion-privada\" class=\"underline font-medium text-foreground hover:text-primary\">Private Bootsfahrt mit Kapitän</a> (Pacific Craft 625 + Skipper, max. 4 h, bis zu 6 Pers., ab {excursionBaja4h} € inkl. MwSt., Skipper, Liegeplatz, Reinigung und Versicherung; Treibstoff extra). Wenn Sie den Schein noch nicht haben: Die Licencia de Navegación erwerben Sie an 1 Tag ohne Prüfung.",
         crossLinkingText: 'Wir bieten auch Service für Touristen, die in <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> und <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a> untergebracht sind. Von diesen Küstenorten des Maresme erreicht man den Hafen von Blanes in 10-20 Minuten mit dem Auto.',
         relatedTitle: 'Verwandte Dienstleistungen und Ziele',
         relatedCostaBrava: 'Weitere Ziele an der Costa Brava',
@@ -5790,7 +5790,7 @@ export const de: Translations = {
         closestPort: 'Der Nächste Hafen',
         closestPortDesc: 'Blanes ist der nächste Sporthafen zu Malgrat de Mar, nur 10 Minuten über die N-II. Boote mit Führerscheinpflicht und Tour mit Skipper, startklar mit allem Komfort.',
         varietyBoats: 'Mit Schein oder Skipper',
-        varietyBoatsDesc: 'Boote für 6-7 Personen, die Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) fahren, oder private Tour mit Skipper für bis zu 6 Personen.',
+        varietyBoatsDesc: "Boote für 6-7 Personen, die Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) fahren, oder private Tour mit Skipper für bis zu 6 Personen.",
         fuelIncluded: 'Klare Preise',
         fuelIncludedDesc: 'Feste Pakete für 2, 4 oder 8 Stunden inkl. MwSt., Liegeplatz, Reinigung und Versicherung. Treibstoff wird separat nach tatsächlichem Verbrauch bezahlt.',
         noExperience: 'Kein Schein? Mit Skipper',
@@ -5824,11 +5824,11 @@ export const de: Translations = {
         },
         {
           question: 'Wie viel kostet es, ein Boot von Blanes aus zu mieten?',
-          answer: 'Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper. Die Boote mit Schein gibt es als Pakete für 2, 4 oder 8 Stunden ab {licBaja2h} €, die private Tour mit Skipper ab {excursionBaja2h} € (2 Stunden). Treibstoff wird separat bezahlt.',
+          answer: "Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper. Die Boote mit Schein gibt es als Pakete für 2, 4 oder 8 Stunden ab {licBaja2h} €, die private Tour mit Skipper ab {excursionBaja2h} € (2 Stunden). Treibstoff wird separat bezahlt.",
         },
         {
           question: 'Brauche ich einen Bootsführerschein?',
-          answer: 'Ja. Seit dem 1. Oktober 2026 (RD 1188/2025) brauchen Sie für jedes gemietete Motorboot einen Schein. Die Licencia de Navegación, das Titulín, genügt: ein 1-Tages-Kurs ohne Prüfung. Ohne Schein buchen Sie die private Tour mit Skipper: Er fährt, Sie genießen.',
+          answer: "Ja. Seit dem 1. Oktober 2026 (RD 1188/2025) brauchen Sie für jedes gemietete Motorboot einen Schein. Die Licencia de Navegación, das Titulín, genügt: an 1 Tag erhältlich, ohne Prüfung. Ohne Schein buchen Sie die private Tour mit Skipper: Er fährt, Sie genießen.",
         },
         {
           question: 'Gibt es Parkplätze am Hafen von Blanes?',
@@ -5856,11 +5856,11 @@ export const de: Translations = {
         },
         {
           question: 'Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Santa Susanna bin?',
-          answer: 'Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper. Die Boote mit Schein gibt es als Pakete für 2, 4 oder 8 Stunden ab {licBaja2h} €, die private Tour mit Skipper ab {excursionBaja2h} € (2 Stunden). Treibstoff wird separat bezahlt.',
+          answer: "Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper. Die Boote mit Schein gibt es als Pakete für 2, 4 oder 8 Stunden ab {licBaja2h} €, die private Tour mit Skipper ab {excursionBaja2h} € (2 Stunden). Treibstoff wird separat bezahlt.",
         },
         {
           question: 'Brauche ich einen Bootsführerschein, um ein Boot zu mieten?',
-          answer: 'Ja. Seit dem 1. Oktober 2026 (RD 1188/2025) brauchen Sie für jedes gemietete Motorboot einen Schein. Die Licencia de Navegación, das Titulín, genügt: ein 1-Tages-Kurs ohne Prüfung. Ohne Schein buchen Sie die private Tour mit Skipper: Er fährt, Sie genießen.',
+          answer: "Ja. Seit dem 1. Oktober 2026 (RD 1188/2025) brauchen Sie für jedes gemietete Motorboot einen Schein. Die Licencia de Navegación, das Titulín, genügt: an 1 Tag erhältlich, ohne Prüfung. Ohne Schein buchen Sie die private Tour mit Skipper: Er fährt, Sie genießen.",
         },
         {
           question: 'Ist es einfach, mit öffentlichen Verkehrsmitteln von Santa Susanna anzureisen?',
@@ -5872,7 +5872,7 @@ export const de: Translations = {
         },
         {
           question: 'Was ist die beste Bootsexkursion, wenn ich in Santa Susanna wohne?',
-          answer: 'Ab Blanes empfehlen wir: (a) private 4-Stunden-Tour mit Skipper nach Tossa und Cala Bona (ab {excursionBaja4h} €, ideal ohne Schein und ohne Bootserfahrung); (b) Boot mit Licencia de Navegación (LN) für 4 Std., um in 2-3 Buchten zwischen Blanes und Lloret zu ankern oder bis Tossa zu fahren (ab 255 € / 4 Std.). Hat niemand in der Gruppe einen Schein: Das Titulín gibt es in einem 1-Tages-Kurs ohne Prüfung.',
+          answer: "Ab Blanes empfehlen wir: (a) private 4-Stunden-Tour mit Skipper nach Tossa und Cala Bona (ab {excursionBaja4h} €, ideal ohne Schein und ohne Bootserfahrung); (b) Boot mit Licencia de Navegación (LN) für 4 Std., um in 2-3 Buchten zwischen Blanes und Lloret zu ankern oder bis Tossa zu fahren (ab 255 € / 4 Std.). Hat niemand in der Gruppe einen Schein: Das Titulín gibt es an 1 Tag ohne Prüfung.",
         },
         {
           question: 'Kann ich von Santa Susanna aus eine Bootsfahrt bei Sonnenuntergang machen?',
@@ -5932,11 +5932,11 @@ export const de: Translations = {
         },
         {
           question: 'Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Calella bin?',
-          answer: 'Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper. Die Boote mit Schein gibt es als Pakete für 2, 4 oder 8 Stunden ab {licBaja2h} €, die private Tour mit Skipper ab {excursionBaja2h} € (2 Stunden). Treibstoff wird separat bezahlt.',
+          answer: "Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper. Die Boote mit Schein gibt es als Pakete für 2, 4 oder 8 Stunden ab {licBaja2h} €, die private Tour mit Skipper ab {excursionBaja2h} € (2 Stunden). Treibstoff wird separat bezahlt.",
         },
         {
           question: 'Brauche ich Vorkenntnisse, um ein Boot zu mieten?',
-          answer: 'Vorerfahrung ist nicht nötig. Bei der privaten Tour mit Skipper fahren Sie nicht selbst. Wenn Sie selbst ans Steuer möchten, brauchen Sie die Licencia de Navegación (1-Tages-Kurs, ohne Prüfung), und vor dem Ablegen erklären wir Ihnen Boot, Ankern und Sicherheitsregeln.',
+          answer: "Vorerfahrung ist nicht nötig. Bei der privaten Tour mit Skipper fahren Sie nicht selbst. Wenn Sie selbst ans Steuer möchten, brauchen Sie die Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung), und vor dem Ablegen erklären wir Ihnen Boot, Ankern und Sicherheitsregeln.",
         },
         {
           question: 'Kann ich mit öffentlichen Verkehrsmitteln von Calella hin und zurück fahren?',
@@ -5968,7 +5968,7 @@ export const de: Translations = {
         closestPort: 'Der Nächste Hafen',
         closestPortDesc: 'Blanes ist der am besten erreichbare Sporthafen ab Calella. 20 Minuten über die C-32 oder N-II, mit Booten für Führerscheininhaber, Touren mit Skipper und professionellem Service.',
         varietyBoats: 'Komplette Flotte',
-        varietyBoatsDesc: 'Boote für Inhaber der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) und private Tour mit Skipper für alle, die nicht selbst fahren möchten.',
+        varietyBoatsDesc: "Boote für Inhaber der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) und private Tour mit Skipper für alle, die nicht selbst fahren möchten.",
         fuelIncluded: 'Klarer Preis',
         fuelIncludedDesc: 'MwSt., Liegeplatz, Reinigung, Rettungswesten und Sicherheitsausrüstung inklusive. Treibstoff wird separat bezahlt.',
         noExperience: 'Für Alle Niveaus',
@@ -5999,14 +5999,14 @@ export const de: Translations = {
     costaBrava: {
       hero: {
         title: 'Bootsverleih an der Costa Brava',
-        subtitle: 'Entdecken Sie die schönsten Buchten und Strände der Costa Brava an Bord unserer Boote. Abfahrt im Hafen Blanes, im Herzen der katalanischen Küste. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper.',
+        subtitle: "Entdecken Sie die schönsten Buchten und Strände der Costa Brava an Bord unserer Boote. Abfahrt im Hafen Blanes, im Herzen der katalanischen Küste. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper.",
         badgePort: 'Hafen von Blanes',
         badgeCapacity: 'Bis zu 7 Personen',
         badgeLicense: 'Mit Titulín oder Skipper',
       },
       sections: {
         introP1: 'Die Costa Brava ist eines der spektakulaersten nautischen Reiseziele im Mittelmeer. Mit ueber 200 Kilometern Kueste zwischen Blanes und der franzoesischen Grenze bietet sie eine einzigartige Kombination aus Klippen, Buchten mit kristallklarem Wasser, mittelalterlichen Doerfern und Natur, die nur vom Meer aus zu schaetzen ist.',
-        introP2: 'Bei Costa Brava Rent a Boat bieten wir die einfachste Bootsmiete an der Costa Brava: Wählen Sie Ihr Boot im Hafen Blanes und fahren Sie in Ihrem Tempo. Zum Selbstfahren genügt die Licencia de Navegación (1-Tages-Kurs, ohne Prüfung); ohne Schein fahren Sie mit unserem Skipper. Vor dem Ablegen erklären wir Ihnen das Boot und geben Ihnen alles für einen perfekten Tag auf dem Meer.',
+        introP2: "Bei Costa Brava Rent a Boat bieten wir die einfachste Bootsmiete an der Costa Brava: Wählen Sie Ihr Boot im Hafen Blanes und fahren Sie in Ihrem Tempo. Zum Selbstfahren genügt die Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung); ohne Schein fahren Sie mit unserem Skipper. Vor dem Ablegen erklären wir Ihnen das Boot und geben Ihnen alles für einen perfekten Tag auf dem Meer.",
         introP3: 'Der Preis umfasst MwSt., Liegeplatz, Reinigung, Haftpflichtversicherung und Sicherheitsausrüstung; Treibstoff wird separat nach Verbrauch bezahlt. Keine versteckten Kosten. Buchen Sie heute und entdecken Sie, warum Tausende Familien jeden Sommer die Costa Brava für ihre Bootsabenteuer wählen.',
         whyChooseTitle: 'Warum die Costa Brava fuer Bootsverleih waehlen',
         covesTitle: 'Buchten und Straende, die zu Fuss nicht erreichbar sind',
@@ -6060,7 +6060,7 @@ export const de: Translations = {
       },
       faq: {
         experienceQ: 'Brauche ich Vorerfahrung, um ein Boot an der Costa Brava zu mieten?',
-        experienceA: 'Nein, Vorerfahrung ist nicht nötig. Bei der privaten Tour mit Skipper fahren Sie nicht selbst. Zum Selbstfahren genügt die Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) und ein Mindestalter von 18 Jahren; vor dem Ablegen zeigen wir Ihnen Manövrieren, Ankern und die Sicherheitsausrüstung. Unser Team ist während der gesamten Fahrt telefonisch erreichbar.',
+        experienceA: "Nein, Vorerfahrung ist nicht nötig. Bei der privaten Tour mit Skipper fahren Sie nicht selbst. Zum Selbstfahren genügt die Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) und ein Mindestalter von 18 Jahren; vor dem Ablegen zeigen wir Ihnen Manövrieren, Ankern und die Sicherheitsausrüstung. Unser Team ist während der gesamten Fahrt telefonisch erreichbar.",
         distanceQ: 'Wie weit kann ich ab Blanes fahren?',
         distanceA: 'Mit der Licencia de Navegación, tagsüber und in Küstennähe, erreichen Sie ab Blanes Cala Brava (15 Min.), Cala Sant Francesc (20 Min.), Lloret de Mar (30 Min.), Cala Treumal und Tossa de Mar (30-45 Min.) und als Tagestour Sant Feliu de Guíxols. Mit der privaten Tour mit Skipper fahren Sie die Route ohne Schein.',
         weatherQ: 'Was passiert bei schlechtem Wetter am Tag meiner Buchung?',
@@ -6077,11 +6077,11 @@ export const de: Translations = {
         },
         {
           question: 'Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Tordera wohne?',
-          answer: 'Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper. Die Boote mit Schein gibt es als Pakete für 2, 4 oder 8 Stunden ab {licBaja2h} €, die private Tour mit Skipper ab {excursionBaja2h} € (2 Stunden). Treibstoff wird separat bezahlt.',
+          answer: "Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper. Die Boote mit Schein gibt es als Pakete für 2, 4 oder 8 Stunden ab {licBaja2h} €, die private Tour mit Skipper ab {excursionBaja2h} € (2 Stunden). Treibstoff wird separat bezahlt.",
         },
         {
           question: 'Brauche ich einen Bootsführerschein?',
-          answer: 'Ja. Seit dem 1. Oktober 2026 (RD 1188/2025) brauchen Sie für jedes gemietete Motorboot einen Schein. Die Licencia de Navegación, das Titulín, genügt: ein 1-Tages-Kurs ohne Prüfung. Ohne Schein buchen Sie die private Tour mit Skipper: Er fährt, Sie genießen.',
+          answer: "Ja. Seit dem 1. Oktober 2026 (RD 1188/2025) brauchen Sie für jedes gemietete Motorboot einen Schein. Die Licencia de Navegación, das Titulín, genügt: an 1 Tag erhältlich, ohne Prüfung. Ohne Schein buchen Sie die private Tour mit Skipper: Er fährt, Sie genießen.",
         },
         {
           question: 'Gibt es Parkplätze am Hafen von Blanes?',
@@ -6089,8 +6089,8 @@ export const de: Translations = {
         },
       ],
       seo: {
-        title: 'Bootsverleih Tordera | Hafen Blanes 15 Min | Schein an 1 Tag oder Skipper',
-        description: 'Urlaub in Tordera? Der Hafen Blanes ist 15 Min entfernt. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper.',
+        title: "Bootsverleih Tordera | Hafen Blanes 15 Min | Schein oder Skipper",
+        description: "Urlaub in Tordera? Der Hafen Blanes ist 15 Min entfernt. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper.",
         ogTitle: 'Bootsvermietung Tordera | Delta del Tordera mit dem Boot',
         ogDescription: 'Von Tordera zum Hafen Blanes in 15 Min. Mit Titulín oder mit Skipper.',
       },
@@ -6109,7 +6109,7 @@ export const de: Translations = {
         whyCard1Title: 'Ihr nächstgelegener Hafen',
         whyCard1Desc: 'Der Hafen von Blanes ist nur 10 km von Tordera entfernt und damit der nächstgelegene und zugänglichste Bootsvermietungspunkt. Ob Sie Anwohner sind oder auf der Durchreise – in 15 Minuten können Sie bereits durch das kristallklare Wasser der Costa Brava fahren. Die Straßenverbindung ist direkt und unkompliziert.',
         whyCard2Title: 'Mit Schein oder Skipper',
-        whyCard2Desc: 'Mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) fahren Sie unsere Boote für 6-7 Personen. Hat niemand in der Gruppe einen Schein, nimmt die private Tour mit Skipper bis zu 6 Personen mit.',
+        whyCard2Desc: "Mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) fahren Sie unsere Boote für 6-7 Personen. Hat niemand in der Gruppe einen Schein, nimmt die private Tour mit Skipper bis zu 6 Personen mit.",
         whyCard3Title: 'Klare Preise, keine Überraschungen',
         whyCard3Desc: 'Pakete für 2, 4 oder 8 Stunden inkl. MwSt., Liegeplatz, Reinigung und Versicherung. Treibstoff wird bei allen Booten separat nach tatsächlichem Verbrauch bezahlt.',
         whyCard4Title: 'Keine Vorkenntnisse erforderlich',
@@ -6160,7 +6160,7 @@ export const de: Translations = {
         },
         {
           question: 'Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Palafolls bin?',
-          answer: 'Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper. Die Boote mit Schein gibt es als Pakete für 2, 4 oder 8 Stunden ab {licBaja2h} €, die private Tour mit Skipper ab {excursionBaja2h} € (2 Stunden). Treibstoff wird separat bezahlt.',
+          answer: "Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper. Die Boote mit Schein gibt es als Pakete für 2, 4 oder 8 Stunden ab {licBaja2h} €, die private Tour mit Skipper ab {excursionBaja2h} € (2 Stunden). Treibstoff wird separat bezahlt.",
         },
         {
           question: 'Kann ich vom Campingplatz in Palafolls zum Hafen von Blanes gelangen?',
@@ -6168,12 +6168,12 @@ export const de: Translations = {
         },
         {
           question: 'Brauche ich Erfahrung, um ein Boot zu mieten?',
-          answer: 'Vorerfahrung ist nicht nötig. Bei der privaten Tour mit Skipper fahren Sie nicht selbst. Wenn Sie selbst ans Steuer möchten, brauchen Sie die Licencia de Navegación (1-Tages-Kurs, ohne Prüfung), und vor dem Ablegen erklären wir Ihnen Boot, Ankern und Sicherheitsregeln.',
+          answer: "Vorerfahrung ist nicht nötig. Bei der privaten Tour mit Skipper fahren Sie nicht selbst. Wenn Sie selbst ans Steuer möchten, brauchen Sie die Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung), und vor dem Ablegen erklären wir Ihnen Boot, Ankern und Sicherheitsregeln.",
         },
       ],
       seo: {
-        title: 'Bootsverleih Palafolls | Hafen Blanes 12 Min | Schein an 1 Tag oder Skipper',
-        description: 'Urlaub in Palafolls? Der Hafen Blanes ist 12 Min entfernt. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper.',
+        title: "Bootsverleih Palafolls | Hafen Blanes 12 Min | Schein oder Skipper",
+        description: "Urlaub in Palafolls? Der Hafen Blanes ist 12 Min entfernt. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper.",
         ogTitle: 'Bootsvermietung Palafolls | 12 Min zum Hafen Blanes',
         ogDescription: 'Von Palafolls zum Hafen Blanes in 12 Min. Mit Titulín oder mit Skipper.',
       },
@@ -6243,11 +6243,11 @@ export const de: Translations = {
         },
         {
           question: 'Wie viel kostet es, ein Boot von Blanes aus zu mieten, wenn ich in Pineda de Mar bin?',
-          answer: 'Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper. Die Boote mit Schein gibt es als Pakete für 2, 4 oder 8 Stunden ab {licBaja2h} €, die private Tour mit Skipper ab {excursionBaja2h} € (2 Stunden). Treibstoff wird separat bezahlt.',
+          answer: "Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper. Die Boote mit Schein gibt es als Pakete für 2, 4 oder 8 Stunden ab {licBaja2h} €, die private Tour mit Skipper ab {excursionBaja2h} € (2 Stunden). Treibstoff wird separat bezahlt.",
         },
         {
           question: 'Brauche ich einen Bootsführerschein, um ein Boot zu mieten?',
-          answer: 'Ja. Seit dem 1. Oktober 2026 (RD 1188/2025) brauchen Sie für jedes gemietete Motorboot einen Schein. Die Licencia de Navegación, das Titulín, genügt: ein 1-Tages-Kurs ohne Prüfung. Ohne Schein buchen Sie die private Tour mit Skipper: Er fährt, Sie genießen.',
+          answer: "Ja. Seit dem 1. Oktober 2026 (RD 1188/2025) brauchen Sie für jedes gemietete Motorboot einen Schein. Die Licencia de Navegación, das Titulín, genügt: an 1 Tag erhältlich, ohne Prüfung. Ohne Schein buchen Sie die private Tour mit Skipper: Er fährt, Sie genießen.",
         },
         {
           question: 'Kann ich mit öffentlichen Verkehrsmitteln von Pineda de Mar nach Blanes fahren?',
@@ -6267,8 +6267,8 @@ export const de: Translations = {
         },
       ],
       seo: {
-        title: 'Bootsverleih Pineda de Mar | Hafen Blanes 18 Min | Schein an 1 Tag oder Skipper',
-        description: 'Urlaub in Pineda de Mar? Der Hafen Blanes ist 18 Min entfernt. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder fahren mit Skipper.',
+        title: "Bootsverleih Pineda de Mar | Hafen Blanes 18 Min | Schein oder Skipper",
+        description: "Urlaub in Pineda de Mar? Der Hafen Blanes ist 18 Min entfernt. Seit dem 1. Oktober 2026 mieten Sie mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder fahren mit Skipper.",
         ogTitle: 'Bootsvermietung Pineda de Mar | 18 Min zum Hafen Blanes',
         ogDescription: 'Von Pineda de Mar zum Hafen Blanes in 18 Min. Mit Titulín oder mit Skipper.',
       },
@@ -6279,7 +6279,7 @@ export const de: Translations = {
       breadcrumbName: 'Bootsvermietung Pineda de Mar',
       sections: {
         heroTitle: 'Bootsvermietung in der Nähe von Pineda de Mar',
-        heroSubtitle: 'Pineda de Mar ist eines der wichtigsten Urlaubsziele an der Küste des Maresme, mit Dutzenden Hotels und All-inclusive-Resorts. Der Hafen Blanes, nur 18 Minuten mit dem Auto oder 12 Minuten mit dem Zug entfernt, ist der nächste Bootsverleih. Genießen Sie die Costa Brava mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) oder mit Skipper.',
+        heroSubtitle: "Pineda de Mar ist eines der wichtigsten Urlaubsziele an der Küste des Maresme, mit Dutzenden Hotels und All-inclusive-Resorts. Der Hafen Blanes, nur 18 Minuten mit dem Auto oder 12 Minuten mit dem Zug entfernt, ist der nächste Bootsverleih. Genießen Sie die Costa Brava mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) oder mit Skipper.",
         heroBadgeCar: '15 km / 18 Min mit dem Auto',
         heroBadgeTransport: 'RENFE R1: 12 Min',
         heroBadgeExtra: 'Küste des Maresme',
@@ -6288,7 +6288,7 @@ export const de: Translations = {
         whyCard1Title: 'Der nächstgelegene Hafen mit Bootsvermietung',
         whyCard1Desc: 'Pineda de Mar hat keinen Yachthafen oder Bootsvermietungsservice. Der Hafen von Blanes ist der nächstgelegene Punkt, wo Sie ein Boot mieten können, nur 15 km über die N-II entfernt. Wenn Sie in einem der vielen Hotels von Pineda übernachten, fahren Sie in weniger als 20 Minuten bereits durch das kristallklare Wasser der Costa Brava.',
         whyCard2Title: 'Mit Schein oder Skipper',
-        whyCard2Desc: 'Mit der Licencia de Navegación (1-Tages-Kurs, ohne Prüfung) fahren Sie unsere Boote für 6-7 Personen. Hat niemand in der Gruppe einen Schein, nimmt die private Tour mit Skipper bis zu 6 Personen mit.',
+        whyCard2Desc: "Mit der Licencia de Navegación (an 1 Tag erhältlich, ohne Prüfung) fahren Sie unsere Boote für 6-7 Personen. Hat niemand in der Gruppe einen Schein, nimmt die private Tour mit Skipper bis zu 6 Personen mit.",
         whyCard3Title: 'Klare Preise, keine Überraschungen',
         whyCard3Desc: 'Pakete für 2, 4 oder 8 Stunden inkl. MwSt., Liegeplatz, Reinigung und Versicherung. Treibstoff wird bei allen Booten separat nach tatsächlichem Verbrauch bezahlt.',
         whyCard4Title: 'Keine Vorkenntnisse erforderlich',
@@ -6346,9 +6346,9 @@ export const de: Translations = {
     newBadge: "Neu",
   },
   titulinSection: {
-    title: "Machen Sie den Titulín an einem Tag und fahren Sie selbst",
-    subtitle: "6 Stunden Kurs, ohne Prüfung und lebenslang gültig. Wir organisieren ihn in der Nähe von Blanes und kombinieren ihn mit Ihrer ersten Miete: Sie beenden den Kurs mit dem Schein in der Hand und dem gebuchten Boot.",
-    ctaPrimary: "Ich will den Titulín machen",
+    title: "Was der Titulín ist und welche Boote Sie fahren dürfen",
+    subtitle: "Einsteiger-Bootsschein: 6 Stunden an einer zugelassenen Schule, ohne Prüfung und lebenslang gültig. Damit steuern Sie unsere drei Boote mit Lizenz.",
+    ctaPrimary: "Was der Titulín ist",
     captainedLine: "Lieber nicht selbst steuern?",
     captainedCta: "Mit professionellem Skipper hinausfahren",
   },

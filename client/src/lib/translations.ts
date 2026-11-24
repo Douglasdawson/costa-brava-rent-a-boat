@@ -1151,12 +1151,18 @@ export interface Translations {
       noCombinations?: string;
       chooseManually?: string;
     };
+    /** Real info on each boat card: who can drive it. */
+    boatReq?: {
+      captained?: string;
+      licensed?: string;
+    };
     // Nautical license verifier (modal triggered when selecting "with licence").
     // Orientation-only tool based on RD 875/2014.
     licenseVerifier?: {
       title?: string;
       subtitle?: string;
       panelEyebrow?: string;
+      compactCta?: string;
       panelHelper?: string;
       discoverCta?: string;
       countryLabel?: string;

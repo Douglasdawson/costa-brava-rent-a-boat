@@ -937,10 +937,15 @@ export const en: Translations = {
       toastTitle: "Pick an alternative",
       toastDesc: "Your preferred time is no longer available.",
     },
+    boatReq: {
+      captained: "With skipper, no licence needed",
+      licensed: "With Navigation Licence",
+    },
     licenseVerifier: {
       title: "Check your nautical licence",
       subtitle: "30 seconds to confirm whether your licence works for renting a boat in Spain.",
       panelEyebrow: "Check your licence · 30 s",
+      compactCta: "Check your licence in 30 s",
       panelHelper: "Confirm whether your licence works for renting in Spain.",
       discoverCta: "Is your licence valid here? Check it in 1 minute",
       countryLabel: "Country that issued your licence",

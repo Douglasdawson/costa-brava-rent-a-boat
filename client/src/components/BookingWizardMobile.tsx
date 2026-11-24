@@ -367,7 +367,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
         })()}
       <div className="border-t border-border bg-background px-4 py-2.5">
         {isLastStep && (
-          <p className="text-[11px] text-muted-foreground text-center mb-1.5 px-2 leading-tight">
+          <p className="text-xs text-muted-foreground text-center mb-1.5 px-2 leading-tight">
             {props.t.bookingWizard?.hints?.submitReassurance ||
               "Te respondemos en menos de 2 horas. Sin pago online, sin compromiso."}
           </p>
@@ -434,6 +434,12 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             </>
           )}
         </div>
+        {currentStep > 1 && !isLastStep && (
+          <p className="mt-1.5 flex items-center justify-center gap-1.5 text-xs text-muted-foreground [@media(max-height:700px)]:hidden">
+            <SiWhatsapp className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+            {props.t.bookingTrust?.replyTime || "Respondemos en <2h por WhatsApp"}
+          </p>
+        )}
       </div>
     </div>
   );

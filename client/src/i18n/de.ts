@@ -939,10 +939,15 @@ export const de: Translations = {
       cta: "Auf WhatsApp chatten",
       whatsappMessage: "Hallo, ich wollte gerade ein Boot in Blanes buchen. Können Sie mir helfen, die Verfügbarkeit zu bestätigen?",
     },
+    boatReq: {
+      captained: "Mit Skipper, ohne Bootsschein",
+      licensed: "Mit Navigationsschein",
+    },
     licenseVerifier: {
       title: "Prüfe deinen Bootsführerschein",
       subtitle: "30 Sekunden, um zu prüfen, ob dein Schein zur Bootsmiete in Spanien berechtigt.",
       panelEyebrow: "Prüfe deinen Schein · 30 Sek.",
+      compactCta: "Prüfe deinen Schein in 30 Sek.",
       panelHelper: "Prüfe, ob dein Schein zur Miete in Spanien berechtigt.",
       discoverCta: "Gilt dein Bootsführerschein? Prüfe es in 1 Minute",
       countryLabel: "Land, das deinen Schein ausgestellt hat",

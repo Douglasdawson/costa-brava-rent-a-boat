@@ -345,7 +345,7 @@ body { overflow-x: hidden; }
   .cta-pulse-light::after { border-color: rgb(255 255 255 / 0.9); }
 
   /* Booking modal entrance. shadcn's default slides it in from the top-left corner; this one fades and rises
-     (desktop) or slides up from the bottom edge (full-screen on phones). Opacity-only under reduced motion. */
+     at every size (the modal is a floating card, not a sheet). Opacity-only under reduced motion. */
   .booking-modal[data-state="open"] { animation: booking-in 240ms cubic-bezier(0.16, 1, 0.3, 1) both !important; }
   .booking-modal[data-state="closed"] { animation: booking-out 160ms ease-in both !important; }
   @keyframes booking-in { from { opacity: 0; } to { opacity: 1; } }
@@ -353,10 +353,6 @@ body { overflow-x: hidden; }
   @media (prefers-reduced-motion: no-preference) {
     @keyframes booking-in { from { opacity: 0; translate: 0 16px; } to { opacity: 1; translate: 0 0; } }
     @keyframes booking-out { from { opacity: 1; translate: 0 0; } to { opacity: 0; translate: 0 8px; } }
-    @media (max-width: 767px) {
-      @keyframes booking-in { from { opacity: 1; translate: 0 100%; } to { opacity: 1; translate: 0 0; } }
-      @keyframes booking-out { from { opacity: 1; translate: 0 0; } to { opacity: 1; translate: 0 100%; } }
-    }
   }
 
   @keyframes cta-ring {

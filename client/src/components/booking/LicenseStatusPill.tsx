@@ -77,7 +77,7 @@ export default function LicenseStatusPill({ country, status, onChange }: License
       <Icon className={`w-4 h-4 shrink-0 ${t1.iconColor}`} aria-hidden />
       <div className="min-w-0 flex-1">
         {countryName && (
-          <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-foreground/70 truncate">
+          <p className="text-[13px] font-medium text-foreground/75 truncate">
             {countryEntry?.flag} {countryName}
           </p>
         )}

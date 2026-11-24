@@ -1613,10 +1613,15 @@ export const es: Translations = {
       toastTitle: "Elige una alternativa",
       toastDesc: "Tu horario preferido ya no está disponible.",
     },
+    boatReq: {
+      captained: "Con patrón, sin título",
+      licensed: "Con Licencia de Navegación",
+    },
     licenseVerifier: {
       title: "Verifica tu licencia náutica",
       subtitle: "Comprueba en 30 segundos si tu título sirve para alquilar barco con licencia en España.",
       panelEyebrow: "Verifica tu licencia · 30 s",
+      compactCta: "Verifica tu título en 30 s",
       panelHelper: "Comprueba si tu título sirve para alquilar en España.",
       discoverCta: "¿Te vale tu licencia? Compruébalo en 1 minuto",
       countryLabel: "País que emitió tu licencia",

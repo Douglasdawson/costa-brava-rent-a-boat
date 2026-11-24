@@ -935,10 +935,15 @@ export const nl: Translations = {
       cta: "Chat op WhatsApp",
       whatsappMessage: "Hoi, ik wilde net een boot in Blanes boeken. Kun je me helpen de beschikbaarheid te bevestigen?",
     },
+    boatReq: {
+      captained: "Met schipper, geen vaarbewijs nodig",
+      licensed: "Met Navigatielicentie",
+    },
     licenseVerifier: {
       title: "Controleer je vaarbewijs",
       subtitle: "30 seconden om te checken of je vaarbewijs geldig is voor bootverhuur in Spanje.",
       panelEyebrow: "Check je vaarbewijs · 30 s",
+      compactCta: "Controleer je vaarbewijs in 30 s",
       panelHelper: "Controleer of je vaarbewijs geldig is voor verhuur in Spanje.",
       discoverCta: "Is je vaarbewijs geldig? Controleer het in 1 minuut",
       countryLabel: "Land dat je vaarbewijs heeft uitgegeven",

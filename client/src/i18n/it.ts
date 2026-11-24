@@ -939,10 +939,15 @@ export const it: Translations = {
       cta: "Chatta su WhatsApp",
       whatsappMessage: "Ciao, stavo per prenotare una barca a Blanes. Puoi aiutarmi a confermare la disponibilità?",
     },
+    boatReq: {
+      captained: "Con skipper, senza titolo",
+      licensed: "Con Licenza di Navigazione",
+    },
     licenseVerifier: {
       title: "Verifica la tua patente nautica",
       subtitle: "30 secondi per scoprire se la tua patente è valida per noleggiare in Spagna.",
       panelEyebrow: "Verifica la tua patente · 30 s",
+      compactCta: "Verifica il tuo titolo in 30 s",
       panelHelper: "Scopri se la tua patente è valida per noleggiare in Spagna.",
       discoverCta: "La tua patente è valida? Verificalo in 1 minuto",
       countryLabel: "Paese che ha rilasciato la tua patente",

@@ -1,7 +1,7 @@
-import { lazy, Suspense } from "react";
 import { Check, Users } from "lucide-react";
 import type { Boat } from "@shared/schema";
 import { getBoatCatalogMinPrice } from "@shared/pricing";
+import { isCaptainedBoat } from "@shared/boatData";
 import { isLicenseFreeEraActive } from "@shared/constants";
 import { translateBoatText } from "@shared/boatTextTranslations";
 import { getBoatImage } from "@/utils/boatImages";
@@ -10,11 +10,9 @@ import { cn } from "@/lib/utils";
 import { useFleetAvailabilityForDate, type DayStatus } from "@/hooks/useFleetAvailabilityForDate";
 import { PARTIAL_TONE, BOOKED_TONE } from "@/components/AvailabilityCalendar";
 import { MultiBoatCombinations } from "@/components/booking-form/MultiBoatCombinations";
-import LicenseVerifierPanelSkeleton from "@/components/booking/LicenseVerifierPanelSkeleton";
+import LicenseVerifierDisclosure from "@/components/booking/LicenseVerifierDisclosure";
 import type { Translations } from "@/lib/translations";
 import type { BookingWizardMobileProps } from "@/components/BookingWizardMobile";
-
-const LicenseVerifierPanel = lazy(() => import("@/components/booking/LicenseVerifierPanel"));
 
 type StepBoatProps = Pick<
   BookingWizardMobileProps,
@@ -103,6 +101,12 @@ function BoatOption({
   const price = getBoatCatalogMinPrice(boat.pricing);
   const engine = boat.specifications?.engine;
   const busy = dayStatus && dayStatus !== "available";
+  // Who drives it is the question the customer is really answering at this step.
+  const pilot = isCaptainedBoat(boat.id)
+    ? t.bookingWizard?.boatReq?.captained
+    : boat.requiresLicense
+      ? t.bookingWizard?.boatReq?.licensed
+      : undefined;
 
   return (
     <button
@@ -151,10 +155,13 @@ function BoatOption({
           </span>
           {engine && <span>{engine}</span>}
         </span>
+        {pilot && (
+          <span className="mt-0.5 block text-xs font-medium leading-snug text-foreground/80">{pilot}</span>
+        )}
         {busy && (
           <span
             className={cn(
-              "mt-1.5 inline-block rounded-full border px-2 py-0.5 text-[11px] font-medium",
+              "mt-1.5 inline-block rounded-full border px-2 py-0.5 text-xs font-medium",
               dayStatus === "partial" ? PARTIAL_TONE : BOOKED_TONE
             )}
           >
@@ -220,9 +227,9 @@ export default function StepBoat({
   const showLicenseFilter = !preSelectedBoatId && isLicenseFreeEraActive();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 [@media(max-height:700px)]:space-y-4">
       <header className="text-center">
-        <h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground text-balance sm:text-3xl">
+        <h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground text-balance sm:text-3xl [@media(max-height:700px)]:text-xl">
           {needsMultiBoat
             ? t.bookingWizard?.multiBoat?.title || "Vuestros barcos"
             : t.wizard.chooseYourBoat}
@@ -237,23 +244,6 @@ export default function StepBoat({
           </p>
           <LicenseSwitch value={licenseFilter} onChange={setLicenseFilter} t={t} />
         </div>
-      )}
-
-      {!preSelectedBoatId && licenseFilter === "with" && (
-        <Suspense fallback={<LicenseVerifierPanelSkeleton />}>
-          <LicenseVerifierPanel
-            verifier={licenseVerifier}
-            onSwitchToUnlicensed={
-              isLicenseFreeEraActive()
-                ? () => {
-                    setLicenseFilter("without");
-                    setSelectedBoat("");
-                    licenseVerifier.dismiss();
-                  }
-                : undefined
-            }
-          />
-        </Suspense>
       )}
 
       {needsMultiBoat ? (
@@ -301,6 +291,23 @@ export default function StepBoat({
             <p className="mt-2 text-center text-sm text-destructive">{getFieldError("boat")}</p>
           )}
         </div>
+      )}
+
+      {/* Optional help, after the choice that is the task of this step. A skippered boat
+          needs no title, so the check is pointless once one is picked. */}
+      {!preSelectedBoatId && licenseFilter === "with" && !(selectedBoat && isCaptainedBoat(selectedBoat)) && (
+        <LicenseVerifierDisclosure
+          verifier={licenseVerifier}
+          onSwitchToUnlicensed={
+            isLicenseFreeEraActive()
+              ? () => {
+                  setLicenseFilter("without");
+                  setSelectedBoat("");
+                  licenseVerifier.dismiss();
+                }
+              : undefined
+          }
+        />
       )}
     </div>
   );

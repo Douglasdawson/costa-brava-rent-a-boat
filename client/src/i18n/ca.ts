@@ -935,10 +935,15 @@ export const ca: Translations = {
       cta: "Parlar per WhatsApp",
       whatsappMessage: "Hola, estava a punt de reservar un vaixell a Blanes. M'ajudes a confirmar disponibilitat?",
     },
+    boatReq: {
+      captained: "Amb patró, sense títol",
+      licensed: "Amb Llicència de Navegació",
+    },
     licenseVerifier: {
       title: "Verifica la teva llicència nàutica",
       subtitle: "Comprova en 30 segons si el teu títol serveix per llogar barca amb llicència a Espanya.",
       panelEyebrow: "Verifica la teva llicència · 30 s",
+      compactCta: "Verifica el teu títol en 30 s",
       panelHelper: "Comprova si el teu títol serveix per llogar a Espanya.",
       discoverCta: "Et serveix la teva llicència? Comprova-ho en 1 minut",
       countryLabel: "País que va emetre la teva llicència",

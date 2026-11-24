@@ -525,7 +525,8 @@ export default function BookingFormWidget({
       setValidatedCode(null);
       setCodeInput("");
       setShowCodeSection(false);
-      setLicenseFilter("without");
+      // Same default as the initial state: after the licence-free era "without" would hide the whole fleet.
+      setLicenseFilter(isLicenseFreeEraActive() ? "without" : "with");
       setHoldExpiresAt(null);
       setHoldExpired(false);
       setCurrentStep(1);

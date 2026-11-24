@@ -332,12 +332,12 @@ export default function LicenseVerifierPanel({ verifier, onSwitchToUnlicensed }:
         </fieldset>
       )}
 
-      {/* Actions — sticky on mobile so Verify never falls below the fold */}
-      <div className="sticky bottom-0 -mx-4 sm:-mx-5 px-4 sm:px-5 pb-safe pt-3 bg-background border-t border-border flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3 sm:bg-transparent sm:border-0 sm:static sm:p-0 sm:mx-0 sm:pb-0">
+      {/* Actions. Not sticky: the wizard already owns the one sticky bar of the screen. */}
+      <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-3">
         <button
           type="button"
           onClick={() => dismiss()}
-          className={`text-sm text-foreground/65 hover:text-foreground underline-offset-4 hover:underline self-center sm:self-start min-h-11 inline-flex items-center -my-2.5 ${FOCUS_RING} ${COLOR_TRANSITION}`}
+          className={`text-sm text-foreground/75 hover:text-foreground underline-offset-4 hover:underline self-center sm:self-start min-h-11 inline-flex items-center ${FOCUS_RING} ${COLOR_TRANSITION}`}
         >
           {tv?.skip ?? "Lo verifico más tarde"}
         </button>
@@ -345,7 +345,7 @@ export default function LicenseVerifierPanel({ verifier, onSwitchToUnlicensed }:
           type="button"
           onClick={handleVerify}
           disabled={!canVerify || isVerifying}
-          className="rounded-full px-7 h-11 font-semibold transition-opacity duration-150"
+          className="rounded-full px-7 min-h-12 w-full sm:w-auto font-semibold transition-opacity duration-150"
         >
           {isVerifying ? (
             <>
@@ -359,7 +359,7 @@ export default function LicenseVerifierPanel({ verifier, onSwitchToUnlicensed }:
       </div>
 
       {/* Disclaimer */}
-      <p className="text-[11px] leading-relaxed text-foreground/65 pt-1 border-t border-border/60">
+      <p className="text-xs leading-relaxed text-foreground/75">
         {tv?.disclaimer ?? "Información orientativa basada en el Real Decreto 875/2014. La autorización final depende de la Capitanía Marítima."}{" "}
         <a
           href="https://www.boe.es/eli/es/rd/2014/10/10/875"

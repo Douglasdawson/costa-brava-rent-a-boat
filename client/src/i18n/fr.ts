@@ -941,10 +941,15 @@ export const fr: Translations = {
       cta: "Chatter sur WhatsApp",
       whatsappMessage: "Bonjour, j'étais sur le point de réserver un bateau à Blanes. Pouvez-vous m'aider à confirmer la disponibilité ?",
     },
+    boatReq: {
+      captained: "Avec skipper, sans titre",
+      licensed: "Avec Licence de Navigation",
+    },
     licenseVerifier: {
       title: "Vérifie ton permis bateau",
       subtitle: "30 secondes pour savoir si ton permis te permet de louer un bateau en Espagne.",
       panelEyebrow: "Vérifie ton permis · 30 s",
+      compactCta: "Vérifie ton titre en 30 s",
       panelHelper: "Vérifie si ton permis te permet de louer en Espagne.",
       discoverCta: "Ton permis est-il valable ? Vérifie-le en 1 minute",
       countryLabel: "Pays qui a délivré ton permis",

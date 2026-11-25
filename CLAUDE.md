@@ -51,7 +51,7 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 |------|------|-------------|
 | Paginas publicas | `pages/*.tsx` | 39 paginas (10 locations, 4 activities, 3 jet ski, scooters, 2 categories, blog, FAQ, about, etc.) |
 | Componentes | `components/*.tsx` | Componentes publicos (Hero, Fleet, Booking, Navigation, etc.) |
-| Booking flow (modal del Hero) | `BookingFormWidget.tsx` → `BookingWizardMobile.tsx` / `BookingFormDesktop.tsx` | Wizard de 6 steps (1 Cuándo, 2 Barco [se salta con barco preseleccionado], 3 Hora y duración, 4 Mejora tu día, 5 Garantías, 6 Confirmar). Los cuerpos de los steps son COMPARTIDOS en `components/booking/Step{WhenWho,Boat,Departure,Extras,Coverages,Confirm}.tsx`; los dos wizards solo los montan, un cambio de step se hace una vez. Diseño píldora (`rounded-full`/`rounded-3xl`, selección `bg-cta`), cada step cabe en el viewport móvil salvo el 6 (scroll). Post-envío: `BookingConfirmation.tsx`. Lazy-loaded via `useBookingModal`. Es lo que abre el CTA del Hero. |
+| Booking flow (modal del Hero) | `client/src/hooks/useBookingModal.tsx` (+ `bookingModalContext.ts`) → `BookingFormWidget.tsx` → `BookingWizardMobile.tsx` / `BookingFormDesktop.tsx` | Modal flotante con wizard de 6 steps (Cuándo, Barco [se salta con barco preseleccionado], Hora y duración, Mejora tu día, Garantías, Confirmar). Los cuerpos de los steps son COMPARTIDOS en `components/booking/Step{WhenWho,Boat,Departure,Extras,Coverages,Confirm}.tsx`: un cambio de step se hace una vez. Post-envío: `BookingConfirmation.tsx`. Es lo que abre el CTA del Hero. Detalle: docs/arquitectura-modulos.md |
 | Panel admin CRM | `components/crm/` | 25+ componentes (Dashboard, Calendar, Bookings, Fleet, etc.) |
 | UI base | `components/ui/` | Componentes shadcn/ui |
 | Traducciones i18n | `i18n/*.ts` | 8 idiomas (es, en, ca, fr, de, nl, it, ru) |
@@ -90,12 +90,12 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 | Nuevo endpoint API | `server/routes/<modulo>.ts` + registrar en `server/routes/index.ts` |
 | Nuevo campo DB | `shared/schema.ts` + `npm run db:push` |
 | Precios/temporadas | `shared/pricing.ts` |
-| Precios dinámicos (overrides por fecha) | Tabla `pricing_overrides` (`shared/schema.ts`) + lógica en `shared/pricing.ts` (`selectApplicableOverride`) + storage `server/storage/pricingOverrides.ts` + admin API `server/routes/admin-pricing-overrides.ts` + endpoint público `server/routes/pricing.ts` (`/api/pricing/calendar`) + UI CRM `client/src/components/crm/PricingTab.tsx` (tab "Precios") |
+| Precios dinámicos (overrides por fecha) | Tabla `pricing_overrides` + `selectApplicableOverride` en `shared/pricing.ts` + `server/storage/pricingOverrides.ts`; UI CRM `PricingTab.tsx`. Detalle: docs/arquitectura-modulos.md |
 | Datos de barcos | `shared/boatData.ts` |
 | SEO de pagina | `client/src/utils/seo-config.ts`. REGLA (bug Lloret 2026-06 y Maresme 2026-07): el `STATIC_META` de `server/seoInjector.ts` DEBE espejar seo-config para cada página estática; si divergen, Google ve el title viejo del SSR mientras el cliente hidrata el bueno |
 | Publicar post de blog | Entrada en `server/seeds/blogSeed.ts` + `POST /api/admin/seed-blog` tras deploy (upsert por slug). OJO: `metaDescription` max 160 chars (`varchar(160)` en DB): si se pasa, el seed FALLA EN SILENCIO (created:0, error solo en logs). Alternativa sin redeploy: `POST /api/admin/blog` (login PIN + headers Origin/Referer por CSRF) |
 | Stats de flota viva (conteos/floor públicos) | `server/lib/fleetStatsCache.ts` (excluye jet skis vía `isJetSkiProduct`; jamás contar filas jetski de `boats` como flota) → consumido por seoInjector `applyFleetStatsToText`, llms.txt y `/api/ai-context`. Al escribir copy nuevo server-side usar "70 EUR" como baseline: el runtime lo reescribe al floor vivo |
-| Reindexación GSC automatizada | Claude-in-Chrome + `javascript_tool` (la UI de GSC nunca llega a document_idle: screenshots/read_page fallan siempre). Técnica completa en memoria `geo-audit-maresme-2026-07-02`. Propiedad `sc-domain:costabravarentaboat.com`, cuenta ivanramirezdawson@gmail.com |
+| Reindexación GSC automatizada | Claude-in-Chrome + `javascript_tool` (la UI de GSC nunca llega a document_idle). Propiedad `sc-domain:costabravarentaboat.com`. Técnica en memoria `geo-audit-maresme-2026-07-02`; detalle: docs/arquitectura-modulos.md |
 | Slugs i18n de rutas | `shared/i18n-routes.ts` |
 | Titulo/description de ficha de barco (SSR = cliente) | `shared/boatPageMeta.ts` (`buildBoatPageMeta`, precio de bloque real "desde 175 EUR / 2 h", nunca "/h" con precio de 2 h); lo consumen `seoInjector.ts` y `seo-config.ts`/`BoatDetailPage.tsx`. Test de paridad `server/boatDetailSeo.test.ts` |
 | JSON-LD con precios y rating | Precios derivados de la flota viva (`getSegmentPriceRange` en `server/lib/fleetStatsCache.ts`, `priceCeilingAcrossBoats` en `shared/pricing.ts`): ningun literal 160/240/420. `aggregateRating` SOLO en el nodo LocalBusiness; nunca en Service/Product. `SEASON_YEAR` unico en `shared/constants.ts`. Test `server/seoJsonLd.test.ts` |
@@ -108,7 +108,7 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 | Carga lazy de idiomas (NO tocar a la ligera) | `client/src/i18n/loaders.ts` + `client/src/hooks/use-language.tsx` (seedInitialLanguage) + `client/src/main.tsx` (precarga el locale antes de montar React) + modulepreload por locale en `server/seoInjector.ts` |
 | Rendimiento de carga (estado + reglas) | `docs/perf/2026-06-11-load-audit.md` (manualChunks, guard de prerender stale, GTM en idle, caches) |
 | Service worker / PWA (config + denylist) | `vite.config.ts` (`VitePWA` workbox). REGLA: toda ruta que el SERVIDOR redirige (302/301) en vez de servir el SPA debe ir en `navigateFallbackDenylist`, si no el SW sirve el SPA y muestra su 404. Ej: enlaces vanity `/resena`,`/resenas`,`/review`,`/reviews` → Google Reviews (302 en `server/index.ts`). Detalle en `docs/perf/2026-06-11-load-audit.md` |
-| Vista previa OG del enlace de reseñas | `server/index.ts` (handler `/resena`: a crawlers via `isCrawler` sirve OG HTML, a humanos 302) + `server/lib/reviewShareOg.ts` (`buildReviewShareHtml`/`buildReviewShareUrl`/`reviewShareLangForPhone`, binario es/en por prefijo +34). El CRM mete el link `/resena?l=es\|en` en el mensaje WhatsApp via `reviewUrl` de `renderThankYouWhatsApp` (`server/services/whatsappTemplates.ts`), llamado desde `admin-flywheel.ts` y `schedulerService.ts`. Imagen `client/public/og-image.webp` |
+| Vista previa OG del enlace de reseñas | Handler `/resena` en `server/index.ts` (crawlers: OG HTML, humanos: 302) + `server/lib/reviewShareOg.ts`. Detalle: docs/arquitectura-modulos.md |
 | Traducciones a11y | `client/src/lib/translations.ts` |
 | Chatbot comportamiento | `server/whatsapp/aiService.ts` |
 | Chatbot functions | `server/whatsapp/functionCallingService.ts` |
@@ -119,18 +119,12 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 | Audit logs | `server/lib/audit.ts` |
 | Panel admin layout | `client/src/components/crm/AdminLayout.tsx` |
 | CRM tabs/componentes | `client/src/components/crm/*.tsx` |
-| SEO Autopilot MCP server | `server/mcp/seo-autopilot/{index,router,tools}.ts` (montado en `/api/mcp/seo-autopilot`) |
-| SEO Autopilot storage | `server/storage/{mcpTokens,seoAutopilot}.ts` |
-| SEO Autopilot admin API | `server/routes/admin-{mcp-tokens,seo-autopilot}.ts` |
-| SEO Autopilot UI (CRM tab) | `client/src/components/crm/AutopilotTab.tsx` |
-| Jet ski (reventa partner) — catálogo | `shared/jetskiProducts.ts` (fuente única: 2 productos Circuito + Excursión, franjas/precios, helpers). NUNCA mostrar "partner/reventa" en superficies públicas |
-| Jet ski — flota + petición | Sembrado en `boats` vía `server/migrations/applyBoatsSeedEnsure.ts`; modal `client/src/components/JetSkiRequestModal.tsx` (WhatsApp prerrellenado + `/api/booking-inquiries` + `/api/jetski-booking` estado `requested`). Excluido del wizard horario/`/api/quote`/pricing |
-| Jet ski — páginas dedicadas | `client/src/components/JetSkiLanding.tsx` + `client/src/pages/jet-ski-{circuito,excursion}.tsx`; rutas `jetskiCircuito`/`jetskiExcursion` en `shared/i18n-routes.ts`; i18n bloque `jetskiLanding` (8 idiomas) |
-| Jet ski — SEO/GEO | `server/seoInjector.ts` (STATIC_META+resolveMeta SSR), `server/routes/robots.ts` + `server/services/aiSearchIndex.ts` (ai-context/feed-llms/ai-search), `client/public/llms*.txt`, `translatedStaticPaths.ts`+`sitemaps.ts` |
-| Tienda merch (colab Laura Cabanas) | Catálogo estático `shared/shopData.ts` (SKUs, colores, tallas, imágenes); precio/stock/active vivos en DB (`shop_products`/`shop_variants`, seed `server/migrations/applyShopSeedEnsure.ts`). Rutas públicas `server/routes/shop.ts` (catalog + checkout Stripe hosted + order-status con fallback si el webhook no llega), admin `server/routes/admin-shop.ts`, storage `server/storage/shop.ts`, strings server-side (Stripe+emails) `server/lib/shopStrings.ts`. Webhook: branch `metadata.type === "shop_order"` en `payments.ts`. Página `client/src/pages/tienda.tsx` + carrito `useShopCart` (localStorage) + CRM `crm/ShopTab.tsx` (tab "shop"). i18n bloque `shopPage` (8 idiomas). Entrega: recogida puerto (0 EUR) o envío España (`SHOP_SHIPPING_FLAT_CENTS`, default 495) |
-| Scooters (Coast Rent) — página puente | `client/src/pages/scooters.tsx` (ruta `scooters` en `shared/i18n-routes.ts`, copy `t.scootersPage` 8 idiomas, CTA dofollow a coastrent.es). SEO: `buildScootersStaticMeta` + rama `bodyFallback` de `/alquiler-motos-lloret` en `seoInjector.ts` (hasta 2026-11 el HTML servido no llevaba ni un enlace a coastrent.es) + `translatedStaticPaths.ts` + `sitemaps.ts` + `llms*.txt`. A diferencia del jet ski, la página dice abiertamente "operado por Coast Rent" (empresa de Lloret recomendada, mismo entorno de propietarios) |
-| Enlaces a Coast Rent (misma propiedad) | `shared/coastrentLinks.ts`: lista CERRADA de destinos por idioma (`COASTRENT_PATHS`) + `coastrentUrl(key, lang, surface)` con UTM `utm_source=cbrb&utm_medium=referral&utm_campaign={surface}`. NUNCA armar URLs a coastrent.es a mano. Constante `CARABELA` (segunda tienda de Coast Rent en el Centro Comercial Carabela de Lloret, fuente `coastrent/shared/stores.ts`) = oficina de reservas de barcos en Lloret desde el 1-feb-2027; `carabelaOpen()` gatea el copy ("abre el…"/"abierta") y `carabelaPosJsonLd()` es el nodo `hasPOS` que emiten seoInjector (home), robots.ts (`/api/ai-context`) y seo-config.ts. En Lloret NO hay barcos: toda frase que mencione la oficina dice que se sale de Blanes (`t.coastrentOffice`, componente `CoastrentOfficeNote.tsx`). Desde esa fecha `activitatumPicksBySlot` quita el pick `paddle` de Activitatum (compite con el del grupo). Tests: `shared/coastrentLinks.test.ts` |
-| Cobro de señal del CRM DAMAR (Stripe) | `server/lib/crmSenal.ts` (crea el Payment Link single-use y, al pagarse, escribe DIRECTO en `rentals_real` del CRM las columnas `paga_senal`/`paga_senal_method`/`estado_reserva`/`senal_pagada_at`: NO renombrarlas allí sin tocar esto). Endpoint `POST /api/crm/senal-link` + branch webhook `metadata.type === "crm_senal"` en `server/routes/payments.ts`; auth `x-api-key` = env `CRM_API_KEY` (la misma que ya comparten ambas apps); ruta en la skip-list de `server/middleware/csrf.ts`. Emails `sendCrmSenal*` en `emailService.ts`; aviso al dueño por Telegram. Tests `server/lib/crmSenal.test.ts` |
+| SEO Autopilot (MCP + admin + UI CRM) | `server/mcp/seo-autopilot/`, `server/storage/{mcpTokens,seoAutopilot}.ts`, `server/routes/admin-{mcp-tokens,seo-autopilot}.ts`, `crm/AutopilotTab.tsx`. Detalle: docs/arquitectura-modulos.md |
+| Jet ski (reventa partner) | Catálogo `shared/jetskiProducts.ts` (fuente única), página `JetSkiLanding.tsx`, modal `JetSkiRequestModal.tsx`, sembrado en `boats` vía `applyBoatsSeedEnsure.ts`; excluido del wizard horario/`/api/quote`/pricing. NUNCA mostrar "partner/reventa" en superficies públicas. Detalle: docs/arquitectura-modulos.md |
+| Tienda merch (colab Laura Cabanas) | Catálogo estático `shared/shopData.ts`; precio/stock/active vivos en DB (`shop_products`/`shop_variants`). Rutas `server/routes/{shop,admin-shop}.ts`, página `tienda.tsx`, webhook `metadata.type === "shop_order"` en `payments.ts`. Detalle: docs/arquitectura-modulos.md |
+| Scooters (Coast Rent), página puente | `client/src/pages/scooters.tsx` + `t.scootersPage`; SEO en `seoInjector.ts` (`buildScootersStaticMeta`, bodyFallback). Dice abiertamente "operado por Coast Rent". Detalle: docs/arquitectura-modulos.md |
+| Enlaces a Coast Rent (misma propiedad) | `shared/coastrentLinks.ts`: lista CERRADA de destinos (`COASTRENT_PATHS`) + `coastrentUrl(key, lang, surface)` con UTM. NUNCA armar URLs a coastrent.es a mano. `CARABELA`/`carabelaOpen()` gatean el copy de la oficina de Lloret (en Lloret NO hay barcos: se sale de Blanes). Detalle: docs/arquitectura-modulos.md |
+| Cobro de señal del CRM DAMAR (Stripe) | `server/lib/crmSenal.ts` escribe DIRECTO en `rentals_real` del CRM (`paga_senal`, `paga_senal_method`, `estado_reserva`, `senal_pagada_at`: NO renombrarlas allí sin tocar esto). `POST /api/crm/senal-link` (auth `x-api-key` = `CRM_API_KEY`) + webhook `crm_senal`. Detalle: docs/arquitectura-modulos.md |
 
 ## Patrones Comunes
 
@@ -240,25 +234,7 @@ Fuente de verdad: `client/src/i18n/es.ts`. Los otros 7 idiomas (en, ca, fr, de, 
 
 ### Deuda i18n pendiente
 
-Los siguientes archivos **todavía tienen texto visible en español hardcoded** en JSX que no se propaga al cambiar a otros idiomas. Migrar a `es.ts` + `npm run i18n:translate` cuando se toquen:
-
-| Archivo | Qué mover | Tamaño |
-|---------|-----------|--------|
-| `client/src/pages/faq.tsx` | Los `AccordionItem` del body (contenido narrativo rico con listas, CTAs, botones, notas internas). El JSON-LD schema YA está en i18n vía `t.faqPage.items`; los Accordion siguen hardcoded pero Google solo lee el schema. | Grande (~3h) |
-| Páginas de ubicación (todas) — props `title`/`description` de `<PopularBoatsSection>` | Cross-cutting: el heading + intro de la sección "Barcos populares" se pasan como literales en español en `location-tordera/palafolls/pineda/barcelona/tossa/lloret.tsx`. El componente espera strings ya localizados; hay que crear claves i18n por página y pasarlas. | Pequeño (~30min total) |
-| `client/src/components/FAQPreview.tsx` | `FALLBACK_ITEMS` (8 Q&A — ya hay `t.faqPreview?.items` como override que cubre los 8 idiomas; el fallback solo se mostraría si algún idioma perdiera los items) | Pequeño (safety-net, baja prioridad) |
-
-**Ya migrados (100 % vivos):**
-- `pricing.tsx` → `t.pricingPage` (54 claves)
-- `category-licensed.tsx` → `t.categoryLicensed`
-- `faq.tsx` JSON-LD schema + hero + categorías → `t.faqPage` (92 claves)
-- `location-barcelona.tsx` → `t.locationBarcelona` (41 claves)
-- `location-tossa-de-mar.tsx` warning + cross-links + related → `t.locationPages.tossa.sections` (9 claves nuevas)
-- `location-lloret-de-mar.tsx` cross-links + related → `t.locationPages.lloret.sections` (6 claves nuevas)
-- `location-malgrat-de-mar.tsx` / `santa-susanna.tsx` / `calella.tsx` → FAQ placeholders procesados por `LocationTemplate`. **Indexados en los 8 idiomas desde 2026-06-16**: añadidos a `server/seo/translatedStaticPaths.ts` y con cuerpo SSR nativo por idioma en `seoInjector.ts` (lee `t.locationPages.{malgrat|santaSusanna|calella}.hero/sections`), igual que tordera/palafolls/pineda. Antes solo indexaban ES (noindex + canonical→ES fuera de ES)
-- `location-tordera.tsx` / `location-palafolls.tsx` / `location-pineda-de-mar.tsx` → cuerpo completo vía `t.locationPages.<town>.sections` + `faqItems` (i18n-complete en los 8 idiomas, confirmado 2026-05-29; ver `server/seo/translatedStaticPaths.ts`). Pendiente solo las props de `PopularBoatsSection` (arriba)
-
-Cuando añadas texto nuevo a cualquiera de los archivos pendientes, **aprovecha para migrarlo al sistema i18n** en el mismo commit.
+Quedan textos en español hardcoded en `faq.tsx` (AccordionItem del body), en las props `title`/`description` de `<PopularBoatsSection>` de las páginas de ubicación y en el `FALLBACK_ITEMS` de `FAQPreview.tsx`. Al tocar cualquiera, migra el texto a `es.ts` + `npm run i18n:translate` en el mismo commit. Lista completa y qué está ya migrado: docs/pendiente-i18n.md.
 
 ## Cosas a Evitar
 
@@ -295,9 +271,7 @@ Cuando un hecho aparece en varias capas (i18n, SEO, blog, JSX, emails, KB chatbo
 | Politica de cancelacion (texto unico multi-idioma) | `client/src/i18n/es.ts` -> propaga via `npm run i18n:translate` |
 | Datos de scooters Coast Rent (precios, vehiculos, condiciones) | Web en vivo `coastrent.es` (negocio externo) -> reflejado en `t.scootersPage`. Verificar contra su web antes de tocar; NO inventar precios por modelo |
 
-Politica de cancelacion (decision del dueno 2026-11-06): si la EMPRESA suspende por mal tiempo, el cliente elige SIEMPRE entre nueva fecha, bono de 12 meses o devolucion integra, con o sin garantia. La Garantia de mal tiempo (cobertura opcional del paso 5 del wizard) cubre otra cosa: que el CLIENTE cancele por su cuenta con devolucion integra (menos la garantia) si la prevision AEMET de la vispera da aviso costero o >=15 nudos, aunque la empresa saldria. Texto canonico: `CANCELLATION_POLICY_ES` y `CANCELLATION_TERMS_BULLETS_ES` en `shared/businessProfile.ts`; cualquier surface nueva los referencia en vez de copiar. Desarrollo publico en `t.garantiasPage` (`/garantias`) y clausula 7 de `t.legalPages.terms`.
-
-Criterio de suspension = aviso costero oficial de AEMET para la zona en la franja horaria del alquiler, viento sostenido o rachas por encima de 20 nudos, o decision del personal por seguridad (`garantiasPage.criteria`). El umbral de la garantia (vispera, 15 nudos) es otro y no se mezcla con el de suspension. NUNCA volver a "sin garantia solo bono, no se devuelve en dinero": es clausula abusiva frente a consumo. La Garantia de mal tiempo y la Fianza reducida son garantias comerciales, NUNCA un seguro, en ningun idioma.
+Politica de cancelacion: si la EMPRESA suspende por mal tiempo, el cliente elige SIEMPRE entre nueva fecha, bono de 12 meses o devolucion integra, con o sin garantia. La Garantia de mal tiempo cubre otra cosa (cancela el CLIENTE con devolucion integra menos la garantia si la prevision AEMET de la vispera da aviso costero o >=15 nudos). Texto canonico: `CANCELLATION_POLICY_ES` y `CANCELLATION_TERMS_BULLETS_ES` en `shared/businessProfile.ts` (cualquier surface nueva los referencia, no copia); desarrollo en `t.garantiasPage` y clausula 7 de `t.legalPages.terms`. Criterio de suspension = aviso costero AEMET en la franja del alquiler, viento sostenido o rachas >20 nudos, o decision del personal (`garantiasPage.criteria`); no se mezcla con el umbral de la garantia. NUNCA volver a "sin garantia solo bono, no se devuelve en dinero" (clausula abusiva). La Garantia de mal tiempo y la Fianza reducida son garantias comerciales, NUNCA un seguro, en ningun idioma. Historia: docs/bitacora.md.
 
 Retraso en la devolucion: tarifa horaria vigente del barco +50 % por cada fraccion de 30 minutos (barcos sin precio de 1 h: la mitad del de 2 h). Nunca un importe fijo desproporcionado.
 
@@ -309,50 +283,23 @@ Distancia de navegacion sin licencia: hay DOS limites y son ejes distintos, no s
 
 Antes de tocar cualquiera de las tres cifras, lee el PDF del contrato: la web es su espejo, no al reves.
 
-**RD 1188/2025 (BOE 30-dic-2025): fin del alquiler sin titulacion.** Desde el **1-oct-2026** el arrendatario de cualquier embarcacion a motor debe tener titulo nautico: la exencion 5m/15CV del RD 875/2014 queda restringida al uso privado. Hasta el 30-sep-2026 la oferta "sin licencia" es legal y NO se toca (temporada alta). Reglas para copy nuevo: (1) cualquier texto que prometa "alquiler sin licencia" lleva marco temporal ("hasta el 30-sep-2026") o el framing nuevo "titulin en 1 dia"; (2) la promesa "con el titulin llevas la flota" cubre **los tres barcos con licencia**, y eso ya no tiene asterisco: el "625" del Pacific Craft es nombre comercial y su eslora de **matriculacion son 5,90 m** (arbitrado con el owner el 22-sep-2026; la fuente es la documentacion de matriculacion, via crmdamar). Hasta ese dia la ficha decia 6,24 m *y* "Requiere Licencia de Navegacion (LN) o superior" en la misma frase, o sea que dejaba al cliente fuera de su propia titulacion, y 32 frases en 8 idiomas listaban solo la Mingolla y la Trimarchi como cubiertas. **Nunca infieras una eslora del nombre del modelo**, que es de donde salio el 6,24. `shared/gemela.test.ts` lo guarda contra la web de la escuela; (3) pagina pilar `/es/licencia-navegacion-titulin` (clave i18n `navigationLicensePage`, 8 idiomas) + post `fin-alquiler-barcos-sin-licencia-2026` + FAQ `normativa2026`/`titulin` + facts `license-free-rental-end-date`/`navigation-license-course`. **Pivote de posicionamiento hecho el 2026-08-16** (adelantado a peticion del owner, no en octubre): la home, su SEO y toda la capa GEO ya lideran con titulacion. El copy dual (titulacion primero + oferta sin licencia datada) NO se gobierna con un feature flag sino con `isLicenseFreeEraActive()` de `shared/constants.ts`, funcion pura sobre `LICENSE_FREE_LAST_DAY = "2026-09-30"` en zona Europe/Madrid: el 1-oct el mensaje se apaga solo. Lo consumen `Hero.tsx` (franja bajo los CTA) y `LicenseComparisonSection.tsx` (banda bajo las 3 cards).
+**RD 1188/2025 (BOE 30-dic-2025): fin del alquiler sin titulacion.** Desde el **1-oct-2026** el arrendatario de cualquier embarcacion a motor debe tener titulo nautico (la exencion 5m/15CV queda restringida al uso privado). Reglas para copy nuevo:
+
+- Cualquier texto que prometa "alquiler sin licencia" lleva marco temporal o el framing "titulin en 1 dia". El copy dual (titulacion primero + oferta sin licencia datada) se gobierna con `isLicenseFreeEraActive()` de `shared/constants.ts` (`LICENSE_FREE_LAST_DAY = "2026-09-30"`, Europe/Madrid), no con un feature flag; lo consumen `Hero.tsx` y `LicenseComparisonSection.tsx`.
+- "Con el titulin llevas la flota" cubre los tres barcos con licencia. La eslora de matriculacion del Pacific Craft 625 son 5,90 m (el "625" es nombre comercial): **nunca infieras una eslora del nombre del modelo**. Guarda: `shared/gemela.test.ts`.
+- Pagina pilar `/es/licencia-navegacion-titulin` (clave i18n `navigationLicensePage`), post `fin-alquiler-barcos-sin-licencia-2026`, FAQ `normativa2026`/`titulin`, facts `license-free-rental-end-date`/`navigation-license-course`.
 
 ⚠️ **El 1-oct-2026 hay que REDESPLEGAR aunque no cambie ni una linea de codigo** para que el copy datado se regenere.
 
+**Escuela nautica hermana (`escolanauticablanes`)**: esta web rankea y parte va a los crawlers de IA por `/api/ai-context`, asi que lo que diga de la escuela se publica con autoridad que ella aun no tiene. Reglas: (1) nada en PRESENTE (futuro: "Impartira" / "Will teach", con el estado delante); (2) ninguna FECHA DE APERTURA; (3) ningun precio que la escuela no publique (ni curso ni reconocimiento psicofisico). Guardianes: `shared/escolaNauticaLinks.test.ts` (incluye `robots.ts`) y `shared/gemela.test.ts` (lee los ficheros de la hermana del disco; se salta si no estan). Historia y detalle: docs/bitacora.md.
 
-🔴 **Lo que esta web publica de la escuela nautica hermana, y los dos guardianes que lo vigilan**
-(22-sep-2026, primer cruce con `escolanauticablanes`). **Esta es la web que rankea**, asi que lo que
-diga de la escuela se publica con autoridad que la escuela todavia no tiene — y parte va dirigida
-explicitamente a los crawlers de IA por `/api/ai-context`. Tres reglas, y las tres nacen de una
-falsedad que estuvo publicada:
+⚠️ **El deploy NO arregla el contenido YA PUBLICADO: vive en la BD.** Las fichas salen de `/api/boats` (tabla `boats`) y los posts de `blog_posts`; `applyBoatsSeedEnsure` es `ON CONFLICT DO NOTHING` y nunca pisa filas existentes. Corregir `boatData.ts` o `blogSeed.ts` cambia lo que se sembrara, no lo sembrado (la descripcion se salva por el i18n `t.boatDescriptions`; la **eslora no**). Detalle: docs/bitacora.md.
 
-- **Nada en PRESENTE.** El nodo `EducationalOrganization` de `server/routes/robots.ts` decia
-  «Imparte la Licencia de Navegacion» / «Teaches the…» con el AGR163 sin resolver. Se autocorregia
-  dos clausulas despues, pero un extractor que se quede con el primer predicado publica la frase
-  falsa. Futuro siempre: «Impartira» / «Will teach», con el estado delante.
-- **Ninguna FECHA DE APERTURA.** La escuela retiro «abril de 2027» de su propia web a proposito
-  —depende de una resolucion que no controlamos— y aqui seguia en una veintena de sitios. El
-  calendario interno sigue vivo en `docs/` de la escuela; lo que no sale es la promesa publica.
-- **Ningun precio que la escuela no publique.** Ni el del curso ni el del reconocimiento psicofisico
-  (el «~45 €» que circula es de fuente secundaria y ella lo documenta en dos sitios). El que se
-  publicaba aqui, ademas, la encerraba por arriba en temporada alta.
+## Prerender: NO corre en produccion, y es a proposito
 
-Los dos guardianes: `shared/escolaNauticaLinks.test.ts` —que ya prohibia lenguaje de venta pero
-**no cubria `robots.ts`**, que es justo donde estaba el bug— y `shared/gemela.test.ts`, que cruza
-las cifras compartidas leyendo los ficheros de la hermana **del disco** y se salta la prueba si no
-estan (en el contenedor no estan). No es un import entre repos y no puede serlo: se despliegan por
-separado. La hermana tiene el suyo, espejo de este, y hacen falta los dos porque quien trabaja aqui
-ejecuta estos tests y no los de alla.
+Coolify usa `npm run build`, que borra `dist/prerendered`: produccion sirve siempre el shell SSR de `seoInjector` con su `bodyFallback`. **No lo "arregles" cambiando el build command a `build:deploy`**: el prerender necesita `DATABASE_URL`, `JWT_SECRET` y `ADMIN_PIN` en build (0 variables build-time en Coolify) y obligaria a exponer Neon PROD en la imagen.
 
-⚠️ **Y lo que el deploy NO arregla: el contenido YA PUBLICADO vive en la BD.** Las fichas de barco
-salen de `/api/boats` (la tabla `boats`, con su `specifications->>'length'`) y los posts de
-`blog_posts`; `applyBoatsSeedEnsure` es `ON CONFLICT DO NOTHING`, asi que **nunca pisa una fila que
-ya existe**. Corregir `shared/boatData.ts` o `server/seeds/blogSeed.ts` cambia lo que se sembrara,
-no lo que esta sembrado. La descripcion SI se salva sola porque la pantalla usa
-`t.boatDescriptions[boatId] || boatData.description` y el i18n gana; la **eslora no**, y es la que
-se lee en la ficha.
-
-## Prerender: NO corre en produccion, y es a proposito (verificado 2026-08-16)
-
-Coolify tiene `build_command = "npm run build"`, que **arranca borrando `dist/prerendered`** y nunca llama al prerender. Es decir: **produccion no tiene snapshots y sirve siempre el shell SSR de `seoInjector`** con su `bodyFallback`. Toda la maquinaria de prerender (`scripts/prerender.ts`, `prerenderedMiddleware`, el guard de frescura) esta montada pero inactiva.
-
-**No lo "arregles" cambiando el build command a `build:deploy`.** `scripts/prerender.ts` levanta el servidor real (`node dist/index.js`) para rastrearlo, y `server/config.ts` valida con Zod que existan `DATABASE_URL`, `JWT_SECRET` y `ADMIN_PIN`. En Coolify hay **0 variables marcadas como build-time**, asi que el prerender siempre fallaria al arrancar; activarlo obligaria a exponer la connection string de Neon PROD y el JWT secret en la capa de build de la imagen. No compensa.
-
-**Consecuencia practica:** el `bodyFallback` de `resolveMeta` NO es una red de seguridad, es **lo unico que ven los crawlers sin JS** (GPTBot, ClaudeBot, PerplexityBot y buena parte de los bots sociales). Al tocar el copy de una pagina, el bodyFallback es tan importante como el JSX: si un enlace o un hecho solo existe tras hidratar, para esos bots no existe. Por eso el de la home enlaza explicitamente a barcos-con-licencia, al titulin y a la excursion con patron.
+**Consecuencia practica:** el `bodyFallback` de `resolveMeta` NO es una red de seguridad, es **lo unico que ven los crawlers sin JS** (GPTBot, ClaudeBot, PerplexityBot, bots sociales). Al tocar el copy de una pagina, el bodyFallback importa tanto como el JSX: si un enlace o un hecho solo existe tras hidratar, para esos bots no existe. Detalle: docs/bitacora.md.
 
 ## Flujo de Trabajo Recomendado
 

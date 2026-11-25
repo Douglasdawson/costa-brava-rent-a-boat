@@ -27,6 +27,7 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 - Usar clases de `shadcn/ui` cuando existan
 - Mobile-first responsive design
 - Colores via CSS variables (ver `tailwind.config.ts`)
+- Esquinas continuas tipo Apple: regla global `corner-shape: squircle` en `client/src/index.css` (Chrome/Edge) con los radios de `tailwind.config.ts` escalados por `--rs` (1,5 donde se soporta); `rounded-full` queda redondo. Safari/Firefox no la soportan: solo las superficies sin borde ni sombra llevan `squircle-b`/`squircle-t` (clip-path `shape()`); nunca clip-path en tarjetas con borde. No pasar prettier a `index.css` (reformatea todo el fichero)
 
 ### API
 - RESTful endpoints en `server/routes/*.ts` (49 archivos modulares)

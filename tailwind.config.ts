@@ -21,10 +21,15 @@ export default {
       screens: {
         'xs': '375px',
       },
+      // --rs (index.css) is 1 by default and >1 where corner-shape is supported: a squircle of the same radius
+      // reads tighter than a circular arc, so the radii grow to keep the same softness.
       borderRadius: {
-        lg: "0.75rem", /* 12px */
-        md: "0.5rem", /* 8px */
-        sm: "0.25rem", /* 4px */
+        sm: "calc(0.25rem * var(--rs, 1))", /* 4px */
+        md: "calc(0.5rem * var(--rs, 1))", /* 8px */
+        lg: "calc(0.75rem * var(--rs, 1))", /* 12px */
+        xl: "calc(0.75rem * var(--rs, 1))",
+        "2xl": "calc(1rem * var(--rs, 1))",
+        "3xl": "calc(1.5rem * var(--rs, 1))",
       },
       colors: {
         // Flat / base colors (regular buttons)

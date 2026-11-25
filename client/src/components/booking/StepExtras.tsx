@@ -121,12 +121,19 @@ export default function StepExtras({
                     </span>
                   </span>
                   <span className="shrink-0 text-right">
-                    <span className="block font-heading text-lg font-semibold leading-none tabular-nums text-foreground">
-                      {pack.price}&euro;
+                    <span className="flex items-baseline justify-end gap-1.5">
+                      {savings > 0 && (
+                        <s className="text-xs font-normal tabular-nums text-muted-foreground">
+                          {formatSavings(pack.price + savings)}&euro;
+                        </s>
+                      )}
+                      <span className="font-heading text-lg font-semibold leading-none tabular-nums text-foreground">
+                        {pack.price}&euro;
+                      </span>
                     </span>
                     {savings > 0 && (
-                      <span className="mt-1 inline-block rounded-full bg-success/10 px-2 py-0.5 text-[11px] font-medium leading-none text-success">
-                        -{formatSavings(savings)}&euro; {copy.savings.toLowerCase()}
+                      <span className="mt-1 block text-xs font-medium leading-none tabular-nums text-success">
+                        {copy.savings} {formatSavings(savings)}&euro;
                       </span>
                     )}
                   </span>
@@ -147,7 +154,7 @@ export default function StepExtras({
               </span>
             )}
           </div>
-          <div className="flex flex-col gap-2 [@media(max-height:700px)]:gap-1.5 sm:flex-row sm:flex-wrap">
+          <div className="flex flex-col gap-2 [@media(max-height:700px)]:gap-1.5 sm:flex-row sm:flex-wrap sm:justify-center">
             {boatExtras.map(extra => {
               const included = extrasInPack.has(extra.name);
               const checked = selectedExtras.includes(extra.name);

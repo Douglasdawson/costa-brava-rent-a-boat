@@ -58,7 +58,7 @@ export default function ActivitiesSection() {
   return (
     <section
       id="activities"
-      className="rounded-t-2xl bg-muted/40 py-16 sm:py-24"
+      className="squircle-t rounded-t-2xl bg-muted/40 py-16 sm:py-24"
       aria-labelledby="activities-title"
     >
       <div className="container mx-auto max-w-6xl px-4">

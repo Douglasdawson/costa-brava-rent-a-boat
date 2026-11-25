@@ -185,7 +185,7 @@ export default function Footer() {
   const legalClass = `hover:text-primary-foreground transition-colors min-h-11 inline-flex items-center rounded ${ring}`;
 
   return (
-    <footer className="below-fold rounded-b-2xl bg-foreground text-primary-foreground/80">
+    <footer className="below-fold squircle-b rounded-b-2xl bg-foreground text-primary-foreground/80">
       <motion.div
         variants={container}
         initial={reduce ? false : "hidden"}

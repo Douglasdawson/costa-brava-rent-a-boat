@@ -253,18 +253,18 @@ export default function StepWhenWho({
       )}
 
       {/* Reassurance, quiet: it was a green banner stacked above the title and competed with it. */}
-      <div className="space-y-1.5 text-center text-xs text-muted-foreground [@media(max-height:620px)]:hidden">
-        <p className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
-          <span className="inline-flex items-start gap-1 leading-4">
-            <CheckCircle className="mt-px h-3.5 w-3.5 shrink-0 text-success" aria-hidden="true" />
+      <div className="text-center text-xs text-muted-foreground md:flex md:items-center md:justify-center md:gap-x-3 [@media(max-height:620px)]:hidden">
+        <p className="flex items-center justify-center gap-x-3 whitespace-nowrap">
+          <span className="inline-flex items-center gap-1 leading-4">
+            <CheckCircle className="h-3.5 w-3.5 shrink-0 text-success" aria-hidden="true" />
             {t.bookingTrust?.insuranceIncluded || "Seguro incluido"}
           </span>
-          <span className="inline-flex items-start gap-1 leading-4">
-            <CheckCircle className="mt-px h-3.5 w-3.5 shrink-0 text-success" aria-hidden="true" />
+          <span className="inline-flex items-center gap-1 leading-4">
+            <CheckCircle className="h-3.5 w-3.5 shrink-0 text-success" aria-hidden="true" />
             {t.bookingTrust?.replyTime || "Respondemos en <2h por WhatsApp"}
           </span>
         </p>
-        <p>
+        <p className="mt-1.5 md:mt-0">
           {t.bookingWizard?.hints?.noOnlinePayment ||
             "Sin pago online: te confirmamos por WhatsApp"}
         </p>

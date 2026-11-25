@@ -41,7 +41,9 @@ type StepDepartureProps = Pick<
 };
 
 const ACTION_PILL =
-  "inline-flex min-h-11 items-center rounded-full border border-current/25 px-4 text-sm font-semibold transition-colors hover:bg-background/60 focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none";
+  "inline-flex min-h-11 flex-1 items-center justify-center whitespace-nowrap rounded-full px-4 text-sm font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none";
+const ACTION_PRIMARY = `${ACTION_PILL} bg-cta text-primary-foreground hover:bg-cta/90 dark:text-background`;
+const ACTION_SECONDARY = `${ACTION_PILL} border border-border bg-background text-foreground hover:bg-muted`;
 
 /**
  * Step 3, "Salida y duración" (desktop and mobile share it): the start time is a grid of time pills (one tap
@@ -114,19 +116,37 @@ export default function StepDeparture({
       </div>
 
       {noSlotsAvailable && (
-        <div role="alert" className={cn("rounded-3xl border p-4 text-sm", BOOKED_TONE)}>
-          <p className="font-medium">
-            {(
-              t.bookingWizard?.hints?.boatNotAvailableForDate ??
-              "Sin disponibilidad para {date}. Mira otro día o cambia de barco."
-            ).replace("{date}", formatBookingDate(selectedDate, language))}
-          </p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <button type="button" onClick={() => onGoToStep(1)} className={ACTION_PILL}>
+        <div role="alert" className="space-y-4 rounded-3xl border border-border bg-card p-4">
+          <div className="flex items-center gap-4">
+            {/* The day itself, crossed out: the state reads before the sentence does. */}
+            <div
+              aria-hidden="true"
+              className={cn(
+                "relative flex size-16 shrink-0 flex-col items-center justify-center overflow-hidden rounded-2xl border",
+                BOOKED_TONE
+              )}
+            >
+              <span className="text-xs font-medium leading-none">
+                {formatBookingDate(selectedDate, language, { month: "short" }).replace(/\.$/, "")}
+              </span>
+              <span className="mt-1 font-heading text-2xl font-semibold leading-none tabular-nums">
+                {formatBookingDate(selectedDate, language, { day: "numeric" })}
+              </span>
+              <span className="absolute left-1.5 right-1.5 top-1/2 h-0.5 -rotate-[35deg] rounded-full bg-current opacity-40" />
+            </div>
+            <p className="min-w-0 text-sm font-medium leading-snug text-foreground text-pretty">
+              {(
+                t.bookingWizard?.hints?.boatNotAvailableForDate ??
+                "Sin disponibilidad para {date}. Mira otro día o cambia de barco."
+              ).replace("{date}", formatBookingDate(selectedDate, language))}
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <button type="button" onClick={() => onGoToStep(1)} className={ACTION_PRIMARY}>
               {t.bookingWizard?.boatStatus?.changeDate ?? "Cambiar fecha"}
             </button>
             {!preSelectedBoatId && (
-              <button type="button" onClick={() => onGoToStep(2)} className={ACTION_PILL}>
+              <button type="button" onClick={() => onGoToStep(2)} className={ACTION_SECONDARY}>
                 {t.bookingWizard?.boatStatus?.seeOtherBoat ?? "Ver otro barco"}
               </button>
             )}
@@ -215,7 +235,7 @@ export default function StepDeparture({
             <div
               role="radiogroup"
               aria-label={t.wizard.duration}
-              className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-2.5"
+              className="grid grid-cols-1 gap-2 md:auto-cols-fr md:grid-flow-col md:gap-2.5"
             >
               {bookable.map(opt => {
                 const parts = opt.label.split(" - ");
@@ -243,7 +263,7 @@ export default function StepDeparture({
                     aria-checked={selected}
                     onClick={() => onDurationSelectFromUser(opt.value)}
                     className={cn(
-                      "flex min-h-[3.75rem] items-center justify-between gap-3 rounded-3xl border px-4 py-2 text-left transition-colors focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none [@media(max-height:620px)]:min-h-[3.25rem]",
+                      "flex min-h-[3.75rem] items-center justify-between gap-3 rounded-3xl border px-4 py-2 text-left md:min-h-[6rem] md:flex-col md:items-start md:justify-between md:gap-2 md:px-5 md:py-3.5 transition-colors focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none [@media(max-height:620px)]:min-h-[3.25rem]",
                       selected
                         ? "border-cta ring-2 ring-cta"
                         : "border-border bg-card hover:border-foreground/30"

@@ -32,7 +32,7 @@ export default function Hero() {
 
   return (
     <div className="bg-background">
-      <div className="relative h-dvh min-h-[600px] overflow-hidden rounded-b-2xl" id="home">
+      <div className="relative h-dvh min-h-[600px] overflow-hidden rounded-b-2xl squircle-b" id="home">
         {/* Background Image - Responsive <picture> */}
         <picture>
           <source

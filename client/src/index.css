@@ -218,6 +218,45 @@ body { overflow-x: hidden; }
   }
 }
 
+/* Esquinas continuas tipo Apple (squircle) en todo radio de la web: la curva
+   arranca antes y no corta de golpe como el arco circular de border-radius.
+   corner-shape solo actua donde ya hay border-radius, y en Chrome/Edge el
+   borde, la sombra y el recorte de overflow-hidden siguen la forma. Circulos y
+   pildoras (rounded-full) se quedan redondos: un squircle los volveria cuadrados.
+   Safari/Firefox aun no lo soportan (WebKit 26): ahi vale el radio normal, y las
+   superficies sin borde usan el fallback .squircle-b / .squircle-t de abajo.
+   Va fuera de @layer: corner-shape no lo toca ninguna utilidad de Tailwind. */
+@supports (corner-shape: squircle) {
+  :root { --rs: 1.5; } /* escala de los radios de tailwind.config.ts: un squircle del mismo radio se ve mas cuadrado */
+  *, ::before, ::after { corner-shape: squircle; }
+  [class*="rounded-full"] { corner-shape: round; }
+}
+
+/* Fallback para Safari/Firefox, solo superficies SIN borde ni sombra (clip-path las comeria):
+   esquinas continuas dibujadas con shape(). --sq = radio (16px = rounded-2xl); la curva se extiende
+   1,5 x --sq a cada lado, como la de Apple. */
+@supports not (corner-shape: squircle) {
+  .squircle-b {
+    --sq: 1rem;
+    border-radius: 0; /* el arco circular de rounded-* se comeria la curva continua */
+    clip-path: shape(from 0 0, hline to 100%,
+      vline to calc(100% - 1.5 * var(--sq)),
+      curve to calc(100% - 1.5 * var(--sq)) 100% with 100% calc(100% - 0.35 * var(--sq)) / calc(100% - 0.35 * var(--sq)) 100%,
+      hline to calc(1.5 * var(--sq)),
+      curve to 0 calc(100% - 1.5 * var(--sq)) with calc(0.35 * var(--sq)) 100% / 0 calc(100% - 0.35 * var(--sq)),
+      close);
+  }
+  .squircle-t {
+    --sq: 1rem;
+    border-radius: 0;
+    clip-path: shape(from 0 100%, hline to 100%, vline to calc(1.5 * var(--sq)),
+      curve to calc(100% - 1.5 * var(--sq)) 0 with 100% calc(0.35 * var(--sq)) / calc(100% - 0.35 * var(--sq)) 0,
+      hline to calc(1.5 * var(--sq)),
+      curve to 0 calc(1.5 * var(--sq)) with calc(0.35 * var(--sq)) 0 / 0 calc(0.35 * var(--sq)),
+      close);
+  }
+}
+
 /* iOS hace zoom a TODA la pagina al enfocar un campo con font-size < 16px, y al
    salir no lo deshace: el usuario se queda con la web ampliada y desplazada.
    Va fuera de @layer base a proposito y con !important porque base es la capa de

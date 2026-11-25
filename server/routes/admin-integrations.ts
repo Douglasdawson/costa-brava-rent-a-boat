@@ -113,11 +113,10 @@ function buildIntegrationsReport() {
       "Aviso de leads por EMAIL desactivado: solicitudes y consultas entran sin que el equipo reciba notificación."
     );
   }
-  if (twilioConfigured && twilioIsSandbox) {
-    criticalIssues.push(
-      "Seguimiento automático por WhatsApp apunta al SANDBOX de Twilio: los recordatorios no llegan a clientes."
-    );
-  }
+  // El sandbox de Twilio NO es critico: el seguimiento por WhatsApp de esta web solo recorre la
+  // tabla legacy `bookings` (sin filas nuevas desde el 23-jun-2026); las reservas reales viven en
+  // el CRM y su recordatorio/resena sale de alli. El detalle sigue en integrations.twilioWhatsApp.
+  // Si algun dia vuelven a entrar `bookings` por la web, volver a marcarlo como critico.
   if (!ga4Configured) {
     criticalIssues.push(
       "GA4 server-side apagado: sin visibilidad de conversiones reales del embudo."

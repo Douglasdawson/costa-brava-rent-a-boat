@@ -116,7 +116,7 @@ function BoatOption({
       onClick={fitsCapacity ? onSelect : undefined}
       disabled={!fitsCapacity}
       className={cn(
-        "flex w-full items-center gap-3 rounded-2xl border bg-card p-2 pr-4 text-left transition-colors focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none",
+        "flex w-full min-w-0 items-center gap-2.5 rounded-3xl border bg-card p-2 pr-3.5 text-left transition-colors focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none",
         !fitsCapacity
           ? "cursor-not-allowed border-border opacity-50"
           : selected
@@ -124,40 +124,43 @@ function BoatOption({
             : "border-border hover:border-foreground/30"
       )}
     >
-      <span className="relative size-20 shrink-0 overflow-hidden rounded-xl bg-muted">
+      <span className="relative size-[4.5rem] shrink-0 overflow-hidden rounded-2xl bg-muted [@media(max-height:700px)]:size-16">
         <img
           src={boatPhoto(boat)}
           alt=""
           loading="lazy"
           decoding="async"
-          width={160}
-          height={160}
+          width={144}
+          height={144}
           className="h-full w-full object-cover"
         />
         {selected && (
           <span
             aria-hidden="true"
-            className="absolute left-1.5 top-1.5 flex size-6 items-center justify-center rounded-full bg-cta text-primary-foreground dark:text-background"
+            className="absolute left-1 top-1 flex size-6 items-center justify-center rounded-full bg-cta text-primary-foreground dark:text-background"
           >
             <Check className="h-3.5 w-3.5" strokeWidth={3} />
           </span>
         )}
       </span>
 
+      {/* Name first, then who can drive it (the question this step answers), then the facts as one quiet line. */}
       <span className="min-w-0 flex-1">
         <span className="line-clamp-2 block font-heading text-base font-semibold leading-tight text-foreground">
           {translateBoatText(boat.name, language)}
         </span>
-        <span className="mt-1 flex flex-wrap items-center gap-x-2.5 gap-y-0.5 text-xs text-muted-foreground">
-          <span className="inline-flex items-center gap-1">
-            <Users className="h-3.5 w-3.5" aria-hidden="true" />
-            {boat.capacity} {t.boats.people}
-          </span>
-          {engine && <span>{engine}</span>}
-        </span>
         {pilot && (
-          <span className="mt-0.5 block text-xs font-medium leading-snug text-foreground/80">{pilot}</span>
+          <span className="mt-0.5 block text-xs font-medium leading-snug text-foreground/80">
+            {pilot}
+          </span>
         )}
+        <span className="mt-0.5 flex items-start gap-1.5 text-xs leading-snug text-muted-foreground">
+          <Users className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+          <span>
+            {boat.capacity} {t.boats.people}
+            {engine ? ` · ${engine}` : ""}
+          </span>
+        </span>
         {busy && (
           <span
             className={cn(
@@ -173,7 +176,7 @@ function BoatOption({
       </span>
 
       {price !== null && (
-        <span className="shrink-0 text-right leading-none">
+        <span className="shrink-0 self-center text-right leading-none">
           <span className="block text-xs text-muted-foreground">{t.boats.from}</span>
           <span className="mt-1 block font-heading text-xl font-semibold tabular-nums text-foreground">
             {price}&euro;
@@ -227,15 +230,17 @@ export default function StepBoat({
   const showLicenseFilter = !preSelectedBoatId && isLicenseFreeEraActive();
 
   return (
-    <div className="space-y-6 [@media(max-height:700px)]:space-y-4">
-      <header className="text-center">
+    <div className="space-y-6 [@media(max-height:700px)]:space-y-3">
+      <div className="text-center">
         <h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground text-balance sm:text-3xl [@media(max-height:700px)]:text-xl">
           {needsMultiBoat
             ? t.bookingWizard?.multiBoat?.title || "Vuestros barcos"
             : t.wizard.chooseYourBoat}
         </h2>
-        <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground text-balance">{subtitle}</p>
-      </header>
+        <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground text-balance [@media(max-height:700px)]:mt-1">
+          {subtitle}
+        </p>
+      </div>
 
       {showLicenseFilter && (
         <div>
@@ -271,7 +276,7 @@ export default function StepBoat({
             <div
               role="radiogroup"
               aria-label={t.wizard.selectABoat}
-              className="grid gap-3 md:grid-cols-2"
+              className="grid gap-2 md:grid-cols-2 md:gap-2.5"
             >
               {filteredBoats.map(boat => (
                 <BoatOption
@@ -295,20 +300,22 @@ export default function StepBoat({
 
       {/* Optional help, after the choice that is the task of this step. A skippered boat
           needs no title, so the check is pointless once one is picked. */}
-      {!preSelectedBoatId && licenseFilter === "with" && !(selectedBoat && isCaptainedBoat(selectedBoat)) && (
-        <LicenseVerifierDisclosure
-          verifier={licenseVerifier}
-          onSwitchToUnlicensed={
-            isLicenseFreeEraActive()
-              ? () => {
-                  setLicenseFilter("without");
-                  setSelectedBoat("");
-                  licenseVerifier.dismiss();
-                }
-              : undefined
-          }
-        />
-      )}
+      {!preSelectedBoatId &&
+        licenseFilter === "with" &&
+        !(selectedBoat && isCaptainedBoat(selectedBoat)) && (
+          <LicenseVerifierDisclosure
+            verifier={licenseVerifier}
+            onSwitchToUnlicensed={
+              isLicenseFreeEraActive()
+                ? () => {
+                    setLicenseFilter("without");
+                    setSelectedBoat("");
+                    licenseVerifier.dismiss();
+                  }
+                : undefined
+            }
+          />
+        )}
     </div>
   );
 }

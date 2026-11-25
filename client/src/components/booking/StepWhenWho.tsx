@@ -176,7 +176,7 @@ export default function StepWhenWho({
 
   return (
     <div className="space-y-5 md:space-y-6">
-      <header className="text-center">
+      <div className="text-center">
         <h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground text-balance sm:text-3xl">
           {t.bookingWizard?.steps?.whenWho || "Cuándo y cuántos sois"}
         </h2>
@@ -184,7 +184,7 @@ export default function StepWhenWho({
           {t.bookingWizard?.hints?.pricesNextStep ||
             "En el siguiente paso verás precios reales para tu fecha."}
         </p>
-      </header>
+      </div>
 
       {isMobile ? (
         <div className="space-y-5">
@@ -255,12 +255,12 @@ export default function StepWhenWho({
       {/* Reassurance, quiet: it was a green banner stacked above the title and competed with it. */}
       <div className="space-y-1.5 text-center text-xs text-muted-foreground [@media(max-height:620px)]:hidden">
         <p className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
-          <span className="inline-flex items-center gap-1">
-            <CheckCircle className="h-3.5 w-3.5 text-success" aria-hidden="true" />
+          <span className="inline-flex items-start gap-1 leading-4">
+            <CheckCircle className="mt-px h-3.5 w-3.5 shrink-0 text-success" aria-hidden="true" />
             {t.bookingTrust?.insuranceIncluded || "Seguro incluido"}
           </span>
-          <span className="inline-flex items-center gap-1">
-            <CheckCircle className="h-3.5 w-3.5 text-success" aria-hidden="true" />
+          <span className="inline-flex items-start gap-1 leading-4">
+            <CheckCircle className="mt-px h-3.5 w-3.5 shrink-0 text-success" aria-hidden="true" />
             {t.bookingTrust?.replyTime || "Respondemos en <2h por WhatsApp"}
           </span>
         </p>

@@ -188,14 +188,14 @@ export default function StepConfirm(props: BookingWizardMobileProps) {
 
   return (
     <div className="space-y-5 md:space-y-6">
-      <header className="text-center">
+      <div className="text-center">
         <h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground text-balance sm:text-3xl">
           {t.endowment?.confirmYourBooking || t.wizard.yourData}
         </h2>
         <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground text-balance">
           {t.wizard.confirmViaWhatsApp}
         </p>
-      </header>
+      </div>
 
       {slotConflict && (
         <SlotConflictBanner
@@ -325,7 +325,7 @@ export default function StepConfirm(props: BookingWizardMobileProps) {
               label={
                 <>
                   <span>{t.wizard.email}</span>
-                  <span className="text-xs font-normal opacity-70">({t.booking.optional})</span>
+                  <span className="text-xs font-normal text-muted-foreground">({t.booking.optional})</span>
                 </>
               }
               hint={t.wizard.emailHelper}

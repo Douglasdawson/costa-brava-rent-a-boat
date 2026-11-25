@@ -240,48 +240,45 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
       aria-label={props.t.a11y.bookingForm}
     >
       <div className="sticky top-0 z-10 bg-background border-b border-border">
-        {/* Row 1: close button only — separated from the progress bar so the
-            5th step label can never be visually clipped by the X (WCAG 2.5.5
-            requires a 44×44 target, which is too wide to share a row with
-            5 step labels on a 390px viewport). */}
-        {props.onClose && (
-          <div className="flex justify-end px-2 pt-1.5">
+        {/* One row: progress dots + the 44px close target. The dots shrink to make room, so the step body keeps the
+            height the old separate close row used to take. */}
+        <div className={`flex items-center gap-1 py-1.5 pl-5 ${props.onClose ? "pr-2" : "pr-5"}`}>
+          <div className="min-w-0 flex-1">
+            <BookingProgressBar
+              currentStep={currentStep}
+              totalSteps={totalSteps}
+              showCaption={false}
+              stepLabels={[
+                props.t.bookingWizard?.steps?.whenWhoShort ||
+                  props.t.bookingWizard?.steps?.whenWho ||
+                  "Cuándo",
+                props.t.bookingWizard?.steps?.yourBoat ||
+                  (props.selectedBoatInfo
+                    ? props.t.endowment?.yourTrip || props.t.wizard.stepBoat
+                    : props.t.wizard.stepBoat),
+                props.t.bookingWizard?.steps?.departureDuration ||
+                  (props.selectedBoatInfo
+                    ? props.t.endowment?.yourTrip || props.t.wizard.stepTrip
+                    : props.t.wizard.stepTrip),
+                props.t.bookingWizard?.steps?.upgradeYourDay || "Mejora tu día",
+                props.t.bookingWizard?.steps?.coverages || "Garantías",
+                props.t.bookingWizard?.steps?.yourDetails ||
+                  (props.selectedBoatInfo
+                    ? props.t.endowment?.confirmStep || props.t.wizard.stepConfirm
+                    : props.t.wizard.stepConfirm),
+              ]}
+            />
+          </div>
+          {props.onClose && (
             <button
               type="button"
               onClick={props.onClose}
               aria-label={props.t.booking.close ?? "Cerrar"}
-              className="inline-flex items-center justify-center w-11 h-11 rounded-full text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-1"
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-1"
             >
-              <X className="w-5 h-5" aria-hidden="true" />
+              <X className="h-5 w-5" aria-hidden="true" />
             </button>
-          </div>
-        )}
-        {/* Row 2: progress bar with extra horizontal breathing room so the
-            connector lines stay short and the bar doesn't hug the edges. */}
-        <div className={`px-6 pb-1.5 ${props.onClose ? "" : "pt-1.5"}`}>
-          <BookingProgressBar
-            currentStep={currentStep}
-            totalSteps={totalSteps}
-            stepLabels={[
-              props.t.bookingWizard?.steps?.whenWhoShort ||
-                props.t.bookingWizard?.steps?.whenWho ||
-                "Cuándo",
-              props.t.bookingWizard?.steps?.yourBoat ||
-                (props.selectedBoatInfo
-                  ? props.t.endowment?.yourTrip || props.t.wizard.stepBoat
-                  : props.t.wizard.stepBoat),
-              props.t.bookingWizard?.steps?.departureDuration ||
-                (props.selectedBoatInfo
-                  ? props.t.endowment?.yourTrip || props.t.wizard.stepTrip
-                  : props.t.wizard.stepTrip),
-              props.t.bookingWizard?.steps?.upgradeYourDay || "Mejora tu día",
-              props.t.bookingWizard?.steps?.coverages || "Garantías",
-              props.t.bookingWizard?.steps?.yourDetails ||
-                (props.selectedBoatInfo
-                  ? props.t.endowment?.confirmStep || props.t.wizard.stepConfirm
-                  : props.t.wizard.stepConfirm),
-            ]}
-          />
+          )}
         </div>
       </div>
       {/* P1.10: sessionStorage restore banner — dismissable, optional reset */}
@@ -318,7 +315,10 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
           />
         </div>
       )}
-      <div ref={scrollContainerRef} className="flex-1 overflow-y-auto overflow-x-hidden px-4 py-4">
+      <div
+        ref={scrollContainerRef}
+        className="flex-1 overflow-y-auto overflow-x-hidden px-4 py-4 [@media(max-height:700px)]:py-3"
+      >
         <div
           className={`transition-all duration-150 ${animClass}`}
           aria-live="polite"
@@ -419,7 +419,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
                   setIsSubmitting(false);
                 }}
                 disabled={isSubmitting || props.isValidatingCode}
-                className="flex-1 text-sm font-semibold bg-whatsapp hover:bg-whatsapp-hover text-foreground border-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 text-sm font-semibold bg-whatsapp hover:bg-whatsapp/90 text-foreground border-0 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting || props.isValidatingCode ? (
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />

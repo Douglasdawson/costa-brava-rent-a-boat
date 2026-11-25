@@ -4,6 +4,8 @@ interface BookingProgressBarProps {
   currentStep: number;
   totalSteps: number;
   stepLabels: string[];
+  /** The caption repeats the step's own title; the phone wizard drops it to give the step more height. */
+  showCaption?: boolean;
 }
 
 /**
@@ -21,6 +23,7 @@ export default function BookingProgressBar({
   currentStep,
   totalSteps,
   stepLabels,
+  showCaption = true,
 }: BookingProgressBarProps) {
   const activeLabel = stepLabels[currentStep - 1] || "";
 
@@ -39,11 +42,12 @@ export default function BookingProgressBar({
                 className={`
                   w-7 h-7 shrink-0 rounded-full flex items-center justify-center text-[11px] font-bold
                   transition-all duration-300
-                  ${isComplete
-                    ? "bg-foreground text-white"
-                    : isActive
-                    ? "bg-foreground text-white step-pulse"
-                    : "bg-transparent border-2 border-border text-muted-foreground"
+                  ${
+                    isComplete
+                      ? "bg-foreground text-white"
+                      : isActive
+                        ? "bg-foreground text-white step-pulse"
+                        : "bg-transparent border-2 border-border text-muted-foreground"
                   }
                 `}
                 aria-label={`Step ${stepNum}: ${stepLabels[index] || ""}${isComplete ? " (completed)" : isActive ? " (current)" : ""}`}
@@ -72,23 +76,25 @@ export default function BookingProgressBar({
 
       {/* Caption. `key` restarts the fade on every step change, so the label
           reads as "this changed" instead of silently swapping. */}
-      <p
-        key={currentStep}
-        className="mt-2 text-center text-[13px] leading-none animate-fade-in"
-        aria-hidden="true"
-      >
-        <span className="tabular-nums text-muted-foreground">
-          {currentStep}/{totalSteps}
-        </span>
-        {activeLabel && (
-          <>
-            <span className="mx-1.5 text-border" aria-hidden="true">
-              ·
-            </span>
-            <span className="font-semibold text-foreground">{activeLabel}</span>
-          </>
-        )}
-      </p>
+      {showCaption && (
+        <p
+          key={currentStep}
+          className="mt-2 text-center text-[13px] leading-none animate-fade-in"
+          aria-hidden="true"
+        >
+          <span className="tabular-nums text-muted-foreground">
+            {currentStep}/{totalSteps}
+          </span>
+          {activeLabel && (
+            <>
+              <span className="mx-1.5 text-border" aria-hidden="true">
+                ·
+              </span>
+              <span className="font-semibold text-foreground">{activeLabel}</span>
+            </>
+          )}
+        </p>
+      )}
     </nav>
   );
 }

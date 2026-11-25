@@ -53,19 +53,19 @@ export default function StepExtras({
   );
 
   return (
-    <div className="space-y-5 md:space-y-6 [@media(max-height:700px)]:space-y-3">
-      <header className="text-center">
+    <div className="space-y-5 md:space-y-6 [@media(max-height:700px)]:space-y-3 [@media(max-height:660px)]:!space-y-2">
+      <div className="text-center">
         <h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground text-balance sm:text-3xl">
           {t.bookingWizard?.steps?.upgradeYourDay || "Mejora tu día"}
         </h2>
         <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground text-balance [@media(max-height:700px)]:hidden">
           {copy.title}
         </p>
-      </header>
+      </div>
 
       {availablePacks.length > 0 && (
         <section aria-label={copy.packs}>
-          <div className="mb-2 flex items-center justify-between gap-3">
+          <div className="mb-2 flex items-center justify-between gap-3 [@media(max-height:660px)]:mb-1">
             <p className="text-sm font-medium text-muted-foreground">{copy.packs}</p>
             <button
               type="button"
@@ -139,7 +139,7 @@ export default function StepExtras({
 
       {boatExtras.length > 0 && (
         <section aria-label={copy.individual}>
-          <div className="mb-2 flex items-center justify-between gap-3">
+          <div className="mb-2 flex items-center justify-between gap-3 [@media(max-height:660px)]:mb-1">
             <p className="text-sm font-medium text-muted-foreground">{copy.individual}</p>
             {totalExtrasPrice > 0 && (
               <span className="rounded-full bg-muted px-3 py-1 text-sm font-semibold tabular-nums text-foreground">
@@ -147,7 +147,7 @@ export default function StepExtras({
               </span>
             )}
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-col gap-2 [@media(max-height:700px)]:gap-1.5 sm:flex-row sm:flex-wrap">
             {boatExtras.map(extra => {
               const included = extrasInPack.has(extra.name);
               const checked = selectedExtras.includes(extra.name);
@@ -161,7 +161,7 @@ export default function StepExtras({
                   disabled={included}
                   onClick={() => handleExtraToggle(extra.name)}
                   className={cn(
-                    "inline-flex min-h-11 items-center gap-2 rounded-full border px-4 text-sm font-medium transition-colors [@media(max-height:700px)]:min-h-10",
+                    "inline-flex min-h-11 w-full items-center gap-2 rounded-full border px-4 text-sm font-medium transition-colors [@media(max-height:700px)]:min-h-10 sm:w-auto",
                     FOCUS,
                     included
                       ? "cursor-default border-border bg-muted text-muted-foreground"
@@ -176,7 +176,12 @@ export default function StepExtras({
                     <ExtraIcon className="h-4 w-4 shrink-0" />
                   )}
                   <span>{translateExtraName(extra.name, language)}</span>
-                  <span className={cn("tabular-nums", on ? "opacity-80" : "text-muted-foreground")}>
+                  <span
+                    className={cn(
+                      "ml-auto tabular-nums sm:ml-0",
+                      on ? "opacity-80" : "text-muted-foreground"
+                    )}
+                  >
                     {included ? copy.included.toLowerCase() : extra.price}
                   </span>
                 </button>

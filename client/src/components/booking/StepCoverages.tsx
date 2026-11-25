@@ -39,15 +39,15 @@ export default function StepCoverages({ coverages, weatherPrice, t }: StepCovera
   const c = t.booking.coverages;
 
   return (
-    <div className="space-y-5 md:space-y-6 [@media(max-height:820px)]:space-y-3">
-      <header className="text-center">
+    <div className="space-y-5 md:space-y-6 [@media(max-height:820px)]:space-y-3 [@media(max-height:660px)]:!space-y-2">
+      <div className="text-center">
         <h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground text-balance sm:text-3xl [@media(max-height:820px)]:text-xl">
           {c.stepTitle}
         </h2>
         <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground text-balance [@media(max-height:820px)]:hidden">
           {c.stepSubtitle}
         </p>
-      </header>
+      </div>
 
       {/* The contrast. Two columns sharing one frame (not two cards): the point is the comparison. */}
       <div className="grid grid-cols-2 overflow-hidden rounded-3xl border border-border bg-card">
@@ -99,7 +99,12 @@ export default function StepCoverages({ coverages, weatherPrice, t }: StepCovera
               <span className="block text-sm font-semibold leading-tight text-foreground">
                 {option.name}
               </span>
-              <span className="mt-0.5 block text-xs leading-snug text-muted-foreground">
+              {/* On short phones the weather row's line repeats the "Con garantía" cell right above it. */}
+              <span
+                className={`mt-0.5 block text-xs leading-snug text-muted-foreground ${
+                  option.key === "weather" ? "[@media(max-height:660px)]:hidden" : ""
+                }`}
+              >
                 {option.desc}
               </span>
             </span>

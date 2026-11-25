@@ -4,6 +4,7 @@ import { ThemeProvider } from "./hooks/use-theme";
 import { detectInitialLanguage, seedInitialLanguage } from "./hooks/use-language";
 import { langLoaders } from "./i18n/loaders";
 import { captureAttribution } from "./utils/attribution";
+import { initSwAutoUpdate } from "./utils/swAutoUpdate";
 import "./index.css";
 
 // Capture marketing attribution (utm_*, fbclid) from the landing URL once, before
@@ -61,4 +62,6 @@ loadBundle()
     );
   });
 
-// Service worker registration is handled by vite-plugin-pwa (registerType: "autoUpdate")
+// Service worker registration is handled by vite-plugin-pwa (registerType: "autoUpdate"), which only
+// registers it: the reload onto a new deploy is swAutoUpdate's job.
+initSwAutoUpdate();

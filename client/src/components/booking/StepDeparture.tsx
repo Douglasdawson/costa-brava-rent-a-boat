@@ -179,7 +179,7 @@ export default function StepDeparture({
               aria-describedby={timeError ? "error-departure-time" : undefined}
               className={cn(
                 // Phones: one swipeable row (a 19-slot grid would push the step past the viewport); desktop: wrapping grid.
-                "-mx-1 flex snap-x gap-2 overflow-x-auto px-1 py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:grid md:grid-cols-5 md:overflow-visible md:px-0 md:py-0",
+                "-mx-1 flex snap-x gap-2 overflow-x-auto px-1 py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:grid md:grid-cols-11 md:gap-1.5 md:overflow-visible md:px-0 md:py-0",
                 timeError && "ring-2 ring-destructive ring-offset-4 ring-offset-background"
               )}
             >
@@ -208,7 +208,7 @@ export default function StepDeparture({
                     onClick={() => onTimeSelectFromUser(time)}
                     onBlur={() => handleBlur("time")}
                     className={cn(
-                      "inline-flex min-h-11 min-w-[4.5rem] shrink-0 snap-start items-center justify-center rounded-full border px-3 text-sm font-semibold tabular-nums transition-colors focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none md:min-w-0",
+                      "inline-flex min-h-11 min-w-[4.5rem] shrink-0 snap-start items-center justify-center rounded-full border px-3 text-sm font-semibold tabular-nums transition-colors focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none md:min-w-0 md:px-1",
                       selected
                         ? "border-cta bg-cta text-primary-foreground dark:text-background"
                         : isUnavailable

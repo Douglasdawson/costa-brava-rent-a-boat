@@ -320,6 +320,12 @@ export function startScheduler(): void {
         logger.info("ANTHROPIC_API_KEY not set, blog autopilot disabled");
         return;
       }
+      // Gate por entorno (apagado por defecto): generar borradores gasta tokens y la fila
+      // de config sigue con is_enabled=true en prod. Activar con BLOG_AUTOPILOT_GENERATE=1.
+      if (process.env.BLOG_AUTOPILOT_GENERATE !== "1") {
+        logger.info("Blog autopilot generation is OFF (set BLOG_AUTOPILOT_GENERATE=1 to enable)");
+        return;
+      }
       const config = await getConfig();
       if (!config.isEnabled) {
         logger.info("Blog autopilot is disabled in config");
@@ -357,7 +363,11 @@ export function startScheduler(): void {
   // fully translated this becomes a no-op. Cost: ~$0.03-0.05 per post per
   // missing lang. Estimated total to backfill ~45 existing posts: ~$2-3
   // (eventually completes in ~5 hours of cycles).
-  scheduledTasks.push(cron.schedule("*/20 * * * *", async () => {
+  // Gate por entorno (apagado por defecto): escribe *_by_lang en posts publicados y gasta
+  // tokens. Activar con BLOG_TRANSLATION_BACKFILL=1.
+  const blogBackfillOn = process.env.BLOG_TRANSLATION_BACKFILL === "1";
+  if (!blogBackfillOn) logger.info("Blog translation backfill is OFF (set BLOG_TRANSLATION_BACKFILL=1 to enable)");
+  if (blogBackfillOn) scheduledTasks.push(cron.schedule("*/20 * * * *", async () => {
     try {
       const summary = await runBlogTranslationBackfill({ limit: 3 });
       if (summary.processed > 0 || summary.failed > 0) {
@@ -370,7 +380,7 @@ export function startScheduler(): void {
 
   // Run once shortly after boot so we don't wait the full 20 min for first
   // batch (gives Replit Republish a head start on convergence).
-  setTimeout(() => {
+  if (blogBackfillOn) setTimeout(() => {
     runBlogTranslationBackfill({ limit: 3 })
       .then((summary) => {
         if (summary.processed > 0 || summary.candidates > 0) {

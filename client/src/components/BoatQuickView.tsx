@@ -132,8 +132,9 @@ export default function BoatQuickView({
                   </div>
                 </div>
 
-                <div className="flex min-h-0 flex-1 flex-col bg-muted md:w-1/2">
-                  <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain rounded-b-2xl bg-card p-5 sm:p-6">
+                {/* flex-auto, not flex-1: iOS Safari resolves flex-1's 0% basis against this h-fit box and collapses the panel to 0px */}
+                <div className="flex min-h-0 flex-auto flex-col bg-muted md:w-1/2">
+                  <div className="min-h-0 flex-auto overflow-y-auto overscroll-contain rounded-b-2xl bg-card p-5 sm:p-6">
                     <p className="text-sm font-medium text-muted-foreground">{licenseLabel}</p>
                     <DialogPrimitive.Title className="mt-1 pr-12 font-heading text-2xl font-semibold leading-[1.1] tracking-tight text-foreground text-balance sm:text-3xl">
                       {name}

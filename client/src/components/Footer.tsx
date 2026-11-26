@@ -22,8 +22,9 @@ const container: Variants = {
   visible: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
 };
 const rise: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  // Rise only: footer text is never gated on opacity (a hidden tab would leave it blank).
+  hidden: { y: 20 },
+  visible: { y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 };
 
 interface FooterLink {
@@ -233,7 +234,7 @@ export default function Footer() {
           </div>
 
           {/* Newsletter */}
-          <div className="lg:justify-self-end lg:max-w-md w-full">
+          <div className="w-full rounded-2xl border border-white/10 bg-white/[0.04] p-6 sm:p-7 lg:max-w-md lg:justify-self-end">
             <h3 className="font-heading text-xl font-semibold text-primary-foreground mb-2 text-balance">
               {t.locationPages.newsletter.title}
             </h3>
@@ -317,7 +318,7 @@ export default function Footer() {
                     <a
                       href={linkHref(l)}
                       data-testid={l.testId}
-                      className={`inline-flex items-center py-1 rounded-sm text-[15px] font-medium leading-snug text-primary-foreground transition-colors hover:text-primary-foreground/60 ${ring}`}
+                      className={`group/fl relative inline-flex items-center py-1 rounded-sm text-[15px] font-medium leading-snug text-primary-foreground/85 transition-colors after:absolute after:inset-x-0 after:bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 [@media(hover:hover)]:hover:text-primary-foreground [@media(hover:hover)]:hover:after:scale-x-100 ${ring}`}
                     >
                       {l.label}
                     </a>
@@ -403,8 +404,14 @@ export default function Footer() {
               </div>
 
               <div className="flex items-start space-x-3">
-                <MapPin className="w-4 h-4 text-primary-foreground/50 flex-shrink-0 mt-1" strokeWidth={2.5} />
-                <CoastrentOfficeNote surface="contact" className="text-xs leading-relaxed text-primary-foreground/60" />
+                <MapPin
+                  className="w-4 h-4 text-primary-foreground/50 flex-shrink-0 mt-1"
+                  strokeWidth={2.5}
+                />
+                <CoastrentOfficeNote
+                  surface="contact"
+                  className="text-xs leading-relaxed text-primary-foreground/60"
+                />
               </div>
             </div>
           </motion.div>
@@ -465,16 +472,18 @@ export default function Footer() {
               {t.footer.cookieSettings}
             </button>
           </div>
-          <p
-            className="text-primary-foreground/60 text-xs"
-            data-testid="footer-brand-differentiator"
-          >
-            {t.footer.nameDifferentiator}
-          </p>
-          <div className="mt-2 flex flex-wrap items-center justify-center gap-6 sm:justify-start">
-            <CentresNLCatalunyaLogo className="h-10" />
-            <ClusterNauticLogo className="h-10" />
-            <DonQualitaLogo className="h-8" />
+          <div className="mt-2 flex w-full flex-col items-center gap-6 sm:items-start lg:flex-row lg:items-center lg:justify-between">
+            <p
+              className="text-primary-foreground/60 text-xs"
+              data-testid="footer-brand-differentiator"
+            >
+              {t.footer.nameDifferentiator}
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-6 sm:justify-start lg:flex-nowrap">
+              <CentresNLCatalunyaLogo className="h-10" />
+              <ClusterNauticLogo className="h-10" />
+              <DonQualitaLogo className="h-8" />
+            </div>
           </div>
         </motion.div>
       </motion.div>

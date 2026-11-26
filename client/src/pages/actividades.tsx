@@ -1,16 +1,22 @@
-import { useState, useEffect } from "react";
-import { ArrowRight, ExternalLink, CloudRain, Handshake } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import {
+  H2,
+  H3,
+  Sheet,
+  Rise,
+  LeadText,
+  PhotoHero,
+  FaqSheet,
+  PILL_SECONDARY,
+} from "@/components/activity-kit";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import RelatedContent from "@/components/RelatedContent";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
-import {
-  generateHreflangLinks,
-  generateCanonicalUrl,
-  BASE_DOMAIN,
-} from "@/utils/seo-config";
+import { generateHreflangLinks, generateCanonicalUrl, BASE_DOMAIN } from "@/utils/seo-config";
 import { generateBreadcrumbSchema, generateFAQSchema } from "@/utils/seo-schemas";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
 import {
@@ -43,9 +49,6 @@ export default function ActivitiesPage() {
   const hreflangLinks = generateHreflangLinks("activities");
   const canonical = generateCanonicalUrl("activities", language);
 
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
   const heroImage = "/images/locations/hero-lloret-de-mar.webp";
   const heroImageMobile = "/images/locations/hero-lloret-de-mar-mobile.webp";
 
@@ -65,7 +68,7 @@ export default function ActivitiesPage() {
       { name: t.nav.home, url: generateCanonicalUrl("home", language) },
       { name: s?.navLabel || "Actividades", url: canonical },
     ]),
-    generateFAQSchema((s?.faq || []).map((f) => ({ question: f.q, answer: f.a }))),
+    generateFAQSchema((s?.faq || []).map(f => ({ question: f.q, answer: f.a }))),
   ];
 
   return (
@@ -81,156 +84,139 @@ export default function ActivitiesPage() {
       />
       <Navigation />
 
-      {/* HERO */}
-      <section className="relative isolate flex min-h-[62vh] items-center overflow-hidden pb-16 pt-28">
-        <picture>
-          <source
-            media="(max-width: 640px)"
-            type="image/avif"
-            srcSet="/images/locations/hero-lloret-de-mar-mobile.avif"
-          />
-          <source media="(max-width: 640px)" srcSet={heroImageMobile} />
-          <source type="image/avif" srcSet="/images/locations/hero-lloret-de-mar.avif" />
-          <img
-            src={heroImage}
-            alt={s?.hero?.title || "Costa Brava desde el aire"}
-            width={1920}
-            height={1080}
-            decoding="async"
-            draggable={false}
-            className={`absolute inset-0 -z-10 h-full w-full object-cover will-change-transform transition-transform duration-[1200ms] ease-out ${mounted ? "scale-100" : "scale-[1.06]"}`}
-          />
-        </picture>
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/45 to-black/65" />
-
-        <div
-          className={`mx-auto w-full max-w-3xl px-4 text-center text-white transition-all duration-700 ease-out sm:px-6 ${mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
-        >
-          <h1 className="font-heading text-display font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)]">
-            {s?.hero?.title}
-          </h1>
-          <p className="mx-auto mt-5 max-w-xl text-lg text-white/90 [text-shadow:0_1px_10px_hsl(215_45%_12%/0.45)]">
-            {s?.hero?.subtitle}
-          </p>
-          <div className="mt-8">
-            <a
+      <PhotoHero
+        minHeight="sm:min-h-[72svh]"
+        media={
+          <picture>
+            <source
+              media="(max-width: 640px)"
+              type="image/avif"
+              srcSet="/images/locations/hero-lloret-de-mar-mobile.avif"
+            />
+            <source media="(max-width: 640px)" srcSet={heroImageMobile} />
+            <source type="image/avif" srcSet="/images/locations/hero-lloret-de-mar.avif" />
+            <img
+              src={heroImage}
+              alt={s?.hero?.title || "Costa Brava desde el aire"}
+              width={1920}
+              height={1080}
+              decoding="async"
+              draggable={false}
+            />
+          </picture>
+        }
+        title={s?.hero?.title}
+        subtitle={s?.hero?.subtitle}
+        actions={
+          <div className="flex flex-col items-center">
+            <InteractiveHoverButton
+              tone="dark"
               href={blanesUrl}
               target="_blank"
               rel="noopener"
-              className={`${NAVY_CTA} min-h-12 px-9 text-base`}
+              className="min-h-12 w-full whitespace-nowrap px-8 text-base sm:w-auto"
             >
               {s?.cta}
-              <ExternalLink className="h-5 w-5" />
-            </a>
+            </InteractiveHoverButton>
             <p className="mt-2 text-xs text-white/70">{s?.ctaNote}</p>
           </div>
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
-            {(s?.chips || []).map((chip) => (
-              <span
-                key={chip}
-                className="inline-flex items-center rounded-full bg-black/25 px-3 py-1.5 text-sm text-white ring-1 ring-white/20"
-              >
-                {chip}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+        }
+        facts={s?.chips}
+      />
 
-      {/* INTRO */}
+      {/* Intro: one sentence as the point, the rest as detail */}
       {s?.intro && (
-        <section className="px-4 py-12 sm:px-6 lg:py-16">
-          <p className="mx-auto max-w-2xl text-center text-lg text-muted-foreground">
-            {s.intro}
-          </p>
-        </section>
+        <Sheet next="muted" className="py-12 sm:py-16">
+          <Rise>
+            <LeadText
+              text={s.intro}
+              className="mx-auto max-w-3xl text-center text-lg sm:text-xl [&>span:first-child]:text-xl sm:[&>span:first-child]:text-2xl"
+            />
+          </Rise>
+        </Sheet>
       )}
 
-      {/* AFTER THE BOAT — many, cheap, short: reads as a rate list, not as cards */}
-      <section className="border-y border-border bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-        <div className="mx-auto max-w-2xl">
-          <h2 className="font-heading text-h2 font-bold text-foreground">
-            {s?.afterBoatTitle}
-          </h2>
-          <p className="mt-3 max-w-prose leading-relaxed text-muted-foreground">
-            {s?.afterBoatIntro}
-          </p>
-
-          <ul className="mt-8 divide-y divide-border">
-            {afterBoat.map((key) => {
-              const copy = pickCopy(key);
-              if (!copy) return null;
-              return (
-                <li key={key}>
-                  <a
-                    href={pickUrl(key)}
-                    target="_blank"
-                    rel="noopener"
-                    className="group flex items-baseline justify-between gap-6 py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta"
-                  >
-                    <span className="min-w-0">
-                      <span className="font-heading font-semibold text-foreground group-hover:underline">
-                        {copy.name}
+      {/* After the boat: many, cheap, short, so a rate list */}
+      <Sheet tone="muted" next="page">
+        <div className="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
+          <Rise>
+            <h2 className={H2}>{s?.afterBoatTitle}</h2>
+            <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground text-pretty">
+              {s?.afterBoatIntro}
+            </p>
+          </Rise>
+          <Rise delay={0.1}>
+            <ul className="overflow-hidden rounded-2xl border border-border bg-card">
+              {afterBoat.map(key => {
+                const copy = pickCopy(key);
+                if (!copy) return null;
+                return (
+                  <li key={key} className="border-b border-border last:border-b-0">
+                    <a
+                      href={pickUrl(key)}
+                      target="_blank"
+                      rel="noopener"
+                      className="group flex items-baseline justify-between gap-6 px-5 py-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cta motion-reduce:transition-none sm:px-6 [@media(hover:hover)]:hover:bg-muted/60"
+                    >
+                      <span className="min-w-0">
+                        <span className="font-heading text-base font-semibold text-foreground group-hover:underline">
+                          {copy.name}
+                        </span>
+                        <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">
+                          {copy.note}
+                        </span>
                       </span>
-                      <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">
-                        {copy.note}
+                      <span className="shrink-0 whitespace-nowrap text-right text-base font-semibold tabular-nums text-foreground">
+                        {s?.priceFrom} {ACTIVITATUM_PICKS[key].priceEur}&euro;
                       </span>
-                    </span>
-                    <span className="flex-shrink-0 whitespace-nowrap font-heading text-lg font-bold text-foreground">
-                      {s?.priceFrom} {ACTIVITATUM_PICKS[key].priceEur}&euro;
-                    </span>
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </Rise>
         </div>
-      </section>
+      </Sheet>
 
-      {/* HALF-DAY PLANS — few and pricier, so they get the room */}
-      <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="font-heading text-h2 font-bold text-foreground">
-            {s?.landDayTitle}
-          </h2>
-          <p className="mt-3 max-w-prose leading-relaxed text-muted-foreground">
+      {/* Half-day plans: few and pricier, so they get the room */}
+      <Sheet next="muted">
+        <Rise>
+          <h2 className={H2}>{s?.landDayTitle}</h2>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground text-pretty">
             {s?.landDayIntro}
           </p>
-
-          <div className="mt-10 space-y-10">
-            {landDay.map((key) => {
-              const copy = pickCopy(key);
-              if (!copy) return null;
-              return (
-                <article key={key} className="border-l-2 border-cta pl-5 sm:pl-6">
-                  <h3 className="font-heading text-xl font-bold text-foreground sm:text-2xl">
-                    {copy.name}
-                  </h3>
-                  <p className="mt-2 max-w-prose leading-relaxed text-muted-foreground">
-                    {copy.note}
-                  </p>
+        </Rise>
+        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {landDay.map(key => {
+            const copy = pickCopy(key);
+            if (!copy) return null;
+            return (
+              <Rise key={key} className="flex">
+                <article className="flex w-full flex-col justify-between gap-6 rounded-2xl border border-border bg-card p-6 sm:p-8">
+                  <div>
+                    <h3 className="font-heading text-xl font-semibold tracking-tight text-balance sm:text-2xl">
+                      {copy.name}
+                    </h3>
+                    <LeadText text={copy.note} className="mt-3" />
+                  </div>
                   <a
                     href={pickUrl(key)}
                     target="_blank"
                     rel="noopener"
-                    className="mt-3 inline-flex items-center gap-1.5 font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta"
+                    className={`${PILL_SECONDARY} self-start`}
                   >
                     {s?.priceFrom} {ACTIVITATUM_PICKS[key].priceEur}&euro;
-                    <ArrowRight className="h-4 w-4" />
+                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
                   </a>
                 </article>
-              );
-            })}
-          </div>
+              </Rise>
+            );
+          })}
         </div>
-      </section>
 
-      {/* RAINY DAY — one line, and it should look like one line */}
-      {rainyDay && pickCopy(rainyDay) && (
-        <section className="px-4 pb-16 sm:px-6">
-          <div className="mx-auto flex max-w-3xl items-start gap-4 rounded-xl bg-muted/50 p-5 sm:p-6">
-            <CloudRain className="mt-0.5 h-5 w-5 flex-shrink-0 text-muted-foreground" />
-            <p className="leading-relaxed text-muted-foreground">
+        {rainyDay && pickCopy(rainyDay) && (
+          <Rise className="mt-6">
+            <p className="rounded-2xl bg-muted/60 p-5 text-base leading-relaxed text-muted-foreground sm:p-6">
               <span className="font-semibold text-foreground">{s?.rainyDayTitle}: </span>
               {pickCopy(rainyDay)?.note}{" "}
               <a
@@ -243,63 +229,36 @@ export default function ActivitiesPage() {
               </a>
               .
             </p>
-          </div>
-        </section>
-      )}
+          </Rise>
+        )}
+      </Sheet>
 
-      {/* WHO OPERATES THIS */}
-      <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-        <div className="mx-auto max-w-2xl rounded-2xl border border-border bg-card p-6 sm:p-8">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-              <Handshake className="h-5 w-5 text-primary" />
-            </span>
-            <h2 className="font-heading text-xl font-bold text-foreground sm:text-2xl">
-              {s?.operatedByTitle}
-            </h2>
-          </div>
-          <p className="mt-4 leading-relaxed text-muted-foreground">{s?.operatedByText}</p>
-          <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
-            <a
+      {/* Who operates this */}
+      <Sheet tone="muted" next="page">
+        <Rise className="mx-auto max-w-3xl rounded-2xl border border-border bg-card p-6 sm:p-8">
+          <h2 className={`${H3} text-xl sm:text-2xl`}>{s?.operatedByTitle}</h2>
+          <p className="mt-3 text-base leading-relaxed text-muted-foreground text-pretty">
+            {s?.operatedByText}
+          </p>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <InteractiveHoverButton
+              tone="dark"
               href={blanesUrl}
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center gap-1.5 font-semibold text-primary hover:underline"
+              className="min-h-12 px-7 text-base"
             >
               {s?.cta}
-              <ArrowRight className="h-4 w-4" />
-            </a>
-            <a
-              href={lloretUrl}
-              target="_blank"
-              rel="noopener"
-              className="inline-flex items-center gap-1.5 font-semibold text-primary hover:underline"
-            >
+            </InteractiveHoverButton>
+            <a href={lloretUrl} target="_blank" rel="noopener" className={PILL_SECONDARY}>
               {s?.ctaSecondary}
-              <ArrowRight className="h-4 w-4" />
+              <ExternalLink className="h-4 w-4" aria-hidden="true" />
             </a>
           </div>
-        </div>
-      </section>
+        </Rise>
+      </Sheet>
 
-      {/* FAQ */}
-      {(s?.faq || []).length > 0 && (
-        <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-          <div className="mx-auto max-w-2xl">
-            <h2 className="font-heading text-h2 font-bold text-foreground">
-              {s?.faqTitle}
-            </h2>
-            <dl className="mt-8 divide-y divide-border">
-              {(s?.faq || []).map((f) => (
-                <div key={f.q} className="py-5 first:pt-0 last:pb-0">
-                  <dt className="font-heading font-semibold text-foreground">{f.q}</dt>
-                  <dd className="mt-1.5 leading-relaxed text-muted-foreground">{f.a}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </section>
-      )}
+      <FaqSheet idPrefix="activities-faq" title={s?.faqTitle} items={s?.faq || []} next="muted" />
 
       {/* Sticky mobile CTA */}
       <MobileStickyBar>

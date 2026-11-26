@@ -7,8 +7,18 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Badge } from "@/components/ui/badge";
-import { Gift, CreditCard, Check, Ship } from "lucide-react";
+import { Check } from "lucide-react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import {
+  Fold,
+  H2,
+  ON_NAVY_MUTED,
+  PageHeader,
+  PhotoBand,
+  Rise,
+  Sheet,
+  splitSentences,
+} from "@/components/content-kit";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
@@ -17,18 +27,13 @@ import { useToast } from "@/hooks/use-toast";
 import { trackGiftCardPurchase } from "@/utils/analytics";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks, generateBreadcrumbSchema } from "@/utils/seo-config";
+import {
+  getSEOConfig,
+  generateCanonicalUrl,
+  generateHreflangLinks,
+  generateBreadcrumbSchema,
+} from "@/utils/seo-config";
 import { generateFAQSchema } from "@/utils/seo-schemas";
-
-function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <div ref={ref} className={`transition-[opacity,transform,filter] duration-700 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"} ${className}`}>
-      {children}
-    </div>
-  );
-}
 
 const AMOUNTS = [50, 100, 150, 200, 300];
 
@@ -43,36 +48,42 @@ export default function GiftCardsPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [purchaseComplete, setPurchaseComplete] = useState(false);
   const [giftCardCode, setGiftCardCode] = useState("");
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const { data: boats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
-  const fleetCount = (boats || []).filter((b) => isPubliclyListed(b) && !isJetSkiProduct(b.id)).length || 8;
+  const fleetCount =
+    (boats || []).filter(b => isPubliclyListed(b) && !isJetSkiProduct(b.id)).length || 8;
   const { toast } = useToast();
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
 
   const seoConfig = getSEOConfig("giftCards", language) || {
     title: "Tarjetas Regalo | Costa Brava Rent a Boat",
-    description: "Regala una experiencia en barco por la Costa Brava. Tarjetas regalo desde 50 EUR.",
+    description:
+      "Regala una experiencia en barco por la Costa Brava. Tarjetas regalo desde 50 EUR.",
   };
   const canonical = generateCanonicalUrl("giftCards", language);
   const hreflangLinks = generateHreflangLinks("giftCards");
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: t.breadcrumbs.home, url: "/" },
-    { name: t.breadcrumbs.giftCards, url: "/tarjetas-regalo" }
+    { name: t.breadcrumbs.giftCards, url: "/tarjetas-regalo" },
   ]);
 
   // Single source for the visible FAQ + the FAQPage JSON-LD (no drift).
   const giftCardFaqs = [
     {
       question: "¿Cuánto tiempo es válida la tarjeta regalo?",
-      answer: "La tarjeta regalo tiene una validez de 1 año desde la fecha de compra. Puede utilizarse en cualquier momento durante la temporada de navegación (abril a octubre).",
+      answer:
+        "La tarjeta regalo tiene una validez de 1 año desde la fecha de compra. Puede utilizarse en cualquier momento durante la temporada de navegación (abril a octubre).",
     },
     {
       question: "¿El destinatario puede elegir el barco?",
-      answer: "Sí, el destinatario puede elegir cualquier barco de nuestra flota, sujeto a disponibilidad. Si el valor de la tarjeta no cubre el total, puede pagar la diferencia.",
+      answer:
+        "Sí, el destinatario puede elegir cualquier barco de nuestra flota, sujeto a disponibilidad. Si el valor de la tarjeta no cubre el total, puede pagar la diferencia.",
     },
     {
       question: "¿Cómo se canjea la tarjeta regalo?",
-      answer: "El destinatario recibirá un código único por email. Para canjearla, solo tiene que contactarnos por WhatsApp al +34 611 500 372 o por email indicando el código y la fecha deseada.",
+      answer:
+        "El destinatario recibirá un código único por email. Para canjearla, solo tiene que contactarnos por WhatsApp al +34 611 500 372 o por email indicando el código y la fecha deseada.",
     },
   ];
 
@@ -98,33 +109,44 @@ export default function GiftCardsPage() {
     },
   };
 
-  const jsonLd = [
-    breadcrumbSchema,
-    giftCardProductSchema,
-    generateFAQSchema(giftCardFaqs),
-  ];
+  const jsonLd = [breadcrumbSchema, giftCardProductSchema, generateFAQSchema(giftCardFaqs)];
 
   const effectiveAmount = selectedAmount === -1 ? Number(customAmount) : selectedAmount;
 
   const handlePurchase = async () => {
     if (!effectiveAmount || effectiveAmount < 10) {
-      toast({ variant: "destructive", title: t.giftCards?.selectAmount || "Selecciona un importe" });
+      toast({
+        variant: "destructive",
+        title: t.giftCards?.selectAmount || "Selecciona un importe",
+      });
       return;
     }
     if (!purchaserName.trim()) {
-      toast({ variant: "destructive", title: t.giftCards?.yourNameRequired || "Tu nombre es requerido" });
+      toast({
+        variant: "destructive",
+        title: t.giftCards?.yourNameRequired || "Tu nombre es requerido",
+      });
       return;
     }
     if (!purchaserEmail.trim()) {
-      toast({ variant: "destructive", title: t.giftCards?.yourEmailRequired || "Tu email es requerido" });
+      toast({
+        variant: "destructive",
+        title: t.giftCards?.yourEmailRequired || "Tu email es requerido",
+      });
       return;
     }
     if (!recipientName.trim()) {
-      toast({ variant: "destructive", title: t.giftCards?.recipientNameRequired || "Nombre del destinatario requerido" });
+      toast({
+        variant: "destructive",
+        title: t.giftCards?.recipientNameRequired || "Nombre del destinatario requerido",
+      });
       return;
     }
     if (!recipientEmail.trim()) {
-      toast({ variant: "destructive", title: t.giftCards?.recipientEmailRequired || "Email del destinatario requerido" });
+      toast({
+        variant: "destructive",
+        title: t.giftCards?.recipientEmailRequired || "Email del destinatario requerido",
+      });
       return;
     }
 
@@ -165,43 +187,59 @@ export default function GiftCardsPage() {
   if (purchaseComplete) {
     return (
       <main id="main-content" className="min-h-screen bg-background">
-        <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={jsonLd} />
+        <SEO
+          title={seoConfig.title}
+          description={seoConfig.description}
+          keywords={seoConfig.keywords}
+          ogImage={seoConfig.image}
+          canonical={canonical}
+          hreflang={hreflangLinks}
+          jsonLd={jsonLd}
+        />
         <Navigation />
         <ReadingProgressBar />
         <div className="py-16 sm:py-20 bg-background">
           <div className="max-w-md mx-auto px-4">
-            <div className="bg-muted border border-border rounded-xl p-8 text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Check className="w-8 h-8 text-primary" />
+            <div className="rounded-2xl border border-border bg-muted p-8 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-success/10 text-success">
+                <Check className="h-6 w-6" aria-hidden="true" />
               </div>
-              <h2 className="text-h2 font-heading font-bold text-foreground mb-2">
+              <h2 className="text-h2 font-heading font-semibold tracking-tight text-foreground mb-2">
                 {t.giftCards?.purchaseSuccess || "Tarjeta regalo creada"}
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                {t.giftCards?.purchaseSuccessDesc || "Se enviara por email una vez confirmado el pago."}
+                {t.giftCards?.purchaseSuccessDesc ||
+                  "Se enviara por email una vez confirmado el pago."}
               </p>
-              <div className="bg-background rounded-lg p-4 mb-4">
-                <p className="text-sm text-muted-foreground/60 mb-1">{t.giftCards?.code || "Codigo"}</p>
-                <p className="text-2xl font-mono font-bold tracking-wider">{giftCardCode}</p>
+              <div className="mb-4 rounded-xl bg-background p-4">
+                <p className="text-sm text-muted-foreground/60 mb-1">
+                  {t.giftCards?.code || "Codigo"}
+                </p>
+                <p className="text-2xl font-mono font-semibold tracking-wider">{giftCardCode}</p>
               </div>
               <p className="text-sm text-muted-foreground/60 mb-6">
                 {t.giftCards?.forRecipient || "Para"}: {recipientName}
               </p>
               <div className="flex gap-3 justify-center">
-                <Button variant="outline" onClick={() => window.location.href = localizedPath("home")}>
+                <Button
+                  variant="outline"
+                  onClick={() => (window.location.href = localizedPath("home"))}
+                >
                   {t.giftCards?.backHome || "Volver al inicio"}
                 </Button>
-                <Button onClick={() => {
-                  setPurchaseComplete(false);
-                  setSelectedAmount(null);
-                  setCustomAmount("");
-                  setPurchaserName("");
-                  setPurchaserEmail("");
-                  setRecipientName("");
-                  setRecipientEmail("");
-                  setPersonalMessage("");
-                  setGiftCardCode("");
-                }}>
+                <Button
+                  onClick={() => {
+                    setPurchaseComplete(false);
+                    setSelectedAmount(null);
+                    setCustomAmount("");
+                    setPurchaserName("");
+                    setPurchaserEmail("");
+                    setRecipientName("");
+                    setRecipientEmail("");
+                    setPersonalMessage("");
+                    setGiftCardCode("");
+                  }}
+                >
                   {t.giftCards?.buyAnother || "Comprar otra"}
                 </Button>
               </div>
@@ -213,80 +251,92 @@ export default function GiftCardsPage() {
     );
   }
 
+  const [whyLead, whyRest] = splitSentences(t.giftCards?.whyP1);
+
   return (
     <main id="main-content" className="min-h-screen bg-background">
-      <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={jsonLd} />
+      <SEO
+        title={seoConfig.title}
+        description={seoConfig.description}
+        keywords={seoConfig.keywords}
+        ogImage={seoConfig.image}
+        canonical={canonical}
+        hreflang={hreflangLinks}
+        jsonLd={jsonLd}
+      />
       <Navigation />
       <ReadingProgressBar />
 
-      {/* Hero */}
-      <div className="bg-gradient-to-br from-primary/5 to-primary/10 pt-24 pb-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mt-8">
-            <Gift className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 text-primary" />
-            <h1 className="text-h1 font-heading font-bold mb-4">
-              {t.giftCards?.title || "Tarjetas Regalo"}
-            </h1>
-            <p className="text-lg sm:text-xl max-w-3xl mx-auto text-muted-foreground">
-              {t.giftCards?.subtitle || "Regala una experiencia inolvidable en barco por la Costa Brava"}
-            </p>
-          </div>
-        </div>
-      </div>
+      <PageHeader
+        title={t.giftCards?.title || "Tarjetas Regalo"}
+        subtitle={
+          t.giftCards?.subtitle || "Regala una experiencia inolvidable en barco por la Costa Brava"
+        }
+        next="background"
+      />
 
-      {/* Intro text + image */}
-      <RevealSection className="py-16 sm:py-20 bg-background">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-            <div className="lg:col-span-3 space-y-5">
-              <h2 className="text-h2 font-heading font-bold text-foreground">
-                {t.giftCards?.whyTitle || "¿Por qué regalar una experiencia en barco?"}
-              </h2>
-              <p className="text-muted-foreground leading-relaxed">{t.giftCards?.whyP1 || ""}</p>
-              <p className="text-muted-foreground leading-relaxed">
+      {/* INTRO: first sentence is the lead, the rest are loose facts with rules */}
+      <Sheet tone="background" next="muted">
+        <div className="container mx-auto grid max-w-6xl items-center gap-12 px-4 lg:grid-cols-5 lg:gap-16">
+          <Rise className="lg:col-span-3">
+            <h2 className={H2}>
+              {t.giftCards?.whyTitle || "¿Por qué regalar una experiencia en barco?"}
+            </h2>
+            <p className="mt-5 max-w-xl text-lg font-medium leading-snug text-foreground text-pretty sm:text-xl">
+              {whyLead}
+            </p>
+            <ul className="mt-6 max-w-xl border-t border-border">
+              {whyRest.length > 0 && (
+                <li className="border-b border-border py-4 text-base leading-relaxed text-muted-foreground text-pretty">
+                  {whyRest.join(" ")}
+                </li>
+              )}
+              <li className="border-b border-border py-4 text-base leading-relaxed text-muted-foreground text-pretty">
                 {(t.giftCards?.whyP2 || "Válidas para nuestros {count} barcos.").replace(
                   "{count}",
                   String(fleetCount)
                 )}{" "}
                 <a
                   href={localizedPath("home") + "#fleet"}
-                  className="text-primary hover:underline"
+                  className="text-primary underline-offset-2 hover:underline"
                 >
                   {t.giftCards?.viewFleet || "Ver la flota"}
                 </a>
-              </p>
-              <p className="text-muted-foreground leading-relaxed">{t.giftCards?.whyP3 || ""}</p>
-            </div>
-            <div className="lg:col-span-2">
-              <img
-                src="/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-proa-aperitivo.webp"
-                alt="Aperitivo en la proa del Trimarchi 57S en la Costa Brava"
-                className="w-full rounded-2xl object-cover aspect-[4/5]"
-                loading="lazy"
-                width={640}
-                height={800}
-              />
-            </div>
-          </div>
+              </li>
+              {t.giftCards?.whyP3 && (
+                <li className="border-b border-border py-4 text-base leading-relaxed text-muted-foreground text-pretty">
+                  {t.giftCards.whyP3}
+                </li>
+              )}
+            </ul>
+          </Rise>
+          <Rise className="lg:col-span-2" delay={0.1}>
+            <img
+              src="/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-proa-aperitivo.webp"
+              alt="Aperitivo en la proa del Trimarchi 57S en la Costa Brava"
+              className="aspect-[4/5] w-full rounded-2xl object-cover"
+              loading="lazy"
+              width={640}
+              height={800}
+            />
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* Form section */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-
+      {/* FORM */}
+      <Sheet tone="muted" next="background">
+        <div className="container mx-auto max-w-2xl px-4">
           {/* Amount Selection */}
-          <div className="bg-background border border-border rounded-xl p-6 sm:p-8 mb-6">
-            <h3 className="font-heading font-semibold text-lg flex items-center gap-2 mb-4">
-              <Gift className="w-5 h-5 text-primary" />
+          <div className="mb-6 rounded-2xl border border-border bg-background p-6 sm:p-8">
+            <h3 className="mb-4 font-heading text-lg font-semibold tracking-tight">
               {t.giftCards?.selectAmount || "Selecciona el importe"}
             </h3>
-            <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 mb-4">
-              {AMOUNTS.map((amount) => (
+            <div className="mb-4 grid grid-cols-3 gap-3 sm:grid-cols-5">
+              {AMOUNTS.map(amount => (
                 <Button
                   key={amount}
                   variant={selectedAmount === amount ? "default" : "outline"}
-                  className="h-16 text-lg font-bold"
+                  className="h-16 rounded-xl text-lg font-semibold tabular-nums"
                   onClick={() => {
                     setSelectedAmount(amount);
                     setCustomAmount("");
@@ -299,7 +349,7 @@ export default function GiftCardsPage() {
             <div className="flex items-center gap-3">
               <Button
                 variant={selectedAmount === -1 ? "default" : "outline"}
-                className="whitespace-nowrap"
+                className="whitespace-nowrap rounded-full"
                 onClick={() => setSelectedAmount(-1)}
               >
                 {t.giftCards?.customAmount || "Otro importe"}
@@ -310,7 +360,7 @@ export default function GiftCardsPage() {
                   min={10}
                   max={1000}
                   value={customAmount}
-                  onChange={(e) => setCustomAmount(e.target.value)}
+                  onChange={e => setCustomAmount(e.target.value)}
                   placeholder="€"
                   className="w-32"
                 />
@@ -319,18 +369,17 @@ export default function GiftCardsPage() {
           </div>
 
           {/* Purchaser & Recipient Info */}
-          <div className="bg-background border border-border rounded-xl p-6 sm:p-8 mb-6">
-            <h3 className="font-heading font-semibold text-lg flex items-center gap-2 mb-4">
-              <CreditCard className="w-5 h-5 text-primary" />
+          <div className="mb-6 rounded-2xl border border-border bg-background p-6 sm:p-8">
+            <h3 className="mb-4 font-heading text-lg font-semibold tracking-tight">
               {t.giftCards?.details || "Datos de compra"}
             </h3>
             <div className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label>{t.giftCards?.yourName || "Tu nombre"}</Label>
                   <Input
                     value={purchaserName}
-                    onChange={(e) => setPurchaserName(e.target.value)}
+                    onChange={e => setPurchaserName(e.target.value)}
                     placeholder="Nombre y apellido"
                   />
                 </div>
@@ -339,22 +388,22 @@ export default function GiftCardsPage() {
                   <Input
                     type="email"
                     value={purchaserEmail}
-                    onChange={(e) => setPurchaserEmail(e.target.value)}
+                    onChange={e => setPurchaserEmail(e.target.value)}
                     placeholder="tu@email.com"
                   />
                 </div>
               </div>
 
               <div className="border-t pt-4">
-                <p className="text-sm font-medium text-muted-foreground mb-3">
+                <p className="mb-3 text-sm font-medium text-muted-foreground">
                   {t.giftCards?.recipientInfo || "Datos del destinatario"}
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
                     <Label>{t.giftCards?.recipientName || "Nombre del destinatario"}</Label>
                     <Input
                       value={recipientName}
-                      onChange={(e) => setRecipientName(e.target.value)}
+                      onChange={e => setRecipientName(e.target.value)}
                       placeholder="Nombre y apellido"
                     />
                   </div>
@@ -363,7 +412,7 @@ export default function GiftCardsPage() {
                     <Input
                       type="email"
                       value={recipientEmail}
-                      onChange={(e) => setRecipientEmail(e.target.value)}
+                      onChange={e => setRecipientEmail(e.target.value)}
                       placeholder="destinatario@email.com"
                     />
                   </div>
@@ -374,8 +423,10 @@ export default function GiftCardsPage() {
                 <Label>{t.giftCards?.message || "Mensaje personal (opcional)"}</Label>
                 <Textarea
                   value={personalMessage}
-                  onChange={(e) => setPersonalMessage(e.target.value)}
-                  placeholder={t.giftCards?.messagePlaceholder || "Escribe un mensaje para el destinatario..."}
+                  onChange={e => setPersonalMessage(e.target.value)}
+                  placeholder={
+                    t.giftCards?.messagePlaceholder || "Escribe un mensaje para el destinatario..."
+                  }
                   rows={3}
                 />
               </div>
@@ -383,90 +434,84 @@ export default function GiftCardsPage() {
           </div>
 
           {/* Summary & Purchase */}
-          <div className="bg-background border border-border rounded-xl p-6 sm:p-8">
-            <div className="flex items-center justify-between mb-4">
+          <div className="rounded-2xl border border-border bg-background p-6 sm:p-8">
+            <div className="mb-4 flex items-center justify-between">
               <div>
-                <p className="text-sm text-muted-foreground/60">{t.giftCards?.total || "Total"}</p>
-                <p className="text-3xl font-bold">
+                <p className="text-sm text-muted-foreground">{t.giftCards?.total || "Total"}</p>
+                <p className="font-heading text-3xl font-semibold tabular-nums">
                   {effectiveAmount ? `${effectiveAmount}€` : "---"}
                 </p>
               </div>
-              <div className="text-right">
-                <Badge variant="secondary" className="mb-1">
-                  <Ship className="w-3 h-3 mr-1" />
+              <div className="text-right text-sm text-muted-foreground">
+                <p className="font-medium text-foreground">
                   {t.giftCards?.validOneYear || "Valida 1 ano"}
-                </Badge>
-                <p className="text-xs text-muted-foreground/60">
-                  {t.giftCards?.allBoats || "Valida para todos los barcos"}
                 </p>
+                <p className="text-xs">{t.giftCards?.allBoats || "Valida para todos los barcos"}</p>
               </div>
             </div>
             <Button
-              className="w-full h-12 text-lg"
+              className="h-12 w-full rounded-full text-base"
               onClick={handlePurchase}
               disabled={isSubmitting || !effectiveAmount || effectiveAmount < 10}
             >
               {isSubmitting
-                ? (t.giftCards?.processing || "Procesando...")
-                : (t.giftCards?.buy || "Solicitar tarjeta regalo")}
+                ? t.giftCards?.processing || "Procesando..."
+                : t.giftCards?.buy || "Solicitar tarjeta regalo"}
             </Button>
           </div>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* Photo break */}
-      <div className="w-full overflow-hidden">
-        <img
-          src="/images/blog/grupos-barco.webp"
-          alt="Grupo de amigos disfrutando en barco por la Costa Brava"
-          className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
-          loading="lazy"
-          width={1920}
-          height={600}
-        />
-      </div>
+      <PhotoBand
+        tone="background"
+        next="muted"
+        src="/images/blog/grupos-barco.webp"
+        alt="Grupo de amigos disfrutando en barco por la Costa Brava"
+      />
 
-      {/* FAQ Section */}
-      <RevealSection className="py-16 sm:py-20 bg-background">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground mb-6">
-            Preguntas frecuentes sobre tarjetas regalo
-          </h2>
-          <div className="space-y-3">
-            {giftCardFaqs.map((faq) => (
-              <details key={faq.question} className="group border border-border rounded-lg bg-muted">
-                <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
-                  {faq.question}
-                  <Gift className="w-4 h-4 transition-transform group-open:rotate-90" />
-                </summary>
-                <p className="px-4 pb-4 text-muted-foreground leading-relaxed">
+      {/* FAQ: folded, answers stay in the DOM */}
+      <Sheet tone="muted" next="navy">
+        <div className="container mx-auto max-w-2xl px-4">
+          <Rise>
+            <h2 className={H2}>Preguntas frecuentes sobre tarjetas regalo</h2>
+            <div className="mt-8 flex flex-col gap-3">
+              {giftCardFaqs.map((faq, i) => (
+                <Fold
+                  key={faq.question}
+                  id={`giftcard-faq-${i}`}
+                  title={faq.question}
+                  open={openFaq === i}
+                  onToggle={() => setOpenFaq(openFaq === i ? null : i)}
+                >
                   {faq.answer}
-                </p>
-              </details>
-            ))}
-          </div>
+                </Fold>
+              ))}
+            </div>
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* CTA Section */}
-      <RevealSection className="py-16 sm:py-20 bg-primary text-primary-foreground">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-h2 font-heading font-bold mb-4">
-            {t.giftCards?.ctaTitle || "El mar siempre es el mejor regalo"}
-          </h2>
-          <p className="text-primary-foreground/85 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
+      {/* CTA: closes over the footer colour */}
+      <Sheet tone="navy" next="foot">
+        <Rise className="container mx-auto max-w-4xl px-4 text-center">
+          <h2 className={H2}>{t.giftCards?.ctaTitle || "El mar siempre es el mejor regalo"}</h2>
+          <p
+            className={`mx-auto mt-5 max-w-2xl text-base leading-relaxed text-pretty sm:text-lg ${ON_NAVY_MUTED}`}
+          >
             {t.giftCards?.ctaSubtitle ||
               "Sorprende a alguien especial con una experiencia inolvidable navegando por las calas de la Costa Brava."}
           </p>
-          <Button
-            size="lg"
-            variant="secondary"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          >
-            {t.giftCards?.buy || "Solicitar tarjeta regalo"}
-          </Button>
-        </div>
-      </RevealSection>
+          <div className="mt-8 flex justify-center">
+            <InteractiveHoverButton
+              tone="light"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="min-h-12 px-8 text-base"
+            >
+              {t.giftCards?.buy || "Solicitar tarjeta regalo"}
+            </InteractiveHoverButton>
+          </div>
+        </Rise>
+      </Sheet>
 
       <Footer />
     </main>

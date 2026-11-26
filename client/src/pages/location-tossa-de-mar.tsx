@@ -1,69 +1,64 @@
-import type React from "react";
 import { useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import {
-  Clock,
-  Anchor,
-  Users,
-  Star,
+  AlertTriangle,
+  Camera,
+  Castle,
   Navigation as NavigationIcon,
+  Shield,
+  Star,
   Sun,
   Waves,
-  Camera,
-  Shield,
-  Castle,
-  Crown,
-  Heart,
-  ChevronRight,
-  Ship
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
 import RelatedLocationsSection from "@/components/RelatedLocationsSection";
 import RelatedContent from "@/components/RelatedContent";
-import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import {
   getSEOConfig,
   generateHreflangLinks,
   generateCanonicalUrl,
-  generateBreadcrumbSchema
+  generateBreadcrumbSchema,
 } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 import { trackLocationPageView } from "@/utils/analytics";
 import PopularBoatsSection from "@/components/PopularBoatsSection";
+import {
+  FactPanel,
+  LocationCta,
+  LocationFaq,
+  LocationHero,
+  Photo,
+  RelatedLinks,
+  Rise,
+  SectionTitle,
+  Sheet,
+  SheetWrap,
+  TONE_BG,
+} from "@/components/location/LocationKit";
 import ActivitatumTeaser from "@/components/ActivitatumTeaser";
 import { BookingStickyBar } from "@/components/MobileStickyBar";
 
-function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <div ref={ref} className={`transition-[opacity,transform,filter] duration-700 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"} ${className}`}>
-      {children}
-    </div>
-  );
-}
-
 export default function LocationTossaPage() {
   const { language, localizedPath } = useLanguage();
-  useEffect(() => { trackLocationPageView("tossa"); }, []);
+  useEffect(() => {
+    trackLocationPageView("tossa");
+  }, []);
 
   const { data: boatsData } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
   const faqVars = useMemo(() => computeFaqVars(boatsData), [boatsData]);
   const t = useTranslations();
   const { openBookingModal } = useBookingModal();
-  const seoConfig = getSEOConfig('locationTossa', language);
-  const hreflangLinks = generateHreflangLinks('locationTossa');
-  const canonical = generateCanonicalUrl('locationTossa', language);
+  const seoConfig = getSEOConfig("locationTossa", language);
+  const hreflangLinks = generateHreflangLinks("locationTossa");
+  const canonical = generateCanonicalUrl("locationTossa", language);
 
   const s = t.locationPages.tossa.sections!;
 
@@ -75,35 +70,36 @@ export default function LocationTossaPage() {
   // Location-specific schema for Tossa de Mar
   const locationSchema = {
     "@type": "TouristDestination",
-    "name": "Excursiones en Barco a Tossa de Mar desde Blanes",
-    "description": "Alquiler de barcos para visitar Tossa de Mar desde Puerto de Blanes, con Licencia de Navegación o con patrón, para descubrir la Vila Vella y calas de Tossa.",
-    "geo": {
+    name: "Excursiones en Barco a Tossa de Mar desde Blanes",
+    description:
+      "Alquiler de barcos para visitar Tossa de Mar desde Puerto de Blanes, con Licencia de Navegación o con patrón, para descubrir la Vila Vella y calas de Tossa.",
+    geo: {
       "@type": "GeoCoordinates",
-      "latitude": 41.7200,
-      "longitude": 2.9313
+      latitude: 41.72,
+      longitude: 2.9313,
     },
-    "address": {
+    address: {
       "@type": "PostalAddress",
-      "streetAddress": "Playa de Tossa de Mar",
-      "addressLocality": "Tossa de Mar",
-      "addressRegion": "Girona",
-      "postalCode": "17320",
-      "addressCountry": "ES"
+      streetAddress: "Playa de Tossa de Mar",
+      addressLocality: "Tossa de Mar",
+      addressRegion: "Girona",
+      postalCode: "17320",
+      addressCountry: "ES",
     },
-    "touristType": ["Family", "Cultural", "Beach", "Historic"],
-    "availableLanguage": ["Spanish", "Catalan", "English", "French"],
-    "provider": {
+    touristType: ["Family", "Cultural", "Beach", "Historic"],
+    availableLanguage: ["Spanish", "Catalan", "English", "French"],
+    provider: {
       "@type": "LocalBusiness",
-      "name": "Costa Brava Rent a Boat Blanes",
-      "telephone": "+34611500372",
-      "url": "https://www.costabravarentaboat.com/"
-    }
+      name: "Costa Brava Rent a Boat Blanes",
+      telephone: "+34611500372",
+      url: "https://www.costabravarentaboat.com/",
+    },
   };
 
   // Generate breadcrumb schema
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: t.breadcrumbs.home, url: "/" },
-    { name: t.breadcrumbs.locationTossa, url: "/alquiler-barcos-tossa-de-mar" }
+    { name: t.breadcrumbs.locationTossa, url: "/alquiler-barcos-tossa-de-mar" },
   ]);
 
   // FAQ data for both schema and visible section - Tossa specific.
@@ -122,37 +118,36 @@ export default function LocationTossaPage() {
   //
   // Todos los precios que aparecen en esta FAQ vienen de shared/boatData.ts
   // o del producto excursion-privada en el catálogo — ninguno es asunción.
-  const tossaFaqFromI18n = (t.locationPages.tossa as { faqItems?: Array<{ question: string; answer: string }> } | undefined)?.faqItems;
+  const tossaFaqFromI18n = (
+    t.locationPages.tossa as { faqItems?: Array<{ question: string; answer: string }> } | undefined
+  )?.faqItems;
   const faqItems = tossaFaqFromI18n ?? [];
 
   const processedFaqItems = useMemo(
-    () => faqItems.map((item) => ({
-      question: substituteFaqVars(item.question, faqVars),
-      answer: substituteFaqVars(item.answer, faqVars),
-    })),
-    [faqItems, faqVars],
+    () =>
+      faqItems.map(item => ({
+        question: substituteFaqVars(item.question, faqVars),
+        answer: substituteFaqVars(item.answer, faqVars),
+      })),
+    [faqItems, faqVars]
   );
 
   const faqSchema = {
     "@type": "FAQPage",
-    "mainEntity": processedFaqItems.map(item => ({
+    mainEntity: processedFaqItems.map(item => ({
       "@type": "Question",
-      "name": item.question,
-      "acceptedAnswer": {
+      name: item.question,
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": item.answer
-      }
-    }))
+        text: item.answer,
+      },
+    })),
   };
 
   // Combine schemas using @graph
   const combinedJsonLd = {
     "@context": "https://schema.org",
-    "@graph": [
-      locationSchema,
-      breadcrumbSchema,
-      faqSchema
-    ]
+    "@graph": [locationSchema, breadcrumbSchema, faqSchema],
   };
 
   return (
@@ -170,339 +165,194 @@ export default function LocationTossaPage() {
       <Navigation />
       <ReadingProgressBar />
 
-      {/* Hero Section — full-bleed image showing the Vila Vella from the sea,
-          which is the unique "only medieval castle on the Mediterranean"
-          framing the new Tossa positioning depends on. LCP image preloaded
-          via server/seoInjector.ts LcpPreload. */}
-      <div className="relative pt-20 sm:pt-24">
-        <div className="relative w-full min-h-[max(55vh,420px)] sm:min-h-[max(55vh,520px)] flex flex-col overflow-hidden">
-          <picture>
-            <source media="(min-width: 768px)" type="image/avif" srcSet="/images/locations/hero-tossa-de-mar.avif" />
-            <source type="image/avif" srcSet="/images/locations/hero-tossa-de-mar-mobile.avif" />
-            <source media="(min-width: 768px)" type="image/webp" srcSet="/images/locations/hero-tossa-de-mar.webp" />
-            <source type="image/webp" srcSet="/images/locations/hero-tossa-de-mar-mobile.webp" />
-            <img
-              src="/images/locations/hero-tossa-de-mar.jpg"
-              alt="Vila Vella de Tossa de Mar desde el mar con barco, murallas medievales y aguas cristalinas Costa Brava"
-              className="absolute inset-0 w-full h-full object-cover"
-              width={1920}
-              height={1080}
-              loading="eager"
-              {...({ fetchpriority: "high" } as unknown as React.ImgHTMLAttributes<HTMLImageElement>)}
-            />
-          </picture>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/55" />
-          <div className="relative z-10 flex-1 flex items-center py-8">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-              <div className="text-center max-w-4xl mx-auto">
-                <div className="inline-flex items-center justify-center mb-4">
-                  <Castle className="w-7 h-7 text-white mr-3 drop-shadow" />
-                  <h1 className="text-h1 font-heading font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
-                    {t.locationPages.tossa.hero.title}
-                  </h1>
-                </div>
-                <p className="text-base sm:text-lg text-white/95 mb-5 max-w-3xl mx-auto drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]">
-                  {t.locationPages.tossa.hero.subtitle}
-                </p>
-                <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
-                  <Badge variant="outline" className="bg-white/90 text-primary border-white">
-                    <Anchor className="w-4 h-4 mr-2" />
-                    {t.locationPages.tossa.hero.badgeFrom}
-                  </Badge>
-                  <Badge variant="outline" className="bg-white/90 text-primary border-white">
-                    <Clock className="w-4 h-4 mr-2" />
-                    {t.locationPages.tossa.hero.badgeTime}
-                  </Badge>
-                  <Badge variant="outline" className="bg-white/90 text-primary border-white">
-                    <Users className="w-4 h-4 mr-2" />
-                    {t.locationPages.tossa.hero.badgeCapacity}
-                  </Badge>
-                </div>
-                  <div className="mt-6">
-                    <Button
-                      onClick={() => openBookingModal()}
-                      className="bg-cta hover:bg-cta/90 text-cta-foreground rounded-full min-h-11 px-7 btn-elevated"
-                      data-testid="button-location-hero-book"
-                    >
-                      {t.nav.bookNow}
-                    </Button>
-                  </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <LocationHero
+        basePath="/images/locations/hero-tossa-de-mar"
+        imageAlt="Vila Vella de Tossa de Mar desde el mar con barco, murallas medievales y aguas cristalinas Costa Brava"
+        title={t.locationPages.tossa.hero.title}
+        subtitle={t.locationPages.tossa.hero.subtitle}
+        facts={[
+          t.locationPages.tossa.hero.badgeFrom,
+          t.locationPages.tossa.hero.badgeTime,
+          t.locationPages.tossa.hero.badgeCapacity,
+        ]}
+        bookLabel={t.nav.bookNow}
+        onBook={() => openBookingModal()}
+      />
 
       {/* Honest warning: Tossa is out of range for licence-free boats. Putting
           this immediately under the hero anchors the commercial positioning
           before any other content so users and crawlers see it first. */}
-      <div className="bg-amber-50 dark:bg-amber-950/30 border-y border-amber-300 py-6 sm:py-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="flex gap-3 sm:gap-4 items-start">
-            <span className="text-2xl" role="img" aria-label="warning">⚠️</span>
-            <div className="text-sm sm:text-base text-foreground">
-              <p className="font-semibold mb-1">{s.warningTitle}</p>
-              <p
-                className="text-muted-foreground leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: substituteFaqVars(s.warningBody, faqVars) }}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Why Visit Tossa de Mar by Boat — text + image */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-10 items-center">
-            <div className="lg:col-span-3">
-              <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
-                <Crown className="w-6 h-6 text-primary" />
-                {s.whyTossaTitle}
-              </h2>
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-3">{s.jewelCostaBrava}</h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">{s.jewelCostaBravaDesc}</p>
-                  <h3 className="font-heading font-semibold text-lg mb-3">{s.historicHeritage}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{s.historicHeritageDesc}</p>
-                </div>
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-3">{s.paradisiacalCoves}</h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">{s.paradisiacalCovesDesc}</p>
-                  <h3 className="font-heading font-semibold text-lg mb-3">{s.panoramicNavigation}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{s.panoramicNavigationDesc}</p>
-                </div>
-              </div>
-            </div>
-            <div className="lg:col-span-2">
-              <img
-                src="/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-proa-solarium-cala.webp"
-                alt="Pacific Craft 625 fondeado en una cala cerca de Tossa de Mar"
-                className="rounded-2xl w-full h-auto object-cover shadow-lg"
-                loading="lazy"
-                width={800}
-                height={600}
-              />
-            </div>
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* Photo break */}
-      <div className="relative w-full h-64 sm:h-80 overflow-hidden">
-        <picture>
-          <source type="image/webp" srcSet="/images/blog/ruta-costera.webp" />
-          <img
-            src="/images/blog/ruta-costera.jpg"
-            alt="Ruta costera por la Costa Brava"
-            className="absolute inset-0 w-full h-full object-cover"
-            loading="lazy"
-            width={1920}
-            height={600}
+      <Sheet tone="page" next="page" className="py-8 sm:py-10">
+        <Rise className="flex items-start gap-4 rounded-2xl border border-amber-300 bg-amber-50 p-5 dark:border-amber-500/40 dark:bg-amber-950/30 sm:p-6">
+          <AlertTriangle
+            className="mt-0.5 h-5 w-5 shrink-0 text-amber-600 dark:text-amber-400"
+            aria-hidden="true"
           />
-        </picture>
-      </div>
-
-      {/* Main Beaches and Historic Sites */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-8">
-            <Shield className="w-6 h-6 text-primary" />
-            {s.attractionsTitle}
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Castle className="w-8 h-8 text-purple-600" />
-              </div>
-              <h3 className="font-heading font-semibold text-lg mb-2">{s.vilaVella}</h3>
-              <p className="text-muted-foreground text-sm mb-2">{s.vilaVellaSub}</p>
-              <p className="text-muted-foreground leading-relaxed">{s.vilaVellaDesc}</p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Waves className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="font-heading font-semibold text-lg mb-2">{s.playaGrande}</h3>
-              <p className="text-muted-foreground text-sm mb-2">{s.playaGrandeSub}</p>
-              <p className="text-muted-foreground leading-relaxed">{s.playaGrandeDesc}</p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Sun className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="font-heading font-semibold text-lg mb-2">{s.virginCoves}</h3>
-              <p className="text-muted-foreground text-sm mb-2">{s.virginCovesSub}</p>
-              <p className="text-muted-foreground leading-relaxed">{s.virginCovesDesc}</p>
-            </div>
+          <div className="text-sm sm:text-base text-foreground">
+            <p className="mb-1 font-semibold">{s.warningTitle}</p>
+            <p
+              className="leading-relaxed text-muted-foreground"
+              dangerouslySetInnerHTML={{ __html: substituteFaqVars(s.warningBody, faqVars) }}
+            />
           </div>
-        </div>
-      </RevealSection>
+        </Rise>
+      </Sheet>
 
-      {/* What to Do in Tossa */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
-            <Heart className="w-6 h-6 text-primary" />
-            {s.whatToDoTitle}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">{s.cultureHistory}</h3>
-              <ul className="space-y-2">
-                <li className="flex items-center">
-                  <Castle className="w-4 h-4 text-primary mr-2" />
-                  <span>{s.exploreVilaVella}</span>
-                </li>
-                <li className="flex items-center">
-                  <Shield className="w-4 h-4 text-primary mr-2" />
-                  <span>{s.climbWalls}</span>
-                </li>
-                <li className="flex items-center">
-                  <Camera className="w-4 h-4 text-primary mr-2" />
-                  <span>{s.municipalMuseum}</span>
-                </li>
-                <li className="flex items-center">
-                  <Star className="w-4 h-4 text-primary mr-2" />
-                  <span>{s.tossaLighthouse}</span>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">{s.natureRelax}</h3>
-              <ul className="space-y-2">
-                <li className="flex items-center">
-                  <Waves className="w-4 h-4 text-primary mr-2" />
-                  <span>{s.diveCrystalWaters}</span>
-                </li>
-                <li className="flex items-center">
-                  <Sun className="w-4 h-4 text-primary mr-2" />
-                  <span>{s.anchorSecretCoves}</span>
-                </li>
-                <li className="flex items-center">
-                  <NavigationIcon className="w-4 h-4 text-primary mr-2" />
-                  <span>{s.coastalPaths}</span>
-                </li>
-                <li className="flex items-center">
-                  <Camera className="w-4 h-4 text-primary mr-2" />
-                  <span>{s.sunsetFromSea}</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+      {/* Why visit Tossa de Mar by boat */}
+      <Sheet tone="page" next="muted" labelledBy="tossa-why-title" className="pt-8 sm:pt-12">
+        <div className="grid gap-10 lg:grid-cols-[7fr_5fr] lg:items-center lg:gap-16">
+          <Rise>
+            <SectionTitle id="tossa-why-title">{s.whyTossaTitle}</SectionTitle>
+            <FactPanel
+              className="mt-8"
+              items={[
+                { title: s.jewelCostaBrava, desc: s.jewelCostaBravaDesc },
+                { title: s.historicHeritage, desc: s.historicHeritageDesc },
+                { title: s.paradisiacalCoves, desc: s.paradisiacalCovesDesc },
+                { title: s.panoramicNavigation, desc: s.panoramicNavigationDesc },
+              ]}
+            />
+          </Rise>
+          <Rise delay={0.1}>
+            <Photo
+              src="/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-proa-solarium-cala.webp"
+              alt="Pacific Craft 625 fondeado en una cala cerca de Tossa de Mar"
+            />
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* Navigation Tips */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
-            <NavigationIcon className="w-6 h-6 text-primary" />
-            {s.navigationTipsTitle}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">{s.recommendedRoute}</h3>
-              <p className="text-muted-foreground leading-relaxed mb-4">{s.recommendedRouteDesc}</p>
-              <h3 className="font-heading font-semibold text-lg mb-3">{s.bestSeason}</h3>
-              <p className="text-muted-foreground leading-relaxed">{s.bestSeasonDesc}</p>
-            </div>
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">{s.anchoringZones}</h3>
-              <p className="text-muted-foreground leading-relaxed mb-4">{s.anchoringZonesDesc}</p>
-              <h3 className="font-heading font-semibold text-lg mb-3">{s.safeNavigation}</h3>
-              <p className="text-muted-foreground leading-relaxed">{s.safeNavigationDesc}</p>
-            </div>
-          </div>
+      {/* Main beaches and historic sites */}
+      <Sheet tone="muted" next="page" labelledBy="tossa-attractions-title">
+        <div className="grid gap-10 lg:grid-cols-[5fr_7fr] lg:items-center lg:gap-16">
+          <Rise>
+            <Photo src="/images/blog/ruta-costera.webp" alt="Ruta costera por la Costa Brava" />
+          </Rise>
+          <Rise delay={0.1}>
+            <SectionTitle id="tossa-attractions-title">{s.attractionsTitle}</SectionTitle>
+            <FactPanel
+              className="mt-8"
+              items={[
+                { title: s.vilaVella, meta: s.vilaVellaSub, desc: s.vilaVellaDesc, icon: Castle },
+                {
+                  title: s.playaGrande,
+                  meta: s.playaGrandeSub,
+                  desc: s.playaGrandeDesc,
+                  icon: Waves,
+                },
+                {
+                  title: s.virginCoves,
+                  meta: s.virginCovesSub,
+                  desc: s.virginCovesDesc,
+                  icon: Sun,
+                },
+              ]}
+            />
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* Cross-linking to southern towns */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p
-            className="text-muted-foreground leading-relaxed"
-            dangerouslySetInnerHTML={{
-              __html: s.crossLinkingText
-                .replace("{malgratPath}", localizedPath("locationMalgrat"))
-                .replace("{santaSusannaPath}", localizedPath("locationSantaSusanna"))
-                .replace("{calellaPath}", localizedPath("locationCalella")),
-            }}
-          />
+      {/* What to do in Tossa */}
+      <Sheet tone="page" next="muted" labelledBy="tossa-todo-title">
+        <div className="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
+          <Rise>
+            <SectionTitle id="tossa-todo-title">{s.whatToDoTitle}</SectionTitle>
+          </Rise>
+          <Rise delay={0.1}>
+            <FactPanel
+              items={[
+                {
+                  title: s.cultureHistory,
+                  list: [
+                    { text: s.exploreVilaVella, icon: Castle },
+                    { text: s.climbWalls, icon: Shield },
+                    { text: s.municipalMuseum, icon: Camera },
+                    { text: s.tossaLighthouse, icon: Star },
+                  ],
+                },
+                {
+                  title: s.natureRelax,
+                  list: [
+                    { text: s.diveCrystalWaters, icon: Waves },
+                    { text: s.anchorSecretCoves, icon: Sun },
+                    { text: s.coastalPaths, icon: NavigationIcon },
+                    { text: s.sunsetFromSea, icon: Camera },
+                  ],
+                },
+              ]}
+            />
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* Related Services - Internal Linking */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 className="font-heading font-semibold text-lg mb-4">{s.relatedTitle}</h3>
-          <div className="flex flex-wrap gap-3">
-            <a href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
-              <ChevronRight className="w-4 h-4" />
-              {s.relatedCostaBrava}
-            </a>
-            <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
-              <ChevronRight className="w-4 h-4" />
-              {s.relatedLicensed}
-            </a>
-            <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
-              <ChevronRight className="w-4 h-4" />
-              {s.relatedPricing}
-            </a>
-            <a href={localizedPath("locationLloret")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
-              <ChevronRight className="w-4 h-4" />
-              {s.relatedLloret}
-            </a>
-            <a href={localizedPath("locationBlanes")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
-              <ChevronRight className="w-4 h-4" />
-              {s.relatedBlanes}
-            </a>
-          </div>
+      {/* Navigation tips */}
+      <Sheet tone="muted" next="page" labelledBy="tossa-tips-title">
+        <div className="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
+          <Rise>
+            <SectionTitle id="tossa-tips-title">{s.navigationTipsTitle}</SectionTitle>
+          </Rise>
+          <Rise delay={0.1}>
+            <FactPanel
+              items={[
+                { title: s.recommendedRoute, desc: s.recommendedRouteDesc },
+                { title: s.bestSeason, desc: s.bestSeasonDesc },
+                { title: s.anchoringZones, desc: s.anchoringZonesDesc },
+                { title: s.safeNavigation, desc: s.safeNavigationDesc },
+              ]}
+            />
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* CTA Section */}
-      <div className="py-16 sm:py-20 bg-primary">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-h2 font-heading font-bold text-white mb-4">
-            {s.ctaTitle}
-          </h2>
-          <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">
-            {s.ctaDescription}
-          </p>
-          <Button
-            onClick={handleBookingWhatsApp}
-            size="lg"
-            variant="secondary"
-            className="text-primary hover:text-primary"
-            data-testid="button-whatsapp-tossa"
-          >
-            {s.ctaButton}
-          </Button>
-        </div>
-      </div>
+      {/* Cross-linking to southern towns + related services */}
+      <Sheet tone="page" next="navy">
+        <RelatedLinks
+          id="tossa-related-title"
+          title={s.relatedTitle}
+          html={s.crossLinkingText
+            .replace("{malgratPath}", localizedPath("locationMalgrat"))
+            .replace("{santaSusannaPath}", localizedPath("locationSantaSusanna"))
+            .replace("{calellaPath}", localizedPath("locationCalella"))}
+          links={[
+            { label: s.relatedCostaBrava, href: localizedPath("locationCostaBrava") },
+            { label: s.relatedLicensed, href: localizedPath("categoryLicensed") },
+            { label: s.relatedPricing, href: localizedPath("pricing") },
+            { label: s.relatedLloret, href: localizedPath("locationLloret") },
+            { label: s.relatedBlanes, href: localizedPath("locationBlanes") },
+          ]}
+        />
+      </Sheet>
 
-      <PopularBoatsSection
-        title={t.popularBoatsSection?.pages?.tossa?.title ?? "Barcos para tu ruta a Tossa de Mar"}
-        description={t.popularBoatsSection?.pages?.tossa?.description}
-        boatIds={["excursion-privada", "pacific-craft-625", "trimarchi-57s", "mingolla-brava-19"]}
-        badgeLabel={(id) => (id === "excursion-privada" ? (t.popularBoatsSection?.badges?.captain ?? "Con capitán") : (t.popularBoatsSection?.badges?.licensed ?? "Con licencia"))}
-        badgeVariant={(id) => (id === "excursion-privada" ? "secondary" : "outline")}
+      <LocationCta
+        title={s.ctaTitle}
+        desc={s.ctaDescription}
+        buttonLabel={s.ctaButton}
+        onClick={handleBookingWhatsApp}
+        testId="button-whatsapp-tossa"
+        next="muted"
       />
 
-      {/* FAQ Section */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground text-center mb-8">
-            Preguntas frecuentes sobre Tossa de Mar en barco
-          </h2>
-          <FAQSection items={processedFaqItems} />
-        </div>
-      </RevealSection>
+      <SheetWrap next="page">
+        <PopularBoatsSection
+          bgClass={TONE_BG.muted}
+          title={t.popularBoatsSection?.pages?.tossa?.title ?? "Barcos para tu ruta a Tossa de Mar"}
+          description={t.popularBoatsSection?.pages?.tossa?.description}
+          boatIds={["excursion-privada", "pacific-craft-625", "trimarchi-57s", "mingolla-brava-19"]}
+          badgeLabel={id =>
+            id === "excursion-privada"
+              ? (t.popularBoatsSection?.badges?.captain ?? "Con capitán")
+              : (t.popularBoatsSection?.badges?.licensed ?? "Con licencia")
+          }
+          badgeVariant={id => (id === "excursion-privada" ? "secondary" : "outline")}
+        />
+      </SheetWrap>
 
+      <LocationFaq
+        id="tossa-faq"
+        title="Preguntas frecuentes sobre Tossa de Mar en barco"
+        items={processedFaqItems}
+        next="muted"
+      />
 
       <RelatedLocationsSection currentLocation="tossa" />
 

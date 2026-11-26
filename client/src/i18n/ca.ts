@@ -43,7 +43,7 @@ export const ca: Translations = {
       "N'hi ha prou amb la Llic\u00E8ncia de Navegaci\u00F3. Verifiquem t\u00EDtols estrangers en l\u00EDnia abans de reservar.",
     bookNow: "Veure Disponibilitat",
     findYourBoat: "Reservar ara",
-    ctaTitulin: "Què és el titulí",
+    ctaTitulin: "Vols el teu títol?",
     licenseFreeUntil: "Encara sense t\u00EDtol? Fins al 30 de setembre pots llogar sense titulaci\u00F3.",
     licenseFreeUntilCta: "Veure vaixells sense llic\u00E8ncia",
     imageAlt:

@@ -1,37 +1,140 @@
-import { useState, useEffect } from "react";
-import {
-  Anchor,
-  ArrowRight,
-  CalendarClock,
-  CheckCircle2,
-  GraduationCap,
-  LifeBuoy,
-  ExternalLink,
-} from "lucide-react";
+import { useState, useEffect, type ReactNode } from "react";
+import { Link } from "wouter";
+import { motion, useReducedMotion } from "motion/react";
+import { ArrowRight, Check, ExternalLink, GraduationCap, Plus } from "lucide-react";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { CourseRail } from "@/components/TitulinSection";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
-import {
-  generateHreflangLinks,
-  generateCanonicalUrl,
-  BASE_DOMAIN,
-} from "@/utils/seo-config";
-import {
-  generateBreadcrumbSchema,
-  generateFAQSchema,
-} from "@/utils/seo-schemas";
+import { cn } from "@/lib/utils";
+import { trackFaqExpanded } from "@/utils/analytics";
+import { generateHreflangLinks, generateCanonicalUrl, BASE_DOMAIN } from "@/utils/seo-config";
+import { generateBreadcrumbSchema, generateFAQSchema } from "@/utils/seo-schemas";
 import { getLocalizedPath } from "@shared/i18n-routes";
 import { escolaNauticaHandoff } from "@shared/escolaNauticaLinks";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
 
-const NAVY_CTA =
-  "inline-flex items-center justify-center gap-2 rounded-full bg-cta text-cta-foreground hover:bg-cta/90 font-semibold btn-elevated transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2";
-
 const WHATSAPP_NUMBER = "34611500372";
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+/** Navy band shared with the home (TitulinSection): brand navy, a shade lighter than the page in dark mode. */
+const NAVY = "bg-primary text-primary-foreground dark:bg-[hsl(215_45%_16%)] dark:text-foreground";
+const NAVY_BG = "bg-primary dark:bg-[hsl(215_45%_16%)]";
+/** Light panel that sits on a navy band. */
+const PANEL_ON_NAVY = "rounded-2xl bg-background text-foreground dark:bg-[hsl(215_45%_22%)]";
+
+const H2 = "font-heading text-h2 font-semibold leading-[1.08] tracking-tight text-balance";
+const SHEET = "rounded-b-2xl squircle-b";
+
+/**
+ * Entrance by translate only, never by opacity: the text is always painted, the reveal only
+ * moves it into place, so a hidden tab or a slow observer can't leave a section blank.
+ */
+function Rise({
+  children,
+  className,
+  x = 0,
+  y = 24,
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  x?: number;
+  y?: number;
+  delay?: number;
+}) {
+  const reduce = useReducedMotion();
+  return (
+    <motion.div
+      className={className}
+      initial={reduce ? false : { x, y }}
+      whileInView={{ x: 0, y: 0 }}
+      viewport={{ once: true, margin: "0px 0px -8% 0px" }}
+      transition={{ duration: 0.7, delay, ease: EASE }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+const listVariants = { hidden: {}, show: { transition: { staggerChildren: 0.09 } } };
+const itemVariants = {
+  hidden: { y: 18 },
+  show: { y: 0, transition: { duration: 0.6, ease: EASE } },
+};
+
+/** One FAQ card. Born folded; the answer stays in the DOM (hidden from view and AT) for SEO. */
+function FaqItem({
+  id,
+  question,
+  answer,
+  open,
+  onToggle,
+}: {
+  id: string;
+  question: string;
+  answer: string;
+  open: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <div
+      className={cn(
+        "rounded-2xl border transition-colors duration-200",
+        open
+          ? "border-primary/40 bg-primary/5"
+          : "border-border bg-card [@media(hover:hover)]:hover:border-foreground/25"
+      )}
+    >
+      <h3>
+        <button
+          type="button"
+          id={`${id}-q`}
+          aria-expanded={open}
+          aria-controls={`${id}-a`}
+          onClick={onToggle}
+          className="group flex w-full cursor-pointer items-start justify-between gap-4 rounded-2xl p-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta"
+        >
+          <span className="flex-1 text-base font-semibold leading-snug text-foreground">
+            {question}
+          </span>
+          <Plus
+            className={cn(
+              "mt-0.5 h-4 w-4 shrink-0 text-muted-foreground transition-[transform,color] duration-300 ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:text-foreground",
+              open && "rotate-45"
+            )}
+            aria-hidden="true"
+          />
+        </button>
+      </h3>
+      <div
+        id={`${id}-a`}
+        role="region"
+        aria-labelledby={`${id}-q`}
+        className={cn(
+          "grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none",
+          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        )}
+      >
+        <div className="overflow-hidden">
+          <p
+            className={cn(
+              "px-5 pb-5 text-base leading-relaxed text-muted-foreground text-pretty",
+              !open && "invisible"
+            )}
+          >
+            {answer}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 /**
  * Pillar page for the Licencia de Navegación (titulín): what it is, what it
@@ -42,12 +145,16 @@ const WHATSAPP_NUMBER = "34611500372";
  * the course and combine it with the first rental. No price is published yet
  * (the nautical school side is still pre-launch), so every CTA routes to
  * WhatsApp for a quote. Add the price here when it is closed.
+ *
+ * Layout follows the home: stacked sheets with rounded bottom corners, each wrapped
+ * in the colour of the next band so the corner reveals it; navy band for the course.
  */
 export default function NavigationLicensePage() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const { openBookingModal } = useBookingModal();
   const p = t.navigationLicensePage;
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const hreflangLinks = generateHreflangLinks("navigationLicense");
   const canonical = generateCanonicalUrl("navigationLicense", language);
@@ -70,12 +177,17 @@ export default function NavigationLicensePage() {
   const fleetImage =
     "/images/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-amigos-snorkel.webp";
 
+  const [whatIsLead = "", ...whatIsFacts] = (p?.whatIs?.body || "")
+    .split(/(?<=[.!?])\s+/)
+    .filter(Boolean);
+
+  const faq = p?.faq || [];
   const jsonLd = [
     generateBreadcrumbSchema([
       { name: t.nav.home, url: generateCanonicalUrl("home", language) },
       { name: p?.navLabel || "Titulín", url: canonical },
     ]),
-    generateFAQSchema((p?.faq || []).map((f) => ({ question: f.q, answer: f.a }))),
+    generateFAQSchema(faq.map(f => ({ question: f.q, answer: f.a }))),
   ];
 
   return (
@@ -91,275 +203,382 @@ export default function NavigationLicensePage() {
       />
       <Navigation />
 
-      {/* HERO */}
-      <section className="relative isolate flex min-h-[70vh] items-center overflow-hidden pb-16 pt-28">
-        <img
-          src={heroImage}
-          alt={p?.hero?.title || "Licencia de Navegación en Blanes"}
-          width={1180}
-          height={750}
-          decoding="async"
-          draggable={false}
-          className={`absolute inset-0 -z-10 h-full w-full object-cover will-change-transform transition-transform duration-[1200ms] ease-out ${mounted ? "scale-100" : "scale-[1.06]"}`}
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/45 to-black/65" />
-
-        <div
-          className={`mx-auto w-full max-w-3xl px-4 text-center text-white transition-all duration-700 ease-out sm:px-6 ${mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
+      {/* HERO: photo sheet over the navy rule band */}
+      <div className={NAVY_BG}>
+        <section
+          className={`relative isolate flex min-h-[100svh] items-center sm:min-h-[80svh] overflow-hidden ${SHEET} pb-16 pt-28`}
         >
-          <h1 className="font-heading text-display font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)]">
-            {p?.hero?.title}
-          </h1>
-          <p className="mx-auto mt-5 max-w-xl text-lg text-white/90 [text-shadow:0_1px_10px_hsl(215_45%_12%/0.45)]">
-            {p?.hero?.subtitle}
-          </p>
-          <div className="mt-8 flex flex-col items-center gap-2">
-            <a
-              href={licensedFleetPath}
-              className={`${NAVY_CTA} min-h-12 px-9 text-base`}
-              data-testid="cta-hero-titulin"
-            >
-              {p?.fleet?.cta}
-              <ArrowRight className="h-5 w-5" aria-hidden="true" />
-            </a>
-            <a
-              href={secondaryHref}
-              target="_blank"
-              rel="noopener"
-              className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-white underline decoration-white/60 underline-offset-4 hover:decoration-white"
-              data-testid="link-hero-titulin-secondary"
-            >
-              {secondaryLabel}
-              <SecondaryIcon className="h-4 w-4" aria-hidden="true" />
-            </a>
-          </div>
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
-            {(p?.chips || []).map((chip) => (
-              <span
-                key={chip}
-                className="inline-flex items-center gap-1.5 rounded-full bg-black/25 px-3 py-1.5 text-sm text-white ring-1 ring-white/20"
-              >
-                <CheckCircle2 className="h-4 w-4 text-white" />
-                {chip}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+          <img
+            src={heroImage}
+            alt={p?.hero?.title || "Licencia de Navegación en Blanes"}
+            width={1180}
+            height={750}
+            decoding="async"
+            draggable={false}
+            className={`absolute inset-0 -z-10 h-full w-full object-cover will-change-transform transition-transform duration-[1200ms] ease-out motion-reduce:transition-none ${mounted ? "scale-100" : "scale-[1.06]"}`}
+          />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/45 to-black/65" />
 
-      {/* NEW RULE (RD 1188/2025) */}
-      <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-        <div className="mx-auto max-w-3xl rounded-2xl bg-primary p-6 text-primary-foreground sm:p-10">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10">
-              <CalendarClock className="h-5 w-5" />
-            </span>
-            <h2 className="font-heading text-xl font-bold sm:text-2xl">{p?.newRule?.title}</h2>
+          <div
+            className={`mx-auto w-full max-w-3xl px-4 text-center text-white transition-transform duration-700 ease-out motion-reduce:transition-none sm:px-6 ${mounted ? "translate-y-0" : "translate-y-4"}`}
+          >
+            <h1 className="font-heading text-display font-semibold text-balance [text-shadow:0_1px_2px_rgba(0,0,0,0.35),0_4px_24px_rgba(0,0,0,0.4)]">
+              {p?.hero?.title}
+            </h1>
+            <p className="mx-auto mt-5 max-w-xl text-lg text-white/90 text-pretty [text-shadow:0_1px_10px_hsl(215_45%_12%/0.45)]">
+              {p?.hero?.subtitle}
+            </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <InteractiveHoverButton
+                tone="dark"
+                as={Link}
+                href={licensedFleetPath}
+                className="min-h-12 w-full px-8 text-base sm:w-auto"
+                data-testid="cta-hero-titulin"
+              >
+                {p?.fleet?.cta}
+              </InteractiveHoverButton>
+              <a
+                href={secondaryHref}
+                target="_blank"
+                rel="noopener"
+                className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border-2 border-white/70 bg-white/10 px-6 text-base font-medium text-white transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/50 motion-reduce:transition-none sm:w-auto"
+                data-testid="link-hero-titulin-secondary"
+              >
+                {secondaryLabel}
+                <SecondaryIcon className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </div>
+
+            {/* Four facts as one ruled strip, not four loose pills. */}
+            {(p?.chips || []).length > 0 && (
+              <ul className="mx-auto mt-10 grid max-w-2xl grid-cols-2 overflow-hidden rounded-2xl border border-white/25 bg-black/25 text-sm text-white sm:grid-cols-4">
+                {(p?.chips || []).map(chip => (
+                  <li
+                    key={chip}
+                    className="flex items-center justify-center border-white/25 px-3 py-3.5 text-center leading-snug text-balance [&:nth-child(even)]:border-l [&:nth-child(n+3)]:border-t sm:[&:nth-child(n+2)]:border-l sm:[&:nth-child(n+3)]:border-t-0"
+                  >
+                    {chip}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-          <p className="mt-5 leading-relaxed text-primary-foreground/90">{p?.newRule?.body}</p>
-          <p className="mt-4 rounded-xl bg-white/10 p-4 text-sm leading-relaxed text-primary-foreground/95">
-            {p?.newRule?.note}
-          </p>
+        </section>
+      </div>
+
+      {/* NEW RULE (RD 1188/2025): navy band, the note as its own light panel */}
+      <section className={`${SHEET} ${NAVY} py-16 sm:py-24`} aria-labelledby="titulin-rule-title">
+        <div className="container mx-auto grid max-w-6xl items-center gap-10 px-4 lg:grid-cols-[6fr_5fr] lg:gap-16">
+          <Rise x={-24} y={0}>
+            <h2 id="titulin-rule-title" className={H2}>
+              {p?.newRule?.title}
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/85 text-pretty sm:text-lg dark:text-foreground/85">
+              {p?.newRule?.body}
+            </p>
+          </Rise>
+          <Rise x={24} y={0} delay={0.1}>
+            <p
+              className={`${PANEL_ON_NAVY} p-6 text-base font-medium leading-relaxed text-pretty sm:p-8 sm:text-lg`}
+            >
+              {p?.newRule?.note}
+            </p>
+          </Rise>
         </div>
       </section>
 
       {/* WHAT IT IS + WHAT IT ALLOWS */}
-      <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-        <div className="mx-auto grid max-w-4xl gap-10 lg:grid-cols-2 lg:gap-14">
-          <div>
-            <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary/10">
-              <GraduationCap className="h-5 w-5 text-primary" />
-            </span>
-            <h2 className="mt-4 font-heading text-h2 font-bold text-foreground">
-              {p?.whatIs?.title}
-            </h2>
-            <p className="mt-4 leading-relaxed text-muted-foreground">{p?.whatIs?.body}</p>
-          </div>
-          <div>
-            <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary/10">
-              <Anchor className="h-5 w-5 text-primary" />
-            </span>
-            <h2 className="mt-4 font-heading text-h2 font-bold text-foreground">
-              {p?.allows?.title}
-            </h2>
-            <ul className="mt-4 space-y-3">
-              {(p?.allows?.items || []).map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-success" />
-                  <span className="leading-relaxed text-muted-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p?.allows?.note}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* COURSE STEPS (a real sequence: theory → practice → licence) */}
-      <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="text-center font-heading text-h2 font-bold text-foreground">
-            {p?.course?.title}
-          </h2>
-          <ol className="mt-10 grid gap-4 sm:grid-cols-3">
-            {(p?.course?.steps || []).map((step, i) => (
-              <li key={step.title} className="rounded-xl border border-border bg-card p-5">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-cta font-heading text-sm font-bold text-cta-foreground">
-                  {i + 1}
-                </span>
-                <h3 className="mt-3 font-heading font-semibold text-foreground">{step.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                  {step.description}
-                </p>
-              </li>
-            ))}
-          </ol>
-          <p className="mx-auto mt-8 max-w-2xl text-center leading-relaxed text-muted-foreground">
-            {p?.course?.note}
-          </p>
-
-          {school && (
-            <div className="mx-auto mt-10 max-w-2xl rounded-2xl border border-border bg-card p-6 sm:p-8">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                <GraduationCap className="h-5 w-5 text-primary" />
-              </span>
-              <h3 className="mt-4 font-heading text-xl font-bold text-foreground">
-                {school.title}
-              </h3>
-              <p className="mt-3 leading-relaxed text-muted-foreground">{school.body}</p>
-              {/* Aqui el WhatsApp, no la escuela: los CTA grandes ya llevan alli, y este
-                  bloque es justo el que explica que hacer si necesitas el titulo antes de
-                  que la escuela abra. Sin el, la pagina se queda sin via de contacto. */}
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener"
-                className="mt-5 inline-flex min-h-11 items-center gap-2 font-semibold text-primary hover:underline"
-                data-testid="link-titulin-whatsapp"
+      <div className={NAVY_BG}>
+        <section className={`${SHEET} bg-background py-16 sm:py-24`}>
+          <div className="container mx-auto grid max-w-6xl gap-12 px-4 lg:grid-cols-2 lg:items-start lg:gap-20">
+            <Rise>
+              <h2 className={H2}>{p?.whatIs?.title}</h2>
+              {/* El cuerpo es un solo parrafo de 3 frases: la primera es la definicion
+                  (destacada) y cada una de las demas es un dato suelto, con su filete. */}
+              <p className="mt-5 max-w-xl text-lg font-medium leading-snug text-foreground text-pretty sm:text-xl">
+                {whatIsLead}
+              </p>
+              <ul className="mt-6 max-w-xl border-t border-border">
+                {whatIsFacts.map(fact => (
+                  <li
+                    key={fact}
+                    className="border-b border-border py-4 text-base leading-relaxed text-muted-foreground text-pretty"
+                  >
+                    {fact}
+                  </li>
+                ))}
+              </ul>
+            </Rise>
+            <Rise delay={0.1}>
+              <h2 className={H2}>{p?.allows?.title}</h2>
+              <motion.ul
+                variants={listVariants}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "0px 0px -8% 0px" }}
+                className="mt-6 overflow-hidden rounded-2xl border border-border bg-card"
               >
-                {p?.ctaButton}
-                <SiWhatsapp className="h-4 w-4" aria-hidden="true" />
-              </a>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* FLEET BRIDGE */}
-      <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-        <div className="mx-auto grid max-w-4xl items-center gap-8 lg:grid-cols-2">
-          <img
-            src={fleetImage}
-            alt={p?.fleet?.title || "Trimarchi 57S en la Costa Brava"}
-            width={800}
-            height={600}
-            loading="lazy"
-            decoding="async"
-            className="aspect-[4/3] w-full rounded-2xl object-cover"
-          />
-          <div>
-            <h2 className="font-heading text-h2 font-bold text-foreground">
-              {p?.fleet?.title}
-            </h2>
-            <p className="mt-4 leading-relaxed text-muted-foreground">{p?.fleet?.body}</p>
-            <a href={licensedFleetPath} className={`${NAVY_CTA} mt-6 min-h-12 px-8 text-base`}>
-              {p?.fleet?.cta}
-              <ArrowRight className="h-5 w-5" />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      {(p?.faq || []).length > 0 && (
-        <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-          <div className="mx-auto max-w-2xl">
-            <h2 className="text-center font-heading text-h2 font-bold text-foreground">
-              {p?.faqTitle}
-            </h2>
-            <dl className="mt-8 divide-y divide-border">
-              {(p?.faq || []).map((f) => (
-                <div key={f.q} className="py-5 first:pt-0 last:pb-0">
-                  <dt className="font-heading font-semibold text-foreground">{f.q}</dt>
-                  <dd className="mt-1.5 leading-relaxed text-muted-foreground">{f.a}</dd>
-                </div>
-              ))}
-            </dl>
+                {(p?.allows?.items || []).map(item => (
+                  <motion.li
+                    key={item}
+                    variants={itemVariants}
+                    className="flex items-center gap-4 border-b border-border px-5 py-3.5 last:border-b-0 sm:px-6"
+                  >
+                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success/10 text-success">
+                      <Check className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                    <span className="text-base leading-snug text-foreground text-pretty">
+                      {item}
+                    </span>
+                  </motion.li>
+                ))}
+              </motion.ul>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground text-pretty">
+                {p?.allows?.note}
+              </p>
+            </Rise>
           </div>
         </section>
+      </div>
+
+      {/* COURSE: the same scroll-driven rail as the home (a real sequence: theory, practice, licence) */}
+      <div className="bg-muted/40">
+        <section
+          className={`${SHEET} ${NAVY} py-16 sm:py-24`}
+          aria-labelledby="titulin-course-title"
+        >
+          <div className="container mx-auto max-w-6xl px-4">
+            <div className="grid gap-12 lg:grid-cols-[6fr_5fr] lg:items-center lg:gap-20">
+              <Rise>
+                <h2 id="titulin-course-title" className={H2}>
+                  {p?.course?.title}
+                </h2>
+                <p className="mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/85 text-pretty sm:text-lg dark:text-foreground/85">
+                  {p?.course?.note}
+                </p>
+              </Rise>
+              {p?.course?.steps && <CourseRail steps={p.course.steps} />}
+            </div>
+
+            {school && (
+              <Rise
+                className={`${PANEL_ON_NAVY} mt-14 grid gap-6 p-6 sm:mt-16 sm:p-8 md:grid-cols-[1fr_auto] md:items-center md:gap-10`}
+              >
+                {/* Aqui el WhatsApp, no la escuela: los CTA grandes ya llevan alli, y este
+                    bloque es justo el que explica que hacer si necesitas el titulo antes de
+                    que la escuela abra. Sin el, la pagina se queda sin via de contacto. */}
+                <div className="max-w-2xl">
+                  <h3 className="font-heading text-xl font-semibold tracking-tight text-balance sm:text-2xl">
+                    {school.title}
+                  </h3>
+                  <p className="mt-2 text-base leading-relaxed text-muted-foreground text-pretty">
+                    {school.body}
+                  </p>
+                </div>
+                <InteractiveHoverButton
+                  tone="dark"
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener"
+                  className="min-h-12 px-7 text-base"
+                  data-testid="link-titulin-whatsapp"
+                >
+                  {p?.ctaButton}
+                </InteractiveHoverButton>
+              </Rise>
+            )}
+          </div>
+        </section>
+      </div>
+
+      {/* FLEET BRIDGE */}
+      <section
+        className={`${SHEET} bg-muted/40 py-16 sm:py-24`}
+        aria-labelledby="titulin-fleet-title"
+      >
+        <div className="container mx-auto grid max-w-6xl items-center gap-10 px-4 lg:grid-cols-2 lg:gap-16">
+          <Rise x={-24} y={0}>
+            <div className="group/photo overflow-hidden rounded-2xl">
+              <img
+                src={fleetImage}
+                alt={p?.fleet?.title || "Trimarchi 57S en la Costa Brava"}
+                width={800}
+                height={600}
+                loading="lazy"
+                decoding="async"
+                className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover/photo:scale-[1.03]"
+              />
+            </div>
+          </Rise>
+          <Rise x={24} y={0} delay={0.1}>
+            <h2 id="titulin-fleet-title" className={H2}>
+              {p?.fleet?.title}
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground text-pretty sm:text-lg">
+              {p?.fleet?.body}
+            </p>
+            <InteractiveHoverButton
+              tone="dark"
+              as={Link}
+              href={licensedFleetPath}
+              className="mt-8 min-h-12 px-7 text-base"
+            >
+              {p?.fleet?.cta}
+            </InteractiveHoverButton>
+          </Rise>
+        </div>
+      </section>
+
+      {/* FAQ: navy aside + folded cards, as the home */}
+      {faq.length > 0 && (
+        <div className="bg-muted/40">
+          <section
+            className={`${SHEET} bg-background py-16 sm:py-24`}
+            aria-labelledby="titulin-faq-title"
+          >
+            <div className="container mx-auto max-w-6xl px-4">
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-10">
+                <aside className="flex flex-col justify-between gap-10 rounded-2xl bg-cta p-7 text-primary-foreground dark:text-background sm:p-9 lg:sticky lg:top-[calc(var(--nav-height,5rem)+1rem)] lg:self-start">
+                  <div>
+                    <h2 id="titulin-faq-title" className={H2}>
+                      {p?.faqTitle}
+                    </h2>
+                    {t.faqPreview?.subtitle && (
+                      <p className="mt-4 max-w-md text-base leading-relaxed opacity-80 text-pretty">
+                        {t.faqPreview.subtitle}
+                      </p>
+                    )}
+                  </div>
+                  <a
+                    href={localizedPath("faq")}
+                    className="group inline-flex min-h-11 w-full items-center justify-between gap-4 rounded-full bg-background px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-background/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background focus-visible:ring-offset-2 focus-visible:ring-offset-cta motion-reduce:transition-none sm:w-auto sm:self-start"
+                  >
+                    {t.faqPreview?.viewAll}
+                    <ArrowRight
+                      className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none"
+                      aria-hidden="true"
+                    />
+                  </a>
+                </aside>
+
+                <motion.div
+                  variants={listVariants}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, margin: "0px 0px -8% 0px" }}
+                  className="flex flex-col gap-3 sm:gap-4"
+                >
+                  {faq.map((f, i) => (
+                    <motion.div key={f.q} variants={itemVariants}>
+                      <FaqItem
+                        id={`titulin-faq-${i}`}
+                        question={f.q}
+                        answer={f.a}
+                        open={openFaq === i}
+                        onToggle={() => {
+                          const next = openFaq === i ? null : i;
+                          setOpenFaq(next);
+                          if (next !== null) trackFaqExpanded(`titulin-${i}`);
+                        }}
+                      />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
+            </div>
+          </section>
+        </div>
       )}
 
       {/* NO-LICENCE ALTERNATIVE (captained excursion) */}
-      <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-        <div className="mx-auto max-w-2xl rounded-2xl border border-border bg-card p-6 sm:p-8">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-success/10">
-              <LifeBuoy className="h-5 w-5 text-success" />
-            </span>
-            <h2 className="font-heading text-xl font-bold text-foreground sm:text-2xl">
-              {p?.alternative?.title}
-            </h2>
-          </div>
-          <p className="mt-4 leading-relaxed text-muted-foreground">{p?.alternative?.body}</p>
-          <a
-            href={captainedPath}
-            className="mt-5 inline-flex items-center gap-1.5 font-semibold text-primary hover:underline"
-          >
-            {p?.alternative?.cta}
-            <ArrowRight className="h-4 w-4" />
-          </a>
+      <section
+        className={`${SHEET} bg-muted/40 py-16 sm:py-24`}
+        aria-labelledby="titulin-alt-title"
+      >
+        <div className="container mx-auto max-w-6xl px-4">
+          <Rise className="grid gap-6 rounded-2xl border border-border bg-card p-6 sm:p-8 md:grid-cols-[1fr_auto] md:items-center md:gap-10">
+            <div className="max-w-2xl">
+              <h2
+                id="titulin-alt-title"
+                className="font-heading text-2xl font-semibold tracking-tight text-balance sm:text-3xl"
+              >
+                {p?.alternative?.title}
+              </h2>
+              <p className="mt-3 text-base leading-relaxed text-muted-foreground text-pretty sm:text-lg">
+                {p?.alternative?.body}
+              </p>
+            </div>
+            <InteractiveHoverButton
+              tone="dark"
+              as={Link}
+              href={captainedPath}
+              className="min-h-12 px-7 text-base"
+            >
+              {p?.alternative?.cta}
+            </InteractiveHoverButton>
+          </Rise>
         </div>
       </section>
 
-      {/* FINAL CTA */}
-      <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-heading text-h2 font-bold text-foreground">{p?.ctaTitle}</h2>
-          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{p?.ctaText}</p>
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener"
-            className={`${NAVY_CTA} mt-6 min-h-12 px-9 text-base`}
-            data-testid="cta-final-titulin"
-          >
-            {p?.ctaButton}
-            <SiWhatsapp className="h-5 w-5" aria-hidden="true" />
-          </a>
-          {school && (
-            <div className="mt-3">
-              <a
-                href={school.url}
+      {/* FINAL CTA: closes over the footer colour */}
+      <div className="bg-foreground">
+        <section
+          className={`${SHEET} bg-background py-16 sm:py-24`}
+          aria-labelledby="titulin-final-title"
+        >
+          <Rise className="container mx-auto max-w-6xl px-4 text-center">
+            <h2 id="titulin-final-title" className={`${H2} xl:whitespace-nowrap`}>
+              {p?.ctaTitle}
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground text-pretty sm:text-lg">
+              {p?.ctaText}
+            </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <InteractiveHoverButton
+                tone="dark"
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener"
-                className="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline"
-                data-testid="link-final-titulin-school"
+                className="min-h-12 px-8 text-base"
+                data-testid="cta-final-titulin"
               >
-                {school.cta}
-                <ExternalLink className="h-4 w-4" aria-hidden="true" />
-              </a>
+                {p?.ctaButton}
+              </InteractiveHoverButton>
+              {school && (
+                <a
+                  href={school.url}
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex min-h-12 items-center gap-2 rounded-full border border-border px-6 text-base font-medium text-foreground transition-colors hover:border-foreground/40 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 motion-reduce:transition-none"
+                  data-testid="link-final-titulin-school"
+                >
+                  {school.cta}
+                  <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                </a>
+              )}
             </div>
-          )}
-        </div>
-      </section>
+          </Rise>
+        </section>
 
-      {/* Sticky mobile CTA */}
-      <MobileStickyBar>
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2 leading-tight">
-            <GraduationCap className="h-4 w-4 flex-shrink-0 text-success" />
-            <p className="text-sm font-bold text-foreground">{p?.chips?.[0]}</p>
+        {/* Sticky mobile CTA (its spacer sits inside the footer-coloured wrapper, so the sheet's corners stay clean) */}
+        <MobileStickyBar>
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2 leading-tight">
+              <GraduationCap className="h-4 w-4 flex-shrink-0 text-success" />
+              <p className="text-sm font-bold text-foreground">{p?.chips?.[0]}</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => openBookingModal()}
+              className="inline-flex min-h-11 flex-shrink-0 items-center justify-center gap-2 rounded-full bg-cta px-6 text-sm font-semibold text-cta-foreground transition-colors hover:bg-cta/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
+              data-testid="cta-sticky-titulin"
+            >
+              {t.nav.bookNow}
+            </button>
           </div>
-          <button
-            type="button"
-            onClick={() => openBookingModal()}
-            className={`${NAVY_CTA} min-h-11 flex-shrink-0 px-6 text-sm`}
-            data-testid="cta-sticky-titulin"
-          >
-            {t.nav.bookNow}
-          </button>
-        </div>
-      </MobileStickyBar>
+        </MobileStickyBar>
+      </div>
 
       <Footer />
     </div>

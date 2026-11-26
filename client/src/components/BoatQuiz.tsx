@@ -176,7 +176,7 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
       <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
         <div className="text-center mb-6">
           <Anchor className="w-8 h-8 text-cta mx-auto mb-3" aria-hidden="true" />
-          <h3 className="font-heading text-xl font-bold">{t.title}</h3>
+          <h3 className="font-heading text-xl font-semibold">{t.title}</h3>
           <p className="text-sm text-muted-foreground mt-1">{t.subtitle}</p>
         </div>
 
@@ -234,7 +234,7 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
     <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 animate-in fade-in slide-in-from-bottom-1 duration-200 motion-reduce:animate-none">
       <div className="text-center mb-6">
         <Anchor className="w-8 h-8 text-cta mx-auto mb-3" aria-hidden="true" />
-        <h3 className="font-heading text-xl font-bold">{t.result}</h3>
+        <h3 className="font-heading text-xl font-semibold">{t.result}</h3>
       </div>
 
       {recommendations.length === 0 ? (

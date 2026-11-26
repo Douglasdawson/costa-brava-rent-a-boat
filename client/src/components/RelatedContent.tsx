@@ -539,7 +539,7 @@ export default function RelatedContent({ currentPage }: RelatedContentProps) {
   return (
     <section className="py-12 bg-muted/30">
       <div className="container mx-auto px-4">
-        <h2 className="font-heading text-h2 font-bold text-foreground text-center mb-8">
+        <h2 className="font-heading text-h2 font-semibold tracking-tight text-foreground text-center mb-8">
           {sectionTitle}
         </h2>
         <div

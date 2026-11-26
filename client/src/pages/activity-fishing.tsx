@@ -1,40 +1,37 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Fish,
-  Clock,
-  Anchor,
-  Users,
-  Star,
-  MapPin,
-  Shield,
-  Ship,
-  ChevronRight,
-  Navigation as NavigationIcon,
-  AlertTriangle
-} from "lucide-react";
+import { Anchor } from "lucide-react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import RelatedContent from "@/components/RelatedContent";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
-import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
+import {
+  getSEOConfig,
+  generateHreflangLinks,
+  generateCanonicalUrl,
+  generateBreadcrumbSchema,
+} from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
-import { FAQSection } from "@/components/FAQSection";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
+import {
+  H2,
+  H3,
+  Sheet,
+  Rise,
+  Feature,
+  LeadText,
+  CheckPanel,
+  LinkList,
+  PhotoHero,
+  CtaSheet,
+  NavyButton,
+  FaqSheet,
+  HERO_SECONDARY,
+  PILL_ON_NAVY,
+} from "@/components/activity-kit";
 import { BookingStickyBar } from "@/components/MobileStickyBar";
-
-function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <div ref={ref} className={`transition-[opacity,transform,filter] duration-700 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"} ${className}`}>
-      {children}
-    </div>
-  );
-}
 
 const faqsFallback: Array<{ question: string; answer: string }> = [];
 
@@ -46,9 +43,9 @@ export default function ActivityFishingPage() {
   const recommendedBoats = fi?.recommendedBoats ?? [];
   const fishingSpots = fi?.fishingSpots ?? [];
   const faqs = fi?.faqItems ?? faqsFallback;
-  const seoConfig = getSEOConfig('activityFishing', language);
-  const hreflangLinks = generateHreflangLinks('activityFishing');
-  const canonical = generateCanonicalUrl('activityFishing', language);
+  const seoConfig = getSEOConfig("activityFishing", language);
+  const hreflangLinks = generateHreflangLinks("activityFishing");
+  const canonical = generateCanonicalUrl("activityFishing", language);
 
   const handleBookingWhatsApp = () => {
     const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
@@ -57,39 +54,40 @@ export default function ActivityFishingPage() {
 
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Inicio", url: "/" },
-    { name: "Pesca desde Barco", url: "/pesca-barco-blanes" }
+    { name: "Pesca desde Barco", url: "/pesca-barco-blanes" },
   ]);
 
   const faqSchema = {
     "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
+    mainEntity: faqs.map(faq => ({
       "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
+      name: faq.question,
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
+        text: faq.answer,
+      },
+    })),
   };
 
   const touristTripSchema = {
     "@type": "TouristTrip",
     "@id": `${canonical}#tour`,
-    "name": "Alquiler de Barco para Pesca Recreativa desde Blanes",
-    "description": "Alquiler de barco con licencia (basta la Licencia de Navegacion) desde el Puerto de Blanes para pesca recreativa en calas rocosas o aguas abiertas de la Costa Brava. Equipo de pesca NO incluido (trae el tuyo). Requiere licencia de pesca recreativa de la Generalitat.",
-    "touristType": ["Adventure", "Sports", "Fishing"],
-    "inLanguage": ["es-ES", "en-GB", "ca-ES", "fr-FR", "de-DE", "nl-NL", "it-IT", "ru-RU"],
-    "provider": {
+    name: "Alquiler de Barco para Pesca Recreativa desde Blanes",
+    description:
+      "Alquiler de barco con licencia (basta la Licencia de Navegacion) desde el Puerto de Blanes para pesca recreativa en calas rocosas o aguas abiertas de la Costa Brava. Equipo de pesca NO incluido (trae el tuyo). Requiere licencia de pesca recreativa de la Generalitat.",
+    touristType: ["Adventure", "Sports", "Fishing"],
+    inLanguage: ["es-ES", "en-GB", "ca-ES", "fr-FR", "de-DE", "nl-NL", "it-IT", "ru-RU"],
+    provider: {
       "@type": "LocalBusiness",
       "@id": "https://www.costabravarentaboat.com/#organization",
-      "name": "Costa Brava Rent a Boat",
+      name: "Costa Brava Rent a Boat",
     },
-    "maximumAttendeeCapacity": 7,
+    maximumAttendeeCapacity: 7,
   };
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": [breadcrumbSchema, touristTripSchema, faqSchema]
+    "@graph": [breadcrumbSchema, touristTripSchema, faqSchema],
   };
 
   return (
@@ -107,321 +105,234 @@ export default function ActivityFishingPage() {
       <Navigation />
       <ReadingProgressBar />
 
-      {/* Hero Section */}
-      <div className="bg-gradient-to-br from-slate-50 to-blue-50 pt-24 pb-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center mb-6">
-              <Fish className="hidden sm:block w-8 h-8 shrink-0 text-primary mr-4" aria-hidden="true" />
-              <h1 className="text-h1 font-heading font-bold text-foreground">
-                {fi?.heroTitle ?? "Pesca desde Barco en Blanes - Costa Brava"}
-              </h1>
-            </div>
-            <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto leading-relaxed">
-              {fi?.heroDescription ?? "Alquila un barco en el Puerto de Blanes y sal a pescar en las aguas de la Costa Brava. Lubinas, doradas, serviolas y más. Barcos con licencia que llevas con el titulín o un título superior. Trae tu equipo y nosotros ponemos el barco."}
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Badge variant="outline" className="text-primary border-primary">
-                <Fish className="w-4 h-4 mr-2" />
-                {fi?.badgeSpecies ?? "5+ especies objetivo"}
-              </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <Ship className="w-4 h-4 mr-2" />
-                {fi?.badgeLicense ?? "Con titulín o superior"}
-              </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <Clock className="w-4 h-4 mr-2" />
-                {fi?.badgeDuration ?? "4-6 horas recomendadas"}
-              </Badge>
-            </div>
-          </div>
-        </div>
-      </div>
+      <PhotoHero
+        minHeight="sm:min-h-[72svh]"
+        media={
+          <picture>
+            <source type="image/webp" srcSet="/images/blog/puerto-barcos.webp" />
+            <img
+              src="/images/blog/puerto-barcos.jpg"
+              alt="Boats in the port of Blanes, Costa Brava"
+              width={1920}
+              height={600}
+              decoding="async"
+              draggable={false}
+            />
+          </picture>
+        }
+        title={fi?.heroTitle ?? "Pesca desde Barco en Blanes - Costa Brava"}
+        subtitle={fi?.heroDescription}
+        actions={
+          <>
+            <InteractiveHoverButton
+              tone="dark"
+              onClick={handleBookingWhatsApp}
+              className="min-h-12 w-full px-8 text-base sm:w-auto"
+            >
+              {fi?.ctaWhatsApp ?? "Reservar por WhatsApp"}
+            </InteractiveHoverButton>
+            <a href={localizedPath("categoryLicensed")} className={HERO_SECONDARY}>
+              {fi?.ctaViewBoats ?? "Ver barcos con licencia"}
+            </a>
+          </>
+        }
+        facts={[fi?.badgeSpecies, fi?.badgeLicense, fi?.badgeDuration]}
+      />
 
-      {/* Why Fish from Blanes */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
-            <Star className="w-6 h-6 text-primary" />
-            {fi?.whyTitle ?? "Por qué pescar desde Blanes"}
-          </h2>
-          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-            <div className="lg:col-span-3">
-              <h3 className="font-heading font-semibold text-lg mb-3">{fi?.whyLocationTitle ?? "Ubicación estratégica"}</h3>
-              <p className="text-muted-foreground mb-4 leading-relaxed">
-                {fi?.whyLocationDesc ?? "Blanes está en el punto donde el litoral cambia de carácter: al sur playas de arena del Maresme, al norte la costa rocosa de la Costa Brava. Esta transición crea una diversidad de hábitats marinos excepcional para la pesca: fondos de arena, praderas de posidonia, formaciones rocosas y aguas abiertas, todo accesible en menos de 30 minutos de navegación."}
-              </p>
-              <h3 className="font-heading font-semibold text-lg mb-3">{fi?.whyPortTitle ?? "Puerto cómodo y bien equipado"}</h3>
-              <p className="text-muted-foreground mb-4 leading-relaxed">
-                {fi?.whyPortDesc ?? "El Puerto de Blanes tiene aparcamiento gratuito, gasolinera náutica y tiendas donde comprar cebo fresco. Sales del puerto y en 10 minutos ya estás en zonas de pesca productivas. Al volver, puedes limpiar las capturas y comer en los restaurantes del puerto."}
-              </p>
-              <h3 className="font-heading font-semibold text-lg mb-3">{fi?.whyVarietyTitle ?? "Variedad de especies"}</h3>
-              <p className="text-muted-foreground mb-4 leading-relaxed">
-                {fi?.whyVarietyDesc ?? "Las aguas frente a Blanes albergan una gran diversidad de especies. Cerca de la costa encontrarás lubinas, doradas, sargos y mojarras. Un poco más lejos, en aguas abiertas, serviolas, bonitos y dentones. En otoño e invierno, la pesca de calamares con potera es excelente."}
-              </p>
-              <h3 className="font-heading font-semibold text-lg mb-3">{fi?.whySeasonTitle ?? "Temporada extendida"}</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {fi?.whySeasonDesc ?? "Aunque la temporada de alquiler de barcos va de abril a octubre, cada mes tiene sus propias oportunidades de pesca. Primavera para doradas, verano para serviolas, otoño para calamares y dentones. Siempre hay algo que pescar en Blanes."}
-              </p>
+      {/* Why fish from Blanes */}
+      <Sheet next="muted">
+        <div className="grid gap-12 lg:grid-cols-[7fr_5fr] lg:items-center lg:gap-16">
+          <Rise>
+            <h2 className={H2}>{fi?.whyTitle}</h2>
+            <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+              <Feature title={fi?.whyLocationTitle ?? ""} text={fi?.whyLocationDesc} />
+              <Feature title={fi?.whyPortTitle ?? ""} text={fi?.whyPortDesc} />
+              <Feature title={fi?.whyVarietyTitle ?? ""} text={fi?.whyVarietyDesc} />
+              <Feature title={fi?.whySeasonTitle ?? ""} text={fi?.whySeasonDesc} />
             </div>
-            <div className="lg:col-span-2">
-              <img
-                src="/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-fondeado-bahia.webp"
-                alt="Boat anchored in a bay ready for fishing on the Costa Brava"
-                className="w-full rounded-2xl object-cover aspect-[4/5]"
-                loading="lazy"
-                width={640}
-                height={800}
+          </Rise>
+          <Rise delay={0.1}>
+            <img
+              src="/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-fondeado-bahia.webp"
+              alt="Boat anchored in a bay ready for fishing on the Costa Brava"
+              className="aspect-[4/5] w-full rounded-2xl object-cover"
+              loading="lazy"
+              width={640}
+              height={800}
+            />
+          </Rise>
+        </div>
+      </Sheet>
+
+      {/* Species */}
+      <Sheet tone="muted" next="page">
+        <Rise>
+          <h2 className={H2}>{fi?.speciesTitle}</h2>
+          <div className="mt-10 overflow-hidden rounded-2xl border border-border bg-card">
+            {fishSpecies.map(species => (
+              <div
+                key={species.name}
+                className="grid gap-3 border-b border-border px-5 py-5 last:border-b-0 sm:px-6 md:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] md:gap-8"
+              >
+                <h3 className={H3}>{species.name}</h3>
+                <dl className="grid gap-x-6 gap-y-2 text-base sm:grid-cols-3">
+                  <div>
+                    <dt className="text-sm font-medium text-foreground">
+                      {fi?.seasonLabel ?? "Temporada:"}
+                    </dt>
+                    <dd className="text-muted-foreground">{species.season}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-sm font-medium text-foreground">
+                      {fi?.whereLabel ?? "Dónde:"}
+                    </dt>
+                    <dd className="text-muted-foreground">{species.where}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-sm font-medium text-foreground">
+                      {fi?.techniqueLabel ?? "Técnica:"}
+                    </dt>
+                    <dd className="text-muted-foreground">{species.technique}</dd>
+                  </div>
+                </dl>
+              </div>
+            ))}
+          </div>
+        </Rise>
+      </Sheet>
+
+      {/* Recommended boats */}
+      <Sheet next="muted">
+        <Rise>
+          <h2 className={H2}>{fi?.boatsTitle}</h2>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {recommendedBoats.map(boat => (
+              <article
+                key={boat.type}
+                className="flex flex-col overflow-hidden rounded-2xl border border-border bg-card"
+              >
+                <div className="flex items-baseline justify-between gap-4 border-b border-border px-5 py-4 sm:px-6">
+                  <h3 className={H3}>{boat.type}</h3>
+                  <span className="shrink-0 font-heading text-base font-semibold tabular-nums text-foreground">
+                    {boat.price}
+                  </span>
+                </div>
+                <div className="flex-1 space-y-3 px-5 py-4 sm:px-6">
+                  <p className="text-sm font-medium text-primary">{boat.capacity}</p>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{boat.autonomy}</p>
+                  <ul className="border-t border-border">
+                    {boat.advantages.map(adv => (
+                      <li
+                        key={adv}
+                        className="border-b border-border py-2.5 text-sm leading-snug text-muted-foreground last:border-b-0"
+                      >
+                        {adv}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <p className="border-t border-border bg-muted/50 px-5 py-3.5 text-sm font-medium text-foreground sm:px-6">
+                  {boat.recommendation}
+                </p>
+              </article>
+            ))}
+          </div>
+        </Rise>
+      </Sheet>
+
+      {/* Fishing spots */}
+      <Sheet tone="muted" next="page">
+        <Rise>
+          <h2 className={H2}>{fi?.spotsTitle}</h2>
+          <div className="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-3">
+            {fishingSpots.map(spot => (
+              <Feature
+                key={spot.name}
+                title={spot.name}
+                meta={`${spot.distance} · ${fi?.targetLabel ?? "Objetivo:"} ${spot.target}`}
+                text={spot.description}
               />
-            </div>
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* Photo break */}
-      <div className="w-full overflow-hidden">
-        <picture>
-          <source type="image/webp" srcSet="/images/blog/puerto-barcos.webp" />
-          <img
-            src="/images/blog/puerto-barcos.jpg"
-            alt="Boats in the port of Blanes, Costa Brava"
-            className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
-            loading="lazy"
-            width={1920}
-            height={600}
-          />
-        </picture>
-      </div>
-
-      {/* Fish Species */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
-            <Fish className="w-6 h-6 text-primary" />
-            {fi?.speciesTitle ?? "Especies que puedes pescar en Blanes"}
-          </h2>
-          <div className="space-y-4">
-            {fishSpecies.map((species) => (
-              <div key={species.name} className="border rounded-lg p-4">
-                <h3 className="font-heading font-semibold text-lg mb-2">{species.name}</h3>
-                <div className="grid sm:grid-cols-3 gap-2 text-sm">
-                  <div>
-                    <span className="font-medium text-foreground">{fi?.seasonLabel ?? "Temporada:"} </span>
-                    <span className="text-muted-foreground">{species.season}</span>
-                  </div>
-                  <div>
-                    <span className="font-medium text-foreground">{fi?.whereLabel ?? "Dónde:"} </span>
-                    <span className="text-muted-foreground">{species.where}</span>
-                  </div>
-                  <div>
-                    <span className="font-medium text-foreground">{fi?.techniqueLabel ?? "Técnica:"} </span>
-                    <span className="text-muted-foreground">{species.technique}</span>
-                  </div>
-                </div>
-              </div>
             ))}
           </div>
-        </div>
-      </RevealSection>
-
-      {/* Recommended Boats */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
-            <Anchor className="w-6 h-6 text-primary" />
-            {fi?.boatsTitle ?? "Barcos recomendados para pesca"}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {recommendedBoats.map((boat) => (
-              <div key={boat.type} className="border rounded-lg p-6">
-                <h3 className="font-heading font-semibold text-lg mb-2">{boat.type}</h3>
-                <div className="flex flex-wrap gap-2 mb-3">
-                  <Badge variant="outline">
-                    <Users className="w-3 h-3 mr-1" />
-                    {boat.capacity}
-                  </Badge>
-                  <Badge variant="secondary">{boat.price}</Badge>
-                </div>
-                <p className="text-sm text-muted-foreground mb-3 leading-relaxed">{boat.autonomy}</p>
-                <ul className="space-y-1 mb-3">
-                  {boat.advantages.map((adv, i) => (
-                    <li key={i} className="flex items-center text-sm text-muted-foreground">
-                      <ChevronRight className="w-4 h-4 text-primary mr-1 flex-shrink-0" />
-                      {adv}
-                    </li>
-                  ))}
-                </ul>
-                <div className="bg-muted p-3 rounded-md">
-                  <p className="text-sm font-medium">{boat.recommendation}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* Fishing Spots */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
-            <MapPin className="w-6 h-6 text-primary" />
-            {fi?.spotsTitle ?? "Zonas de pesca desde Blanes"}
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {fishingSpots.map((spot) => (
-              <div key={spot.name} className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <NavigationIcon className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="font-heading font-semibold text-lg mb-2">{spot.name}</h3>
-                <p className="text-muted-foreground text-sm mb-2">{spot.distance}</p>
-                <p className="text-sm text-primary font-medium mb-2">{fi?.targetLabel ?? "Objetivo:"} {spot.target}</p>
-                <p className="text-muted-foreground text-sm leading-relaxed">{spot.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </RevealSection>
+        </Rise>
+      </Sheet>
 
       {/* Regulations */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
-            <AlertTriangle className="w-6 h-6 text-primary" />
-            {fi?.regulationsTitle ?? "Regulaciones y normativa de pesca"}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">{fi?.licenseTitle ?? "Licencia de pesca obligatoria"}</h3>
-              <p className="text-muted-foreground mb-3 leading-relaxed">
-                {fi?.licenseDesc ?? "Para pescar en el mar desde un barco necesitas la licencia de pesca recreativa marítima de la Generalitat de Catalunya. Puedes obtenerla online en gencat.cat por aproximadamente 14 EUR con validez de 2 años."}
-              </p>
-              <h3 className="font-heading font-semibold text-lg mb-3">{fi?.catchLimitsTitle ?? "Límites de captura"}</h3>
-              <ul className="space-y-1 text-muted-foreground">
-                {(fi?.catchLimitsItems ?? ["Máximo 5 kg por persona y día", "Si una pieza supera 5 kg, cuenta como cupo", "Máximo 2 cañas por persona"]).map((item) => (
-                  <li key={item} className="flex items-center">
-                    <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+      <Sheet next="muted">
+        <Rise>
+          <h2 className={H2}>{fi?.regulationsTitle}</h2>
+          <div className="mt-10 grid gap-10 md:grid-cols-2">
+            <div className="space-y-8">
+              <Feature title={fi?.licenseTitle ?? ""} text={fi?.licenseDesc} />
+              <div>
+                <h3 className={`${H3} mb-4`}>{fi?.catchLimitsTitle}</h3>
+                <CheckPanel items={fi?.catchLimitsItems ?? []} />
+              </div>
             </div>
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">{fi?.minSizesTitle ?? "Tallas mínimas principales"}</h3>
-              <ul className="space-y-1 text-muted-foreground">
-                {(fi?.minSizesItems ?? ["Lubina: 36 cm", "Dorada: 20 cm", "Dentón: 35 cm", "Serviola: 40 cm"]).map((item) => (
-                  <li key={item} className="flex items-center">
-                    <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <h3 className="font-heading font-semibold text-lg mt-4 mb-3">{fi?.prohibitedTitle ?? "Zonas prohibidas"}</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {fi?.prohibitedDesc ?? "Está prohibido pescar en zonas de baño señalizadas, reservas marinas y dentro de puertos. Respeta siempre las boyas de balizamiento y las zonas protegidas."}
-              </p>
+            <div className="space-y-8">
+              <div>
+                <h3 className={`${H3} mb-4`}>{fi?.minSizesTitle}</h3>
+                <CheckPanel items={fi?.minSizesItems ?? []} />
+              </div>
+              <Feature title={fi?.prohibitedTitle ?? ""} text={fi?.prohibitedDesc} />
             </div>
           </div>
-        </div>
-      </RevealSection>
+        </Rise>
+      </Sheet>
 
-      {/* Bring Your Own Equipment */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
-            <Shield className="w-6 h-6 text-primary" />
-            {fi?.equipmentTitle ?? "Equipo de pesca: trae el tuyo"}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
+      {/* Equipment + links */}
+      <Sheet tone="muted" next="navy">
+        <Rise>
+          <h2 className={H2}>{fi?.equipmentTitle}</h2>
+          <div className="mt-10 grid gap-10 md:grid-cols-2">
             <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">{fi?.whatToBringTitle ?? "Qué traer"}</h3>
-              <ul className="space-y-2 text-muted-foreground">
-                {(fi?.whatToBringItems ?? ["Cañas y carretes (spinning, jigging o fondo)", "Señuelos, plomos y anzuelos", "Cebo fresco (disponible en tiendas del puerto)", "Nevera con hielo para las capturas", "Alicates de pesca y cuchillo"]).map((item) => (
-                  <li key={item} className="flex items-center">
-                    <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <h3 className={`${H3} mb-4`}>{fi?.whatToBringTitle}</h3>
+              <CheckPanel items={fi?.whatToBringItems ?? []} />
             </div>
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">{fi?.whereBaitTitle ?? "Dónde comprar cebo en Blanes"}</h3>
-              <p className="text-muted-foreground mb-3 leading-relaxed">
-                {fi?.whereBaitDesc ?? "Cerca del Puerto de Blanes hay varias tiendas náuticas donde puedes comprar cebo fresco (gusano americano, gusano coreano, gamba) y material de pesca básico. Recomendamos comprar el cebo el mismo día de la salida para máxima frescura."}
-              </p>
-              <h3 className="font-heading font-semibold text-lg mb-3">{fi?.recommendationsTitle ?? "Recomendaciones"}</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {fi?.recommendationsDesc ?? "Lleva crema solar, agua abundante, gorra y gafas de sol polarizadas (ayudan a ver peces en el agua). Una camiseta de manga larga te protege del sol durante las horas de pesca. No olvides la licencia de pesca impresa o en el móvil."}
-              </p>
+            <div className="space-y-8">
+              <Feature title={fi?.whereBaitTitle ?? ""} text={fi?.whereBaitDesc} />
+              <Feature title={fi?.recommendationsTitle ?? ""} text={fi?.recommendationsDesc} />
             </div>
           </div>
-        </div>
-      </RevealSection>
+        </Rise>
+        <Rise className="mt-16">
+          <LinkList
+            title={fi?.exploreTitle}
+            links={[
+              { href: localizedPath("categoryLicensed"), label: fi?.linkLicensed },
+              { href: localizedPath("navigationLicense"), label: fi?.linkNoLicense },
+              { href: localizedPath("activitySnorkel"), label: fi?.linkSnorkel },
+              { href: localizedPath("pricing"), label: fi?.linkPrices },
+              { href: localizedPath("locationBlanes"), label: fi?.linkBlanes },
+            ]}
+          />
+        </Rise>
+      </Sheet>
 
-      {/* Internal Links */}
-      <div className="py-8">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 className="font-heading font-semibold text-lg mb-4">{fi?.exploreTitle ?? "Explora más actividades y servicios"}</h3>
-          <div className="flex flex-wrap gap-3">
-            <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
-              <ChevronRight className="w-4 h-4" />
-              {fi?.linkLicensed ?? "Barcos con licencia"}
+      <CtaSheet
+        next="page"
+        title={fi?.ctaTitle}
+        text={fi?.ctaDescription}
+        actions={
+          <>
+            <NavyButton onClick={handleBookingWhatsApp}>
+              <SiWhatsapp className="mr-2 h-5 w-5" aria-hidden="true" />
+              {fi?.ctaWhatsApp}
+            </NavyButton>
+            <a href={localizedPath("categoryLicensed")} className={PILL_ON_NAVY}>
+              <Anchor className="h-4 w-4" aria-hidden="true" />
+              {fi?.ctaViewBoats}
             </a>
-            <a href={localizedPath("navigationLicense")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
-              <ChevronRight className="w-4 h-4" />
-              {fi?.linkNoLicense ?? "Excursión privada con patrón"}
-            </a>
-            <a href={localizedPath("activitySnorkel")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
-              <ChevronRight className="w-4 h-4" />
-              {fi?.linkSnorkel ?? "Excursión de snorkel"}
-            </a>
-            <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
-              <ChevronRight className="w-4 h-4" />
-              {fi?.linkPrices ?? "Precios y tarifas"}
-            </a>
-            <a href={localizedPath("locationBlanes")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
-              <ChevronRight className="w-4 h-4" />
-              {fi?.linkBlanes ?? "Puerto de Blanes"}
-            </a>
-          </div>
-        </div>
-      </div>
+          </>
+        }
+      />
 
-      {/* CTA Section */}
-      <div className="py-16 sm:py-20 bg-primary">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-h2 font-heading font-bold mb-4 text-white">{fi?.ctaTitle ?? "Reserva tu barco para pescar en Blanes"}</h2>
-          <p className="text-lg mb-6 text-white/90 leading-relaxed">
-            {fi?.ctaDescription ?? "Trae tu equipo, nosotros ponemos el barco. Lubinas, doradas, serviolas y más te esperan en las aguas de la Costa Brava. Salidas desde el Puerto de Blanes."}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              variant="secondary"
-              onClick={handleBookingWhatsApp}
-            >
-              <SiWhatsapp className="w-5 h-5 mr-2" aria-hidden="true" />
-              {fi?.ctaWhatsApp ?? "Reservar por WhatsApp"}
-            </Button>
-            <a href={localizedPath("categoryLicensed")}>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full">
-                <Anchor className="w-5 h-5 mr-2" />
-                {fi?.ctaViewBoats ?? "Ver barcos con licencia"}
-              </Button>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* FAQ Section */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
-            {fi?.faqTitle ?? "Preguntas frecuentes sobre pesca desde barco"}
-          </h2>
-          <FAQSection items={faqs} />
-        </div>
-      </RevealSection>
+      <FaqSheet
+        idPrefix="fishing-faq"
+        title={fi?.faqTitle}
+        items={faqs.map(x => ({ q: x.question, a: x.answer }))}
+        next="muted"
+      />
 
       <RelatedContent currentPage="activityFishing" />
       <BookingStickyBar />

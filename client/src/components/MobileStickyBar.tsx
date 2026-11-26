@@ -12,7 +12,7 @@ interface MobileStickyBarProps {
 /**
  * Fixed bottom CTA bar for phones/tablets (hidden from lg). Renders its own
  * spacer so the bar never covers the end of the page. `data-sticky-cta` lets
- * WhatsAppFloatingButton and ScrollToTop lift themselves above it.
+ * WhatsAppFloatingButton lift itself above it.
  */
 export function MobileStickyBar({ children, className = "" }: MobileStickyBarProps) {
   return (

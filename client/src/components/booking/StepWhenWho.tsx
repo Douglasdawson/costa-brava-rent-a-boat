@@ -230,7 +230,7 @@ export default function StepWhenWho({
           {peopleField}
         </div>
       ) : (
-        <div className="grid items-start gap-6 md:grid-cols-[auto_1fr]">
+        <div className="grid items-center gap-6 md:grid-cols-[auto_1fr]">
           <div id="field-date" className="w-fit rounded-3xl border border-border bg-card">
             {renderCalendar(false)}
           </div>

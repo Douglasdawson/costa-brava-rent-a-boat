@@ -1,7 +1,9 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { ArrowRight, Check, User, X } from "lucide-react";
+import { useRef, useState } from "react";
+import { ArrowRight, Check, ChevronLeft, ChevronRight, User, X } from "lucide-react";
 import { boatIncludesFuel } from "@shared/boatData";
+import { getBoatGalleryPaths } from "@shared/boatImages";
 import { useTranslations } from "@/lib/translations";
 
 export interface BoatQuickViewProps {
@@ -61,6 +63,15 @@ export default function BoatQuickView({
   const showFuel = boatIncludesFuel(id, requiresLicense);
   const shownFeatures = features.slice(0, MAX_FEATURES);
   const fade = { duration: reduced ? 0 : 0.25 };
+  // Cover first (it carries the card's srcSet), then the rest of the boat's photos.
+  const extra = getBoatGalleryPaths(id).filter(src => src !== image);
+  const slides = [image, ...extra];
+  const track = useRef<HTMLDivElement>(null);
+  const [slide, setSlide] = useState(0);
+  const go = (dir: -1 | 1) => {
+    const el = track.current;
+    if (el) el.scrollBy({ left: dir * el.clientWidth, behavior: reduced ? "auto" : "smooth" });
+  };
 
   const handleBooking = () => {
     onOpenChange(false);
@@ -113,23 +124,69 @@ export default function BoatQuickView({
                 transition={fade}
               >
                 <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-muted md:aspect-[4/5] md:w-1/2">
-                  <img
-                    src={image}
-                    alt=""
-                    aria-hidden="true"
-                    className="absolute inset-0 h-full w-full scale-125 object-cover opacity-70 blur-2xl"
-                  />
-                  <div className="absolute inset-0 flex items-center">
-                    <img
-                      src={image}
-                      srcSet={imageSrcSet || undefined}
-                      sizes="(min-width: 768px) 448px, 100vw"
-                      alt={imageAlt}
-                      width={800}
-                      height={600}
-                      className="h-auto w-full md:[mask-image:linear-gradient(to_bottom,transparent,black_14%,black_86%,transparent)]"
-                    />
+                  <div
+                    ref={track}
+                    onScroll={e =>
+                      setSlide(Math.round(e.currentTarget.scrollLeft / e.currentTarget.clientWidth))
+                    }
+                    className="scrollbar-hide absolute inset-0 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain"
+                  >
+                    {slides.map((src, i) => (
+                      <div key={src} className="relative h-full w-full shrink-0 snap-center">
+                        <img
+                          src={src}
+                          alt=""
+                          aria-hidden="true"
+                          className="absolute inset-0 h-full w-full scale-125 object-cover opacity-70 blur-2xl"
+                        />
+                        <div className="absolute inset-0 flex items-center">
+                          <img
+                            src={src}
+                            srcSet={i === 0 ? imageSrcSet || undefined : undefined}
+                            sizes="(min-width: 768px) 448px, 100vw"
+                            alt={i === 0 ? imageAlt : `${name} (${i + 1}/${slides.length})`}
+                            width={800}
+                            height={600}
+                            loading={i === 0 ? undefined : "lazy"}
+                            className="h-auto w-full md:[mask-image:linear-gradient(to_bottom,transparent,black_14%,black_86%,transparent)]"
+                          />
+                        </div>
+                      </div>
+                    ))}
                   </div>
+                  {slides.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => go(-1)}
+                        disabled={slide === 0}
+                        aria-label={t.photoLightbox.previous}
+                        className="absolute left-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background/90 text-foreground transition-opacity hover:bg-background disabled:pointer-events-none disabled:opacity-0"
+                      >
+                        <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => go(1)}
+                        disabled={slide === slides.length - 1}
+                        aria-label={t.photoLightbox.next}
+                        className="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background/90 text-foreground transition-opacity hover:bg-background disabled:pointer-events-none disabled:opacity-0"
+                      >
+                        <ChevronRight className="h-5 w-5" aria-hidden="true" />
+                      </button>
+                      <div
+                        className="pointer-events-none absolute inset-x-0 bottom-3 flex justify-center gap-1.5"
+                        aria-hidden="true"
+                      >
+                        {slides.map((src, i) => (
+                          <span
+                            key={src}
+                            className={`h-1.5 rounded-full bg-white shadow-sm transition-all ${i === slide ? "w-5" : "w-1.5 opacity-60"}`}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 {/* flex-auto, not flex-1: iOS Safari resolves flex-1's 0% basis against this h-fit box and collapses the panel to 0px */}

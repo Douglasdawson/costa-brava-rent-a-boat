@@ -2,27 +2,12 @@ import { useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  MapPin,
-  Clock,
-  Anchor,
-  Users,
-  Car,
-  Train,
-  Bus,
-  Waves,
-  ArrowRight,
-  ChevronRight,
-} from "lucide-react";
+import { Car, Train, Bus } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
-import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import {
@@ -33,20 +18,26 @@ import {
 } from "@/utils/seo-config";
 import { trackLocationPageView } from "@/utils/analytics";
 import PopularBoatsSection from "@/components/PopularBoatsSection";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import {
+  FactPanel,
+  LocationCta,
+  LocationFaq,
+  LocationHero,
+  Photo,
+  Rise,
+  SectionTitle,
+  Sheet,
+  SheetWrap,
+  TONE_BG,
+} from "@/components/location/LocationKit";
 import { BookingStickyBar } from "@/components/MobileStickyBar";
-
-function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <div ref={ref} className={`transition-[opacity,transform,filter] duration-700 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"} ${className}`}>
-      {children}
-    </div>
-  );
-}
 
 export default function LocationBarcelonaPage() {
   const { language, localizedPath } = useLanguage();
-  useEffect(() => { trackLocationPageView("barcelona"); }, []);
+  useEffect(() => {
+    trackLocationPageView("barcelona");
+  }, []);
 
   const t = useTranslations();
   const { data: boatsData } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
@@ -66,11 +57,12 @@ export default function LocationBarcelonaPage() {
   const faqItems = useMemo(() => lb.faqItems ?? [], [lb.faqItems]);
 
   const processedFaqItems = useMemo(
-    () => faqItems.map((item) => ({
-      question: substituteFaqVars(item.question, faqVars),
-      answer: substituteFaqVars(item.answer, faqVars),
-    })),
-    [faqItems, faqVars],
+    () =>
+      faqItems.map(item => ({
+        question: substituteFaqVars(item.question, faqVars),
+        answer: substituteFaqVars(item.answer, faqVars),
+      })),
+    [faqItems, faqVars]
   );
 
   const faqSchema = {
@@ -133,232 +125,161 @@ export default function LocationBarcelonaPage() {
       <Navigation />
       <ReadingProgressBar />
 
-      {/* Hero */}
-      <div className="bg-card border-b border-border pt-24 pb-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-h1 font-heading font-bold text-foreground mb-6">
-            {lb.hero.title}
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-4xl mx-auto mb-6">
-            {sub(lb.hero.description)}
-          </p>
-          <div className="flex flex-wrap gap-3 justify-center">
-            <Badge variant="outline" className="text-primary border-primary">
-              <Car className="w-4 h-4 mr-2" />
-              {lb.hero.badgeDistance}
-            </Badge>
-            <Badge variant="outline" className="text-primary border-primary">
-              <Anchor className="w-4 h-4 mr-2" />
-              {sub(lb.hero.badgeLicense)}
-            </Badge>
-            <Badge variant="outline" className="text-primary border-primary">
-              <Waves className="w-4 h-4 mr-2" />
-              {lb.hero.badgeWaters}
-            </Badge>
-          </div>
-        </div>
-      </div>
-
-      {/* Why Blanes instead of Barcelona — text + image */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-10 items-center">
-            <div className="lg:col-span-3">
-              <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
-                <Waves className="w-6 h-6 text-primary" />
-                {lb.whyBlanes.title}
-              </h2>
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-3">{lb.whyBlanes.betterPricesTitle}</h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">{sub(lb.whyBlanes.betterPricesBody)}</p>
-                  <h3 className="font-heading font-semibold text-lg mb-3">{lb.whyBlanes.crystalWatersTitle}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{lb.whyBlanes.crystalWatersBody}</p>
-                </div>
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-3">{lb.whyBlanes.lessTrafficTitle}</h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">{lb.whyBlanes.lessTrafficBody}</p>
-                  <h3 className="font-heading font-semibold text-lg mb-3">{lb.whyBlanes.realCostaBravaTitle}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{lb.whyBlanes.realCostaBravaBody}</p>
-                </div>
-              </div>
-            </div>
-            <div className="lg:col-span-2">
-              <img
-                src="/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-pareja-navegando.webp"
-                alt="Pareja navegando en Trimarchi 57S por la Costa Brava"
-                className="rounded-2xl w-full h-auto object-cover shadow-lg"
-                loading="lazy"
-                width={800}
-                height={600}
-              />
-            </div>
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* Photo break */}
-      <div className="relative w-full h-64 sm:h-80 overflow-hidden">
-        <img
-          src="/images/mejores-calas-costa-brava-mingolla-brava-rent-a-boat.webp"
-          alt="Mejores calas de la Costa Brava"
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="lazy"
-          width={1920}
-          height={600}
-        />
-      </div>
-
-      {/* How to get from Barcelona */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
-            <MapPin className="w-6 h-6 text-primary" />
-            {lb.howToGet.title}
-          </h2>
-          <div className="space-y-6">
-            <div className="flex gap-4 items-start">
-              <Car className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-              <div>
-                <h3 className="font-heading font-semibold text-lg mb-1">{lb.howToGet.carTitle}</h3>
-                <p className="text-muted-foreground leading-relaxed text-sm mb-1" dangerouslySetInnerHTML={{ __html: lb.howToGet.carDuration }} />
-                <p className="text-muted-foreground leading-relaxed text-sm">{lb.howToGet.carBody}</p>
-              </div>
-            </div>
-
-            <div className="flex gap-4 items-start">
-              <Train className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-              <div>
-                <h3 className="font-heading font-semibold text-lg mb-1">{lb.howToGet.trainTitle}</h3>
-                <p className="text-muted-foreground leading-relaxed text-sm mb-1" dangerouslySetInnerHTML={{ __html: lb.howToGet.trainDuration }} />
-                <p className="text-muted-foreground leading-relaxed text-sm">{lb.howToGet.trainBody}</p>
-              </div>
-            </div>
-
-            <div className="flex gap-4 items-start">
-              <Bus className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-              <div>
-                <h3 className="font-heading font-semibold text-lg mb-1">{lb.howToGet.busTitle}</h3>
-                <p className="text-muted-foreground leading-relaxed text-sm mb-1" dangerouslySetInnerHTML={{ __html: lb.howToGet.busDuration }} />
-                <p className="text-muted-foreground leading-relaxed text-sm">{lb.howToGet.busBody}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* Our boats */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
-            <Anchor className="w-6 h-6 text-primary" />
-            {lb.boats.title}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">{lb.boats.noLicenseTitle}</h3>
-              <p className="text-muted-foreground leading-relaxed mb-3">{lb.boats.noLicenseBody}</p>
-              <ul className="space-y-1 text-muted-foreground text-sm">
-                <li className="flex items-center gap-2">
-                  <Users className="w-4 h-4 text-primary" />
-                  {lb.boats.noLicenseBullet1}
-                </li>
-                <li className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-primary" />
-                  {lb.boats.noLicenseBullet2}
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">{lb.boats.licensedTitle}</h3>
-              <p className="text-muted-foreground leading-relaxed mb-3">{lb.boats.licensedBody}</p>
-              <ul className="space-y-1 text-muted-foreground text-sm">
-                <li className="flex items-center gap-2">
-                  <Users className="w-4 h-4 text-primary" />
-                  {lb.boats.licensedBullet1}
-                </li>
-                <li className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-primary" />
-                  {lb.boats.licensedBullet2}
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-6 text-center">
-            <Button variant="outline" asChild>
-              <a href={localizedPath("home") + "#fleet"}>
-                {lb.boats.viewAllCta}
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </a>
-            </Button>
-          </div>
-        </div>
-      </RevealSection>
-
-      <PopularBoatsSection
-        title={t.popularBoatsSection?.pages?.barcelona?.title ?? "Barcos para tu escapada desde Barcelona"}
-        description={t.popularBoatsSection?.pages?.barcelona?.description}
-        boatIds={["mingolla-brava-19", "trimarchi-57s", "pacific-craft-625", "excursion-privada"]}
-        badgeLabel={(id) => (id === "excursion-privada" ? (t.popularBoatsSection?.badges?.captain ?? "Con capitán") : (t.popularBoatsSection?.badges?.licensed ?? "Con licencia"))}
-        badgeVariant={(id) => (id === "excursion-privada" || id === "pacific-craft-625" ? "outline" : "secondary")}
+      <LocationHero
+        title={lb.hero.title}
+        subtitle={sub(lb.hero.description)}
+        facts={[lb.hero.badgeDistance, sub(lb.hero.badgeLicense), lb.hero.badgeWaters]}
+        bookLabel={t.nav.bookNow}
+        onBook={() => openBookingModal()}
       />
 
-      {/* FAQ section */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground text-center mb-8">
-            {lb.faqTitle}
-          </h2>
-          <FAQSection items={processedFaqItems} />
+      {/* Why Blanes instead of Barcelona */}
+      <Sheet tone="page" next="muted" labelledBy="bcn-why-title">
+        <div className="grid gap-10 lg:grid-cols-[7fr_5fr] lg:items-center lg:gap-16">
+          <Rise>
+            <SectionTitle id="bcn-why-title">{lb.whyBlanes.title}</SectionTitle>
+            <FactPanel
+              className="mt-8"
+              items={[
+                { title: lb.whyBlanes.betterPricesTitle, desc: sub(lb.whyBlanes.betterPricesBody) },
+                { title: lb.whyBlanes.crystalWatersTitle, desc: lb.whyBlanes.crystalWatersBody },
+                { title: lb.whyBlanes.lessTrafficTitle, desc: lb.whyBlanes.lessTrafficBody },
+                { title: lb.whyBlanes.realCostaBravaTitle, desc: lb.whyBlanes.realCostaBravaBody },
+              ]}
+            />
+          </Rise>
+          <Rise delay={0.1}>
+            <Photo
+              src="/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-pareja-navegando.webp"
+              alt="Pareja navegando en Trimarchi 57S por la Costa Brava"
+            />
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* CTA */}
-      <div className="py-16 sm:py-20 bg-primary">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-h2 font-heading font-bold text-white mb-4">{lb.cta.title}</h2>
-          <p className="text-lg text-white/85 mb-6 max-w-2xl mx-auto">{sub(lb.cta.subtitle)}</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              variant="secondary"
-              onClick={() => openBookingModal()}
-              className="rounded-full"
-            >
-              <Anchor className="w-5 h-5 mr-2" />
-              {lb.cta.reserveButton}
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white/30 text-white hover:bg-white/10 rounded-full"
-              asChild
-            >
-              <a href={localizedPath("pricing")}>
-                {lb.cta.viewPricesButton}
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </a>
-            </Button>
-          </div>
+      {/* How to get from Barcelona */}
+      <Sheet tone="muted" next="page" labelledBy="bcn-how-title">
+        <div className="grid gap-10 lg:grid-cols-[5fr_7fr] lg:items-center lg:gap-16">
+          <Rise>
+            <Photo
+              src="/images/mejores-calas-costa-brava-mingolla-brava-rent-a-boat.webp"
+              alt="Mejores calas de la Costa Brava"
+            />
+          </Rise>
+          <Rise delay={0.1}>
+            <SectionTitle id="bcn-how-title">{lb.howToGet.title}</SectionTitle>
+            <FactPanel
+              className="mt-8"
+              items={[
+                {
+                  title: lb.howToGet.carTitle,
+                  metaHtml: lb.howToGet.carDuration,
+                  desc: lb.howToGet.carBody,
+                  icon: Car,
+                },
+                {
+                  title: lb.howToGet.trainTitle,
+                  metaHtml: lb.howToGet.trainDuration,
+                  desc: lb.howToGet.trainBody,
+                  icon: Train,
+                },
+                {
+                  title: lb.howToGet.busTitle,
+                  metaHtml: lb.howToGet.busDuration,
+                  desc: lb.howToGet.busBody,
+                  icon: Bus,
+                },
+              ]}
+            />
+          </Rise>
         </div>
+      </Sheet>
+
+      {/* Our boats */}
+      <Sheet tone="page" next="muted" labelledBy="bcn-boats-title">
+        <div className="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
+          <Rise>
+            <SectionTitle id="bcn-boats-title">{lb.boats.title}</SectionTitle>
+            <InteractiveHoverButton
+              tone="dark"
+              as="a"
+              href={localizedPath("home") + "#fleet"}
+              className="mt-8 min-h-12 px-7 text-base"
+            >
+              {lb.boats.viewAllCta}
+            </InteractiveHoverButton>
+          </Rise>
+          <Rise delay={0.1}>
+            <FactPanel
+              items={[
+                {
+                  title: lb.boats.noLicenseTitle,
+                  lines: [
+                    lb.boats.noLicenseBody,
+                    lb.boats.noLicenseBullet1,
+                    lb.boats.noLicenseBullet2,
+                  ],
+                },
+                {
+                  title: lb.boats.licensedTitle,
+                  lines: [
+                    lb.boats.licensedBody,
+                    lb.boats.licensedBullet1,
+                    lb.boats.licensedBullet2,
+                  ],
+                },
+              ]}
+            />
+          </Rise>
+        </div>
+      </Sheet>
+
+      <SheetWrap next="page">
+        <PopularBoatsSection
+          bgClass={TONE_BG.muted}
+          title={
+            t.popularBoatsSection?.pages?.barcelona?.title ??
+            "Barcos para tu escapada desde Barcelona"
+          }
+          description={t.popularBoatsSection?.pages?.barcelona?.description}
+          boatIds={["mingolla-brava-19", "trimarchi-57s", "pacific-craft-625", "excursion-privada"]}
+          badgeLabel={id =>
+            id === "excursion-privada"
+              ? (t.popularBoatsSection?.badges?.captain ?? "Con capitán")
+              : (t.popularBoatsSection?.badges?.licensed ?? "Con licencia")
+          }
+          badgeVariant={id =>
+            id === "excursion-privada" || id === "pacific-craft-625" ? "outline" : "secondary"
+          }
+        />
+      </SheetWrap>
+
+      <LocationFaq id="bcn-faq" title={lb.faqTitle} items={processedFaqItems} next="navy" />
+
+      <LocationCta
+        title={lb.cta.title}
+        desc={sub(lb.cta.subtitle)}
+        buttonLabel={lb.cta.reserveButton}
+        onClick={() => openBookingModal()}
+        secondary={{ label: lb.cta.viewPricesButton, href: localizedPath("pricing") }}
+        next="muted"
+      />
+
+      {/* Blog section: closes over the footer colour */}
+      <div className="bg-foreground">
+        <Sheet tone="muted" next="ink" labelledBy="bcn-blog-title">
+          <Rise className="max-w-2xl">
+            <SectionTitle id="bcn-blog-title">{lb.blog.title}</SectionTitle>
+            <p
+              className="mt-5 text-base leading-relaxed text-muted-foreground text-pretty sm:text-lg [&_a]:font-medium [&_a]:text-foreground [&_a]:underline [&_a]:underline-offset-4"
+              dangerouslySetInnerHTML={{
+                __html: lb.blog.description.replace("{blogPath}", localizedPath("blog")),
+              }}
+            />
+          </Rise>
+        </Sheet>
+        <BookingStickyBar />
       </div>
-
-      {/* Blog section */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground mb-4">
-            {lb.blog.title}
-          </h2>
-          <p
-            className="text-muted-foreground leading-relaxed mb-4"
-            dangerouslySetInnerHTML={{
-              __html: lb.blog.description.replace("{blogPath}", localizedPath("blog")),
-            }}
-          />
-        </div>
-      </RevealSection>
-
-      <BookingStickyBar />
       <Footer />
     </div>
   );

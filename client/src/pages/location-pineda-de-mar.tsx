@@ -3,55 +3,28 @@ import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import { postEraMeta } from "@shared/postEraMeta";
 import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  MapPin,
-  Clock,
-  Anchor,
-  Users,
-  Star,
-  Car,
-  Train,
-  ParkingCircle,
-  Waves,
-  Hotel,
-  Sun,
-} from "lucide-react";
-import { Link } from "wouter";
+import { Hotel, Sun, Train, Users } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
-import { FAQSection } from "@/components/FAQSection";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Footer from "@/components/Footer";
-import RelatedLocationsSection from "@/components/RelatedLocationsSection";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { generateBreadcrumbSchema } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
-import { HeroImage } from "./LocationTemplate";
-import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, GBP_PROFILE_URL } from "@shared/businessProfile";
 import { getCanonicalUrl } from "@/lib/domain";
 import { trackLocationPageView } from "@/utils/analytics";
-import PopularBoatsSection from "@/components/PopularBoatsSection";
 import { BookingStickyBar } from "@/components/MobileStickyBar";
-
-function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <div ref={ref} className={`transition-[opacity,transform,filter] duration-700 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"} ${className}`}>
-      {children}
-    </div>
-  );
-}
+import TownLanding from "@/components/location/TownLanding";
 
 export default function LocationPinedaDeMarPage() {
   const { data: boatsData } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
   const faqVars = useMemo(() => computeFaqVars(boatsData), [boatsData]);
   const t = useTranslations();
-  const { language, localizedPath } = useLanguage();
-  useEffect(() => { trackLocationPageView("pineda"); }, []);
+  const { language } = useLanguage();
+  useEffect(() => {
+    trackLocationPageView("pineda");
+  }, []);
 
   const page = t.locationPages.pineda;
   const s = page?.sections;
@@ -66,343 +39,106 @@ export default function LocationPinedaDeMarPage() {
 
   const locationSchema = {
     "@type": "TouristDestination",
-    "name": page?.schema?.name ?? "Alquiler de Barcos cerca de Pineda de Mar",
-    "description": page?.schema?.description ?? "Alquila barcos desde el Puerto de Blanes, a solo 18 minutos en coche de Pineda de Mar. Con la Licencia de Navegación o con patrón.",
-    "geo": {
+    name: page?.schema?.name ?? "Alquiler de Barcos cerca de Pineda de Mar",
+    description:
+      page?.schema?.description ??
+      "Alquila barcos desde el Puerto de Blanes, a solo 18 minutos en coche de Pineda de Mar. Con la Licencia de Navegación o con patrón.",
+    geo: {
       "@type": "GeoCoordinates",
-      "latitude": 41.6281,
-      "longitude": 2.6914
+      latitude: 41.6281,
+      longitude: 2.6914,
     },
-    "address": {
+    address: {
       "@type": "PostalAddress",
-      "addressLocality": "Pineda de Mar",
-      "addressRegion": "Barcelona",
-      "postalCode": "08397",
-      "addressCountry": "ES"
+      addressLocality: "Pineda de Mar",
+      addressRegion: "Barcelona",
+      postalCode: "08397",
+      addressCountry: "ES",
     },
-    "touristType": ["Family", "Hotels", "Beach"],
-    "availableLanguage": ["Spanish", "Catalan", "English", "French"],
-    "provider": {
+    touristType: ["Family", "Hotels", "Beach"],
+    availableLanguage: ["Spanish", "Catalan", "English", "French"],
+    provider: {
       "@type": "LocalBusiness",
-      "name": "Costa Brava Rent a Boat Blanes",
-      "telephone": "+34611500372",
-      "url": "https://www.costabravarentaboat.com/"
-    }
+      name: "Costa Brava Rent a Boat Blanes",
+      telephone: "+34611500372",
+      url: "https://www.costabravarentaboat.com/",
+    },
   };
 
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: t.breadcrumbs.home, url: "/" },
-    { name: page?.breadcrumbName ?? "Alquiler Barcos Pineda de Mar", url: "/alquiler-barcos-pineda-de-mar" }
+    {
+      name: page?.breadcrumbName ?? "Alquiler Barcos Pineda de Mar",
+      url: "/alquiler-barcos-pineda-de-mar",
+    },
   ]);
 
   const faqItems = page?.faqItems ?? [];
 
   const processedFaqItems = useMemo(
-    () => faqItems.map((item) => ({
-      question: substituteFaqVars(item.question, faqVars),
-      answer: substituteFaqVars(item.answer, faqVars),
-    })),
-    [faqItems, faqVars],
+    () =>
+      faqItems.map(item => ({
+        question: substituteFaqVars(item.question, faqVars),
+        answer: substituteFaqVars(item.answer, faqVars),
+      })),
+    [faqItems, faqVars]
   );
 
   const faqSchema = {
     "@type": "FAQPage",
-    "mainEntity": processedFaqItems.map(item => ({
+    mainEntity: processedFaqItems.map(item => ({
       "@type": "Question",
-      "name": item.question,
-      "acceptedAnswer": {
+      name: item.question,
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": item.answer
-      }
-    }))
+        text: item.answer,
+      },
+    })),
   };
 
   const combinedJsonLd = {
     "@context": "https://schema.org",
-    "@graph": [
-      locationSchema,
-      breadcrumbSchema,
-      faqSchema
-    ]
+    "@graph": [locationSchema, breadcrumbSchema, faqSchema],
   };
 
   return (
     <div className="min-h-screen">
       <SEO
         {...postEraMeta("/alquiler-barcos-pineda-de-mar", language, {
-          title: page?.seo?.title ?? "Alquiler Barco Pineda de Mar | Puerto Blanes a 18 min | Titulín o Patrón",
-          description: page?.seo?.description ?? "¿Alojado en Pineda de Mar? El Puerto de Blanes está a 18 min. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón.",
+          title:
+            page?.seo?.title ??
+            "Alquiler Barco Pineda de Mar | Puerto Blanes a 18 min | Titulín o Patrón",
+          description:
+            page?.seo?.description ??
+            "¿Alojado en Pineda de Mar? El Puerto de Blanes está a 18 min. Desde el 1 de octubre de 2026 alquilas con la Licencia de Navegación (curso de 1 día, sin examen) o sales con patrón.",
         })}
         ogTitle={page?.seo?.ogTitle ?? "Alquiler Barco Pineda de Mar | 18 min al Puerto Blanes"}
-        ogDescription={page?.seo?.ogDescription ?? "Desde Pineda de Mar al Puerto Blanes en 18 min. Con titulín o con patrón."}
+        ogDescription={
+          page?.seo?.ogDescription ??
+          "Desde Pineda de Mar al Puerto Blanes en 18 min. Con titulín o con patrón."
+        }
         canonical={getCanonicalUrl("/alquiler-barcos-pineda-de-mar")}
         jsonLd={combinedJsonLd}
       />
       <Navigation />
       <ReadingProgressBar />
 
-      {/* Hero Section — photo-led with CTA + social proof (was a gradient hero
-          with no CTA at all; critique 2026-07) */}
-      <div className="relative pt-20 sm:pt-24">
-        <div className="relative w-full min-h-[max(55vh,420px)] sm:min-h-[max(55vh,520px)] flex flex-col overflow-hidden">
-          <HeroImage
-            basePath="/images/locations/hero-pineda-de-mar"
-            alt={s?.heroImageAlt ?? s?.heroTitle ?? "Costa Brava"}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/55" />
-          <div className="relative z-10 flex-1 flex items-end pt-8 pb-12 sm:pb-16">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-              <h1 className="text-h1 font-heading font-bold text-white drop-shadow-lg mb-3">
-                {s?.heroTitle ?? "Alquiler de Barcos cerca de Pineda de Mar"}
-              </h1>
-              <p className="text-lg text-white/90 mb-6 max-w-2xl drop-shadow">
-                {s?.heroSubtitle}
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <Badge variant="outline" className="bg-white/15 text-white border-white/30 backdrop-blur-sm">
-                  <Car className="w-4 h-4 mr-2" />
-                  {s?.heroBadgeCar}
-                </Badge>
-                <Badge variant="outline" className="bg-white/15 text-white border-white/30 backdrop-blur-sm">
-                  <Train className="w-4 h-4 mr-2" />
-                  {s?.heroBadgeTransport}
-                </Badge>
-                <Badge variant="outline" className="bg-white/15 text-white border-white/30 backdrop-blur-sm">
-                  <Waves className="w-4 h-4 mr-2" />
-                  {s?.heroBadgeExtra}
-                </Badge>
-              </div>
-              <div className="mt-6 flex flex-wrap items-center gap-4">
-                <Button
-                  onClick={handleBookingWhatsApp}
-                  className="bg-cta hover:bg-cta/90 text-cta-foreground rounded-full min-h-11 px-7 btn-elevated"
-                  data-testid="button-location-hero-book"
-                >
-                  {t.nav.bookNow}
-                </Button>
-                <a
-                  href={GBP_PROFILE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 min-h-11 text-sm font-medium text-white drop-shadow hover:underline underline-offset-2"
-                  data-testid="link-location-hero-rating"
-                >
-                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" aria-hidden="true" />
-                  {BUSINESS_RATING_STR}/5 · {BUSINESS_REVIEW_COUNT_STR}+ · Google
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Why Rent from Blanes */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-            <div className="lg:col-span-3">
-              <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-8">
-                <Anchor className="w-6 h-6 text-primary" />
-                {s?.whyTitle}
-              </h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-3">{s?.whyCard1Title}</h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">{s?.whyCard1Desc}</p>
-                  <h3 className="font-heading font-semibold text-lg mb-3">{render(s?.whyCard2Title, '')}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{render(s?.whyCard2Desc, '')}</p>
-                </div>
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-3">{s?.whyCard3Title}</h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">{s?.whyCard3Desc}</p>
-                  <h3 className="font-heading font-semibold text-lg mb-3">{s?.whyCard4Title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{s?.whyCard4Desc}</p>
-                </div>
-              </div>
-            </div>
-            <div className="lg:col-span-2">
-              <img
-                src="/images/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-amigos-snorkel.webp"
-                alt="Friends enjoying a boat day on the Costa Brava"
-                className="w-full rounded-2xl object-cover aspect-[4/5]"
-                loading="lazy"
-                width={640}
-                height={800}
-              />
-            </div>
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* Photo break */}
-      <div className="w-full overflow-hidden">
-        <img
-          src="/images/mejores-calas-costa-brava-mingolla-brava-rent-a-boat.webp"
-          alt="Boat anchored in a crystal-clear cove along the Costa Brava coast"
-          className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
-          loading="lazy"
-          width={1920}
-          height={600}
-        />
-      </div>
-
-      {/* Town Attractions */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-4">
-            <Star className="w-6 h-6 text-primary" />
-            {s?.townTitle}
-          </h2>
-          <p className="text-muted-foreground leading-relaxed mb-10">{s?.townIntro}</p>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="border-t border-border pt-5">
-              <h3 className="font-heading font-semibold text-lg mb-2 flex items-center gap-2.5">
-                <Hotel className="w-5 h-5 shrink-0 text-primary" aria-hidden="true" />
-                {s?.townCard1Title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">{s?.townCard1Desc}</p>
-            </div>
-            <div className="border-t border-border pt-5">
-              <h3 className="font-heading font-semibold text-lg mb-2 flex items-center gap-2.5">
-                <Sun className="w-5 h-5 shrink-0 text-primary" aria-hidden="true" />
-                {s?.townCard2Title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">{s?.townCard2Desc}</p>
-            </div>
-            <div className="border-t border-border pt-5">
-              <h3 className="font-heading font-semibold text-lg mb-2 flex items-center gap-2.5">
-                <Users className="w-5 h-5 shrink-0 text-primary" aria-hidden="true" />
-                {s?.townCard3Title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">{s?.townCard3Desc}</p>
-            </div>
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* How to Get to Blanes */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-8">
-            <Car className="w-6 h-6 text-primary" />
-            {s?.howTitle}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-3 flex items-center gap-2">
-                <Car className="w-5 h-5 shrink-0 text-primary" aria-hidden="true" />
-                {s?.howCarTitle}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed mb-4">{s?.howCarDesc}</p>
-              <h3 className="font-heading font-semibold text-lg mb-3 flex items-center gap-2">
-                <Users className="w-5 h-5 shrink-0 text-primary" aria-hidden="true" />
-                {s?.howTaxiTitle}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">{s?.howTaxiDesc}</p>
-            </div>
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-3 flex items-center gap-2">
-                <Train className="w-5 h-5 shrink-0 text-primary" aria-hidden="true" />
-                {s?.howTransportTitle}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed mb-4">{s?.howTransportDesc}</p>
-              <h3 className="font-heading font-semibold text-lg mb-3 flex items-center gap-2">
-                <ParkingCircle className="w-5 h-5 shrink-0 text-primary" aria-hidden="true" />
-                {s?.howParkingTitle}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">{s?.howParkingDesc}</p>
-            </div>
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* Boat Destinations from Blanes */}
-      <div className="py-8 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-4">
-            <Anchor className="w-6 h-6 text-primary" />
-            {s?.destsTitle}
-          </h2>
-          <p className="text-muted-foreground leading-relaxed mb-4">{s?.destsIntro}</p>
-          <div className="flex flex-wrap gap-3">
-            <Link href={localizedPath("locationLloret")}>
-              <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">{s?.destLloret}</Badge>
-            </Link>
-            <Link href={localizedPath("locationTossa")}>
-              <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">{s?.destTossa}</Badge>
-            </Link>
-            <Link href={localizedPath("locationBlanes")}>
-              <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">{s?.destBlanes}</Badge>
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* Pricing Overview */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-4">
-            <Clock className="w-6 h-6 text-primary" />
-            {s?.pricingTitle}
-          </h2>
-          <p className="text-muted-foreground leading-relaxed mb-6">{s?.pricingIntro}</p>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">{s?.pricingNoLicTitle}</h3>
-              <p className="text-muted-foreground leading-relaxed mb-2">{render(s?.pricingNoLicFrom, '')}</p>
-              <p className="text-muted-foreground leading-relaxed">{s?.pricingNoLicCapacity}</p>
-            </div>
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">{s?.pricingLicTitle}</h3>
-              <p className="text-muted-foreground leading-relaxed mb-2">{render(s?.pricingLicFrom, '')}</p>
-              <p className="text-muted-foreground leading-relaxed mb-2">{s?.pricingLicEngines}</p>
-              <p className="text-muted-foreground leading-relaxed">{s?.pricingLicCapacity}</p>
-            </div>
-          </div>
-          <div className="mt-4">
-            <Link href={localizedPath("pricing")}>
-              <Button variant="outline" size="sm">
-                {s?.pricingButton}
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* CTA Section */}
-      <div className="py-16 sm:py-20 bg-primary">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-h2 font-heading font-bold text-white mb-4">{s?.ctaTitle}</h2>
-          <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">{s?.ctaDesc}</p>
-          <Button
-            onClick={handleBookingWhatsApp}
-            size="lg"
-            variant="secondary"
-            className="text-primary hover:text-primary"
-            data-testid="button-whatsapp-pineda"
-          >
-            {s?.ctaButton}
-          </Button>
-        </div>
-      </div>
-
-      <PopularBoatsSection
-        title={t.popularBoatsSection?.pages?.pineda?.title ?? "Barcos populares para alquilar desde el Puerto de Blanes"}
-        description={t.popularBoatsSection?.pages?.pineda?.description}
-        boatIds={["mingolla-brava-19", "trimarchi-57s", "pacific-craft-625", "excursion-privada"]}
+      <TownLanding
+        slug="pineda"
+        s={s}
+        render={render}
+        heroTitle={s?.heroTitle ?? "Alquiler de Barcos cerca de Pineda de Mar"}
+        heroImage={{
+          basePath: "/images/locations/hero-pineda-de-mar",
+          alt: s?.heroImageAlt ?? s?.heroTitle ?? "Costa Brava",
+        }}
+        onBook={handleBookingWhatsApp}
+        bookLabel={t.nav.bookNow}
+        attractionIcons={[Hotel, Sun, Users]}
+        transportIcon={Train}
+        faqItems={processedFaqItems}
+        ctaTestId="button-whatsapp-pineda"
       />
-
-      {/* FAQ Section */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground text-center mb-8">
-            {s?.faqTitle}
-          </h2>
-          <FAQSection items={processedFaqItems} />
-        </div>
-      </RevealSection>
-
-      <RelatedLocationsSection currentLocation="pineda" />
 
       <BookingStickyBar />
       <Footer />

@@ -1,16 +1,21 @@
-import { useState, useEffect } from "react";
-import { CheckCircle2, ArrowRight, Clock, Users, Anchor } from "lucide-react";
+import { useState } from "react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import {
+  H2,
+  Sheet,
+  Rise,
+  LeadText,
+  CheckPanel,
+  PhotoHero,
+  FaqSheet,
+} from "@/components/activity-kit";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import JetSkiRequestModal from "@/components/JetSkiRequestModal";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
-import {
-  generateHreflangLinks,
-  generateCanonicalUrl,
-  BASE_DOMAIN,
-} from "@/utils/seo-config";
+import { generateHreflangLinks, generateCanonicalUrl, BASE_DOMAIN } from "@/utils/seo-config";
 import {
   generateBreadcrumbSchema,
   generateFAQSchema,
@@ -43,13 +48,11 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
   const hreflangLinks = generateHreflangLinks(pageKey);
   const canonical = generateCanonicalUrl(pageKey, language);
 
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
   const [open, setOpen] = useState(false);
 
-  const minPrice = Math.min(...product.slots.map((s) => s.price));
+  const minPrice = Math.min(...product.slots.map(s => s.price));
   // Translated list when the locale has it; the catalogue list is Spanish-only.
-  const included = c?.included?.length ? c.included : product.included ?? [];
+  const included = c?.included?.length ? c.included : (product.included ?? []);
 
   // SEO meta built from the (already translated) i18n copy, so each locale gets
   // a native title/description without separate seo-config entries.
@@ -77,10 +80,13 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
         name: "Costa Brava Rent a Boat - Blanes",
         "@id": `${BASE_DOMAIN}/#business`,
       },
-      areaServed: ["Blanes", "Lloret de Mar", "Tossa de Mar", "Malgrat de Mar"].map((name) => ({ "@type": "City", name })),
+      areaServed: ["Blanes", "Lloret de Mar", "Tossa de Mar", "Malgrat de Mar"].map(name => ({
+        "@type": "City",
+        name,
+      })),
       // No aggregateRating: the business reviews are not reviews of this
       // product; Google can invalidate rich results for borrowed ratings.
-      offers: product.slots.map((s) => ({
+      offers: product.slots.map(s => ({
         "@type": "Offer",
         name: `${product.name} · ${s.label}`,
         description: `${product.name} · ${s.label}`,
@@ -100,14 +106,11 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
             language,
             touristType: ["Water sports", "Adventure"],
             maximumAttendeeCapacity: 2,
-            waypoints: [
-              { name: "Puerto de Blanes" },
-              { name: "Tossa de Mar" },
-            ],
+            waypoints: [{ name: "Puerto de Blanes" }, { name: "Tossa de Mar" }],
           }),
         ]
       : []),
-    generateFAQSchema((c?.faq || []).map((f) => ({ question: f.q, answer: f.a }))),
+    generateFAQSchema((c?.faq || []).map(f => ({ question: f.q, answer: f.a }))),
   ];
 
   return (
@@ -123,170 +126,153 @@ export default function JetSkiLanding({ productId, pageKey, copyKey }: JetSkiLan
       />
       <Navigation />
 
-      {/* HERO */}
-      <section className="relative isolate flex min-h-[70vh] items-center overflow-hidden pb-16 pt-28">
-        <img
-          src={product.image}
-          alt={product.altText}
-          width={1200}
-          height={675}
-          decoding="async"
-          draggable={false}
-          className={`absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-[1200ms] ease-out ${mounted ? "scale-100" : "scale-[1.06]"}`}
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/45 to-black/65" />
-
-        <div className={`mx-auto w-full max-w-3xl px-4 text-center text-white transition-all duration-700 ease-out sm:px-6 ${mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}>
-          <h1 className="font-heading text-display font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)]">
-            {c?.hero?.title || product.name}
-          </h1>
-          <p className="mx-auto mt-5 max-w-xl text-lg text-white/90 [text-shadow:0_1px_10px_hsl(215_45%_12%/0.45)]">
-            {c?.hero?.subtitle || product.subtitle}
-          </p>
-          <div className="mt-7 flex flex-wrap items-end justify-center gap-x-3 gap-y-1">
-            <span className="font-heading text-3xl font-extrabold text-white [text-shadow:0_2px_16px_hsl(215_45%_12%/0.55)] sm:text-4xl">
+      <PhotoHero
+        minHeight="sm:min-h-[72svh]"
+        media={
+          <img
+            src={product.image}
+            alt={product.altText}
+            width={1200}
+            height={675}
+            decoding="async"
+            draggable={false}
+          />
+        }
+        title={c?.hero?.title || product.name}
+        subtitle={c?.hero?.subtitle || product.subtitle}
+        actions={
+          <div className="flex flex-col items-center gap-6">
+            <span className="font-heading text-3xl font-semibold tracking-tight text-white [text-shadow:0_2px_16px_hsl(215_45%_12%/0.55)] sm:text-4xl">
               {g?.fromLabel || "desde"} {minPrice}€
             </span>
-          </div>
-          <div className="mt-8">
-            <button type="button" onClick={() => setOpen(true)} className={`${CTA_CLASS} min-h-12 px-9 text-base`}>
+            <InteractiveHoverButton
+              tone="dark"
+              onClick={() => setOpen(true)}
+              className="min-h-12 w-full px-9 text-base sm:w-auto"
+            >
               {g?.ctaRequest || "Solicitar"}
-              <ArrowRight className="h-5 w-5" />
-            </button>
+            </InteractiveHoverButton>
           </div>
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
-            {(c?.chips || []).map((chip) => (
-              <span key={chip} className="inline-flex items-center gap-1.5 rounded-full bg-black/25 px-3 py-1.5 text-sm text-white ring-1 ring-white/20">
-                <CheckCircle2 className="h-4 w-4 text-white" />
-                {chip}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+        }
+        facts={c?.chips}
+      />
 
       {/* INTRO */}
       {c?.intro && (
-        <section className="px-4 py-12 sm:px-6 lg:py-16">
-          <p className="mx-auto max-w-2xl text-center text-lg text-muted-foreground">{c.intro}</p>
-        </section>
+        <Sheet next="muted" className="py-12 sm:py-16">
+          <Rise>
+            <LeadText
+              text={c.intro}
+              className="mx-auto max-w-3xl text-center text-lg sm:text-xl [&>span:first-child]:text-xl sm:[&>span:first-child]:text-2xl"
+            />
+          </Rise>
+        </Sheet>
       )}
 
       {/* CÓMO ES */}
       {(c?.how || []).length > 0 && (
-        <section className="px-4 pb-14 sm:px-6">
-          <div className="mx-auto max-w-2xl">
-            <h2 className="font-heading text-h2 font-bold text-foreground">{c?.howTitle}</h2>
-            <div className="mt-5 space-y-4 text-muted-foreground">
-              {c!.how!.map((para) => (
-                <p key={para}>{para}</p>
+        <Sheet tone="muted" next="page">
+          <div className="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
+            <Rise>
+              <h2 className={H2}>{c?.howTitle}</h2>
+            </Rise>
+            <Rise delay={0.1} className="space-y-5">
+              {c!.how!.map(para => (
+                <div key={para} className="border-t border-border pt-5">
+                  <LeadText text={para} />
+                </div>
               ))}
-            </div>
+            </Rise>
           </div>
-        </section>
+        </Sheet>
       )}
 
       {/* FRANJAS Y PRECIOS */}
-      <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-        <div className="mx-auto max-w-2xl">
-          <h2 className="text-center font-heading text-h2 font-bold text-foreground">
-            {g?.slotsTitle || "Franjas y precios"}
-          </h2>
-          <div className="mt-8 space-y-3">
-            {product.slots.map((slot) => (
-              <div key={slot.id} className="flex items-center justify-between gap-3 rounded-xl border border-border bg-card px-4 py-3.5">
-                <span className="flex items-center gap-2 text-foreground">
-                  <Clock className="h-4 w-4 text-muted-foreground" />
+      <Sheet next="muted" containerClassName="max-w-3xl">
+        <Rise>
+          <h2 className={H2}>{g?.slotsTitle || "Franjas y precios"}</h2>
+          <ul className="mt-10 overflow-hidden rounded-2xl border border-border bg-card">
+            {product.slots.map(slot => (
+              <li
+                key={slot.id}
+                className="flex items-baseline justify-between gap-4 border-b border-border px-5 py-4 last:border-b-0 sm:px-6"
+              >
+                <span className="text-base text-foreground">
                   <span className="font-medium">{slot.label}</span>
                   {slot.price2 && g?.pricePerTwo && (
-                    <span className="text-xs text-muted-foreground">
+                    <span className="ml-2 text-sm text-muted-foreground">
                       ({g.pricePerTwo.replace("{price}", String(slot.price2))})
                     </span>
                   )}
                 </span>
-                <span className="font-heading text-lg font-bold text-cta">{slot.price}€</span>
-              </div>
+                <span className="shrink-0 font-heading text-lg font-semibold tabular-nums text-foreground">
+                  {slot.price}€
+                </span>
+              </li>
             ))}
-          </div>
-          <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
-            <span className="inline-flex items-center gap-1.5"><Users className="h-4 w-4" />{g?.specCapacity ?? product.specifications.capacity}</span>
-            <span className="inline-flex items-center gap-1.5"><Anchor className="h-4 w-4" />{t.boats.withoutLicense}</span>
-          </div>
-          <div className="mt-8 text-center">
-            <button type="button" onClick={() => setOpen(true)} className={`${CTA_CLASS} min-h-12 px-8 text-base`}>
+          </ul>
+          <p className="mt-4 text-sm text-muted-foreground">
+            {g?.specCapacity ?? product.specifications.capacity} · {t.boats.withoutLicense}
+          </p>
+          <div className="mt-8">
+            <InteractiveHoverButton
+              tone="dark"
+              onClick={() => setOpen(true)}
+              className="min-h-12 px-8 text-base"
+            >
               {g?.ctaRequest || "Solicitar"}
-              <ArrowRight className="h-5 w-5" />
-            </button>
+            </InteractiveHoverButton>
             <p className="mt-2 text-xs text-muted-foreground">{g?.reassurance}</p>
           </div>
-        </div>
-      </section>
+        </Rise>
+      </Sheet>
 
-      {/* REQUISITOS */}
-      {(c?.requirements || []).length > 0 && (
-        <section className="px-4 pt-14 sm:px-6">
-          <div className="mx-auto max-w-2xl">
-            <h2 className="text-center font-heading text-h2 font-bold text-foreground">
-              {g?.requirementsTitle || "Requisitos"}
-            </h2>
-            <ul className="mt-6 space-y-2">
-              {c!.requirements!.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-muted-foreground">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-success" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      )}
-
-      {/* INCLUYE */}
-      {included.length > 0 && (
-        <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-          <div className="mx-auto max-w-2xl">
-            <h2 className="text-center font-heading text-h2 font-bold text-foreground">
-              {g?.includedTitle || "Qué incluye"}
-            </h2>
-            <ul className="mt-6 grid gap-2 sm:grid-cols-2">
-              {included.map((item) => (
-                <li key={item} className="flex items-center gap-2 text-muted-foreground">
-                  <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-success" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
+      {/* REQUISITOS + INCLUYE */}
+      {((c?.requirements || []).length > 0 || included.length > 0) && (
+        <Sheet tone="muted" next="page">
+          <Rise>
+            <div className="grid gap-10 md:grid-cols-2">
+              {(c?.requirements || []).length > 0 && (
+                <div>
+                  <h2 className={`${H2} mb-8`}>{g?.requirementsTitle || "Requisitos"}</h2>
+                  <CheckPanel items={c!.requirements!} />
+                </div>
+              )}
+              {included.length > 0 && (
+                <div>
+                  <h2 className={`${H2} mb-8`}>{g?.includedTitle || "Qué incluye"}</h2>
+                  <CheckPanel items={included} />
+                </div>
+              )}
+            </div>
+          </Rise>
+        </Sheet>
       )}
 
       {/* FAQ */}
-      {(c?.faq || []).length > 0 && (
-        <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-          <div className="mx-auto max-w-2xl">
-            <h2 className="text-center font-heading text-h2 font-bold text-foreground">
-              {g?.faqTitle || "Preguntas frecuentes"}
-            </h2>
-            <dl className="mt-8 divide-y divide-border">
-              {c!.faq.map((f) => (
-                <div key={f.q} className="py-5 first:pt-0 last:pb-0">
-                  <dt className="font-heading font-semibold text-foreground">{f.q}</dt>
-                  <dd className="mt-1.5 text-muted-foreground">{f.a}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </section>
-      )}
+      <FaqSheet
+        idPrefix="jetski-faq"
+        title={g?.faqTitle || "Preguntas frecuentes"}
+        items={c?.faq || []}
+        next="muted"
+      />
 
       {/* Sticky mobile CTA */}
       <MobileStickyBar>
         <div className="flex items-center justify-between gap-3">
           <div className="leading-tight">
-            <p className="text-sm font-bold text-foreground">{g?.fromLabel || "desde"} {minPrice}€</p>
-            <p className="text-xs text-muted-foreground">{g?.specCapacity ?? product.specifications.capacity}</p>
+            <p className="text-sm font-bold text-foreground">
+              {g?.fromLabel || "desde"} {minPrice}€
+            </p>
+            <p className="text-xs text-muted-foreground">
+              {g?.specCapacity ?? product.specifications.capacity}
+            </p>
           </div>
-          <button type="button" onClick={() => setOpen(true)} className={`${CTA_CLASS} min-h-11 flex-shrink-0 px-6 text-sm`}>
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className={`${CTA_CLASS} min-h-11 flex-shrink-0 px-6 text-sm`}
+          >
             {g?.ctaRequest || "Solicitar"}
           </button>
         </div>

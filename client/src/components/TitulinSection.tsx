@@ -1,6 +1,16 @@
 import { Link } from "wouter";
-import { ArrowRight, Check, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useRef } from "react";
+import { Check } from "lucide-react";
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+  type MotionValue,
+} from "motion/react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
@@ -15,6 +25,110 @@ import { escolaNauticaHandoff } from "@shared/escolaNauticaLinks";
  * with a waiting list and is policed by shared/escolaNauticaLinks.test.ts:
  * never write the school's status, dates or prices here by hand.
  */
+interface CourseStep {
+  title: string;
+  description: string;
+}
+
+/**
+ * One step of the course rail, driven by the scroll progress of the whole list (0..1), never by a timed
+ * reveal: nothing can stay hidden, the text is only dimmed until the thread reaches it. The thread fills
+ * down to each node, the node disc springs in (small overshoot), the number swaps to dark on the light disc.
+ */
+function CourseStepItem({
+  step,
+  index,
+  total,
+  progress,
+}: {
+  step: CourseStep;
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+}) {
+  const span = 0.9 / Math.max(total - 1, 1);
+  const a = index * span; // progress at which this node starts to light
+  const b = a + 0.06;
+  const next = (index + 1) * span; // where the thread reaches the next node
+
+  const disc = useSpring(useTransform(progress, [a, b], [0, 1]), {
+    stiffness: 320,
+    damping: 17,
+    mass: 0.7,
+  });
+  const numLight = useTransform(progress, [a, b], [1, 0]);
+  const numDark = useTransform(progress, [a, b], [0, 1]);
+  const textOpacity = useTransform(progress, [a, a + 0.1], [0.4, 1]);
+  const textY = useTransform(progress, [a, a + 0.1], [8, 0]);
+  const thread = useTransform(progress, [b, next], [0, 1]);
+
+  return (
+    <li className="relative pb-10 pl-16 last:pb-0">
+      {index < total - 1 && (
+        <>
+          <span
+            aria-hidden="true"
+            className="absolute bottom-1 left-[19px] top-12 w-px bg-primary-foreground/20"
+          />
+          <motion.span
+            aria-hidden="true"
+            style={{ scaleY: thread }}
+            className="absolute bottom-1 left-[19px] top-12 w-px origin-top bg-primary-foreground"
+          />
+        </>
+      )}
+      <span className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full border border-primary-foreground/40 font-heading text-base font-semibold">
+        <motion.span
+          aria-hidden="true"
+          style={{ scale: disc }}
+          className="absolute -inset-px rounded-full bg-primary-foreground"
+        />
+        <motion.span style={{ opacity: numLight }} className="relative text-primary-foreground/70">
+          {index + 1}
+        </motion.span>
+        <motion.span
+          aria-hidden="true"
+          style={{ opacity: numDark }}
+          className="absolute text-primary"
+        >
+          {index + 1}
+        </motion.span>
+      </span>
+      <motion.div style={{ opacity: textOpacity, y: textY }}>
+        <h3 className="font-heading text-xl font-semibold leading-tight lg:text-2xl">
+          {step.title}
+        </h3>
+        <p className="mt-2 max-w-md text-base leading-relaxed text-primary-foreground/85 text-pretty">
+          {step.description}
+        </p>
+      </motion.div>
+    </li>
+  );
+}
+
+export function CourseRail({ steps }: { steps: CourseStep[] }) {
+  const ref = useRef<HTMLOListElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 85%", "end 60%"] });
+  const smooth = useSpring(scrollYProgress, { stiffness: 140, damping: 28, mass: 0.4 });
+  const lit = useMotionValue(1); // reduced motion: everything already lit, static
+  const progress = reduce ? lit : smooth;
+
+  return (
+    <ol ref={ref}>
+      {steps.map((step, i) => (
+        <CourseStepItem
+          key={step.title}
+          step={step}
+          index={i}
+          total={steps.length}
+          progress={progress}
+        />
+      ))}
+    </ol>
+  );
+}
+
 export default function TitulinSection() {
   const t = useTranslations();
   const { language, localizedPath } = useLanguage();
@@ -26,7 +140,7 @@ export default function TitulinSection() {
   return (
     <section
       id="titulin"
-      className="bg-primary py-16 text-primary-foreground dark:bg-[hsl(215_45%_16%)] dark:text-foreground sm:py-24"
+      className="bg-primary py-16 text-primary-foreground rounded-b-2xl squircle-b dark:bg-[hsl(215_45%_16%)] dark:text-foreground sm:py-24"
       aria-labelledby="titulin-title"
     >
       <div className="container mx-auto max-w-6xl px-4">
@@ -38,41 +152,46 @@ export default function TitulinSection() {
             >
               {s.title}
             </h2>
-            <p className="mt-5 max-w-lg text-base mx-auto text-primary-foreground/85 text-pretty sm:text-lg">
+            <p className="mx-auto mt-5 max-w-xl text-base text-primary-foreground/85 text-pretty sm:text-lg">
               {s.subtitle}
             </p>
 
+            {/* Four facts as one ruled strip: equal cells, one hairline grid. */}
             {p?.chips && (
-              <ul className="mt-8 grid max-w-md grid-cols-1 gap-x-8 gap-y-3 text-sm sm:grid-cols-2 mx-auto justify-items-center">
+              <ul className="mx-auto mt-8 grid max-w-lg grid-cols-2 overflow-hidden rounded-2xl border border-primary-foreground/20 text-sm sm:text-base">
                 {p.chips.map(chip => (
-                  <li key={chip} className="flex items-center gap-2.5 text-primary-foreground/90">
-                    <Check className="h-4 w-4 flex-shrink-0 text-primary-foreground/60" aria-hidden="true" />
+                  <li
+                    key={chip}
+                    className="flex items-center justify-center gap-2.5 border-primary-foreground/20 px-3 py-4 text-center text-primary-foreground/95 text-balance [&:nth-child(even)]:border-l [&:nth-child(n+3)]:border-t"
+                  >
+                    <Check
+                      className="h-4 w-4 flex-shrink-0 text-primary-foreground/70"
+                      aria-hidden="true"
+                    />
                     {chip}
                   </li>
                 ))}
               </ul>
             )}
 
-            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4 justify-center">
-              <Button
-                asChild
-                size="lg"
-                className="min-h-12 rounded-full bg-background px-7 text-base text-foreground hover:bg-background/90 dark:bg-foreground dark:text-background dark:hover:bg-foreground/90"
+            <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+              <InteractiveHoverButton
+                tone="light"
+                as={Link}
+                href={localizedPath("navigationLicense")}
+                className="min-h-12 px-7 text-base"
                 data-testid="button-titulin-page"
               >
-                <Link href={localizedPath("navigationLicense")}>
-                  {s.ctaPrimary}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              </Button>
+                {s.ctaPrimary}
+              </InteractiveHoverButton>
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center gap-2 text-sm font-medium underline-offset-4 transition-opacity hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-foreground"
+                className="inline-flex min-h-12 items-center gap-2 rounded-full border border-primary-foreground/40 px-6 text-base font-medium transition-colors hover:border-primary-foreground hover:bg-primary-foreground/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-foreground motion-reduce:transition-none"
                 data-testid="button-titulin-whatsapp"
               >
-                <SiWhatsapp className="h-4 w-4" aria-hidden="true" />
+                <SiWhatsapp className="h-5 w-5" aria-hidden="true" />
                 {p?.ctaButton}
               </a>
             </div>
@@ -90,44 +209,32 @@ export default function TitulinSection() {
 
           {/* The course IS a sequence, so the numbers carry information here:
               one continuous rail joins the three steps instead of three loose cards. */}
-          <ol>
-            {p?.course?.steps?.map((step, i) => (
-              <li
-                key={step.title}
-                className="relative pb-10 pl-16 last:pb-0 before:absolute before:bottom-1 before:left-[19px] before:top-12 before:w-px before:bg-primary-foreground/25 last:before:hidden"
-              >
-                <span className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full bg-primary-foreground font-heading text-base font-semibold text-primary">
-                  {i + 1}
-                </span>
-                <h3 className="font-heading text-xl font-semibold leading-tight lg:text-2xl">
-                  {step.title}
-                </h3>
-                <p className="mt-2 max-w-md text-base leading-relaxed text-primary-foreground/85 text-pretty">
-                  {step.description}
-                </p>
-              </li>
-            ))}
-          </ol>
+          {p?.course?.steps && <CourseRail steps={p.course.steps} />}
         </div>
 
+        {/* Cross-sell to the sister school: its own light panel on the navy band,
+            so it reads as a destination and not as a footnote. Copy is policed by
+            escolaNauticaLinks.test.ts; never hand-write status, dates or prices. */}
         {school && (
-          <div className="mt-16 flex flex-col gap-4 border-t border-primary-foreground/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-14 grid gap-6 rounded-2xl bg-background p-6 text-foreground dark:bg-[hsl(215_45%_22%)] sm:mt-16 sm:p-8 md:grid-cols-[1fr_auto] md:items-center md:gap-10">
             <div className="max-w-2xl">
-              <p className="font-heading font-semibold">{school.finalTitle}</p>
-              <p className="mt-1 text-sm leading-relaxed text-primary-foreground/90">
+              <h3 className="font-heading text-xl font-semibold tracking-tight text-balance sm:text-2xl">
+                {school.finalTitle}
+              </h3>
+              <p className="mt-2 text-base leading-relaxed text-muted-foreground text-pretty">
                 {school.finalBody}
               </p>
             </div>
-            <a
+            <InteractiveHoverButton
+              tone="dark"
               href={school.url}
               target="_blank"
               rel="noopener"
-              className="inline-flex min-h-11 flex-shrink-0 items-center gap-2 text-sm font-semibold underline underline-offset-4 hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-foreground"
+              className="min-h-12 px-7 text-base"
               data-testid="link-titulin-school"
             >
               {school.cta}
-              <ExternalLink className="h-4 w-4" aria-hidden="true" />
-            </a>
+            </InteractiveHoverButton>
           </div>
         )}
 

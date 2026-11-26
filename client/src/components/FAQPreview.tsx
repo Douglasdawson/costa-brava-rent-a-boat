@@ -39,7 +39,10 @@ export default function FAQPreview() {
   };
 
   return (
-    <section className="bg-muted/40 py-16 sm:py-24" aria-labelledby="faq-preview-title">
+    <section
+      className="rounded-b-2xl squircle-b bg-muted/40 py-16 sm:py-24"
+      aria-labelledby="faq-preview-title"
+    >
       <div className="container mx-auto max-w-7xl px-3 sm:px-4">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-10">
           <aside className="flex flex-col justify-between gap-10 rounded-2xl bg-cta p-7 text-primary-foreground dark:text-background sm:p-9 lg:sticky lg:top-[calc(var(--nav-height,5rem)+1rem)] lg:self-start">

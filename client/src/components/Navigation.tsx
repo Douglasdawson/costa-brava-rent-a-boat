@@ -13,6 +13,7 @@ import { useBookingModal } from "@/hooks/bookingModalContext";
 import { trackBookingFormOpen } from "@/utils/analytics";
 import { useTheme } from "@/hooks/use-theme";
 import { lockScroll, unlockScroll } from "@/utils/scroll-lock";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 
 // Pill nav ported from talleres.red (components/nav.tsx). Tokens --nav-* live in index.css.
 // Hysteresis: "scrolled" turns on past ON and off below OFF so the pill never flickers at the threshold.
@@ -613,15 +614,15 @@ export default function Navigation({ cartCount = 0, onCartClick }: NavigationPro
           {/* Always visible: cart (shop only), booking CTA, mobile menu button */}
           <div className="ml-auto flex items-center gap-1 lg:ml-3">
             {cartButton}
-            <button
-              type="button"
+            <InteractiveHoverButton
+              tone="dark"
               onClick={() => handleNavigation("#booking", t.nav.bookNow)}
               data-testid={isDesktop ? "desktop-button-book" : "mobile-button-book"}
               aria-label={t.a11y.bookBoatNow}
-              className={`flex h-11 cursor-pointer items-center rounded-full bg-cta px-[18px] text-sm leading-none font-medium whitespace-nowrap text-primary-foreground transition-[background-color,scale] duration-200 hover:bg-cta/90 dark:text-background active:scale-[0.97] motion-reduce:transition-none ${FOCUS_RING}`}
+              className="h-11 px-[18px] leading-none active:scale-[0.97]"
             >
               {t.nav.bookNow}
-            </button>
+            </InteractiveHoverButton>
             <button
               type="button"
               onClick={toggleMenu}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
+import { InteractiveHoverButton } from "./ui/interactive-hover-button";
 import { Award, BadgeCheck, Star } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
@@ -127,14 +128,14 @@ export default function Hero() {
               </ul>
 
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-start lg:justify-center gap-2.5 sm:gap-3 w-full sm:w-auto">
-                <Button
+                <InteractiveHoverButton
+                  tone="dark"
                   onClick={() => openBookingModal()}
-                  size="lg"
-                  className="bg-cta hover:bg-cta/90 text-primary-foreground px-8 py-2.5 text-sm sm:px-10 sm:py-3.5 sm:text-base lg:text-lg rounded-full font-semibold sm:font-medium btn-elevated cta-pulse w-full sm:w-auto"
+                  className="min-h-12 px-8 py-2.5 text-sm sm:px-10 sm:py-3.5 sm:text-base lg:text-lg font-semibold sm:font-medium btn-elevated cta-pulse w-full sm:w-auto"
                   data-testid="button-hero-cta"
                 >
                   {t.hero.findYourBoat}
-                </Button>
+                </InteractiveHoverButton>
                 <Button
                   asChild
                   size="lg"

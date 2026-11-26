@@ -116,7 +116,7 @@ export default function OnboardingPage() {
           <div className="inline-flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-primary mb-4 shadow-lg">
             <Ship className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-xl sm:text-2xl font-bold text-foreground">Configura tu cuenta</h1>
+          <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-foreground">Configura tu cuenta</h1>
           <p className="text-muted-foreground mt-1 text-sm">Solo te llevará 2 minutos</p>
         </div>
 
@@ -155,7 +155,7 @@ export default function OnboardingPage() {
           {step === 1 && (
             <div className="space-y-5">
               <div>
-                <h2 className="text-lg font-bold text-foreground">Hola, {firstName}</h2>
+                <h2 className="text-lg font-semibold tracking-tight text-foreground">Hola, {firstName}</h2>
                 <p className="text-sm text-muted-foreground mt-1">Cuéntanos un poco sobre <strong>{companyName}</strong></p>
               </div>
               <div>
@@ -201,7 +201,7 @@ export default function OnboardingPage() {
           {step === 2 && (
             <div className="space-y-5">
               <div>
-                <h2 className="text-lg font-bold text-foreground">Configuración básica</h2>
+                <h2 className="text-lg font-semibold tracking-tight text-foreground">Configuración básica</h2>
                 <p className="text-sm text-muted-foreground mt-1">Puedes ajustar esto más tarde desde el panel</p>
               </div>
               <div>
@@ -247,7 +247,7 @@ export default function OnboardingPage() {
           {step === 3 && (
             <div className="space-y-5">
               <div>
-                <h2 className="text-lg font-bold text-foreground">Añade tu primer barco</h2>
+                <h2 className="text-lg font-semibold tracking-tight text-foreground">Añade tu primer barco</h2>
                 <p className="text-sm text-muted-foreground mt-1">Opcional — puedes añadirlos desde el CRM</p>
               </div>
 
@@ -337,7 +337,7 @@ export default function OnboardingPage() {
                 </div>
               </div>
               <div>
-                <h2 className="text-xl font-bold text-foreground">¡Todo listo!</h2>
+                <h2 className="text-xl font-semibold tracking-tight text-foreground">¡Todo listo!</h2>
                 <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
                   Tu cuenta de <strong>{companyName}</strong> está configurada.<br />
                   Tienes <strong>14 días de prueba gratuita</strong> con acceso completo.

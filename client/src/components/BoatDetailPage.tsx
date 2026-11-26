@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { useLocation } from "wouter";
 import { useBookingModal } from "@/hooks/bookingModalContext";
@@ -21,7 +19,6 @@ import {
   Shield,
   Eye,
   Waves,
-  Heart,
   Sun,
   Clock,
   Settings,
@@ -79,6 +76,8 @@ import { isJetSkiProduct } from "@shared/jetskiProducts";
 import { boatFaqPricing, boatIncludedItems } from "@shared/boatPageMeta";
 import { buildBoatFaqItems, buildBoatFaqTitle, type BoatFaqText } from "@shared/boatFaqBuilder";
 import { Breadcrumbs } from "./Breadcrumbs";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { FaqSheet, H2, LeadFacts, MUTED_BG, SHEET, TONE_BG } from "@/components/page-kit";
 import { useTranslations } from "@/lib/translations";
 import BoatPricingSection from "./BoatPricingSection";
 import BoatGuarantees from "./BoatGuarantees";
@@ -279,7 +278,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         <Navigation />
         <main className="flex items-center justify-center min-h-[70vh] px-4 pt-24 pb-16">
           <div className="max-w-xl text-center">
-            <h1 className="font-heading text-h1 font-bold text-foreground mb-4">
+            <h1 className="font-heading text-h1 font-semibold tracking-tight text-foreground mb-4">
               {t.boatDetail.retiredTitle}
             </h1>
             <p className="text-muted-foreground leading-relaxed mb-8">{t.boatDetail.retiredBody}</p>
@@ -467,73 +466,73 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       {/* Spacer for fixed navbar */}
       <div className="pt-20 sm:pt-24" />
 
-      {/* Mini-hero */}
-      <div className="relative h-64 sm:h-80 overflow-hidden">
-        <img
-          src={getBoatImage(displayImages[0])}
-          alt={getBoatAltText(boatName)}
-          className="absolute inset-0 w-full h-full object-cover"
-          width={1200}
-          height={800}
-          loading="eager"
-          // react-dom 18.3 doesn't map camelCase `fetchPriority` (it drops the
-          // prop and warns); pass the real lowercase attribute so the browser
-          // actually applies the LCP priority hint. Cast satisfies tsc until React 19.
-          {...({ fetchpriority: "high" } as unknown as React.ImgHTMLAttributes<HTMLImageElement>)}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/50 to-foreground/20" />
+      {/* Mini-hero: photo sheet, its rounded corners reveal the page colour */}
+      <div className={TONE_BG.background}>
+        <div className={`relative h-64 sm:h-80 overflow-hidden ${SHEET}`}>
+          <img
+            src={getBoatImage(displayImages[0])}
+            alt={getBoatAltText(boatName)}
+            className="absolute inset-0 w-full h-full object-cover"
+            width={1200}
+            height={800}
+            loading="eager"
+            // react-dom 18.3 doesn't map camelCase `fetchPriority` (it drops the
+            // prop and warns); pass the real lowercase attribute so the browser
+            // actually applies the LCP priority hint. Cast satisfies tsc until React 19.
+            {...({ fetchpriority: "high" } as unknown as React.ImgHTMLAttributes<HTMLImageElement>)}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/50 to-foreground/20" />
 
-        {/* Back button overlay */}
-        {onBack && (
-          <button
-            onClick={onBack}
-            className="absolute top-4 left-4 flex items-center gap-1.5 text-white/90 hover:text-white text-sm font-medium bg-foreground/30 hover:bg-foreground/50 rounded-full px-3 py-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
-            data-testid="button-back"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            {t.boatDetail.backToFleet}
-          </button>
-        )}
+          {/* Back button overlay */}
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="absolute top-4 left-4 flex items-center gap-1.5 text-white/90 hover:text-white text-sm font-medium bg-foreground/30 hover:bg-foreground/50 rounded-full px-3 py-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
+              data-testid="button-back"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              {t.boatDetail.backToFleet}
+            </button>
+          )}
 
-        {/* Hero content — bottom aligned */}
-        <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-8 pb-5 sm:pb-7">
-          {/* License badge */}
-          <div className="mb-2">
-            <span
-              className={`inline-block text-xs font-semibold px-3 py-1 rounded-full ${
-                requiresLicense ? "bg-primary text-white" : "bg-white/95 text-primary"
-              }`}
-            >
-              {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
-            </span>
-          </div>
-          <h1 className="font-heading font-bold text-white text-h1 leading-tight mb-1">
-            {boatName}
-            <span className="hidden sm:inline font-normal text-white/70 text-lg sm:text-xl md:text-2xl mx-2">·</span>
-            <span className="block sm:inline font-normal text-white/80 text-lg sm:text-xl md:text-2xl">
-              {t.boatDetail.locationSuffix}
-            </span>
-          </h1>
-          <div className="flex flex-wrap items-center gap-3 mt-2">
-            <p className="text-white/80 text-sm sm:text-base">
-              {translateBoatText(boatData.subtitle || "", language)}
-            </p>
-            {dynamicLowest.price > 0 && (
-              <div className="flex items-center gap-2 bg-foreground/40 rounded-full px-4 py-1.5">
-                {!dynamicLowest.isForDate && (
-                  <span className="text-white/80 text-xs">{t.boats.from}</span>
-                )}
-                <span className="text-white font-bold text-lg">{dynamicLowest.price}€</span>
-              </div>
-            )}
-            <Button
-              onClick={() => handleReservation()}
-              size="sm"
-              className="bg-primary hover:bg-primary/90 text-white rounded-full px-5 h-11 text-xs font-semibold transition-colors"
-              data-testid="button-price-pill-reserve"
-            >
-              {t.hero.bookNow}
-            </Button>
+          {/* Hero content — bottom aligned */}
+          <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-8 pb-5 sm:pb-7">
+            <h1 className="font-heading font-semibold tracking-tight text-white text-h1 leading-tight mb-1 text-balance [text-shadow:0_1px_2px_rgba(0,0,0,0.35),0_4px_24px_rgba(0,0,0,0.4)]">
+              {boatName}
+              <span className="hidden sm:inline font-normal text-white/70 text-lg sm:text-xl md:text-2xl mx-2">
+                ·
+              </span>
+              <span className="block sm:inline font-normal text-white/80 text-lg sm:text-xl md:text-2xl">
+                {t.boatDetail.locationSuffix}
+              </span>
+            </h1>
+            <div className="flex flex-wrap items-center gap-3 mt-2">
+              <p className="text-white/85 text-sm sm:text-base">
+                {translateBoatText(boatData.subtitle || "", language)}
+                <span className="mx-2 text-white/50" aria-hidden="true">
+                  ·
+                </span>
+                {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
+              </p>
+              {dynamicLowest.price > 0 && (
+                <p className="flex items-baseline gap-1.5 text-white">
+                  {!dynamicLowest.isForDate && (
+                    <span className="text-white/80 text-xs">{t.boats.from}</span>
+                  )}
+                  <span className="font-heading text-xl font-semibold tabular-nums">
+                    {dynamicLowest.price}€
+                  </span>
+                </p>
+              )}
+              <InteractiveHoverButton
+                tone="light"
+                onClick={() => handleReservation()}
+                className="min-h-11 px-6 text-sm"
+                data-testid="button-price-pill-reserve"
+              >
+                {t.hero.bookNow}
+              </InteractiveHoverButton>
+            </div>
           </div>
         </div>
       </div>
@@ -563,592 +562,595 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
       {/* TrustBadges moved inside description card below */}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 pb-6 sm:pb-8">
-        {/* Image and Description Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
-          {/* Left Column - Image Gallery Carousel */}
-          <div className="bg-background rounded-2xl overflow-hidden border border-card-border">
-            <div
-              className="relative group"
-              onTouchStart={e => {
-                touchStartX.current = e.touches[0].clientX;
-              }}
-              onTouchEnd={e => {
-                if (touchStartX.current === null || displayImages.length <= 1) return;
-                const delta = touchStartX.current - e.changedTouches[0].clientX;
-                if (Math.abs(delta) > 50) {
-                  if (delta > 0) {
-                    nextImage();
-                  } else {
-                    prevImage();
-                  }
-                }
-                touchStartX.current = null;
-              }}
-            >
-              <img
-                src={getBoatImage(displayImages[currentImageIndex])}
-                srcSet={getBoatImageSrcSet(displayImages[currentImageIndex]) || undefined}
-                sizes="(max-width: 767px) 100vw, 800px"
-                alt={getBoatAltText(boatName, currentImageIndex)}
-                className="w-full aspect-[4/3] object-cover cursor-zoom-in boat-image-reveal"
-                width={800}
-                height={600}
-                loading="lazy"
-                decoding="async"
-                data-testid="img-boat-main"
-                onClick={() => setLightboxOpen(true)}
-              />
-              {/* Zoom hint */}
-              <div className="absolute top-2 left-2 bg-foreground/50 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                <Eye className="w-3 h-3 inline mr-1" />
-                {t.boatDetail.imageAria}
+      <div className={relatedBoats.length > 0 ? TONE_BG.muted : TONE_BG.background}>
+        <div className={`${SHEET} bg-background`}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 pb-10 sm:pb-14">
+            {/* Image and Description Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
+              {/* Left Column - Image Gallery Carousel */}
+              <div className="bg-background rounded-2xl overflow-hidden border border-card-border">
+                <div
+                  className="relative group"
+                  onTouchStart={e => {
+                    touchStartX.current = e.touches[0].clientX;
+                  }}
+                  onTouchEnd={e => {
+                    if (touchStartX.current === null || displayImages.length <= 1) return;
+                    const delta = touchStartX.current - e.changedTouches[0].clientX;
+                    if (Math.abs(delta) > 50) {
+                      if (delta > 0) {
+                        nextImage();
+                      } else {
+                        prevImage();
+                      }
+                    }
+                    touchStartX.current = null;
+                  }}
+                >
+                  <img
+                    src={getBoatImage(displayImages[currentImageIndex])}
+                    srcSet={getBoatImageSrcSet(displayImages[currentImageIndex]) || undefined}
+                    sizes="(max-width: 767px) 100vw, 800px"
+                    alt={getBoatAltText(boatName, currentImageIndex)}
+                    className="w-full aspect-[4/3] object-cover cursor-zoom-in boat-image-reveal"
+                    width={800}
+                    height={600}
+                    loading="lazy"
+                    decoding="async"
+                    data-testid="img-boat-main"
+                    onClick={() => setLightboxOpen(true)}
+                  />
+                  {/* Zoom hint */}
+                  <div className="absolute top-2 left-2 bg-foreground/50 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                    <Eye className="w-3 h-3 inline mr-1" />
+                    {t.boatDetail.imageAria}
+                  </div>
+
+                  {/* Navigation arrows - only show if more than one image */}
+                  {displayImages.length > 1 && (
+                    <>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={prevImage}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 pointer-coarse:md:opacity-100 transition-opacity duration-200"
+                        data-testid="button-prev-image"
+                        aria-label="Previous image"
+                      >
+                        <ChevronLeft className="w-6 h-6" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={nextImage}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 pointer-coarse:md:opacity-100 transition-opacity duration-200"
+                        data-testid="button-next-image"
+                        aria-label="Next image"
+                      >
+                        <ChevronRight className="w-6 h-6" />
+                      </Button>
+                    </>
+                  )}
+
+                  {/* Image counter */}
+                  {displayImages.length > 1 && (
+                    <div className="absolute bottom-2 right-2 bg-foreground/70 text-white px-3 py-1 rounded-full text-sm">
+                      {currentImageIndex + 1} / {displayImages.length}
+                    </div>
+                  )}
+                </div>
+
+                {/* Thumbnails: dots on mobile, image strip on desktop */}
+                {displayImages.length > 1 && (
+                  <div className="bg-muted px-4 py-3">
+                    {/* Mobile: dots (44x44 hit area, 12px visual) */}
+                    <div className="flex justify-center md:hidden">
+                      {displayImages.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className="min-h-11 min-w-11 inline-flex items-center justify-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-1 rounded-full"
+                          aria-label={`${t.boatDetail.imageAria} ${index + 1}`}
+                          data-testid={`button-thumbnail-${index}`}
+                        >
+                          <span
+                            className={`block h-3 rounded-full transition-all ${
+                              index === currentImageIndex
+                                ? "bg-primary w-8"
+                                : "w-3 bg-muted-foreground/30 group-hover:bg-muted-foreground/50"
+                            }`}
+                            aria-hidden="true"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                    {/* Desktop: image thumbnails */}
+                    <div className="hidden md:flex gap-2 overflow-x-auto">
+                      {displayImages.map((image, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className={`flex-shrink-0 w-20 h-14 rounded overflow-hidden border-2 transition-all ${
+                            index === currentImageIndex
+                              ? "border-primary ring-2 ring-primary/30"
+                              : "border-transparent hover:border-muted-foreground/30 opacity-70 hover:opacity-100"
+                          }`}
+                          aria-label={`${t.boatDetail.imageAria} ${index + 1}`}
+                          data-testid={`button-thumbnail-${index}`}
+                        >
+                          <img
+                            src={getBoatImage(image)}
+                            alt={getBoatAltText(boatName, index)}
+                            className="w-full h-full object-cover"
+                            width={200}
+                            height={150}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <div className="px-4 py-2 text-center border-t border-border">
+                  <a
+                    href={localizedPath("gallery")}
+                    className="text-sm text-primary hover:underline"
+                  >
+                    {t.boatDetail.viewCustomerGallery}
+                  </a>
+                </div>
               </div>
 
-              {/* Navigation arrows - only show if more than one image */}
-              {displayImages.length > 1 && (
-                <>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={prevImage}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 pointer-coarse:md:opacity-100 transition-opacity duration-200"
-                    data-testid="button-prev-image"
-                    aria-label="Previous image"
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={nextImage}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 pointer-coarse:md:opacity-100 transition-opacity duration-200"
-                    data-testid="button-next-image"
-                    aria-label="Next image"
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </Button>
-                </>
-              )}
-
-              {/* Image counter */}
-              {displayImages.length > 1 && (
-                <div className="absolute bottom-2 right-2 bg-foreground/70 text-white px-3 py-1 rounded-full text-sm">
-                  {currentImageIndex + 1} / {displayImages.length}
-                </div>
-              )}
-            </div>
-
-            {/* Thumbnails: dots on mobile, image strip on desktop */}
-            {displayImages.length > 1 && (
-              <div className="bg-muted px-4 py-3">
-                {/* Mobile: dots (44x44 hit area, 12px visual) */}
-                <div className="flex justify-center md:hidden">
-                  {displayImages.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentImageIndex(index)}
-                      className="min-h-11 min-w-11 inline-flex items-center justify-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-1 rounded-full"
-                      aria-label={`${t.boatDetail.imageAria} ${index + 1}`}
-                      data-testid={`button-thumbnail-${index}`}
-                    >
-                      <span
-                        className={`block h-3 rounded-full transition-all ${
-                          index === currentImageIndex
-                            ? "bg-primary w-8"
-                            : "w-3 bg-muted-foreground/30 group-hover:bg-muted-foreground/50"
-                        }`}
-                        aria-hidden="true"
-                      />
-                    </button>
-                  ))}
-                </div>
-                {/* Desktop: image thumbnails */}
-                <div className="hidden md:flex gap-2 overflow-x-auto">
-                  {displayImages.map((image, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentImageIndex(index)}
-                      className={`flex-shrink-0 w-20 h-14 rounded overflow-hidden border-2 transition-all ${
-                        index === currentImageIndex
-                          ? "border-primary ring-2 ring-primary/30"
-                          : "border-transparent hover:border-muted-foreground/30 opacity-70 hover:opacity-100"
-                      }`}
-                      aria-label={`${t.boatDetail.imageAria} ${index + 1}`}
-                      data-testid={`button-thumbnail-${index}`}
-                    >
-                      <img
-                        src={getBoatImage(image)}
-                        alt={getBoatAltText(boatName, index)}
-                        className="w-full h-full object-cover"
-                        width={200}
-                        height={150}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-            <div className="px-4 py-2 text-center border-t border-border">
-              <a href={localizedPath("gallery")} className="text-sm text-primary hover:underline">
-                {t.boatDetail.viewCustomerGallery}
-              </a>
-            </div>
-          </div>
-
-          {/* Right Column - Description */}
-          <Card>
-            <CardHeader>
-              <CardTitle>{t.boatDetail.description}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-foreground/80 leading-relaxed">
-                {t.boatDescriptions?.[boatId] || boatData.description}
-              </p>
-              {fuelIncluded && (
-                <div className="mt-4 p-4 bg-primary/5 rounded-lg">
-                  <p className="text-foreground font-medium flex items-center gap-2">
-                    <Fuel className="w-5 h-5" />
+              {/* Right Column - Description */}
+              <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
+                <h2 className="font-heading text-xl font-semibold tracking-tight sm:text-2xl">
+                  {t.boatDetail.description}
+                </h2>
+                <LeadFacts
+                  className="mt-5"
+                  text={t.boatDescriptions?.[boatId] || boatData.description || undefined}
+                />
+                {fuelIncluded && (
+                  <p className="mt-5 flex items-center gap-2 border-t border-border pt-4 text-sm font-medium text-foreground">
+                    <Fuel className="h-4 w-4 shrink-0 text-success" aria-hidden="true" />
                     {t.boatDetail.fuelIncluded}
                   </p>
+                )}
+                {/* Trust badges: authority signals */}
+                <div className="mt-5">
+                  <TrustBadges t={t} />
                 </div>
-              )}
-              {/* Trust badges — authority signals */}
-              <div className="mt-4">
-                <TrustBadges t={t} />
               </div>
-            </CardContent>
-          </Card>
-        </div>
+            </div>
 
-        {/* Availability urgency indicator */}
-        <div className="mb-4">
-          <AvailabilityUrgency
-            boatId={boatId}
-            selectedDate={
-              selectedDate
-                ? `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, "0")}-${String(selectedDate.getDate()).padStart(2, "0")}`
-                : undefined
-            }
-          />
-        </div>
-
-        {/* Availability + Pricing — unified flow: pick a day → see real prices */}
-        <BoatPricingSection
-          boatData={boatData}
-          boatId={boatId}
-          requiresLicense={requiresLicense}
-          selectedDate={selectedDate}
-          onDateSelect={setSelectedDate}
-          onDateClear={() => setSelectedDate(undefined)}
-          onDurationSelect={(duration, dateKey) => handleReservation({ date: dateKey, duration })}
-          translate={text => translateBoatText(text, language)}
-        />
-
-        {/* Optional guarantees, priced for this boat. Placed right after the
-            calendar: the day is chosen, so "and if the weather turns?" is the
-            next thought, and the deposit stops being an abstraction. */}
-        <BoatGuarantees
-          requiresLicense={!!requiresLicense}
-          boatDeposit={boatData.specifications?.deposit}
-        />
-
-        {/* Tabbed detail sections */}
-        <Card className="mb-8">
-          <Tabs defaultValue="caracteristicas">
-            <div className="relative border-b border-border">
-              <div className="px-4 pt-4 overflow-x-auto">
-                <TabsList className="h-auto bg-transparent p-0 gap-1 flex-wrap justify-start w-full sm:w-max sm:flex-nowrap">
-                  <TabsTrigger
-                    value="caracteristicas"
-                    className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
-                  >
-                    <Star className="w-4 h-4 mr-1.5" />
-                    {t.boatDetail.mainFeatures}
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="tecnico"
-                    className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
-                  >
-                    <NavigationIcon className="w-4 h-4 mr-1.5" />
-                    {t.boatDetail.technicalSpecs}
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="equipamiento"
-                    className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
-                  >
-                    <Settings className="w-4 h-4 mr-1.5" />
-                    {t.boatDetail.equipmentIncluded}
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="extras"
-                    className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
-                  >
-                    <Zap className="w-4 h-4 mr-1.5" />
-                    {t.boatDetail.availableExtras}
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="info"
-                    className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
-                  >
-                    <Shield className="w-4 h-4 mr-1.5" />
-                    {t.boatDetail.importantInfo}
-                  </TabsTrigger>
-                </TabsList>
-              </div>
-              {/* Mobile scroll hint: fade-out over the right edge of the tab strip */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-background to-transparent md:hidden"
+            {/* Availability urgency indicator */}
+            <div className="mb-4">
+              <AvailabilityUrgency
+                boatId={boatId}
+                selectedDate={
+                  selectedDate
+                    ? `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, "0")}-${String(selectedDate.getDate()).padStart(2, "0")}`
+                    : undefined
+                }
               />
             </div>
 
-            {/* Tab: Características */}
-            <TabsContent
-              value="caracteristicas"
-              className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200"
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-                {boatData.features?.map((feature, index) => (
-                  <div key={index} className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                    <span className="text-sm">{translateBoatText(feature, language)}</span>
-                  </div>
-                )) || (
-                  <span className="text-sm text-muted-foreground">{t.boatDetail.noFeatures}</span>
-                )}
-              </div>
-              {!requiresLicense && !isCaptainedBoat(boatId) && (
-                <div className="mt-6 pt-6 border-t border-border">
-                  <h4 className="font-bold text-base text-foreground mb-4 flex items-center gap-2">
-                    <Heart className="w-4 h-4 text-primary" />
-                    {t.boatDetail.licenseFreeAdvantages}
-                  </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
-                        {t.boatDetail.totalAccessibility}
-                      </p>
-                      <div className="space-y-1.5">
-                        {[
-                          t.boatDetail.noLicenseNeeded,
-                          t.boatDetail.quickLearning,
-                          t.boatDetail.lowerCost,
-                          t.boatDetail.perfectBeginners,
-                        ].map((item, i) => (
-                          <div key={i} className="flex items-center">
-                            <Star className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
-                            <span className="text-sm">{item}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
-                        {t.boatDetail.guaranteedFun}
-                      </p>
-                      <div className="space-y-1.5">
-                        {[
-                          { icon: Waves, label: t.boatDetail.accessCoves },
-                          { icon: Sun, label: t.boatDetail.idealFamilies },
-                          { icon: NavigationIcon, label: t.boatDetail.safeCoastalNavigation },
-                          { icon: Clock, label: t.boatDetail.immediateAvailability },
-                        ].map(({ icon: Icon, label }, i) => (
-                          <div key={i} className="flex items-center">
-                            <Icon className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
-                            <span className="text-sm">{label}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </TabsContent>
+            {/* Availability + Pricing — unified flow: pick a day → see real prices */}
+            <BoatPricingSection
+              boatData={boatData}
+              boatId={boatId}
+              requiresLicense={requiresLicense}
+              selectedDate={selectedDate}
+              onDateSelect={setSelectedDate}
+              onDateClear={() => setSelectedDate(undefined)}
+              onDurationSelect={(duration, dateKey) =>
+                handleReservation({ date: dateKey, duration })
+              }
+              translate={text => translateBoatText(text, language)}
+            />
 
-            {/* Tab: Ficha Técnica */}
-            <TabsContent
-              value="tecnico"
-              className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200"
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {[
-                  { key: "model", icon: Anchor, label: t.boatDetail.specModel },
-                  { key: "length", icon: ArrowUpDown, label: t.boatDetail.specLength },
-                  { key: "beam", icon: ArrowLeftRight, label: t.boatDetail.specBeam },
-                  { key: "engine", icon: Zap, label: t.boatDetail.specEngine },
-                  { key: "fuel", icon: Fuel, label: t.boatDetail.specFuel },
-                  { key: "capacity", icon: Users, label: t.boatDetail.specCapacity },
-                  { key: "deposit", icon: Shield, label: t.boatDetail.specDeposit },
-                ]
-                  .filter(
-                    ({ key }) =>
-                      boatData.specifications?.[key as keyof typeof boatData.specifications]
-                  )
-                  .map(({ key, icon: Icon, label }) => (
-                    <div
-                      key={key}
-                      className="flex items-center justify-between text-sm py-2 border-b border-border/50 last:border-0"
-                    >
-                      <div className="flex items-center">
-                        <Icon className="w-4 h-4 mr-2 text-primary flex-shrink-0" />
-                        <span className="font-medium text-foreground/80">{label}</span>
+            {/* Optional guarantees, priced for this boat. Placed right after the
+            calendar: the day is chosen, so "and if the weather turns?" is the
+            next thought, and the deposit stops being an abstraction. */}
+            <BoatGuarantees
+              requiresLicense={!!requiresLicense}
+              boatDeposit={boatData.specifications?.deposit}
+            />
+
+            {/* Tabbed detail sections */}
+            <div className="mb-2 overflow-hidden rounded-2xl border border-border bg-card">
+              <Tabs defaultValue="caracteristicas">
+                <div className="relative border-b border-border">
+                  <div className="px-4 pt-4 overflow-x-auto">
+                    <TabsList className="h-auto bg-transparent p-0 gap-1 flex-wrap justify-start w-full sm:w-max sm:flex-nowrap">
+                      <TabsTrigger
+                        value="caracteristicas"
+                        className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                      >
+                        <Star className="w-4 h-4 mr-1.5" />
+                        {t.boatDetail.mainFeatures}
+                      </TabsTrigger>
+                      <TabsTrigger
+                        value="tecnico"
+                        className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                      >
+                        <NavigationIcon className="w-4 h-4 mr-1.5" />
+                        {t.boatDetail.technicalSpecs}
+                      </TabsTrigger>
+                      <TabsTrigger
+                        value="equipamiento"
+                        className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                      >
+                        <Settings className="w-4 h-4 mr-1.5" />
+                        {t.boatDetail.equipmentIncluded}
+                      </TabsTrigger>
+                      <TabsTrigger
+                        value="extras"
+                        className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                      >
+                        <Zap className="w-4 h-4 mr-1.5" />
+                        {t.boatDetail.availableExtras}
+                      </TabsTrigger>
+                      <TabsTrigger
+                        value="info"
+                        className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                      >
+                        <Shield className="w-4 h-4 mr-1.5" />
+                        {t.boatDetail.importantInfo}
+                      </TabsTrigger>
+                    </TabsList>
+                  </div>
+                  {/* Mobile scroll hint: fade-out over the right edge of the tab strip */}
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-background to-transparent md:hidden"
+                  />
+                </div>
+
+                {/* Tab: Características */}
+                <TabsContent
+                  value="caracteristicas"
+                  className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200"
+                >
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                    {boatData.features?.map((feature, index) => (
+                      <div key={index} className="flex items-center">
+                        <CheckCircle className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
+                        <span className="text-sm">{translateBoatText(feature, language)}</span>
                       </div>
-                      <span className="text-foreground font-medium">
-                        {translateBoatSpec(
-                          boatData.specifications![key as keyof typeof boatData.specifications] ??
-                            "",
-                          language
-                        )}
+                    )) || (
+                      <span className="text-sm text-muted-foreground">
+                        {t.boatDetail.noFeatures}
                       </span>
-                    </div>
-                  ))}
-              </div>
-            </TabsContent>
-
-            {/* Tab: Equipamiento */}
-            <TabsContent
-              value="equipamiento"
-              className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200"
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {boatData.equipment?.map((item, index) => (
-                  <div key={index} className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                    <span className="text-sm">{translateBoatText(item, language)}</span>
+                    )}
                   </div>
-                )) || (
-                  <span className="text-sm text-muted-foreground">{t.boatDetail.noEquipment}</span>
-                )}
-              </div>
-            </TabsContent>
-
-            {/* Tab: Extras */}
-            <TabsContent
-              value="extras"
-              className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200"
-            >
-              <ul
-                role="list"
-                className="flex flex-col divide-y divide-border rounded-2xl border border-border overflow-hidden"
-              >
-                {boatData.extras?.map((extra, index) => {
-                  const IconComponent = EXTRA_ICONS[extra.icon] || Star;
-                  return (
-                    <li key={index} className="flex items-center gap-4 px-4 py-3">
-                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center">
-                        <IconComponent className="w-5 h-5 text-primary" />
+                  {!requiresLicense && !isCaptainedBoat(boatId) && (
+                    <div className="mt-6 pt-6 border-t border-border">
+                      <h3 className="font-heading text-lg font-semibold tracking-tight text-foreground mb-4">
+                        {t.boatDetail.licenseFreeAdvantages}
+                      </h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+                            {t.boatDetail.totalAccessibility}
+                          </p>
+                          <div className="space-y-1.5">
+                            {[
+                              t.boatDetail.noLicenseNeeded,
+                              t.boatDetail.quickLearning,
+                              t.boatDetail.lowerCost,
+                              t.boatDetail.perfectBeginners,
+                            ].map((item, i) => (
+                              <div key={i} className="flex items-center">
+                                <Star className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
+                                <span className="text-sm">{item}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+                            {t.boatDetail.guaranteedFun}
+                          </p>
+                          <div className="space-y-1.5">
+                            {[
+                              { icon: Waves, label: t.boatDetail.accessCoves },
+                              { icon: Sun, label: t.boatDetail.idealFamilies },
+                              { icon: NavigationIcon, label: t.boatDetail.safeCoastalNavigation },
+                              { icon: Clock, label: t.boatDetail.immediateAvailability },
+                            ].map(({ icon: Icon, label }, i) => (
+                              <div key={i} className="flex items-center">
+                                <Icon className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
+                                <span className="text-sm">{label}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex-1 min-w-0 font-medium text-sm text-foreground">
-                        {translateExtraName(extra.name, language)}
-                      </div>
-                      <div className="flex-shrink-0 text-primary font-bold text-sm tabular-nums">
-                        {extra.price}
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-              <p className="text-xs text-muted-foreground mt-4">{t.boatDetail.extrasNote}</p>
-            </TabsContent>
-
-            {/* Tab: Información */}
-            <TabsContent
-              value="info"
-              className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200"
-            >
-              <div className="text-sm text-foreground/80 space-y-2 mb-4">
-                <p>
-                  • <strong>{t.boatDetail.essentialDoc}</strong>
-                  {requiresLicense ? t.boatDetail.essentialDocLicense : ""}
-                </p>
-                <p>
-                  •{" "}
-                  {requiresLicense ? t.boatDetail.licenseRequired : t.boatDetail.noLicenseRequired}
-                </p>
-                <p>• {t.boatDetail.idealForGroups.replace("{capacity}", String(capacity))}</p>
-                <p>• {t.boatDetail.perfectExplore}</p>
-                <p>
-                  •{" "}
-                  {fuelIncluded ? t.boatDetail.fuelInsuranceIncluded : t.boatDetail.fuelNotIncluded}
-                </p>
-                {boatData.specifications?.deposit && (
-                  <p>
-                    • {t.boatDetail.specDeposit} {boatData.specifications.deposit}
-                  </p>
-                )}
-              </div>
-              {requiresLicense && <LicenseVerifierInline className="mb-4" />}
-              {/* What to bring section */}
-              <div className="mt-4 pt-4 border-t border-border">
-                <h4 className="font-bold text-base text-foreground mb-3 flex items-center gap-2">
-                  <Sun className="w-4 h-4 text-primary" />
-                  {t.boatDetail.whatToBringTitle}
-                </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
-                  {t.boatDetail.whatToBringItems.map((item, i) => (
-                    <div key={i} className="flex items-start">
-                      <CheckCircle className="w-3.5 h-3.5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm text-foreground/80">{item}</span>
                     </div>
-                  ))}
-                </div>
-                <p className="text-xs text-primary font-medium bg-primary/5 rounded-lg p-3 flex items-start gap-2">
-                  <Clock className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
-                  {t.boatDetail.whatToBringTip}
-                </p>
-              </div>
+                  )}
+                </TabsContent>
 
-              <div className="mt-4 p-4 bg-primary/5 rounded-lg">
-                <p className="text-foreground text-sm">
-                  <strong>{t.boatDetail.conditions}</strong>{" "}
-                  <button
-                    onClick={() => {
-                      const targetSection = requiresLicense
-                        ? "embarcaciones-con-licencia"
-                        : "embarcaciones-sin-licencia";
-                      setLocation(localizedPath("termsConditions"));
-                      setTimeout(() => {
-                        const element = document.getElementById(targetSection);
-                        if (element) {
-                          window.scrollTo({ top: element.offsetTop - 100, behavior: "smooth" });
-                        }
-                      }, 100);
-                    }}
-                    className="underline bg-transparent border-none p-0 text-foreground cursor-pointer hover:text-primary transition-colors"
-                    data-testid="link-terms-conditions"
+                {/* Tab: Ficha Técnica */}
+                <TabsContent
+                  value="tecnico"
+                  className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200"
+                >
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {[
+                      { key: "model", icon: Anchor, label: t.boatDetail.specModel },
+                      { key: "length", icon: ArrowUpDown, label: t.boatDetail.specLength },
+                      { key: "beam", icon: ArrowLeftRight, label: t.boatDetail.specBeam },
+                      { key: "engine", icon: Zap, label: t.boatDetail.specEngine },
+                      { key: "fuel", icon: Fuel, label: t.boatDetail.specFuel },
+                      { key: "capacity", icon: Users, label: t.boatDetail.specCapacity },
+                      { key: "deposit", icon: Shield, label: t.boatDetail.specDeposit },
+                    ]
+                      .filter(
+                        ({ key }) =>
+                          boatData.specifications?.[key as keyof typeof boatData.specifications]
+                      )
+                      .map(({ key, icon: Icon, label }) => (
+                        <div
+                          key={key}
+                          className="flex items-center justify-between text-sm py-2 border-b border-border/50 last:border-0"
+                        >
+                          <div className="flex items-center">
+                            <Icon className="w-4 h-4 mr-2 text-primary flex-shrink-0" />
+                            <span className="font-medium text-foreground/80">{label}</span>
+                          </div>
+                          <span className="text-foreground font-medium">
+                            {translateBoatSpec(
+                              boatData.specifications![
+                                key as keyof typeof boatData.specifications
+                              ] ?? "",
+                              language
+                            )}
+                          </span>
+                        </div>
+                      ))}
+                  </div>
+                </TabsContent>
+
+                {/* Tab: Equipamiento */}
+                <TabsContent
+                  value="equipamiento"
+                  className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200"
+                >
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {boatData.equipment?.map((item, index) => (
+                      <div key={index} className="flex items-center">
+                        <CheckCircle className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
+                        <span className="text-sm">{translateBoatText(item, language)}</span>
+                      </div>
+                    )) || (
+                      <span className="text-sm text-muted-foreground">
+                        {t.boatDetail.noEquipment}
+                      </span>
+                    )}
+                  </div>
+                </TabsContent>
+
+                {/* Tab: Extras */}
+                <TabsContent
+                  value="extras"
+                  className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200"
+                >
+                  <ul
+                    role="list"
+                    className="flex flex-col divide-y divide-border rounded-2xl border border-border overflow-hidden"
                   >
-                    {t.boatDetail.rentalConditions}
-                  </button>{" "}
-                  {t.boatDetail.beforeBooking}
-                </p>
-              </div>
-            </TabsContent>
-          </Tabs>
-        </Card>
+                    {boatData.extras?.map((extra, index) => {
+                      const IconComponent = EXTRA_ICONS[extra.icon] || Star;
+                      return (
+                        <li key={index} className="flex items-center gap-4 px-4 py-3">
+                          <IconComponent className="w-5 h-5 flex-shrink-0 text-primary" />
+                          <div className="flex-1 min-w-0 font-medium text-sm text-foreground">
+                            {translateExtraName(extra.name, language)}
+                          </div>
+                          <div className="flex-shrink-0 text-primary font-semibold text-sm tabular-nums">
+                            {extra.price}
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                  <p className="text-xs text-muted-foreground mt-4">{t.boatDetail.extrasNote}</p>
+                </TabsContent>
+
+                {/* Tab: Información */}
+                <TabsContent
+                  value="info"
+                  className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200"
+                >
+                  <ul className="mb-4 overflow-hidden rounded-2xl border border-border text-sm text-foreground/80 [&>li]:border-b [&>li]:border-border [&>li]:px-4 [&>li]:py-3 [&>li:last-child]:border-b-0">
+                    <li>
+                      <strong className="font-semibold">{t.boatDetail.essentialDoc}</strong>
+                      {requiresLicense ? t.boatDetail.essentialDocLicense : ""}
+                    </li>
+                    <li>
+                      {requiresLicense
+                        ? t.boatDetail.licenseRequired
+                        : t.boatDetail.noLicenseRequired}
+                    </li>
+                    <li>{t.boatDetail.idealForGroups.replace("{capacity}", String(capacity))}</li>
+                    <li>{t.boatDetail.perfectExplore}</li>
+                    <li>
+                      {fuelIncluded
+                        ? t.boatDetail.fuelInsuranceIncluded
+                        : t.boatDetail.fuelNotIncluded}
+                    </li>
+                    {boatData.specifications?.deposit && (
+                      <li>
+                        {t.boatDetail.specDeposit} {boatData.specifications.deposit}
+                      </li>
+                    )}
+                  </ul>
+                  {requiresLicense && <LicenseVerifierInline className="mb-4" />}
+                  {/* What to bring section */}
+                  <div className="mt-4 pt-4 border-t border-border">
+                    <h3 className="font-heading text-lg font-semibold tracking-tight text-foreground mb-3">
+                      {t.boatDetail.whatToBringTitle}
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
+                      {t.boatDetail.whatToBringItems.map((item, i) => (
+                        <div key={i} className="flex items-start">
+                          <CheckCircle className="w-3.5 h-3.5 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-sm text-foreground/80">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="flex items-start gap-2 rounded-xl border border-border p-3 text-xs font-medium text-primary">
+                      <Clock className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
+                      {t.boatDetail.whatToBringTip}
+                    </p>
+                  </div>
+
+                  <div className="mt-4 rounded-2xl border border-border p-4">
+                    <p className="text-foreground text-sm">
+                      <strong>{t.boatDetail.conditions}</strong>{" "}
+                      <button
+                        onClick={() => {
+                          const targetSection = requiresLicense
+                            ? "embarcaciones-con-licencia"
+                            : "embarcaciones-sin-licencia";
+                          setLocation(localizedPath("termsConditions"));
+                          setTimeout(() => {
+                            const element = document.getElementById(targetSection);
+                            if (element) {
+                              window.scrollTo({ top: element.offsetTop - 100, behavior: "smooth" });
+                            }
+                          }, 100);
+                        }}
+                        className="underline bg-transparent border-none p-0 text-foreground cursor-pointer hover:text-primary transition-colors"
+                        data-testid="link-terms-conditions"
+                      >
+                        {t.boatDetail.rentalConditions}
+                      </button>{" "}
+                      {t.boatDetail.beforeBooking}
+                    </p>
+                  </div>
+                </TabsContent>
+              </Tabs>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Related Boats Section — horizontal shelf */}
       {relatedBoats.length > 0 && (
-        <section className="bg-muted py-12">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="font-heading font-bold text-xl sm:text-2xl text-foreground mb-6 px-4 text-center">
-              {t.relatedBoats.title}
-            </h2>
-            <div
-              className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-4 pb-4 md:justify-center scroll-pl-4"
-              style={{ scrollbarWidth: "thin" }}
-            >
-              {relatedBoats.map(relBoat => {
-                const relPrice = relBoat.pricing
-                  ? (getMinActivePrice(relBoat.pricing.BAJA?.prices) ?? 0)
-                  : 0;
-                const relCapacity = relBoat.specifications
-                  ? parseInt(
-                      relBoat.specifications.capacity?.split(" ")[0] || String(relBoat.capacity)
-                    )
-                  : relBoat.capacity;
-                return (
-                  <a
-                    key={relBoat.id}
-                    href={localizedPath("boatDetail", relBoat.id)}
-                    className="group bg-background rounded-2xl overflow-hidden hover:shadow-md transition-shadow duration-200 border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 flex-shrink-0 w-[260px] sm:w-[280px] snap-start"
-                  >
-                    <div
-                      className="relative overflow-hidden boat-image-reveal"
-                      style={{ aspectRatio: "16/10" }}
-                    >
-                      <img
-                        src={
-                          relBoat.imageGallery?.find((img: string) => !img.includes("portrait")) ||
-                          relBoat.imageGallery?.[0] ||
-                          getBoatImage(relBoat.imageUrl || "")
-                        }
-                        alt={getBoatAltText(translateBoatText(relBoat.name, language))}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        width={400}
-                        height={250}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      <span
-                        className={`absolute top-2 right-2 text-[10px] font-medium px-2 py-0.5 rounded-full backdrop-blur-sm ${
-                          relBoat.requiresLicense
-                            ? "bg-primary text-white"
-                            : "bg-white/95 text-primary"
-                        }`}
-                      >
-                        {relBoat.requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
-                      </span>
-                    </div>
-                    <div className="p-4">
-                      <h3 className="font-heading font-semibold text-foreground mb-1 truncate">
-                        {translateBoatText(relBoat.name, language)}
-                      </h3>
-                      <div className="flex items-center justify-between gap-2 text-sm">
-                        <span className="flex items-center gap-1 text-muted-foreground">
-                          <Users className="w-3.5 h-3.5" />
-                          {relCapacity}
-                        </span>
-                        {relPrice > 0 && (
-                          <div className="text-sm">
-                            <span className="text-muted-foreground text-xs">
-                              {t.relatedBoats.from}{" "}
-                            </span>
-                            <span className="font-bold text-primary">{relPrice}€</span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </a>
-                );
-              })}
-            </div>
-            {/* Back-link to the boat's category page (the captained excursion
-                links to its own landing instead of a self-drive category). */}
-            <div className="text-center mt-2 px-4">
-              <a
-                href={localizedPath(
-                  isCaptainedBoat(boatData.id)
-                    ? "categoryCaptained"
-                    : requiresLicense
-                      ? "categoryLicensed"
-                      : "categoryLicenseFree",
-                )}
-                className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline pointer-coarse:py-3 pointer-coarse:-my-3"
-                data-testid="link-boat-category"
+        <div className={TONE_BG.background}>
+          <section className={`${MUTED_BG} ${SHEET} py-14 sm:py-16`}>
+            <div className="max-w-7xl mx-auto">
+              <h2 className={`${H2} mb-8 px-4 text-center`}>{t.relatedBoats.title}</h2>
+              <div
+                className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-4 pb-4 md:justify-center scroll-pl-4"
+                style={{ scrollbarWidth: "thin" }}
               >
-                {isCaptainedBoat(boatData.id)
-                  ? (t.captainedPage?.crossLinkLabel ?? t.breadcrumbs.categoryLicenseFree)
-                  : requiresLicense
-                    ? t.breadcrumbs.categoryLicensed
-                    : t.breadcrumbs.categoryLicenseFree}
-                <ChevronRight className="w-4 h-4" aria-hidden="true" />
-              </a>
+                {relatedBoats.map(relBoat => {
+                  const relPrice = relBoat.pricing
+                    ? (getMinActivePrice(relBoat.pricing.BAJA?.prices) ?? 0)
+                    : 0;
+                  const relCapacity = relBoat.specifications
+                    ? parseInt(
+                        relBoat.specifications.capacity?.split(" ")[0] || String(relBoat.capacity)
+                      )
+                    : relBoat.capacity;
+                  return (
+                    <a
+                      key={relBoat.id}
+                      href={localizedPath("boatDetail", relBoat.id)}
+                      className="group bg-background rounded-2xl overflow-hidden [@media(hover:hover)]:hover:border-foreground/30 transition-colors duration-200 motion-reduce:transition-none border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 flex-shrink-0 w-[260px] sm:w-[280px] snap-start"
+                    >
+                      <div
+                        className="relative overflow-hidden boat-image-reveal"
+                        style={{ aspectRatio: "16/10" }}
+                      >
+                        <img
+                          src={
+                            relBoat.imageGallery?.find(
+                              (img: string) => !img.includes("portrait")
+                            ) ||
+                            relBoat.imageGallery?.[0] ||
+                            getBoatImage(relBoat.imageUrl || "")
+                          }
+                          alt={getBoatAltText(translateBoatText(relBoat.name, language))}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          width={400}
+                          height={250}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span
+                          className={`absolute top-2 right-2 text-[10px] font-medium px-2 py-0.5 rounded-full backdrop-blur-sm ${
+                            relBoat.requiresLicense
+                              ? "bg-primary text-white"
+                              : "bg-white/95 text-primary"
+                          }`}
+                        >
+                          {relBoat.requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
+                        </span>
+                      </div>
+                      <div className="p-4">
+                        <h3 className="font-heading font-semibold text-foreground mb-1 truncate">
+                          {translateBoatText(relBoat.name, language)}
+                        </h3>
+                        <div className="flex items-center justify-between gap-2 text-sm">
+                          <span className="flex items-center gap-1 text-muted-foreground">
+                            <Users className="w-3.5 h-3.5" />
+                            {relCapacity}
+                          </span>
+                          {relPrice > 0 && (
+                            <div className="text-sm">
+                              <span className="text-muted-foreground text-xs">
+                                {t.relatedBoats.from}{" "}
+                              </span>
+                              <span className="font-semibold text-primary">{relPrice}€</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+              {/* Back-link to the boat's category page (the captained excursion
+                links to its own landing instead of a self-drive category). */}
+              <div className="text-center mt-2 px-4">
+                <a
+                  href={localizedPath(
+                    isCaptainedBoat(boatData.id)
+                      ? "categoryCaptained"
+                      : requiresLicense
+                        ? "categoryLicensed"
+                        : "categoryLicenseFree"
+                  )}
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline pointer-coarse:py-3 pointer-coarse:-my-3"
+                  data-testid="link-boat-category"
+                >
+                  {isCaptainedBoat(boatData.id)
+                    ? (t.captainedPage?.crossLinkLabel ?? t.breadcrumbs.categoryLicenseFree)
+                    : requiresLicense
+                      ? t.breadcrumbs.categoryLicensed
+                      : t.breadcrumbs.categoryLicenseFree}
+                  <ChevronRight className="w-4 h-4" aria-hidden="true" />
+                </a>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       )}
 
-      {/* FAQ Section — items come from shared/boatFaqBuilder, derived from admin data */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <h2 className="text-h2 font-heading font-bold text-foreground mb-6 text-center">
-          {boatFaqTitle}
-        </h2>
-        <div className="space-y-4 max-w-3xl mx-auto">
-          {boatFaqItems.map((item, idx) => (
-            <details key={idx} className="group border border-border rounded-lg" open={idx < 2}>
-              <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
-                {item.question}
-                <ChevronRight className="w-4 h-4 transition-transform duration-200 group-open:rotate-90" />
-              </summary>
-              <div className="px-4 pb-4 text-muted-foreground">{item.answer}</div>
-            </details>
-          ))}
-        </div>
-      </div>
+      {/* FAQ Section: items come from shared/boatFaqBuilder, derived from admin data.
+          Born folded; answers stay in the DOM. */}
+      <FaqSheet
+        idPrefix="boat-faq"
+        tone="background"
+        next="footer"
+        title={boatFaqTitle}
+        items={boatFaqItems}
+      />
 
       <Footer />
 

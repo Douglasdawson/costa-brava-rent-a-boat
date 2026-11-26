@@ -53,3 +53,23 @@ export function resolveBoatImagePath(input: string | null | undefined): string |
 
   return null;
 }
+
+// Extra photos per boat, in display order (the exterior shot first). The DB `imageGallery`
+// column is empty for most boats, so the quick view falls back to these real files.
+const GALLERY_FILES: Record<string, { dir: string; slug: string; shots: string[] }> = {
+  "solar-450": { dir: "solar-450", slug: "solar-450", shots: ["exterior-puerto", "cubierta-proa", "puerto-blanes"] },
+  "remus-450": { dir: "remus-450", slug: "remus-450", shots: ["exterior-puerto", "familia-navegando", "puerto-blanes"] },
+  "astec-400": { dir: "astec-400", slug: "astec-400", shots: ["exterior-puerto", "exterior-costa", "proa-solarium", "lateral-blanes"] },
+  "astec-480": { dir: "astec-480", slug: "astec-480", shots: ["exterior-puerto", "navegando-costa", "navegando-lateral", "amarrado-puerto"] },
+  "mingolla-brava-19": { dir: "mingolla", slug: "mingolla-brava-19", shots: ["exterior-puerto", "solarium-proa", "lateral-navegando", "asiento-mesa", "popa-motor"] },
+  "trimarchi-57s": { dir: "trimarchi", slug: "trimarchi-57s", shots: ["exterior-puerto", "proa-aperitivo", "pareja-navegando", "consola-timon", "popa-atardecer", "vista-completa-puerto"] },
+  "pacific-craft-625": { dir: "pacific-craft", slug: "pacific-craft-625", shots: ["exterior-puerto", "proa-solarium-cala", "cala-agua-cristalina", "fondeado-bahia", "consola-timon-cala", "asientos-capitan"] },
+};
+GALLERY_FILES["excursion-privada"] = GALLERY_FILES["pacific-craft-625"];
+
+/** Public paths of the boat's photos (empty when we only have the cover). */
+export function getBoatGalleryPaths(boatId: string): string[] {
+  const g = GALLERY_FILES[boatId];
+  if (!g) return [];
+  return g.shots.map(s => `/images/boats/${g.dir}/alquiler-barco-${g.slug}-rent-a-boat-costa-brava-blanes-${s}.webp`);
+}

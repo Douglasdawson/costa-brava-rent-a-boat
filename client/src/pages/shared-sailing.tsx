@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
-import { Sparkles, CheckCircle2, ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { CheckCircle2 } from "lucide-react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { H2, Sheet, Rise, PhotoHero, FaqSheet } from "@/components/activity-kit";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
@@ -66,9 +68,6 @@ export default function SharedSailingPage() {
     },
     generateFAQSchema(s.faq.map(f => ({ question: f.q, answer: f.a }))),
   ];
-
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
 
   const [name, setName] = useState("");
   const [phonePrefix, setPhonePrefix] = useState(getDefaultPhonePrefixForLanguage(language));
@@ -159,88 +158,53 @@ export default function SharedSailingPage() {
       />
       <Navigation />
 
-      {/* ═══ HERO: foto inmersiva + info ═══ */}
-      <section className="relative isolate flex min-h-[78vh] items-center overflow-hidden pb-16 pt-28">
-        <img
-          src={HERO_IMAGE}
-          alt=""
-          aria-hidden="true"
-          decoding="async"
-          draggable={false}
-          className={`absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-[1200ms] ease-out ${
-            mounted ? "scale-100" : "scale-[1.06]"
-          }`}
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/45 to-black/65" />
-
-        <div
-          className={`mx-auto w-full max-w-3xl px-4 text-center text-white transition-all duration-700 ease-out sm:px-6 ${
-            mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-          }`}
-        >
-          <span className="mb-5 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-sm font-medium text-white ring-1 ring-white/25">
-            <Sparkles className="h-4 w-4" />
-            {s.hero.badge}
-          </span>
-
-          <h1 className="font-heading text-display font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)]">
-            {s.hero.title}
-          </h1>
-
-          <p className="mx-auto mt-5 max-w-xl text-lg text-white/90 [text-shadow:0_1px_10px_hsl(215_45%_12%/0.45)]">
-            {s.hero.subtitle}
-          </p>
-
-          <div className="mt-7 flex flex-wrap items-end justify-center gap-x-3 gap-y-1">
-            <span className="font-heading text-3xl font-extrabold text-white [text-shadow:0_2px_16px_hsl(215_45%_12%/0.55)] sm:text-4xl">
-              {s.hero.priceHook}
-            </span>
-            <span className="text-sm text-white/80">{s.hero.priceNote}</span>
-          </div>
-
-          <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-popular px-4 py-2 text-sm font-semibold text-popular-foreground">
-            <span className="h-2 w-2 rounded-full bg-popular-foreground" />
-            {s.hero.scarcity}
-          </div>
-
-          <div className="mt-8">
-            <a href="#interes" className={`${CTA_CLASS} min-h-12 px-9 text-base`}>
-              {s.hero.cta}
-              <ArrowRight className="h-5 w-5" />
-            </a>
-          </div>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
-            {s.chips.map(chip => (
-              <span
-                key={chip}
-                className="inline-flex items-center gap-1.5 rounded-full bg-black/25 px-3 py-1.5 text-sm text-white ring-1 ring-white/20"
-              >
-                <CheckCircle2 className="h-4 w-4 text-white" />
-                {chip}
+      <PhotoHero
+        minHeight="sm:min-h-[78svh]"
+        media={
+          <img src={HERO_IMAGE} alt="" aria-hidden="true" decoding="async" draggable={false} />
+        }
+        title={s.hero.title}
+        subtitle={s.hero.subtitle}
+        actions={
+          <div className="flex flex-col items-center gap-6">
+            <div className="flex flex-wrap items-baseline justify-center gap-x-3 gap-y-1">
+              <span className="font-heading text-3xl font-semibold tracking-tight text-white [text-shadow:0_2px_16px_hsl(215_45%_12%/0.55)] sm:text-4xl">
+                {s.hero.priceHook}
               </span>
-            ))}
+              <span className="text-sm text-white/80">{s.hero.priceNote}</span>
+            </div>
+            <InteractiveHoverButton
+              tone="dark"
+              href="#interes"
+              className="min-h-12 w-full px-9 text-base sm:w-auto"
+            >
+              {s.hero.cta}
+            </InteractiveHoverButton>
           </div>
-        </div>
-      </section>
+        }
+        facts={[s.hero.badge, s.hero.scarcity, ...s.chips]}
+        next="muted"
+      />
 
       {/* ═══ Sección formulario (lista de interés) ═══ */}
-      <section id="interes" className="scroll-mt-20 bg-muted/40 px-4 py-16 sm:px-6 lg:py-20">
-        <div className="mx-auto max-w-xl">
+      <Sheet
+        id="interes"
+        tone="muted"
+        next="page"
+        className="scroll-mt-20"
+        containerClassName="max-w-xl"
+      >
+        <Rise>
           {status === "success" ? (
             <div role="status" className="rounded-2xl border border-border bg-card p-8 text-center">
               <CheckCircle2 className="mx-auto mb-4 h-12 w-12 text-[hsl(var(--ring))]" />
-              <h2 className="mb-2 font-heading text-h2 font-bold text-foreground">
-                {s.form.successTitle}
-              </h2>
+              <h2 className={`${H2} mb-2`}>{s.form.successTitle}</h2>
               <p className="text-muted-foreground">{s.form.successText}</p>
             </div>
           ) : (
             <>
               <div className="mb-7 text-center">
-                <h2 className="font-heading text-h2 font-bold text-foreground">
-                  {s.form.title}
-                </h2>
+                <h2 className={H2}>{s.form.title}</h2>
                 <p className="mt-2 text-muted-foreground">{s.form.subtitle}</p>
               </div>
 
@@ -427,38 +391,24 @@ export default function SharedSailingPage() {
                   </p>
                 )}
 
-                <button
+                <InteractiveHoverButton
+                  tone="dark"
                   type="submit"
                   disabled={status === "submitting"}
-                  className={`${CTA_CLASS} min-h-12 w-full px-8 text-base`}
+                  className="min-h-12 w-full px-8 text-base"
                 >
                   {status === "submitting" ? s.form.submitting : s.form.submit}
-                  {status !== "submitting" && <ArrowRight className="h-5 w-5" />}
-                </button>
+                </InteractiveHoverButton>
 
                 <p className="text-center text-xs text-muted-foreground">{s.form.reassurance}</p>
               </form>
             </>
           )}
-        </div>
-      </section>
+        </Rise>
+      </Sheet>
 
       {/* ═══ FAQ (contenido citable para buscadores de IA) ═══ */}
-      <section className="px-4 py-16 sm:px-6 lg:py-20">
-        <div className="mx-auto max-w-2xl">
-          <h2 className="text-center font-heading text-h2 font-bold text-foreground">
-            {s.faqTitle}
-          </h2>
-          <dl className="mt-8 divide-y divide-border">
-            {s.faq.map(f => (
-              <div key={f.q} className="py-5 first:pt-0 last:pb-0">
-                <dt className="font-heading font-semibold text-foreground">{f.q}</dt>
-                <dd className="mt-1.5 text-muted-foreground">{f.a}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      <FaqSheet idPrefix="shared-faq" title={s.faqTitle} items={s.faq} next="footer" />
 
       {/* ═══ Barra CTA fija (solo móvil) ═══ */}
       {status !== "success" && (

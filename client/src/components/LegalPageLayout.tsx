@@ -1,8 +1,8 @@
-import { Shield } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
 import { useTranslations } from "@/lib/translations";
+import { PageHeader, Sheet } from "@/components/content-kit";
 
 // Shared layout for legal pages (privacy, terms, cookies, accessibility).
 // Content comes from t.legalPages.<page>.sections — each { title, body }.
@@ -28,28 +28,13 @@ export function LegalPageLayout({ heroTitle, lastUpdated, sections }: LegalPageL
       <Navigation />
       <ReadingProgressBar />
 
-      {/* Hero — a defined band, not a floating title: the old to-background
-          gradient was imperceptible on wide screens, so the header read as
-          text lost in white space with no bottom edge. Solid muted tint +
-          border give it shape at any width; the date at full muted-foreground
-          (the /60 opacity was below AA on small text). */}
-      <div className="border-b border-border bg-muted/50 pt-28 pb-10 sm:pt-32 sm:pb-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <Shield className="w-7 h-7 text-primary" aria-hidden="true" />
-            <h1 className="text-h1 font-heading font-bold text-foreground">
-              {heroTitle}
-            </h1>
-          </div>
-          <p className="text-sm text-muted-foreground">{lastUpdated}</p>
-        </div>
-      </div>
+      <PageHeader title={heroTitle} subtitle={lastUpdated} next="background" />
 
-      {/* Content */}
-      <div className="pt-6 pb-10 sm:pt-8 sm:pb-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      {/* Content: typography only, the legal text is untouched */}
+      <Sheet tone="background" next="foot" className="py-12 sm:py-16">
+        <div className="mx-auto max-w-3xl space-y-10 px-4 sm:px-6 lg:px-8">
           {disclaimer && (
-            <div className="bg-amber-50 dark:bg-amber-950/30 rounded-xl p-4 text-sm text-amber-900 dark:text-amber-200">
+            <div className="rounded-2xl bg-amber-50 p-4 text-sm text-amber-900 dark:bg-amber-950/30 dark:text-amber-200">
               <p>{disclaimer}</p>
             </div>
           )}
@@ -58,17 +43,17 @@ export function LegalPageLayout({ heroTitle, lastUpdated, sections }: LegalPageL
             <section key={i} aria-labelledby={`legal-section-${i}`}>
               <h2
                 id={`legal-section-${i}`}
-                className="text-xl font-heading font-semibold text-foreground mb-4"
+                className="mb-4 border-t border-border pt-6 font-heading text-xl font-semibold tracking-tight text-foreground"
               >
                 {section.title}
               </h2>
-              <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
+              <p className="whitespace-pre-line text-base leading-relaxed text-muted-foreground">
                 {section.body}
               </p>
             </section>
           ))}
         </div>
-      </div>
+      </Sheet>
 
       <Footer />
     </main>

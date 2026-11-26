@@ -1,26 +1,24 @@
-import { Button } from "@/components/ui/button";
-import {
-  Users,
-  CheckCircle,
-  Anchor,
-  MapPin,
-  ListChecks,
-  FileText,
-  Fuel,
-  ChevronRight,
-  ArrowLeftRight,
-  Ruler,
-  Gauge,
-  ShieldCheck,
-} from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
 import RelatedContent from "@/components/RelatedContent";
-import { FAQSection } from "@/components/FAQSection";
+import {
+  Callout,
+  CheckPanel,
+  DefList,
+  FaqSheet,
+  H2,
+  LeadFacts,
+  PILL_LINK,
+  Rise,
+  RuledPanel,
+  Sheet,
+  StepList,
+} from "@/components/page-kit";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
@@ -29,26 +27,6 @@ import { BUSINESS_RATING_STR } from "@shared/businessProfile";
 import { translateBoatText } from "@shared/boatTextTranslations";
 import { BookingStickyBar } from "@/components/MobileStickyBar";
 import CategoryHero from "@/components/CategoryHero";
-
-function RevealSection({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <div
-      ref={ref}
-      className={`transition-[opacity,transform,filter] duration-700 ${
-        isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"
-      } ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
 
 // The server injects the canonical JSON-LD graph for this route (Service +
 // FAQPage + HowTo + Breadcrumb, built from the same i18n keys the page
@@ -89,14 +67,14 @@ export default function CategoryCaptainedPage() {
   const heroPrice = excursion.pricing.BAJA.prices["2h"];
 
   const specs = [
-    { icon: Users, label: cp.specCapacityLabel, value: excursion.specifications.capacity },
-    { icon: Gauge, label: cp.specEngineLabel, value: excursion.specifications.engine },
-    { icon: Ruler, label: cp.specLengthLabel, value: excursion.specifications.length },
-    { icon: ShieldCheck, label: cp.specDepositLabel, value: excursion.specifications.deposit },
+    { label: cp.specCapacityLabel, value: excursion.specifications.capacity },
+    { label: cp.specEngineLabel, value: excursion.specifications.engine },
+    { label: cp.specLengthLabel, value: excursion.specifications.length },
+    { label: cp.specDepositLabel, value: excursion.specifications.deposit },
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <SEO
         title={cp.seoTitle}
         description={cp.seoDescription.replace("{rating}", BUSINESS_RATING_STR)}
@@ -106,7 +84,7 @@ export default function CategoryCaptainedPage() {
       <Navigation />
       <ReadingProgressBar />
 
-      {/* ═══ HERO ═══ */}
+      {/* HERO */}
       <CategoryHero
         imageBasePath="/images/locations/hero-blanes"
         imageAlt={cp.heroImageAlt}
@@ -115,363 +93,307 @@ export default function CategoryCaptainedPage() {
         price={heroPrice}
         secondaryCta={{ href: localizedPath("categoryLicensed"), label: cp.heroSecondaryCta }}
         testId="captained"
+        next="background"
       />
 
-      {/* ═══ PRICING BY SEASON ═══ straight from boatData */}
-      <section className="bg-muted py-6 sm:py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold mb-2 sm:mb-4">{cp.pricingTitle}</h2>
-          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-3 sm:mb-6">{cp.pricingIntro}</p>
-          <div className="rounded-2xl bg-background overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b bg-muted/50">
-                    <th className="text-left p-3 font-semibold">{cp.pricingColDuration}</th>
-                    {seasons.map((season, idx) => (
-                      <th key={idx} className="text-right p-3 font-semibold">
-                        {season.label}
+      {/* PRICING BY SEASON: straight from boatData */}
+      <Sheet tone="background" next="muted" aria-labelledby="captained-pricing-title">
+        <div className="container mx-auto grid max-w-6xl gap-10 px-4 lg:grid-cols-[5fr_7fr] lg:gap-16">
+          <Rise>
+            <h2 id="captained-pricing-title" className={H2}>
+              {cp.pricingTitle}
+            </h2>
+            <LeadFacts text={cp.pricingIntro} className="mt-5" />
+          </Rise>
+          <Rise delay={0.1}>
+            <div className="overflow-hidden rounded-2xl border border-border bg-card">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm sm:text-base">
+                  <thead>
+                    <tr className="border-b border-border">
+                      <th className="p-4 text-left font-medium text-muted-foreground">
+                        {cp.pricingColDuration}
                       </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {durations.map((duration, dIdx) => (
-                    <tr key={duration} className="border-b last:border-b-0 hover:bg-muted/30">
-                      <td className="p-3 font-medium">{cp.pricingDurations[dIdx]}</td>
-                      {seasons.map((season, sIdx) => (
-                        <td key={sIdx} className="p-3 text-right font-semibold text-primary">
-                          {season.prices[duration]}
-                          {"€"}
-                        </td>
+                      {seasons.map((season, idx) => (
+                        <th key={idx} className="p-4 text-right font-medium text-muted-foreground">
+                          {season.label}
+                        </th>
                       ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <p className="text-muted-foreground leading-relaxed mt-4">{cp.pricingNote}</p>
-        </div>
-      </section>
-
-      {/* ═══ WHAT IS A CAPTAINED EXCURSION ═══ text + image */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-            <div className="lg:col-span-3">
-              <h2 className="text-h2 font-heading font-bold text-foreground mb-4">
-                {cp.whatIsTitle}
-              </h2>
-              <p className="text-muted-foreground leading-relaxed mb-10">{cp.whatIsIntro}</p>
-              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-8">
-                {whatIsCards.map((card, idx) => (
-                  <div key={idx}>
-                    <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
-                      {card.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">{card.desc}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-8 bg-muted rounded-xl p-5">
-                <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
-                  {cp.synonymsTitle}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">{cp.synonymsBody}</p>
+                  </thead>
+                  <tbody>
+                    {durations.map((duration, dIdx) => (
+                      <tr key={duration} className="border-b border-border last:border-b-0">
+                        <td className="p-4 font-medium text-foreground">
+                          {cp.pricingDurations[dIdx]}
+                        </td>
+                        {seasons.map((season, sIdx) => (
+                          <td
+                            key={sIdx}
+                            className="p-4 text-right font-heading font-semibold tabular-nums text-foreground"
+                          >
+                            {season.prices[duration]}
+                            {"€"}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
-            <div className="lg:col-span-2">
-              <img
-                src="/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-asientos-capitan.webp"
-                alt="Captained private boat excursion aboard the Pacific Craft 625 in Blanes"
-                className="w-full rounded-2xl object-cover aspect-[4/5]"
-                loading="lazy"
-                width={640}
-                height={800}
-              />
-            </div>
-          </div>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground text-pretty">
+              {cp.pricingNote}
+            </p>
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* ═══ PHOTO BREAK ═══ */}
-      <div className="w-full overflow-hidden">
-        <img
-          src="/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-proa-solarium-cala.webp"
-          alt="Bow sundeck of the private excursion boat anchored in a Costa Brava cove"
-          className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
-          loading="lazy"
-          width={1920}
-          height={600}
-        />
-      </div>
-
-      {/* ═══ ROUTE: BLANES TO TOSSA ═══ */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-4">
-            <MapPin className="w-6 h-6 text-primary shrink-0" />
-            {cp.routeTitle}
-          </h2>
-          <p className="text-muted-foreground leading-relaxed mb-8">{cp.routeIntro}</p>
-          <ol className="relative border-l-2 border-primary/30 ml-3 space-y-6">
-            {cp.routeStops.map((stop, idx) => (
-              <li key={idx} className="pl-6 relative">
-                <span className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-primary" />
-                <p className="text-foreground leading-relaxed">{stop}</p>
-              </li>
-            ))}
-          </ol>
-          <p className="text-muted-foreground leading-relaxed mt-6">{cp.routeNote}</p>
-          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
-            <a
-              href={localizedPath("locationTossa")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-            >
-              <ChevronRight className="w-4 h-4" />
-              {cp.linksTossa}
-            </a>
-            <a
-              href={localizedPath("blogDetail", "alquiler-barco-tossa-de-mar-desde-blanes")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-            >
-              <ChevronRight className="w-4 h-4" />
-              {cp.linksBlogTossa}
-            </a>
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* ═══ INCLUDED / NOT INCLUDED ═══ */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-10">
-            <div>
-              <h2 className="text-h2 font-heading font-bold text-foreground mb-6">
-                {cp.includedTitle}
-              </h2>
-              <ul className="space-y-3">
-                {cp.includedItems.map((item, idx) => (
-                  <li key={idx} className="flex items-start">
-                    <CheckCircle className="w-4 h-4 text-primary mr-3 mt-1 shrink-0" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h2 className="text-h2 font-heading font-bold text-foreground mb-6">
-                {cp.notIncludedTitle}
-              </h2>
-              <ul className="space-y-3">
-                {cp.notIncludedItems.map((item, idx) => (
-                  <li key={idx} className="flex items-start">
-                    <ChevronRight className="w-4 h-4 text-muted-foreground mr-3 mt-1 shrink-0" />
-                    <span className="text-muted-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="text-foreground leading-relaxed mt-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
-                <Fuel className="w-5 h-5 text-amber-600 inline mr-2 -mt-1" />
-                {cp.fuelNote}
+      {/* WHAT IS A CAPTAINED EXCURSION */}
+      <Sheet tone="muted" next="background" aria-labelledby="captained-what-title">
+        <div className="container mx-auto grid max-w-6xl items-start gap-10 px-4 lg:grid-cols-[7fr_5fr] lg:gap-16">
+          <Rise>
+            <h2 id="captained-what-title" className={H2}>
+              {cp.whatIsTitle}
+            </h2>
+            <LeadFacts text={cp.whatIsIntro} className="mt-5" />
+            <DefList
+              className="mt-8"
+              items={whatIsCards.map(card => ({ title: card.title, desc: card.desc }))}
+            />
+            <div className="mt-6 rounded-2xl border border-border bg-background p-5">
+              <h3 className="font-heading text-base font-semibold text-foreground">
+                {cp.synonymsTitle}
+              </h3>
+              <p className="mt-1 text-base leading-relaxed text-muted-foreground text-pretty">
+                {cp.synonymsBody}
               </p>
             </div>
-          </div>
+          </Rise>
+          <Rise delay={0.1} className="lg:sticky lg:top-28">
+            <img
+              src="/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-puerto-blanes.webp"
+              alt="Captained private boat excursion aboard the Pacific Craft 625 in Blanes"
+              className="aspect-[4/5] w-full rounded-2xl object-cover"
+              loading="lazy"
+              width={640}
+              height={800}
+            />
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* ═══ THE BOAT ═══ specs from the static catalog */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground mb-4">
-            <Anchor className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
-            {cp.boatTitle}
-          </h2>
-          <p className="text-muted-foreground leading-relaxed mb-8 max-w-3xl">{cp.boatIntro}</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            {specs.map((spec, idx) => (
-              <div key={idx} className="bg-background rounded-2xl p-5 border border-border">
-                <spec.icon className="w-5 h-5 text-primary mb-2" />
-                <div className="text-sm text-muted-foreground">{spec.label}</div>
-                <div className="font-heading font-semibold text-foreground">{spec.value}</div>
-              </div>
-            ))}
-          </div>
-          <a
-            href={localizedPath("boatDetail", excursion.id)}
-            className="text-primary hover:underline inline-flex items-center gap-1 font-medium"
-          >
-            <ChevronRight className="w-4 h-4" />
-            {cp.boatCta}
-          </a>
+      {/* ROUTE: BLANES TO TOSSA */}
+      <Sheet tone="background" next="muted" aria-labelledby="captained-route-title">
+        <div className="container mx-auto grid max-w-6xl items-start gap-10 px-4 lg:grid-cols-[5fr_7fr] lg:gap-16">
+          <Rise>
+            <div className="overflow-hidden rounded-2xl">
+              <img
+                src="/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-proa-solarium-cala.webp"
+                alt="Bow sundeck of the private excursion boat anchored in a Costa Brava cove"
+                className="aspect-[4/3] w-full object-cover lg:aspect-[4/5]"
+                loading="lazy"
+                width={1920}
+                height={600}
+              />
+            </div>
+          </Rise>
+          <Rise delay={0.1}>
+            <h2 id="captained-route-title" className={H2}>
+              {cp.routeTitle}
+            </h2>
+            <LeadFacts text={cp.routeIntro} className="mt-5" />
+            <StepList className="mt-8" steps={cp.routeStops.map(stop => ({ text: stop }))} />
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground text-pretty">
+              {cp.routeNote}
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href={localizedPath("locationTossa")} className={PILL_LINK}>
+                {cp.linksTossa}
+                <ChevronRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <a
+                href={localizedPath("blogDetail", "alquiler-barco-tossa-de-mar-desde-blanes")}
+                className={PILL_LINK}
+              >
+                {cp.linksBlogTossa}
+                <ChevronRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </div>
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* ═══ FOR WHOM ═══ */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
-            {cp.forWhomTitle}
-          </h2>
-          <div className="grid sm:grid-cols-2 gap-x-8 gap-y-8">
-            {cp.forWhomItems.map((item, idx) => (
-              <div key={idx}>
-                <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
-                  {item.title}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">{item.text}</p>
-              </div>
-            ))}
-          </div>
+      {/* INCLUDED / NOT INCLUDED */}
+      <Sheet tone="muted" next="background" aria-label={cp.includedTitle}>
+        <div className="container mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-2 lg:gap-16">
+          <Rise>
+            <h2 className={H2}>{cp.includedTitle}</h2>
+            <CheckPanel className="mt-6" items={cp.includedItems} />
+          </Rise>
+          <Rise delay={0.1}>
+            <h2 className={H2}>{cp.notIncludedTitle}</h2>
+            <RuledPanel className="mt-6" items={cp.notIncludedItems} />
+            <Callout className="mt-4">{cp.fuelNote}</Callout>
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* ═══ HOW TO: 5 STEPS ═══ */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-4">
-            <ListChecks className="w-6 h-6 text-primary shrink-0" />
-            {cp.howToTitle}
-          </h2>
-          <p className="text-muted-foreground leading-relaxed mb-8">{cp.howToIntro}</p>
-          <ol className="space-y-6">
-            {cp.howToSteps.map((step, idx) => (
-              <li key={idx} className="flex gap-4">
-                <div className="shrink-0 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-heading font-bold">
-                  {idx + 1}
+      {/* THE BOAT: specs from the static catalog */}
+      <Sheet tone="background" next="muted" aria-labelledby="captained-boat-title">
+        <div className="container mx-auto max-w-6xl px-4">
+          <Rise className="grid gap-6 lg:grid-cols-[5fr_7fr] lg:gap-16">
+            <h2 id="captained-boat-title" className={H2}>
+              {cp.boatTitle}
+            </h2>
+            <LeadFacts text={cp.boatIntro} />
+          </Rise>
+          <Rise delay={0.1}>
+            <dl className="mt-10 grid grid-cols-2 overflow-hidden rounded-2xl border border-border bg-card md:grid-cols-4">
+              {specs.map((spec, idx) => (
+                <div
+                  key={idx}
+                  className="border-border px-5 py-5 [&:nth-child(even)]:border-l [&:nth-child(n+3)]:border-t md:[&:nth-child(n+2)]:border-l md:[&:nth-child(n+3)]:border-t-0"
+                >
+                  <dt className="text-sm text-muted-foreground">{spec.label}</dt>
+                  <dd className="mt-1 font-heading text-lg font-semibold leading-snug text-foreground">
+                    {spec.value}
+                  </dd>
                 </div>
-                <div className="flex-1">
-                  <h3 className="font-heading font-semibold text-lg mb-2">{step.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{step.text}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+              ))}
+            </dl>
+            <a href={localizedPath("boatDetail", excursion.id)} className={`${PILL_LINK} mt-6`}>
+              {cp.boatCta}
+              <ChevronRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* ═══ CAPTAINED VS SELF-DRIVE ═══ */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-4">
-            <ArrowLeftRight className="w-6 h-6 text-primary shrink-0" />
-            {cp.vsTitle}
-          </h2>
-          <p className="text-muted-foreground leading-relaxed mb-8">{cp.vsIntro}</p>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-background rounded-2xl p-6 border-2 border-primary">
-              <h3 className="font-heading font-semibold text-lg mb-2 text-primary">
+      {/* FOR WHOM */}
+      <Sheet tone="muted" next="background" aria-labelledby="captained-whom-title">
+        <div className="container mx-auto grid max-w-6xl items-start gap-10 px-4 lg:grid-cols-[5fr_7fr] lg:gap-16">
+          <Rise>
+            <h2 id="captained-whom-title" className={H2}>
+              {cp.forWhomTitle}
+            </h2>
+          </Rise>
+          <Rise delay={0.1}>
+            <DefList
+              items={cp.forWhomItems.map(item => ({ title: item.title, desc: item.text }))}
+            />
+          </Rise>
+        </div>
+      </Sheet>
+
+      {/* HOW TO: steps */}
+      <Sheet tone="background" next="muted" aria-labelledby="captained-howto-title">
+        <div className="container mx-auto grid max-w-6xl items-start gap-10 px-4 lg:grid-cols-[5fr_7fr] lg:gap-16">
+          <Rise>
+            <h2 id="captained-howto-title" className={H2}>
+              {cp.howToTitle}
+            </h2>
+            <LeadFacts text={cp.howToIntro} className="mt-5" />
+          </Rise>
+          <Rise delay={0.1}>
+            <StepList steps={cp.howToSteps} />
+          </Rise>
+        </div>
+      </Sheet>
+
+      {/* CAPTAINED VS SELF-DRIVE */}
+      <Sheet tone="muted" next="background" aria-labelledby="captained-vs-title">
+        <div className="container mx-auto max-w-6xl px-4">
+          <Rise className="grid gap-6 lg:grid-cols-[5fr_7fr] lg:gap-16">
+            <h2 id="captained-vs-title" className={H2}>
+              {cp.vsTitle}
+            </h2>
+            <LeadFacts text={cp.vsIntro} />
+          </Rise>
+          <Rise delay={0.1} className="mt-10 grid gap-4 md:grid-cols-2 md:gap-6">
+            <div className="rounded-2xl border-2 border-primary bg-background p-6 sm:p-8">
+              <h3 className="font-heading text-xl font-semibold tracking-tight text-foreground">
                 {cp.vsCaptainedTitle}
               </h3>
-              <p className="text-muted-foreground leading-relaxed">{cp.vsCaptainedText}</p>
+              <p className="mt-2 text-base leading-relaxed text-muted-foreground text-pretty">
+                {cp.vsCaptainedText}
+              </p>
             </div>
-            <div className="bg-background rounded-2xl p-6 border border-border">
-              <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
+            <div className="rounded-2xl border border-border bg-background p-6 sm:p-8">
+              <h3 className="font-heading text-xl font-semibold tracking-tight text-foreground">
                 {cp.vsSelfDriveTitle}
               </h3>
-              <p className="text-muted-foreground leading-relaxed mb-4">{cp.vsSelfDriveText}</p>
-              <div className="flex flex-col gap-2">
-                <a
-                  href={localizedPath("categoryLicensed")}
-                  className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-                >
-                  <ChevronRight className="w-4 h-4" />
+              <p className="mt-2 text-base leading-relaxed text-muted-foreground text-pretty">
+                {cp.vsSelfDriveText}
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <a href={localizedPath("categoryLicensed")} className={PILL_LINK}>
                   {cp.vsLinkLicensed}
+                  <ChevronRight className="h-4 w-4" aria-hidden="true" />
                 </a>
-                <a
-                  href={localizedPath("navigationLicense")}
-                  className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-                >
-                  <ChevronRight className="w-4 h-4" />
+                <a href={localizedPath("navigationLicense")} className={PILL_LINK}>
                   {cp.vsLinkFree}
+                  <ChevronRight className="h-4 w-4" aria-hidden="true" />
                 </a>
               </div>
             </div>
-          </div>
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* ═══ FAQ ═══ mirrored 1:1 by the server-side FAQPage schema */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-6">
-            <FileText className="w-6 h-6 text-primary shrink-0" />
-            {language === "es"
-              ? "Preguntas Frecuentes"
-              : language === "en"
-                ? "Frequently Asked Questions"
-                : language === "ca"
-                  ? "Preguntes Frequents"
-                  : language === "fr"
-                    ? "Questions Frequentes"
-                    : language === "de"
-                      ? "Haufig Gestellte Fragen"
-                      : language === "nl"
-                        ? "Veelgestelde Vragen"
-                        : language === "it"
-                          ? "Domande Frequenti"
-                          : "Часто задаваемые вопросы"}
+      {/* FAQ: mirrored 1:1 by the server-side FAQPage schema; cards born folded, answers stay in the DOM */}
+      <FaqSheet items={faqItems} idPrefix="captained-faq" tone="background" next="muted" />
+
+      {/* INTERNAL LINKS */}
+      <Sheet
+        tone="muted"
+        next="navy"
+        className="py-12 sm:py-14"
+        aria-labelledby="captained-links-title"
+      >
+        <div className="container mx-auto max-w-6xl px-4">
+          <h2
+            id="captained-links-title"
+            className="font-heading text-xl font-semibold tracking-tight text-foreground"
+          >
+            {cp.linksTitle}
           </h2>
-          <FAQSection items={faqItems} />
-        </div>
-      </RevealSection>
-
-      {/* ═══ INTERNAL LINKS ═══ */}
-      <div className="py-8">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 className="font-heading font-semibold text-lg mb-4">{cp.linksTitle}</h3>
-          <div className="flex flex-wrap gap-x-6 gap-y-3">
-            <a
-              href={localizedPath("locationBlanes")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-            >
-              <ChevronRight className="w-4 h-4" />
+          <div className="mt-5 flex flex-wrap gap-3">
+            <a href={localizedPath("locationBlanes")} className={PILL_LINK}>
               {cp.linksBlanes}
             </a>
-            <a
-              href={localizedPath("locationTossa")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-            >
-              <ChevronRight className="w-4 h-4" />
+            <a href={localizedPath("locationTossa")} className={PILL_LINK}>
               {cp.linksTossa}
             </a>
-            <a
-              href={localizedPath("pricing")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-            >
-              <ChevronRight className="w-4 h-4" />
+            <a href={localizedPath("pricing")} className={PILL_LINK}>
               {cp.linksPricing}
             </a>
-            <a
-              href={localizedPath("garantias")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-            >
-              <ChevronRight className="w-4 h-4" />
+            <a href={localizedPath("garantias")} className={PILL_LINK}>
               {cp.linksGarantias}
             </a>
           </div>
         </div>
-      </div>
+      </Sheet>
 
-      {/* ═══ CTA ═══ full-width */}
-      <div className="py-16 sm:py-20 bg-primary">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-h2 font-heading font-bold text-white mb-4">
+      {/* CTA: navy band, closes over the related-content band */}
+      <Sheet tone="navy" next="muted" aria-labelledby="captained-cta-title">
+        <Rise className="container mx-auto max-w-3xl px-4 text-center">
+          <h2 id="captained-cta-title" className={H2}>
             {cp.ctaTitle}
           </h2>
-          <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto">{cp.ctaDescription}</p>
-          <Button
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-primary-foreground/85 text-pretty sm:text-lg dark:text-foreground/85">
+            {cp.ctaDescription}
+          </p>
+          <InteractiveHoverButton
+            tone="light"
             onClick={handleBookingWhatsApp}
-            size="lg"
-            variant="secondary"
-            className="text-primary hover:text-primary"
+            className="mt-8 min-h-12 px-8 text-base"
             data-testid="button-whatsapp-captained"
           >
             {cp.ctaButton}
-          </Button>
-        </div>
-      </div>
+          </InteractiveHoverButton>
+        </Rise>
+      </Sheet>
 
       <RelatedContent currentPage="categoryCaptained" />
       <BookingStickyBar />

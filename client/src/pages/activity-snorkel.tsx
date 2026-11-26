@@ -1,61 +1,52 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Waves,
-  Clock,
-  Anchor,
-  Users,
-  Star,
-  MapPin,
-  Eye,
-  Fish,
-  Sun,
-  ChevronRight
-} from "lucide-react";
+import { Anchor } from "lucide-react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import RelatedContent from "@/components/RelatedContent";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
-import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
+import {
+  getSEOConfig,
+  generateHreflangLinks,
+  generateCanonicalUrl,
+  generateBreadcrumbSchema,
+} from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
-import { FAQSection } from "@/components/FAQSection";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
-import React from "react";
 import { translateBoatText } from "@shared/boatTextTranslations";
+import {
+  H2,
+  H3,
+  Sheet,
+  Rise,
+  Feature,
+  LeadText,
+  CheckPanel,
+  LinkList,
+  PhotoHero,
+  CtaSheet,
+  NavyButton,
+  FaqSheet,
+  HERO_SECONDARY,
+  PILL_ON_NAVY,
+} from "@/components/activity-kit";
 import { BookingStickyBar } from "@/components/MobileStickyBar";
 
-// Icons paired by position to the `spots` array in t.activitySnorkel.
-const SPOT_ICONS = [Star, Eye, Fish];
-
 const faqsFallback: Array<{ question: string; answer: string }> = [];
-
-function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <div ref={ref} className={`transition-[opacity,transform,filter] duration-700 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"} ${className}`}>
-      {children}
-    </div>
-  );
-}
 
 export default function ActivitySnorkelPage() {
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const s = t.activitySnorkel;
   const faqs = s?.faqItems ?? faqsFallback;
-  const snorkelSpots = (s?.spots ?? []).map((spot, i) => ({
-    ...spot,
-    icon: SPOT_ICONS[i] ?? Star,
-  }));
+  const snorkelSpots = s?.spots ?? [];
   const recommendedBoats = t.activitySnorkel?.recommendedBoats ?? [];
-  const depthLabel = t.activitySnorkel?.depthLabel ?? 'Profundidad:';
-  const seoConfig = getSEOConfig('activitySnorkel', language);
-  const hreflangLinks = generateHreflangLinks('activitySnorkel');
-  const canonical = generateCanonicalUrl('activitySnorkel', language);
+  const depthLabel = t.activitySnorkel?.depthLabel ?? "Profundidad:";
+  const seoConfig = getSEOConfig("activitySnorkel", language);
+  const hreflangLinks = generateHreflangLinks("activitySnorkel");
+  const canonical = generateCanonicalUrl("activitySnorkel", language);
 
   const handleBookingWhatsApp = () => {
     const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
@@ -64,19 +55,19 @@ export default function ActivitySnorkelPage() {
 
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Inicio", url: "/" },
-    { name: "Excursion Snorkel en Barco", url: "/excursion-snorkel-barco-blanes" }
+    { name: "Excursion Snorkel en Barco", url: "/excursion-snorkel-barco-blanes" },
   ]);
 
   const faqSchema = {
     "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
+    mainEntity: faqs.map(faq => ({
       "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
+      name: faq.question,
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
+        text: faq.answer,
+      },
+    })),
   };
 
   // TouristTrip + Offer: positions this page as a bookable snorkel experience
@@ -84,29 +75,42 @@ export default function ActivitySnorkelPage() {
   const touristTripSchema = {
     "@type": "TouristTrip",
     "@id": `${canonical}#tour`,
-    "name": "Ruta de Snorkel en Barco desde Blanes",
-    "description": "Excursión en barco desde el Puerto de Blanes hacia calas vírgenes de aguas cristalinas ideales para snorkel, en lancha con licencia (Licencia de Navegación) o en la excursión privada con patrón. Equipo opcional (7,50€). Seguro y kit de seguridad incluidos; gasolina aparte.",
-    "touristType": ["Adventure", "Family", "Nature"],
-    "inLanguage": ["es-ES", "en-GB", "ca-ES", "fr-FR", "de-DE", "nl-NL", "it-IT", "ru-RU"],
-    "provider": {
+    name: "Ruta de Snorkel en Barco desde Blanes",
+    description:
+      "Excursión en barco desde el Puerto de Blanes hacia calas vírgenes de aguas cristalinas ideales para snorkel, en lancha con licencia (Licencia de Navegación) o en la excursión privada con patrón. Equipo opcional (7,50€). Seguro y kit de seguridad incluidos; gasolina aparte.",
+    touristType: ["Adventure", "Family", "Nature"],
+    inLanguage: ["es-ES", "en-GB", "ca-ES", "fr-FR", "de-DE", "nl-NL", "it-IT", "ru-RU"],
+    provider: {
       "@type": "LocalBusiness",
       "@id": "https://www.costabravarentaboat.com/#organization",
-      "name": "Costa Brava Rent a Boat",
+      name: "Costa Brava Rent a Boat",
     },
-    "itinerary": {
+    itinerary: {
       "@type": "ItemList",
-      "itemListElement": [
-        { "@type": "Place", "name": "Sa Palomera", "description": "5 min desde puerto — roca emblemática con vida marina" },
-        { "@type": "Place", "name": "Cala Sant Francesc", "description": "Pinos y agua turquesa, ideal para primer snorkel" },
-        { "@type": "Place", "name": "Cala Sa Forcanera", "description": "Cala virgen con fondo rocoso y biodiversidad" },
+      itemListElement: [
+        {
+          "@type": "Place",
+          name: "Sa Palomera",
+          description: "5 min desde puerto — roca emblemática con vida marina",
+        },
+        {
+          "@type": "Place",
+          name: "Cala Sant Francesc",
+          description: "Pinos y agua turquesa, ideal para primer snorkel",
+        },
+        {
+          "@type": "Place",
+          name: "Cala Sa Forcanera",
+          description: "Cala virgen con fondo rocoso y biodiversidad",
+        },
       ],
     },
-    "maximumAttendeeCapacity": 7,
+    maximumAttendeeCapacity: 7,
   };
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": [breadcrumbSchema, touristTripSchema, faqSchema]
+    "@graph": [breadcrumbSchema, touristTripSchema, faqSchema],
   };
 
   return (
@@ -124,271 +128,193 @@ export default function ActivitySnorkelPage() {
       <Navigation />
       <ReadingProgressBar />
 
-      {/* Hero Section */}
-      <div className="bg-gradient-to-br from-cyan-50 to-blue-50 pt-24 pb-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center mb-6">
-              <Waves className="hidden sm:block w-8 h-8 shrink-0 text-primary mr-4" aria-hidden="true" />
-              <h1 className="text-h1 font-heading font-bold text-foreground">
-                {s?.heroTitle ?? "Excursión de Snorkel en Barco desde Blanes"}
-              </h1>
-            </div>
-            <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto leading-relaxed">
-              {s?.heroDescription ?? "Descubre los fondos marinos de la Costa Brava desde nuestros barcos en el Puerto de Blanes. Navega hasta las mejores calas, fondea y sumérgete en aguas cristalinas con visibilidad de hasta 15 metros. Equipo de snorkel disponible por 7,50 EUR/persona."}
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Badge variant="outline" className="text-primary border-primary">
-                <Waves className="w-4 h-4 mr-2" />
-                {s?.badgeSpots ?? "3 calas de snorkel"}
-              </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <Eye className="w-4 h-4 mr-2" />
-                {s?.badgeVisibility ?? "Visibilidad 10-15m"}
-              </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <Clock className="w-4 h-4 mr-2" />
-                {s?.badgeDuration ?? "2-4 horas recomendadas"}
-              </Badge>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Why Snorkel from a Boat */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
-            <Star className="w-6 h-6 text-primary" />
-            {s?.whyTitle ?? "Por qué hacer snorkel desde un barco"}
-          </h2>
-          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-            <div className="lg:col-span-3">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-3">{s?.whyAccessTitle ?? "Acceso a calas inaccesibles"}</h3>
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
-                    {s?.whyAccessDesc ?? "Las mejores calas para snorkel en la Costa Brava no tienen acceso por carretera o requieren caminatas largas. Desde el barco llegas directamente, fondeas a pocos metros de la orilla y te tiras al agua. Sin aglomeraciones, sin caminar con el equipo al sol."}
-                  </p>
-                  <h3 className="font-heading font-semibold text-lg mb-3">{s?.whyBaseTitle ?? "Tu propia base flotante"}</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {s?.whyBaseDesc ?? "El barco es tu punto de referencia en el agua. Puedes dejar toallas, comida y bebida a bordo. Descansas entre inmersiones, te secas al sol en cubierta y cuando quieres, cambias de cala en minutos."}
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-3">{s?.whyMultiTitle ?? "Múltiples spots en una salida"}</h3>
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
-                    {s?.whyMultiDesc ?? "En una salida de 3-4 horas puedes visitar 2-3 calas diferentes. Cada una tiene un ecosistema distinto: praderas de posidonia, fondos rocosos, paredes verticales. Es como hacer tres excursiones de snorkel en una sola."}
-                  </p>
-                  <h3 className="font-heading font-semibold text-lg mb-3">{s?.whyNoExpTitle ?? "Sin necesidad de experiencia"}</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {s?.whyNoExpDesc ?? "Con el titulín, un curso de 1 día sin examen, llevas una de nuestras lanchas, y antes de salir te explicamos el barco en 15 minutos. Si nadie del grupo tiene título, la excursión con patrón os lleva a las calas. El snorkel es la actividad acuática más accesible: solo necesitas máscara, tubo y ganas de descubrir."}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="lg:col-span-2">
-              <img
-                src="/images/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-amigos-snorkel.webp"
-                alt="Friends enjoying snorkeling from a rented boat"
-                className="w-full rounded-2xl object-cover aspect-[4/5]"
-                loading="lazy"
-                width={640}
-                height={800}
-              />
-            </div>
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* Photo break */}
-      <div className="w-full overflow-hidden">
-        <img
-          src="/images/blog/snorkel-mar.webp"
-          alt="Snorkeling in the crystal-clear waters of Costa Brava"
-          className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
-          loading="lazy"
-          width={1920}
-          height={600}
-        />
-      </div>
-
-      {/* Best Snorkel Spots */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
-            <MapPin className="w-6 h-6 text-primary" />
-            {s?.spotsTitle ?? "Mejores calas para snorkel cerca de Blanes"}
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {snorkelSpots.map((spot) => {
-              const Icon = spot.icon;
-              return (
-                <div key={spot.name} className="text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="font-heading font-semibold text-lg mb-2">{spot.name}</h3>
-                  <p className="text-muted-foreground text-sm mb-2">{spot.distance}</p>
-                  <p className="text-sm text-primary font-medium mb-2">{depthLabel} {spot.depth}</p>
-                  <p className="text-muted-foreground text-sm mb-3 leading-relaxed">{spot.highlights}</p>
-                  <p className="text-sm font-medium text-foreground">{spot.ideal}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* Equipment Section */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
-            <Anchor className="w-6 h-6 text-primary" />
-            {s?.equipmentTitle ?? "Equipo de snorkel incluido y disponible"}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">{s?.includedTitle ?? "Incluido con todos los barcos"}</h3>
-              <ul className="space-y-2 text-muted-foreground">
-                {(s?.includedItems ?? ["Chalecos salvavidas para todos los pasajeros", "Escalera de baño para subir y bajar al agua", "Toldo / bimini para sombra en cubierta", "Ancla para fondear en las calas"]).map((item) => (
-                  <li key={item} className="flex items-center">
-                    <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">{s?.rentalTitle ?? "Alquiler adicional: 7,50 EUR/persona"}</h3>
-              <ul className="space-y-2 text-muted-foreground">
-                {(s?.rentalItems ?? ["Máscara de snorkel de calidad", "Tubo con válvula anti-entrada de agua", "Aletas ajustables (varias tallas disponibles)", "También puedes traer tu propio equipo"]).map((item) => (
-                  <li key={item} className="flex items-center">
-                    <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* Recommended Boats */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
-            <Users className="w-6 h-6 text-primary" />
-            {s?.boatsTitle ?? "Barcos recomendados para snorkel"}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {recommendedBoats.map((boat) => (
-              <div key={boat.name} className="border rounded-lg p-6">
-                <h3 className="font-heading font-semibold text-lg mb-2">{translateBoatText(boat.name, language)}</h3>
-                <div className="flex flex-wrap gap-3 mb-3">
-                  <Badge variant="outline">
-                    <Clock className="w-3 h-3 mr-1" />
-                    {boat.duration}
-                  </Badge>
-                  <Badge variant="secondary">{boat.price}</Badge>
-                </div>
-                <p className="text-muted-foreground leading-relaxed">{boat.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* Suggested Route */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
-            <Sun className="w-6 h-6 text-primary" />
-            {s?.routeTitle ?? "Ruta de snorkel recomendada (3 horas)"}
-          </h2>
-          <div className="space-y-4">
-            {(s?.routeSteps ?? [
-              { title: "Puerto de Blanes - Salida", desc: "Formación de 15 minutos, recogida de equipo de snorkel. Salida hacia el norte por la costa." },
-              { title: "Cala Bona - Primera parada (45 min)", desc: "Fondear y snorkel entre formaciones rocosas. Busca pulpos entre las grietas y observa los bancos de castañolas." },
-              { title: "Cala Sant Francesc - Segunda parada (45 min)", desc: "La joya de la corona. Pradera de posidonia con sargos, obladas y estrellas de mar. Agua cristalina y fondo de arena blanca." },
-              { title: "Regreso al Puerto de Blanes", desc: "Navegación de vuelta disfrutando de las vistas de la costa. Devolución del equipo de snorkel en el puerto." },
-            ]).map((step, i) => (
-              <div key={step.title} className="flex items-start gap-4">
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">{i + 1}</div>
-                <div>
-                  <h3 className="font-heading font-semibold">{step.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* Internal Links */}
-      <div className="py-8 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 className="font-heading font-semibold text-lg mb-4">{s?.exploreTitle ?? "Explora más actividades y servicios"}</h3>
-          <div className="flex flex-wrap gap-3">
-            <a href={localizedPath("categoryCaptained")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
-              <ChevronRight className="w-4 h-4" />
-              {s?.linkNoLicense ?? "Excursión privada con patrón"}
-            </a>
-            <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
-              <ChevronRight className="w-4 h-4" />
-              {s?.linkLicensed ?? "Barcos con licencia"}
-            </a>
-            <a href={localizedPath("activityFamilies")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
-              <ChevronRight className="w-4 h-4" />
-              {s?.linkFamilies ?? "Barcos para familias"}
-            </a>
-            <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
-              <ChevronRight className="w-4 h-4" />
-              {s?.linkPrices ?? "Precios y tarifas"}
-            </a>
-            <a href={localizedPath("routes")} className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3">
-              <ChevronRight className="w-4 h-4" />
-              {s?.linkRoutes ?? "Rutas marítimas"}
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* CTA Section */}
-      <div className="py-16 sm:py-20 bg-primary">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-h2 font-heading font-bold mb-4 text-white">{s?.ctaTitle ?? "Reserva tu excursión de snorkel desde Blanes"}</h2>
-          <p className="text-lg mb-6 text-white/90 leading-relaxed">
-            {s?.ctaDescription ?? "Elige tu barco, añade el equipo de snorkel y descubre los fondos marinos de la Costa Brava. Salidas desde el Puerto de Blanes de abril a octubre."}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              variant="secondary"
+      <PhotoHero
+        minHeight="sm:min-h-[72svh]"
+        media={
+          <img
+            src="/images/blog/snorkel-mar.webp"
+            alt="Snorkeling in the crystal-clear waters of Costa Brava"
+            width={1920}
+            height={600}
+            decoding="async"
+            draggable={false}
+          />
+        }
+        title={s?.heroTitle ?? "Excursión de Snorkel en Barco desde Blanes"}
+        subtitle={s?.heroDescription}
+        actions={
+          <>
+            <InteractiveHoverButton
+              tone="dark"
               onClick={handleBookingWhatsApp}
+              className="min-h-12 w-full px-8 text-base sm:w-auto"
             >
-              <SiWhatsapp className="w-5 h-5 mr-2" aria-hidden="true" />
               {s?.ctaWhatsApp ?? "Reservar por WhatsApp"}
-            </Button>
-            <a href={localizedPath("categoryLicensed")}>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full">
-                <Anchor className="w-5 h-5 mr-2" />
-                {s?.ctaViewBoats ?? "Ver barcos disponibles"}
-              </Button>
+            </InteractiveHoverButton>
+            <a href={localizedPath("categoryLicensed")} className={HERO_SECONDARY}>
+              {s?.ctaViewBoats ?? "Ver barcos disponibles"}
             </a>
-          </div>
-        </div>
-      </div>
+          </>
+        }
+        facts={[s?.badgeSpots, s?.badgeVisibility, s?.badgeDuration]}
+      />
 
-      {/* FAQ Section */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-8">
-            {s?.faqTitle ?? "Preguntas frecuentes sobre snorkel en barco"}
-          </h2>
-          <FAQSection items={faqs} />
+      {/* Why snorkel from a boat */}
+      <Sheet next="muted">
+        <div className="grid gap-12 lg:grid-cols-[7fr_5fr] lg:items-center lg:gap-16">
+          <Rise>
+            <h2 className={H2}>{s?.whyTitle}</h2>
+            <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+              <Feature title={s?.whyAccessTitle ?? ""} text={s?.whyAccessDesc} />
+              <Feature title={s?.whyBaseTitle ?? ""} text={s?.whyBaseDesc} />
+              <Feature title={s?.whyMultiTitle ?? ""} text={s?.whyMultiDesc} />
+              <Feature title={s?.whyNoExpTitle ?? ""} text={s?.whyNoExpDesc} />
+            </div>
+          </Rise>
+          <Rise delay={0.1}>
+            <img
+              src="/images/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-amigos-snorkel.webp"
+              alt="Friends enjoying snorkeling from a rented boat"
+              className="aspect-[4/5] w-full rounded-2xl object-cover"
+              loading="lazy"
+              width={640}
+              height={800}
+            />
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
+
+      {/* Spots */}
+      <Sheet tone="muted" next="page">
+        <Rise>
+          <h2 className={H2}>{s?.spotsTitle}</h2>
+          <div className="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-3">
+            {snorkelSpots.map(spot => (
+              <Feature
+                key={spot.name}
+                title={spot.name}
+                meta={`${spot.distance} · ${depthLabel} ${spot.depth}`}
+                text={spot.highlights}
+              >
+                <p className="mt-3 border-t border-border pt-3 text-sm font-medium text-foreground">
+                  {spot.ideal}
+                </p>
+              </Feature>
+            ))}
+          </div>
+        </Rise>
+      </Sheet>
+
+      {/* Equipment */}
+      <Sheet next="muted">
+        <Rise>
+          <h2 className={H2}>{s?.equipmentTitle}</h2>
+          <div className="mt-10 grid gap-10 md:grid-cols-2">
+            <div>
+              <h3 className={`${H3} mb-4`}>{s?.includedTitle}</h3>
+              <CheckPanel items={s?.includedItems ?? []} />
+            </div>
+            <div>
+              <h3 className={`${H3} mb-4`}>{s?.rentalTitle}</h3>
+              <CheckPanel items={s?.rentalItems ?? []} />
+            </div>
+          </div>
+        </Rise>
+      </Sheet>
+
+      {/* Recommended boats */}
+      <Sheet tone="muted" next="page">
+        <Rise>
+          <h2 className={H2}>{s?.boatsTitle}</h2>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {recommendedBoats.map(boat => (
+              <article
+                key={boat.name}
+                className="overflow-hidden rounded-2xl border border-border bg-card"
+              >
+                <div className="flex items-baseline justify-between gap-4 border-b border-border px-5 py-4 sm:px-6">
+                  <h3 className={H3}>{translateBoatText(boat.name, language)}</h3>
+                  <span className="shrink-0 font-heading text-base font-semibold tabular-nums text-foreground">
+                    {boat.price}
+                  </span>
+                </div>
+                <div className="space-y-3 px-5 py-4 sm:px-6">
+                  <p className="text-sm font-medium text-primary">{boat.duration}</p>
+                  <LeadText text={boat.description} />
+                </div>
+              </article>
+            ))}
+          </div>
+        </Rise>
+      </Sheet>
+
+      {/* Suggested route + links */}
+      <Sheet next="navy">
+        <div className="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
+          <Rise>
+            <h2 className={H2}>{s?.routeTitle}</h2>
+          </Rise>
+          <Rise delay={0.1}>
+            <ol className="overflow-hidden rounded-2xl border border-border bg-card">
+              {(s?.routeSteps ?? []).map((step, i) => (
+                <li
+                  key={step.title}
+                  className="flex gap-4 border-b border-border px-5 py-4 last:border-b-0 sm:px-6"
+                >
+                  <span className="w-5 shrink-0 font-heading text-base font-semibold tabular-nums text-muted-foreground">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <h3 className="text-base font-semibold leading-snug text-foreground">
+                      {step.title}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                      {step.desc}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </Rise>
+        </div>
+        <Rise className="mt-16">
+          <LinkList
+            title={s?.exploreTitle}
+            links={[
+              { href: localizedPath("categoryCaptained"), label: s?.linkNoLicense },
+              { href: localizedPath("categoryLicensed"), label: s?.linkLicensed },
+              { href: localizedPath("activityFamilies"), label: s?.linkFamilies },
+              { href: localizedPath("pricing"), label: s?.linkPrices },
+              { href: localizedPath("routes"), label: s?.linkRoutes },
+            ]}
+          />
+        </Rise>
+      </Sheet>
+
+      <CtaSheet
+        next="page"
+        title={s?.ctaTitle}
+        text={s?.ctaDescription}
+        actions={
+          <>
+            <NavyButton onClick={handleBookingWhatsApp}>
+              <SiWhatsapp className="mr-2 h-5 w-5" aria-hidden="true" />
+              {s?.ctaWhatsApp}
+            </NavyButton>
+            <a href={localizedPath("categoryLicensed")} className={PILL_ON_NAVY}>
+              <Anchor className="h-4 w-4" aria-hidden="true" />
+              {s?.ctaViewBoats}
+            </a>
+          </>
+        }
+      />
+
+      <FaqSheet
+        idPrefix="snorkel-faq"
+        title={s?.faqTitle}
+        items={faqs.map(x => ({ q: x.question, a: x.answer }))}
+        next="muted"
+      />
 
       <RelatedContent currentPage="activitySnorkel" />
       <BookingStickyBar />

@@ -45,7 +45,7 @@ export const es: Translations = {
       "Basta la Licencia de Navegación. Verificamos títulos extranjeros online antes de reservar.",
     bookNow: "Reservar",
     findYourBoat: "Reservar ahora",
-    ctaTitulin: "Qué es el titulín",
+    ctaTitulin: "¿Quieres tu título?",
     // Shown only while isLicenseFreeEraActive() (RD 1188/2025, until 2026-09-30).
     licenseFreeUntil: "¿Aún sin título? Hasta el 30 de septiembre puedes alquilar sin titulación.",
     licenseFreeUntilCta: "Ver barcos sin licencia",

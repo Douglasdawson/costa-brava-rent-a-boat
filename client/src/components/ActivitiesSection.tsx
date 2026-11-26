@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { JETSKI_PRODUCTS } from "@shared/jetskiProducts";
@@ -51,101 +51,90 @@ export default function ActivitiesSection() {
       minPrice: Math.min(...p.slots.map(slot => slot.price)),
     };
   });
-  // Jet ski leads (the two big cards); eFoil sits below as a compact card.
-  const efoil = cards.find(c => c.isEfoil);
-  const jetskis = cards.filter(c => !c.isEfoil);
+  // Jet ski leads; the eFoil closes the row (full width at tablet, third column on desktop).
+  const ordered = [...cards.filter(c => !c.isEfoil), ...cards.filter(c => c.isEfoil)];
 
   return (
-    <section
-      id="activities"
-      className="squircle-t rounded-t-2xl bg-muted/40 py-16 sm:py-24"
-      aria-labelledby="activities-title"
-    >
-      <div className="container mx-auto max-w-6xl px-4">
-        <div className="mb-10 sm:mb-12">
-          <h2
-            id="activities-title"
-            className="font-heading text-h2 font-semibold tracking-tight text-foreground"
-          >
-            {s.title}
-          </h2>
-          <p className="mt-3 text-base text-muted-foreground text-pretty sm:text-lg">
-            {s.subtitle}
-          </p>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
-          {jetskis.map(c => (
-            <Link
-              key={c.id}
-              href={c.href}
-              className="group relative isolate flex min-h-[24rem] overflow-hidden rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 lg:min-h-[28rem]"
+    <div className="bg-primary dark:bg-[hsl(215_45%_16%)]">
+      <section
+        id="activities"
+        className="squircle-b rounded-b-2xl bg-muted py-16 sm:py-24"
+        aria-labelledby="activities-title"
+      >
+        <div className="container mx-auto max-w-6xl px-4">
+          <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
+            <h2
+              id="activities-title"
+              className="font-heading text-h2 font-semibold tracking-tight text-foreground text-balance"
             >
-              <img
-                src={c.image}
-                alt={c.alt}
-                srcSet={srcSetFor(c.image)}
-                sizes="(min-width: 640px) 50vw, 100vw"
-                width={1600}
-                height={1080}
-                loading="lazy"
-                decoding="async"
-                className="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-700 ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-[1.03]"
-              />
-              <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-              <div className="mt-auto p-6 text-white sm:p-8">
-                <h3 className="font-heading text-2xl font-semibold tracking-tight sm:text-3xl">
-                  {c.title}
-                </h3>
-                <p className="mt-2 max-w-md text-sm text-white/85 sm:text-base">{c.subtitle}</p>
-                <p className="mt-4 inline-flex items-center gap-2 text-sm font-semibold">
-                  {from} {c.minPrice} €
-                  <ArrowRight
-                    className="h-4 w-4 transition-transform motion-reduce:transition-none [@media(hover:hover)]:group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
-                </p>
-              </div>
-            </Link>
-          ))}
+              {s.title}
+            </h2>
+            <p className="mt-3 text-base text-muted-foreground text-pretty sm:text-lg">
+              {s.subtitle}
+            </p>
+          </div>
 
-          {efoil && (
-            <Link
-              href={efoil.href}
-              className="group relative isolate flex min-h-[24rem] overflow-hidden rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 sm:col-span-2 lg:min-h-[28rem]"
-            >
-              <img
-                src={efoil.image}
-                alt={efoil.alt}
-                srcSet={srcSetFor(efoil.image)}
-                sizes="100vw"
-                width={1600}
-                height={1100}
-                loading="lazy"
-                decoding="async"
-                className="absolute inset-0 -z-10 h-full w-full object-cover object-[52%_10%] transition-transform duration-700 ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-[1.03]"
-              />
-              <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-              <div className="mt-auto p-6 text-white sm:p-8">
-                <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-foreground">
-                  {s.newBadge}
-                </span>
-                <h3 className="mt-3 font-heading text-2xl font-semibold tracking-tight sm:text-3xl">
-                  {efoil.title}
-                </h3>
-                <p className="mt-2 max-w-md text-sm text-white/85 sm:text-base">{efoil.subtitle}</p>
-                <p className="mt-4 inline-flex items-center gap-2 text-sm font-semibold">
-                  {from} {efoil.minPrice} €
-                  <ArrowRight
-                    className="h-4 w-4 transition-transform motion-reduce:transition-none [@media(hover:hover)]:group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
-                </p>
-              </div>
-            </Link>
-          )}
+          <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+            {ordered.map(c => (
+              <Link
+                key={c.id}
+                href={c.href}
+                className={`group relative isolate flex min-h-[26rem] overflow-hidden rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 lg:min-h-[32rem] ${
+                  c.isEfoil ? "sm:col-span-2 lg:col-span-1" : ""
+                }`}
+              >
+                <img
+                  src={c.image}
+                  alt={c.alt}
+                  srcSet={srcSetFor(c.image)}
+                  sizes={
+                    c.isEfoil
+                      ? "(min-width: 1024px) 33vw, 100vw"
+                      : "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  }
+                  width={1600}
+                  height={c.isEfoil ? 1100 : 1080}
+                  loading="lazy"
+                  decoding="async"
+                  className={`absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-700 ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-[1.03] ${
+                    c.isEfoil ? "object-[52%_10%]" : ""
+                  }`}
+                />
+                <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+
+                {c.isEfoil && (
+                  <span className="absolute left-5 top-5 rounded-full bg-white px-3 py-1 text-xs font-semibold text-foreground sm:left-6 sm:top-6">
+                    {s.newBadge}
+                  </span>
+                )}
+
+                <div className="mt-auto w-full p-6 text-white sm:p-7">
+                  <h3 className="font-heading text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
+                    {c.title}
+                  </h3>
+                  <p className="mt-2 max-w-sm text-sm text-white/85 text-pretty sm:text-base">
+                    {c.subtitle}
+                  </p>
+                  <div className="mt-6 flex items-end justify-between gap-4 border-t border-white/25 pt-4">
+                    <p className="leading-none">
+                      <span className="block text-sm text-white/80">{from}</span>
+                      <span className="mt-1.5 block font-heading text-3xl font-semibold tabular-nums">
+                        {c.minPrice} €
+                      </span>
+                    </p>
+                    <span
+                      aria-hidden="true"
+                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-foreground transition-colors motion-reduce:transition-none [@media(hover:hover)]:group-hover:bg-cta [@media(hover:hover)]:group-hover:text-cta-foreground"
+                    >
+                      <ArrowUpRight className="h-5 w-5" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

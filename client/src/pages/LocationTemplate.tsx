@@ -2,26 +2,11 @@ import type React from "react";
 import { useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { useBookingModal } from "@/hooks/bookingModalContext";
-import {
-  MapPin,
-  Clock,
-  Anchor,
-  Users,
-  Star,
-  Car,
-  Train,
-  ParkingCircle,
-  type LucideIcon,
-} from "lucide-react";
-import { Link } from "wouter";
+import { Users, Car, Train, ParkingCircle, type LucideIcon } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
-import { FAQSection } from "@/components/FAQSection";
 import PopularBoatsSection from "@/components/PopularBoatsSection";
 import Footer from "@/components/Footer";
 import RelatedLocationsSection from "@/components/RelatedLocationsSection";
@@ -37,36 +22,26 @@ import {
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 import { trackLocationPageView } from "@/utils/analytics";
-import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, GBP_PROFILE_URL } from "@shared/businessProfile";
 import ActivitatumTeaser from "@/components/ActivitatumTeaser";
 import { HeroImage } from "@/components/HeroImage";
+import {
+  FactPanel,
+  Lead,
+  LocationCta,
+  LocationFaq,
+  LocationHero,
+  Photo,
+  Rise,
+  SectionTitle,
+  Sheet,
+  SheetWrap,
+  TONE_BG,
+} from "@/components/location/LocationKit";
 import { BookingStickyBar } from "@/components/MobileStickyBar";
 
 // ---------------------------------------------------------------------------
 // Sub-components
 // ---------------------------------------------------------------------------
-
-function RevealSection({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <div
-      ref={ref}
-      className={`transition-[opacity,transform,filter] duration-700 ${
-        isVisible
-          ? "opacity-100 translate-y-0 blur-none"
-          : "opacity-0 translate-y-6 blur-[2px]"
-      } ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
 
 export { HeroImage };
 
@@ -157,11 +132,7 @@ const DEFAULTS = {
 // Template component
 // ---------------------------------------------------------------------------
 
-export default function LocationTemplate({
-  config,
-  extraCards,
-  afterFaq,
-}: LocationTemplateProps) {
+export default function LocationTemplate({ config, extraCards, afterFaq }: LocationTemplateProps) {
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const { openBookingModal } = useBookingModal();
@@ -179,26 +150,22 @@ export default function LocationTemplate({
   const localeFaqItems = (
     (t.locationPages as unknown as Record<string, Record<string, unknown>>)[
       config.translationKey
-    ] as
-      | { faqItems?: Array<{ question: string; answer: string }> }
-      | undefined
+    ] as { faqItems?: Array<{ question: string; answer: string }> } | undefined
   )?.faqItems;
   const rawFaqItems =
-    localeFaqItems && localeFaqItems.length > 0
-      ? localeFaqItems
-      : config.faqItems;
+    localeFaqItems && localeFaqItems.length > 0 ? localeFaqItems : config.faqItems;
 
   const processedFaqItems = useMemo(() => {
     const vars = computeFaqVars(boatsData);
-    return rawFaqItems.map((item) => ({
+    return rawFaqItems.map(item => ({
       question: substituteFaqVars(item.question, vars),
       answer: substituteFaqVars(item.answer, vars),
     }));
   }, [boatsData, rawFaqItems]);
 
-  const loc = (
-    t.locationPages as unknown as Record<string, Record<string, unknown>>
-  )[config.translationKey] as
+  const loc = (t.locationPages as unknown as Record<string, Record<string, unknown>>)[
+    config.translationKey
+  ] as
     | {
         hero: {
           title: string;
@@ -216,11 +183,7 @@ export default function LocationTemplate({
   const s = loc?.sections;
 
   const handleBookingWhatsApp = () => {
-    const message = createBookingMessage(
-      undefined,
-      undefined,
-      t.whatsappMessages,
-    );
+    const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
     openWhatsApp(message);
   };
 
@@ -232,7 +195,9 @@ export default function LocationTemplate({
   };
   const coastBreakImg = {
     src: (config.images?.coastBreak ?? DEFAULTS.coastBreak).src,
-    alt: t.locationTemplate?.coastBreakImgAlt ?? (config.images?.coastBreak ?? DEFAULTS.coastBreak).alt,
+    alt:
+      t.locationTemplate?.coastBreakImgAlt ??
+      (config.images?.coastBreak ?? DEFAULTS.coastBreak).alt,
   };
 
   const locationSchema = {
@@ -271,7 +236,7 @@ export default function LocationTemplate({
 
   const faqSchema = {
     "@type": "FAQPage",
-    mainEntity: processedFaqItems.map((item) => ({
+    mainEntity: processedFaqItems.map(item => ({
       "@type": "Question",
       name: item.question,
       acceptedAnswer: { "@type": "Answer", text: item.answer },
@@ -282,6 +247,16 @@ export default function LocationTemplate({
     "@context": "https://schema.org",
     "@graph": [locationSchema, breadcrumbSchema, faqSchema],
   };
+
+  const popularPages = t.popularBoatsSection?.pages as
+    | Record<string, { title?: string; description?: string }>
+    | undefined;
+  const destLinks = [
+    { key: "locationCostaBrava", label: t.locationTemplate?.destCostaBrava ?? "Costa Brava" },
+    { key: "locationLloret", label: t.locationTemplate?.destLloret ?? "Lloret de Mar - 25 min" },
+    { key: "locationTossa", label: t.locationTemplate?.destTossa ?? "Tossa de Mar - 45 min" },
+    { key: "locationBlanes", label: t.locationTemplate?.destBlanesCoves ?? "Calas de Blanes" },
+  ] as const;
 
   return (
     <div className="min-h-screen">
@@ -298,392 +273,140 @@ export default function LocationTemplate({
       <Navigation />
       <ReadingProgressBar />
 
-      {/* ═══ HERO ═══ */}
-      {config.heroImage ? (
-        <div className="relative pt-20 sm:pt-24">
-          <div className="relative w-full min-h-[max(55vh,420px)] sm:min-h-[max(55vh,520px)] flex flex-col overflow-hidden">
-            <HeroImage
-              basePath={config.heroImage.basePath}
-              alt={hero?.imageAlt ?? config.heroImage.alt}
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/55" />
-            <div className="relative z-10 flex-1 flex items-end pt-8 pb-12 sm:pb-16">
-              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                <h1 className="text-h1 font-heading font-bold text-white drop-shadow-lg mb-3">
-                  {hero?.title}
-                </h1>
-                <p className="text-lg text-white/90 mb-6 max-w-2xl drop-shadow">
-                  {hero?.subtitle}
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <Badge
-                    variant="outline"
-                    className="bg-white/15 text-white border-white/30 backdrop-blur-sm"
-                  >
-                    <Car className="w-4 h-4 mr-2" />
-                    {hero?.badgeDistance}
-                  </Badge>
-                  <Badge
-                    variant="outline"
-                    className="bg-white/15 text-white border-white/30 backdrop-blur-sm"
-                  >
-                    <Clock className="w-4 h-4 mr-2" />
-                    {hero?.badgeTime}
-                  </Badge>
-                  <Badge
-                    variant="outline"
-                    className="bg-white/15 text-white border-white/30 backdrop-blur-sm"
-                  >
-                    {hero?.badgeBeach}
-                  </Badge>
-                </div>
-                <div className="mt-6 flex flex-wrap items-center gap-4">
-                  <Button
-                    onClick={() => openBookingModal()}
-                    className="bg-cta hover:bg-cta/90 text-cta-foreground rounded-full min-h-11 px-7 btn-elevated"
-                    data-testid="button-location-hero-book"
-                  >
-                    {t.nav.bookNow}
-                  </Button>
-                  <a
-                    href={GBP_PROFILE_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 min-h-11 text-sm font-medium text-white drop-shadow hover:underline underline-offset-2"
-                    data-testid="link-location-hero-rating"
-                  >
-                    <Star className="w-4 h-4 fill-amber-400 text-amber-400" aria-hidden="true" />
-                    {BUSINESS_RATING_STR}/5 · {BUSINESS_REVIEW_COUNT_STR}+ · Google
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ) : (
-        /* Gradient fallback for locations without hero images */
-        <div className={`bg-gradient-to-br ${config.gradient} pt-24 pb-12`}>
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-8">
-              <div className="flex items-center justify-center mb-6">
-                <MapPin className="hidden sm:block w-8 h-8 shrink-0 text-primary mr-4" aria-hidden="true" />
-                <h1 className="text-h1 font-heading font-bold text-foreground">
-                  {hero?.title}
-                </h1>
-              </div>
-              <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
-                {hero?.subtitle}
-              </p>
-              <div className="flex flex-wrap gap-3 justify-center">
-                <Badge
-                  variant="outline"
-                  className="text-primary border-primary"
-                >
-                  <Car className="w-4 h-4 mr-2" />
-                  {hero?.badgeDistance}
-                </Badge>
-                <Badge
-                  variant="outline"
-                  className="text-primary border-primary"
-                >
-                  <Clock className="w-4 h-4 mr-2" />
-                  {hero?.badgeTime}
-                </Badge>
-                <Badge
-                  variant="outline"
-                  className="text-primary border-primary"
-                >
-                  {hero?.badgeBeach}
-                </Badge>
-              </div>
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                <Button
-                  onClick={() => openBookingModal()}
-                  className="bg-cta hover:bg-cta/90 text-cta-foreground rounded-full min-h-11 px-7 btn-elevated"
-                  data-testid="button-location-hero-book"
-                >
-                  {t.nav.bookNow}
-                </Button>
-                <a
-                  href={GBP_PROFILE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 min-h-11 text-sm font-medium text-foreground hover:underline underline-offset-2"
-                  data-testid="link-location-hero-rating"
-                >
-                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" aria-hidden="true" />
-                  {BUSINESS_RATING_STR}/5 · {BUSINESS_REVIEW_COUNT_STR}+ · Google
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <LocationHero
+        basePath={config.heroImage?.basePath}
+        imageAlt={hero?.imageAlt ?? config.heroImage?.alt}
+        title={hero?.title}
+        subtitle={hero?.subtitle}
+        facts={[hero?.badgeDistance, hero?.badgeTime, hero?.badgeBeach]}
+        bookLabel={t.nav.bookNow}
+        onBook={() => openBookingModal()}
+      />
 
-      {/* ═══ WHY RENT FROM BLANES ═══ text + image */}
       {s && (
-        <RevealSection className="py-16 sm:py-20">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-              <div className="lg:col-span-3">
-                <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
-                  {s.whyRentTitle}
-                </h2>
-                <div className="grid sm:grid-cols-2 gap-x-8 gap-y-8">
-                  <div>
-                    <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
-                      {s.closestPort}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {s.closestPortDesc}
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
-                      {s.varietyBoats}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {s.varietyBoatsDesc}
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
-                      {s.fuelIncluded}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {s.fuelIncludedDesc}
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
-                      {s.noExperience}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {s.noExperienceDesc}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="lg:col-span-2">
-                <img
-                  src={whyRentImg.src}
-                  alt={whyRentImg.alt}
-                  className="w-full rounded-2xl object-cover aspect-[4/5]"
-                  loading="lazy"
-                  width={640}
-                  height={800}
+        <>
+          {/* Why rent from Blanes: ruled panel + photo */}
+          <Sheet tone="page" next="muted" labelledBy="loc-why-title">
+            <div className="grid gap-10 lg:grid-cols-[7fr_5fr] lg:items-center lg:gap-16">
+              <Rise>
+                <SectionTitle id="loc-why-title">{s.whyRentTitle}</SectionTitle>
+                <FactPanel
+                  className="mt-8"
+                  items={[
+                    { title: s.closestPort, desc: s.closestPortDesc },
+                    { title: s.varietyBoats, desc: s.varietyBoatsDesc },
+                    { title: s.fuelIncluded, desc: s.fuelIncludedDesc },
+                    { title: s.noExperience, desc: s.noExperienceDesc },
+                  ]}
                 />
-              </div>
+              </Rise>
+              <Rise delay={0.1}>
+                <Photo src={whyRentImg.src} alt={whyRentImg.alt} />
+              </Rise>
             </div>
-          </div>
-        </RevealSection>
-      )}
+          </Sheet>
 
-      {/* ═══ COASTAL PHOTO BREAK ═══ */}
-      <div className="w-full overflow-hidden">
-        <img
-          src={coastBreakImg.src}
-          alt={coastBreakImg.alt}
-          className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
-          loading="lazy"
-          width={1920}
-          height={600}
-        />
-      </div>
-
-      {/* ═══ TOWN ATTRACTIONS ═══ feature grid */}
-      {s && (
-        <RevealSection className="py-16 sm:py-20 bg-muted">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-h2 font-heading font-bold text-center text-foreground mb-12">
-              <Star className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
-              {s.townAttractionsTitle}
-            </h2>
-            {/* Inline icons instead of a third circle-chip grid: the hero badges
-                and how-to-get rows already carry that shape, and three identical
-                icon grids in a row flatten the page (critique 2026-07). */}
-            <div className="grid md:grid-cols-3 gap-x-10 gap-y-8">
-              {config.attractions.map((attr, i) => {
-                const num = i + 1;
-                return (
-                  <div key={num} className="border-t border-border pt-5">
-                    <h3 className="font-heading font-semibold text-lg mb-2 flex items-center gap-2.5">
-                      <attr.Icon className={`w-5 h-5 shrink-0 ${attr.iconColor}`} aria-hidden="true" />
-                      {s[`attraction${num}`]}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {s[`attraction${num}Desc`]}
-                    </p>
-                  </div>
-                );
-              })}
+          {/* Town attractions: coast photo + three rows */}
+          <Sheet tone="muted" next="page" labelledBy="loc-attractions-title">
+            <div className="grid gap-10 lg:grid-cols-[5fr_7fr] lg:items-center lg:gap-16">
+              <Rise>
+                <Photo src={coastBreakImg.src} alt={coastBreakImg.alt} />
+              </Rise>
+              <Rise delay={0.1}>
+                <SectionTitle id="loc-attractions-title">{s.townAttractionsTitle}</SectionTitle>
+                <FactPanel
+                  className="mt-8"
+                  items={config.attractions.map((attr, i) => ({
+                    title: s[`attraction${i + 1}`],
+                    desc: s[`attraction${i + 1}Desc`],
+                    icon: attr.Icon,
+                  }))}
+                />
+              </Rise>
             </div>
-          </div>
-        </RevealSection>
-      )}
+          </Sheet>
 
-      {/* ═══ HOW TO GET TO BLANES ═══ icon-led grid */}
-      {s && (
-        <RevealSection className="py-16 sm:py-20">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
-              {s.howToGetTitle}
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-8">
-              <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1">
-                  <Car className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-2">
-                    {s.byCar}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {s.byCarDesc}
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1">
-                  <Train className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-2">
-                    {s.byPublicTransport}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {s.byPublicTransportDesc}
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1">
-                  <Users className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-2">
-                    {s.byTaxi}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {s.byTaxiDesc}
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1">
-                  <ParkingCircle className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-2">
-                    {s.parkingAtBlanes}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {s.parkingAtBlanesDesc}
-                  </p>
-                </div>
-              </div>
+          {/* How to get to Blanes */}
+          <Sheet tone="page" next="muted" labelledBy="loc-how-title">
+            <div className="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
+              <Rise>
+                <SectionTitle id="loc-how-title">{s.howToGetTitle}</SectionTitle>
+              </Rise>
+              <Rise delay={0.1}>
+                <FactPanel
+                  items={[
+                    { title: s.byCar, desc: s.byCarDesc, icon: Car },
+                    { title: s.byPublicTransport, desc: s.byPublicTransportDesc, icon: Train },
+                    { title: s.byTaxi, desc: s.byTaxiDesc, icon: Users },
+                    { title: s.parkingAtBlanes, desc: s.parkingAtBlanesDesc, icon: ParkingCircle },
+                  ]}
+                />
+              </Rise>
             </div>
-          </div>
-        </RevealSection>
-      )}
+          </Sheet>
 
-      {/* ═══ BOAT DESTINATIONS ═══ */}
-      {s && (
-        <RevealSection className="py-12 sm:py-16 bg-muted">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-h2 font-heading font-bold text-foreground mb-4">
-              <Anchor className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
-              {s.boatDestinationsTitle}
-            </h2>
-            <p className="text-muted-foreground mb-6 max-w-3xl">
-              {s.boatDestinationsDesc}
-            </p>
-            {/* 44px touch targets: these read as chips but ARE links; at py-1.5
-                they measured 34px and thumbs missed them (critique 2026-07). */}
-            <div className="flex flex-wrap gap-3">
-              {([
-                { key: "locationCostaBrava", label: t.locationTemplate?.destCostaBrava ?? "Costa Brava" },
-                { key: "locationLloret", label: t.locationTemplate?.destLloret ?? "Lloret de Mar - 25 min" },
-                { key: "locationTossa", label: t.locationTemplate?.destTossa ?? "Tossa de Mar - 45 min" },
-                { key: "locationBlanes", label: t.locationTemplate?.destBlanesCoves ?? "Calas de Blanes" },
-              ] as const).map(({ key, label }) => (
-                <Link
-                  key={key}
-                  href={localizedPath(key)}
-                  className="inline-flex items-center min-h-11 rounded-full border border-border bg-background px-5 text-sm font-medium hover:bg-primary/10 hover:border-primary transition-colors"
-                >
-                  {label}
-                </Link>
-              ))}
+          {/* Boat destinations: real links as rows */}
+          <Sheet tone="muted" next="navy" labelledBy="loc-dest-title">
+            <div className="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
+              <Rise>
+                <SectionTitle id="loc-dest-title">{s.boatDestinationsTitle}</SectionTitle>
+                <Lead text={s.boatDestinationsDesc} className="mt-5" />
+              </Rise>
+              <Rise delay={0.1}>
+                <FactPanel
+                  items={destLinks.map(({ key, label }) => ({
+                    title: label,
+                    href: localizedPath(key),
+                  }))}
+                />
+              </Rise>
             </div>
-          </div>
-        </RevealSection>
+          </Sheet>
+        </>
       )}
 
       {/* Extra content slot */}
       {extraCards}
 
-      {/* ═══ CTA ═══ full-width section */}
       {s && (
-        <div className="py-16 sm:py-20 bg-primary">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-h2 font-heading font-bold text-white mb-4">
-              {s.ctaTitle}
-            </h2>
-            <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto">
-              {s.ctaDescription}
-            </p>
-            <Button
-              onClick={handleBookingWhatsApp}
-              size="lg"
-              variant="secondary"
-              className="text-primary hover:text-primary"
-              data-testid={`button-whatsapp-${config.slug}`}
-            >
-              {s.ctaButton}
-            </Button>
-          </div>
-        </div>
-      )}
-
-      {/* ═══ POPULAR BOATS (SEO crosslinking) ═══ */}
-      {/* Title/description come from i18n (t.popularBoatsSection.pages.<town>)
-          so non-Spanish visitors don't see the Spanish config fallback. */}
-      {config.popularBoats && (
-        <PopularBoatsSection
-          title={
-            (t.popularBoatsSection?.pages as Record<string, { title?: string; description?: string }> | undefined)?.[
-              config.translationKey
-            ]?.title ?? config.popularBoats.title
-          }
-          description={
-            (t.popularBoatsSection?.pages as Record<string, { title?: string; description?: string }> | undefined)?.[
-              config.translationKey
-            ]?.description ?? config.popularBoats.description
-          }
-          boatIds={config.popularBoats.boatIds}
-          badgeLabel={config.popularBoats.badgeLabel}
-          badgeVariant={config.popularBoats.badgeVariant}
+        <LocationCta
+          title={s.ctaTitle}
+          desc={s.ctaDescription}
+          buttonLabel={s.ctaButton}
+          onClick={handleBookingWhatsApp}
+          testId={`button-whatsapp-${config.slug}`}
+          next={config.popularBoats ? "muted" : "page"}
         />
       )}
 
-      {/* ═══ FAQ ═══ */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-center mb-10">
-            {config.faqTitle}
-          </h2>
-          <FAQSection items={processedFaqItems} />
-        </div>
-      </RevealSection>
+      {/* Popular boats (SEO crosslinking). Title/description come from i18n
+          (t.popularBoatsSection.pages.<town>) so non-Spanish visitors don't see the
+          Spanish config fallback. */}
+      {config.popularBoats && (
+        <SheetWrap next="page">
+          <PopularBoatsSection
+            bgClass={TONE_BG.muted}
+            title={popularPages?.[config.translationKey]?.title ?? config.popularBoats.title}
+            description={
+              popularPages?.[config.translationKey]?.description ?? config.popularBoats.description
+            }
+            boatIds={config.popularBoats.boatIds}
+            badgeLabel={config.popularBoats.badgeLabel}
+            badgeVariant={config.popularBoats.badgeVariant}
+          />
+        </SheetWrap>
+      )}
+
+      <LocationFaq id="loc-faq" title={config.faqTitle} items={processedFaqItems} next="muted" />
 
       {afterFaq}
 
       <RelatedLocationsSection currentLocation={config.slug} />
-      <ActivitatumTeaser topic={config.slug === "blanes" ? "blanes" : "lloret"} surface="city-landing" />
-      {config.relatedContentPage && (
-        <RelatedContent currentPage={config.relatedContentPage} />
-      )}
+      <ActivitatumTeaser
+        topic={config.slug === "blanes" ? "blanes" : "lloret"}
+        surface="city-landing"
+      />
+      {config.relatedContentPage && <RelatedContent currentPage={config.relatedContentPage} />}
       <BookingStickyBar />
       <Footer />
     </div>

@@ -10,23 +10,23 @@ export default {
     container: {
       center: true,
       padding: {
-        DEFAULT: '1rem',
-        sm: '1.5rem',
-        lg: '2rem',
-        xl: '3rem',
-        '2xl': '4rem',
+        DEFAULT: "1rem",
+        sm: "1.5rem",
+        lg: "2rem",
+        xl: "3rem",
+        "2xl": "4rem",
       },
     },
     extend: {
       screens: {
-        'xs': '375px',
+        xs: "375px",
       },
       // --rs (index.css) is 1 by default and >1 where corner-shape is supported: a squircle of the same radius
       // reads tighter than a circular arc, so the radii grow to keep the same softness.
       borderRadius: {
-        sm: "calc(0.25rem * var(--rs, 1))", /* 4px */
-        md: "calc(0.5rem * var(--rs, 1))", /* 8px */
-        lg: "calc(0.75rem * var(--rs, 1))", /* 12px */
+        sm: "calc(0.25rem * var(--rs, 1))" /* 4px */,
+        md: "calc(0.5rem * var(--rs, 1))" /* 8px */,
+        lg: "calc(0.75rem * var(--rs, 1))" /* 12px */,
         xl: "calc(0.75rem * var(--rs, 1))",
         "2xl": "calc(1rem * var(--rs, 1))",
         "3xl": "calc(1.5rem * var(--rs, 1))",
@@ -117,7 +117,7 @@ export default {
         "sidebar-accent": {
           DEFAULT: "hsl(var(--sidebar-accent) / <alpha-value>)",
           foreground: "hsl(var(--sidebar-accent-foreground) / <alpha-value>)",
-          border: "var(--sidebar-accent-border)"
+          border: "var(--sidebar-accent-border)",
         },
         status: {
           online: "rgb(34 197 94)",
@@ -130,7 +130,10 @@ export default {
       // photo-hero landings, h1 30 -> 44 for content pages, h2 24 -> 36.
       // h1 must always read bigger than h2 on a phone; before this, both were 24px.
       fontSize: {
-        display: ["clamp(2.25rem, 1.5rem + 3.2vw, 3.75rem)", { lineHeight: "1.05" }],
+        display: [
+          "clamp(2rem, 4.4vw + 0.5rem, 3.25rem)",
+          { lineHeight: "1.06", letterSpacing: "-0.02em" },
+        ],
         h1: ["clamp(1.875rem, 1.45rem + 1.8vw, 2.75rem)", { lineHeight: "1.15" }],
         h2: ["clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem)", { lineHeight: "1.2" }],
       },

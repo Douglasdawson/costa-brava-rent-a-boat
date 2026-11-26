@@ -36,7 +36,10 @@ export default function CancelBookingPage({ token: tokenProp }: { token?: string
   const [error, setError] = useState("");
   const [cancelling, setCancelling] = useState(false);
   const [cancelled, setCancelled] = useState(false);
-  const [cancelResult, setCancelResult] = useState<{ refundAmount: number; refundPercentage: number } | null>(null);
+  const [cancelResult, setCancelResult] = useState<{
+    refundAmount: number;
+    refundPercentage: number;
+  } | null>(null);
 
   useEffect(() => {
     if (!token) {
@@ -45,7 +48,7 @@ export default function CancelBookingPage({ token: tokenProp }: { token?: string
       return;
     }
     fetch(`/api/bookings/cancel-info/${token}`)
-      .then(async (res) => {
+      .then(async res => {
         if (!res.ok) {
           const data = await res.json().catch(() => ({}));
           throw new Error(data.message || `Error ${res.status}`);
@@ -79,7 +82,10 @@ export default function CancelBookingPage({ token: tokenProp }: { token?: string
 
   const formatDate = (iso: string) => {
     return new Date(iso).toLocaleDateString("es-ES", {
-      weekday: "long", day: "numeric", month: "long", year: "numeric",
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
     });
   };
 
@@ -94,10 +100,12 @@ export default function CancelBookingPage({ token: tokenProp }: { token?: string
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-muted">
-        <div className="max-w-md w-full mx-4 bg-background rounded-2xl shadow-lg p-8 text-center">
+        <div className="max-w-md w-full mx-4 bg-background rounded-2xl border border-border p-8 text-center">
           <p className="text-2xl mb-2">No se puede cancelar</p>
           <p className="text-muted-foreground">{error}</p>
-          <a href={localizedPath("home")} className="mt-4 inline-block text-primary underline">Volver al inicio</a>
+          <a href={localizedPath("home")} className="mt-4 inline-block text-primary underline">
+            Volver al inicio
+          </a>
         </div>
       </div>
     );
@@ -106,14 +114,18 @@ export default function CancelBookingPage({ token: tokenProp }: { token?: string
   if (cancelled && cancelResult) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-muted">
-        <div className="max-w-md w-full mx-4 bg-background rounded-2xl shadow-lg p-8 text-center">
-          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span className="text-3xl text-primary">&#10003;</span>
+        <div className="max-w-md w-full mx-4 bg-background rounded-2xl border border-border p-8 text-center">
+          <div className="w-12 h-12 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span className="text-2xl text-success">&#10003;</span>
           </div>
-          <h1 className="text-2xl font-bold text-foreground mb-2">Reserva cancelada</h1>
+          <h1 className="text-2xl font-semibold tracking-tight text-foreground mb-2">
+            Reserva cancelada
+          </h1>
           <p className="text-muted-foreground">Tu reserva ha sido cancelada correctamente.</p>
           <p className="text-sm text-muted-foreground mt-4">Recibirás un email de confirmación.</p>
-          <a href={localizedPath("home")} className="mt-6 inline-block text-primary underline">Volver al inicio</a>
+          <a href={localizedPath("home")} className="mt-6 inline-block text-primary underline">
+            Volver al inicio
+          </a>
         </div>
       </div>
     );
@@ -125,14 +137,27 @@ export default function CancelBookingPage({ token: tokenProp }: { token?: string
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-muted">
-      <div className="max-w-md w-full mx-4 bg-background rounded-2xl shadow-lg p-8">
-        <h1 className="text-2xl font-bold text-foreground mb-6">Cancelar reserva</h1>
+      <div className="max-w-md w-full mx-4 bg-background rounded-2xl border border-border p-8">
+        <h1 className="text-2xl font-semibold tracking-tight text-foreground mb-6">
+          Cancelar reserva
+        </h1>
 
         {/* Booking details */}
         <div className="bg-muted rounded-xl p-4 mb-6 space-y-2 text-sm">
-          <p><span className="text-muted-foreground">Barco:</span> <strong>{booking.boatName}</strong></p>
-          <p><span className="text-muted-foreground">Fecha:</span> <strong>{formatDate(booking.startTime)}</strong></p>
-          <p><span className="text-muted-foreground">Cliente:</span> <strong>{booking.customerName} {booking.customerSurname}</strong></p>
+          <p>
+            <span className="text-muted-foreground">Barco:</span>{" "}
+            <strong>{booking.boatName}</strong>
+          </p>
+          <p>
+            <span className="text-muted-foreground">Fecha:</span>{" "}
+            <strong>{formatDate(booking.startTime)}</strong>
+          </p>
+          <p>
+            <span className="text-muted-foreground">Cliente:</span>{" "}
+            <strong>
+              {booking.customerName} {booking.customerSurname}
+            </strong>
+          </p>
         </div>
 
         {/* Cancellation policy */}

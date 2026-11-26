@@ -508,7 +508,7 @@ export default function ClientDashboard() {
       <div className="container max-w-5xl mx-auto py-8 px-4">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold" data-testid="title-dashboard">Mi Cuenta</h1>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight" data-testid="title-dashboard">Mi Cuenta</h1>
             <p className="text-muted-foreground text-sm sm:text-base truncate">{user.email}</p>
           </div>
           <Button variant="outline" onClick={handleLogout} data-testid="button-logout" className="self-start sm:self-auto">

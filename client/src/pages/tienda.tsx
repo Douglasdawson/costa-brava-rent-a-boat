@@ -1,11 +1,4 @@
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  type CSSProperties,
-} from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import {
@@ -143,7 +136,10 @@ export default function TiendaPage() {
   const offers = catalog?.offers ?? DEFAULT_SHOP_OFFERS;
 
   const liveBySku = useMemo(() => {
-    const map = new Map<string, { stock: number; active: boolean; priceCents: number; productActive: boolean }>();
+    const map = new Map<
+      string,
+      { stock: number; active: boolean; priceCents: number; productActive: boolean }
+    >();
     for (const product of catalog?.products ?? []) {
       for (const variant of product.variants) {
         map.set(variant.sku, {
@@ -162,7 +158,7 @@ export default function TiendaPage() {
       const live = liveBySku.get(product.variants[0]?.sku ?? "");
       return live?.priceCents ?? product.defaultPriceCents;
     },
-    [liveBySku],
+    [liveBySku]
   );
 
   const skuAvailable = useCallback(
@@ -171,7 +167,7 @@ export default function TiendaPage() {
       if (!live) return true; // catalog not loaded yet; server re-validates
       return live.active && live.productActive && live.stock > 0;
     },
-    [liveBySku],
+    [liveBySku]
   );
 
   // Handle ?status=success|cancel back from Stripe Checkout. The session id is
@@ -206,7 +202,9 @@ export default function TiendaPage() {
     const poll = async () => {
       attempts++;
       try {
-        const res = await fetch(`/api/shop/order-status?session_id=${encodeURIComponent(sessionId)}`);
+        const res = await fetch(
+          `/api/shop/order-status?session_id=${encodeURIComponent(sessionId)}`
+        );
         if (res.ok) {
           const data: OrderSummary = await res.json();
           if (data.status === "paid" || data.status === "fulfilled") {
@@ -235,7 +233,7 @@ export default function TiendaPage() {
     window.history.replaceState(
       {},
       "",
-      `${window.location.pathname}?session_id=${encodeURIComponent(sessionId)}`,
+      `${window.location.pathname}?session_id=${encodeURIComponent(sessionId)}`
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -258,7 +256,7 @@ export default function TiendaPage() {
         : s.delivery.pickupTitle;
 
   const totals: CartTotals = useMemo(() => {
-    const priced = cart.items.flatMap((item) => {
+    const priced = cart.items.flatMap(item => {
       const entry = getShopVariant(item.sku);
       if (!entry) return [];
       return [{ ...item, unitPriceCents: priceOf(entry.product) }];
@@ -303,8 +301,8 @@ export default function TiendaPage() {
 
   // One entry per product+color: the two tee colors are two pieces on the page
   // (same DB product, variants filtered by color).
-  const displayItems = SHOP_PRODUCTS.flatMap((product) =>
-    product.colors.map((color) => ({ product, color })),
+  const displayItems = SHOP_PRODUCTS.flatMap(product =>
+    product.colors.map(color => ({ product, color }))
   );
 
   /** Adding opens the cart: silent adds are the main reason people add twice. */
@@ -328,27 +326,27 @@ export default function TiendaPage() {
     ]),
     ...displayItems.map(({ product, color }) => {
       const info = product.i18nKey === "tee" ? s.products.tee : s.products.tote;
-      const colorVariants = product.variants.filter((v) => v.color === color);
+      const colorVariants = product.variants.filter(v => v.color === color);
       return {
         "@context": "https://schema.org",
         "@type": "Product",
         name: product.colors.length > 1 ? `${info.name} (${s.colors[color]})` : info.name,
         description: info.description,
-        image: (product.images[color]?.shots ?? []).map((shot) => `${BASE_DOMAIN}${shot.src}`),
+        image: (product.images[color]?.shots ?? []).map(shot => `${BASE_DOMAIN}${shot.src}`),
         color: s.colors[color],
         brand: { "@type": "Brand", name: "Costa Brava Rent a Boat x Laura Cabanas" },
         offers: {
           "@type": "Offer",
           priceCurrency: "EUR",
           price: (priceOf(product) / 100).toFixed(2),
-          availability: colorVariants.some((v) => skuAvailable(v.sku))
+          availability: colorVariants.some(v => skuAvailable(v.sku))
             ? "https://schema.org/InStock"
             : "https://schema.org/OutOfStock",
           url: canonical,
         },
       };
     }),
-    generateFAQSchema(s.faq.map((f) => ({ question: f.q, answer: f.a }))),
+    generateFAQSchema(s.faq.map(f => ({ question: f.q, answer: f.a }))),
   ];
 
   return (
@@ -372,7 +370,7 @@ export default function TiendaPage() {
       {banner && (
         <div className="px-4 pt-24 sm:px-6">
           <div
-            className={`mx-auto flex max-w-3xl items-start gap-3 rounded-xl border p-4 ${
+            className={`mx-auto flex max-w-3xl items-start gap-3 rounded-2xl border p-4 ${
               banner === "cancelled"
                 ? "border-border bg-muted/60"
                 : "border-success/30 bg-success/10"
@@ -388,7 +386,11 @@ export default function TiendaPage() {
             )}
             <div className="min-w-0">
               <p className="font-heading font-semibold text-foreground">
-                {banner === "cancelled" ? s.cancelled.title : banner === "pending" ? s.success.pending : s.success.title}
+                {banner === "cancelled"
+                  ? s.cancelled.title
+                  : banner === "pending"
+                    ? s.success.pending
+                    : s.success.title}
               </p>
               {banner !== "pending" && (
                 <p className="mt-1 text-sm text-muted-foreground">
@@ -396,12 +398,12 @@ export default function TiendaPage() {
                 </p>
               )}
               {banner === "success" && summary && (
-                <div className="mt-3 rounded-lg border border-border bg-background/60 p-3 text-sm">
+                <div className="mt-3 rounded-xl border border-border bg-background/60 p-3 text-sm">
                   <p className="font-semibold text-foreground">
                     {s.success.orderLabel} {summary.orderNumber}
                   </p>
                   <ul className="mt-2 space-y-1 text-muted-foreground">
-                    {summary.items.map((item) => (
+                    {summary.items.map(item => (
                       <li key={item.sku} className="flex justify-between gap-3">
                         <span>
                           {itemLabel(item.sku)}
@@ -415,13 +417,17 @@ export default function TiendaPage() {
                     {summary.discountCents > 0 && (
                       <li className="flex justify-between gap-3 text-success">
                         <span>{s.success.discount}</span>
-                        <span className="whitespace-nowrap">-{formatPrice(summary.discountCents)}</span>
+                        <span className="whitespace-nowrap">
+                          -{formatPrice(summary.discountCents)}
+                        </span>
                       </li>
                     )}
                     {summary.shippingCents > 0 && (
                       <li className="flex justify-between gap-3">
                         <span>{s.delivery.shippingTitle}</span>
-                        <span className="whitespace-nowrap">{formatPrice(summary.shippingCents)}</span>
+                        <span className="whitespace-nowrap">
+                          {formatPrice(summary.shippingCents)}
+                        </span>
                       </li>
                     )}
                   </ul>
@@ -430,7 +436,9 @@ export default function TiendaPage() {
                     <span className="whitespace-nowrap">{formatPrice(summary.totalCents)}</span>
                   </p>
                   {summary.shippingCents === 0 && (
-                    <p className="mt-2 text-muted-foreground">{deliveryLabel(summary.deliveryMethod)}</p>
+                    <p className="mt-2 text-muted-foreground">
+                      {deliveryLabel(summary.deliveryMethod)}
+                    </p>
                   )}
                 </div>
               )}
@@ -441,7 +449,7 @@ export default function TiendaPage() {
 
       {/* HERO: the capsule's own colour carries the fold, the photograph does
           the selling. No crop: the source frames are square and stay square. */}
-      <section className={`bg-[var(--shop-butter)] ${banner ? "pt-8" : "pt-24 lg:pt-28"}`}>
+      <section className={`min-h-[100svh] bg-[var(--shop-butter)] lg:min-h-0 ${banner ? "pt-8" : "pt-24 lg:pt-28"}`}>
         {/* One fold, one idea: on lg the hero owns the whole viewport. min-height
             is border-box, so it already contains this element's own pb-8 and the
             budget subtracts only the section's pt-28: 112 + (100svh - 112) =
@@ -469,7 +477,7 @@ export default function TiendaPage() {
           </div>
 
           <div className="order-2 lg:order-1">
-            <h1 className="font-heading text-[clamp(2.75rem,8vw,4.75rem)] font-bold leading-[0.95] tracking-[-0.02em] text-foreground text-balance">
+            <h1 className="font-heading text-[clamp(2.75rem,8vw,4.75rem)] font-semibold leading-[0.95] tracking-[-0.02em] text-foreground text-balance">
               {s.hero.title}
             </h1>
             <p className="mt-6 max-w-[42ch] text-lg leading-relaxed text-foreground/80">
@@ -503,7 +511,7 @@ export default function TiendaPage() {
             price={priceOf(product)}
             mirrored={index % 2 === 1}
             skuAvailable={skuAvailable}
-            stockOf={(sku) => liveBySku.get(sku)?.stock}
+            stockOf={sku => liveBySku.get(sku)?.stock}
             onAdd={handleAdd}
           />
         ))}
@@ -514,7 +522,7 @@ export default function TiendaPage() {
       <section className="bg-[var(--shop-ink)] px-5 py-16 text-white sm:px-8 lg:py-20">
         <div className="mx-auto flex max-w-5xl flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-[46ch]">
-            <h2 className="font-heading text-[clamp(2rem,4.5vw,3rem)] font-bold leading-tight tracking-[-0.02em] text-balance">
+            <h2 className="font-heading text-[clamp(2rem,4.5vw,3rem)] font-semibold leading-tight tracking-[-0.02em] text-balance">
               {s.pack.title}
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-[var(--shop-butter)]">{s.pack.text}</p>
@@ -524,7 +532,7 @@ export default function TiendaPage() {
               <span className="text-sm font-medium text-[var(--shop-butter)] line-through">
                 {formatPrice(packBefore)}
               </span>
-              <span className="text-5xl font-bold tabular-nums">{formatPrice(packAfter)}</span>
+              <span className="text-5xl font-semibold tabular-nums">{formatPrice(packAfter)}</span>
             </p>
             <p className="mt-2 text-sm font-semibold text-[var(--shop-butter)]">
               {s.pack.saving} {formatPrice(packSaving)}
@@ -541,7 +549,7 @@ export default function TiendaPage() {
           band of its own instead of a footnote card. */}
       <section className="bg-[var(--shop-butter)] px-5 py-16 sm:px-8 lg:py-20">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-heading text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-tight tracking-[-0.02em] text-foreground">
+          <h2 className="font-heading text-[clamp(1.75rem,4vw,2.5rem)] font-semibold leading-tight tracking-[-0.02em] text-foreground">
             {s.designer.title}
           </h2>
           <p className="mt-5 max-w-[62ch] text-lg leading-relaxed text-foreground/80">
@@ -563,7 +571,7 @@ export default function TiendaPage() {
           third identical grid on one page. */}
       <section className="px-5 py-12 sm:py-16 lg:py-20 sm:px-8">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-heading text-2xl font-bold tracking-[-0.01em] text-foreground">
+          <h2 className="font-heading text-2xl font-semibold tracking-[-0.01em] text-foreground">
             {s.delivery.title}
           </h2>
           <dl className="mt-8 border-t border-border">
@@ -575,7 +583,7 @@ export default function TiendaPage() {
                 text: s.delivery.shippingText,
                 price: offers.shippingFlatCents,
               },
-            ].map((option) => (
+            ].map(option => (
               <div key={option.title} className="border-b border-border py-5">
                 <div className="flex items-baseline justify-between gap-4">
                   <dt className="font-heading font-semibold text-foreground">{option.title}</dt>
@@ -597,7 +605,7 @@ export default function TiendaPage() {
       <section className="bg-cta px-5 py-16 text-cta-foreground sm:px-8 lg:py-20">
         <div className="mx-auto flex max-w-5xl flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-[46ch]">
-            <h2 className="font-heading text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-tight tracking-[-0.02em] text-balance">
+            <h2 className="font-heading text-[clamp(1.75rem,4vw,2.75rem)] font-semibold leading-tight tracking-[-0.02em] text-balance">
               {s.boatCta.title}
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-cta-foreground/80">{s.boatCta.text}</p>
@@ -612,11 +620,11 @@ export default function TiendaPage() {
       {/* FAQ */}
       <section className="px-5 py-12 sm:py-16 lg:py-20 sm:px-8">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-heading text-2xl font-bold tracking-[-0.01em] text-foreground">
+          <h2 className="font-heading text-2xl font-semibold tracking-[-0.01em] text-foreground">
             {s.faqTitle}
           </h2>
           <dl className="mt-8 divide-y divide-border border-t border-border">
-            {s.faq.map((f) => (
+            {s.faq.map(f => (
               <div key={f.q} className="py-5">
                 <dt className="font-heading font-semibold text-foreground">{f.q}</dt>
                 <dd className="mt-1.5 max-w-[68ch] leading-relaxed text-muted-foreground">{f.a}</dd>
@@ -663,7 +671,7 @@ export default function TiendaPage() {
         <>
           <MobileStickyBar className="motion-safe:animate-in motion-safe:slide-in-from-bottom-4">
             <div className="flex items-center justify-between gap-3">
-              <p className="text-sm font-bold text-foreground">
+              <p className="text-sm font-semibold text-foreground">
                 {cart.count} · {formatPrice(totals.payableCents)}
               </p>
               <button
@@ -712,17 +720,17 @@ function PieceRow({
   const info = product.i18nKey === "tee" ? s.products.tee : s.products.tote;
   const shots = product.images[color]?.shots ?? [];
 
-  const colorVariants = product.variants.filter((v) => v.color === color);
+  const colorVariants = product.variants.filter(v => v.color === color);
   const selectedSku = product.hasSizes
     ? size
       ? `tee-${color}-${size}`
       : null
-    : colorVariants[0]?.sku ?? null;
+    : (colorVariants[0]?.sku ?? null);
 
   const selectedAvailable = selectedSku ? skuAvailable(selectedSku) : false;
   const selectedStock = selectedSku ? stockOf(selectedSku) : undefined;
-  const allSoldOut = colorVariants.every((v) => !skuAvailable(v.sku));
-  const otherColor = product.colors.find((c) => c !== color);
+  const allSoldOut = colorVariants.every(v => !skuAvailable(v.sku));
+  const otherColor = product.colors.find(c => c !== color);
 
   // A disabled button that will not say why is a silent bounce: keep it live
   // and send the pointer back to the thing that is missing.
@@ -739,11 +747,15 @@ function PieceRow({
     <article className="border-b border-border last:border-b-0">
       <div className="mx-auto grid max-w-7xl items-center gap-8 px-5 py-12 sm:px-8 lg:grid-cols-12 lg:gap-16 lg:py-14">
         <div className={`-mx-5 sm:mx-0 lg:col-span-7 ${mirrored ? "lg:order-2" : ""}`}>
-          <PieceGallery shots={shots} alt={`${info.name} - ${s.colors[color]}`} dimmed={allSoldOut} />
+          <PieceGallery
+            shots={shots}
+            alt={`${info.name} - ${s.colors[color]}`}
+            dimmed={allSoldOut}
+          />
         </div>
 
         <div className={`lg:col-span-5 ${mirrored ? "lg:order-1" : ""}`}>
-          <h2 className="font-heading text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold leading-[1.05] tracking-[-0.02em] text-foreground text-balance">
+          <h2 className="font-heading text-[clamp(1.75rem,3.5vw,2.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-foreground text-balance">
             {info.name}
           </h2>
 
@@ -756,7 +768,7 @@ function PieceRow({
               />
               {s.colors[color]}
             </p>
-            <p className="font-heading text-2xl font-bold tabular-nums text-foreground">
+            <p className="font-heading text-2xl font-semibold tabular-nums text-foreground">
               {formatPrice(price)}
             </p>
           </div>
@@ -786,7 +798,7 @@ function PieceRow({
                 {s.fitNote}
               </p>
               <div ref={sizesRef} className="mt-4 flex flex-wrap gap-2.5">
-                {SHOP_SIZES.map((sz) => {
+                {SHOP_SIZES.map(sz => {
                   const sku = `tee-${color}-${sz}`;
                   const available = skuAvailable(sku);
                   return (
@@ -819,12 +831,15 @@ function PieceRow({
           )}
 
           <div className="mt-8">
-            {selectedSku && selectedAvailable && selectedStock !== undefined && selectedStock <= 3 && (
-              <p className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-popular/10 px-3 py-1 text-xs font-semibold text-popular">
-                <span className="h-1.5 w-1.5 rounded-full bg-popular" aria-hidden="true" />
-                {fill(s.unitsLeft, "{n}", String(selectedStock))}
-              </p>
-            )}
+            {selectedSku &&
+              selectedAvailable &&
+              selectedStock !== undefined &&
+              selectedStock <= 3 && (
+                <p className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-popular/10 px-3 py-1 text-xs font-semibold text-popular">
+                  <span className="h-1.5 w-1.5 rounded-full bg-popular" aria-hidden="true" />
+                  {fill(s.unitsLeft, "{n}", String(selectedStock))}
+                </p>
+              )}
             <button
               type="button"
               disabled={allSoldOut || (Boolean(selectedSku) && !selectedAvailable)}
@@ -856,15 +871,7 @@ function PieceRow({
  * sleeves off the garment, which is the smaller version of the crop this page
  * was built to stop doing.
  */
-function PieceGallery({
-  shots,
-  alt,
-  dimmed,
-}: {
-  shots: ShopShot[];
-  alt: string;
-  dimmed: boolean;
-}) {
+function PieceGallery({ shots, alt, dimmed }: { shots: ShopShot[]; alt: string; dimmed: boolean }) {
   const t = useTranslations();
   const s = t.shopPage;
   const [active, setActive] = useState(0);
@@ -873,10 +880,8 @@ function PieceGallery({
     shot.kind === "back" ? s.viewBack : shot.kind === "front" ? s.viewFront : s.viewEditorial;
 
   const isFlat = (shot: ShopShot): boolean => shot.kind !== "editorial";
-  const fitClass = (shot: ShopShot): string =>
-    isFlat(shot) ? "object-contain" : "object-cover";
-  const frameClass = (shot: ShopShot): string =>
-    isFlat(shot) ? "bg-white" : "bg-muted/30";
+  const fitClass = (shot: ShopShot): string => (isFlat(shot) ? "object-contain" : "object-cover");
+  const frameClass = (shot: ShopShot): string => (isFlat(shot) ? "bg-white" : "bg-muted/30");
 
   const current = shots[active] ?? shots[0];
   if (!current) return null;
@@ -906,7 +911,7 @@ function PieceGallery({
         </picture>
         {dimmed && (
           <span className="absolute inset-0 flex items-center justify-center bg-foreground/35">
-            <span className="rounded-full bg-background px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-foreground">
+            <span className="rounded-full bg-background px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-foreground">
               {s.outOfStock}
             </span>
           </span>
@@ -922,8 +927,10 @@ function PieceGallery({
               onClick={() => setActive(index)}
               aria-label={label(shot)}
               aria-pressed={index === active}
-              className={`h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg ring-1 transition-[box-shadow,opacity] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 ${frameClass(shot)} ${
-                index === active ? "ring-2 ring-foreground" : "opacity-70 ring-border hover:opacity-100"
+              className={`h-20 w-20 flex-shrink-0 overflow-hidden rounded-xl ring-1 transition-[box-shadow,opacity] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 ${frameClass(shot)} ${
+                index === active
+                  ? "ring-2 ring-foreground"
+                  : "opacity-70 ring-border hover:opacity-100"
               }`}
             >
               <picture>
@@ -976,12 +983,15 @@ function CartPanel({
   const freeShippingProgress =
     totals.shippingCents === 0
       ? 1
-      : Math.min(1, totals.payableCents / Math.max(1, totals.payableCents + totals.toFreeShippingCents));
+      : Math.min(
+          1,
+          totals.payableCents / Math.max(1, totals.payableCents + totals.toFreeShippingCents)
+        );
 
   return (
     <div>
       <ul className="divide-y divide-border">
-        {cart.items.map((item) => {
+        {cart.items.map(item => {
           const entry = getShopVariant(item.sku);
           if (!entry) return null;
           const info = entry.product.i18nKey === "tee" ? s.products.tee : s.products.tote;
@@ -1015,7 +1025,7 @@ function CartPanel({
                     type="button"
                     onClick={() => cart.setQuantity(item.sku, item.quantity - 1)}
                     aria-label="-1"
-                    className="flex h-11 w-11 items-center justify-center rounded-lg border border-border text-foreground transition-colors hover:border-foreground/50"
+                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-border text-foreground transition-colors hover:border-foreground/50"
                   >
                     <Minus className="h-3.5 w-3.5" />
                   </button>
@@ -1026,7 +1036,7 @@ function CartPanel({
                     type="button"
                     onClick={() => cart.setQuantity(item.sku, item.quantity + 1)}
                     aria-label="+1"
-                    className="flex h-11 w-11 items-center justify-center rounded-lg border border-border text-foreground transition-colors hover:border-foreground/50"
+                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-border text-foreground transition-colors hover:border-foreground/50"
                   >
                     <Plus className="h-3.5 w-3.5" />
                   </button>
@@ -1050,7 +1060,7 @@ function CartPanel({
 
         <div className="flex items-center justify-between">
           <p className="font-heading font-semibold text-foreground">{s.cart.subtotal}</p>
-          <p className="font-heading text-lg font-bold tabular-nums text-foreground">
+          <p className="font-heading text-lg font-semibold tabular-nums text-foreground">
             {formatPrice(totals.payableCents)}
           </p>
         </div>
@@ -1074,7 +1084,10 @@ function CartPanel({
         <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{s.cart.shippingNote}</p>
 
         {checkoutError && (
-          <p className="mt-3 rounded-lg bg-destructive/10 px-3 py-2 text-xs font-medium text-destructive" role="alert">
+          <p
+            className="mt-3 rounded-xl bg-destructive/10 px-3 py-2 text-xs font-medium text-destructive"
+            role="alert"
+          >
             {checkoutError}
           </p>
         )}

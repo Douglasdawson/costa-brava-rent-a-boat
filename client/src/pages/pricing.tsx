@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { FAQSection } from "@/components/FAQSection";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { CheckPanel, FaqSheet, H2, NavyHero, PILL_LINK, Rise, Sheet } from "@/components/page-kit";
 import {
   Table,
   TableBody,
@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Users, Anchor, Fuel, ArrowRight, ChevronRight } from "lucide-react";
+import { Users, ArrowRight } from "lucide-react";
 import { isCaptainedBoat, boatIncludesFuel, isPubliclyListed } from "@shared/boatData";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
@@ -20,7 +20,6 @@ import { LastUpdated } from "@/components/LastUpdated";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import {
   getSEOConfig,
   generateHreflangLinks,
@@ -37,26 +36,6 @@ import { translateBoatText } from "@shared/boatTextTranslations";
 import { BookingStickyBar } from "@/components/MobileStickyBar";
 
 type SeasonKey = "BAJA" | "MEDIA" | "ALTA";
-
-function RevealSection({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <div
-      ref={ref}
-      className={`transition-[opacity,transform,filter] duration-700 ${
-        isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"
-      } ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
 
 function getMinPrice(boat: Boat, season: SeasonKey): number | null {
   if (!boat.pricing) return null;
@@ -220,7 +199,7 @@ export default function PricingPage() {
   };
 
   return (
-    <main id="main-content" className="min-h-screen">
+    <main id="main-content" className="min-h-screen bg-background">
       <SEO
         title={seoConfig.title}
         description={seoConfig.description}
@@ -235,94 +214,81 @@ export default function PricingPage() {
       <Navigation />
       <ReadingProgressBar />
 
-      {/* ═══ HERO ═══ */}
-      <div className="bg-gradient-to-br from-primary/5 to-primary/10 pt-28 pb-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-h1 font-heading font-bold text-foreground mb-4">
-            {pp.heroTitle}
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6">{pp.heroSubtitle}</p>
-          <div className="flex flex-wrap gap-3 justify-center">
-            <Badge variant="outline" className="text-primary border-primary">
-              <Fuel className="w-4 h-4 mr-2" />
-              {pp.fuelBadge}
-            </Badge>
-            <Badge variant="outline" className="text-primary border-primary">
-              <Anchor className="w-4 h-4 mr-2" />
-              {activeBoats.length} {pp.fleetCountSuffix}
-            </Badge>
-          </div>
-          <p className="text-muted-foreground text-sm text-center mt-4">
-            {pp.portAccessible}{" "}
-            <a href={localizedPath("locationMalgrat")} className="text-primary hover:underline">
-              Malgrat de Mar
-            </a>{" "}
-            (10 min),{" "}
-            <a
-              href={localizedPath("locationSantaSusanna")}
-              className="text-primary hover:underline"
-            >
-              Santa Susanna
-            </a>{" "}
-            (15 min),{" "}
-            <a href={localizedPath("locationCalella")} className="text-primary hover:underline">
-              Calella
-            </a>{" "}
-            (20 min)
-          </p>
-          <LastUpdated date="2026-09-03" className="text-center mt-4" />
-        </div>
-      </div>
+      {/* HERO */}
+      <NavyHero
+        title={pp.heroTitle}
+        subtitle={pp.heroSubtitle}
+        facts={[pp.fuelBadge, `${activeBoats.length} ${pp.fleetCountSuffix}`]}
+        next="background"
+      >
+        <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-primary-foreground/80 dark:text-foreground/80">
+          {pp.portAccessible}{" "}
+          <a
+            href={localizedPath("locationMalgrat")}
+            className="underline underline-offset-4 hover:text-primary-foreground dark:hover:text-foreground"
+          >
+            Malgrat de Mar
+          </a>{" "}
+          (10 min),{" "}
+          <a
+            href={localizedPath("locationSantaSusanna")}
+            className="underline underline-offset-4 hover:text-primary-foreground dark:hover:text-foreground"
+          >
+            Santa Susanna
+          </a>{" "}
+          (15 min),{" "}
+          <a
+            href={localizedPath("locationCalella")}
+            className="underline underline-offset-4 hover:text-primary-foreground dark:hover:text-foreground"
+          >
+            Calella
+          </a>{" "}
+          (20 min)
+        </p>
+        <LastUpdated
+          date="2026-09-03"
+          className="mt-3 text-center text-primary-foreground/70 dark:text-foreground/70"
+        />
+      </NavyHero>
 
-      {/* ═══ INTRO: text + image ═══ */}
-      <RevealSection className="py-16 sm:py-20 bg-background">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-            <div className="lg:col-span-3">
-              <h2 className="text-h2 font-heading font-bold text-foreground mb-6">
-                {pp.info.whatIncludesTitle}
-              </h2>
-              <ul className="space-y-4 text-muted-foreground leading-relaxed">
-                <li className="flex items-start gap-2">
-                  <Fuel className="w-4 h-4 text-green-600 mt-1 shrink-0" />
-                  <span dangerouslySetInnerHTML={{ __html: pp.info.fuelIncludedItem }} />
-                </li>
-                <li className="flex items-start gap-2">
-                  <Anchor className="w-4 h-4 text-primary mt-1 shrink-0" />
-                  <span>{pp.info.insurance}</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Users className="w-4 h-4 text-primary mt-1 shrink-0" />
-                  <span>{pp.info.briefing}</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Anchor className="w-4 h-4 text-primary mt-1 shrink-0" />
-                  <span>{pp.info.equipment}</span>
-                </li>
-              </ul>
-            </div>
-            <div className="lg:col-span-2">
-              <img
-                src="/images/boats/astec-480/alquiler-barco-astec-480-rent-a-boat-costa-brava-blanes-navegando-patron.webp"
-                alt="Boat rental pricing - navigating the Costa Brava coast"
-                className="w-full rounded-2xl object-cover aspect-[4/5]"
-                loading="lazy"
-                width={640}
-                height={800}
-              />
-            </div>
-          </div>
+      {/* WHAT THE PRICE INCLUDES */}
+      <Sheet tone="background" next="muted" aria-labelledby="pricing-includes-title">
+        <div className="container mx-auto grid max-w-6xl items-center gap-10 px-4 lg:grid-cols-[7fr_5fr] lg:gap-16">
+          <Rise>
+            <h2 id="pricing-includes-title" className={H2}>
+              {pp.info.whatIncludesTitle}
+            </h2>
+            <CheckPanel
+              className="mt-8"
+              items={[
+                <span key="fuel" dangerouslySetInnerHTML={{ __html: pp.info.fuelIncludedItem }} />,
+                pp.info.insurance,
+                pp.info.briefing,
+                pp.info.equipment,
+              ]}
+            />
+          </Rise>
+          <Rise delay={0.1}>
+            <img
+              src="/images/boats/astec-480/alquiler-barco-astec-480-rent-a-boat-costa-brava-blanes-navegando-patron.webp"
+              alt="Boat rental pricing - navigating the Costa Brava coast"
+              className="aspect-[4/3] w-full rounded-2xl object-cover"
+              loading="lazy"
+              width={640}
+              height={800}
+            />
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* ═══ SEASON LEGEND ═══ */}
-      <div className="bg-muted border-y border-border">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex flex-wrap gap-4 justify-center text-sm">
+      {/* PRICING TABLE (season legend above it) */}
+      <Sheet tone="muted" next="background" aria-label={pp.heroTitle}>
+        <div className="container mx-auto max-w-6xl px-4">
+          <ul className="mb-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
             {(["BAJA", "MEDIA", "ALTA"] as SeasonKey[]).map(season => (
-              <div key={season} className="flex items-center gap-2">
+              <li key={season} className="flex items-center gap-2">
                 <span
-                  className={`inline-block w-3 h-3 rounded-full ${
+                  className={`inline-block h-2.5 w-2.5 rounded-full ${
                     season === "BAJA"
                       ? "bg-green-500"
                       : season === "MEDIA"
@@ -332,24 +298,18 @@ export default function PricingPage() {
                 />
                 <span className="font-medium">{pp.seasonNames[season]}</span>
                 <span className="text-muted-foreground">({pp.seasonLabels[season]})</span>
-              </div>
+              </li>
             ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ═══ PRICING TABLE ═══ */}
-      <RevealSection className="py-16 sm:py-20 bg-background">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          </ul>
           {isLoading ? (
             <div className="flex justify-center py-12" role="status">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+              <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-primary" />
               <span className="sr-only">Loading...</span>
             </div>
           ) : (
             <>
               {/* Desktop table view */}
-              <div className="hidden lg:block rounded-2xl border border-border overflow-hidden">
+              <div className="hidden overflow-hidden rounded-2xl border border-border bg-card lg:block">
                 <Table>
                   <TableHeader>
                     <TableRow>
@@ -404,13 +364,9 @@ export default function PricingPage() {
                               {translateBoatText(boat.name, language)}
                             </a>
                             {boatIncludesFuel(boat.id, boat.requiresLicense) && (
-                              <Badge
-                                variant="secondary"
-                                className="ml-2 text-xs bg-green-100 text-green-800"
-                              >
-                                <Fuel className="w-3 h-3 mr-1" />
+                              <span className="ml-2 text-xs font-normal text-success">
                                 {pp.fuelIncludedTag}
-                              </Badge>
+                              </span>
                             )}
                           </TableCell>
                           <TableCell className="text-center">
@@ -420,16 +376,9 @@ export default function PricingPage() {
                             </div>
                           </TableCell>
                           <TableCell className="text-center">
-                            <Badge
-                              variant={boat.requiresLicense ? "default" : "outline"}
-                              className={
-                                boat.requiresLicense
-                                  ? "bg-blue-100 text-blue-800 hover:bg-blue-100"
-                                  : "border-green-600 text-green-700"
-                              }
-                            >
+                            <span className="text-sm text-muted-foreground">
                               {getLicenseLabel(boat, pp)}
-                            </Badge>
+                            </span>
                           </TableCell>
                           {[minBaja, minMedia, minAlta].map((min, i) => (
                             <TableCell key={i} className="text-center font-semibold tabular-nums">
@@ -469,10 +418,7 @@ export default function PricingPage() {
                   const minAlta = getMinPrice(boat, "ALTA");
 
                   return (
-                    <div
-                      key={boat.id}
-                      className="bg-background rounded-2xl border border-border p-5"
-                    >
+                    <div key={boat.id} className="rounded-2xl border border-border bg-card p-5">
                       <div className="flex items-start gap-3 mb-3">
                         <a href={localizedPath("boatDetail", boat.id)} className="flex-shrink-0">
                           <img
@@ -499,26 +445,13 @@ export default function PricingPage() {
                               </span>
                             </div>
                           </div>
-                          <Badge
-                            variant={boat.requiresLicense ? "default" : "outline"}
-                            className={
-                              boat.requiresLicense
-                                ? "bg-blue-100 text-blue-800 hover:bg-blue-100"
-                                : "border-green-600 text-green-700"
-                            }
-                          >
+                          <span className="shrink-0 text-sm text-muted-foreground">
                             {getLicenseLabel(boat, pp)}
-                          </Badge>
+                          </span>
                         </div>
                       </div>
                       {boatIncludesFuel(boat.id, boat.requiresLicense) && (
-                        <Badge
-                          variant="secondary"
-                          className="w-fit text-xs bg-green-100 text-green-800 mb-3"
-                        >
-                          <Fuel className="w-3 h-3 mr-1" />
-                          {pp.fuelIncludedFull}
-                        </Badge>
+                        <p className="mb-3 text-sm text-success">{pp.fuelIncludedFull}</p>
                       )}
                       <div className="grid grid-cols-3 gap-3 mb-4">
                         {(["BAJA", "MEDIA", "ALTA"] as SeasonKey[]).map(season => {
@@ -539,7 +472,7 @@ export default function PricingPage() {
                                   {pp.seasonShort[season]}
                                 </span>
                               </div>
-                              <div className="font-bold text-lg tabular-nums">
+                              <div className="font-heading text-lg font-semibold tabular-nums">
                                 {price !== null ? formatPrice(price, language) : "-"}
                               </div>
                               {price !== null && (
@@ -573,108 +506,108 @@ export default function PricingPage() {
             </>
           )}
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* ═══ PHOTO BREAK ═══ */}
-      <div className="w-full overflow-hidden">
-        <img
-          src="/images/blog/grupos-barco.webp"
-          alt="Group enjoying a boat day on the Costa Brava"
-          className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
-          loading="lazy"
-          width={1920}
-          height={600}
-        />
-      </div>
-
-      {/* ═══ IMPORTANT INFO ═══ */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
-            {pp.info.importantTitle}
-          </h2>
-          <ul className="space-y-3 text-muted-foreground leading-relaxed max-w-3xl">
-            <li dangerouslySetInnerHTML={{ __html: pp.info.minPerHour }} />
-            <li dangerouslySetInnerHTML={{ __html: pp.info.deposit }} />
-            <li dangerouslySetInnerHTML={{ __html: pp.info.freeCancellation }} />
-            <li dangerouslySetInnerHTML={{ __html: pp.info.licenseRequired }} />
-          </ul>
+      {/* IMPORTANT INFO */}
+      <Sheet tone="background" next="muted" aria-labelledby="pricing-important-title">
+        <div className="container mx-auto grid max-w-6xl items-start gap-10 px-4 lg:grid-cols-[5fr_7fr] lg:gap-16">
+          <Rise>
+            <h2 id="pricing-important-title" className={H2}>
+              {pp.info.importantTitle}
+            </h2>
+            <img
+              src="/images/blog/grupos-barco.webp"
+              alt="Group enjoying a boat day on the Costa Brava"
+              className="mt-8 aspect-[4/3] w-full rounded-2xl object-cover"
+              loading="lazy"
+              width={1920}
+              height={600}
+            />
+          </Rise>
+          <Rise delay={0.1}>
+            <ul className="overflow-hidden rounded-2xl border border-border bg-card">
+              {[
+                pp.info.minPerHour,
+                pp.info.deposit,
+                pp.info.freeCancellation,
+                pp.info.licenseRequired,
+              ].map((html, i) => (
+                <li
+                  key={i}
+                  className="border-b border-border px-5 py-4 text-base leading-relaxed text-muted-foreground last:border-b-0 sm:px-6 [&_strong]:font-semibold [&_strong]:text-foreground"
+                  dangerouslySetInnerHTML={{ __html: html }}
+                />
+              ))}
+            </ul>
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* ═══ FAQ ═══ */}
-      <RevealSection className="py-16 sm:py-20 bg-background">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground text-center mb-8">
-            {pp.faqTitle}
-          </h2>
-          <FAQSection
-            className="max-w-3xl mx-auto"
-            items={[
-              { question: pp.faq.q1, answer: noLicAnswer },
-              { question: pp.faq.q2, answer: pp.faq.a2 },
-              { question: pp.faq.q3, answer: pp.faq.a3 },
-              { question: pp.faq.q4, answer: licAnswer },
-            ]}
-          />
-        </div>
-      </RevealSection>
+      {/* FAQ: cards born folded, answers stay in the DOM */}
+      <FaqSheet
+        idPrefix="pricing-faq"
+        tone="muted"
+        next="background"
+        title={pp.faqTitle}
+        items={[
+          { question: pp.faq.q1, answer: noLicAnswer },
+          { question: pp.faq.q2, answer: pp.faq.a2 },
+          { question: pp.faq.q3, answer: pp.faq.a3 },
+          { question: pp.faq.q4, answer: licAnswer },
+        ]}
+      />
 
-      {/* ═══ CATEGORY LINKS ═══ price pages should route authority to both categories */}
-      <div className="py-8 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap gap-x-6 gap-y-3 justify-center">
-            {/* Licence-free rental ends 2026-10-01 (RD 1188/2025): no link after that. */}
-            {isLicenseFreeEraActive() && (
-              <a
-                href={localizedPath("categoryLicenseFree")}
-                className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-                data-testid="pricing-link-license-free"
-              >
-                <ChevronRight className="w-4 h-4" />
-                {t.breadcrumbs.categoryLicenseFree}
-              </a>
-            )}
+      {/* CATEGORY LINKS: price pages should route authority to both categories */}
+      <Sheet tone="background" next="navy" className="py-10 sm:py-12" aria-label={pp.heroTitle}>
+        <div className="container mx-auto flex max-w-6xl flex-wrap justify-center gap-3 px-4">
+          {/* Licence-free rental ends 2026-10-01 (RD 1188/2025): no link after that. */}
+          {isLicenseFreeEraActive() && (
             <a
-              href={localizedPath("categoryLicensed")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-              data-testid="pricing-link-licensed"
+              href={localizedPath("categoryLicenseFree")}
+              className={PILL_LINK}
+              data-testid="pricing-link-license-free"
             >
-              <ChevronRight className="w-4 h-4" />
-              {t.categoryLicensed!.crossLinkFromFree}
+              {t.breadcrumbs.categoryLicenseFree}
             </a>
-            <a
-              href={localizedPath("categoryCaptained")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-              data-testid="pricing-link-captained"
-            >
-              <ChevronRight className="w-4 h-4" />
-              {t.captainedPage!.crossLinkLabel}
-            </a>
-          </div>
+          )}
+          <a
+            href={localizedPath("categoryLicensed")}
+            className={PILL_LINK}
+            data-testid="pricing-link-licensed"
+          >
+            {t.categoryLicensed!.crossLinkFromFree}
+          </a>
+          <a
+            href={localizedPath("categoryCaptained")}
+            className={PILL_LINK}
+            data-testid="pricing-link-captained"
+          >
+            {t.captainedPage!.crossLinkLabel}
+          </a>
         </div>
-      </div>
+      </Sheet>
 
-      {/* ═══ CTA ═══ full-width */}
-      <div className="py-16 sm:py-20 bg-primary">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-h2 font-heading font-bold text-white mb-4">
+      {/* CTA: closes over the footer colour */}
+      <Sheet tone="navy" next="footer" aria-labelledby="pricing-cta-title">
+        <Rise className="container mx-auto max-w-3xl px-4 text-center">
+          <h2 id="pricing-cta-title" className={H2}>
             {pp.cta.title}
           </h2>
-          <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto">{pp.cta.subtitle}</p>
-          <Button
-            size="lg"
-            variant="secondary"
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-primary-foreground/85 text-pretty sm:text-lg dark:text-foreground/85">
+            {pp.cta.subtitle}
+          </p>
+          <InteractiveHoverButton
+            tone="light"
             onClick={() => openBookingModal()}
-            className="rounded-full"
+            className="mt-8 min-h-12 px-8 text-base"
           >
-            <Anchor className="w-5 h-5 mr-2" />
             {pp.cta.button}
-          </Button>
-        </div>
+          </InteractiveHoverButton>
+        </Rise>
+      </Sheet>
+      <div className="bg-foreground">
+        <BookingStickyBar />
       </div>
-
-      <BookingStickyBar />
       <Footer />
     </main>
   );

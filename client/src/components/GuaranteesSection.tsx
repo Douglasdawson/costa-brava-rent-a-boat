@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { useCoveragePrices } from "@/hooks/useCoveragePrices";
@@ -42,65 +42,71 @@ export default function GuaranteesSection() {
   ];
 
   return (
-    <section className="bg-muted/40 py-16 sm:py-24">
-      <div className="container mx-auto grid max-w-6xl grid-cols-1 gap-x-10 gap-y-9 px-4 lg:grid-cols-12">
-        {/* The argument. */}
-        <div className="lg:col-span-5 lg:row-start-1">
-          <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-cta">
-            {g.navLabel}
-          </p>
-          <h2 className="mt-3 font-heading text-h2 font-semibold tracking-tight text-foreground">
+    <section
+      className="rounded-b-2xl squircle-b bg-muted/40 py-16 sm:py-24"
+      aria-labelledby="guarantees-title"
+    >
+      <div className="container mx-auto max-w-6xl px-4">
+        {/* The argument: one claim, one supporting paragraph. */}
+        <div className="mx-auto max-w-5xl text-center">
+          <h2
+            id="guarantees-title"
+            className="font-heading text-h2 font-semibold tracking-tight text-foreground text-balance"
+          >
             {g.heroTitle}
           </h2>
-          <p className="mt-4 leading-relaxed text-muted-foreground">{g.heroSubtitle}</p>
+          <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground text-pretty sm:text-lg">
+            {g.heroSubtitle}
+          </p>
         </div>
 
-        {/* The signature: the threshold as an instrument panel. The measured
-            value leads each row — same device as the /garantias page, so the
-            two read as one argument rather than a teaser and a landing page. */}
-        <div className="lg:col-start-7 lg:col-span-6 lg:row-span-2 lg:row-start-1">
-          <div className="rounded-xl border border-border bg-card p-5 sm:p-6">
-            <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
-              {g.criteriaTitle}
-            </p>
-            <dl className="mt-4">
-              {g.criteria.map((text, i) => (
-                <div key={text} className="border-t border-border py-3.5 first:border-t-0 first:pt-0">
-                  <dt className="font-mono text-xl font-bold tabular-nums tracking-tight text-cta dark:text-foreground sm:text-2xl">
-                    {g.criteriaMarks[i]}
-                  </dt>
-                  <dd className="mt-1 text-[13px] leading-snug text-muted-foreground">{text}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </div>
+        {/* The signature: the published threshold. The measured value leads each
+            cell, so the argument is readable in three words before any prose. */}
+        <h3 className="mt-12 text-center font-heading text-xl font-semibold tracking-tight text-foreground sm:mt-14">
+          {g.criteriaTitle}
+        </h3>
+        <dl className="mt-6 grid divide-y divide-border rounded-2xl border border-border bg-background md:grid-cols-3 md:divide-x md:divide-y-0">
+          {g.criteria.map((text, i) => (
+            <div key={text} className="px-6 py-7 text-center sm:px-8 sm:py-9">
+              <dt className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                {g.criteriaMarks[i]}
+              </dt>
+              <dd className="mx-auto mt-3 max-w-xs text-base leading-snug text-muted-foreground text-pretty">
+                {text}
+              </dd>
+            </div>
+          ))}
+        </dl>
 
-        {/* What it costs, then the way in. Prices sit under the argument and
-            not inside the panel: the panel answers "when", this answers "how
-            much", and merging them turns a spec sheet into a pricing card. */}
-        <div className="lg:col-span-5 lg:row-start-2 lg:self-end">
-          <dl>
+        {/* What it costs, then the way in. Same figure-first grammar as the panel
+            above, but navy so the section closes on its price and its action:
+            the first panel answers "when", this one "how much". */}
+        <div className="mt-4 grid items-stretch overflow-hidden rounded-2xl bg-primary text-primary-foreground dark:bg-[hsl(215_45%_16%)] md:mt-5 md:grid-cols-3">
+          <dl className="contents">
             {priceRows.map(row => (
               <div
                 key={row.label}
-                className="flex items-baseline justify-between gap-4 border-t border-border py-3"
+                className="flex flex-col items-center justify-center border-b border-primary-foreground/15 px-6 py-7 text-center sm:px-8 sm:py-9 md:border-b-0 md:border-r"
               >
-                <dt className="text-sm text-foreground">{row.label}</dt>
-                <dd className="font-mono text-sm font-bold tabular-nums text-foreground">
+                <dd className="font-heading text-3xl font-semibold tabular-nums tracking-tight sm:text-4xl">
                   {row.value}
                 </dd>
+                <dt className="mt-2 text-base leading-snug text-primary-foreground/80">
+                  {row.label}
+                </dt>
               </div>
             ))}
           </dl>
-          <a
-            href={localizedPath("garantias")}
-            data-testid="home-garantias-link"
-            className="mt-5 inline-flex items-center gap-2 rounded text-sm font-semibold text-cta transition-colors hover:text-cta/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 pointer-coarse:py-3 pointer-coarse:-my-3"
-          >
-            {t.booking.coveragesMoreInfo}
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </a>
+          <div className="flex items-center justify-center px-6 py-7 sm:px-8 md:py-9">
+            <InteractiveHoverButton
+              tone="light"
+              href={localizedPath("garantias")}
+              data-testid="home-garantias-link"
+              className="min-h-12 px-7 text-base"
+            >
+              {t.booking.coveragesMoreInfo}
+            </InteractiveHoverButton>
+          </div>
         </div>
       </div>
     </section>

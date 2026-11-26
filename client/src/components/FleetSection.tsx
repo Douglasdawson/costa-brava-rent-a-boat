@@ -147,14 +147,14 @@ const VirtualizedBoatGrid = React.memo(function VirtualizedBoatGrid({
   return (
     <div
       ref={parentRef}
-      className="mb-6 sm:mb-8 lg:mb-12 overflow-y-auto"
+      className="mb-10 sm:mb-14 lg:mb-16 overflow-y-auto"
       style={{ maxHeight: "80vh" }}
     >
       <div className="relative w-full" style={{ height: `${virtualizer.getTotalSize()}px` }}>
         {virtualizer.getVirtualItems().map(virtualRow => (
           <div
             key={virtualRow.key}
-            className="absolute left-0 w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+            className="absolute left-0 w-full grid grid-cols-1 sm:grid-cols-2 min-[900px]:grid-cols-3 gap-4 sm:gap-6 xl:gap-8"
             style={{
               top: `${virtualRow.start}px`,
               height: `${virtualRow.size}px`,
@@ -377,11 +377,11 @@ function FleetSection({ excludeActivities = false }: FleetSectionProps) {
   return (
     <section
       ref={revealRef}
-      className={`pt-16 sm:pt-24 lg:pt-32 ${excludeActivities ? "pb-8 sm:pb-10 lg:pb-12" : "pb-16 sm:pb-24 lg:pb-32"} bg-background transition-[opacity,filter] duration-500 ${isVisible ? "opacity-100 blur-none" : "opacity-0 blur-[2px]"}`}
+      className={`pt-8 sm:pt-12 lg:pt-14 ${excludeActivities ? "pb-8 sm:pb-10 lg:pb-12" : "pb-16 sm:pb-24 lg:pb-32"} bg-background transition-[opacity,filter] duration-500 ${isVisible ? "opacity-100 blur-none" : "opacity-0 blur-[2px]"}`}
       id="fleet"
     >
       <div className="container mx-auto px-3 sm:px-4 max-w-7xl">
-        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+        <div className="text-center mb-6 sm:mb-8 lg:mb-10">
           <h2 className="font-heading text-h2 font-semibold text-foreground tracking-tight mb-2 sm:mb-3 lg:mb-4 px-2 text-balance">
             {t.fleet.title}
           </h2>
@@ -456,7 +456,7 @@ function FleetSection({ excludeActivities = false }: FleetSectionProps) {
 
         {isLoading ? (
           <div
-            className={`grid grid-cols-1 sm:grid-cols-2 ${sortedBoats.length % 3 === 0 ? "xl:grid-cols-3" : "xl:grid-cols-4"} gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12`}
+            className={`grid grid-cols-1 sm:grid-cols-2 ${sortedBoats.length % 3 === 0 ? "min-[900px]:grid-cols-3" : "min-[900px]:grid-cols-4"} gap-4 sm:gap-6 xl:gap-8 mb-10 sm:mb-14 lg:mb-16`}
           >
             {Array.from({ length: 6 }).map((_, i) => (
               <BoatCardSkeleton key={i} />
@@ -471,7 +471,7 @@ function FleetSection({ excludeActivities = false }: FleetSectionProps) {
           />
         ) : (
           <div
-            className={`grid grid-cols-1 sm:grid-cols-2 ${sortedBoats.length % 3 === 0 ? "xl:grid-cols-3" : "xl:grid-cols-4"} gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12`}
+            className={`grid grid-cols-1 sm:grid-cols-2 ${sortedBoats.length % 3 === 0 ? "min-[900px]:grid-cols-3" : "min-[900px]:grid-cols-4"} gap-4 sm:gap-6 xl:gap-8 mb-10 sm:mb-14 lg:mb-16`}
           >
             {sortedBoats.map(boat => (
               <div key={boat.id}>

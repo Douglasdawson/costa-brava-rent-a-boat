@@ -45,7 +45,7 @@ export const en: Translations = {
       "The basic Navigation Licence is enough. We verify foreign titles online before you book.",
     bookNow: "Check Availability",
     findYourBoat: "Book now",
-    ctaTitulin: "What the titulín is",
+    ctaTitulin: "Want your licence?",
     // Shown only while isLicenseFreeEraActive() (RD 1188/2025, until 2026-09-30).
     licenseFreeUntil: "No licence yet? Until September 30 you can still rent without one.",
     licenseFreeUntilCta: "See licence-free boats",

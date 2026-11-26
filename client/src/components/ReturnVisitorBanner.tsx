@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
-import { Repeat, X } from "lucide-react";
+import { X } from "lucide-react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import {
@@ -69,35 +70,34 @@ export function ReturnVisitorBanner() {
 
   return (
     <div
-      className="fixed top-[calc(4.5rem+env(safe-area-inset-top,0px))] left-3 right-3 md:top-[5.5rem] md:left-6 md:right-6 lg:top-[6.5rem] z-40 bg-indigo-50 dark:bg-indigo-950 border border-indigo-200 dark:border-indigo-800 rounded-2xl shadow-md animate-in slide-in-from-top-2 duration-300"
-      role="banner"
+      className="fixed top-[calc(4.5rem+env(safe-area-inset-top,0px))] left-3 right-3 md:top-[5.5rem] md:left-0 md:right-0 md:mx-auto md:max-w-2xl lg:top-[6.5rem] z-40 rounded-2xl bg-primary text-primary-foreground shadow-lg dark:bg-[hsl(215_45%_16%)] dark:text-foreground animate-in slide-in-from-top-2 duration-300 motion-reduce:animate-none"
+      role="region"
       aria-label={rt?.welcomeBack ?? "Welcome back"}
     >
-      <div className="max-w-5xl mx-auto px-4 py-2.5 flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2.5 min-w-0 flex-1">
-          <Repeat
-            className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0"
-            aria-hidden="true"
-          />
-          <p className="text-sm text-indigo-900 dark:text-indigo-100 truncate">
-            <span className="font-semibold">{rt?.welcomeBack ?? "Welcome back!"}</span>
-            {" "}
+      <div className="flex items-center gap-3 py-2.5 pl-5 pr-1.5">
+        <div className="min-w-0 flex-1">
+          <p className="text-xs text-primary-foreground/75 dark:text-foreground/75">
+            {rt?.welcomeBack ?? "Welcome back"}
+          </p>
+          <p className="mt-0.5 line-clamp-2 text-sm font-medium leading-snug text-pretty">
+            <span className="sm:hidden">{boat.name}</span>
             <span className="hidden sm:inline">{boatText}</span>
           </p>
-          <a
-            href={boatDetailPath}
-            onClick={handleClick}
-            className="bg-cta hover:bg-cta/90 text-white rounded-full px-4 py-1 text-sm font-medium whitespace-nowrap transition-colors shrink-0"
-          >
-            {rt?.checkAvailability ?? "Check availability"}
-          </a>
         </div>
+        <InteractiveHoverButton
+          tone="light"
+          href={boatDetailPath}
+          onClick={handleClick}
+          className="shrink-0 px-5"
+        >
+          {rt?.checkAvailability ?? "Check availability"}
+        </InteractiveHoverButton>
         <button
           onClick={handleClose}
-          className="text-indigo-400 hover:text-indigo-600 dark:text-indigo-500 dark:hover:text-indigo-300 p-1 shrink-0 transition-colors"
-          aria-label="Close"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-primary-foreground/75 transition-colors hover:text-primary-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-foreground dark:text-foreground/75 dark:hover:text-foreground"
+          aria-label={t.common?.close ?? "Close"}
         >
-          <X className="w-4 h-4" />
+          <X className="h-4 w-4" aria-hidden="true" />
         </button>
       </div>
     </div>

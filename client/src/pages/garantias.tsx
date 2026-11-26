@@ -9,36 +9,17 @@ import { LastUpdated } from "@/components/LastUpdated";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { generateHreflangLinks, generateCanonicalUrl, getSEOConfig } from "@/utils/seo-config";
 import { generateBreadcrumbSchema } from "@/utils/seo-schemas";
 import { COVERAGE_PRICES_FALLBACK, type CoveragePrices } from "@shared/pricing";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { H2, Rise, SHEET, Sheet, TONE_BG } from "@/components/page-kit";
 
 const NAVY_CTA =
   "inline-flex items-center justify-center gap-2 rounded-full bg-cta text-cta-foreground hover:bg-cta/90 font-semibold btn-elevated transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2";
 
 const HERO_IMAGE = "/images/blog/atardecer-mar.webp";
-
-/**
- * Section wrapper with the repo's canonical scroll reveal. The exact classes
- * matter: index.css forces `opacity-0 / translate-y-* / blur-*` visible under
- * `@media (scripting: none)`, so any other pair would ship a blank page to
- * crawlers and no-JS visitors.
- */
-function Reveal({ className = "", children }: { className?: string; children: ReactNode }) {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <section
-      ref={ref}
-      className={`transition-[opacity,transform,filter] duration-700 ease-out ${
-        isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"
-      } ${className}`}
-    >
-      {children}
-    </section>
-  );
-}
 
 /**
  * Header of a guarantee record: the name, and its price in the page's mono
@@ -47,9 +28,9 @@ function Reveal({ className = "", children }: { className?: string; children: Re
  */
 function RecordHeader({ name, price }: { name: string; price: string }) {
   return (
-    <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b-2 border-foreground pb-4">
-      <h2 className="font-heading text-h2 font-bold text-foreground">{name}</h2>
-      <p className="font-mono text-3xl font-bold tabular-nums leading-none text-cta sm:text-4xl">
+    <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b border-foreground pb-4">
+      <h2 className={H2}>{name}</h2>
+      <p className="font-mono text-3xl font-semibold tabular-nums leading-none text-cta sm:text-4xl">
         {price}
       </p>
     </div>
@@ -58,9 +39,7 @@ function RecordHeader({ name, price }: { name: string; price: string }) {
 
 /** Sub-heading inside a record. Deliberately an h3: it belongs to the record. */
 function RecordBlockTitle({ children }: { children: ReactNode }) {
-  return (
-    <h3 className="font-heading text-lg font-semibold text-foreground">{children}</h3>
-  );
+  return <h3 className="font-heading text-lg font-semibold text-foreground">{children}</h3>;
 }
 
 /**
@@ -127,56 +106,54 @@ export default function GarantiasPage() {
       />
       <Navigation />
 
-      {/* HERO — the sea makes the argument; the page only publishes the rule.
-          Full viewport: the photo and its gradient are `inset-0` on this
-          section, so the section's height IS the overlay's height. `svh` (not
-          `vh`) so the mobile browser chrome doesn't push the bottom of the
-          gradient below the fold. */}
-      <section className="relative isolate flex min-h-[100svh] items-center overflow-hidden pb-16 pt-28">
-        <img
-          src={HERO_IMAGE}
-          alt=""
-          aria-hidden="true"
-          decoding="async"
-          draggable={false}
-          className={`absolute inset-0 -z-10 h-full w-full object-cover object-[center_55%] will-change-transform transition-transform duration-[1200ms] ease-out ${
-            mounted ? "scale-100" : "scale-[1.06]"
-          }`}
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/40 to-black/75" />
-
-        <div
-          className={`mx-auto w-full max-w-3xl px-4 text-white transition-all duration-700 ease-out sm:px-6 ${
-            mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-          }`}
+      {/* HERO: photo sheet; the sea makes the argument and the page only publishes the rule. */}
+      <div className={TONE_BG.background}>
+        <section
+          className={`relative isolate flex min-h-[100svh] items-center sm:min-h-[85svh] overflow-hidden ${SHEET} pb-16 pt-28`}
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/85 [text-shadow:0_1px_10px_hsl(215_45%_12%/0.45)]">
-            {g.navLabel}
-          </p>
-          <h1 className="mt-4 font-heading text-display font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)]">
-            {g.heroTitle}
-          </h1>
-          <p className="mt-5 max-w-xl text-lg text-white/90 [text-shadow:0_1px_10px_hsl(215_45%_12%/0.45)]">
-            {g.heroSubtitle}
-          </p>
-          <div className="mt-8 flex flex-wrap gap-2">
-            <span className="inline-flex items-baseline gap-2 rounded-full bg-black/25 px-4 py-2 text-sm ring-1 ring-white/20">
-              <span className="font-medium text-white">{t.booking.coverages.weatherName}</span>
-              <span className="font-bold text-white">{prices.weatherPrice}€</span>
-            </span>
-            <span className="inline-flex items-baseline gap-2 rounded-full bg-black/25 px-4 py-2 text-sm ring-1 ring-white/20">
-              <span className="font-medium text-white">{t.booking.coverages.depositName}</span>
-              <span className="font-bold text-white">
-                {prices.depositPriceSL}-{prices.depositPriceCL}€
-              </span>
-            </span>
+          <img
+            src={HERO_IMAGE}
+            alt=""
+            aria-hidden="true"
+            decoding="async"
+            draggable={false}
+            className={`absolute inset-0 -z-10 h-full w-full object-cover object-[center_55%] will-change-transform transition-transform duration-[1200ms] ease-out motion-reduce:transition-none ${
+              mounted ? "scale-100" : "scale-[1.06]"
+            }`}
+          />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/40 to-black/75" />
+
+          <div
+            className={`mx-auto w-full max-w-3xl px-4 text-white transition-transform duration-700 ease-out motion-reduce:transition-none sm:px-6 ${
+              mounted ? "translate-y-0" : "translate-y-4"
+            }`}
+          >
+            <h1 className="font-heading text-display font-semibold text-balance [text-shadow:0_1px_2px_rgba(0,0,0,0.35),0_4px_24px_rgba(0,0,0,0.4)]">
+              {g.heroTitle}
+            </h1>
+            <p className="mt-5 max-w-xl text-lg text-white/90 text-pretty [text-shadow:0_1px_10px_hsl(215_45%_12%/0.45)]">
+              {g.heroSubtitle}
+            </p>
+            {/* Both prices as one ruled strip, not loose pills. */}
+            <dl className="mt-8 grid max-w-xl overflow-hidden rounded-2xl border border-white/25 bg-black/25 text-sm text-white sm:grid-cols-2">
+              <div className="flex items-baseline justify-between gap-3 px-4 py-3.5">
+                <dt className="font-medium">{t.booking.coverages.weatherName}</dt>
+                <dd className="font-heading font-semibold tabular-nums">{prices.weatherPrice}€</dd>
+              </div>
+              <div className="flex items-baseline justify-between gap-3 border-t border-white/25 px-4 py-3.5 sm:border-l sm:border-t-0">
+                <dt className="font-medium">{t.booking.coverages.depositName}</dt>
+                <dd className="font-heading font-semibold tabular-nums">
+                  {prices.depositPriceSL}-{prices.depositPriceCL}€
+                </dd>
+              </div>
+            </dl>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* RECORD 1 — Garantía de mal tiempo. */}
-      <Reveal className="px-4 py-14 sm:px-6 lg:py-20">
-        <div className="mx-auto max-w-3xl">
+      <Sheet tone="background" next="muted" aria-label={t.booking.coverages.weatherName}>
+        <Rise className="container mx-auto max-w-3xl px-4">
           <RecordHeader name={t.booking.coverages.weatherName} price={`${prices.weatherPrice}€`} />
 
           {/* Same condition, two outcomes. One frame with a divider, not two
@@ -187,7 +164,7 @@ export default function GarantiasPage() {
               price is stated once, in the record header. */}
           <div className="mt-8">
             <RecordBlockTitle>{g.weatherTitle}</RecordBlockTitle>
-            <div className="mt-4 grid grid-cols-1 overflow-hidden rounded-xl border border-border bg-card sm:grid-cols-2 sm:grid-rows-[auto_1fr]">
+            <div className="mt-4 grid grid-cols-1 overflow-hidden rounded-2xl border border-border bg-card sm:grid-cols-2 sm:grid-rows-[auto_1fr]">
               <div className="border-b border-border p-4 sm:row-span-2 sm:grid sm:grid-rows-subgrid sm:border-b-0 sm:p-6">
                 <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
                   {g.withoutLabel}
@@ -227,13 +204,13 @@ export default function GarantiasPage() {
               ))}
             </dl>
           </div>
-        </div>
-      </Reveal>
+        </Rise>
+      </Sheet>
 
       {/* RECORD 2 — Fianza reducida. Its own band: from here on the background
           change means "other guarantee", not just "other section". */}
-      <Reveal className="border-y border-border bg-muted/40 px-4 py-14 sm:px-6 lg:py-20">
-        <div className="mx-auto max-w-3xl">
+      <Sheet tone="muted" next="background" aria-label={g.depositTitle}>
+        <Rise className="container mx-auto max-w-3xl px-4">
           <RecordHeader
             name={g.depositTitle}
             price={
@@ -267,7 +244,7 @@ export default function GarantiasPage() {
                   <span className="flex items-baseline gap-2.5">
                     {row.standard && (
                       <>
-                        <span className="font-mono text-lg font-bold tabular-nums text-muted-foreground">
+                        <span className="font-mono text-lg font-semibold tabular-nums text-muted-foreground">
                           {row.standard}
                         </span>
                         <ArrowRight
@@ -276,7 +253,7 @@ export default function GarantiasPage() {
                         />
                       </>
                     )}
-                    <span className="font-mono text-lg font-bold tabular-nums text-foreground">
+                    <span className="font-mono text-lg font-semibold tabular-nums text-foreground">
                       {row.reduced}
                     </span>
                   </span>
@@ -287,38 +264,45 @@ export default function GarantiasPage() {
               </div>
             ))}
           </dl>
-        </div>
-      </Reveal>
+        </Rise>
+      </Sheet>
 
       {/* Page-level footnote: the disclaimer covers BOTH guarantees, so it sits
           outside either record rather than at the tail of the second one. */}
-      <div className="px-4 py-8 sm:px-6">
-        <div className="mx-auto max-w-3xl">
-          <p className="text-sm leading-relaxed text-muted-foreground">{g.notInsurance}</p>
+      <Sheet tone="background" next="navy" className="py-10 sm:py-12" aria-label={g.navLabel}>
+        <div className="container mx-auto max-w-3xl px-4">
+          <p className="text-sm leading-relaxed text-muted-foreground text-pretty">
+            {g.notInsurance}
+          </p>
           <div className="mt-5">
             <LastUpdated date="2026-07-25" />
           </div>
         </div>
-      </div>
+      </Sheet>
 
-      {/* CLOSE — the decision belongs in the booking flow, so send them there. */}
-      <Reveal className="bg-primary px-4 py-16 sm:px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-heading text-h2 font-bold text-primary-foreground">
+      {/* CLOSE: the decision belongs in the booking flow, so send them there. */}
+      <Sheet tone="navy" next="background" aria-labelledby="garantias-cta-title">
+        <Rise className="container mx-auto max-w-3xl px-4 text-center">
+          <h2 id="garantias-cta-title" className={H2}>
             {g.ctaTitle}
           </h2>
-          <button
-            type="button"
+          <InteractiveHoverButton
+            tone="light"
             onClick={() => openBookingModal()}
-            className={`${NAVY_CTA} mt-7 min-h-12 bg-background px-8 text-base text-foreground hover:bg-background/90`}
+            className="mt-8 min-h-12 px-8 text-base"
           >
             {g.ctaLabel}
-          </button>
-        </div>
-      </Reveal>
+          </InteractiveHoverButton>
+        </Rise>
+      </Sheet>
 
-      <div className="px-4 py-10 sm:px-6">
-        <div className="mx-auto max-w-3xl">
+      <Sheet
+        tone="background"
+        next="footer"
+        className="py-10 sm:py-12"
+        aria-label={g.conditionsLink}
+      >
+        <div className="container mx-auto max-w-3xl px-4">
           <TrustBadges t={t} />
           {/* Una garantia comercial que se vende debe poder leerse: el texto que
               la define vive en las condiciones generales, no en esta pagina. */}
@@ -332,18 +316,20 @@ export default function GarantiasPage() {
             </a>
           </p>
         </div>
-      </div>
+      </Sheet>
 
-      {/* Sticky CTA on phones: the page is long enough that the close scrolls away. */}
-      <MobileStickyBar>
-        <button
-          type="button"
-          onClick={() => openBookingModal()}
-          className={`${NAVY_CTA} min-h-12 w-full px-6 text-base`}
-        >
-          {g.ctaLabel}
-        </button>
-      </MobileStickyBar>
+      <div className="bg-foreground">
+        {/* Sticky CTA on phones: the page is long enough that the close scrolls away. */}
+        <MobileStickyBar>
+          <button
+            type="button"
+            onClick={() => openBookingModal()}
+            className={`${NAVY_CTA} min-h-12 w-full px-6 text-base`}
+          >
+            {g.ctaLabel}
+          </button>
+        </MobileStickyBar>
+      </div>
 
       <Footer />
     </div>

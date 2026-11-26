@@ -11,18 +11,19 @@ export default function NotFound() {
   const { localizedPath } = useLanguage();
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-muted p-4">
-      <Card className="w-full max-w-md">
+      <Card className="w-full max-w-md rounded-2xl shadow-none">
         <CardContent className="pt-8 pb-6 text-center">
           <AlertCircle className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-          <h1 className="text-2xl font-heading font-bold mb-2">
-            {t.notFound?.title || 'Page not found'}
+          <h1 className="text-2xl font-heading font-semibold tracking-tight mb-2">
+            {t.notFound?.title || "Page not found"}
           </h1>
           <p className="text-muted-foreground mb-6">
-            {t.notFound?.description || 'The page you are looking for does not exist or has been moved.'}
+            {t.notFound?.description ||
+              "The page you are looking for does not exist or has been moved."}
           </p>
           <div className="space-y-3">
             <Button asChild className="w-full">
-              <Link href={localizedPath("home")}>{t.notFound?.backHome || 'Back to home'}</Link>
+              <Link href={localizedPath("home")}>{t.notFound?.backHome || "Back to home"}</Link>
             </Button>
             <Button asChild variant="outline" className="w-full">
               <Link href={localizedPath("home") + "#fleet"}>

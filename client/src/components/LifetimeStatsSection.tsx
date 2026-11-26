@@ -54,45 +54,60 @@ export default function LifetimeStatsSection() {
   ];
 
   return (
-    <section className="pt-6 pb-10 sm:pb-12 lg:pb-14 bg-background" id="stats">
-      <div className="container mx-auto px-3 sm:px-4 max-w-5xl">
-        <p className="text-center text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8 px-2 text-balance">
-          {copy.subtitle}
-        </p>
-        <motion.ul
-          className="grid grid-cols-3 gap-2 sm:gap-4"
-          initial={reduce ? false : "hidden"}
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.14 } } }}
-        >
-          {cards.map(c => (
-            <motion.li
-              key={c.title}
-              variants={{
-                hidden: { opacity: 0, y: 28, filter: "blur(6px)" },
-                show: {
-                  opacity: 1,
-                  y: 0,
-                  filter: "blur(0px)",
-                  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-                },
-              }}
-              className="rounded-2xl bg-muted px-2 py-4 sm:px-6 sm:py-6 text-center sm:text-left"
-            >
-              <div className="font-heading font-semibold tracking-tight tabular-nums text-2xl sm:text-5xl text-foreground">
-                <CountUp value={c.value} locale={language} />
-              </div>
-              <div className="mt-1.5 sm:mt-2 text-sm sm:text-base font-medium text-foreground leading-tight">
-                {c.title}
-              </div>
-              <div className="hidden sm:block text-sm text-muted-foreground leading-snug text-balance">
-                {c.label}
-              </div>
-            </motion.li>
-          ))}
-        </motion.ul>
-      </div>
-    </section>
+    <div className="bg-muted">
+      <section
+        className="rounded-b-2xl squircle-b bg-background pb-12 pt-4 sm:pb-16 sm:pt-6 lg:pb-20 lg:pt-6"
+        id="stats"
+        aria-labelledby="stats-title"
+      >
+        <div className="container mx-auto max-w-5xl px-4">
+          <h2
+            id="stats-title"
+            className="text-center font-heading text-2xl font-semibold tracking-tight text-foreground text-balance sm:text-3xl"
+          >
+            {copy.title}
+          </h2>
+
+          {/* The figures lead; hairlines separate them instead of three boxes. */}
+          <motion.ul
+            className="mt-8 grid grid-cols-3 divide-x divide-border sm:mt-10"
+            initial={reduce ? false : "hidden"}
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.14 } } }}
+          >
+            {cards.map(c => (
+              <motion.li
+                key={c.title}
+                variants={{
+                  hidden: { opacity: 0, y: 24 },
+                  show: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                  },
+                }}
+                className="px-2 text-center sm:px-8"
+              >
+                <div className="font-heading text-2xl font-semibold tracking-tight tabular-nums text-foreground min-[480px]:text-3xl sm:text-6xl">
+                  <CountUp value={c.value} locale={language} />
+                </div>
+                <div className="mt-2 text-sm font-medium leading-tight text-foreground sm:mt-3 sm:text-lg">
+                  {c.title}
+                </div>
+                <div className="mx-auto mt-1 hidden max-w-[16rem] text-base leading-snug text-muted-foreground text-balance sm:block">
+                  {c.label}
+                </div>
+              </motion.li>
+            ))}
+          </motion.ul>
+
+          {/* Provenance, as a quiet footnote under the figures. */}
+          <p className="mx-auto mt-8 max-w-xl px-2 text-center text-sm text-muted-foreground text-balance sm:mt-10">
+            {copy.subtitle}
+          </p>
+        </div>
+      </section>
+    </div>
   );
 }

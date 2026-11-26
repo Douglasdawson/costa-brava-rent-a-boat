@@ -1,30 +1,10 @@
-import { Button } from "@/components/ui/button";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
-  Anchor,
-  ArrowRight,
-  Clock,
-  MapPin,
-  Shield,
-  Phone,
-  Waves,
-  FileText,
-  CheckCircle,
-  Euro,
-  Calendar,
-  Ship,
-  ArrowLeftRight,
-} from "lucide-react";
-import { SiWhatsapp } from "@/components/icons/BrandIcons";
+import { ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { Fold, H2, PageHeader, PhotoBand, Rise, Sheet } from "@/components/content-kit";
 import { useLanguage } from "@/hooks/use-language";
 import {
   getSEOConfig,
@@ -33,32 +13,12 @@ import {
   generateBreadcrumbSchema,
 } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
-import { useMemo, useState, type ComponentType } from "react";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import { useTranslations } from "@/lib/translations";
 import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
-
-function RevealSection({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <div
-      ref={ref}
-      className={`transition-[opacity,transform,filter] duration-700 ${
-        isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"
-      } ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
+import { cn } from "@/lib/utils";
 
 // Category definitions: maps UI-stable category id -> list of AccordionItem
 // values with their matching fp.items key. The accordion `value` keys are
@@ -71,14 +31,12 @@ function RevealSection({
 // in the user's language.
 interface CategoryDef {
   id: string;
-  icon: ComponentType<{ className?: string }>;
   items: Array<{ value: string; fpKey: string }>;
 }
 
 const CATEGORIES: CategoryDef[] = [
   {
     id: "reservas",
-    icon: Euro,
     items: [
       { value: "precios", fpKey: "precios" },
       { value: "reserva", fpKey: "reserva" },
@@ -89,7 +47,6 @@ const CATEGORIES: CategoryDef[] = [
   },
   {
     id: "comparativas",
-    icon: ArrowLeftRight,
     items: [
       { value: "diferencia-licencia", fpKey: "diferenciaLicencia" },
       { value: "precio-blanes-vs-lloret", fpKey: "precioBlanesVsLloret" },
@@ -104,7 +61,6 @@ const CATEGORIES: CategoryDef[] = [
   },
   {
     id: "licencias",
-    icon: Shield,
     items: [
       { value: "sin-licencia", fpKey: "sinLicencia" },
       { value: "normativa-2026", fpKey: "normativa2026" },
@@ -116,7 +72,6 @@ const CATEGORIES: CategoryDef[] = [
   },
   {
     id: "incluye",
-    icon: CheckCircle,
     items: [
       { value: "incluido", fpKey: "queIncluye" },
       { value: "combustible", fpKey: "combustible" },
@@ -127,7 +82,6 @@ const CATEGORIES: CategoryDef[] = [
   },
   {
     id: "navegacion",
-    icon: Waves,
     items: [
       { value: "zona", fpKey: "porDondeNavegar" },
       { value: "seguridad", fpKey: "seguridad" },
@@ -140,7 +94,6 @@ const CATEGORIES: CategoryDef[] = [
   },
   {
     id: "practica",
-    icon: Clock,
     items: [
       { value: "horarios", fpKey: "horarios" },
       { value: "llegada", fpKey: "llegadaPuerto" },
@@ -150,7 +103,6 @@ const CATEGORIES: CategoryDef[] = [
   },
   {
     id: "temporada",
-    icon: Calendar,
     items: [
       { value: "temporada", fpKey: "temporada" },
       { value: "disponibilidad", fpKey: "disponibilidad" },
@@ -182,6 +134,8 @@ export default function FAQPage() {
   const canonical = generateCanonicalUrl("faq", language);
 
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  // Born folded: no question open by default (answers stay in the DOM).
+  const [openItem, setOpenItem] = useState<string | null>(null);
 
   const { data: boats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
   const faqVars = useMemo(() => computeFaqVars(boats), [boats]);
@@ -227,16 +181,21 @@ export default function FAQPage() {
   };
 
   const filterButtons = [
-    { id: "all", name: fp.categories.all, icon: FileText },
-    ...CATEGORIES.map(cat => ({
-      id: cat.id,
-      name: fp.categories[cat.id] ?? cat.id,
-      icon: cat.icon,
-    })),
+    { id: "all", name: fp.categories.all },
+    ...CATEGORIES.map(cat => ({ id: cat.id, name: fp.categories[cat.id] ?? cat.id })),
   ];
 
   const shouldShowCategory = (categoryId: string) =>
     selectedCategory === "all" || selectedCategory === categoryId;
+
+  const guaranteeLink =
+    "mt-4 inline-flex min-h-11 items-center gap-1.5 rounded text-sm font-semibold text-cta transition-colors hover:text-cta/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2";
+
+  const infoItems = [
+    { title: fp.infoPortTitle, desc: fp.infoPortDesc },
+    { title: fp.infoSeasonTitle, desc: fp.infoSeasonDesc },
+    { title: fp.infoFleetTitle, desc: fp.infoFleetDesc },
+  ];
 
   return (
     <main id="main-content" className="min-h-screen">
@@ -253,184 +212,141 @@ export default function FAQPage() {
       <Navigation />
       <ReadingProgressBar />
 
-      {/* ═══ HERO ═══ */}
-      <div className="bg-gradient-to-br from-primary/5 to-primary/10 pt-20 sm:pt-24 pb-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center mb-6">
-            <Anchor className="hidden sm:block w-8 h-8 shrink-0 text-primary mr-4" aria-hidden="true" />
-            <h1 className="text-h1 font-heading font-bold text-foreground">
-              {fp.heroTitle}
-            </h1>
-          </div>
-          <p className="text-base sm:text-lg text-muted-foreground mb-4 sm:mb-8 max-w-4xl mx-auto">
-            {fp.heroDescription}
-          </p>
-        </div>
-      </div>
+      <PageHeader title={fp.heroTitle} subtitle={fp.heroDescription} next="background" />
 
-      {/* ═══ INTRO: text + image ═══ */}
-      <RevealSection className="py-16 sm:py-20 bg-background">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-            <div className="lg:col-span-3">
-              <h2 className="text-h2 font-heading font-bold text-foreground mb-4">
-                {fp.filterLabel}
-              </h2>
-              <div className="flex flex-wrap gap-2">
-                {filterButtons.map(({ id, name, icon: Icon }) => (
-                  <Button
-                    key={id}
-                    variant={selectedCategory === id ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setSelectedCategory(id)}
-                    className="gap-2"
-                    data-testid={`filter-${id}`}
-                  >
-                    <Icon className="w-4 h-4" />
-                    {name}
-                  </Button>
-                ))}
-              </div>
+      {/* FILTER + FAQ: one ruled panel per category, every question folded */}
+      <Sheet tone="background" next="muted">
+        <div className="container mx-auto max-w-4xl px-4">
+          <Rise>
+            <p className="text-sm font-medium text-muted-foreground">{fp.filterLabel}</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {filterButtons.map(({ id, name }) => (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => setSelectedCategory(id)}
+                  aria-pressed={selectedCategory === id}
+                  data-testid={`filter-${id}`}
+                  className={cn(
+                    "min-h-11 cursor-pointer rounded-full border px-4 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 motion-reduce:transition-none",
+                    selectedCategory === id
+                      ? "border-foreground bg-foreground text-background"
+                      : "border-border text-muted-foreground [@media(hover:hover)]:hover:border-foreground/40 [@media(hover:hover)]:hover:text-foreground"
+                  )}
+                >
+                  {name}
+                </button>
+              ))}
             </div>
-            <div className="hidden lg:block lg:col-span-2">
-              <picture>
-                <source type="image/webp" srcSet="/images/blog/seguridad-barco.webp" />
-                <img
-                  src="/images/blog/seguridad-barco.jpg"
-                  alt="Boat safety and frequently asked questions"
-                  className="w-full rounded-2xl object-cover aspect-[4/5]"
-                  loading="lazy"
-                  width={640}
-                  height={800}
-                />
-              </picture>
-            </div>
-          </div>
-        </div>
-      </RevealSection>
+          </Rise>
 
-      {/* ═══ FAQ ACCORDIONS ═══ */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {CATEGORIES.filter(cat => shouldShowCategory(cat.id)).map(cat => {
-            const Icon = cat.icon;
-            return (
-              <div key={cat.id} className="mb-10">
-                <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-6">
-                  <Icon className="w-6 h-6 text-primary" />
+          <div className="mt-12 space-y-12">
+            {CATEGORIES.filter(cat => shouldShowCategory(cat.id)).map(cat => (
+              <Rise key={cat.id}>
+                <h2 className="font-heading text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
                   {fp.categories[cat.id] ?? cat.id}
                 </h2>
-                <Accordion type="single" collapsible>
+                <div className="mt-5 overflow-hidden rounded-2xl border border-border bg-card">
                   {cat.items.map(({ value, fpKey }) => {
                     const item = (
                       fp.items as Record<string, { question: string; answer: string } | undefined>
                     )[fpKey];
                     if (!item) return null;
                     return (
-                      <AccordionItem key={value} value={value} data-testid={`faq-${value}`}>
-                        <AccordionTrigger>{sub(item.question)}</AccordionTrigger>
-                        <AccordionContent>
-                          <p className="whitespace-pre-line text-muted-foreground leading-relaxed max-w-prose">
-                            {sub(item.answer)}
-                          </p>
-                          {GUARANTEE_FAQ_VALUES.has(value) && (
-                            <a
-                              href={localizedPath("garantias")}
-                              data-testid={`faq-garantias-link-${value}`}
-                              className="mt-3 inline-flex items-center gap-1.5 rounded text-sm font-semibold text-cta transition-colors hover:text-cta/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
-                            >
-                              {t.garantiasPage.navLabel}
-                              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                            </a>
-                          )}
-                          {LICENSED_FAQ_VALUES.has(value) && (
-                            <a
-                              href={localizedPath("categoryLicensed")}
-                              data-testid={`faq-licensed-link-${value}`}
-                              className="mt-3 inline-flex items-center gap-1.5 rounded text-sm font-semibold text-cta transition-colors hover:text-cta/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
-                            >
-                              {t.categoryLicensed!.faqCrossLinkLabel}
-                              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                            </a>
-                          )}
-                        </AccordionContent>
-                      </AccordionItem>
+                      <Fold
+                        key={value}
+                        id={`faq-${value}`}
+                        testId={`faq-${value}`}
+                        flat
+                        title={sub(item.question)}
+                        open={openItem === value}
+                        onToggle={() => setOpenItem(openItem === value ? null : value)}
+                      >
+                        <p className="max-w-prose whitespace-pre-line">{sub(item.answer)}</p>
+                        {GUARANTEE_FAQ_VALUES.has(value) && (
+                          <a
+                            href={localizedPath("garantias")}
+                            data-testid={`faq-garantias-link-${value}`}
+                            className={guaranteeLink}
+                          >
+                            {t.garantiasPage.navLabel}
+                            <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                          </a>
+                        )}
+                        {LICENSED_FAQ_VALUES.has(value) && (
+                          <a
+                            href={localizedPath("categoryLicensed")}
+                            data-testid={`faq-licensed-link-${value}`}
+                            className={guaranteeLink}
+                          >
+                            {t.categoryLicensed!.faqCrossLinkLabel}
+                            <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                          </a>
+                        )}
+                      </Fold>
                     );
                   })}
-                </Accordion>
-              </div>
-            );
-          })}
+                </div>
+              </Rise>
+            ))}
+          </div>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* ═══ PHOTO BREAK ═══ */}
-      <div className="w-full overflow-hidden">
-        <picture>
-          <source type="image/webp" srcSet="/images/blog/familias-barco.webp" />
-          <img
-            src="/images/blog/familias-barco.jpg"
-            alt="Families enjoying a boat trip on the Costa Brava"
-            className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
-            loading="lazy"
-            width={1920}
-            height={600}
-          />
-        </picture>
-      </div>
+      <PhotoBand
+        tone="muted"
+        next="background"
+        webp="/images/blog/familias-barco.webp"
+        src="/images/blog/familias-barco.jpg"
+        alt="Families enjoying a boat trip on the Costa Brava"
+      />
 
-      {/* ═══ CONTACT ═══ */}
-      <RevealSection className="py-16 sm:py-20 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground flex items-center gap-3 mb-4">
-            <Phone className="w-6 h-6 text-primary" />
-            {fp.contactTitle ?? "Mas Preguntas?"}
-          </h2>
-          <p className="text-muted-foreground leading-relaxed mb-8">{fp.contactDesc}</p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button
+      {/* CONTACT */}
+      <Sheet tone="background" next="muted">
+        <Rise className="container mx-auto max-w-4xl px-4">
+          <h2 className={H2}>{fp.contactTitle ?? "Mas Preguntas?"}</h2>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground text-pretty sm:text-lg">
+            {fp.contactDesc}
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <InteractiveHoverButton
+              tone="dark"
               onClick={handleWhatsAppContact}
-              className="gap-2 flex-1 bg-whatsapp hover:bg-whatsapp-hover active:bg-whatsapp-active border-whatsapp"
+              className="min-h-12 px-8 text-base"
               data-testid="button-whatsapp-questions"
             >
-              <SiWhatsapp className="w-5 h-5" />
               {fp.contactWhatsApp ?? "Preguntar por WhatsApp"}
-            </Button>
-            <Button
+            </InteractiveHoverButton>
+            <button
+              type="button"
               onClick={handleBookingWhatsApp}
-              variant="outline"
-              className="gap-2 flex-1"
               data-testid="button-direct-booking"
+              className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full border border-border px-6 text-base font-medium text-foreground transition-colors hover:border-foreground/40 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 motion-reduce:transition-none"
             >
-              <Anchor className="w-5 h-5" />
               {fp.contactBooking ?? "Reservar Directamente"}
-            </Button>
+            </button>
           </div>
-        </div>
-      </RevealSection>
+        </Rise>
+      </Sheet>
 
-      {/* ═══ QUICK INFO ═══ */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <MapPin className="w-8 h-8 text-primary mx-auto mb-3" />
-              <h3 className="font-heading font-semibold text-lg mb-2">{fp.infoPortTitle}</h3>
-              <p className="text-muted-foreground leading-relaxed text-sm">{fp.infoPortDesc}</p>
-            </div>
-            <div className="text-center">
-              <Calendar className="w-8 h-8 text-primary mx-auto mb-3" />
-              <h3 className="font-heading font-semibold text-lg mb-2">{fp.infoSeasonTitle}</h3>
-              <p className="text-muted-foreground leading-relaxed text-sm">{fp.infoSeasonDesc}</p>
-            </div>
-            <div className="text-center">
-              <Ship className="w-8 h-8 text-primary mx-auto mb-3" />
-              <h3 className="font-heading font-semibold text-lg mb-2">{fp.infoFleetTitle}</h3>
-              <p className="text-muted-foreground leading-relaxed text-sm">{fp.infoFleetDesc}</p>
-            </div>
-          </div>
-        </div>
-      </RevealSection>
+      {/* QUICK INFO: three facts as one ruled strip */}
+      <Sheet tone="muted" next="foot">
+        <Rise className="container mx-auto max-w-6xl px-4">
+          <dl className="grid overflow-hidden rounded-2xl border border-border bg-background md:grid-cols-3">
+            {infoItems.map(item => (
+              <div
+                key={item.title}
+                className="border-b border-border p-6 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0"
+              >
+                <dt className="font-heading text-lg font-semibold tracking-tight">{item.title}</dt>
+                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground text-pretty">
+                  {item.desc}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </Rise>
+      </Sheet>
 
       <Footer />
     </main>

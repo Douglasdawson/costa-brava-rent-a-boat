@@ -43,7 +43,7 @@ export const nl: Translations = {
       "De basis Licencia de Navegaci\u00F3n volstaat. Buitenlandse vaarbewijzen verifi\u00EBren wij online voor je boekt.",
     bookNow: "Beschikbaarheid bekijken",
     findYourBoat: "Boek nu",
-    ctaTitulin: "Wat de titulín is",
+    ctaTitulin: "Wil je je vaarbewijs?",
     licenseFreeUntil: "Nog geen vaarbewijs? Tot 30 september kun je nog zonder huren.",
     licenseFreeUntilCta: "Boten zonder vaarbewijs bekijken",
     imageAlt:

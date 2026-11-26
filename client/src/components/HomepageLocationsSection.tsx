@@ -74,7 +74,7 @@ export default function HomepageLocationsSection() {
     <section className="py-12 sm:py-16 lg:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
-          <h2 className="font-heading text-h2 font-bold text-foreground mb-3">
+          <h2 className="font-heading text-h2 font-semibold tracking-tight text-foreground mb-3">
             {hl.sectionTitle}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">

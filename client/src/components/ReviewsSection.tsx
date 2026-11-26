@@ -3,7 +3,7 @@ import { Star, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { motion, useReducedMotion } from "motion/react";
 import { trackReviewCarouselScroll } from "@/utils/analytics";
 import { GBP_PROFILE_URL } from "@shared/businessProfile";
 
@@ -61,7 +61,20 @@ function formatRelativeTime(publishTime: string, locale: string): string {
   return rtf.format(Math.round(diffDays / 365), "year");
 }
 
-/** Memoized individual review card */
+/** Relative date in the visitor's language, falling back to the API string and then month/year. */
+function reviewDateLabel(review: NormalizedReview, locale: string): string {
+  return (
+    formatRelativeTime(review.date, locale) ||
+    review.relativeTime ||
+    (review.date
+      ? new Date(review.date).toLocaleDateString(locale, { month: "long", year: "numeric" })
+      : "")
+  );
+}
+
+const REVIEW_URL = "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5";
+
+/** Memoized individual review card: ruled panel, no decorative quote mark. */
 const ReviewCard = memo(function ReviewCard({
   review,
   locale,
@@ -69,59 +82,46 @@ const ReviewCard = memo(function ReviewCard({
   review: NormalizedReview;
   locale: string;
 }) {
-  // Prefer synthesized i18n relative time; fall back to API string, then
-  // absolute month/year if neither is available.
-  const dateLabel =
-    formatRelativeTime(review.date, locale) ||
-    review.relativeTime ||
-    (review.date
-      ? new Date(review.date).toLocaleDateString(locale, {
-          month: "long",
-          year: "numeric",
-        })
-      : "");
+  const dateLabel = reviewDateLabel(review, locale);
   return (
-    <figure className="w-[220px] sm:w-[240px] aspect-[3/3.2] snap-start flex-shrink-0 bg-background rounded-2xl border border-border p-5 flex flex-col">
-      {/* Stars */}
-      <div className="flex gap-0.5 mb-2" role="img" aria-label={`${review.rating} de 5 estrellas`}>
+    <figure className="flex w-[260px] flex-shrink-0 snap-start flex-col rounded-2xl border border-border bg-background p-5 sm:w-[300px]">
+      <div className="mb-3 flex gap-0.5" role="img" aria-label={`${review.rating} de 5 estrellas`}>
         {Array.from({ length: 5 }).map((_, i) => (
           <Star
             key={i}
             aria-hidden="true"
-            className={`w-3 h-3 ${
-              i < review.rating ? "text-amber-400 fill-amber-400" : "text-muted-foreground/40"
+            className={`h-3.5 w-3.5 ${
+              i < review.rating ? "fill-amber-400 text-amber-400" : "text-muted-foreground/40"
             }`}
           />
         ))}
       </div>
-      {/* Decorative quote */}
-      <span className="text-3xl font-heading text-border leading-none" aria-hidden="true">
-        &ldquo;
-      </span>
-      {/* Comment */}
       <blockquote
-        cite="https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5"
-        className="text-foreground text-sm leading-relaxed mt-1 line-clamp-6 flex-1"
+        cite={REVIEW_URL}
+        className="line-clamp-6 flex-1 text-sm leading-relaxed text-foreground"
       >
         {review.text}
       </blockquote>
-      {/* Author */}
-      <figcaption className="mt-auto pt-3">
-        <p className="font-medium text-foreground text-[13px]">{review.name}</p>
+      <figcaption className="mt-4 border-t border-border pt-3">
+        <p className="text-[13px] font-medium text-foreground">{review.name}</p>
         {dateLabel && <p className="text-xs text-muted-foreground">{dateLabel}</p>}
       </figcaption>
     </figure>
   );
 });
 
-function ReviewsSection() {
+interface ReviewsSectionProps {
+  /** Colour of the band that follows, so the rounded bottom corners reveal it. */
+  wrapperClassName?: string;
+}
+
+function ReviewsSection({ wrapperClassName = "bg-muted/40" }: ReviewsSectionProps) {
   const t = useTranslations();
   const { language, localizedPath } = useLanguage();
-  const { ref: revealRef, isVisible } = useScrollReveal();
+  const reduce = useReducedMotion();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const [activeIndex, setActiveIndex] = useState(0);
 
   const locale = LOCALE_MAP[language] || "es-ES";
 
@@ -159,7 +159,7 @@ function ReviewsSection() {
 
   const totalReviewCount = businessStats?.userRatingCount ?? displayReviews.length;
 
-  // Scroll state tracking — batched reads in rAF to avoid forced reflow
+  // Scroll state tracking: batched reads in rAF to avoid forced reflow
   const scrollRafRef = useRef(0);
   const updateScrollState = useCallback(() => {
     if (scrollRafRef.current) return;
@@ -169,18 +169,10 @@ function ReviewsSection() {
       if (!el) return;
       const { scrollLeft, clientWidth, scrollWidth } = el;
       const tolerance = 4;
-      const maxScroll = scrollWidth - clientWidth;
       setCanScrollLeft(scrollLeft > tolerance);
       setCanScrollRight(scrollLeft + clientWidth < scrollWidth - tolerance);
-      if (maxScroll <= 0) {
-        setActiveIndex(0);
-      } else {
-        const progress = scrollLeft / maxScroll;
-        const dotCount = Math.min(displayReviews.length, 6);
-        setActiveIndex(Math.min(Math.round(progress * (dotCount - 1)), dotCount - 1));
-      }
     });
-  }, [displayReviews.length]);
+  }, []);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -193,63 +185,64 @@ function ReviewsSection() {
       el.removeEventListener("scroll", updateScrollState);
       window.removeEventListener("resize", updateScrollState);
     };
-  }, [updateScrollState]);
+  }, [updateScrollState, displayReviews.length]);
 
-  const handleScrollLeft = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.scrollBy({ left: -350, behavior: "smooth" });
-    trackReviewCarouselScroll("left");
+  const scrollByCards = useCallback((direction: "left" | "right") => {
+    scrollRef.current?.scrollBy({ left: direction === "left" ? -320 : 320, behavior: "smooth" });
+    trackReviewCarouselScroll(direction);
   }, []);
-
-  const handleScrollRight = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.scrollBy({ left: 350, behavior: "smooth" });
-    trackReviewCarouselScroll("right");
-  }, []);
-
-  const dotCount = Math.min(displayReviews.length, 6);
 
   if (displayReviews.length === 0) return null;
 
+  const featured = displayReviews[0];
+  const featuredDateLabel = reviewDateLabel(featured, locale);
+  const arrowClass =
+    "flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta enabled:[@media(hover:hover)]:hover:bg-muted disabled:opacity-35 motion-reduce:transition-none";
+
   return (
-    <section
-      ref={revealRef}
-      id="reviews"
-      className={`below-fold py-16 sm:py-24 lg:py-32 bg-card transition-[opacity,transform,filter] duration-500 ${
-        isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Pull quote — featured review, editorial treatment.
-            The metric (rating + count) drops to a small caption underneath; the story leads, the proof follows. */}
-        {(() => {
-          const featured = displayReviews[0];
-          if (!featured) return null;
-          const featuredDateLabel =
-            formatRelativeTime(featured.date, locale) ||
-            featured.relativeTime ||
-            (featured.date
-              ? new Date(featured.date).toLocaleDateString(locale, {
-                  month: "long",
-                  year: "numeric",
-                })
-              : "");
-          return (
-            <figure className="text-center mb-12 sm:mb-16 max-w-3xl mx-auto">
-              <blockquote
-                cite="https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5"
-                className="font-heading font-light italic text-foreground leading-[1.2] tracking-tight text-balance line-clamp-5"
-                style={{ fontSize: "clamp(1.5rem, 4vw, 2.625rem)" }}
+    <div className={wrapperClassName}>
+      <section id="reviews" className="below-fold rounded-b-2xl squircle-b bg-card py-16 sm:py-24">
+        <motion.div
+          className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"
+          initial={reduce ? false : { y: 24 }}
+          whileInView={{ y: 0 }}
+          viewport={{ once: true, margin: "0px 0px -8% 0px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-10">
+            {/* The proof: real Google rating and count */}
+            <div className="flex flex-col justify-between gap-8 rounded-2xl bg-cta p-7 text-primary-foreground dark:text-background sm:p-9">
+              <div>
+                <p className="font-heading text-6xl font-semibold leading-none tracking-tight sm:text-7xl">
+                  {averageRating}
+                </p>
+                <div className="mt-4 flex gap-1" aria-hidden="true">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+              </div>
+              <a
+                href={GBP_PROFILE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex min-h-11 w-full items-center justify-between gap-4 rounded-full bg-background px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-background/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background focus-visible:ring-offset-2 focus-visible:ring-offset-cta motion-reduce:transition-none sm:w-auto sm:self-start"
               >
-                <span aria-hidden="true" className="text-primary/25 not-italic font-semibold pr-1">
-                  &ldquo;
-                </span>
+                {totalReviewCount} {t.reviews.opinions} {t.reviews.googleReviews ?? ""}
+                <ArrowRight
+                  className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none"
+                  aria-hidden="true"
+                />
+              </a>
+            </div>
+
+            {/* The story: the featured review, in clean heading type */}
+            <figure className="flex flex-col justify-center py-2 lg:px-4">
+              <blockquote
+                cite={REVIEW_URL}
+                className="line-clamp-6 font-heading text-xl font-medium leading-snug tracking-tight text-foreground text-pretty sm:text-2xl lg:text-[1.75rem]"
+              >
                 {featured.text}
-                <span aria-hidden="true" className="text-primary/25 not-italic font-semibold pl-1">
-                  &rdquo;
-                </span>
               </blockquote>
               <figcaption className="mt-6 text-sm text-muted-foreground">
                 <span className="font-medium text-foreground">{featured.name}</span>
@@ -262,92 +255,56 @@ function ReviewsSection() {
                   </>
                 )}
               </figcaption>
-              <a
-                href={GBP_PROFILE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground hover:underline underline-offset-2 transition-colors pointer-coarse:py-3.5 pointer-coarse:-my-3.5"
-              >
-                <span className="inline-flex items-center gap-0.5" aria-hidden="true">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="w-3 h-3 text-amber-400 fill-amber-400" />
-                  ))}
-                </span>
-                <span>
-                  {averageRating} · {totalReviewCount} {t.reviews.opinions} {t.reviews.googleReviews ?? ""}
-                </span>
-              </a>
             </figure>
-          );
-        })()}
-
-        {/* Carousel with navigation arrows */}
-        <div className="relative group">
-          <button
-            onClick={handleScrollLeft}
-            disabled={!canScrollLeft}
-            aria-label={t.a11y.reviewPrev}
-            className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 z-10 hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-background border border-border shadow-md transition-opacity ${
-              canScrollLeft
-                ? "opacity-0 group-hover:opacity-100 hover:bg-muted cursor-pointer"
-                : "opacity-0 pointer-events-none"
-            }`}
-          >
-            <ChevronLeft className="w-5 h-5 text-foreground" />
-          </button>
-
-          <button
-            onClick={handleScrollRight}
-            disabled={!canScrollRight}
-            aria-label={t.a11y.reviewNext}
-            className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 z-10 hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-background border border-border shadow-md transition-opacity ${
-              canScrollRight
-                ? "opacity-0 group-hover:opacity-100 hover:bg-muted cursor-pointer"
-                : "opacity-0 pointer-events-none"
-            }`}
-          >
-            <ChevronRight className="w-5 h-5 text-foreground" />
-          </button>
-
-          <div
-            ref={scrollRef}
-            className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            {displayReviews.map(review => (
-              <ReviewCard key={review.id} review={review} locale={locale} />
-            ))}
           </div>
-        </div>
 
-        {/* Scroll indicator dots */}
-        <div
-          className="flex justify-center gap-1.5 mt-4 mb-8"
-          role="presentation"
-          aria-hidden="true"
-        >
-          {Array.from({ length: dotCount }).map((_, i) => (
+          {/* Carousel */}
+          <div className="mt-12 sm:mt-14">
+            <div className="mb-5 flex items-center justify-between gap-4">
+              <a
+                href={localizedPath("testimonials")}
+                className="group inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-foreground transition-colors hover:text-cta"
+              >
+                {t.reviews.viewAll}
+                <ArrowRight
+                  className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none"
+                  aria-hidden="true"
+                />
+              </a>
+              <div className="hidden gap-2 md:flex">
+                <button
+                  type="button"
+                  onClick={() => scrollByCards("left")}
+                  disabled={!canScrollLeft}
+                  aria-label={t.a11y.reviewPrev}
+                  className={arrowClass}
+                >
+                  <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => scrollByCards("right")}
+                  disabled={!canScrollRight}
+                  aria-label={t.a11y.reviewNext}
+                  className={arrowClass}
+                >
+                  <ChevronRight className="h-5 w-5" aria-hidden="true" />
+                </button>
+              </div>
+            </div>
             <div
-              key={i}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === activeIndex ? "w-6 bg-cta" : "w-1.5 bg-border"
-              }`}
-            />
-          ))}
-        </div>
-
-        {/* CTA link */}
-        <div className="text-center">
-          <a
-            href={localizedPath("testimonials")}
-            className="text-sm font-medium text-foreground hover:text-cta inline-flex items-center gap-1 transition-colors pointer-coarse:py-3 pointer-coarse:-my-3"
-          >
-            {t.reviews.viewAll}
-            <ArrowRight className="w-4 h-4" />
-          </a>
-        </div>
-      </div>
-    </section>
+              ref={scrollRef}
+              className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:scroll-px-6 sm:px-6 lg:-mx-8 lg:scroll-px-8 lg:px-8"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            >
+              {displayReviews.slice(1).map(review => (
+                <ReviewCard key={review.id} review={review} locale={locale} />
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </section>
+    </div>
   );
 }
 

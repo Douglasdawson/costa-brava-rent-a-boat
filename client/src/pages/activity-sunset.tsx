@@ -1,27 +1,12 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Sunset,
-  Clock,
-  Heart,
-  Camera,
-  Wine,
-  MapPin,
-  ChevronRight,
-  Star,
-  Anchor,
-  Calendar,
-  Users,
-} from "lucide-react";
+import { Anchor } from "lucide-react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
-import { FAQSection } from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import RelatedContent from "@/components/RelatedContent";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import {
   getSEOConfig,
   generateHreflangLinks,
@@ -30,32 +15,22 @@ import {
 } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
+import {
+  H2,
+  H3,
+  Sheet,
+  Rise,
+  Feature,
+  CheckPanel,
+  LinkList,
+  PhotoHero,
+  CtaSheet,
+  NavyButton,
+  FaqSheet,
+  HERO_SECONDARY,
+  PILL_ON_NAVY,
+} from "@/components/activity-kit";
 import { BookingStickyBar } from "@/components/MobileStickyBar";
-
-// Icons paired by position to t.activitySunset.viewpoints.
-const VIEWPOINT_ICONS = [MapPin, Camera, Star];
-
-function RevealSection({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <div
-      ref={ref}
-      className={`transition-[opacity,transform,filter] duration-700 ${
-        isVisible
-          ? "opacity-100 translate-y-0 blur-none"
-          : "opacity-0 translate-y-6 blur-[2px]"
-      } ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
 
 const faqsFallback: Array<{ question: string; answer: string }> = [];
 
@@ -65,23 +40,14 @@ export default function ActivitySunsetPage() {
   const s = t.activitySunset!;
   const faqs = s.faqItems ?? faqsFallback;
   const sunsetTimes = s.sunsetTimes ?? [];
-  const viewpoints = (s.viewpoints ?? []).map(
-    (vp: { name: string; distance: string; description: string }, i: number) => ({
-      ...vp,
-      icon: VIEWPOINT_ICONS[i] ?? MapPin,
-    }),
-  );
+  const viewpoints = s.viewpoints ?? [];
   const romanticIdeas = s.romanticIdeas ?? [];
   const seoConfig = getSEOConfig("activitySunset", language);
   const hreflangLinks = generateHreflangLinks("activitySunset");
   const canonical = generateCanonicalUrl("activitySunset", language);
 
   const handleBookingWhatsApp = () => {
-    const message = createBookingMessage(
-      undefined,
-      undefined,
-      t.whatsappMessages,
-    );
+    const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
     openWhatsApp(message);
   };
 
@@ -95,13 +61,11 @@ export default function ActivitySunsetPage() {
 
   const faqSchema = {
     "@type": "FAQPage",
-    mainEntity: faqs.map(
-      (faq: { question: string; answer: string }) => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: { "@type": "Answer", text: faq.answer },
-      }),
-    ),
+    mainEntity: faqs.map((faq: { question: string; answer: string }) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
   };
 
   const touristTripSchema = {
@@ -110,16 +74,7 @@ export default function ActivitySunsetPage() {
     name: s.heroTitle,
     description: s.heroDescription,
     touristType: ["Romance", "Nature", "Couples"],
-    inLanguage: [
-      "es-ES",
-      "en-GB",
-      "ca-ES",
-      "fr-FR",
-      "de-DE",
-      "nl-NL",
-      "it-IT",
-      "ru-RU",
-    ],
+    inLanguage: ["es-ES", "en-GB", "ca-ES", "fr-FR", "de-DE", "nl-NL", "it-IT", "ru-RU"],
     provider: {
       "@type": "LocalBusiness",
       "@id": "https://www.costabravarentaboat.com/#organization",
@@ -160,353 +115,187 @@ export default function ActivitySunsetPage() {
       <Navigation />
       <ReadingProgressBar />
 
-      {/* ═══ HERO ═══ */}
-      <div className="bg-gradient-to-br from-orange-50 to-rose-50 pt-24 pb-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center mb-6">
-              <Sunset className="hidden sm:block w-8 h-8 shrink-0 text-primary mr-4" aria-hidden="true" />
-              <h1 className="text-h1 font-heading font-bold text-foreground">
-                {s.heroTitle}
-              </h1>
-            </div>
-            <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
-              {s.heroDescription}
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Badge variant="outline" className="text-primary border-primary">
-                <Sunset className="w-4 h-4 mr-2" />
-                {s.badgeGoldenHour}
-              </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <Clock className="w-4 h-4 mr-2" />
-                {s.badgeDuration}
-              </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <Heart className="w-4 h-4 mr-2" />
-                {s.badgeCouples}
-              </Badge>
-            </div>
-          </div>
-        </div>
-      </div>
+      <PhotoHero
+        minHeight="sm:min-h-[72svh]"
+        media={
+          <picture>
+            <source type="image/webp" srcSet="/images/blog/atardecer-mar.webp" />
+            <img
+              src="/images/blog/atardecer-mar.jpg"
+              alt="Golden sunset over the Mediterranean sea from a boat"
+              width={1920}
+              height={600}
+              decoding="async"
+              draggable={false}
+            />
+          </picture>
+        }
+        title={s.heroTitle}
+        subtitle={s.heroDescription}
+        actions={
+          <>
+            <InteractiveHoverButton
+              tone="dark"
+              onClick={handleBookingWhatsApp}
+              className="min-h-12 w-full px-8 text-base sm:w-auto"
+            >
+              {s.ctaWhatsApp}
+            </InteractiveHoverButton>
+            <a href={localizedPath("categoryLicensed")} className={HERO_SECONDARY}>
+              {s.ctaViewBoats}
+            </a>
+          </>
+        }
+        facts={[s.badgeGoldenHour, s.badgeDuration, s.badgeCouples]}
+      />
 
-      {/* ═══ WHY A SUNSET TRIP ═══ text + image */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-            <div className="lg:col-span-3">
-              <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
-                {s.whyTitle}
-              </h2>
-              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-8">
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
-                    {s.whyGoldenHourTitle}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {s.whyGoldenHourDesc}
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
-                    {s.whyPrivateTitle}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {s.whyPrivateDesc}
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
-                    {s.whyAffordableTitle}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {s.whyAffordableDesc}
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
-                    {s.whyTemperatureTitle}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {s.whyTemperatureDesc}
-                  </p>
-                </div>
-              </div>
+      {/* Why a sunset trip */}
+      <Sheet next="muted">
+        <div className="grid gap-12 lg:grid-cols-[7fr_5fr] lg:items-center lg:gap-16">
+          <Rise>
+            <h2 className={H2}>{s.whyTitle}</h2>
+            <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+              <Feature title={s.whyGoldenHourTitle} text={s.whyGoldenHourDesc} />
+              <Feature title={s.whyPrivateTitle} text={s.whyPrivateDesc} />
+              <Feature title={s.whyAffordableTitle} text={s.whyAffordableDesc} />
+              <Feature title={s.whyTemperatureTitle} text={s.whyTemperatureDesc} />
             </div>
-            <div className="lg:col-span-2">
-              <img
-                src="/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-popa-atardecer.webp"
-                alt="Boat stern at sunset on the Costa Brava waters"
-                className="w-full rounded-2xl object-cover aspect-[4/5]"
-                loading="lazy"
-                width={640}
-                height={800}
+          </Rise>
+          <Rise delay={0.1}>
+            <img
+              src="/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-popa-atardecer.webp"
+              alt="Boat stern at sunset on the Costa Brava waters"
+              className="aspect-[4/5] w-full rounded-2xl object-cover"
+              loading="lazy"
+              width={640}
+              height={800}
+            />
+          </Rise>
+        </div>
+      </Sheet>
+
+      {/* Viewpoints */}
+      <Sheet tone="muted" next="page">
+        <Rise>
+          <h2 className={H2}>{s.viewpointsTitle}</h2>
+          <div className="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-3">
+            {viewpoints.map(spot => (
+              <Feature
+                key={spot.name}
+                title={spot.name}
+                meta={spot.distance}
+                text={spot.description}
               />
-            </div>
+            ))}
           </div>
-        </div>
-      </RevealSection>
+        </Rise>
+      </Sheet>
 
-      {/* ═══ SUNSET PHOTO BREAK ═══ */}
-      <div className="w-full overflow-hidden">
-        <picture>
-          <source type="image/webp" srcSet="/images/blog/atardecer-mar.webp" />
-          <img
-            src="/images/blog/atardecer-mar.jpg"
-            alt="Golden sunset over the Mediterranean sea from a boat"
-            className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
-            loading="lazy"
-            width={1920}
-            height={600}
-          />
-        </picture>
-      </div>
-
-      {/* ═══ BEST VIEWPOINTS ═══ feature grid */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-center text-foreground mb-12">
-            <Camera className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
-            {s.viewpointsTitle}
-          </h2>
-          <div className="grid md:grid-cols-3 gap-10">
-            {viewpoints.map(
-              (spot: {
-                name: string;
-                distance: string;
-                description: string;
-                icon: React.ComponentType<{ className?: string }>;
-              }) => {
-                const Icon = spot.icon;
-                return (
-                  <div key={spot.name} className="text-center">
-                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-5">
-                      <Icon className="w-8 h-8 text-primary" />
-                    </div>
-                    <h3 className="font-heading font-semibold text-lg mb-2">
-                      {spot.name}
-                    </h3>
-                    <p className="text-muted-foreground text-sm mb-2">
-                      {spot.distance}
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {spot.description}
-                    </p>
-                  </div>
-                );
-              },
-            )}
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* ═══ SUNSET TIMES BY MONTH ═══ table */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
-            <Calendar className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
-            {s.sunsetTimesTitle}
-          </h2>
-          <div className="overflow-x-auto rounded-2xl bg-muted">
-            <table className="w-full text-left">
-              <thead>
+      {/* Sunset times by month */}
+      <Sheet next="muted" containerClassName="max-w-4xl">
+        <Rise>
+          <h2 className={H2}>{s.sunsetTimesTitle}</h2>
+          <div className="mt-10 overflow-x-auto rounded-2xl border border-border bg-card">
+            <table className="w-full text-left text-base">
+              <thead className="bg-muted/60 text-sm text-muted-foreground">
                 <tr className="border-b border-border">
-                  <th className="py-4 px-6 font-heading font-semibold">
+                  <th scope="col" className="px-5 py-3 font-medium sm:px-6">
                     {s.sunsetTimesTableMonth}
                   </th>
-                  <th className="py-4 px-6 font-heading font-semibold">
+                  <th scope="col" className="px-5 py-3 font-medium sm:px-6">
                     {s.sunsetTimesTableTime}
                   </th>
-                  <th className="py-4 px-6 font-heading font-semibold">
+                  <th scope="col" className="px-5 py-3 font-medium sm:px-6">
                     {s.sunsetTimesTableDeparture}
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {sunsetTimes.map(
-                  (row: { month: string; time: string; suggestion: string }) => (
-                    <tr
-                      key={row.month}
-                      className="border-b border-border last:border-0"
-                    >
-                      <td className="py-3.5 px-6 font-medium">{row.month}</td>
-                      <td className="py-3.5 px-6 text-muted-foreground">
-                        {row.time}
-                      </td>
-                      <td className="py-3.5 px-6 text-muted-foreground">
-                        {row.suggestion}
-                      </td>
-                    </tr>
-                  ),
-                )}
+                {sunsetTimes.map(row => (
+                  <tr key={row.month} className="border-b border-border last:border-0">
+                    <th scope="row" className="px-5 py-3.5 font-medium text-foreground sm:px-6">
+                      {row.month}
+                    </th>
+                    <td className="px-5 py-3.5 font-semibold tabular-nums text-foreground sm:px-6">
+                      {row.time}
+                    </td>
+                    <td className="px-5 py-3.5 text-muted-foreground sm:px-6">{row.suggestion}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
-          <p className="text-sm text-muted-foreground mt-4">
+          <p className="mt-4 text-sm leading-relaxed text-muted-foreground text-pretty">
             {s.sunsetTimesNote}
           </p>
-        </div>
-      </RevealSection>
+        </Rise>
+      </Sheet>
 
-      {/* ═══ ROMANTIC IDEAS ═══ icon-led grid */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
-            <Wine className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
-            {s.romanticIdeasTitle}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {romanticIdeas.map(
-              (idea: { title: string; description: string }) => (
-                <div key={idea.title} className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-1">
-                    <Heart className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-semibold text-lg mb-2">
-                      {idea.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {idea.description}
-                    </p>
-                  </div>
-                </div>
-              ),
-            )}
+      {/* Romantic ideas */}
+      <Sheet tone="muted" next="page">
+        <Rise>
+          <h2 className={H2}>{s.romanticIdeasTitle}</h2>
+          <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+            {romanticIdeas.map(idea => (
+              <Feature key={idea.title} title={idea.title} text={idea.description} />
+            ))}
           </div>
-        </div>
-      </RevealSection>
+        </Rise>
+      </Sheet>
 
-      {/* ═══ WHAT TO BRING ═══ */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
-            <Users className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
-            {s.whatToBringTitle}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-10">
+      {/* What to bring + links */}
+      <Sheet next="navy">
+        <Rise>
+          <h2 className={H2}>{s.whatToBringTitle}</h2>
+          <div className="mt-10 grid gap-10 md:grid-cols-2">
             <div>
-              <h3 className="font-heading font-semibold text-lg mb-4">
-                {s.whatToBringEssentials}
-              </h3>
-              <ul className="space-y-3 text-muted-foreground">
-                {(s.whatToBringEssentialItems ?? []).map(
-                  (item: string, i: number) => (
-                    <li key={i} className="flex items-center">
-                      <ChevronRight className="w-4 h-4 text-primary mr-3 shrink-0" />
-                      {item}
-                    </li>
-                  ),
-                )}
-              </ul>
+              <h3 className={`${H3} mb-4`}>{s.whatToBringEssentials}</h3>
+              <CheckPanel items={s.whatToBringEssentialItems ?? []} />
             </div>
             <div>
-              <h3 className="font-heading font-semibold text-lg mb-4">
-                {s.whatToBringNice}
-              </h3>
-              <ul className="space-y-3 text-muted-foreground">
-                {(s.whatToBringNiceItems ?? []).map(
-                  (item: string, i: number) => (
-                    <li key={i} className="flex items-center">
-                      <ChevronRight className="w-4 h-4 text-primary mr-3 shrink-0" />
-                      {item}
-                    </li>
-                  ),
-                )}
-              </ul>
+              <h3 className={`${H3} mb-4`}>{s.whatToBringNice}</h3>
+              <CheckPanel items={s.whatToBringNiceItems ?? []} />
             </div>
           </div>
-        </div>
-      </RevealSection>
+        </Rise>
+        <Rise className="mt-16">
+          <LinkList
+            title={s.exploreMore}
+            links={[
+              { href: localizedPath("categoryLicensed"), label: s.linkNoLicense },
+              { href: localizedPath("activitySnorkel"), label: s.linkSnorkel },
+              { href: localizedPath("pricing"), label: s.linkPrices },
+              { href: localizedPath("locationBlanes"), label: s.linkBlanes },
+              { href: localizedPath("routes"), label: s.linkRoutes },
+            ]}
+          />
+        </Rise>
+      </Sheet>
 
-      {/* ═══ INTERNAL LINKS ═══ */}
-      <div className="py-8 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 className="font-heading font-semibold text-lg mb-4">
-            {s.exploreMore}
-          </h3>
-          <div className="flex flex-wrap gap-x-6 gap-y-3">
-            <a
-              href={localizedPath("categoryLicensed")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-            >
-              <ChevronRight className="w-4 h-4" />
-              {s.linkNoLicense}
-            </a>
-            <a
-              href={localizedPath("activitySnorkel")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-            >
-              <ChevronRight className="w-4 h-4" />
-              {s.linkSnorkel}
-            </a>
-            <a
-              href={localizedPath("pricing")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-            >
-              <ChevronRight className="w-4 h-4" />
-              {s.linkPrices}
-            </a>
-            <a
-              href={localizedPath("locationBlanes")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-            >
-              <ChevronRight className="w-4 h-4" />
-              {s.linkBlanes}
-            </a>
-            <a
-              href={localizedPath("routes")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-            >
-              <ChevronRight className="w-4 h-4" />
-              {s.linkRoutes}
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* ═══ CTA ═══ full-width */}
-      <div className="py-16 sm:py-20 bg-primary">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-h2 font-heading font-bold text-white mb-4">
-            {s.ctaTitle}
-          </h2>
-          <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto">
-            {s.ctaDescription}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              variant="secondary"
-              onClick={handleBookingWhatsApp}
-            >
-              <SiWhatsapp className="w-5 h-5 mr-2" aria-hidden="true" />
+      <CtaSheet
+        next="page"
+        title={s.ctaTitle}
+        text={s.ctaDescription}
+        actions={
+          <>
+            <NavyButton onClick={handleBookingWhatsApp}>
+              <SiWhatsapp className="mr-2 h-5 w-5" aria-hidden="true" />
               {s.ctaWhatsApp}
-            </Button>
-            <a href={localizedPath("categoryLicensed")}>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white/10 w-full"
-              >
-                <Anchor className="w-5 h-5 mr-2" />
-                {s.ctaViewBoats}
-              </Button>
+            </NavyButton>
+            <a href={localizedPath("categoryLicensed")} className={PILL_ON_NAVY}>
+              <Anchor className="h-4 w-4" aria-hidden="true" />
+              {s.ctaViewBoats}
             </a>
-          </div>
-        </div>
-      </div>
+          </>
+        }
+      />
 
-      {/* ═══ FAQ ═══ */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-center mb-10">
-            {s.faqTitle}
-          </h2>
-          <FAQSection items={faqs} />
-        </div>
-      </RevealSection>
+      <FaqSheet
+        idPrefix="sunset-faq"
+        title={s.faqTitle}
+        items={faqs.map(x => ({ q: x.question, a: x.answer }))}
+        next="muted"
+      />
 
       <RelatedContent currentPage="activitySunset" />
       <BookingStickyBar />

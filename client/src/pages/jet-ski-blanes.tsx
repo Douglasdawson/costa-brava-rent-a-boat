@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
 import { ArrowRight, ShieldCheck, Fuel, Clock, Users } from "lucide-react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { H2, Sheet, Rise, LeadText, PhotoHero, FaqSheet } from "@/components/activity-kit";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
@@ -7,19 +8,9 @@ import ReviewsSection from "@/components/ReviewsSection";
 import RelatedContent from "@/components/RelatedContent";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
-import {
-  generateHreflangLinks,
-  generateCanonicalUrl,
-  BASE_DOMAIN,
-} from "@/utils/seo-config";
-import {
-  generateBreadcrumbSchema,
-  generateFAQSchema,
-} from "@/utils/seo-schemas";
+import { generateHreflangLinks, generateCanonicalUrl, BASE_DOMAIN } from "@/utils/seo-config";
+import { generateBreadcrumbSchema, generateFAQSchema } from "@/utils/seo-schemas";
 import { JETSKI_PRODUCTS } from "@shared/jetskiProducts";
-
-const NAVY_CTA =
-  "inline-flex items-center justify-center gap-2 rounded-full bg-cta text-cta-foreground hover:bg-cta/90 font-semibold btn-elevated transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2";
 
 /**
  * Hub / category page targeting the head term "alquiler de moto de agua en
@@ -35,10 +26,7 @@ export default function JetSkiBlanesHub() {
   const hreflangLinks = generateHreflangLinks("jetskiHub");
   const canonical = generateCanonicalUrl("jetskiHub", language);
 
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
-  const excursion = JETSKI_PRODUCTS.find((p) => p.pageKey === "jetskiExcursion");
+  const excursion = JETSKI_PRODUCTS.find(p => p.pageKey === "jetskiExcursion");
   // Dedicated 4K hero (golden-hour Costa Brava jet ski), served as responsive WebP.
   const heroImage = "/images/jetski-hub/jet-ski-blanes-hero.webp";
   const heroSrcSet =
@@ -60,7 +48,7 @@ export default function JetSkiBlanesHub() {
     jetskiExcursion: "excursion",
     efoilBlanes: "efoil",
   };
-  const cards = JETSKI_PRODUCTS.map((p) => {
+  const cards = JETSKI_PRODUCTS.map(p => {
     const copyKey = COPY_KEY_BY_PAGE[p.pageKey];
     const copy = copyKey ? t.jetskiLanding?.[copyKey] : undefined;
     return {
@@ -70,7 +58,7 @@ export default function JetSkiBlanesHub() {
       alt: p.altText,
       title: copy?.navLabel || p.name,
       subtitle: copy?.hero?.subtitle || p.subtitle,
-      minPrice: Math.min(...p.slots.map((s) => s.price)),
+      minPrice: Math.min(...p.slots.map(s => s.price)),
     };
   });
 
@@ -80,7 +68,7 @@ export default function JetSkiBlanesHub() {
     href: cards[i].href,
     title: cards[i].title,
     slots: p.slots,
-    hasTwo: p.slots.some((s) => s.price2),
+    hasTwo: p.slots.some(s => s.price2),
   }));
 
   const jsonLd = [
@@ -104,7 +92,7 @@ export default function JetSkiBlanesHub() {
         })),
       },
     },
-    generateFAQSchema((h?.faq || []).map((f) => ({ question: f.q, answer: f.a }))),
+    generateFAQSchema((h?.faq || []).map(f => ({ question: f.q, answer: f.a }))),
   ];
 
   return (
@@ -120,66 +108,55 @@ export default function JetSkiBlanesHub() {
       />
       <Navigation />
 
-      {/* HERO — full-bleed coastal photography, the Salt Memory entry.
-          Full viewport: the photo and its gradient are `inset-0` on this
-          section, so the section's height IS the overlay's height — at 80vh the
-          gradient stopped short of the fold. `svh` (not `vh`) so the mobile
+      {/* HERO: full-bleed coastal photography. Full viewport: `svh` (not `vh`) so the mobile
           browser chrome doesn't push the bottom of the gradient off screen. */}
-      <section className="relative isolate flex min-h-[100svh] items-center overflow-hidden pb-20 pt-28">
-        <picture>
-          <source type="image/avif" srcSet={heroSrcSetAvif} sizes="100vw" />
-          <img
-            src={heroImage}
-            srcSet={heroSrcSet}
-            sizes="100vw"
-            alt={heroAlt}
-            width={2560}
-            height={1440}
-            decoding="async"
-            draggable={false}
-            className={`absolute inset-0 -z-10 h-full w-full object-cover will-change-transform transition-transform duration-[1400ms] ease-out ${mounted ? "scale-100" : "scale-[1.08]"}`}
-          />
-        </picture>
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
+      <PhotoHero
+        minHeight="sm:min-h-[100svh]"
+        media={
+          <picture>
+            <source type="image/avif" srcSet={heroSrcSetAvif} sizes="100vw" />
+            <img
+              src={heroImage}
+              srcSet={heroSrcSet}
+              sizes="100vw"
+              alt={heroAlt}
+              width={2560}
+              height={1440}
+              decoding="async"
+              draggable={false}
+            />
+          </picture>
+        }
+        title={h?.hero?.title}
+        subtitle={h?.hero?.subtitle}
+        actions={
+          <InteractiveHoverButton
+            tone="dark"
+            href="#experiencias"
+            className="min-h-12 w-full px-9 text-base sm:w-auto"
+          >
+            {h?.hero?.cta || "Ver experiencias"}
+          </InteractiveHoverButton>
+        }
+      />
 
-        <div
-          className={`mx-auto w-full max-w-3xl px-4 text-center text-white transition-all duration-700 ease-out sm:px-6 ${mounted ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}`}
-        >
-          <h1 className="font-heading text-display font-bold leading-[1.04] tracking-tight [text-shadow:0_2px_20px_hsl(215_45%_12%/0.55)]">
-            {h?.hero?.title}
-          </h1>
-          <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/90 [text-shadow:0_1px_12px_hsl(215_45%_12%/0.5)]">
-            {h?.hero?.subtitle}
-          </p>
-          <div className="mt-8">
-            <a href="#experiencias" className={`${NAVY_CTA} min-h-12 px-9 text-base`}>
-              {h?.hero?.cta || "Ver experiencias"}
-              <ArrowRight className="h-5 w-5" />
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* EXPERIENCES: image-led ways in */}
+      <Sheet id="experiencias" next="muted" className="scroll-mt-24">
+        <Rise className="mx-auto max-w-4xl text-center">
+          <h2 className={H2}>{h?.productsTitle || "Nuestras experiencias en moto de agua"}</h2>
+          {h?.intro && (
+            <p className="mx-auto mt-4 max-w-3xl text-lg leading-relaxed text-muted-foreground text-balance">
+              {h.intro}
+            </p>
+          )}
+        </Rise>
 
-      {/* EXPERIENCES — two image-led ways in */}
-      <section id="experiencias" className="scroll-mt-24 px-4 py-16 sm:px-6 lg:py-24">
-        <div className="mx-auto max-w-5xl">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-heading text-h2 font-bold text-foreground">
-              {h?.productsTitle || "Nuestras experiencias en moto de agua"}
-            </h2>
-            {h?.intro && (
-              <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                {h.intro}
-              </p>
-            )}
-          </div>
-
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:gap-8">
-            {cards.map((c) => (
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+          {cards.map(c => (
+            <Rise key={c.id} className="flex">
               <a
-                key={c.id}
                 href={c.href}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-transform duration-300 ease-out [@media(hover:hover)]:hover:-translate-y-1.5 [@media(hover:hover)]:hover:shadow-[0_18px_40px_-12px_hsl(215_45%_20%/0.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2"
+                className="group flex w-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 motion-reduce:transition-none [@media(hover:hover)]:hover:border-foreground/30"
               >
                 <div className="relative aspect-[16/11] overflow-hidden">
                   <img
@@ -189,7 +166,7 @@ export default function JetSkiBlanesHub() {
                     height={522}
                     loading="lazy"
                     decoding="async"
-                    className="h-full w-full object-cover will-change-transform transition-transform duration-[600ms] ease-out group-hover:scale-[1.05]"
+                    className="h-full w-full object-cover will-change-transform transition-transform duration-[600ms] ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-[1.04]"
                   />
                   <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-background/90 px-2.5 py-1 text-xs font-semibold text-foreground backdrop-blur-sm">
                     <ShieldCheck className="h-3.5 w-3.5 text-success" />
@@ -197,7 +174,7 @@ export default function JetSkiBlanesHub() {
                   </span>
                 </div>
                 <div className="flex flex-1 flex-col gap-2.5 p-5 sm:p-6">
-                  <h3 className="font-heading text-xl font-semibold text-foreground">
+                  <h3 className="font-heading text-xl font-semibold tracking-tight text-foreground">
                     {c.title}
                   </h3>
                   <p className="flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-3">
@@ -208,114 +185,132 @@ export default function JetSkiBlanesHub() {
                       <span className="text-xs text-muted-foreground">
                         {t.jetskiLanding?.fromLabel || "desde"}
                       </span>
-                      <span className="font-heading text-2xl font-bold text-cta">
+                      <span className="font-heading text-2xl font-semibold tabular-nums text-foreground">
                         {c.minPrice}€
                       </span>
                     </span>
                     <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary">
                       {t.jetskiLanding?.ctaRequest || "Ver"}
-                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      <ArrowRight className="h-4 w-4 transition-transform duration-300 motion-reduce:transition-none group-hover:translate-x-1" />
                     </span>
                   </div>
                 </div>
               </a>
-            ))}
-          </div>
-
-          {/* Quiet facts row — all real, no fabricated urgency */}
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-sm text-muted-foreground">
-            <span className="inline-flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-success" />
-              {t.boats?.withoutLicense || "Sin licencia"}
-            </span>
-            <span className="inline-flex items-center gap-2">
-              <Fuel className="h-4 w-4 text-success" />
-              {t.boatDetail?.fuelIncluded || "Combustible incluido"}
-            </span>
-            <span className="inline-flex items-center gap-2">
-              <Users className="h-4 w-4" />
-              1-2
-            </span>
-            <span className="inline-flex items-center gap-2">
-              <Clock className="h-4 w-4" />
-              09:00 - 20:00
-            </span>
-          </div>
+            </Rise>
+          ))}
         </div>
-      </section>
 
-      {/* PRECIOS — every slot, straight from the catalogue */}
-      <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="text-center font-heading text-h2 font-bold text-foreground">
-            {h?.pricesTitle || "Precios"}
-          </h2>
-          <div className="mt-10 space-y-8">
-            {pricedProducts.map((p) => (
-              <div key={p.id}>
-                <h3 className="font-heading text-lg font-semibold text-foreground">
-                  <a href={p.href} className="underline-offset-4 hover:underline">{p.title}</a>
+        {/* Quiet facts, all real, as one ruled strip */}
+        <ul className="mx-auto mt-10 grid max-w-3xl grid-cols-2 overflow-hidden rounded-2xl border border-border bg-card text-sm text-muted-foreground sm:grid-cols-4 sm:divide-x sm:divide-border [&>li:nth-child(n+3)]:border-t [&>li:nth-child(n+3)]:border-border sm:[&>li:nth-child(n+3)]:border-t-0 [&>li:nth-child(even)]:border-l [&>li:nth-child(even)]:border-border sm:[&>li:nth-child(even)]:border-l-0">
+          <li className="flex items-center justify-center gap-2 px-3 py-3.5">
+            <ShieldCheck className="h-4 w-4 text-success" />
+            {t.boats?.withoutLicense || "Sin licencia"}
+          </li>
+          <li className="flex items-center justify-center gap-2 px-3 py-3.5">
+            <Fuel className="h-4 w-4 text-success" />
+            {t.boatDetail?.fuelIncluded || "Combustible incluido"}
+          </li>
+          <li className="flex items-center justify-center gap-2 px-3 py-3.5">
+            <Users className="h-4 w-4" />
+            1-2
+          </li>
+          <li className="flex items-center justify-center gap-2 px-3 py-3.5">
+            <Clock className="h-4 w-4" />
+            09:00 - 20:00
+          </li>
+        </ul>
+      </Sheet>
+
+      {/* PRECIOS: every slot, straight from the catalogue. One card per product; real tables. */}
+      <Sheet tone="muted" next="page">
+        <Rise>
+          <h2 className={H2}>{h?.pricesTitle || "Precios"}</h2>
+        </Rise>
+        <div className="mt-10 grid items-start gap-6 lg:grid-cols-3">
+          {pricedProducts.map(p => (
+            <Rise key={p.id}>
+              <div className="overflow-hidden rounded-2xl border border-border bg-card">
+                <h3 className="border-b border-border">
+                  <a
+                    href={p.href}
+                    className="group flex items-center justify-between gap-3 px-5 py-4 font-heading text-lg font-semibold tracking-tight text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cta motion-reduce:transition-none sm:px-6 [@media(hover:hover)]:hover:bg-muted/60"
+                  >
+                    {p.title}
+                    <ArrowRight
+                      className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200 motion-reduce:transition-none [@media(hover:hover)]:group-hover:translate-x-0.5"
+                      aria-hidden="true"
+                    />
+                  </a>
                 </h3>
-                <div className="mt-3 overflow-x-auto">
-                  <table className="w-full text-left text-sm">
-                    <thead className="text-muted-foreground">
-                      <tr className="border-b border-border">
-                        <th scope="col" className="py-2 pr-4 font-medium">{jl?.priceColDuration || "Duración"}</th>
-                        <th scope="col" className="py-2 pr-4 font-medium">{jl?.priceColOne || "1 persona"}</th>
-                        {p.hasTwo && <th scope="col" className="py-2 font-medium">{jl?.priceColTwo || "2 personas"}</th>}
+                <table className="w-full text-left text-base">
+                  <thead className="text-xs text-muted-foreground">
+                    <tr className="border-b border-border bg-muted/40">
+                      <th scope="col" className="py-2.5 pl-5 pr-3 font-medium sm:pl-6">
+                        {jl?.priceColDuration || "Duración"}
+                      </th>
+                      <th scope="col" className="px-3 py-2.5 text-right font-medium">
+                        {jl?.priceColOne || "1 persona"}
+                      </th>
+                      {p.hasTwo && (
+                        <th scope="col" className="py-2.5 pl-3 pr-5 text-right font-medium sm:pr-6">
+                          {jl?.priceColTwo || "2 personas"}
+                        </th>
+                      )}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {p.slots.map(s => (
+                      <tr key={s.id} className="border-b border-border last:border-b-0">
+                        <th
+                          scope="row"
+                          className="py-3 pl-5 pr-3 text-left font-normal text-foreground sm:pl-6"
+                        >
+                          {s.label}
+                        </th>
+                        <td
+                          className={`px-3 py-3 text-right font-semibold tabular-nums text-foreground ${p.hasTwo ? "" : "pr-5 sm:pr-6"}`}
+                        >
+                          {s.price}€
+                        </td>
+                        {p.hasTwo && (
+                          <td className="py-3 pl-3 pr-5 text-right font-semibold tabular-nums text-foreground sm:pr-6">
+                            {s.price2 ? `${s.price2}€` : "-"}
+                          </td>
+                        )}
                       </tr>
-                    </thead>
-                    <tbody>
-                      {p.slots.map((s) => (
-                        <tr key={s.id} className="border-b border-border/60">
-                          <td className="py-2.5 pr-4 text-foreground">{s.label}</td>
-                          <td className="py-2.5 pr-4 font-semibold text-foreground">{s.price}€</td>
-                          {p.hasTwo && <td className="py-2.5 font-semibold text-foreground">{s.price2 ? `${s.price2}€` : "-"}</td>}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-            ))}
-          </div>
+            </Rise>
+          ))}
         </div>
-      </section>
+      </Sheet>
 
-      {/* GUÍA */}
+      {/* GUÍA: two columns of short blocks, the first sentence of each as the point */}
       {(h?.guide || []).length > 0 && (
-        <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-          <div className="mx-auto max-w-2xl space-y-10">
-            {h!.guide!.map((g) => (
-              <div key={g.title}>
-                <h2 className="font-heading text-h2 font-bold text-foreground">{g.title}</h2>
-                <p className="mt-3 leading-relaxed text-muted-foreground">{g.text}</p>
-              </div>
+        <Sheet next="muted">
+          <div className="grid gap-x-14 gap-y-10 md:grid-cols-2">
+            {h!.guide!.map(g => (
+              <Rise key={g.title} className="border-t border-border pt-6">
+                <h2 className="font-heading text-xl font-semibold tracking-tight text-balance text-foreground">
+                  {g.title}
+                </h2>
+                <LeadText text={g.text} className="mt-3" />
+              </Rise>
             ))}
           </div>
-        </section>
+        </Sheet>
       )}
 
       {/* FAQ */}
-      {(h?.faq || []).length > 0 && (
-        <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-          <div className="mx-auto max-w-2xl">
-            <h2 className="text-center font-heading text-h2 font-bold text-foreground">
-              {h?.faqTitle || "Preguntas frecuentes"}
-            </h2>
-            <dl className="mt-10 divide-y divide-border">
-              {h!.faq.map((f) => (
-                <div key={f.q} className="py-5 first:pt-0 last:pb-0">
-                  <dt className="font-heading text-lg font-semibold text-foreground">
-                    {f.q}
-                  </dt>
-                  <dd className="mt-2 leading-relaxed text-muted-foreground">{f.a}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </section>
-      )}
+      <FaqSheet
+        idPrefix="jetski-hub-faq"
+        title={h?.faqTitle || "Preguntas frecuentes"}
+        items={h?.faq || []}
+        tone="muted"
+        next="muted"
+      />
 
       <ReviewsSection />
       <RelatedContent currentPage="jetskiHub" />

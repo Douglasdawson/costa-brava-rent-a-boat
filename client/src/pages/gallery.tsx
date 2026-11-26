@@ -1,134 +1,165 @@
 import { useState } from "react";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
-import { Button } from "@/components/ui/button";
-import { Camera, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import PhotoLightbox from "@/components/PhotoLightbox";
 import PhotoSubmissionForm from "@/components/PhotoSubmissionForm";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import {
+  H2,
+  ON_NAVY_MUTED,
+  PageHeader,
+  PhotoBand,
+  Rise,
+  Sheet,
+  splitSentences,
+} from "@/components/content-kit";
 import { useLanguage, type Language } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
-import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks, generateBreadcrumbSchema } from "@/utils/seo-config";
+import {
+  getSEOConfig,
+  generateCanonicalUrl,
+  generateHreflangLinks,
+  generateBreadcrumbSchema,
+} from "@/utils/seo-config";
 import { queryClient } from "@/lib/queryClient";
 import { isLicenseFreeEraActive } from "@shared/constants";
 
-function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <div ref={ref} className={`transition-[opacity,transform,filter] duration-700 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"} ${className}`}>
-      {children}
-    </div>
-  );
-}
-
-const galleryText: Record<string, {
-  introP1: string;
-  introP2pre: string;
-  introP2licenseFree: string;
-  introP2mid: string;
-  introP2licensed: string;
-  introP2post: string;
-  ctaTitle: string;
-  ctaSubtitle: string;
-  ctaFleet: string;
-  ctaRoutes: string;
-}> = {
+const galleryText: Record<
+  string,
+  {
+    introP1: string;
+    introP2pre: string;
+    introP2licenseFree: string;
+    introP2mid: string;
+    introP2licensed: string;
+    introP2post: string;
+    ctaTitle: string;
+    ctaSubtitle: string;
+    ctaFleet: string;
+    ctaRoutes: string;
+  }
+> = {
   es: {
-    introP1: "Nuestros clientes capturan momentos inolvidables navegando por las aguas turquesa de la Costa Brava. Desde las calas escondidas de Lloret de Mar hasta los impresionantes acantilados cerca de Tossa de Mar, cada salida en barco es una oportunidad para crear recuerdos que duran toda la vida.",
+    introP1:
+      "Nuestros clientes capturan momentos inolvidables navegando por las aguas turquesa de la Costa Brava. Desde las calas escondidas de Lloret de Mar hasta los impresionantes acantilados cerca de Tossa de Mar, cada salida en barco es una oportunidad para crear recuerdos que duran toda la vida.",
     introP2pre: "Tanto si navegas con nuestra flota de",
     introP2licenseFree: "barcos sin licencia",
     introP2mid: "como si prefieres un",
     introP2licensed: "barco con licencia",
-    introP2post: "para explorar mas lejos, las fotos de esta galeria muestran la variedad de experiencias que puedes vivir: snorkel en aguas cristalinas, atardeceres desde cubierta, fondeo en calas virgenes y la diversion en familia que solo el mar puede ofrecer.",
+    introP2post:
+      "para explorar mas lejos, las fotos de esta galeria muestran la variedad de experiencias que puedes vivir: snorkel en aguas cristalinas, atardeceres desde cubierta, fondeo en calas virgenes y la diversion en familia que solo el mar puede ofrecer.",
     ctaTitle: "Crea tus propios recuerdos",
-    ctaSubtitle: "Explora la Costa Brava desde el agua. Elige tu barco, reserva tu fecha y preparate para una experiencia inolvidable.",
+    ctaSubtitle:
+      "Explora la Costa Brava desde el agua. Elige tu barco, reserva tu fecha y preparate para una experiencia inolvidable.",
     ctaFleet: "Ver nuestra flota",
     ctaRoutes: "Descubrir rutas",
   },
   en: {
-    introP1: "Our customers capture unforgettable moments sailing through the turquoise waters of the Costa Brava. From the hidden coves of Lloret de Mar to the stunning cliffs near Tossa de Mar, every boat trip is a chance to create memories that last a lifetime.",
+    introP1:
+      "Our customers capture unforgettable moments sailing through the turquoise waters of the Costa Brava. From the hidden coves of Lloret de Mar to the stunning cliffs near Tossa de Mar, every boat trip is a chance to create memories that last a lifetime.",
     introP2pre: "Whether you sail with our fleet of",
     introP2licenseFree: "licence-free boats",
     introP2mid: "or prefer a",
     introP2licensed: "licensed boat",
-    introP2post: "to explore further, the photos in this gallery show the variety of experiences you can enjoy: snorkelling in crystal-clear waters, sunsets from the deck, anchoring in pristine coves and the family fun that only the sea can offer.",
+    introP2post:
+      "to explore further, the photos in this gallery show the variety of experiences you can enjoy: snorkelling in crystal-clear waters, sunsets from the deck, anchoring in pristine coves and the family fun that only the sea can offer.",
     ctaTitle: "Create your own memories",
-    ctaSubtitle: "Explore the Costa Brava from the water. Choose your boat, book your date and get ready for an unforgettable experience.",
+    ctaSubtitle:
+      "Explore the Costa Brava from the water. Choose your boat, book your date and get ready for an unforgettable experience.",
     ctaFleet: "See our fleet",
     ctaRoutes: "Discover routes",
   },
   fr: {
-    introP1: "Nos clients capturent des moments inoubliables en naviguant dans les eaux turquoise de la Costa Brava. Des criques cachees de Lloret de Mar aux falaises impressionnantes pres de Tossa de Mar, chaque sortie en bateau est une occasion de creer des souvenirs qui durent toute la vie.",
+    introP1:
+      "Nos clients capturent des moments inoubliables en naviguant dans les eaux turquoise de la Costa Brava. Des criques cachees de Lloret de Mar aux falaises impressionnantes pres de Tossa de Mar, chaque sortie en bateau est une occasion de creer des souvenirs qui durent toute la vie.",
     introP2pre: "Que vous naviguiez avec notre flotte de",
     introP2licenseFree: "bateaux sans permis",
     introP2mid: "ou que vous preferiez un",
     introP2licensed: "bateau avec permis",
-    introP2post: "pour explorer plus loin, les photos de cette galerie montrent la variete d'experiences que vous pouvez vivre : snorkeling dans des eaux cristallines, couchers de soleil depuis le pont, mouillage dans des criques vierges et le plaisir en famille que seule la mer peut offrir.",
+    introP2post:
+      "pour explorer plus loin, les photos de cette galerie montrent la variete d'experiences que vous pouvez vivre : snorkeling dans des eaux cristallines, couchers de soleil depuis le pont, mouillage dans des criques vierges et le plaisir en famille que seule la mer peut offrir.",
     ctaTitle: "Creez vos propres souvenirs",
-    ctaSubtitle: "Explorez la Costa Brava depuis la mer. Choisissez votre bateau, reservez votre date et preparez-vous pour une experience inoubliable.",
+    ctaSubtitle:
+      "Explorez la Costa Brava depuis la mer. Choisissez votre bateau, reservez votre date et preparez-vous pour une experience inoubliable.",
     ctaFleet: "Voir notre flotte",
     ctaRoutes: "Decouvrir les itineraires",
   },
   de: {
-    introP1: "Unsere Kunden fangen unvergessliche Momente beim Segeln durch das turkisfarbene Wasser der Costa Brava ein. Von den versteckten Buchten von Lloret de Mar bis zu den beeindruckenden Klippen bei Tossa de Mar ist jeder Bootsausflug eine Gelegenheit, Erinnerungen zu schaffen, die ein Leben lang halten.",
+    introP1:
+      "Unsere Kunden fangen unvergessliche Momente beim Segeln durch das turkisfarbene Wasser der Costa Brava ein. Von den versteckten Buchten von Lloret de Mar bis zu den beeindruckenden Klippen bei Tossa de Mar ist jeder Bootsausflug eine Gelegenheit, Erinnerungen zu schaffen, die ein Leben lang halten.",
     introP2pre: "Ob Sie mit unserer Flotte von",
     introP2licenseFree: "fuhrerscheinfreien Booten",
     introP2mid: "segeln oder ein",
     introP2licensed: "Boot mit Fuhrerschein",
-    introP2post: "bevorzugen, um weiter zu erkunden — die Fotos in dieser Galerie zeigen die Vielfalt der Erlebnisse: Schnorcheln in kristallklarem Wasser, Sonnenuntergange vom Deck, Ankern in unberuhrten Buchten und der Familienspass, den nur das Meer bieten kann.",
+    introP2post:
+      "bevorzugen, um weiter zu erkunden — die Fotos in dieser Galerie zeigen die Vielfalt der Erlebnisse: Schnorcheln in kristallklarem Wasser, Sonnenuntergange vom Deck, Ankern in unberuhrten Buchten und der Familienspass, den nur das Meer bieten kann.",
     ctaTitle: "Schaffen Sie Ihre eigenen Erinnerungen",
-    ctaSubtitle: "Erkunden Sie die Costa Brava vom Wasser aus. Wahlen Sie Ihr Boot, buchen Sie Ihr Datum und bereiten Sie sich auf ein unvergessliches Erlebnis vor.",
+    ctaSubtitle:
+      "Erkunden Sie die Costa Brava vom Wasser aus. Wahlen Sie Ihr Boot, buchen Sie Ihr Datum und bereiten Sie sich auf ein unvergessliches Erlebnis vor.",
     ctaFleet: "Unsere Flotte ansehen",
     ctaRoutes: "Routen entdecken",
   },
   nl: {
-    introP1: "Onze klanten leggen onvergetelijke momenten vast terwijl ze over het turquoise water van de Costa Brava varen. Van de verborgen baaien van Lloret de Mar tot de indrukwekkende kliffen bij Tossa de Mar, elke boottocht is een kans om herinneringen te creeren die een leven lang meegaan.",
+    introP1:
+      "Onze klanten leggen onvergetelijke momenten vast terwijl ze over het turquoise water van de Costa Brava varen. Van de verborgen baaien van Lloret de Mar tot de indrukwekkende kliffen bij Tossa de Mar, elke boottocht is een kans om herinneringen te creeren die een leven lang meegaan.",
     introP2pre: "Of u nu vaart met onze vloot van",
     introP2licenseFree: "boten zonder vaarbewijs",
     introP2mid: "of de voorkeur geeft aan een",
     introP2licensed: "boot met vaarbewijs",
-    introP2post: "om verder te verkennen, de foto's in deze galerij tonen de verscheidenheid aan ervaringen: snorkelen in kristalhelder water, zonsondergangen vanaf het dek, ankeren in ongerepte baaien en het familieplezier dat alleen de zee kan bieden.",
+    introP2post:
+      "om verder te verkennen, de foto's in deze galerij tonen de verscheidenheid aan ervaringen: snorkelen in kristalhelder water, zonsondergangen vanaf het dek, ankeren in ongerepte baaien en het familieplezier dat alleen de zee kan bieden.",
     ctaTitle: "Maak uw eigen herinneringen",
-    ctaSubtitle: "Verken de Costa Brava vanaf het water. Kies uw boot, boek uw datum en bereid u voor op een onvergetelijke ervaring.",
+    ctaSubtitle:
+      "Verken de Costa Brava vanaf het water. Kies uw boot, boek uw datum en bereid u voor op een onvergetelijke ervaring.",
     ctaFleet: "Onze vloot bekijken",
     ctaRoutes: "Routes ontdekken",
   },
   it: {
-    introP1: "I nostri clienti catturano momenti indimenticabili navigando nelle acque turchesi della Costa Brava. Dalle calette nascoste di Lloret de Mar alle impressionanti scogliere vicino a Tossa de Mar, ogni uscita in barca e un'opportunita per creare ricordi che durano tutta la vita.",
+    introP1:
+      "I nostri clienti catturano momenti indimenticabili navigando nelle acque turchesi della Costa Brava. Dalle calette nascoste di Lloret de Mar alle impressionanti scogliere vicino a Tossa de Mar, ogni uscita in barca e un'opportunita per creare ricordi che durano tutta la vita.",
     introP2pre: "Sia che navighi con la nostra flotta di",
     introP2licenseFree: "barche senza patente",
     introP2mid: "o che preferisca una",
     introP2licensed: "barca con patente",
-    introP2post: "per esplorare piu lontano, le foto di questa galleria mostrano la varieta di esperienze che puoi vivere: snorkeling in acque cristalline, tramonti dal ponte, ancoraggio in calette incontaminate e il divertimento in famiglia che solo il mare puo offrire.",
+    introP2post:
+      "per esplorare piu lontano, le foto di questa galleria mostrano la varieta di esperienze che puoi vivere: snorkeling in acque cristalline, tramonti dal ponte, ancoraggio in calette incontaminate e il divertimento in famiglia che solo il mare puo offrire.",
     ctaTitle: "Crea i tuoi ricordi",
-    ctaSubtitle: "Esplora la Costa Brava dall'acqua. Scegli la tua barca, prenota la tua data e preparati per un'esperienza indimenticabile.",
+    ctaSubtitle:
+      "Esplora la Costa Brava dall'acqua. Scegli la tua barca, prenota la tua data e preparati per un'esperienza indimenticabile.",
     ctaFleet: "Vedi la nostra flotta",
     ctaRoutes: "Scopri gli itinerari",
   },
   ru: {
-    introP1: "Наши клиенты запечатлевают незабываемые моменты, плавая по бирюзовым водам Коста-Бравы. От скрытых бухт Льорет-де-Мар до впечатляющих скал возле Тосса-де-Мар — каждая морская прогулка это возможность создать воспоминания на всю жизнь.",
+    introP1:
+      "Наши клиенты запечатлевают незабываемые моменты, плавая по бирюзовым водам Коста-Бравы. От скрытых бухт Льорет-де-Мар до впечатляющих скал возле Тосса-де-Мар — каждая морская прогулка это возможность создать воспоминания на всю жизнь.",
     introP2pre: "Плаваете ли вы на нашем флоте",
     introP2licenseFree: "лодок без лицензии",
     introP2mid: "или предпочитаете",
     introP2licensed: "лодку с лицензией",
-    introP2post: "для дальних путешествий — фотографии в этой галерее показывают разнообразие впечатлений: снорклинг в кристально чистой воде, закаты с палубы, якорные стоянки в нетронутых бухтах и семейное веселье, которое может подарить только море.",
+    introP2post:
+      "для дальних путешествий — фотографии в этой галерее показывают разнообразие впечатлений: снорклинг в кристально чистой воде, закаты с палубы, якорные стоянки в нетронутых бухтах и семейное веселье, которое может подарить только море.",
     ctaTitle: "Создайте свои воспоминания",
-    ctaSubtitle: "Исследуйте Коста-Браву с воды. Выберите лодку, забронируйте дату и приготовьтесь к незабываемому опыту.",
+    ctaSubtitle:
+      "Исследуйте Коста-Браву с воды. Выберите лодку, забронируйте дату и приготовьтесь к незабываемому опыту.",
     ctaFleet: "Посмотреть наш флот",
     ctaRoutes: "Открыть маршруты",
   },
   ca: {
-    introP1: "Els nostres clients capturen moments inoblidables navegant per les aigues turquesa de la Costa Brava. Des de les cales amagades de Lloret de Mar fins als impressionants penya-segats prop de Tossa de Mar, cada sortida en vaixell es una oportunitat per crear records que duren tota la vida.",
+    introP1:
+      "Els nostres clients capturen moments inoblidables navegant per les aigues turquesa de la Costa Brava. Des de les cales amagades de Lloret de Mar fins als impressionants penya-segats prop de Tossa de Mar, cada sortida en vaixell es una oportunitat per crear records que duren tota la vida.",
     introP2pre: "Tant si navegues amb la nostra flota de",
     introP2licenseFree: "barques sense llicencia",
     introP2mid: "com si prefereixes una",
     introP2licensed: "barca amb llicencia",
-    introP2post: "per explorar mes lluny, les fotos d'aquesta galeria mostren la varietat d'experiencies que pots viure: snorkel en aigues cristal·lines, postes de sol des de coberta, fondeig en cales verges i la diversio en familia que nomes el mar pot oferir.",
+    introP2post:
+      "per explorar mes lluny, les fotos d'aquesta galeria mostren la varietat d'experiencies que pots viure: snorkel en aigues cristal·lines, postes de sol des de coberta, fondeig en cales verges i la diversio en familia que nomes el mar pot oferir.",
     ctaTitle: "Crea els teus propis records",
-    ctaSubtitle: "Explora la Costa Brava des de l'aigua. Tria la teva barca, reserva la teva data i prepara't per a una experiencia inoblidable.",
+    ctaSubtitle:
+      "Explora la Costa Brava des de l'aigua. Tria la teva barca, reserva la teva data i prepara't per a una experiencia inoblidable.",
     ctaFleet: "Veure la nostra flota",
     ctaRoutes: "Descobrir rutes",
   },
@@ -143,55 +174,65 @@ const galleryTextPostEra: Record<string, Record<PostEraKey, string>> = {
     introP2licenseFree: "barcos con licencia",
     introP2mid: "como si prefieres una",
     introP2licensed: "excursión con patrón",
-    introP2post: "en la que solo te dejas llevar, las fotos de esta galería muestran la variedad de experiencias que puedes vivir: snorkel en aguas cristalinas, atardeceres desde cubierta, fondeo en calas vírgenes y la diversión en familia que solo el mar puede ofrecer.",
+    introP2post:
+      "en la que solo te dejas llevar, las fotos de esta galería muestran la variedad de experiencias que puedes vivir: snorkel en aguas cristalinas, atardeceres desde cubierta, fondeo en calas vírgenes y la diversión en familia que solo el mar puede ofrecer.",
   },
   en: {
     introP2licenseFree: "licensed boats",
     introP2mid: "or prefer a",
     introP2licensed: "skippered excursion",
-    introP2post: "where you simply relax, the photos in this gallery show the variety of experiences you can enjoy: snorkelling in crystal-clear waters, sunsets from the deck, anchoring in pristine coves and the family fun that only the sea can offer.",
+    introP2post:
+      "where you simply relax, the photos in this gallery show the variety of experiences you can enjoy: snorkelling in crystal-clear waters, sunsets from the deck, anchoring in pristine coves and the family fun that only the sea can offer.",
   },
   fr: {
     introP2licenseFree: "bateaux avec permis",
     introP2mid: "ou que vous préfériez une",
     introP2licensed: "excursion avec skipper",
-    introP2post: "pour simplement profiter, les photos de cette galerie montrent la variété d'expériences que vous pouvez vivre : snorkeling dans des eaux cristallines, couchers de soleil depuis le pont, mouillage dans des criques vierges et le plaisir en famille que seule la mer peut offrir.",
+    introP2post:
+      "pour simplement profiter, les photos de cette galerie montrent la variété d'expériences que vous pouvez vivre : snorkeling dans des eaux cristallines, couchers de soleil depuis le pont, mouillage dans des criques vierges et le plaisir en famille que seule la mer peut offrir.",
   },
   de: {
     introP2licenseFree: "Booten mit Führerschein",
     introP2mid: "fahren oder eine",
     introP2licensed: "Ausfahrt mit Skipper",
-    introP2post: "bevorzugen, um einfach zu genießen: Die Fotos in dieser Galerie zeigen die Vielfalt der Erlebnisse, vom Schnorcheln in kristallklarem Wasser über Sonnenuntergänge vom Deck und Ankern in unberührten Buchten bis zum Familienspaß, den nur das Meer bieten kann.",
+    introP2post:
+      "bevorzugen, um einfach zu genießen: Die Fotos in dieser Galerie zeigen die Vielfalt der Erlebnisse, vom Schnorcheln in kristallklarem Wasser über Sonnenuntergänge vom Deck und Ankern in unberührten Buchten bis zum Familienspaß, den nur das Meer bieten kann.",
   },
   nl: {
     introP2licenseFree: "boten met vaarbewijs",
     introP2mid: "of de voorkeur geeft aan een",
     introP2licensed: "excursie met schipper",
-    introP2post: "om gewoon te genieten, de foto's in deze galerij tonen de verscheidenheid aan ervaringen: snorkelen in kristalhelder water, zonsondergangen vanaf het dek, ankeren in ongerepte baaien en het familieplezier dat alleen de zee kan bieden.",
+    introP2post:
+      "om gewoon te genieten, de foto's in deze galerij tonen de verscheidenheid aan ervaringen: snorkelen in kristalhelder water, zonsondergangen vanaf het dek, ankeren in ongerepte baaien en het familieplezier dat alleen de zee kan bieden.",
   },
   it: {
     introP2licenseFree: "barche con patente",
     introP2mid: "o che preferisca la nostra",
     introP2licensed: "escursione con skipper",
-    introP2post: "per goderti il mare senza pensieri, le foto di questa galleria mostrano la varietà di esperienze che puoi vivere: snorkeling in acque cristalline, tramonti dal ponte, ancoraggio in calette incontaminate e il divertimento in famiglia che solo il mare può offrire.",
+    introP2post:
+      "per goderti il mare senza pensieri, le foto di questa galleria mostrano la varietà di esperienze che puoi vivere: snorkeling in acque cristalline, tramonti dal ponte, ancoraggio in calette incontaminate e il divertimento in famiglia che solo il mare può offrire.",
   },
   ru: {
     introP2licenseFree: "лодок с правами",
     introP2mid: "или предпочитаете",
     introP2licensed: "экскурсию с капитаном",
-    introP2post: "чтобы просто отдохнуть, фотографии в этой галерее показывают разнообразие впечатлений: снорклинг в кристально чистой воде, закаты с палубы, якорные стоянки в нетронутых бухтах и семейное веселье, которое может подарить только море.",
+    introP2post:
+      "чтобы просто отдохнуть, фотографии в этой галерее показывают разнообразие впечатлений: снорклинг в кристально чистой воде, закаты с палубы, якорные стоянки в нетронутых бухтах и семейное веселье, которое может подарить только море.",
   },
   ca: {
     introP2licenseFree: "barques amb llicència",
     introP2mid: "com si prefereixes una",
     introP2licensed: "excursió amb patró",
-    introP2post: "per només gaudir, les fotos d'aquesta galeria mostren la varietat d'experiències que pots viure: snorkel en aigües cristal·lines, postes de sol des de coberta, fondeig en cales verges i la diversió en família que només el mar pot oferir.",
+    introP2post:
+      "per només gaudir, les fotos d'aquesta galeria mostren la varietat d'experiències que pots viure: snorkel en aigües cristal·lines, postes de sol des de coberta, fondeig en cales verges i la diversió en família que només el mar pot oferir.",
   },
 };
 
 function getGalleryText(language: Language) {
   const base = galleryText[language] || galleryText.es;
-  return isLicenseFreeEraActive() ? base : { ...base, ...(galleryTextPostEra[language] || galleryTextPostEra.es) };
+  return isLicenseFreeEraActive()
+    ? base
+    : { ...base, ...(galleryTextPostEra[language] || galleryTextPostEra.es) };
 }
 
 interface GalleryPhoto {
@@ -209,7 +250,6 @@ export default function GalleryPage() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [showSubmitForm, setShowSubmitForm] = useState(false);
-  const { ref: gridRef, isVisible: gridVisible } = useScrollReveal();
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const gt = getGalleryText(language);
@@ -220,19 +260,22 @@ export default function GalleryPage() {
 
   const seoConfig = getSEOConfig("gallery", language) || {
     title: "Galeria de Fotos | Costa Brava Rent a Boat",
-    description: "Fotos de nuestros clientes disfrutando en barco por la Costa Brava. Comparte tu experiencia.",
+    description:
+      "Fotos de nuestros clientes disfrutando en barco por la Costa Brava. Comparte tu experiencia.",
   };
   const canonical = generateCanonicalUrl("gallery", language);
   const hreflangLinks = generateHreflangLinks("gallery");
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: t.breadcrumbs.home, url: "/" },
-    { name: t.breadcrumbs.gallery, url: "/galeria" }
+    { name: t.breadcrumbs.gallery, url: "/galeria" },
   ]);
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
     setLightboxOpen(true);
   };
+
+  const [introLead, introRest] = splitSentences(gt.introP1);
 
   return (
     <main id="main-content" className="min-h-screen bg-background">
@@ -248,99 +291,105 @@ export default function GalleryPage() {
       <Navigation />
       <ReadingProgressBar />
 
-      {/* Hero */}
-      <div className="bg-gradient-to-br from-primary/5 to-primary/10 pt-24 pb-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mt-8">
-            <Camera className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 text-blue-100" />
-            <h1 className="text-h1 font-heading font-bold mb-4">
-              {t.gallery?.title || "Galeria de Fotos"}
-            </h1>
-            <p className="text-lg sm:text-xl max-w-3xl mx-auto text-blue-50">
-              {t.gallery?.subtitle || "Fotos de nuestros clientes disfrutando de la Costa Brava"}
+      <PageHeader
+        title={t.gallery?.title || "Galeria de Fotos"}
+        subtitle={t.gallery?.subtitle || "Fotos de nuestros clientes disfrutando de la Costa Brava"}
+        next="background"
+      />
+
+      {/* INTRO: first sentence is the lead, the rest are loose facts with rules */}
+      <Sheet tone="background" next="muted">
+        <div className="container mx-auto grid max-w-6xl items-center gap-12 px-4 lg:grid-cols-5 lg:gap-16">
+          <Rise className="lg:col-span-3">
+            <p className="max-w-xl text-lg font-medium leading-snug text-foreground text-pretty sm:text-xl">
+              {introLead}
             </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Intro text + image section */}
-      <RevealSection className="py-16 sm:py-20 bg-background">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-            <div className="lg:col-span-3 space-y-5">
-              <h2 className="text-h2 font-heading font-bold text-foreground">
-                {t.gallery?.title || "Momentos en el mar"}
-              </h2>
-              <p className="text-muted-foreground leading-relaxed">{gt.introP1}</p>
-              <p className="text-muted-foreground leading-relaxed">
+            <ul className="mt-6 max-w-xl border-t border-border">
+              {introRest.length > 0 && (
+                <li className="border-b border-border py-4 text-base leading-relaxed text-muted-foreground text-pretty">
+                  {introRest.join(" ")}
+                </li>
+              )}
+              <li className="border-b border-border py-4 text-base leading-relaxed text-muted-foreground text-pretty">
                 {gt.introP2pre}{" "}
-                <a href={localizedPath("home") + "#fleet"} className="text-primary hover:underline">{gt.introP2licenseFree}</a>{" "}
+                <a
+                  href={localizedPath("home") + "#fleet"}
+                  className="text-primary underline-offset-2 hover:underline"
+                >
+                  {gt.introP2licenseFree}
+                </a>{" "}
                 {gt.introP2mid}{" "}
-                <a href={localizedPath(isLicenseFreeEraActive() ? "categoryLicensed" : "categoryCaptained")} className="text-primary hover:underline">{gt.introP2licensed}</a>{" "}
+                <a
+                  href={localizedPath(
+                    isLicenseFreeEraActive() ? "categoryLicensed" : "categoryCaptained"
+                  )}
+                  className="text-primary underline-offset-2 hover:underline"
+                >
+                  {gt.introP2licensed}
+                </a>{" "}
                 {gt.introP2post}
-              </p>
-              <Button variant="outline" onClick={() => setShowSubmitForm(true)}>
-                <Plus className="w-4 h-4 mr-2" />
-                {t.gallery?.sharePhoto || "Comparte tu foto"}
-              </Button>
-            </div>
-            <div className="lg:col-span-2">
-              <img
-                src="/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-cala-agua-cristalina.webp"
-                alt="Pacific Craft 625 en cala de agua cristalina, Costa Brava"
-                className="w-full rounded-2xl object-cover aspect-[4/5]"
-                loading="lazy"
-                width={640}
-                height={800}
-              />
-            </div>
-          </div>
+              </li>
+            </ul>
+            <button
+              type="button"
+              onClick={() => setShowSubmitForm(true)}
+              className="mt-6 inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full border border-border px-5 text-sm font-medium text-foreground transition-colors hover:border-foreground/40 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 motion-reduce:transition-none"
+            >
+              <Plus className="h-4 w-4" aria-hidden="true" />
+              {t.gallery?.sharePhoto || "Comparte tu foto"}
+            </button>
+          </Rise>
+          <Rise className="lg:col-span-2" delay={0.1}>
+            <img
+              src="/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-cala-agua-cristalina.webp"
+              alt="Pacific Craft 625 en cala de agua cristalina, Costa Brava"
+              className="aspect-[4/5] w-full rounded-2xl object-cover"
+              loading="lazy"
+              width={640}
+              height={800}
+            />
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* Photo gallery grid */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground mb-8 text-center">
-            {t.gallery?.title || "Galeria"}
-          </h2>
+      {/* PHOTO GRID */}
+      <Sheet tone="muted" next="background">
+        <div className="container mx-auto max-w-6xl px-4">
+          <h2 className="sr-only">{t.gallery?.title || "Galeria"}</h2>
 
           {isLoading ? (
             <div className="flex justify-center py-12">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+              <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-primary motion-reduce:animate-none" />
             </div>
           ) : photos.length === 0 ? (
-            <div className="text-center py-16">
-              <Camera className="w-16 h-16 text-muted-foreground/40 mx-auto mb-4" />
-              <p className="text-muted-foreground/60 text-lg">
-                {t.gallery?.noPhotos || "Aun no hay fotos. Se el primero en compartir!"}
-              </p>
-            </div>
+            <p className="py-12 text-center text-lg text-muted-foreground">
+              {t.gallery?.noPhotos || "Aun no hay fotos. Se el primero en compartir!"}
+            </p>
           ) : (
             /* Masonry grid with CSS columns */
-            <div ref={gridRef} className={`columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4 transition-[opacity,transform,filter] duration-500 ${gridVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"}`}>
+            <Rise className="columns-1 gap-4 space-y-4 sm:columns-2 lg:columns-3 xl:columns-4">
               {photos.map((photo, index) => (
                 <button
                   key={photo.id}
                   type="button"
-                  className="break-inside-avoid cursor-pointer group text-left w-full"
+                  className="group w-full cursor-pointer break-inside-avoid text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 rounded-2xl"
                   onClick={() => openLightbox(index)}
                   aria-label={`Ver imagen ${index + 1} en pantalla completa`}
                 >
-                  <div className="bg-background rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                  <div className="overflow-hidden rounded-2xl border border-border bg-background">
                     <img
                       src={photo.imageUrl}
                       alt={photo.caption || `Photo by ${photo.customerName}`}
-                      className="w-full object-cover group-hover:opacity-95 transition-opacity aspect-[4/3]"
+                      className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-out motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-[1.03]"
                       loading="lazy"
                       width={600}
                       height={450}
                     />
                     <div className="p-3">
                       {photo.caption && (
-                        <p className="text-sm text-muted-foreground mb-1">{photo.caption}</p>
+                        <p className="mb-1 text-sm text-muted-foreground">{photo.caption}</p>
                       )}
-                      <p className="text-xs text-muted-foreground/60">
+                      <p className="text-xs text-muted-foreground">
                         {photo.customerName}
                         {photo.boatName && ` - ${photo.boatName}`}
                       </p>
@@ -348,45 +397,45 @@ export default function GalleryPage() {
                   </div>
                 </button>
               ))}
-            </div>
+            </Rise>
           )}
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* Photo break */}
-      <div className="w-full overflow-hidden">
-        <picture>
-          <source type="image/webp" srcSet="/images/blog/calas-costa-brava.webp" />
-          <img
-            src="/images/blog/calas-costa-brava.jpg"
-            alt="Calas de la Costa Brava desde el mar"
-            className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
-            loading="lazy"
-            width={1920}
-            height={600}
-          />
-        </picture>
-      </div>
+      <PhotoBand
+        tone="background"
+        next="navy"
+        webp="/images/blog/calas-costa-brava.webp"
+        src="/images/blog/calas-costa-brava.jpg"
+        alt="Calas de la Costa Brava desde el mar"
+      />
 
-      {/* CTA Section */}
-      <RevealSection className="py-16 sm:py-20 bg-primary text-primary-foreground">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-h2 font-heading font-bold mb-4">
-            {gt.ctaTitle}
-          </h2>
-          <p className="text-primary-foreground/85 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
+      {/* CTA: closes over the footer colour */}
+      <Sheet tone="navy" next="foot">
+        <Rise className="container mx-auto max-w-4xl px-4 text-center">
+          <h2 className={H2}>{gt.ctaTitle}</h2>
+          <p
+            className={`mx-auto mt-5 max-w-2xl text-base leading-relaxed text-pretty sm:text-lg ${ON_NAVY_MUTED}`}
+          >
             {gt.ctaSubtitle}
           </p>
-          <div className="flex flex-wrap gap-3 justify-center">
-            <a href={localizedPath("home") + "#fleet"} className="inline-flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-lg font-medium hover:bg-white/90 transition-colors">
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <InteractiveHoverButton
+              tone="light"
+              href={localizedPath("home") + "#fleet"}
+              className="min-h-12 px-8 text-base"
+            >
               {gt.ctaFleet}
-            </a>
-            <a href={localizedPath("routes")} className="inline-flex items-center gap-2 border border-primary-foreground/30 text-primary-foreground px-6 py-3 rounded-lg font-medium hover:bg-primary-foreground/10 transition-colors">
+            </InteractiveHoverButton>
+            <a
+              href={localizedPath("routes")}
+              className="inline-flex min-h-12 items-center justify-center rounded-full border border-primary-foreground/50 px-6 text-base font-medium text-primary-foreground transition-colors hover:bg-primary-foreground/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white motion-reduce:transition-none dark:border-foreground/40 dark:text-foreground dark:hover:bg-foreground/10"
+            >
               {gt.ctaRoutes}
             </a>
           </div>
-        </div>
-      </RevealSection>
+        </Rise>
+      </Sheet>
 
       <PhotoLightbox
         photos={photos}

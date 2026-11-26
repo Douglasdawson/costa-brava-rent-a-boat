@@ -44,7 +44,7 @@ export default function ActivitatumTeaser({ topic, surface }: ActivitatumTeaserP
       <div className="mx-auto max-w-4xl border-t border-border pt-8">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between sm:gap-10">
           <div className="max-w-prose">
-            <h2 className="font-heading text-xl font-bold text-foreground">
+            <h2 className="font-heading text-xl font-semibold tracking-tight text-foreground">
               {s.teaserTitle}
             </h2>
             <p className="mt-2 leading-relaxed text-muted-foreground">{s.teaserText}</p>

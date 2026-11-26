@@ -44,7 +44,7 @@ export const it: Translations = {
       "Basta la Licencia de Navegaci\u00F3n di base. Verifichiamo i titoli esteri online prima della prenotazione.",
     bookNow: "Verifica Disponibilit\u00E0",
     findYourBoat: "Prenota ora",
-    ctaTitulin: "Cos'è il titulín",
+    ctaTitulin: "Vuoi il tuo patentino?",
     licenseFreeUntil:
       "Non hai la patente? Fino al 30 settembre puoi ancora noleggiare senza.",
     licenseFreeUntilCta: "Vedi le barche senza patente",

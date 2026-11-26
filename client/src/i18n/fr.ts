@@ -44,7 +44,7 @@ export const fr: Translations = {
       "La Licencia de Navegaci\u00F3n de base suffit. Nous v\u00E9rifions les titres \u00E9trangers en ligne avant la r\u00E9servation.",
     bookNow: "Voir Disponibilit\u00E9s",
     findYourBoat: "R\u00E9server maintenant",
-    ctaTitulin: "Qu'est-ce que le titulín",
+    ctaTitulin: "Vous voulez votre permis ?",
     licenseFreeUntil:
       "Pas encore de permis ? Jusqu'au 30 septembre, vous pouvez encore louer sans titre.",
     licenseFreeUntilCta: "Voir les bateaux sans permis",

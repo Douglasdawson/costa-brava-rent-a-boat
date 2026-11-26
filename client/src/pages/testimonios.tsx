@@ -1,5 +1,13 @@
-import { Button } from "@/components/ui/button";
-import { Star, Quote } from "lucide-react";
+import { Star } from "lucide-react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import {
+  H2,
+  ON_NAVY_MUTED,
+  PageHeader,
+  Rise,
+  Sheet,
+  splitSentences,
+} from "@/components/content-kit";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
@@ -12,11 +20,14 @@ import {
   generateBreadcrumbSchema,
 } from "@/utils/seo-config";
 import { useTranslations } from "@/lib/translations";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
-import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, GBP_PROFILE_URL } from "@shared/businessProfile";
+import {
+  BUSINESS_RATING_STR,
+  BUSINESS_REVIEW_COUNT_STR,
+  GBP_PROFILE_URL,
+} from "@shared/businessProfile";
 
 const GOOGLE_REVIEWS_URL = GBP_PROFILE_URL;
 
@@ -35,24 +46,6 @@ interface BusinessStatsResponse {
   recentReviews: GoogleReview[];
   lastSyncedAt: string | null;
   isFallback: boolean;
-}
-
-function RevealSection({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <div
-      ref={ref}
-      className={`transition-[opacity,transform] duration-700 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"} ${className}`}
-    >
-      {children}
-    </div>
-  );
 }
 
 const LOCALE_MAP: Record<string, string> = {
@@ -90,10 +83,7 @@ export default function TestimoniosPage() {
   });
 
   const reviews = useMemo(
-    () =>
-      (businessStats?.recentReviews ?? []).filter(
-        r => r?.text && r.text.trim().length > 0
-      ),
+    () => (businessStats?.recentReviews ?? []).filter(r => r?.text && r.text.trim().length > 0),
     [businessStats]
   );
 
@@ -136,9 +126,7 @@ export default function TestimoniosPage() {
         key={index}
         aria-hidden="true"
         className={`w-4 h-4 ${
-          index < Math.round(rating)
-            ? "text-amber-400 fill-amber-400"
-            : "text-muted-foreground/40"
+          index < Math.round(rating) ? "text-amber-400 fill-amber-400" : "text-muted-foreground/40"
         }`}
       />
     ));
@@ -161,6 +149,8 @@ export default function TestimoniosPage() {
     }
   };
 
+  const [introLead, introRest] = splitSentences(tt?.intro.paragraph1);
+
   return (
     <main id="main-content" className="min-h-screen bg-background">
       <SEO
@@ -175,170 +165,144 @@ export default function TestimoniosPage() {
       <Navigation />
       <ReadingProgressBar />
 
-      {/* Hero */}
-      <section
-        aria-labelledby="testimonios-hero-title"
-        className="bg-gradient-to-br from-primary/5 to-primary/10 pt-24 pb-12"
+      <PageHeader
+        title={tt?.hero.title ?? "Lo que dicen quienes ya han navegado"}
+        subtitle={tt?.hero.subtitle ?? ""}
+        next="background"
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mt-8">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-              <Quote
-                aria-hidden="true"
-                className="w-10 h-10 sm:w-12 sm:h-12 hidden sm:block text-foreground/80"
-              />
-              <h1
-                id="testimonios-hero-title"
-                className="text-h1 font-heading font-bold text-center text-foreground"
-              >
-                {tt?.hero.title ?? "Lo que dicen quienes ya han navegado"}
-              </h1>
-            </div>
-
-            <p className="text-lg sm:text-xl max-w-3xl mx-auto mb-8 text-foreground/75 leading-relaxed">
-              {tt?.hero.subtitle ?? ""}
-            </p>
-
-            <a
-              href={GBP_PROFILE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block bg-card rounded-2xl p-6 max-w-md mx-auto shadow-xs border border-border/40 hover:border-foreground/30 transition-colors"
-            >
-              <div className="flex items-center justify-center gap-3 mb-2">
-                <span className="text-4xl font-bold text-foreground tabular-nums">
-                  {ratingDisplay}
-                </span>
-                <div className="flex" aria-label={`${ratingDisplay} de 5`}>
-                  {renderStars(5)}
-                </div>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                {ratingLabel} {t.reviews?.googleReviews ?? "en Google"}
-              </p>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Intro */}
-      <RevealSection className="py-16 sm:py-20 bg-background">
-        <section
-          aria-labelledby="testimonios-intro-title"
-          className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
+        <a
+          href={GBP_PROFILE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mx-auto mt-10 block max-w-md rounded-2xl bg-background p-6 text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white motion-reduce:transition-none dark:bg-[hsl(215_45%_22%)] [@media(hover:hover)]:hover:bg-background/90"
         >
-          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-            <div className="lg:col-span-3 space-y-5">
-              <h2
-                id="testimonios-intro-title"
-                className="text-h2 font-heading font-bold text-foreground"
-              >
-                {tt?.intro.title ?? "Experiencias reales en el mar"}
-              </h2>
-              <p className="text-muted-foreground leading-relaxed">
-                {tt?.intro.paragraph1 ?? ""}
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                {tt?.intro.paragraph2 ?? ""}
-              </p>
-            </div>
-            <div className="lg:col-span-2">
-              <img
-                src="/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-pareja-navegando-yates.webp"
-                alt={tt?.intro.imageAlt ?? "Pareja navegando por la Costa Brava"}
-                className="w-full rounded-2xl object-cover aspect-[4/5]"
-                loading="lazy"
-                decoding="async"
-                width={640}
-                height={800}
-              />
+          <div className="mb-2 flex items-center justify-center gap-3">
+            <span className="font-heading text-4xl font-semibold tabular-nums">
+              {ratingDisplay}
+            </span>
+            <div className="flex" aria-label={`${ratingDisplay} de 5`}>
+              {renderStars(5)}
             </div>
           </div>
-        </section>
-      </RevealSection>
+          <p className="text-sm text-muted-foreground">
+            {ratingLabel} {t.reviews?.googleReviews ?? "en Google"}
+          </p>
+        </a>
+      </PageHeader>
+
+      {/* INTRO: first sentence is the lead, the rest are loose facts with rules */}
+      <Sheet tone="background" next="muted" aria-labelledby="testimonios-intro-title">
+        <div className="container mx-auto grid max-w-6xl items-center gap-12 px-4 lg:grid-cols-5 lg:gap-16">
+          <Rise className="lg:col-span-3">
+            <h2 id="testimonios-intro-title" className={H2}>
+              {tt?.intro.title ?? "Experiencias reales en el mar"}
+            </h2>
+            <p className="mt-5 max-w-xl text-lg font-medium leading-snug text-foreground text-pretty sm:text-xl">
+              {introLead}
+            </p>
+            <ul className="mt-6 max-w-xl border-t border-border">
+              {[...(introRest.length ? [introRest.join(" ")] : []), tt?.intro.paragraph2 ?? ""]
+                .filter(Boolean)
+                .map(fact => (
+                  <li
+                    key={fact}
+                    className="border-b border-border py-4 text-base leading-relaxed text-muted-foreground text-pretty"
+                  >
+                    {fact}
+                  </li>
+                ))}
+            </ul>
+          </Rise>
+          <Rise className="lg:col-span-2" delay={0.1}>
+            <img
+              src="/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-pareja-navegando-yates.webp"
+              alt={tt?.intro.imageAlt ?? "Pareja navegando por la Costa Brava"}
+              className="aspect-[4/5] w-full rounded-2xl object-cover"
+              loading="lazy"
+              decoding="async"
+              width={640}
+              height={800}
+            />
+          </Rise>
+        </div>
+      </Sheet>
 
       {/* Real Google reviews */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <section
-          aria-label={tt?.hero.title ?? "Opiniones"}
-          className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
-        >
+      <Sheet tone="muted" next="navy" aria-label={tt?.hero.title ?? "Opiniones"}>
+        <div className="container mx-auto max-w-6xl px-4">
           {reviews.length > 0 ? (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <Rise className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
               {reviews.map((review, idx) => (
                 <figure
                   key={`gbp-${idx}-${review.author ?? "anon"}`}
-                  className="bg-background border border-card-border rounded-2xl p-6 flex flex-col"
+                  className="flex flex-col rounded-2xl border border-border bg-background p-6"
                 >
-                  <Quote aria-hidden="true" className="w-6 h-6 text-primary/20 mb-3" />
-                  <span className="flex items-center gap-0.5 mb-2">
+                  <span className="mb-3 flex items-center gap-0.5">
                     {renderStars(review.rating)}
                   </span>
                   <blockquote
                     cite={GOOGLE_REVIEWS_URL}
-                    className="text-sm text-foreground leading-relaxed flex-1 line-clamp-[10]"
+                    className="line-clamp-[10] flex-1 text-sm leading-relaxed text-foreground"
                   >
                     {review.text}
                   </blockquote>
-                  <figcaption className="mt-4 pt-3 border-t border-border/60">
-                    <p className="font-medium text-foreground text-sm">
+                  <figcaption className="mt-4 border-t border-border pt-3">
+                    <p className="text-sm font-medium text-foreground">
                       {review.author ?? "Google"}
                     </p>
-                    <p className="text-xs text-muted-foreground">
-                      {formatReviewDate(review)}
-                    </p>
+                    <p className="text-xs text-muted-foreground">{formatReviewDate(review)}</p>
                   </figcaption>
                 </figure>
               ))}
-            </div>
+            </Rise>
           ) : (
             <p className="text-center text-muted-foreground">
               {ratingDisplay} · {ratingLabel}
             </p>
           )}
 
-          <div className="text-center mt-10">
-            <Button
-              variant="outline"
-              className="rounded-full min-h-11 px-6"
-              onClick={() => window.open(GOOGLE_REVIEWS_URL, "_blank", "noopener")}
+          <div className="mt-10 text-center">
+            <a
+              href={GOOGLE_REVIEWS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center justify-center rounded-full border border-border px-6 text-sm font-medium text-foreground transition-colors hover:border-foreground/40 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 motion-reduce:transition-none"
             >
               {`${ratingDisplay} · ${countDisplay} ${t.reviews?.opinions ?? "opiniones"} ${t.reviews?.googleReviews ?? "en Google"}`}
-            </Button>
+            </a>
           </div>
-        </section>
-      </RevealSection>
+        </div>
+      </Sheet>
 
-      {/* CTA */}
-      <RevealSection className="py-16 sm:py-20 bg-primary text-primary-foreground">
-        <section
-          aria-labelledby="testimonios-cta-title"
-          className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
-        >
-          <h2
-            id="testimonios-cta-title"
-            className="text-h2 font-heading font-bold mb-4"
-          >
+      {/* CTA: closes over the footer colour */}
+      <Sheet tone="navy" next="foot" aria-labelledby="testimonios-cta-title">
+        <Rise className="container mx-auto max-w-3xl px-4 text-center">
+          <h2 id="testimonios-cta-title" className={H2}>
             {tt?.cta.title ?? ""}
           </h2>
-          <p className="text-primary-foreground/85 mb-8">{tt?.cta.paragraph ?? ""}</p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button
-              className="bg-cta hover:bg-cta/90 text-cta-foreground rounded-full min-h-11 px-7"
+          <p
+            className={`mx-auto mt-5 max-w-xl text-base leading-relaxed text-pretty sm:text-lg ${ON_NAVY_MUTED}`}
+          >
+            {tt?.cta.paragraph ?? ""}
+          </p>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <InteractiveHoverButton
+              tone="light"
               onClick={() => setLocation(localizedPath("home") + "#fleet")}
+              className="min-h-12 px-8 text-base"
             >
               {tt?.cta.primary ?? ""}
-            </Button>
-            <Button
-              variant="outline"
-              className="rounded-full min-h-11 px-7 bg-transparent border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10"
+            </InteractiveHoverButton>
+            <button
+              type="button"
               onClick={() => setLocation(localizedPath("faq"))}
+              className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full border border-primary-foreground/50 px-6 text-base font-medium text-primary-foreground transition-colors hover:bg-primary-foreground/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white motion-reduce:transition-none dark:border-foreground/40 dark:text-foreground dark:hover:bg-foreground/10"
             >
               {tt?.cta.secondary ?? ""}
-            </Button>
+            </button>
           </div>
-        </section>
-      </RevealSection>
+        </Rise>
+      </Sheet>
 
       <Footer />
     </main>

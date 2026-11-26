@@ -5,6 +5,7 @@ import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { isCaptainedBoat } from "@shared/boatData";
 import { trackEvent } from "@/utils/analytics";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 
 // The quick view (Radix dialog + motion layout animation) is its own chunk; it is preloaded on hover/focus.
 const loadQuickView = () => import("./BoatQuickView");
@@ -73,7 +74,7 @@ const BoatCardImage = memo(function BoatCardImage({
         <img
           src={image}
           srcSet={imageSrcSet || undefined}
-          sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1279px) calc(50vw - 20px), calc(33vw - 24px)"
+          sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 899px) calc(50vw - 20px), calc(25vw - 24px)"
           alt={imageAlt}
           className="w-full h-full object-cover transition-[scale] duration-300 group-hover:[scale:1.03]"
           loading="lazy"
@@ -242,7 +243,7 @@ function BoatCard({
           {/* Name + facts. With a mouse it rests at the bottom and slides up when the price row is revealed;
               on touch there is no hover, so it always sits above the price row. */}
           <div className="absolute inset-x-0 bottom-[5.5rem] z-10 px-4 transition-transform duration-500 ease-out motion-reduce:transition-none [@media(hover:hover)]:translate-y-[4.5rem] [@media(hover:hover)]:group-hover/card:translate-y-0 [@media(hover:hover)]:group-focus-within/card:translate-y-0">
-            <h3 className="font-heading text-2xl font-semibold leading-tight tracking-tight text-white">
+            <h3 className="font-heading text-xl xl:text-2xl font-semibold leading-tight tracking-tight text-white">
               {name}
             </h3>
             <p className="mt-1 text-sm text-white/85">
@@ -264,17 +265,18 @@ function BoatCard({
             <div className="mb-1 text-xs text-white/85">
               {isJetSki ? t.jetski?.fromLabel || t.boats.from : t.boats.from}
             </div>
-            <div className="font-heading text-3xl font-semibold tracking-tight tabular-nums">
+            <div className="font-heading text-2xl xl:text-3xl font-semibold tracking-tight tabular-nums">
               {basePrice}&euro;
             </div>
           </div>
-          <button
+          <InteractiveHoverButton
+            tone="light"
             onClick={handleBooking}
-            className="pointer-events-auto min-h-11 flex-shrink-0 rounded-full bg-white px-5 text-base font-medium text-[hsl(215_45%_20%)] transition-colors hover:bg-white/90 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 focus-visible:outline-none"
+            className="pointer-events-auto flex-shrink-0 px-4 text-sm xl:px-5 xl:text-base focus-visible:ring-white focus-visible:ring-offset-black/40"
             data-testid={`button-book-${id}`}
           >
             {isJetSki ? t.jetski?.requestCta || t.boats.book : t.boats.book}
-          </button>
+          </InteractiveHoverButton>
         </div>
       </div>
 

@@ -90,7 +90,6 @@ const NotFound = lazy(() => import("@/pages/not-found"));
 const OnboardingPage = lazy(() => import("@/pages/OnboardingPage"));
 const AccessibilityDeclarationPage = lazy(() => import("@/pages/accessibility-declaration"));
 
-import { ScrollToTop } from "./components/ScrollToTop";
 import { RouteProgressBar } from "./components/RouteProgressBar";
 import { usePrefetchCriticalRoutes } from "@/hooks/usePrefetch";
 const WhatsAppFloatingButton = lazy(() => import("./components/WhatsAppFloatingButton"));
@@ -624,7 +623,6 @@ function App() {
               <Toaster />
               <RouteProgressBar />
               <Router />
-              <ScrollToTop />
               <Suspense fallback={null}>
                 {/* <BoatClubModal /> */}
                 <ReturnVisitorBanner />

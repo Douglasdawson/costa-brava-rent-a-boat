@@ -44,7 +44,7 @@ export const de: Translations = {
       "Die einfache Licencia de Navegaci\u00F3n gen\u00FCgt. Ausl\u00E4ndische Scheine pr\u00FCfen wir online vor der Buchung.",
     bookNow: "Verf\u00FCgbarkeit pr\u00FCfen",
     findYourBoat: "Jetzt buchen",
-    ctaTitulin: "Was der Titulín ist",
+    ctaTitulin: "Möchten Sie Ihren Bootsführerschein?",
     licenseFreeUntil:
       "Noch keinen Schein? Bis zum 30. September k\u00F6nnen Sie noch ohne mieten.",
     licenseFreeUntilCta: "Boote ohne F\u00FChrerschein ansehen",

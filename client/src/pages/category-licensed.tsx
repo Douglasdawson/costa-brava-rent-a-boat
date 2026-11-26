@@ -1,27 +1,25 @@
-import { Button } from "@/components/ui/button";
-import {
-  Users,
-  CheckCircle,
-  Gauge,
-  Award,
-  MapPin,
-  ArrowLeftRight,
-  ListChecks,
-  FileText,
-  Scale,
-  Fuel,
-  ChevronRight,
-} from "lucide-react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { Users, Gauge, ChevronRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import LicenseVerifierInline from "@/components/booking/LicenseVerifierInline";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
 import RelatedContent from "@/components/RelatedContent";
-import { FAQSection } from "@/components/FAQSection";
+import {
+  Callout,
+  CheckPanel,
+  DefList,
+  FaqSheet,
+  H2,
+  LeadFacts,
+  PILL_LINK,
+  Rise,
+  Sheet,
+  StepList,
+} from "@/components/page-kit";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { ReducedDepositLink } from "@/components/ReducedDepositLink";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
@@ -32,26 +30,6 @@ import { minPriceAcrossBoats } from "@shared/pricing";
 import { translateBoatText } from "@shared/boatTextTranslations";
 import { BookingStickyBar } from "@/components/MobileStickyBar";
 import CategoryHero from "@/components/CategoryHero";
-
-function RevealSection({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const { ref, isVisible } = useScrollReveal();
-  return (
-    <div
-      ref={ref}
-      className={`transition-[opacity,transform,filter] duration-700 ${
-        isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"
-      } ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
 
 // The server injects the canonical JSON-LD graph for this route (Service +
 // ItemList + FAQPage + HowTo + Breadcrumb, built from the same i18n keys the
@@ -150,8 +128,19 @@ export default function CategoryLicensedPage() {
     cl.routeStopTossa,
   ];
 
+  const acceptedLicenses = [
+    <span key="ln" className="font-medium">
+      {cl.licenciaNavegacion}
+    </span>,
+    cl.per,
+    cl.pnb,
+    cl.yachtCaptain,
+    cl.icc,
+    cl.euEquivalent,
+  ];
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <SEO
         title={seoConfig.title}
         description={seoConfig.description}
@@ -164,7 +153,7 @@ export default function CategoryLicensedPage() {
       <Navigation />
       <ReadingProgressBar />
 
-      {/* ═══ HERO ═══ */}
+      {/* HERO */}
       <CategoryHero
         imageBasePath="/images/locations/hero-tossa-de-mar"
         imageAlt={cl.heroImageAlt}
@@ -173,27 +162,30 @@ export default function CategoryLicensedPage() {
         price={heroPrice}
         secondaryCta={{ href: localizedPath("categoryCaptained"), label: cl.heroSecondaryCta }}
         testId="licensed"
+        next="background"
       />
 
-      {/* ═══ OUR LICENSED FLEET ═══ price block, right under the hero; cards link to each boat page */}
-      <section className="py-8 sm:py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground mb-4 sm:mb-10">
-            {cl.fleetTitle}
-          </h2>
-          <div className="grid md:grid-cols-3 gap-3 sm:gap-6">
+      {/* OUR LICENSED FLEET: price block right under the hero; cards link to each boat page */}
+      <Sheet tone="background" next="muted" aria-labelledby="licensed-fleet-title">
+        <div className="container mx-auto max-w-6xl px-4">
+          <Rise>
+            <h2 id="licensed-fleet-title" className={H2}>
+              {cl.fleetTitle}
+            </h2>
+          </Rise>
+          <Rise delay={0.1} className="mt-8 grid gap-3 sm:mt-10 md:grid-cols-3 sm:gap-5">
             {licensedBoats.map(boat => (
               <a
                 key={boat.id}
                 href={localizedPath("boatDetail", boat.id)}
-                className="block bg-background rounded-2xl p-4 sm:p-6 border border-border transition-colors hover:border-primary"
+                className="block rounded-2xl border border-border bg-card p-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta sm:p-6 [@media(hover:hover)]:hover:border-foreground/40"
               >
                 <div className="flex items-baseline justify-between gap-3">
-                  <h3 className="font-heading font-semibold text-lg sm:text-xl text-primary">
+                  <h3 className="font-heading text-lg font-semibold tracking-tight text-foreground sm:text-xl">
                     {boat.name}
                   </h3>
                   {boat.price && (
-                    <div className="shrink-0 font-heading text-lg font-semibold text-primary">
+                    <div className="shrink-0 font-heading text-lg font-semibold text-foreground">
                       <span className="mr-1 font-sans text-sm font-normal text-muted-foreground">
                         {t.boats.from}
                       </span>
@@ -201,257 +193,208 @@ export default function CategoryLicensedPage() {
                     </div>
                   )}
                 </div>
-                <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground sm:mt-3">
+                <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground sm:mt-3">
                   <span className="flex items-center">
-                    <Users className="w-4 h-4 mr-2" aria-hidden="true" />
+                    <Users className="mr-2 h-4 w-4" aria-hidden="true" />
                     {boat.capacity}
                   </span>
                   <span className="flex items-center">
-                    <Gauge className="w-4 h-4 mr-2" aria-hidden="true" />
+                    <Gauge className="mr-2 h-4 w-4" aria-hidden="true" />
                     {boat.engine}
                   </span>
                 </div>
-                <div className="mt-3 hidden space-y-1 sm:block">
+                <ul className="mt-4 hidden border-t border-border sm:block">
                   {boat.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center text-muted-foreground">
-                      <CheckCircle className="w-4 h-4 mr-2 text-primary shrink-0" aria-hidden="true" />
-                      <span className="text-sm">{feature}</span>
-                    </div>
+                    <li
+                      key={idx}
+                      className="border-b border-border py-2 text-sm text-muted-foreground last:border-b-0"
+                    >
+                      {feature}
+                    </li>
                   ))}
-                </div>
+                </ul>
               </a>
             ))}
-          </div>
+          </Rise>
         </div>
-      </section>
+      </Sheet>
 
-      {/* ═══ WHAT IS A LICENSED POWERBOAT ═══ text + image */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-            <div className="lg:col-span-3">
-              <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
-                {cl.whatAreTitle}
-              </h2>
-              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-8">
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
-                    {cl.advancedNavigation}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {cl.advancedNavigationDesc}
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
-                    {cl.greaterFreedom}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">{cl.greaterFreedomDesc}</p>
-                </div>
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
-                    {cl.professionalEquipment}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {cl.professionalEquipmentDesc}
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
-                    {cl.superiorPerformance}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {cl.superiorPerformanceDesc}
-                  </p>
-                </div>
-              </div>
-              <div className="mt-8 bg-muted rounded-xl p-5">
-                <h3 className="font-heading font-semibold text-lg mb-2 text-foreground">
-                  {cl.synonymsTitle}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">{cl.synonymsBody}</p>
-              </div>
+      {/* WHAT IS A LICENSED POWERBOAT */}
+      <Sheet tone="muted" next="background" aria-labelledby="licensed-what-title">
+        <div className="container mx-auto grid max-w-6xl items-start gap-10 px-4 lg:grid-cols-[7fr_5fr] lg:gap-16">
+          <Rise>
+            <h2 id="licensed-what-title" className={H2}>
+              {cl.whatAreTitle}
+            </h2>
+            <DefList
+              className="mt-8"
+              items={[
+                { title: cl.advancedNavigation, desc: cl.advancedNavigationDesc },
+                { title: cl.greaterFreedom, desc: cl.greaterFreedomDesc },
+                { title: cl.professionalEquipment, desc: cl.professionalEquipmentDesc },
+                { title: cl.superiorPerformance, desc: cl.superiorPerformanceDesc },
+              ]}
+            />
+            <div className="mt-6 rounded-2xl border border-border bg-background p-5">
+              <h3 className="font-heading text-base font-semibold text-foreground">
+                {cl.synonymsTitle}
+              </h3>
+              <p className="mt-1 text-base leading-relaxed text-muted-foreground text-pretty">
+                {cl.synonymsBody}
+              </p>
             </div>
-            <div className="lg:col-span-2">
+          </Rise>
+          <Rise delay={0.1} className="lg:sticky lg:top-28">
+            <img
+              src="/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-cala-agua-cristalina.webp"
+              alt="Licensed powerboat in the crystal-clear waters of a Costa Brava cove"
+              className="aspect-[4/5] w-full rounded-2xl object-cover"
+              loading="lazy"
+              width={640}
+              height={800}
+            />
+          </Rise>
+        </div>
+      </Sheet>
+
+      {/* ROUTE: BLANES TO TOSSA */}
+      <Sheet tone="background" next="muted" aria-labelledby="licensed-route-title">
+        <div className="container mx-auto grid max-w-6xl items-start gap-10 px-4 lg:grid-cols-[5fr_7fr] lg:gap-16">
+          <Rise>
+            <div className="overflow-hidden rounded-2xl">
               <img
-                src="/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-cala-agua-cristalina.webp"
-                alt="Licensed powerboat in the crystal-clear waters of a Costa Brava cove"
-                className="w-full rounded-2xl object-cover aspect-[4/5]"
+                src="/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-cala-costa-brava.webp"
+                alt="Licensed powerboat navigating along the Costa Brava coastline"
+                className="aspect-[4/3] w-full object-cover lg:aspect-[4/5]"
                 loading="lazy"
-                width={640}
-                height={800}
+                width={1920}
+                height={600}
               />
             </div>
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* ═══ PHOTO BREAK ═══ */}
-      <div className="w-full overflow-hidden">
-        <img
-          src="/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-cala-costa-brava.webp"
-          alt="Licensed powerboat navigating along the Costa Brava coastline"
-          className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
-          loading="lazy"
-          width={1920}
-          height={600}
-        />
-      </div>
-
-      {/* ═══ ROUTE: BLANES TO TOSSA ═══ */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-4">
-            <MapPin className="w-6 h-6 text-primary shrink-0" />
-            {cl.routeTitle}
-          </h2>
-          <p className="text-muted-foreground leading-relaxed mb-8">{cl.routeIntro}</p>
-          <ol className="relative border-l-2 border-primary/30 ml-3 space-y-6">
-            {routeStops.map((stop, idx) => (
-              <li key={idx} className="pl-6 relative">
-                <span className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-primary" />
-                <p className="text-foreground leading-relaxed">{stop}</p>
-              </li>
-            ))}
-          </ol>
-          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
-            <a
-              href={localizedPath("locationTossa")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-            >
-              <ChevronRight className="w-4 h-4" />
-              {cl.linksTossa}
-            </a>
-            <a
-              href={localizedPath("blogDetail", "alquiler-barco-tossa-de-mar-desde-blanes")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-            >
-              <ChevronRight className="w-4 h-4" />
-              {cl.linksBlogTossa}
-            </a>
-          </div>
-        </div>
-      </RevealSection>
-
-      {/* ═══ REQUIREMENTS + LICENSE VERIFIER ═══ */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-h2 font-heading font-bold text-foreground mb-10">
-            <Award className="w-6 h-6 text-primary inline-block mr-3 align-middle" />
-            {cl.requirementsTitle}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-10">
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-4">{cl.acceptedLicenses}</h3>
-              <ul className="space-y-3">
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
-                  <span className="font-medium">{cl.licenciaNavegacion}</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
-                  <span>{cl.per}</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
-                  <span>{cl.pnb}</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
-                  <span>{cl.yachtCaptain}</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
-                  <span>{cl.icc}</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
-                  <span>{cl.euEquivalent}</span>
-                </li>
-              </ul>
-              <p className="mt-6 mb-2 text-sm font-medium text-foreground">{cl.verifierLead}</p>
-              <LicenseVerifierInline />
+          </Rise>
+          <Rise delay={0.1}>
+            <h2 id="licensed-route-title" className={H2}>
+              {cl.routeTitle}
+            </h2>
+            <LeadFacts text={cl.routeIntro} className="mt-5" />
+            <StepList className="mt-8" steps={routeStops.map(stop => ({ text: stop }))} />
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href={localizedPath("locationTossa")} className={PILL_LINK}>
+                {cl.linksTossa}
+                <ChevronRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <a
+                href={localizedPath("blogDetail", "alquiler-barco-tossa-de-mar-desde-blanes")}
+                className={PILL_LINK}
+              >
+                {cl.linksBlogTossa}
+                <ChevronRight className="h-4 w-4" aria-hidden="true" />
+              </a>
             </div>
-            <div>
-              <h3 className="font-heading font-semibold text-lg mb-4">
+          </Rise>
+        </div>
+      </Sheet>
+
+      {/* REQUIREMENTS + LICENSE VERIFIER */}
+      <Sheet tone="muted" next="background" aria-labelledby="licensed-req-title">
+        <div className="container mx-auto max-w-6xl px-4">
+          <Rise>
+            <h2 id="licensed-req-title" className={H2}>
+              {cl.requirementsTitle}
+            </h2>
+          </Rise>
+          <div className="mt-8 grid gap-10 md:grid-cols-2 lg:gap-16">
+            <Rise>
+              <h3 className="mb-4 font-heading text-lg font-semibold tracking-tight">
+                {cl.acceptedLicenses}
+              </h3>
+              <CheckPanel items={acceptedLicenses} />
+              <p className="mb-2 mt-6 text-sm font-medium text-foreground">{cl.verifierLead}</p>
+              <LicenseVerifierInline />
+            </Rise>
+            <Rise delay={0.1}>
+              <h3 className="mb-4 font-heading text-lg font-semibold tracking-tight">
                 {cl.additionalRequirements}
               </h3>
-              <ul className="space-y-3">
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
-                  <span>{cl.minAge}</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
-                  <span>{cl.validId}</span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
-                  <span>{cl.validLicense}</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3 mt-1 flex-shrink-0" />
-                  <span>
+              <CheckPanel
+                items={[
+                  cl.minAge,
+                  cl.validId,
+                  cl.validLicense,
+                  <span key="deposit">
                     {cl.deposit}
                     <span className="mt-1 block">
                       <ReducedDepositLink requiresLicense />
                     </span>
-                  </span>
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-primary mr-3 shrink-0" />
-                  <span>{cl.technicalBriefing}</span>
-                </li>
-              </ul>
-            </div>
+                  </span>,
+                  cl.technicalBriefing,
+                ]}
+              />
+            </Rise>
           </div>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* ═══ COMPARISON TABLE ═══ */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-6">
-            <ArrowLeftRight className="w-6 h-6 text-primary shrink-0" />
-            {cl.comparisonTitle}
-          </h2>
-          <p className="text-muted-foreground mb-6 leading-relaxed">{cl.comparisonIntro}</p>
-          <div className="rounded-2xl bg-background overflow-hidden">
+      {/* COMPARISON TABLE */}
+      <Sheet tone="background" next="muted" aria-labelledby="licensed-compare-title">
+        <div className="container mx-auto max-w-6xl px-4">
+          <Rise className="grid gap-6 lg:grid-cols-[5fr_7fr] lg:gap-16">
+            <h2 id="licensed-compare-title" className={H2}>
+              {cl.comparisonTitle}
+            </h2>
+            <LeadFacts text={cl.comparisonIntro} />
+          </Rise>
+          <Rise
+            delay={0.1}
+            className="mt-10 overflow-hidden rounded-2xl border border-border bg-card"
+          >
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b bg-muted/50">
-                    <th className="text-left p-3 font-semibold">{cl.comparisonBoatName}</th>
-                    <th className="text-left p-3 font-semibold">{cl.comparisonCapacity}</th>
-                    <th className="text-left p-3 font-semibold">{cl.comparisonEngine}</th>
-                    <th className="text-left p-3 font-semibold">{cl.comparisonBestFor}</th>
-                    <th className="text-right p-3 font-semibold">{cl.comparisonPriceLow}</th>
-                    <th className="text-right p-3 font-semibold">{cl.comparisonPriceHigh}</th>
+                  <tr className="border-b border-border">
+                    <th className="p-4 text-left font-medium text-muted-foreground">
+                      {cl.comparisonBoatName}
+                    </th>
+                    <th className="p-4 text-left font-medium text-muted-foreground">
+                      {cl.comparisonCapacity}
+                    </th>
+                    <th className="p-4 text-left font-medium text-muted-foreground">
+                      {cl.comparisonEngine}
+                    </th>
+                    <th className="p-4 text-left font-medium text-muted-foreground">
+                      {cl.comparisonBestFor}
+                    </th>
+                    <th className="p-4 text-right font-medium text-muted-foreground">
+                      {cl.comparisonPriceLow}
+                    </th>
+                    <th className="p-4 text-right font-medium text-muted-foreground">
+                      {cl.comparisonPriceHigh}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {comparisonBoats.map(boat => (
-                    <tr key={boat.id} className="border-b last:border-b-0 hover:bg-muted/30">
-                      <td className="p-3 font-medium">
+                    <tr key={boat.id} className="border-b border-border last:border-b-0">
+                      <td className="p-4 font-medium">
                         <a
                           href={localizedPath("boatDetail", boat.id)}
-                          className="text-primary hover:underline"
+                          className="text-foreground underline decoration-border underline-offset-4 [@media(hover:hover)]:hover:decoration-foreground"
                         >
                           {boat.data.name}
                         </a>
                       </td>
-                      <td className="p-3 text-muted-foreground">
+                      <td className="p-4 text-muted-foreground">
                         {boat.data.specifications.capacity}
                       </td>
-                      <td className="p-3 text-muted-foreground">
+                      <td className="p-4 text-muted-foreground">
                         {boat.data.specifications.engine}
                       </td>
-                      <td className="p-3 text-muted-foreground">{bestForMap[boat.id]}</td>
-                      <td className="p-3 text-right font-semibold text-primary">
+                      <td className="p-4 text-muted-foreground">{bestForMap[boat.id]}</td>
+                      <td className="p-4 text-right font-heading font-semibold tabular-nums text-foreground">
                         {boat.data.pricing.BAJA.prices["2h"]}
                         {"€"}
                       </td>
-                      <td className="p-3 text-right font-semibold text-primary">
+                      <td className="p-4 text-right font-heading font-semibold tabular-nums text-foreground">
                         {boat.data.pricing.ALTA.prices["2h"]}
                         {"€"}
                       </td>
@@ -460,69 +403,65 @@ export default function CategoryLicensedPage() {
                 </tbody>
               </table>
             </div>
-          </div>
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* ═══ REGULATION ═══ */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-6">
-            <Scale className="w-6 h-6 text-primary shrink-0" />
-            {cl.regulationTitle}
-          </h2>
-          <p className="text-muted-foreground leading-relaxed mb-4">{cl.regulationIntro}</p>
-          <p className="text-muted-foreground leading-relaxed mb-6">{cl.regulationForeign}</p>
-          <p className="text-foreground leading-relaxed bg-amber-50 border border-amber-200 rounded-lg p-4">
-            <Fuel className="w-5 h-5 text-amber-600 inline mr-2 -mt-1" />
-            {cl.regulationFuelDeposit}
-          </p>
+      {/* REGULATION */}
+      <Sheet tone="muted" next="background" aria-labelledby="licensed-reg-title">
+        <div className="container mx-auto grid max-w-6xl items-start gap-10 px-4 lg:grid-cols-[5fr_7fr] lg:gap-16">
+          <Rise>
+            <h2 id="licensed-reg-title" className={H2}>
+              {cl.regulationTitle}
+            </h2>
+            <LeadFacts text={cl.regulationIntro} className="mt-5" />
+          </Rise>
+          <Rise delay={0.1}>
+            <p className="rounded-2xl border border-border bg-background p-5 text-base leading-relaxed text-muted-foreground text-pretty sm:p-6">
+              {cl.regulationForeign}
+            </p>
+            <Callout className="mt-4">{cl.regulationFuelDeposit}</Callout>
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* ═══ HOW TO: 5 STEPS ═══ */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-4">
-            <ListChecks className="w-6 h-6 text-primary shrink-0" />
-            {cl.howToTitle}
-          </h2>
-          <p className="text-muted-foreground leading-relaxed mb-8">{cl.howToIntro}</p>
-          <ol className="space-y-6">
-            {howToSteps.map((step, idx) => (
-              <li key={idx} className="flex gap-4">
-                <div className="shrink-0 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-heading font-bold">
-                  {idx + 1}
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-heading font-semibold text-lg mb-2">{step.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{step.text}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+      {/* HOW TO: 5 STEPS */}
+      <Sheet tone="background" next="muted" aria-labelledby="licensed-howto-title">
+        <div className="container mx-auto grid max-w-6xl items-start gap-10 px-4 lg:grid-cols-[5fr_7fr] lg:gap-16">
+          <Rise>
+            <h2 id="licensed-howto-title" className={H2}>
+              {cl.howToTitle}
+            </h2>
+            <LeadFacts text={cl.howToIntro} className="mt-5" />
+          </Rise>
+          <Rise delay={0.1}>
+            <StepList steps={howToSteps} />
+          </Rise>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* ═══ DIRECT VS MARKETPLACES ═══ */}
-      <RevealSection className="py-16 sm:py-20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-4">
-            <ArrowLeftRight className="w-6 h-6 text-primary shrink-0" />
-            {cl.vsMarketplacesTitle}
-          </h2>
-          <p className="text-muted-foreground leading-relaxed mb-6">{cl.vsMarketplacesIntro}</p>
-          <div className="rounded-2xl bg-background border overflow-hidden">
+      {/* DIRECT VS MARKETPLACES */}
+      <Sheet tone="muted" next="background" aria-labelledby="licensed-vs-title">
+        <div className="container mx-auto max-w-6xl px-4">
+          <Rise className="grid gap-6 lg:grid-cols-[5fr_7fr] lg:gap-16">
+            <h2 id="licensed-vs-title" className={H2}>
+              {cl.vsMarketplacesTitle}
+            </h2>
+            <LeadFacts text={cl.vsMarketplacesIntro} />
+          </Rise>
+          <Rise
+            delay={0.1}
+            className="mt-10 overflow-hidden rounded-2xl border border-border bg-card"
+          >
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b bg-muted/50">
-                    <th className="text-left p-3 font-semibold w-1/4"></th>
-                    <th className="text-left p-3 font-semibold text-primary">
-                      <CheckCircle className="w-4 h-4 inline mr-1.5" />
+                  <tr className="border-b border-border">
+                    <th className="w-1/4 p-4 text-left"></th>
+                    <th className="p-4 text-left font-semibold text-foreground">
                       {cl.vsMarketplacesCol1}
                     </th>
-                    <th className="text-left p-3 font-semibold text-muted-foreground">
+                    <th className="p-4 text-left font-medium text-muted-foreground">
                       {cl.vsMarketplacesCol2}
                     </th>
                   </tr>
@@ -552,110 +491,76 @@ export default function CategoryLicensedPage() {
                       ],
                     ] as const
                   ).map(([label, direct, market], idx) => (
-                    <tr key={idx} className="border-b last:border-b-0">
-                      <td className="p-3 font-medium">{label}</td>
-                      <td className="p-3 text-foreground">{direct}</td>
-                      <td className="p-3 text-muted-foreground">{market}</td>
+                    <tr key={idx} className="border-b border-border last:border-b-0">
+                      <td className="p-4 font-medium">{label}</td>
+                      <td className="p-4 text-foreground">{direct}</td>
+                      <td className="p-4 text-muted-foreground">{market}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-          </div>
-          <p className="text-foreground leading-relaxed mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
-            <CheckCircle className="w-5 h-5 text-green-600 inline mr-2 -mt-1" />
-            {cl.vsMarketplacesConclusion}
-          </p>
+          </Rise>
+          <Callout className="mt-4">{cl.vsMarketplacesConclusion}</Callout>
         </div>
-      </RevealSection>
+      </Sheet>
 
-      {/* ═══ FAQ ═══ mirrored 1:1 by the server-side FAQPage schema */}
-      <RevealSection className="py-16 sm:py-20 bg-muted">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-h2 font-heading font-bold mb-6">
-            <FileText className="w-6 h-6 text-primary shrink-0" />
-            {language === "es"
-              ? "Preguntas Frecuentes"
-              : language === "en"
-                ? "Frequently Asked Questions"
-                : language === "ca"
-                  ? "Preguntes Frequents"
-                  : language === "fr"
-                    ? "Questions Frequentes"
-                    : language === "de"
-                      ? "Haufig Gestellte Fragen"
-                      : language === "nl"
-                        ? "Veelgestelde Vragen"
-                        : language === "it"
-                          ? "Domande Frequenti"
-                          : "Часто задаваемые вопросы"}
+      {/* FAQ: mirrored 1:1 by the server-side FAQPage schema; cards born folded, answers stay in the DOM */}
+      <FaqSheet items={faqItems} idPrefix="licensed-faq" tone="background" next="muted" />
+
+      {/* INTERNAL LINKS */}
+      <Sheet
+        tone="muted"
+        next="navy"
+        className="py-12 sm:py-14"
+        aria-labelledby="licensed-links-title"
+      >
+        <div className="container mx-auto max-w-6xl px-4">
+          <h2
+            id="licensed-links-title"
+            className="font-heading text-xl font-semibold tracking-tight text-foreground"
+          >
+            {cl.linksTitle}
           </h2>
-          <FAQSection items={faqItems} />
-        </div>
-      </RevealSection>
-
-      {/* ═══ INTERNAL LINKS ═══ */}
-      <div className="py-8">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 className="font-heading font-semibold text-lg mb-4">{cl.linksTitle}</h3>
-          <div className="flex flex-wrap gap-x-6 gap-y-3">
-            <a
-              href={localizedPath("locationBlanes")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-            >
-              <ChevronRight className="w-4 h-4" />
+          <div className="mt-5 flex flex-wrap gap-3">
+            <a href={localizedPath("locationBlanes")} className={PILL_LINK}>
               {cl.linksBlanes}
             </a>
-            <a
-              href={localizedPath("locationTossa")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-            >
-              <ChevronRight className="w-4 h-4" />
+            <a href={localizedPath("locationTossa")} className={PILL_LINK}>
               {cl.linksTossa}
             </a>
-            <a
-              href={localizedPath("pricing")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-            >
-              <ChevronRight className="w-4 h-4" />
+            <a href={localizedPath("pricing")} className={PILL_LINK}>
               {cl.linksPricing}
             </a>
-            <a
-              href={localizedPath("categoryCaptained")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-            >
-              <ChevronRight className="w-4 h-4" />
+            <a href={localizedPath("categoryCaptained")} className={PILL_LINK}>
               {cl.linksNoLicense}
             </a>
-            <a
-              href={localizedPath("categoryCaptained")}
-              className="text-primary hover:underline flex items-center gap-1 pointer-coarse:py-3"
-            >
-              <ChevronRight className="w-4 h-4" />
+            <a href={localizedPath("categoryCaptained")} className={PILL_LINK}>
               {cl.linksSkipper}
             </a>
           </div>
         </div>
-      </div>
+      </Sheet>
 
-      {/* ═══ CTA ═══ full-width */}
-      <div className="py-16 sm:py-20 bg-primary">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-h2 font-heading font-bold text-white mb-4">
+      {/* CTA: navy band, closes over the related-content band */}
+      <Sheet tone="navy" next="muted" aria-labelledby="licensed-cta-title">
+        <Rise className="container mx-auto max-w-3xl px-4 text-center">
+          <h2 id="licensed-cta-title" className={H2}>
             {cl.ctaTitle}
           </h2>
-          <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto">{cl.ctaDescription}</p>
-          <Button
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-primary-foreground/85 text-pretty sm:text-lg dark:text-foreground/85">
+            {cl.ctaDescription}
+          </p>
+          <InteractiveHoverButton
+            tone="light"
             onClick={handleBookingWhatsApp}
-            size="lg"
-            variant="secondary"
-            className="text-primary hover:text-primary"
+            className="mt-8 min-h-12 px-8 text-base"
             data-testid="button-whatsapp-licensed"
           >
             {cl.ctaButton}
-          </Button>
-        </div>
-      </div>
+          </InteractiveHoverButton>
+        </Rise>
+      </Sheet>
 
       <RelatedContent currentPage="categoryLicensed" />
       <BookingStickyBar />

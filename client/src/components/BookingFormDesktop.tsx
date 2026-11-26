@@ -12,6 +12,7 @@ import { EXTRA_PACKS } from "@shared/boatData";
 import type { Translations } from "@/lib/translations";
 import BookingProgressBar from "@/components/BookingProgressBar";
 import StepWhenWho from "@/components/booking/StepWhenWho";
+import { cn } from "@/lib/utils";
 import StepBoat from "@/components/booking/StepBoat";
 import StepDeparture from "@/components/booking/StepDeparture";
 import StepExtras from "@/components/booking/StepExtras";
@@ -258,7 +259,8 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
               animate="center"
               exit="exit"
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="px-6 py-5"
+              // Step 1 is short: centre it in the modal body instead of leaving a void under it.
+              className={cn("px-6 py-5", currentStep === 1 && "flex min-h-full flex-col justify-center")}
             >
               {currentStep === 1 && (
                 <StepWhenWho

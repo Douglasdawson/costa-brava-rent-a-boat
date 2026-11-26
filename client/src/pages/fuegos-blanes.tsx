@@ -1,11 +1,15 @@
-import { useState, useEffect } from "react";
+import { CalendarCheck } from "lucide-react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import {
-  Anchor,
-  CalendarCheck,
-  CheckCircle2,
-  Sparkles,
-  Users,
-} from "lucide-react";
+  H2,
+  Sheet,
+  Rise,
+  Feature,
+  LeadText,
+  CheckPanel,
+  PhotoHero,
+  FaqSheet,
+} from "@/components/activity-kit";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -13,15 +17,8 @@ import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
-import {
-  generateHreflangLinks,
-  generateCanonicalUrl,
-  BASE_DOMAIN,
-} from "@/utils/seo-config";
-import {
-  generateBreadcrumbSchema,
-  generateFAQSchema,
-} from "@/utils/seo-schemas";
+import { generateHreflangLinks, generateCanonicalUrl, BASE_DOMAIN } from "@/utils/seo-config";
+import { generateBreadcrumbSchema, generateFAQSchema } from "@/utils/seo-schemas";
 
 const NAVY_CTA =
   "inline-flex items-center justify-center gap-2 rounded-full bg-cta text-cta-foreground hover:bg-cta/90 font-semibold btn-elevated transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2";
@@ -40,9 +37,6 @@ export default function FuegosBlanesPage() {
   const hreflangLinks = generateHreflangLinks("fuegosBlanes");
   const canonical = generateCanonicalUrl("fuegosBlanes", language);
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(s?.whatsappMessage || "")}`;
-
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
 
   const heroImage = "/images/fuegos/fuegos-blanes-desde-el-mar.webp";
 
@@ -89,7 +83,7 @@ export default function FuegosBlanesPage() {
         url: BASE_DOMAIN,
       },
     })),
-    generateFAQSchema((s?.faq || []).map((f) => ({ question: f.q, answer: f.a }))),
+    generateFAQSchema((s?.faq || []).map(f => ({ question: f.q, answer: f.a }))),
   ];
 
   return (
@@ -105,164 +99,123 @@ export default function FuegosBlanesPage() {
       />
       <Navigation />
 
-      {/* HERO */}
-      <section className="relative isolate flex min-h-[100svh] items-center overflow-hidden pb-16 pt-28">
-        <img
-          src={heroImage}
-          alt={s?.hero?.title || "Fuegos de Blanes desde el mar"}
-          width={1080}
-          height={1935}
-          decoding="async"
-          draggable={false}
-          className={`absolute inset-0 -z-10 h-full w-full object-cover object-[center_62%] will-change-transform transition-transform duration-[1200ms] ease-out ${mounted ? "scale-100" : "scale-[1.06]"}`}
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/35 to-black/70" />
-
-        <div
-          className={`mx-auto w-full max-w-3xl px-4 text-center text-white transition-all duration-700 ease-out sm:px-6 ${mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
-        >
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white/85 [text-shadow:0_1px_10px_hsl(215_45%_12%/0.45)]">
-            {s?.hero?.eyebrow}
-          </p>
-          <h1 className="mt-4 font-heading text-display font-bold leading-[1.05] tracking-tight [text-shadow:0_2px_18px_hsl(215_45%_12%/0.5)]">
-            {s?.hero?.title}
-          </h1>
-          <p className="mx-auto mt-5 max-w-xl text-lg text-white/90 [text-shadow:0_1px_10px_hsl(215_45%_12%/0.45)]">
-            {s?.hero?.subtitle}
-          </p>
-          <div className="mt-8">
-            <a href={whatsappUrl} target="_blank" rel="noopener" className={`${NAVY_CTA} min-h-12 px-9 text-base`}>
+      <PhotoHero
+        minHeight="sm:min-h-[100svh]"
+        mediaClassName="[&_img]:object-[center_62%]"
+        media={
+          <img
+            src={heroImage}
+            alt={s?.hero?.title || "Fuegos de Blanes desde el mar"}
+            width={1080}
+            height={1935}
+            decoding="async"
+            draggable={false}
+          />
+        }
+        title={s?.hero?.title}
+        subtitle={s?.hero?.subtitle}
+        actions={
+          <div className="flex flex-col items-center">
+            <InteractiveHoverButton
+              tone="dark"
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener"
+              className="min-h-12 w-full px-8 text-base sm:w-auto"
+            >
               {s?.cta}
-              <SiWhatsapp className="h-5 w-5" />
-            </a>
+            </InteractiveHoverButton>
             <p className="mt-2 text-xs text-white/70">{s?.ctaNote}</p>
           </div>
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
-            {(s?.chips || []).map((chip) => (
-              <span
-                key={chip}
-                className="inline-flex items-center gap-1.5 rounded-full bg-black/25 px-3 py-1.5 text-sm text-white ring-1 ring-white/20"
-              >
-                <CheckCircle2 className="h-4 w-4 text-white" />
-                {chip}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+        }
+        facts={[s?.hero?.eyebrow, ...(s?.chips || [])]}
+      />
 
-      {/* INTRO */}
+      {/* Intro: one sentence as the point, the rest as detail */}
       {s?.intro && (
-        <section className="px-4 py-12 sm:px-6 lg:py-16">
-          <p className="mx-auto max-w-2xl text-center text-lg text-muted-foreground">{s.intro}</p>
-        </section>
+        <Sheet next="muted" className="py-12 sm:py-16">
+          <Rise>
+            <LeadText
+              text={s.intro}
+              className="mx-auto max-w-3xl text-center text-lg sm:text-xl [&>span:first-child]:text-xl sm:[&>span:first-child]:text-2xl"
+            />
+          </Rise>
+        </Sheet>
       )}
 
-      {/* PRICE + INCLUDES */}
-      <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-        <div className="mx-auto max-w-4xl">
-          <div className="text-center">
-            <p className="font-heading text-6xl font-bold text-foreground">{s?.priceLabel}</p>
-            <p className="mt-2 text-muted-foreground">{s?.priceMeta}</p>
+      {/* Price + includes */}
+      <Sheet tone="muted" next="page">
+        <div className="grid gap-10 lg:grid-cols-[5fr_7fr] lg:items-center lg:gap-16">
+          <Rise>
+            <p className="font-heading text-6xl font-semibold tracking-tight text-foreground">
+              {s?.priceLabel}
+            </p>
+            <p className="mt-2 text-base text-muted-foreground">{s?.priceMeta}</p>
+            {s?.capacityNote && (
+              <p className="mt-6 max-w-sm border-t border-border pt-4 text-sm leading-relaxed text-muted-foreground text-pretty">
+                {s.capacityNote}
+              </p>
+            )}
+          </Rise>
+          <Rise delay={0.1}>
+            <h2 className={`${H2} mb-6`}>{s?.includesTitle}</h2>
+            <CheckPanel items={s?.includes || []} />
+          </Rise>
+        </div>
+      </Sheet>
+
+      {/* How it works */}
+      <Sheet next="muted">
+        <Rise>
+          <h2 className={H2}>{s?.detailsTitle}</h2>
+          <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-3">
+            {(s?.details || []).map(d => (
+              <Feature key={d.name} title={d.name} text={d.description} />
+            ))}
           </div>
-          <h2 className="mt-10 text-center font-heading text-h2 font-bold text-foreground">
-            {s?.includesTitle}
-          </h2>
-          <ul className="mx-auto mt-6 grid max-w-2xl gap-3 sm:grid-cols-2">
-            {(s?.includes || []).map((item) => (
+        </Rise>
+      </Sheet>
+
+      {/* Program */}
+      <Sheet tone="muted" next="page" containerClassName="max-w-3xl">
+        <Rise>
+          <h2 className={H2}>{s?.programTitle}</h2>
+          <ul className="mt-10 overflow-hidden rounded-2xl border border-border bg-card">
+            {(s?.program || []).map(p => (
               <li
-                key={item}
-                className="flex items-start gap-3 rounded-xl border border-border bg-card p-4"
+                key={p.day}
+                className="grid gap-1 border-b border-border px-5 py-4 last:border-b-0 sm:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] sm:gap-8 sm:px-6"
               >
-                <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-success" />
-                <span className="text-foreground">{item}</span>
+                <p className="font-heading text-base font-semibold text-foreground">{p.day}</p>
+                <p className="text-base leading-relaxed text-muted-foreground">{p.pyro}</p>
               </li>
             ))}
           </ul>
-          {s?.capacityNote && (
-            <p className="mx-auto mt-6 flex max-w-2xl items-start justify-center gap-2 text-center text-sm text-muted-foreground">
-              <Users className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-              {s.capacityNote}
-            </p>
-          )}
-        </div>
-      </section>
-
-      {/* HOW IT WORKS */}
-      <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="text-center font-heading text-h2 font-bold text-foreground">
-            {s?.detailsTitle}
-          </h2>
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            {(s?.details || []).map((d, i) => (
-              <div key={d.name} className="rounded-xl border border-border bg-card p-5">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10">
-                  {i === 0 ? (
-                    <Anchor className="h-5 w-5 text-primary" />
-                  ) : i === 1 ? (
-                    <Sparkles className="h-5 w-5 text-primary" />
-                  ) : (
-                    <SiWhatsapp className="h-5 w-5 text-primary" />
-                  )}
-                </span>
-                <h3 className="mt-3 font-heading font-semibold text-foreground">{d.name}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{d.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PROGRAM */}
-      <section className="bg-muted/40 px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-        <div className="mx-auto max-w-2xl">
-          <h2 className="text-center font-heading text-h2 font-bold text-foreground">
-            {s?.programTitle}
-          </h2>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {(s?.program || []).map((p) => (
-              <div key={p.day} className="rounded-xl border border-border bg-card p-5 text-center">
-                <p className="font-heading text-lg font-bold text-foreground">{p.day}</p>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{p.pyro}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <a href={whatsappUrl} target="_blank" rel="noopener" className={`${NAVY_CTA} min-h-12 px-8 text-base`}>
+          <div className="mt-8">
+            <InteractiveHoverButton
+              tone="dark"
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener"
+              className="min-h-12 px-8 text-base"
+            >
               {s?.cta}
-              <SiWhatsapp className="h-5 w-5" />
-            </a>
+            </InteractiveHoverButton>
             <p className="mt-2 text-xs text-muted-foreground">{s?.ctaNote}</p>
           </div>
-        </div>
-      </section>
+        </Rise>
+      </Sheet>
 
-      {/* FAQ */}
-      {(s?.faq || []).length > 0 && (
-        <section className="px-4 py-12 sm:py-16 lg:py-20 sm:px-6">
-          <div className="mx-auto max-w-2xl">
-            <h2 className="text-center font-heading text-h2 font-bold text-foreground">
-              {s?.faqTitle}
-            </h2>
-            <dl className="mt-8 divide-y divide-border">
-              {(s?.faq || []).map((f) => (
-                <div key={f.q} className="py-5 first:pt-0 last:pb-0">
-                  <dt className="font-heading font-semibold text-foreground">{f.q}</dt>
-                  <dd className="mt-1.5 leading-relaxed text-muted-foreground">{f.a}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </section>
-      )}
+      <FaqSheet idPrefix="fuegos-faq" title={s?.faqTitle} items={s?.faq || []} next="footer" />
 
       {/* Sticky mobile CTA */}
       <MobileStickyBar>
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2 leading-tight">
             <CalendarCheck className="h-4 w-4 flex-shrink-0 text-success" />
-            <p className="text-sm font-bold text-foreground">{s?.priceLabel} {s?.priceMeta}</p>
+            <p className="text-sm font-bold text-foreground">
+              {s?.priceLabel} {s?.priceMeta}
+            </p>
           </div>
           <a
             href={whatsappUrl}

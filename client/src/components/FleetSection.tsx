@@ -512,11 +512,13 @@ function FleetSection({ excludeActivities = false }: FleetSectionProps) {
                 <h3 className="font-heading text-2xl sm:text-3xl font-semibold tracking-tight text-balance">
                   {headline}
                 </h3>
-                {sub && <p className="mt-2 text-base opacity-80 text-pretty">{sub}</p>}
+                {sub && (
+                  <p className="mt-2 text-base opacity-80 text-pretty dark:opacity-100">{sub}</p>
+                )}
               </div>
               <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 lg:justify-end">
                 <button
-                  className={`${btn} bg-whatsapp text-cta hover:brightness-95`}
+                  className={`${btn} bg-whatsapp text-cta dark:text-background hover:brightness-95`}
                   onClick={() => openWhatsApp(t.fleet.whatsappHelpPrefill)}
                   data-testid="button-whatsapp-help"
                   aria-label={t.a11y.checkWhatsApp}
@@ -525,7 +527,7 @@ function FleetSection({ excludeActivities = false }: FleetSectionProps) {
                   {t.contact.whatsapp}
                 </button>
                 <button
-                  className={`${btn} bg-sky-300 text-cta hover:bg-sky-200`}
+                  className={`${btn} bg-sky-300 text-cta dark:text-background hover:bg-sky-200`}
                   data-testid="button-call-help"
                   aria-label={`${t.a11y.callPhone} +34 611 500 372`}
                   onClick={() => {

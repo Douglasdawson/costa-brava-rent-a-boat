@@ -33,14 +33,14 @@ export const TONE_BG: Record<Tone, string> = {
   background: "bg-background",
   muted: MUTED_BG,
   navy: "bg-primary dark:bg-[hsl(215_45%_16%)]",
-  footer: "bg-foreground",
+  footer: "bg-foreground dark:bg-[hsl(215_45%_16%)]",
 };
 
 const TONE_SECTION: Record<Tone, string> = {
   background: "bg-background",
   muted: MUTED_BG,
   navy: NAVY,
-  footer: "bg-foreground text-background",
+  footer: "bg-foreground text-background dark:bg-[hsl(215_45%_16%)] dark:text-foreground",
 };
 
 /** Split a paragraph into sentences (first one = lead, the rest = loose facts). */
@@ -255,7 +255,7 @@ export function FaqSheet({
                 {title || t.faqPreview?.title}
               </h2>
               {t.faqPreview?.subtitle && (
-                <p className="mt-4 max-w-md text-base leading-relaxed opacity-80 text-pretty">
+                <p className="mt-4 max-w-md text-base leading-relaxed opacity-80 text-pretty dark:opacity-100">
                   {t.faqPreview.subtitle}
                 </p>
               )}
@@ -478,8 +478,14 @@ export function NavyHero({
 }) {
   return (
     <div className={TONE_BG[next]}>
-      <section className={cn(SHEET, NAVY, "pb-14 pt-32 sm:pb-20 sm:pt-40")}>
-        <div className="container mx-auto max-w-3xl px-4 text-center">
+      <section
+        className={cn(
+          SHEET,
+          NAVY,
+          "flex min-h-[100svh] flex-col justify-center pb-14 pt-32 sm:block sm:min-h-0 sm:pb-20 sm:pt-40"
+        )}
+      >
+        <div className="container mx-auto w-full max-w-3xl px-4 text-center">
           <h1 id={titleId} className="font-heading text-display font-semibold text-balance">
             {title}
           </h1>

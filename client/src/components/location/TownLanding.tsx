@@ -178,7 +178,7 @@ export default function TownLanding({
               tone="dark"
               as={Link}
               href={localizedPath("pricing")}
-              className="mt-8 min-h-12 px-7 text-base"
+              className="mt-8 min-h-12 px-7 text-base dark:text-background"
             >
               {s?.pricingButton}
             </InteractiveHoverButton>

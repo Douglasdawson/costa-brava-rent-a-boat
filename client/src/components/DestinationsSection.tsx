@@ -1,13 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  Clock,
-  Compass,
-  Waves,
-  Heart,
-  ExternalLink
-} from "lucide-react";
+import { Clock, Compass, Waves, Heart, ExternalLink } from "lucide-react";
 import { Link } from "wouter";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
@@ -19,7 +13,6 @@ export default function DestinationsSection() {
   return (
     <section className="py-12 bg-background" id="destinations">
       <div className="container mx-auto px-4">
-
         {/* Destinations */}
         <div className="mb-16">
           <div className="text-center mb-12">
@@ -36,7 +29,7 @@ export default function DestinationsSection() {
               <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
                 <CardHeader>
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <Compass className="w-8 h-8 text-primary" />
+                    <Compass className="w-8 h-8 text-primary dark:text-chart-1" />
                   </div>
                   <CardTitle className="text-xl text-center">{t.destinations.tossaName}</CardTitle>
                 </CardHeader>
@@ -51,9 +44,15 @@ export default function DestinationsSection() {
                     {t.destinations.tossaDesc}
                   </p>
                   <div className="flex flex-wrap gap-2 justify-center mb-4">
-                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.destinations.tossaH1}</span>
-                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.destinations.tossaH2}</span>
-                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.destinations.tossaH3}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">
+                      {t.destinations.tossaH1}
+                    </span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">
+                      {t.destinations.tossaH2}
+                    </span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">
+                      {t.destinations.tossaH3}
+                    </span>
                   </div>
                   <Button
                     variant="outline"
@@ -86,18 +85,26 @@ export default function DestinationsSection() {
               <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
                 <CardHeader>
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <Heart className="w-8 h-8 text-primary" />
+                    <Heart className="w-8 h-8 text-primary dark:text-chart-1" />
                   </div>
-                  <CardTitle className="text-xl text-center">{t.destinations.licenseFree}</CardTitle>
+                  <CardTitle className="text-xl text-center">
+                    {t.destinations.licenseFree}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-muted-foreground mb-4 leading-relaxed">
                     {t.destinations.licenseFreeDesc}
                   </p>
                   <div className="flex flex-wrap gap-2 justify-center mb-4">
-                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.destinations.licenseFreeFeat1}</span>
-                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.destinations.licenseFreeFeat2}</span>
-                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.destinations.licenseFreeFeat3}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">
+                      {t.destinations.licenseFreeFeat1}
+                    </span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">
+                      {t.destinations.licenseFreeFeat2}
+                    </span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">
+                      {t.destinations.licenseFreeFeat3}
+                    </span>
                   </div>
                   <Button
                     variant="outline"
@@ -113,7 +120,6 @@ export default function DestinationsSection() {
             </Link>
           </div>
         </div>
-
       </div>
     </section>
   );

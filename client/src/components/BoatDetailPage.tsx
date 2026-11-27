@@ -507,13 +507,24 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               </span>
             </h1>
             <div className="flex flex-wrap items-center gap-3 mt-2">
-              <p className="text-white/85 text-sm sm:text-base">
-                {translateBoatText(boatData.subtitle || "", language)}
-                <span className="mx-2 text-white/50" aria-hidden="true">
-                  ·
-                </span>
-                {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
-              </p>
+              {(() => {
+                const subtitle = translateBoatText(boatData.subtitle || "", language);
+                const licenseLabel = requiresLicense ? t.boats.withLicense : t.boats.withoutLicense;
+                const showLicense = !subtitle.toLowerCase().includes(licenseLabel.toLowerCase());
+                return (
+                  <p className="text-white/85 text-sm sm:text-base">
+                    {subtitle}
+                    {showLicense && (
+                      <>
+                        <span className="mx-2 text-white/50" aria-hidden="true">
+                          ·
+                        </span>
+                        {licenseLabel}
+                      </>
+                    )}
+                  </p>
+                );
+              })()}
               {dynamicLowest.price > 0 && (
                 <p className="flex items-baseline gap-1.5 text-white">
                   {!dynamicLowest.isForDate && (
@@ -538,8 +549,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       </div>
 
       {/* Trust + risk reversal strip — above the fold on every viewport.
-          Four pill chips: rating, fuel/insurance (license-aware), free date
-          change, weather rescheduling. All claims backed by CondicionesGenerales
+          Ruled strip: rating, fuel/insurance (license-aware), weather
+          rescheduling. All claims backed by CondicionesGenerales
           and shared/businessProfile. */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
         <BoatHeroChips t={t} fuelIncluded={boatIncludesFuel(boatId, requiresLicense)} />
@@ -695,7 +706,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 <div className="px-4 py-2 text-center border-t border-border">
                   <a
                     href={localizedPath("gallery")}
-                    className="text-sm text-primary hover:underline"
+                    className="text-sm text-primary dark:text-chart-1 hover:underline pointer-coarse:inline-flex pointer-coarse:min-h-11 pointer-coarse:items-center"
                   >
                     {t.boatDetail.viewCustomerGallery}
                   </a>
@@ -766,35 +777,35 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     <TabsList className="h-auto bg-transparent p-0 gap-1 flex-wrap justify-start w-full sm:w-max sm:flex-nowrap">
                       <TabsTrigger
                         value="caracteristicas"
-                        className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                        className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary dark:data-[state=active]:text-chart-1 px-4 pb-3 text-sm font-medium"
                       >
                         <Star className="w-4 h-4 mr-1.5" />
                         {t.boatDetail.mainFeatures}
                       </TabsTrigger>
                       <TabsTrigger
                         value="tecnico"
-                        className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                        className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary dark:data-[state=active]:text-chart-1 px-4 pb-3 text-sm font-medium"
                       >
                         <NavigationIcon className="w-4 h-4 mr-1.5" />
                         {t.boatDetail.technicalSpecs}
                       </TabsTrigger>
                       <TabsTrigger
                         value="equipamiento"
-                        className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                        className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary dark:data-[state=active]:text-chart-1 px-4 pb-3 text-sm font-medium"
                       >
                         <Settings className="w-4 h-4 mr-1.5" />
                         {t.boatDetail.equipmentIncluded}
                       </TabsTrigger>
                       <TabsTrigger
                         value="extras"
-                        className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                        className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary dark:data-[state=active]:text-chart-1 px-4 pb-3 text-sm font-medium"
                       >
                         <Zap className="w-4 h-4 mr-1.5" />
                         {t.boatDetail.availableExtras}
                       </TabsTrigger>
                       <TabsTrigger
                         value="info"
-                        className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                        className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary dark:data-[state=active]:text-chart-1 px-4 pb-3 text-sm font-medium"
                       >
                         <Shield className="w-4 h-4 mr-1.5" />
                         {t.boatDetail.importantInfo}
@@ -816,7 +827,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                     {boatData.features?.map((feature, index) => (
                       <div key={index} className="flex items-center">
-                        <CheckCircle className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
+                        <CheckCircle className="w-4 h-4 text-primary dark:text-chart-1 mr-2 flex-shrink-0" />
                         <span className="text-sm">{translateBoatText(feature, language)}</span>
                       </div>
                     )) || (
@@ -843,7 +854,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                               t.boatDetail.perfectBeginners,
                             ].map((item, i) => (
                               <div key={i} className="flex items-center">
-                                <Star className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
+                                <Star className="w-3 h-3 text-primary dark:text-chart-1 mr-2 flex-shrink-0" />
                                 <span className="text-sm">{item}</span>
                               </div>
                             ))}
@@ -861,7 +872,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                               { icon: Clock, label: t.boatDetail.immediateAvailability },
                             ].map(({ icon: Icon, label }, i) => (
                               <div key={i} className="flex items-center">
-                                <Icon className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
+                                <Icon className="w-3 h-3 text-primary dark:text-chart-1 mr-2 flex-shrink-0" />
                                 <span className="text-sm">{label}</span>
                               </div>
                             ))}
@@ -897,7 +908,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                           className="flex items-center justify-between text-sm py-2 border-b border-border/50 last:border-0"
                         >
                           <div className="flex items-center">
-                            <Icon className="w-4 h-4 mr-2 text-primary flex-shrink-0" />
+                            <Icon className="w-4 h-4 mr-2 text-primary dark:text-chart-1 flex-shrink-0" />
                             <span className="font-medium text-foreground/80">{label}</span>
                           </div>
                           <span className="text-foreground font-medium">
@@ -921,7 +932,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {boatData.equipment?.map((item, index) => (
                       <div key={index} className="flex items-center">
-                        <CheckCircle className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
+                        <CheckCircle className="w-4 h-4 text-primary dark:text-chart-1 mr-2 flex-shrink-0" />
                         <span className="text-sm">{translateBoatText(item, language)}</span>
                       </div>
                     )) || (
@@ -945,11 +956,11 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                       const IconComponent = EXTRA_ICONS[extra.icon] || Star;
                       return (
                         <li key={index} className="flex items-center gap-4 px-4 py-3">
-                          <IconComponent className="w-5 h-5 flex-shrink-0 text-primary" />
+                          <IconComponent className="w-5 h-5 flex-shrink-0 text-primary dark:text-chart-1" />
                           <div className="flex-1 min-w-0 font-medium text-sm text-foreground">
                             {translateExtraName(extra.name, language)}
                           </div>
-                          <div className="flex-shrink-0 text-primary font-semibold text-sm tabular-nums">
+                          <div className="flex-shrink-0 text-primary dark:text-chart-1 font-semibold text-sm tabular-nums">
                             {extra.price}
                           </div>
                         </li>
@@ -996,12 +1007,12 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
                       {t.boatDetail.whatToBringItems.map((item, i) => (
                         <div key={i} className="flex items-start">
-                          <CheckCircle className="w-3.5 h-3.5 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                          <CheckCircle className="w-3.5 h-3.5 text-primary dark:text-chart-1 mr-2 mt-0.5 flex-shrink-0" />
                           <span className="text-sm text-foreground/80">{item}</span>
                         </div>
                       ))}
                     </div>
-                    <p className="flex items-start gap-2 rounded-xl border border-border p-3 text-xs font-medium text-primary">
+                    <p className="flex items-start gap-2 rounded-xl border border-border p-3 text-xs font-medium text-primary dark:text-chart-1">
                       <Clock className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
                       {t.boatDetail.whatToBringTip}
                     </p>
@@ -1023,7 +1034,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                             }
                           }, 100);
                         }}
-                        className="underline bg-transparent border-none p-0 text-foreground cursor-pointer hover:text-primary transition-colors"
+                        className="underline bg-transparent border-none p-0 text-foreground cursor-pointer hover:text-primary dark:hover:text-chart-1 transition-colors"
                         data-testid="link-terms-conditions"
                       >
                         {t.boatDetail.rentalConditions}
@@ -1086,7 +1097,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                           className={`absolute top-2 right-2 text-[10px] font-medium px-2 py-0.5 rounded-full backdrop-blur-sm ${
                             relBoat.requiresLicense
                               ? "bg-primary text-white"
-                              : "bg-white/95 text-primary"
+                              : "bg-white/95 text-primary dark:text-chart-1"
                           }`}
                         >
                           {relBoat.requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
@@ -1106,7 +1117,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                               <span className="text-muted-foreground text-xs">
                                 {t.relatedBoats.from}{" "}
                               </span>
-                              <span className="font-semibold text-primary">{relPrice}€</span>
+                              <span className="font-semibold text-primary dark:text-chart-1">
+                                {relPrice}€
+                              </span>
                             </div>
                           )}
                         </div>
@@ -1126,7 +1139,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                         ? "categoryLicensed"
                         : "categoryLicenseFree"
                   )}
-                  className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline pointer-coarse:py-3 pointer-coarse:-my-3"
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-primary dark:text-chart-1 hover:underline pointer-coarse:py-3 pointer-coarse:-my-3"
                   data-testid="link-boat-category"
                 >
                   {isCaptainedBoat(boatData.id)

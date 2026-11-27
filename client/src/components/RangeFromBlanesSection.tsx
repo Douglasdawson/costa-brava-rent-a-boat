@@ -47,7 +47,7 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
         {/* Header */}
         <div className="text-center mb-10 sm:mb-14">
           {eyebrow && (
-            <span className="inline-block text-xs font-semibold tracking-widest text-primary uppercase mb-3">
+            <span className="inline-block text-xs font-semibold tracking-widest text-primary dark:text-chart-1 uppercase mb-3">
               {eyebrow}
             </span>
           )}
@@ -73,13 +73,15 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
 
           {/* Mobile: vertical timeline; Desktop: horizontal cards */}
           <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-3 sm:gap-4">
-            {SIN_LICENCIA_CALAS.map((c) => (
+            {SIN_LICENCIA_CALAS.map(c => (
               <li
                 key={c.n}
                 className={`relative rounded-xl border p-4 ${c.limit ? "bg-amber-50 dark:bg-amber-950/20 border-amber-300" : "bg-muted/30 border-border"}`}
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <span className={`flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${c.limit ? "bg-amber-500 text-primary-foreground" : "bg-primary/10 text-primary"}`}>
+                  <span
+                    className={`flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${c.limit ? "bg-amber-500 text-primary-foreground" : "bg-primary/10 text-primary dark:text-chart-1"}`}
+                  >
                     {c.n}
                   </span>
                   {c.limit && (
@@ -88,9 +90,7 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
                     </span>
                   )}
                 </div>
-                <div className="font-semibold text-sm text-foreground leading-tight">
-                  {c.name}
-                </div>
+                <div className="font-semibold text-sm text-foreground leading-tight">{c.name}</div>
                 <div className="text-xs text-muted-foreground mt-1">
                   {c.time} · {c.nm} nm
                 </div>
@@ -101,15 +101,19 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
           {/* Note about Fenals being the limit */}
           <div className="mt-6 bg-amber-50/70 dark:bg-amber-950/30 rounded-xl p-4 sm:p-5">
             <div className="font-semibold text-sm text-foreground mb-1">{r?.limitBoxTitle}</div>
-            <p className="text-sm text-muted-foreground leading-relaxed text-pretty">{r?.limitBoxBody}</p>
-            <p className="text-xs text-muted-foreground mt-2 italic text-balance">{r?.noteNorthOfFenals}</p>
+            <p className="text-sm text-muted-foreground leading-relaxed text-pretty">
+              {r?.limitBoxBody}
+            </p>
+            <p className="text-xs text-muted-foreground mt-2 italic text-balance">
+              {r?.noteNorthOfFenals}
+            </p>
           </div>
         </div>
 
         {/* Con licencia — extension */}
         <div className="mb-10">
           <h3 className="font-heading text-lg sm:text-xl font-semibold text-foreground mb-3 flex items-center justify-center gap-2">
-            <Compass className="w-5 h-5 text-primary" />
+            <Compass className="w-5 h-5 text-primary dark:text-chart-1" />
             {r?.conLicenciaTitle}
           </h3>
           <p className="text-muted-foreground text-sm sm:text-base mb-4 leading-relaxed">
@@ -122,12 +126,14 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
               r?.ext?.morisca,
               r?.ext?.tossa,
               r?.ext?.platjaAro,
-            ].filter(Boolean).map((line, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                <ChevronRight className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary/70" />
-                <span>{line}</span>
-              </li>
-            ))}
+            ]
+              .filter(Boolean)
+              .map((line, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <ChevronRight className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary dark:text-chart-1/70" />
+                  <span>{line}</span>
+                </li>
+              ))}
           </ul>
         </div>
 
@@ -135,7 +141,7 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8">
           <Link
             href={localizedPath("categoryLicensed")}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cta hover:bg-cta/90 text-primary-foreground font-semibold text-sm transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cta hover:bg-cta/90 text-primary-foreground dark:text-background font-semibold text-sm transition-colors"
           >
             <Compass className="w-4 h-4" />
             {r?.ctaLicensed}
@@ -152,7 +158,7 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
         {/* Internal links (only on home variant — lloret page has its own links) */}
         {variant === "home" && r?.internalLinks && (
           <p className="text-sm text-muted-foreground text-center max-w-3xl mx-auto leading-relaxed">
-            <MapPin className="w-4 h-4 inline-block mr-1 -mt-0.5 text-primary/70" />
+            <MapPin className="w-4 h-4 inline-block mr-1 -mt-0.5 text-primary dark:text-chart-1/70" />
             <span dangerouslySetInnerHTML={{ __html: r.internalLinks }} />
           </p>
         )}

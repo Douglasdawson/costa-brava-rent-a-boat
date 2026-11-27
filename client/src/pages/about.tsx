@@ -1268,7 +1268,7 @@ export default function AboutPage() {
                   <a
                     href="tel:+34611500372"
                     onClick={() => trackPhoneClick()}
-                    className="font-medium text-foreground transition-colors hover:text-primary"
+                    className="font-medium text-foreground transition-colors hover:text-primary dark:hover:text-chart-1"
                   >
                     +34 611 500 372
                   </a>
@@ -1280,7 +1280,7 @@ export default function AboutPage() {
                   <p className="text-sm text-muted-foreground">Email</p>
                   <a
                     href="mailto:info@costabravarentaboat.com"
-                    className="break-all text-sm font-medium text-foreground transition-colors hover:text-primary"
+                    className="break-all text-sm font-medium text-foreground transition-colors hover:text-primary dark:hover:text-chart-1"
                   >
                     info@costabravarentaboat.com
                   </a>

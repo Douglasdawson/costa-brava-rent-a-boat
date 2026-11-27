@@ -97,7 +97,7 @@ export default function PriceSummaryBar({
 
   // --- MOBILE: compact sticky bar, expandable ---
   return (
-    <div className="overflow-hidden rounded-t-3xl bg-foreground text-white">
+    <div className="overflow-hidden rounded-t-3xl bg-foreground dark:bg-[hsl(215_45%_16%)] text-white">
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}

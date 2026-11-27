@@ -14,10 +14,18 @@ interface RecentActivity {
 }
 
 const COUNTRY_FLAGS: Record<string, string> = {
-  ES: "\u{1F1EA}\u{1F1F8}", FR: "\u{1F1EB}\u{1F1F7}", DE: "\u{1F1E9}\u{1F1EA}",
-  GB: "\u{1F1EC}\u{1F1E7}", UK: "\u{1F1EC}\u{1F1E7}", IT: "\u{1F1EE}\u{1F1F9}",
-  NL: "\u{1F1F3}\u{1F1F1}", PT: "\u{1F1F5}\u{1F1F9}", BE: "\u{1F1E7}\u{1F1EA}",
-  CH: "\u{1F1E8}\u{1F1ED}", US: "\u{1F1FA}\u{1F1F8}", RU: "\u{1F1F7}\u{1F1FA}",
+  ES: "\u{1F1EA}\u{1F1F8}",
+  FR: "\u{1F1EB}\u{1F1F7}",
+  DE: "\u{1F1E9}\u{1F1EA}",
+  GB: "\u{1F1EC}\u{1F1E7}",
+  UK: "\u{1F1EC}\u{1F1E7}",
+  IT: "\u{1F1EE}\u{1F1F9}",
+  NL: "\u{1F1F3}\u{1F1F1}",
+  PT: "\u{1F1F5}\u{1F1F9}",
+  BE: "\u{1F1E7}\u{1F1EA}",
+  CH: "\u{1F1E8}\u{1F1ED}",
+  US: "\u{1F1FA}\u{1F1F8}",
+  RU: "\u{1F1F7}\u{1F1FA}",
 };
 
 function getFlag(country: string): string {
@@ -72,7 +80,7 @@ export function SocialProofToast() {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const dismissRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const shouldShow = !HIDDEN_PATHS.some((p) => location.startsWith(p));
+  const shouldShow = !HIDDEN_PATHS.some(p => location.startsWith(p));
 
   const { data: activities = [] } = useQuery<RecentActivity[]>({
     queryKey: ["recent-activity"],
@@ -118,7 +126,7 @@ export function SocialProofToast() {
     if (!hasRealData) return;
     if (isMobileNavOpen() || isAnyModalOpen()) return;
 
-    setCurrentIndex((prev) => {
+    setCurrentIndex(prev => {
       const next = prev >= activities.length - 1 ? 0 : prev + 1;
       return next;
     });
@@ -179,8 +187,10 @@ export function SocialProofToast() {
 
   const toast = t.socialProofToast;
   const flag = getFlag(activity.country);
-  const bookedText = flag ? `${flag} Reservó` : (toast?.booked || "Nueva reserva");
-  const forPeopleText = toast?.forPeople?.replace("{n}", String(activity.numberOfPeople)) || `para ${activity.numberOfPeople} personas`;
+  const bookedText = flag ? `${flag} Reservó` : toast?.booked || "Nueva reserva";
+  const forPeopleText =
+    toast?.forPeople?.replace("{n}", String(activity.numberOfPeople)) ||
+    `para ${activity.numberOfPeople} personas`;
   const timeAgoText = formatTimeAgo(activity.createdAt, t);
 
   const animStyles: Record<string, React.CSSProperties> = {
@@ -217,21 +227,18 @@ export function SocialProofToast() {
 
         <div className="flex items-start gap-3">
           {/* Boat icon */}
-          <span className="text-primary mt-0.5 flex-shrink-0" aria-hidden="true">
+          <span className="text-primary dark:text-chart-1 mt-0.5 flex-shrink-0" aria-hidden="true">
             <Anchor className="h-5 w-5" />
           </span>
 
           {/* Content */}
           <div className="min-w-0">
-            <p className="text-sm font-medium text-foreground leading-tight">
-              {bookedText}
-            </p>
+            <p className="text-sm font-medium text-foreground leading-tight">{bookedText}</p>
             <p className="text-sm text-muted-foreground leading-tight mt-0.5">
-              <span className="font-medium text-foreground">{activity.boatName}</span> {forPeopleText}
+              <span className="font-medium text-foreground">{activity.boatName}</span>{" "}
+              {forPeopleText}
             </p>
-            <p className="text-xs text-muted-foreground/70 mt-1">
-              {timeAgoText}
-            </p>
+            <p className="text-xs text-muted-foreground/70 mt-1">{timeAgoText}</p>
           </div>
         </div>
       </div>

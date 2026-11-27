@@ -298,7 +298,7 @@ export default function GiftCardsPage() {
                 )}{" "}
                 <a
                   href={localizedPath("home") + "#fleet"}
-                  className="text-primary underline-offset-2 hover:underline"
+                  className="text-primary dark:text-chart-1 underline-offset-2 hover:underline"
                 >
                   {t.giftCards?.viewFleet || "Ver la flota"}
                 </a>

@@ -37,10 +37,10 @@ function setConsentCookie(value: "accepted" | "essential") {
 function clearTrackingCookies() {
   const host = window.location.hostname;
   const domains = ["", host, `.${host}`, `.${host.replace(/^www\./, "")}`];
-  document.cookie.split(";").forEach((c) => {
+  document.cookie.split(";").forEach(c => {
     const name = c.split("=")[0].trim();
     if (!/^(_ga|_gid|_gat|_gcl_|_fbp|_fbc)/.test(name)) return;
-    domains.forEach((d) => {
+    domains.forEach(d => {
       document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/${d ? `; domain=${d}` : ""}`;
     });
   });
@@ -53,7 +53,7 @@ export default function CookieBanner() {
   const dockTop = location
     .split("/")
     .filter(Boolean)
-    .some((segment) => BOOKING_SLUGS.has(segment));
+    .some(segment => BOOKING_SLUGS.has(segment));
   const cb = t.cookieBanner;
   const [visible, setVisible] = useState(false);
   const [animateIn, setAnimateIn] = useState(false);
@@ -66,7 +66,10 @@ export default function CookieBanner() {
     const stored = localStorage.getItem("cookieConsent");
     if (!stored) show();
     // Visitors who chose before the server cookie existed: backfill it.
-    else if ((stored === "accepted" || stored === "essential") && !document.cookie.includes("cookieConsent=")) {
+    else if (
+      (stored === "accepted" || stored === "essential") &&
+      !document.cookie.includes("cookieConsent=")
+    ) {
       setConsentCookie(stored);
     }
     // Footer "Cookie settings" re-opens the banner to change/withdraw consent.
@@ -82,33 +85,37 @@ export default function CookieBanner() {
     }, 200);
   };
 
-  const handleAcceptAll = () => dismiss(() => {
-    localStorage.setItem("cookieConsent", "accepted");
-    setConsentCookie("accepted");
-    updateGTMConsent(true);
-    (window as unknown as { cbrbLoadTracking?: () => void }).cbrbLoadTracking?.();
-    trackCookieConsent('accepted');
+  const handleAcceptAll = () =>
+    dismiss(() => {
+      localStorage.setItem("cookieConsent", "accepted");
+      setConsentCookie("accepted");
+      updateGTMConsent(true);
+      (window as unknown as { cbrbLoadTracking?: () => void }).cbrbLoadTracking?.();
+      trackCookieConsent("accepted");
 
-    const metaPixelId = document.querySelector('meta[name="fb-pixel-id"]')?.getAttribute('content');
-    if (metaPixelId) {
-      import('@/utils/meta-pixel').then(({ initMetaPixel }) => initMetaPixel(metaPixelId));
-    }
-  });
+      const metaPixelId = document
+        .querySelector('meta[name="fb-pixel-id"]')
+        ?.getAttribute("content");
+      if (metaPixelId) {
+        import("@/utils/meta-pixel").then(({ initMetaPixel }) => initMetaPixel(metaPixelId));
+      }
+    });
 
-  const handleEssentialOnly = () => dismiss(() => {
-    const wasAccepted = localStorage.getItem("cookieConsent") === "accepted";
-    localStorage.setItem("cookieConsent", "essential");
-    setConsentCookie("essential");
-    updateGTMConsent(false);
-    if (wasAccepted) {
-      // GTM / Pixel are already running in this tab: wipe their cookies and
-      // reload so nothing keeps firing after the withdrawal.
-      clearTrackingCookies();
-      window.location.reload();
-      return;
-    }
-    trackCookieConsent('essential');
-  });
+  const handleEssentialOnly = () =>
+    dismiss(() => {
+      const wasAccepted = localStorage.getItem("cookieConsent") === "accepted";
+      localStorage.setItem("cookieConsent", "essential");
+      setConsentCookie("essential");
+      updateGTMConsent(false);
+      if (wasAccepted) {
+        // GTM / Pixel are already running in this tab: wipe their cookies and
+        // reload so nothing keeps firing after the withdrawal.
+        clearTrackingCookies();
+        window.location.reload();
+        return;
+      }
+      trackCookieConsent("essential");
+    });
 
   if (!visible) return null;
 
@@ -122,38 +129,34 @@ export default function CookieBanner() {
     >
       <div className="container mx-auto px-4 py-4 max-w-6xl">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          <Cookie className="w-6 h-6 text-primary flex-shrink-0 mt-0.5 sm:mt-0" aria-hidden="true" />
+          <Cookie
+            className="w-6 h-6 text-primary dark:text-chart-1 flex-shrink-0 mt-0.5 sm:mt-0"
+            aria-hidden="true"
+          />
           <div className="flex-1 text-sm text-foreground">
             <p>
-              {cb?.message ?? "Utilizamos cookies propias y de terceros (Google Analytics) para mejorar tu experiencia y analizar el tráfico web."}{" "}
+              {cb?.message ??
+                "Utilizamos cookies propias y de terceros (Google Analytics) para mejorar tu experiencia y analizar el tráfico web."}{" "}
               <a
                 href={localizedPath("cookiesPolicy")}
-                className="text-primary underline hover:text-primary/80 transition-colors"
+                className="text-primary dark:text-chart-1 underline hover:text-primary dark:hover:text-chart-1/80 transition-colors"
               >
                 {cb?.cookiesPolicy ?? "Política de Cookies"}
               </a>
               {" · "}
               <a
                 href={localizedPath("privacyPolicy")}
-                className="text-primary underline hover:text-primary/80 transition-colors"
+                className="text-primary dark:text-chart-1 underline hover:text-primary dark:hover:text-chart-1/80 transition-colors"
               >
                 {cb?.privacyPolicy ?? "Política de Privacidad"}
               </a>
             </p>
           </div>
           <div className="flex flex-row gap-2 flex-shrink-0 w-full sm:w-auto">
-            <Button
-              size="sm"
-              onClick={handleEssentialOnly}
-              className="flex-1 sm:flex-none text-xs"
-            >
+            <Button size="sm" onClick={handleEssentialOnly} className="flex-1 sm:flex-none text-xs">
               {cb?.essentialOnly ?? "Solo esenciales"}
             </Button>
-            <Button
-              size="sm"
-              onClick={handleAcceptAll}
-              className="flex-1 sm:flex-none text-xs"
-            >
+            <Button size="sm" onClick={handleAcceptAll} className="flex-1 sm:flex-none text-xs">
               {cb?.acceptAll ?? "Aceptar todas"}
             </Button>
           </div>

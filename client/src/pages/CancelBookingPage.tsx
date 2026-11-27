@@ -92,7 +92,7 @@ export default function CancelBookingPage({ token: tokenProp }: { token?: string
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-muted">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        <Loader2 className="w-8 h-8 animate-spin text-primary dark:text-chart-1" />
       </div>
     );
   }
@@ -103,7 +103,10 @@ export default function CancelBookingPage({ token: tokenProp }: { token?: string
         <div className="max-w-md w-full mx-4 bg-background rounded-2xl border border-border p-8 text-center">
           <p className="text-2xl mb-2">No se puede cancelar</p>
           <p className="text-muted-foreground">{error}</p>
-          <a href={localizedPath("home")} className="mt-4 inline-block text-primary underline">
+          <a
+            href={localizedPath("home")}
+            className="mt-4 inline-block text-primary dark:text-chart-1 underline"
+          >
             Volver al inicio
           </a>
         </div>
@@ -123,7 +126,10 @@ export default function CancelBookingPage({ token: tokenProp }: { token?: string
           </h1>
           <p className="text-muted-foreground">Tu reserva ha sido cancelada correctamente.</p>
           <p className="text-sm text-muted-foreground mt-4">Recibirás un email de confirmación.</p>
-          <a href={localizedPath("home")} className="mt-6 inline-block text-primary underline">
+          <a
+            href={localizedPath("home")}
+            className="mt-6 inline-block text-primary dark:text-chart-1 underline"
+          >
             Volver al inicio
           </a>
         </div>

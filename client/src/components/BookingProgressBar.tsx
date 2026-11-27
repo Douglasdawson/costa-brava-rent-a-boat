@@ -44,9 +44,9 @@ export default function BookingProgressBar({
                   transition-all duration-300
                   ${
                     isComplete
-                      ? "bg-foreground text-white"
+                      ? "bg-foreground dark:bg-[hsl(215_45%_16%)] text-white"
                       : isActive
-                        ? "bg-foreground text-white step-pulse"
+                        ? "bg-foreground dark:bg-[hsl(215_45%_16%)] text-white step-pulse"
                         : "bg-transparent border-2 border-border text-muted-foreground"
                   }
                 `}

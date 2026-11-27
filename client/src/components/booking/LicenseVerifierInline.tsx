@@ -36,7 +36,7 @@ export default function LicenseVerifierInline({ className = "" }: { className?: 
         type="button"
         onClick={() => setOpen(prev => !prev)}
         aria-expanded={open}
-        className="inline-flex items-center gap-1.5 text-sm font-medium text-primary underline underline-offset-4 hover:text-primary/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm min-h-11"
+        className="inline-flex items-center gap-1.5 text-sm font-medium text-primary dark:text-chart-1 underline underline-offset-4 hover:text-primary/80 dark:hover:text-chart-1/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm min-h-11"
         data-testid="button-license-verifier-discover"
       >
         <ShieldCheck className="w-4 h-4 shrink-0" aria-hidden="true" />

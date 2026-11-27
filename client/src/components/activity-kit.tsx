@@ -30,7 +30,7 @@ const WRAP_BG: Record<NextTone, string> = {
   page: "bg-background",
   muted: MUTED_OPAQUE,
   navy: NAVY_BG,
-  footer: "bg-foreground",
+  footer: "bg-foreground dark:bg-[hsl(215_45%_16%)]",
 };
 
 /** Soft text on a navy band. */
@@ -138,7 +138,9 @@ export function Feature({
   return (
     <div className="border-t border-border pt-5">
       <h3 className={H3}>{title}</h3>
-      {meta && <div className="mt-1.5 text-sm font-medium text-primary">{meta}</div>}
+      {meta && (
+        <div className="mt-1.5 text-sm font-medium text-primary dark:text-chart-1">{meta}</div>
+      )}
       {text && <LeadText text={text} className="mt-2.5" />}
       {children}
     </div>
@@ -466,7 +468,7 @@ export function FaqSheet({
               {title}
             </h2>
             {t.faqPreview?.subtitle && (
-              <p className="mt-4 max-w-md text-base leading-relaxed opacity-80 text-pretty">
+              <p className="mt-4 max-w-md text-base leading-relaxed opacity-80 text-pretty dark:opacity-100">
                 {t.faqPreview.subtitle}
               </p>
             )}

@@ -351,7 +351,7 @@ export default function PricingPage() {
                           <TableCell className="font-medium">
                             <a
                               href={localizedPath("boatDetail", boat.id)}
-                              className="flex items-center gap-3 hover:text-primary transition-colors underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none rounded-sm"
+                              className="flex items-center gap-3 hover:text-primary dark:hover:text-chart-1 transition-colors underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none rounded-sm"
                             >
                               <img
                                 src={getBoatImage(boat.imageUrl || "")}
@@ -430,11 +430,11 @@ export default function PricingPage() {
                             height={48}
                           />
                         </a>
-                        <div className="flex-1 flex items-start justify-between min-w-0">
-                          <div>
+                        <div className="flex-1 flex items-start justify-between gap-2 min-w-0">
+                          <div className="min-w-0">
                             <a
                               href={localizedPath("boatDetail", boat.id)}
-                              className="text-lg font-semibold hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none rounded-sm"
+                              className="pointer-coarse:inline-flex pointer-coarse:min-h-11 pointer-coarse:items-center text-lg font-semibold hover:text-primary dark:hover:text-chart-1 transition-colors focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none rounded-sm"
                             >
                               {translateBoatText(boat.name, language)}
                             </a>
@@ -445,7 +445,7 @@ export default function PricingPage() {
                               </span>
                             </div>
                           </div>
-                          <span className="shrink-0 text-sm text-muted-foreground">
+                          <span className="max-w-[45%] text-right text-sm text-muted-foreground text-balance">
                             {getLicenseLabel(boat, pp)}
                           </span>
                         </div>
@@ -605,7 +605,7 @@ export default function PricingPage() {
           </InteractiveHoverButton>
         </Rise>
       </Sheet>
-      <div className="bg-foreground">
+      <div className="bg-foreground dark:bg-[hsl(215_45%_16%)]">
         <BookingStickyBar />
       </div>
       <Footer />

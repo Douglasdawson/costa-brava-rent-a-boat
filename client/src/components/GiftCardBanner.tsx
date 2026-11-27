@@ -10,7 +10,7 @@ export default function GiftCardBanner() {
   return (
     <section className="py-16 sm:py-24">
       <div className="container mx-auto px-4">
-        <div className="rounded-2xl bg-foreground px-6 py-10 sm:px-10 sm:py-12 lg:px-16 lg:py-14">
+        <div className="rounded-2xl bg-foreground dark:bg-[hsl(215_45%_16%)] px-6 py-10 sm:px-10 sm:py-12 lg:px-16 lg:py-14">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
             {/* Text */}
             <div>

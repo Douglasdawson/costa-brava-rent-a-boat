@@ -268,7 +268,10 @@ export default function NavigationLicensePage() {
       </div>
 
       {/* NEW RULE (RD 1188/2025): navy band, the note as its own light panel */}
-      <section className={`${SHEET} ${NAVY} py-16 sm:py-24`} aria-labelledby="titulin-rule-title">
+      <section
+        className={`${SHEET} ${NAVY} overflow-x-clip py-16 sm:py-24`}
+        aria-labelledby="titulin-rule-title"
+      >
         <div className="container mx-auto grid max-w-6xl items-center gap-10 px-4 lg:grid-cols-[6fr_5fr] lg:gap-16">
           <Rise x={-24} y={0}>
             <h2 id="titulin-rule-title" className={H2}>
@@ -394,7 +397,7 @@ export default function NavigationLicensePage() {
 
       {/* FLEET BRIDGE */}
       <section
-        className={`${SHEET} bg-muted/40 py-16 sm:py-24`}
+        className={`${SHEET} overflow-x-clip bg-muted/40 py-16 sm:py-24`}
         aria-labelledby="titulin-fleet-title"
       >
         <div className="container mx-auto grid max-w-6xl items-center gap-10 px-4 lg:grid-cols-2 lg:gap-16">
@@ -445,7 +448,7 @@ export default function NavigationLicensePage() {
                       {p?.faqTitle}
                     </h2>
                     {t.faqPreview?.subtitle && (
-                      <p className="mt-4 max-w-md text-base leading-relaxed opacity-80 text-pretty">
+                      <p className="mt-4 max-w-md text-base leading-relaxed opacity-80 text-pretty dark:opacity-100">
                         {t.faqPreview.subtitle}
                       </p>
                     )}
@@ -522,7 +525,7 @@ export default function NavigationLicensePage() {
       </section>
 
       {/* FINAL CTA: closes over the footer colour */}
-      <div className="bg-foreground">
+      <div className="bg-foreground dark:bg-[hsl(215_45%_16%)]">
         <section
           className={`${SHEET} bg-background py-16 sm:py-24`}
           aria-labelledby="titulin-final-title"

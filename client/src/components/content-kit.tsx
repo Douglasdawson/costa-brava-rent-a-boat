@@ -27,13 +27,13 @@ const TONE_SECTION: Record<Tone, string> = {
   background: "bg-background text-foreground",
   muted: `${MUTED_BG} text-foreground`,
   navy: NAVY,
-  foot: "bg-foreground text-background",
+  foot: "bg-foreground text-background dark:bg-[hsl(215_45%_16%)] dark:text-foreground",
 };
 const TONE_WRAPPER: Record<Tone, string> = {
   background: "bg-background",
   muted: MUTED_BG,
   navy: NAVY_BG,
-  foot: "bg-foreground",
+  foot: "bg-foreground dark:bg-[hsl(215_45%_16%)]",
 };
 
 /** Text colours that read on a navy band (light and dark mode). */
@@ -113,8 +113,18 @@ export function PageHeader({
 }) {
   const center = align === "center";
   return (
-    <Sheet tone="navy" next={next} as="header" className="pb-14 pt-28 sm:pb-20 sm:pt-36">
-      <div className={cn("container mx-auto max-w-4xl px-4", center ? "text-center" : "text-left")}>
+    <Sheet
+      tone="navy"
+      next={next}
+      as="header"
+      className="flex min-h-[100svh] flex-col justify-center pb-14 pt-28 sm:block sm:min-h-0 sm:pb-20 sm:pt-36"
+    >
+      <div
+        className={cn(
+          "container mx-auto w-full max-w-4xl px-4",
+          center ? "text-center" : "text-left"
+        )}
+      >
         <h1 className="font-heading text-h1 font-semibold tracking-tight text-balance">{title}</h1>
         {subtitle && (
           <p

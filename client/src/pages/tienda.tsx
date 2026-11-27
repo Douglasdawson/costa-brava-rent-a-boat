@@ -35,6 +35,17 @@ import { apiRequest } from "@/lib/queryClient";
 import { generateHreflangLinks, generateCanonicalUrl, BASE_DOMAIN } from "@/utils/seo-config";
 import { generateBreadcrumbSchema, generateFAQSchema } from "@/utils/seo-schemas";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import {
+  Fold,
+  Rise,
+  Sheet as ContentSheet,
+  H2,
+  MUTED_BG,
+  NAVY_BG,
+  ON_NAVY_MUTED,
+  SHEET,
+} from "@/components/content-kit";
 
 /**
  * The capsule's own palette, scoped to this page. These are the two inks the
@@ -124,6 +135,7 @@ export default function TiendaPage() {
   const [banner, setBanner] = useState<OrderBanner>(null);
   const [summary, setSummary] = useState<OrderSummary | null>(null);
   const [cartOpen, setCartOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [announcement, setAnnouncement] = useState("");
   const isMobile = useIsMobile();
 
@@ -449,190 +461,217 @@ export default function TiendaPage() {
 
       {/* HERO: the capsule's own colour carries the fold, the photograph does
           the selling. No crop: the source frames are square and stay square. */}
-      <section className={`min-h-[100svh] bg-[var(--shop-butter)] lg:min-h-0 ${banner ? "pt-8" : "pt-24 lg:pt-28"}`}>
-        {/* One fold, one idea: on lg the hero owns the whole viewport. min-height
+      <div className="bg-background">
+        <section
+          className={`${SHEET} min-h-[100svh] bg-[var(--shop-butter)] lg:min-h-0 ${banner ? "pt-8" : "pt-24 lg:pt-28"}`}
+        >
+          {/* One fold, one idea: on lg the hero owns the whole viewport. min-height
             is border-box, so it already contains this element's own pb-8 and the
             budget subtracts only the section's pt-28: 112 + (100svh - 112) =
             100svh exactly. Subtracting the bottom padding too left a 32px gap. */}
-        <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 pb-12 sm:px-8 lg:grid lg:min-h-[calc(100svh-7rem)] lg:grid-cols-2 lg:items-center lg:gap-16 lg:pb-8">
-          {/* Same square-frame rule as the product rows: capping the width caps
+          <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 pb-12 sm:px-8 lg:grid lg:min-h-[calc(100svh-7rem)] lg:grid-cols-2 lg:items-center lg:gap-16 lg:pb-8">
+            {/* Same square-frame rule as the product rows: capping the width caps
               the height with no crop, so a short window shrinks the photograph
               instead of pushing the hero past the fold. No `mx-auto` here: auto
               margins would turn this grid cell shrink-to-fit. */}
-          <div className="order-1 -mx-5 sm:mx-0 lg:order-2 lg:max-w-[calc(100svh-9rem)] lg:justify-self-end">
-            <picture>
-              <source type="image/avif" srcSet="/images/shop/tienda-hero-duo.avif" />
-              <img
-                src="/images/shop/tienda-hero-duo.webp"
-                alt="Dos amigos sentados en el pantalan del puerto de Blanes con la camiseta Costa Brava Culture en azul marino y amarillo mantequilla"
-                width={1200}
-                height={1200}
-                // React 18 does not know the camelCase prop and warns; the
-                // lowercase DOM attribute passes straight through.
-                {...({ fetchpriority: "high" } as Record<string, string>)}
-                decoding="async"
-                className="aspect-square w-full object-cover object-[center_35%] sm:rounded-2xl motion-safe:animate-in motion-safe:fade-in motion-safe:duration-700"
-              />
-            </picture>
-          </div>
-
-          <div className="order-2 lg:order-1">
-            <h1 className="font-heading text-[clamp(2.75rem,8vw,4.75rem)] font-semibold leading-[0.95] tracking-[-0.02em] text-foreground text-balance">
-              {s.hero.title}
-            </h1>
-            <p className="mt-6 max-w-[42ch] text-lg leading-relaxed text-foreground/80">
-              {s.hero.subtitle}
-            </p>
-            <p className="mt-6 text-base font-semibold text-foreground">{s.hero.limitedNote}</p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <a href="#piezas" className={`${NAVY_CTA} min-h-12 px-7 text-base`}>
-                {s.hero.cta}
-                <ArrowRight className="h-4 w-4" />
-              </a>
-              <span className="text-sm font-medium text-foreground/70">
-                {s.hero.meta} · {s.hero.collabBadge}
-              </span>
+            <div className="order-1 -mx-5 sm:mx-0 lg:order-2 lg:max-w-[calc(100svh-9rem)] lg:justify-self-end">
+              <picture>
+                <source type="image/avif" srcSet="/images/shop/tienda-hero-duo.avif" />
+                <img
+                  src="/images/shop/tienda-hero-duo.webp"
+                  alt="Dos amigos sentados en el pantalan del puerto de Blanes con la camiseta Costa Brava Culture en azul marino y amarillo mantequilla"
+                  width={1200}
+                  height={1200}
+                  // React 18 does not know the camelCase prop and warns; the
+                  // lowercase DOM attribute passes straight through.
+                  {...({ fetchpriority: "high" } as Record<string, string>)}
+                  decoding="async"
+                  className="aspect-square w-full object-cover object-[center_35%] sm:rounded-2xl motion-safe:animate-in motion-safe:fade-in motion-safe:duration-700"
+                />
+              </picture>
             </div>
-            <p className="mt-8 max-w-[46ch] border-t border-foreground/15 pt-5 text-sm text-foreground/70">
-              {s.hero.credit}
-            </p>
+
+            <div className="order-2 lg:order-1">
+              <h1 className="font-heading text-[clamp(2.75rem,8vw,4.75rem)] font-semibold leading-[0.95] tracking-[-0.02em] text-foreground text-balance">
+                {s.hero.title}
+              </h1>
+              <p className="mt-6 max-w-[42ch] text-lg leading-relaxed text-foreground/80">
+                {s.hero.subtitle}
+              </p>
+              <p className="mt-6 text-base font-semibold text-foreground">{s.hero.limitedNote}</p>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <a href="#piezas" className={`${NAVY_CTA} min-h-12 px-7 text-base`}>
+                  {s.hero.cta}
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+                <span className="text-sm font-medium text-foreground/70">
+                  {s.hero.meta} · {s.hero.collabBadge}
+                </span>
+              </div>
+              <p className="mt-8 max-w-[46ch] border-t border-foreground/15 pt-5 text-sm text-foreground/70">
+                {s.hero.credit}
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* THE PIECES: three editorial rows, alternating side. A three-cell card
           grid would read as a catalogue that ran out of products. */}
-      <section id="piezas" className="scroll-mt-24">
-        {displayItems.map(({ product, color }, index) => (
-          <PieceRow
-            key={`${product.id}-${color}`}
-            product={product}
-            color={color}
-            price={priceOf(product)}
-            mirrored={index % 2 === 1}
-            skuAvailable={skuAvailable}
-            stockOf={sku => liveBySku.get(sku)?.stock}
-            onAdd={handleAdd}
-          />
-        ))}
-      </section>
+      <div className="bg-[var(--shop-ink)]">
+        <section id="piezas" className={`${SHEET} scroll-mt-24 bg-background`}>
+          {displayItems.map(({ product, color }, index) => (
+            <PieceRow
+              key={`${product.id}-${color}`}
+              product={product}
+              color={color}
+              price={priceOf(product)}
+              mirrored={index % 2 === 1}
+              skuAvailable={skuAvailable}
+              stockOf={sku => liveBySku.get(sku)?.stock}
+              onAdd={handleAdd}
+            />
+          ))}
+        </section>
+      </div>
 
       {/* PACK: drenched in the print ink. A different visual world because it is
           a different offer, not another product. */}
-      <section className="bg-[var(--shop-ink)] px-5 py-16 text-white sm:px-8 lg:py-20">
-        <div className="mx-auto flex max-w-5xl flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
-          <div className="max-w-[46ch]">
-            <h2 className="font-heading text-[clamp(2rem,4.5vw,3rem)] font-semibold leading-tight tracking-[-0.02em] text-balance">
-              {s.pack.title}
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-[var(--shop-butter)]">{s.pack.text}</p>
+      <div className="bg-[var(--shop-butter)]">
+        <section className={`${SHEET} bg-[var(--shop-ink)] px-5 py-16 text-white sm:px-8 lg:py-20`}>
+          <div className="mx-auto flex max-w-5xl flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-[46ch]">
+              <h2 className="font-heading text-[clamp(2rem,4.5vw,3rem)] font-semibold leading-tight tracking-[-0.02em] text-balance">
+                {s.pack.title}
+              </h2>
+              <p className="mt-4 text-lg leading-relaxed text-[var(--shop-butter)]">
+                {s.pack.text}
+              </p>
+            </div>
+            <div className="flex-shrink-0 lg:text-right">
+              <p className="flex items-baseline gap-3 font-heading lg:justify-end">
+                <span className="text-sm font-medium text-[var(--shop-butter)] line-through">
+                  {formatPrice(packBefore)}
+                </span>
+                <span className="text-5xl font-semibold tabular-nums">
+                  {formatPrice(packAfter)}
+                </span>
+              </p>
+              <p className="mt-2 text-sm font-semibold text-[var(--shop-butter)]">
+                {s.pack.saving} {formatPrice(packSaving)}
+              </p>
+              <a href="#piezas" className={`${BUTTER_CTA} mt-6 min-h-12`}>
+                {s.pack.cta}
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
           </div>
-          <div className="flex-shrink-0 lg:text-right">
-            <p className="flex items-baseline gap-3 font-heading lg:justify-end">
-              <span className="text-sm font-medium text-[var(--shop-butter)] line-through">
-                {formatPrice(packBefore)}
-              </span>
-              <span className="text-5xl font-semibold tabular-nums">{formatPrice(packAfter)}</span>
-            </p>
-            <p className="mt-2 text-sm font-semibold text-[var(--shop-butter)]">
-              {s.pack.saving} {formatPrice(packSaving)}
-            </p>
-            <a href="#piezas" className={`${BUTTER_CTA} mt-6 min-h-12`}>
-              {s.pack.cta}
-              <ArrowRight className="h-4 w-4" />
-            </a>
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* DESIGNER: the collaboration is the reason this exists, so it gets a
           band of its own instead of a footnote card. */}
-      <section className="bg-[var(--shop-butter)] px-5 py-16 sm:px-8 lg:py-20">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="font-heading text-[clamp(1.75rem,4vw,2.5rem)] font-semibold leading-tight tracking-[-0.02em] text-foreground">
-            {s.designer.title}
-          </h2>
-          <p className="mt-5 max-w-[62ch] text-lg leading-relaxed text-foreground/80">
-            {s.designer.text}
-          </p>
-          <a
-            href={LAURA_CABANAS_URL}
-            target="_blank"
-            rel="noopener"
-            className="mt-6 inline-flex items-center gap-1.5 font-semibold text-foreground underline decoration-foreground/30 underline-offset-4 transition-colors hover:decoration-foreground"
-          >
-            {s.designer.cta}
-            <ExternalLink className="h-4 w-4" />
-          </a>
-        </div>
-      </section>
+      <div className={MUTED_BG}>
+        <section className={`${SHEET} bg-[var(--shop-butter)] px-5 py-16 sm:px-8 lg:py-20`}>
+          <div className="mx-auto max-w-3xl">
+            <h2 className="font-heading text-[clamp(1.75rem,4vw,2.5rem)] font-semibold leading-tight tracking-[-0.02em] text-foreground">
+              {s.designer.title}
+            </h2>
+            <p className="mt-5 max-w-[62ch] text-lg leading-relaxed text-foreground/80">
+              {s.designer.text}
+            </p>
+            <a
+              href={LAURA_CABANAS_URL}
+              target="_blank"
+              rel="noopener"
+              className="mt-6 inline-flex items-center gap-1.5 py-3 -my-3 font-semibold text-foreground underline decoration-foreground/30 underline-offset-4 transition-colors hover:decoration-foreground"
+            >
+              {s.designer.cta}
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
+        </section>
+      </div>
 
       {/* DELIVERY: three rows of plain text. Icon-topped cards would be the
           third identical grid on one page. */}
-      <section className="px-5 py-12 sm:py-16 lg:py-20 sm:px-8">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="font-heading text-2xl font-semibold tracking-[-0.01em] text-foreground">
-            {s.delivery.title}
-          </h2>
-          <dl className="mt-8 border-t border-border">
-            {[
-              { title: s.delivery.pickupTitle, text: s.delivery.pickupText, price: 0 },
-              { title: s.delivery.pickupLauraTitle, text: s.delivery.pickupLauraText, price: 0 },
-              {
-                title: s.delivery.shippingTitle,
-                text: s.delivery.shippingText,
-                price: offers.shippingFlatCents,
-              },
-            ].map(option => (
-              <div key={option.title} className="border-b border-border py-5">
-                <div className="flex items-baseline justify-between gap-4">
-                  <dt className="font-heading font-semibold text-foreground">{option.title}</dt>
-                  <dd className="flex-shrink-0 text-sm font-semibold tabular-nums text-foreground">
-                    {option.price === 0 ? formatPrice(0) : formatPrice(option.price)}
+      <div className={MUTED_BG}>
+        <section className={`${SHEET} bg-background px-5 py-12 sm:px-8 sm:py-16 lg:py-20`}>
+          <div className="mx-auto max-w-3xl">
+            <h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
+              {s.delivery.title}
+            </h2>
+            <dl className="mt-8 border-t border-border">
+              {[
+                { title: s.delivery.pickupTitle, text: s.delivery.pickupText, price: 0 },
+                { title: s.delivery.pickupLauraTitle, text: s.delivery.pickupLauraText, price: 0 },
+                {
+                  title: s.delivery.shippingTitle,
+                  text: s.delivery.shippingText,
+                  price: offers.shippingFlatCents,
+                },
+              ].map(option => (
+                <div key={option.title} className="border-b border-border py-5">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <dt className="font-heading font-semibold text-foreground">{option.title}</dt>
+                    <dd className="flex-shrink-0 text-sm font-semibold tabular-nums text-foreground">
+                      {option.price === 0 ? formatPrice(0) : formatPrice(option.price)}
+                    </dd>
+                  </div>
+                  <dd className="mt-1.5 max-w-[68ch] text-sm leading-relaxed text-muted-foreground">
+                    {option.text}
                   </dd>
                 </div>
-                <dd className="mt-1.5 max-w-[68ch] text-sm leading-relaxed text-muted-foreground">
-                  {option.text}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      {/* CROSS-SELL: the merch buyer is a warm boat lead and the page never
-          said so. The illustration is literally one of the boats. */}
-      <section className="bg-cta px-5 py-16 text-cta-foreground sm:px-8 lg:py-20">
-        <div className="mx-auto flex max-w-5xl flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-          <div className="max-w-[46ch]">
-            <h2 className="font-heading text-[clamp(1.75rem,4vw,2.75rem)] font-semibold leading-tight tracking-[-0.02em] text-balance">
-              {s.boatCta.title}
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-cta-foreground/80">{s.boatCta.text}</p>
+              ))}
+            </dl>
           </div>
-          <Link href={localizedPath("pricing")} className={`${BUTTER_CTA} min-h-12 flex-shrink-0`}>
-            {s.boatCta.cta}
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </section>
+        </section>
+      </div>
 
-      {/* FAQ */}
-      <section className="px-5 py-12 sm:py-16 lg:py-20 sm:px-8">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="font-heading text-2xl font-semibold tracking-[-0.01em] text-foreground">
-            {s.faqTitle}
-          </h2>
-          <dl className="mt-8 divide-y divide-border border-t border-border">
-            {s.faq.map(f => (
-              <div key={f.q} className="py-5">
-                <dt className="font-heading font-semibold text-foreground">{f.q}</dt>
-                <dd className="mt-1.5 max-w-[68ch] leading-relaxed text-muted-foreground">{f.a}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      {/* FAQ: born folded, answers stay in the DOM (and in the JSON-LD) */}
+      <div className={NAVY_BG}>
+        <section className={`${SHEET} ${MUTED_BG} px-5 py-12 sm:px-8 sm:py-16 lg:py-20`}>
+          <div className="mx-auto max-w-3xl">
+            <h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
+              {s.faqTitle}
+            </h2>
+            <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-background">
+              {s.faq.map((f, i) => (
+                <Fold
+                  key={f.q}
+                  id={`shop-faq-${i}`}
+                  title={f.q}
+                  open={openFaq === i}
+                  onToggle={() => setOpenFaq(openFaq === i ? null : i)}
+                  flat
+                >
+                  {f.a}
+                </Fold>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {/* CROSS-SELL, closing over the footer: the merch buyer is a warm boat
+          lead and the page never said so. The illustration is literally one
+          of the boats. */}
+      <ContentSheet tone="navy" next="foot">
+        <Rise className="mx-auto flex max-w-5xl flex-col gap-8 px-5 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
+          <div className="max-w-[46ch]">
+            <h2 className={H2}>{s.boatCta.title}</h2>
+            <p className={`mt-4 text-lg leading-relaxed ${ON_NAVY_MUTED}`}>{s.boatCta.text}</p>
+          </div>
+          <InteractiveHoverButton
+            as={Link}
+            href={localizedPath("pricing")}
+            tone="light"
+            className="min-h-12 flex-shrink-0 px-8 text-base"
+          >
+            {s.boatCta.cta}
+          </InteractiveHoverButton>
+        </Rise>
+      </ContentSheet>
 
       {/* Cart: header icon and every add open this sheet (right drawer on
           desktop, bottom on mobile). */}
@@ -781,7 +820,7 @@ function PieceRow({
             <a
               href="#piezas"
               // py/-my pair widens the tap target to 40px without moving anything
-              className="mt-4 inline-flex items-center gap-1.5 py-2.5 -my-2.5 text-sm font-semibold text-foreground underline decoration-foreground/25 underline-offset-4 transition-colors hover:decoration-foreground"
+              className="mt-4 inline-flex items-center gap-1.5 py-3 -my-3 text-sm font-semibold text-foreground underline decoration-foreground/25 underline-offset-4 transition-colors hover:decoration-foreground"
             >
               {fill(s.alsoIn, "{color}", s.colors[otherColor])}
             </a>

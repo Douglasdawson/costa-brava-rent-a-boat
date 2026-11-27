@@ -31,7 +31,7 @@ import {
 import { generateRoutesItemListSchema } from "@/utils/seo-schemas";
 
 const difficultyColors: Record<string, string> = {
-  easy: "bg-primary/10 text-primary",
+  easy: "bg-primary/10 text-primary dark:text-chart-1",
   moderate: "bg-cta/10 text-cta",
   advanced: "bg-red-100 text-red-800",
 };
@@ -237,7 +237,7 @@ function RoutesPage() {
                 {introRest.join(" ")}{" "}
                 <a
                   href={localizedPath("home") + "#fleet"}
-                  className="text-primary underline-offset-2 hover:underline"
+                  className="text-primary dark:text-chart-1 underline-offset-2 hover:underline"
                 >
                   {t.routes?.introFleetLink}
                 </a>{" "}

@@ -223,7 +223,7 @@ export default function ActivitiesPage() {
                 href={pickUrl(rainyDay)}
                 target="_blank"
                 rel="noopener"
-                className="font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta"
+                className="font-semibold text-primary hover:underline dark:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta"
               >
                 {pickCopy(rainyDay)?.name}
               </a>

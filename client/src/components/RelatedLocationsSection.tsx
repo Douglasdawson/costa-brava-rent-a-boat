@@ -75,7 +75,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
           <div className="mb-12">
             <div className="text-center mb-8">
               <div className="flex items-center justify-center gap-2 mb-3">
-                <Anchor className="w-6 h-6 text-primary" aria-hidden="true" />
+                <Anchor className="w-6 h-6 text-primary dark:text-chart-1" aria-hidden="true" />
                 <h2 className="font-heading text-h2 font-semibold tracking-tight text-foreground">
                   {rl.boatTitle}
                 </h2>
@@ -84,9 +84,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
             </div>
             <div
               className={`grid gap-6 ${
-                boatDestinations.length <= 2
-                  ? "md:grid-cols-2 max-w-3xl mx-auto"
-                  : "md:grid-cols-3"
+                boatDestinations.length <= 2 ? "md:grid-cols-2 max-w-3xl mx-auto" : "md:grid-cols-3"
               }`}
             >
               {boatDestinations.map(location => {
@@ -125,7 +123,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
           <div className="mb-12 max-w-3xl mx-auto">
             <div className="text-center mb-6">
               <div className="flex items-center justify-center gap-2 mb-3">
-                <Car className="w-5 h-5 text-primary" aria-hidden="true" />
+                <Car className="w-5 h-5 text-primary dark:text-chart-1" aria-hidden="true" />
                 <h2 className="font-heading text-xl lg:text-2xl font-semibold tracking-tight text-foreground">
                   {rl.carTitle}
                 </h2>
@@ -144,7 +142,10 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
                       data-testid={`link-related-${town.id}`}
                     >
                       <span className="flex items-center gap-2 font-medium text-foreground">
-                        <MapPin className="w-4 h-4 text-primary shrink-0" aria-hidden="true" />
+                        <MapPin
+                          className="w-4 h-4 text-primary dark:text-chart-1 shrink-0"
+                          aria-hidden="true"
+                        />
                         {info.name}
                       </span>
                       <span className="flex items-center gap-2 text-sm text-muted-foreground shrink-0">
@@ -165,9 +166,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
             <h2 className="font-heading text-h2 font-semibold tracking-tight text-foreground mb-3">
               {rl.categoriesTitle}
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              {rl.categoriesIntro}
-            </p>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{rl.categoriesIntro}</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
@@ -182,7 +181,10 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
               return (
                 <Link key={id} href={localizedPath(route)} asChild>
                   <div className="bg-background border border-border rounded-2xl p-6 cursor-pointer group text-center">
-                    <Icon className="w-6 h-6 text-primary mx-auto mb-3" aria-hidden="true" />
+                    <Icon
+                      className="w-6 h-6 text-primary dark:text-chart-1 mx-auto mb-3"
+                      aria-hidden="true"
+                    />
                     <h3 className="font-heading font-semibold text-lg mb-2">{info.name}</h3>
                     <p className="text-muted-foreground mb-3 text-sm leading-relaxed">
                       {info.description}

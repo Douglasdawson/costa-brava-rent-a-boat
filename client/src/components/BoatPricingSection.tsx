@@ -61,19 +61,16 @@ function toDateKey(d: Date): string {
 function dedupeIncluded(items: string[]): string[] {
   const norm = (s: string) => s.toLowerCase().trim();
   const seen = new Set<string>();
-  const exact = items.filter((item) => {
+  const exact = items.filter(item => {
     const key = norm(item);
     if (seen.has(key)) return false;
     seen.add(key);
     return true;
   });
-  return exact.filter((item) => {
+  return exact.filter(item => {
     const itemN = norm(item);
     return !exact.some(
-      (other) =>
-        other !== item &&
-        norm(other).includes(itemN) &&
-        norm(other).length > itemN.length
+      other => other !== item && norm(other).includes(itemN) && norm(other).length > itemN.length
     );
   });
 }
@@ -99,7 +96,7 @@ export default function BoatPricingSection({
   onDateSelect,
   onDateClear,
   onDurationSelect,
-  translate = (s) => s,
+  translate = s => s,
 }: BoatPricingSectionProps) {
   const t = useTranslations();
   const { language } = useLanguage();
@@ -143,12 +140,18 @@ export default function BoatPricingSection({
                   data-testid="button-open-calendar"
                 >
                   <span className="flex min-w-0 items-center gap-2">
-                    <Calendar className="w-5 h-5 text-primary shrink-0" aria-hidden="true" />
+                    <Calendar
+                      className="w-5 h-5 text-primary dark:text-chart-1 shrink-0"
+                      aria-hidden="true"
+                    />
                     <span className="text-sm font-medium text-foreground truncate">
                       {selectedDate ? dayLabel : t.boatDetail.checkAvailability}
                     </span>
                   </span>
-                  <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0" aria-hidden="true" />
+                  <ChevronDown
+                    className="w-4 h-4 text-muted-foreground shrink-0"
+                    aria-hidden="true"
+                  />
                 </span>
                 <input
                   type="date"
@@ -156,7 +159,7 @@ export default function BoatPricingSection({
                   min={todayKey}
                   max={maxKey}
                   onChange={handleNativeDateChange}
-                  onClick={(e) => {
+                  onClick={e => {
                     // Desktop browsers at <768px (narrow window, not a touch
                     // device) hit this mobile branch but only FOCUS the date
                     // input on click without opening the calendar — so the user
@@ -207,24 +210,26 @@ export default function BoatPricingSection({
           </div>
         </div>
 
-        {boatData.included && boatData.included.length > 0 && (() => {
-          const items = dedupeIncluded(boatData.included);
-          return (
-            <div className="text-sm text-muted-foreground text-left md:text-center pt-4 border-t">
-              <p className="mb-3 mt-3">
-                <strong>{t.boatDetail.priceIncludes}</strong>
-              </p>
-              <div className="flex flex-wrap justify-start md:justify-center items-center gap-4">
-                {items.map((item, index) => (
-                  <div key={index} className="flex items-center">
-                    <CheckCircle className="w-3 h-3 text-primary mr-1" />
-                    <span className="text-xs">{translate(item)}</span>
-                  </div>
-                ))}
+        {boatData.included &&
+          boatData.included.length > 0 &&
+          (() => {
+            const items = dedupeIncluded(boatData.included);
+            return (
+              <div className="text-sm text-muted-foreground text-left md:text-center pt-4 border-t">
+                <p className="mb-3 mt-3">
+                  <strong>{t.boatDetail.priceIncludes}</strong>
+                </p>
+                <div className="flex flex-wrap justify-start md:justify-center items-center gap-4">
+                  {items.map((item, index) => (
+                    <div key={index} className="flex items-center">
+                      <CheckCircle className="w-3 h-3 text-primary dark:text-chart-1 mr-1" />
+                      <span className="text-xs">{translate(item)}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          );
-        })()}
+            );
+          })()}
       </CardContent>
     </Card>
   );
@@ -234,7 +239,10 @@ function EmptyPricingState() {
   const t = useTranslations();
   return (
     <div className="rounded-lg bg-muted p-8 text-center space-y-3">
-      <Calendar className="w-10 h-10 text-primary/40 mx-auto" aria-hidden="true" />
+      <Calendar
+        className="w-10 h-10 text-primary dark:text-chart-1/40 mx-auto"
+        aria-hidden="true"
+      />
       <h3 className="text-base font-semibold font-heading">{t.boatDetail.selectDateTitle}</h3>
       <p className="text-sm text-muted-foreground max-w-xs mx-auto">
         {t.boatDetail.selectDateBody}
@@ -276,7 +284,7 @@ function DayPricingMode({
   const activeDurations = useMemo(() => {
     const set = new Set<string>();
     if (boatData.pricing) {
-      (["BAJA", "MEDIA", "ALTA"] as const).forEach((s) => {
+      (["BAJA", "MEDIA", "ALTA"] as const).forEach(s => {
         const seasonPricing = boatData.pricing?.[s];
         if (!seasonPricing) return;
         Object.entries(seasonPricing.prices).forEach(([d, p]) => {
@@ -300,12 +308,42 @@ function DayPricingMode({
   // One hook per possible duration. Hooks must be unconditional, but each one
   // gates its own fetch via `enabled` so we don't hit the API for slots the boat
   // doesn't sell. The filter at the bottom keeps the final array clean.
-  const p1h = useBoatPricingForDate({ boatId, date: dateKey, duration: "1h", enabled: activeDurations.has("1h") });
-  const p2h = useBoatPricingForDate({ boatId, date: dateKey, duration: "2h", enabled: activeDurations.has("2h") });
-  const p3h = useBoatPricingForDate({ boatId, date: dateKey, duration: "3h", enabled: activeDurations.has("3h") });
-  const p4h = useBoatPricingForDate({ boatId, date: dateKey, duration: "4h", enabled: activeDurations.has("4h") });
-  const p6h = useBoatPricingForDate({ boatId, date: dateKey, duration: "6h", enabled: activeDurations.has("6h") });
-  const p8h = useBoatPricingForDate({ boatId, date: dateKey, duration: "8h", enabled: activeDurations.has("8h") });
+  const p1h = useBoatPricingForDate({
+    boatId,
+    date: dateKey,
+    duration: "1h",
+    enabled: activeDurations.has("1h"),
+  });
+  const p2h = useBoatPricingForDate({
+    boatId,
+    date: dateKey,
+    duration: "2h",
+    enabled: activeDurations.has("2h"),
+  });
+  const p3h = useBoatPricingForDate({
+    boatId,
+    date: dateKey,
+    duration: "3h",
+    enabled: activeDurations.has("3h"),
+  });
+  const p4h = useBoatPricingForDate({
+    boatId,
+    date: dateKey,
+    duration: "4h",
+    enabled: activeDurations.has("4h"),
+  });
+  const p6h = useBoatPricingForDate({
+    boatId,
+    date: dateKey,
+    duration: "6h",
+    enabled: activeDurations.has("6h"),
+  });
+  const p8h = useBoatPricingForDate({
+    boatId,
+    date: dateKey,
+    duration: "8h",
+    enabled: activeDurations.has("8h"),
+  });
 
   const results = useMemo(
     () =>
@@ -316,12 +354,12 @@ function DayPricingMode({
         { duration: "4h", ...p4h },
         { duration: "6h", ...p6h },
         { duration: "8h", ...p8h },
-      ].filter((r) => activeDurations.has(r.duration)),
+      ].filter(r => activeDurations.has(r.duration)),
     [activeDurations, p1h, p2h, p3h, p4h, p6h, p8h]
   );
 
-  const isLoading = results.length > 0 && results.every((r) => r.finalPrice === null);
-  const allEmpty = !isLoading && results.every((r) => r.finalPrice === null);
+  const isLoading = results.length > 0 && results.every(r => r.finalPrice === null);
+  const allEmpty = !isLoading && results.every(r => r.finalPrice === null);
 
   return (
     <div className="space-y-4">
@@ -363,7 +401,7 @@ function DayPricingMode({
             role="status"
             aria-label={t.boatDetail.loadingPrices}
           >
-            {results.map((r) => (
+            {results.map(r => (
               <div
                 key={`skel-${r.duration}`}
                 className="text-center p-3 rounded-lg bg-background border w-[calc(50%-0.375rem)] sm:w-[160px]"
@@ -375,10 +413,12 @@ function DayPricingMode({
             ))}
           </div>
         ) : allEmpty ? (
-          <p className="text-sm text-muted-foreground text-center">{t.boatDetail.noPricesForDate}</p>
+          <p className="text-sm text-muted-foreground text-center">
+            {t.boatDetail.noPricesForDate}
+          </p>
         ) : (
           <div className="flex flex-wrap justify-center gap-x-3 gap-y-6">
-            {results.map((r) => {
+            {results.map(r => {
               if (r.finalPrice === null) return null;
               const isRecommended = !requiresLicense && r.duration === "4h";
               const hasDiff = r.hasOverride && r.basePrice !== null && r.basePrice !== r.finalPrice;
@@ -403,13 +443,15 @@ function DayPricingMode({
                   data-testid={`button-duration-${r.duration}`}
                 >
                   {isRecommended && (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cta text-white text-[10px] font-bold px-3 py-0.5 rounded-full whitespace-nowrap tracking-wide">
+                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cta text-white dark:text-background text-[10px] font-bold px-3 py-0.5 rounded-full whitespace-nowrap tracking-wide">
                       {t.boatDetail.recommendedBadge}
                     </span>
                   )}
                   <div
                     className={`font-bold tabular-nums ${
-                      isRecommended ? "text-xl text-primary" : "text-lg text-primary"
+                      isRecommended
+                        ? "text-xl text-primary dark:text-chart-1"
+                        : "text-lg text-primary dark:text-chart-1"
                     }`}
                   >
                     {r.finalPrice}€

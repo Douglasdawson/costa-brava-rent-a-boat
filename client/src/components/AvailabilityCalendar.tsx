@@ -28,9 +28,12 @@ import { SEASON_START_MONTH, SEASON_END_MONTH } from "@shared/constants";
 // Green/amber/red is the hardest trio for red-green colour blindness, so colour
 // is never the only signal: "few slots" gets a dot and "full" strikes the day
 // number through (see the cell render) — a robust cue with no visible noise.
-export const AVAILABLE_TONE = "bg-[hsl(150_38%_90%)] text-[hsl(152_45%_27%)] border-[hsl(150_32%_62%)] dark:bg-[hsl(150_30%_17%)] dark:text-[hsl(150_42%_76%)] dark:border-[hsl(150_28%_34%)]";
-export const PARTIAL_TONE = "bg-[hsl(38_78%_88%)] text-[hsl(28_65%_32%)] border-[hsl(35_65%_58%)] dark:bg-[hsl(34_45%_20%)] dark:text-[hsl(38_78%_74%)] dark:border-[hsl(35_50%_40%)]";
-export const BOOKED_TONE = "bg-[hsl(11_58%_90%)] text-[hsl(8_55%_38%)] border-[hsl(11_45%_63%)] dark:bg-[hsl(10_40%_19%)] dark:text-[hsl(12_58%_74%)] dark:border-[hsl(11_40%_38%)]";
+export const AVAILABLE_TONE =
+  "bg-[hsl(150_38%_90%)] text-[hsl(152_45%_27%)] border-[hsl(150_32%_62%)] dark:bg-[hsl(150_30%_17%)] dark:text-[hsl(150_42%_76%)] dark:border-[hsl(150_28%_34%)]";
+export const PARTIAL_TONE =
+  "bg-[hsl(38_78%_88%)] text-[hsl(28_65%_32%)] border-[hsl(35_65%_58%)] dark:bg-[hsl(34_45%_20%)] dark:text-[hsl(38_78%_74%)] dark:border-[hsl(35_50%_40%)]";
+export const BOOKED_TONE =
+  "bg-[hsl(11_58%_90%)] text-[hsl(8_55%_38%)] border-[hsl(11_45%_63%)] dark:bg-[hsl(10_40%_19%)] dark:text-[hsl(12_58%_74%)] dark:border-[hsl(11_40%_38%)]";
 
 export interface AvailabilityCalendarProps {
   /** If set, shows this boat's availability. Otherwise shows fleet-wide status. */
@@ -50,14 +53,118 @@ export interface AvailabilityCalendarProps {
 // ---------------------------------------------------------------------------
 
 const MONTH_NAMES: Record<string, string[]> = {
-  es: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
-  ca: ["Gener", "Febrer", "Marc", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre"],
-  en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-  fr: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"],
-  de: ["Januar", "Februar", "Marz", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
-  nl: ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"],
-  it: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"],
-  ru: ["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avgust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"],
+  es: [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ],
+  ca: [
+    "Gener",
+    "Febrer",
+    "Marc",
+    "Abril",
+    "Maig",
+    "Juny",
+    "Juliol",
+    "Agost",
+    "Setembre",
+    "Octubre",
+    "Novembre",
+    "Desembre",
+  ],
+  en: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ],
+  fr: [
+    "Janvier",
+    "Fevrier",
+    "Mars",
+    "Avril",
+    "Mai",
+    "Juin",
+    "Juillet",
+    "Aout",
+    "Septembre",
+    "Octobre",
+    "Novembre",
+    "Decembre",
+  ],
+  de: [
+    "Januar",
+    "Februar",
+    "Marz",
+    "April",
+    "Mai",
+    "Juni",
+    "Juli",
+    "August",
+    "September",
+    "Oktober",
+    "November",
+    "Dezember",
+  ],
+  nl: [
+    "Januari",
+    "Februari",
+    "Maart",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Augustus",
+    "September",
+    "Oktober",
+    "November",
+    "December",
+  ],
+  it: [
+    "Gennaio",
+    "Febbraio",
+    "Marzo",
+    "Aprile",
+    "Maggio",
+    "Giugno",
+    "Luglio",
+    "Agosto",
+    "Settembre",
+    "Ottobre",
+    "Novembre",
+    "Dicembre",
+  ],
+  ru: [
+    "Yanvar",
+    "Fevral",
+    "Mart",
+    "Aprel",
+    "May",
+    "Iyun",
+    "Iyul",
+    "Avgust",
+    "Sentyabr",
+    "Oktyabr",
+    "Noyabr",
+    "Dekabr",
+  ],
 };
 
 const DAY_HEADERS: Record<string, string[]> = {
@@ -72,18 +179,76 @@ const DAY_HEADERS: Record<string, string[]> = {
 };
 
 const FROM_LABEL: Record<string, string> = {
-  es: "desde", ca: "des de", en: "from", fr: "des", de: "ab", nl: "vanaf", it: "da", ru: "ot",
+  es: "desde",
+  ca: "des de",
+  en: "from",
+  fr: "des",
+  de: "ab",
+  nl: "vanaf",
+  it: "da",
+  ru: "ot",
 };
 
-const LEGEND_LABELS: Record<string, { available: string; partial: string; booked: string; offSeason: string; past: string }> = {
-  es: { available: "Disponible", partial: "Quedan pocas horas", booked: "Completo", offSeason: "Fuera de temporada", past: "Pasado" },
-  ca: { available: "Disponible", partial: "Queden poques hores", booked: "Complet", offSeason: "Fora de temporada", past: "Passat" },
-  en: { available: "Available", partial: "Few slots left", booked: "Fully booked", offSeason: "Off season", past: "Past" },
-  fr: { available: "Disponible", partial: "Peu de creneaux", booked: "Complet", offSeason: "Hors saison", past: "Passe" },
-  de: { available: "Verfugbar", partial: "Wenige Platze", booked: "Ausgebucht", offSeason: "Nebensaison", past: "Vergangen" },
-  nl: { available: "Beschikbaar", partial: "Bijna vol", booked: "Volgeboekt", offSeason: "Buiten seizoen", past: "Verleden" },
-  it: { available: "Disponibile", partial: "Pochi posti", booked: "Completo", offSeason: "Fuori stagione", past: "Passato" },
-  ru: { available: "Dostupno", partial: "Malo mest", booked: "Zanyato", offSeason: "Ne sezon", past: "Proshloe" },
+const LEGEND_LABELS: Record<
+  string,
+  { available: string; partial: string; booked: string; offSeason: string; past: string }
+> = {
+  es: {
+    available: "Disponible",
+    partial: "Quedan pocas horas",
+    booked: "Completo",
+    offSeason: "Fuera de temporada",
+    past: "Pasado",
+  },
+  ca: {
+    available: "Disponible",
+    partial: "Queden poques hores",
+    booked: "Complet",
+    offSeason: "Fora de temporada",
+    past: "Passat",
+  },
+  en: {
+    available: "Available",
+    partial: "Few slots left",
+    booked: "Fully booked",
+    offSeason: "Off season",
+    past: "Past",
+  },
+  fr: {
+    available: "Disponible",
+    partial: "Peu de creneaux",
+    booked: "Complet",
+    offSeason: "Hors saison",
+    past: "Passe",
+  },
+  de: {
+    available: "Verfugbar",
+    partial: "Wenige Platze",
+    booked: "Ausgebucht",
+    offSeason: "Nebensaison",
+    past: "Vergangen",
+  },
+  nl: {
+    available: "Beschikbaar",
+    partial: "Bijna vol",
+    booked: "Volgeboekt",
+    offSeason: "Buiten seizoen",
+    past: "Verleden",
+  },
+  it: {
+    available: "Disponibile",
+    partial: "Pochi posti",
+    booked: "Completo",
+    offSeason: "Fuori stagione",
+    past: "Passato",
+  },
+  ru: {
+    available: "Dostupno",
+    partial: "Malo mest",
+    booked: "Zanyato",
+    offSeason: "Ne sezon",
+    past: "Proshloe",
+  },
 };
 
 // ---------------------------------------------------------------------------
@@ -197,12 +362,12 @@ export default function AvailabilityCalendar({
 
   const goToPrevMonth = useCallback(() => {
     if (!canGoPrev) return;
-    setDisplayMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
+    setDisplayMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
   }, [canGoPrev]);
 
   const goToNextMonth = useCallback(() => {
     if (!canGoNext) return;
-    setDisplayMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
+    setDisplayMonth(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
   }, [canGoNext]);
 
   // ---------------------------------------------------------------------------
@@ -274,9 +439,20 @@ export default function AvailabilityCalendar({
           effectiveSelected.getDate() === d
         : false;
 
-      const isToday = today.getFullYear() === year && today.getMonth() === month - 1 && today.getDate() === d;
+      const isToday =
+        today.getFullYear() === year && today.getMonth() === month - 1 && today.getDate() === d;
 
-      map.set(d, { day: d, dateKey, date, isPast, isOffSeason: isOff, status, price, isSelected, isToday });
+      map.set(d, {
+        day: d,
+        dateKey,
+        date,
+        isPast,
+        isOffSeason: isOff,
+        status,
+        price,
+        isSelected,
+        isToday,
+      });
     }
     return map;
   }, [year, month, today, isInSeason, boatId, availabilityDays, effectiveSelected]);
@@ -314,7 +490,8 @@ export default function AvailabilityCalendar({
 
   // The day that holds tabIndex=0. Preference: selected → today → first clickable.
   const initialRoveDay = useMemo<number | null>(() => {
-    const selectedInMonth = effectiveSelected &&
+    const selectedInMonth =
+      effectiveSelected &&
       effectiveSelected.getFullYear() === year &&
       effectiveSelected.getMonth() === month - 1;
     if (selectedInMonth) return effectiveSelected.getDate();
@@ -352,14 +529,30 @@ export default function AvailabilityCalendar({
       const daysInMonth = new Date(year, month, 0).getDate();
       let next: number | "prev-month" | "next-month" = roveDay;
       switch (e.key) {
-        case "ArrowRight": next = roveDay + 1; break;
-        case "ArrowLeft": next = roveDay - 1; break;
-        case "ArrowDown": next = roveDay + 7; break;
-        case "ArrowUp": next = roveDay - 7; break;
-        case "Home": next = 1; break;
-        case "End": next = daysInMonth; break;
-        case "PageDown": next = "next-month"; break;
-        case "PageUp": next = "prev-month"; break;
+        case "ArrowRight":
+          next = roveDay + 1;
+          break;
+        case "ArrowLeft":
+          next = roveDay - 1;
+          break;
+        case "ArrowDown":
+          next = roveDay + 7;
+          break;
+        case "ArrowUp":
+          next = roveDay - 7;
+          break;
+        case "Home":
+          next = 1;
+          break;
+        case "End":
+          next = daysInMonth;
+          break;
+        case "PageDown":
+          next = "next-month";
+          break;
+        case "PageUp":
+          next = "prev-month";
+          break;
         case "Enter":
         case " ": {
           const info = dayInfoMap.get(roveDay);
@@ -382,16 +575,24 @@ export default function AvailabilityCalendar({
       const goingPrev = next === "prev-month" || (typeof next === "number" && next < 1);
       const goingNext = next === "next-month" || (typeof next === "number" && next > daysInMonth);
       if (goingPrev) {
-        if (!canGoPrev) { keyboardNavRef.current = false; return; }
+        if (!canGoPrev) {
+          keyboardNavRef.current = false;
+          return;
+        }
         const prevMonthDays = new Date(year, month - 1, 0).getDate();
-        const newDay = typeof next === "number" ? prevMonthDays + next : Math.min(roveDay, prevMonthDays);
-        setDisplayMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
+        const newDay =
+          typeof next === "number" ? prevMonthDays + next : Math.min(roveDay, prevMonthDays);
+        setDisplayMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
         setRoveDay(newDay);
       } else if (goingNext) {
-        if (!canGoNext) { keyboardNavRef.current = false; return; }
+        if (!canGoNext) {
+          keyboardNavRef.current = false;
+          return;
+        }
         const nextMonthDays = new Date(year, month + 1, 0).getDate();
-        const newDay = typeof next === "number" ? next - daysInMonth : Math.min(roveDay, nextMonthDays);
-        setDisplayMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
+        const newDay =
+          typeof next === "number" ? next - daysInMonth : Math.min(roveDay, nextMonthDays);
+        setDisplayMonth(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
         setRoveDay(newDay);
       }
     },
@@ -407,7 +608,8 @@ export default function AvailabilityCalendar({
   const legend = LEGEND_LABELS[lang] || LEGEND_LABELS.es;
 
   function getDayCellClasses(info: DayInfo): string {
-    const base = "relative flex flex-col items-center justify-center rounded-lg transition-colors min-h-[3rem] sm:min-h-[3.5rem] text-sm";
+    const base =
+      "relative flex flex-col items-center justify-center rounded-lg transition-colors min-h-[3rem] sm:min-h-[3.5rem] text-sm";
 
     if (info.isSelected) {
       return cn(base, "ring-2 ring-primary ring-offset-1 bg-primary/10 font-semibold");
@@ -416,9 +618,17 @@ export default function AvailabilityCalendar({
     switch (info.status) {
       case "available":
         // Tinted bg + border at rest; shadow only on hover per the Earned Depth Rule.
-        return cn(base, AVAILABLE_TONE, "border hover:bg-[hsl(150_38%_84%)] hover:border-[hsl(150_34%_52%)] dark:hover:bg-[hsl(150_30%_22%)] cursor-pointer hover:shadow-sm");
+        return cn(
+          base,
+          AVAILABLE_TONE,
+          "border hover:bg-[hsl(150_38%_84%)] hover:border-[hsl(150_34%_52%)] dark:hover:bg-[hsl(150_30%_22%)] cursor-pointer hover:shadow-sm"
+        );
       case "partial":
-        return cn(base, PARTIAL_TONE, "border hover:bg-[hsl(38_78%_82%)] hover:border-[hsl(35_66%_50%)] dark:hover:bg-[hsl(34_45%_25%)] cursor-pointer hover:shadow-sm");
+        return cn(
+          base,
+          PARTIAL_TONE,
+          "border hover:bg-[hsl(38_78%_82%)] hover:border-[hsl(35_66%_50%)] dark:hover:bg-[hsl(34_45%_25%)] cursor-pointer hover:shadow-sm"
+        );
       case "booked":
         return cn(base, BOOKED_TONE, "border cursor-not-allowed");
       case "off_season":
@@ -447,154 +657,167 @@ export default function AvailabilityCalendar({
   const showSlotPanel = boatId && onSlotSelect;
 
   return (
-    <div className={cn(
-      "w-full select-none",
-      showSlotPanel
-        ? "max-w-md lg:max-w-none mx-auto lg:grid lg:grid-cols-[minmax(0,28rem)_minmax(0,1fr)] lg:gap-8"
-        : "max-w-md mx-auto"
-    )}>
+    <div
+      className={cn(
+        "w-full select-none",
+        showSlotPanel
+          ? "max-w-md lg:max-w-none mx-auto lg:grid lg:grid-cols-[minmax(0,28rem)_minmax(0,1fr)] lg:gap-8"
+          : "max-w-md mx-auto"
+      )}
+    >
       {/* Left column: calendar + legend */}
       <div>
-      {/* Header: month navigation */}
-      <div className="flex items-center justify-between mb-4 px-1">
-        <button
-          type="button"
-          onClick={goToPrevMonth}
-          disabled={!canGoPrev}
-          className={cn(
-            "p-2 rounded-lg transition-colors",
-            canGoPrev ? "hover:bg-muted text-foreground" : "text-muted-foreground/40 cursor-not-allowed"
-          )}
-          aria-label={lang === "es" ? "Mes anterior" : "Previous month"}
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </button>
+        {/* Header: month navigation */}
+        <div className="flex items-center justify-between mb-4 px-1">
+          <button
+            type="button"
+            onClick={goToPrevMonth}
+            disabled={!canGoPrev}
+            className={cn(
+              "p-2 rounded-lg transition-colors",
+              canGoPrev
+                ? "hover:bg-muted text-foreground"
+                : "text-muted-foreground/40 cursor-not-allowed"
+            )}
+            aria-label={lang === "es" ? "Mes anterior" : "Previous month"}
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
 
-        <h3 className="text-base font-semibold font-heading capitalize">
-          {monthNames[month - 1]} {year}
-        </h3>
+          <h3 className="text-base font-semibold font-heading capitalize">
+            {monthNames[month - 1]} {year}
+          </h3>
 
-        <button
-          type="button"
-          onClick={goToNextMonth}
-          disabled={!canGoNext}
-          className={cn(
-            "p-2 rounded-lg transition-colors",
-            canGoNext ? "hover:bg-muted text-foreground" : "text-muted-foreground/40 cursor-not-allowed"
-          )}
-          aria-label={lang === "es" ? "Mes siguiente" : "Next month"}
-        >
-          <ChevronRight className="w-5 h-5" />
-        </button>
-      </div>
+          <button
+            type="button"
+            onClick={goToNextMonth}
+            disabled={!canGoNext}
+            className={cn(
+              "p-2 rounded-lg transition-colors",
+              canGoNext
+                ? "hover:bg-muted text-foreground"
+                : "text-muted-foreground/40 cursor-not-allowed"
+            )}
+            aria-label={lang === "es" ? "Mes siguiente" : "Next month"}
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
 
-      {/* Day-of-week headers */}
-      <div className="grid grid-cols-7 gap-1 mb-1 px-1">
-        {dayHeaders.map((dh) => (
-          <div key={dh} className="text-center text-xs font-medium text-muted-foreground py-1">
-            {dh}
-          </div>
-        ))}
-      </div>
+        {/* Day-of-week headers */}
+        <div className="grid grid-cols-7 gap-1 mb-1 px-1">
+          {dayHeaders.map(dh => (
+            <div key={dh} className="text-center text-xs font-medium text-muted-foreground py-1">
+              {dh}
+            </div>
+          ))}
+        </div>
 
-      {/* Calendar grid — roving tabindex: only roveDay is in the tab order;
+        {/* Calendar grid — roving tabindex: only roveDay is in the tab order;
           arrow keys move focus among cells. */}
-      <div
-        className="grid grid-cols-7 gap-1 px-1"
-        role="grid"
-        aria-label={`${monthNames[month - 1]} ${year}`}
-        onKeyDown={handleGridKeyDown}
-      >
-        {isLoading && shouldFetch ? (
-          // Skeleton: 42 cells
-          Array.from({ length: 42 }).map((_, i) => (
-            <div
-              key={`skel-${i}`}
-              className="min-h-[3rem] sm:min-h-[3.5rem] rounded-lg bg-muted/40 animate-pulse"
-            />
-          ))
-        ) : (
-          gridCells.map((day, i) => {
-            if (day === null) {
-              return <div key={`empty-${i}`} className="min-h-[3rem] sm:min-h-[3.5rem]" />;
-            }
+        <div
+          className="grid grid-cols-7 gap-1 px-1"
+          role="grid"
+          aria-label={`${monthNames[month - 1]} ${year}`}
+          onKeyDown={handleGridKeyDown}
+        >
+          {isLoading && shouldFetch
+            ? // Skeleton: 42 cells
+              Array.from({ length: 42 }).map((_, i) => (
+                <div
+                  key={`skel-${i}`}
+                  className="min-h-[3rem] sm:min-h-[3.5rem] rounded-lg bg-muted/40 animate-pulse"
+                />
+              ))
+            : gridCells.map((day, i) => {
+                if (day === null) {
+                  return <div key={`empty-${i}`} className="min-h-[3rem] sm:min-h-[3.5rem]" />;
+                }
 
-            const info = dayInfoMap.get(day);
-            if (!info) return <div key={`none-${i}`} className="min-h-[3rem] sm:min-h-[3.5rem]" />;
+                const info = dayInfoMap.get(day);
+                if (!info)
+                  return <div key={`none-${i}`} className="min-h-[3rem] sm:min-h-[3.5rem]" />;
 
-            const clickable = !info.isPast && !info.isOffSeason && info.status !== "booked";
-            const isRoved = day === roveDay;
-            const ariaLabel = `${day} ${monthNames[month - 1]}${info.price ? `, ${fromLabel} ${info.price}€` : ""}${info.status === "booked" ? `, ${legend.booked}` : ""}`;
+                const clickable = !info.isPast && !info.isOffSeason && info.status !== "booked";
+                const isRoved = day === roveDay;
+                const ariaLabel = `${day} ${monthNames[month - 1]}${info.price ? `, ${fromLabel} ${info.price}€` : ""}${info.status === "booked" ? `, ${legend.booked}` : ""}`;
 
-            return (
-              <button
-                key={`day-${day}`}
-                ref={(el) => {
-                  if (el) dayRefs.current.set(day, el);
-                  else dayRefs.current.delete(day);
-                }}
-                type="button"
-                role="gridcell"
-                aria-label={ariaLabel}
-                aria-selected={info.isSelected}
-                aria-disabled={!clickable}
-                disabled={!clickable}
-                tabIndex={isRoved ? 0 : -1}
-                className={getDayCellClasses(info)}
-                onClick={() => handleDayClick(info)}
-              >
-                {/* Day number — when today coincides with the selected day, drop the
+                return (
+                  <button
+                    key={`day-${day}`}
+                    ref={el => {
+                      if (el) dayRefs.current.set(day, el);
+                      else dayRefs.current.delete(day);
+                    }}
+                    type="button"
+                    role="gridcell"
+                    aria-label={ariaLabel}
+                    aria-selected={info.isSelected}
+                    aria-disabled={!clickable}
+                    disabled={!clickable}
+                    tabIndex={isRoved ? 0 : -1}
+                    className={getDayCellClasses(info)}
+                    onClick={() => handleDayClick(info)}
+                  >
+                    {/* Day number — when today coincides with the selected day, drop the
                     underline so the selection ring carries the signal alone. A
                     strike-through on "full" days is the colour-blind-safe cue that
                     the day is taken, replacing an ambiguous "--". */}
-                <span className={cn(
-                  "leading-none",
-                  info.isToday && !info.isSelected && "font-bold underline underline-offset-2",
-                  info.status === "booked" && "line-through decoration-2 decoration-[hsl(8_55%_45%)]/70 dark:decoration-[hsl(12_58%_74%)]/70",
-                )}>
-                  {day}
-                </span>
+                    <span
+                      className={cn(
+                        "leading-none",
+                        info.isToday &&
+                          !info.isSelected &&
+                          "font-bold underline underline-offset-2",
+                        info.status === "booked" &&
+                          "line-through decoration-2 decoration-[hsl(8_55%_45%)]/70 dark:decoration-[hsl(12_58%_74%)]/70"
+                      )}
+                    >
+                      {day}
+                    </span>
 
-                {/* Price badge removed — prices shown in pricing section instead */}
+                    {/* Price badge removed — prices shown in pricing section instead */}
 
-                {/* "Few slots" gets a dot — the second, colour-independent signal
+                    {/* "Few slots" gets a dot — the second, colour-independent signal
                     that this day sits between free and full. */}
-                {info.status === "partial" && (
-                  <span aria-hidden="true" className="mt-0.5 inline-block w-1 h-1 rounded-full bg-[hsl(28_60%_40%)] dark:bg-[hsl(38_72%_70%)]" />
-                )}
-              </button>
-            );
-          })
+                    {info.status === "partial" && (
+                      <span
+                        aria-hidden="true"
+                        className="mt-0.5 inline-block w-1 h-1 rounded-full bg-[hsl(28_60%_40%)] dark:bg-[hsl(38_72%_70%)]"
+                      />
+                    )}
+                  </button>
+                );
+              })}
+        </div>
+
+        {/* Loading indicator overlay */}
+        {isLoading && shouldFetch && (
+          <div className="flex items-center justify-center py-2">
+            <Loader2 className="w-4 h-4 animate-spin text-muted-foreground" />
+          </div>
         )}
-      </div>
 
-      {/* Loading indicator overlay */}
-      {isLoading && shouldFetch && (
-        <div className="flex items-center justify-center py-2">
-          <Loader2 className="w-4 h-4 animate-spin text-muted-foreground" />
-        </div>
-      )}
-
-      {/* Legend — swatches use the same tokens as the cells so the legend stays
+        {/* Legend — swatches use the same tokens as the cells so the legend stays
           true if the design system shifts a color. */}
-      <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-4 px-1 text-xs text-muted-foreground">
-        <div className="flex items-center gap-1.5">
-          <span className={cn("inline-block w-3 h-3 rounded-sm border", AVAILABLE_TONE)} />
-          {legend.available}
+        <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-4 px-1 text-xs text-muted-foreground">
+          <div className="flex items-center gap-1.5">
+            <span className={cn("inline-block w-3 h-3 rounded-sm border", AVAILABLE_TONE)} />
+            {legend.available}
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className={cn("inline-block w-3 h-3 rounded-sm border", PARTIAL_TONE)} />
+            {legend.partial}
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className={cn("inline-block w-3 h-3 rounded-sm border", BOOKED_TONE)} />
+            {legend.booked}
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="inline-block w-3 h-3 rounded-sm bg-muted border border-muted-foreground/20" />
+            {legend.offSeason}
+          </div>
         </div>
-        <div className="flex items-center gap-1.5">
-          <span className={cn("inline-block w-3 h-3 rounded-sm border", PARTIAL_TONE)} />
-          {legend.partial}
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span className={cn("inline-block w-3 h-3 rounded-sm border", BOOKED_TONE)} />
-          {legend.booked}
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span className="inline-block w-3 h-3 rounded-sm bg-muted border border-muted-foreground/20" />
-          {legend.offSeason}
-        </div>
-      </div>
       </div>
 
       {/* Right column: slot panel */}
@@ -603,10 +826,11 @@ export default function AvailabilityCalendar({
           {effectiveSelected && selectedDaySlots.length > 0 ? (
             <>
               <p className="text-sm font-medium mb-2">
-                {LEGEND_LABELS[lang]?.available || "Available"} - {effectiveSelected.toLocaleDateString(lang)}:
+                {LEGEND_LABELS[lang]?.available || "Available"} -{" "}
+                {effectiveSelected.toLocaleDateString(lang)}:
               </p>
               <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-3 gap-1.5">
-                {selectedDaySlots.map((slot) => {
+                {selectedDaySlots.map(slot => {
                   const dateStr = toDateKey(
                     effectiveSelected.getFullYear(),
                     effectiveSelected.getMonth() + 1,
@@ -621,7 +845,7 @@ export default function AvailabilityCalendar({
                       className={cn(
                         "py-1.5 px-2 rounded-md text-sm text-center transition-colors",
                         slot.available
-                          ? "bg-primary/5 text-primary border border-primary/20 hover:bg-primary hover:text-white"
+                          ? "bg-primary/5 text-primary dark:text-chart-1 border border-primary/20 hover:bg-primary hover:text-white"
                           : "bg-red-50 text-red-400 border border-red-200 cursor-not-allowed"
                       )}
                     >

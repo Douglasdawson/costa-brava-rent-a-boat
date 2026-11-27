@@ -4,7 +4,12 @@ import { Ship } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { BOAT_DATA, boatDataRequiresLicense, isCaptainedBoat, isPubliclyListed } from "@shared/boatData";
+import {
+  BOAT_DATA,
+  boatDataRequiresLicense,
+  isCaptainedBoat,
+  isPubliclyListed,
+} from "@shared/boatData";
 import { isCatalogBoatPubliclyListed } from "@shared/publicFleet";
 import { getBoatImage } from "@/utils/boatImages";
 import type { Boat } from "@shared/schema";
@@ -33,7 +38,13 @@ interface PopularBoatsSectionProps {
  * the boat name as anchor text on a link to /barco/{id}, so location landings
  * pass signal to boat detail pages without duplicating layout code.
  */
-function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+function RevealSection({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   const { ref, isVisible } = useScrollReveal();
   return (
     <div
@@ -69,21 +80,19 @@ export default function PopularBoatsSection({
   // RD 1188/2025: licence-free boats leave public surfaces on 2026-10-01.
   const isLive = (boatId: string) =>
     isCatalogBoatPubliclyListed(BOAT_DATA[boatId]) &&
-    (!liveBoats || liveBoats.some((b) => b.id === boatId && isPubliclyListed(b)));
+    (!liveBoats || liveBoats.some(b => b.id === boatId && isPubliclyListed(b)));
 
   return (
     <RevealSection className={`py-16 sm:py-20 ${bgClass}`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-h2 font-heading font-semibold tracking-tight text-foreground flex items-center gap-3 mb-6">
-          <Ship className="w-6 h-6 text-primary" />
+          <Ship className="w-6 h-6 text-primary dark:text-chart-1" />
           {title}
         </h2>
-        {description && (
-          <p className="text-muted-foreground leading-relaxed mb-6">{description}</p>
-        )}
+        {description && <p className="text-muted-foreground leading-relaxed mb-6">{description}</p>}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {boatIds
-            .map((boatId) => ({ boatId, boat: BOAT_DATA[boatId] }))
+            .map(boatId => ({ boatId, boat: BOAT_DATA[boatId] }))
             .filter(({ boatId, boat }) => !!boat && isLive(boatId))
             .map(({ boatId, boat }) => {
               const lowestPrice = Math.min(...Object.values(boat.pricing.BAJA.prices));
@@ -91,9 +100,15 @@ export default function PopularBoatsSection({
               // The captained excursion needs no licence but is not a licence-free rental: badge it as such.
               const defaultLabel = isCaptainedBoat(boatId)
                 ? (t.popularBoatsSection?.badges?.captain ?? t.booking.withLicense)
-                : isNoLicense ? t.booking.withoutLicense : t.booking.withLicense;
+                : isNoLicense
+                  ? t.booking.withoutLicense
+                  : t.booking.withLicense;
               const label = badgeLabel ? badgeLabel(boatId) : defaultLabel;
-              const variant = badgeVariant ? badgeVariant(boatId) : isNoLicense ? "secondary" : "outline";
+              const variant = badgeVariant
+                ? badgeVariant(boatId)
+                : isNoLicense
+                  ? "secondary"
+                  : "outline";
               return (
                 <a
                   key={boat.id}
@@ -111,15 +126,23 @@ export default function PopularBoatsSection({
                   />
                   <div className="p-4">
                     <div className="flex items-center justify-between mb-2 gap-2">
-                      <h3 className="font-heading font-semibold text-lg">{translateBoatText(boat.name, language)}</h3>
+                      <h3 className="font-heading font-semibold text-lg">
+                        {translateBoatText(boat.name, language)}
+                      </h3>
                       <Badge variant={variant} className="text-xs shrink-0">
                         {label}
                       </Badge>
                     </div>
-                    <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{boat.subtitle}</p>
+                    <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                      {boat.subtitle}
+                    </p>
                     <div className="flex items-center justify-between">
-                      <span className="text-primary font-semibold text-sm">{t.boats.from} {lowestPrice} €</span>
-                      <span className="text-sm text-primary hover:underline">{effectiveCtaLabel}</span>
+                      <span className="text-primary dark:text-chart-1 font-semibold text-sm">
+                        {t.boats.from} {lowestPrice} €
+                      </span>
+                      <span className="text-sm text-primary dark:text-chart-1 hover:underline">
+                        {effectiveCtaLabel}
+                      </span>
                     </div>
                   </div>
                 </a>

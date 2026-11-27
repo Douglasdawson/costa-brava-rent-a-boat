@@ -23,14 +23,14 @@ type InteractiveHoverButtonProps = {
 
 const TONES: Record<Tone, { base: string; dot: string; hoverLabel: string }> = {
   dark: {
-    base: "border-cta bg-cta text-cta-foreground",
+    base: "border-cta bg-cta text-cta-foreground dark:text-background",
     dot: "bg-background",
     hoverLabel: "text-cta",
   },
   light: {
     base: "border-background bg-background text-foreground",
     dot: "bg-cta",
-    hoverLabel: "text-cta-foreground",
+    hoverLabel: "text-cta-foreground dark:text-background",
   },
 };
 
@@ -50,7 +50,7 @@ export function InteractiveHoverButton({
       {...extra}
       {...props}
       className={cn(
-        "group/ihb relative inline-flex min-h-11 cursor-pointer items-center justify-center overflow-hidden whitespace-nowrap rounded-full border px-6 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        "group/ihb relative inline-flex min-h-11 cursor-pointer items-center justify-center overflow-hidden whitespace-normal rounded-full border px-6 py-2.5 text-center max-w-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
         t.base,
         className
       )}

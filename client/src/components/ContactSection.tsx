@@ -153,7 +153,7 @@ export default function ContactSection() {
         </section>
       </div>
 
-      <div className="bg-foreground">
+      <div className="bg-foreground dark:bg-[hsl(215_45%_16%)]">
         <section
           id="location"
           className="rounded-b-2xl squircle-b bg-[color-mix(in_srgb,hsl(var(--muted))_40%,hsl(var(--background)))] py-16 sm:py-24"

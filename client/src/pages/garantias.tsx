@@ -174,7 +174,7 @@ export default function GarantiasPage() {
                 </p>
               </div>
               <div className="bg-cta/5 p-4 sm:row-span-2 sm:grid sm:grid-rows-subgrid sm:border-l sm:border-border sm:p-6">
-                <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-cta">
+                <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-cta dark:text-foreground">
                   {g.withLabel}
                 </p>
                 <p className="mt-2.5 text-[13px] font-medium leading-relaxed text-foreground">
@@ -318,7 +318,7 @@ export default function GarantiasPage() {
         </div>
       </Sheet>
 
-      <div className="bg-foreground">
+      <div className="bg-foreground dark:bg-[hsl(215_45%_16%)]">
         {/* Sticky CTA on phones: the page is long enough that the close scrolls away. */}
         <MobileStickyBar>
           <button

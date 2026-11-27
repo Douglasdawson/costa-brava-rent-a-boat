@@ -27,11 +27,14 @@ function CancellationTerms() {
       <h3 className="text-lg font-semibold text-foreground mb-3">CANCELACIONES Y CAMBIOS:</h3>
       <div className="space-y-3 text-foreground">
         <p>
-          • Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad de la embarcación. Comunícalo por escrito a{" "}
-          <a href={`mailto:${BUSINESS_EMAIL}`} className="text-primary underline">{BUSINESS_EMAIL}</a>
-          {" "}o por WhatsApp al {BUSINESS_PHONE}.
+          • Cambio de fecha gratuito hasta 7 días antes de la salida, sujeto a disponibilidad de la
+          embarcación. Comunícalo por escrito a{" "}
+          <a href={`mailto:${BUSINESS_EMAIL}`} className="text-primary dark:text-chart-1 underline">
+            {BUSINESS_EMAIL}
+          </a>{" "}
+          o por WhatsApp al {BUSINESS_PHONE}.
         </p>
-        {CANCELLATION_TERMS_BULLETS_ES.map((bullet) => (
+        {CANCELLATION_TERMS_BULLETS_ES.map(bullet => (
           <p key={bullet}>• {bullet}</p>
         ))}
         <p>{COMMERCIAL_GUARANTEE_DISCLAIMER_ES}</p>
@@ -44,9 +47,9 @@ export default function CondicionesGenerales() {
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const langNotice = t.legalPages?.condicionesGeneralesPage;
-  const seoConfig = getSEOConfig('condicionesGenerales', language);
-  const hreflangLinks = generateHreflangLinks('condicionesGenerales');
-  const canonical = generateCanonicalUrl('condicionesGenerales', language);
+  const seoConfig = getSEOConfig("condicionesGenerales", language);
+  const hreflangLinks = generateHreflangLinks("condicionesGenerales");
+  const canonical = generateCanonicalUrl("condicionesGenerales", language);
   // Las fianzas las edita el dueño en el CRM. Si no responde, el hook deja
   // depositStandardSL/CL sin definir y no se imprime cifra: mejor callar que
   // anunciar una fianza que el contrato en papel contradiga.
@@ -54,14 +57,14 @@ export default function CondicionesGenerales() {
 
   return (
     <div className="min-h-screen bg-muted">
-      <SEO 
+      <SEO
         title={seoConfig.title}
         description={seoConfig.description}
         canonical={canonical}
         hreflang={hreflangLinks}
       />
       <Navigation />
-      
+
       <div className="container mx-auto px-4 pt-24 pb-8">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-h1 font-semibold tracking-tight text-foreground mb-2 text-center">
@@ -81,63 +84,104 @@ export default function CondicionesGenerales() {
               className="mb-8 rounded-xl border border-border bg-muted/40 p-4 text-sm text-muted-foreground"
               data-testid="notice-contract-language"
             >
-              {langNotice.langNoticeBody.split("{termsLink}").map((chunk: string, i: number, all: string[]) => (
-                <span key={i}>
-                  {chunk}
-                  {i < all.length - 1 && (
-                    <a
-                      href={localizedPath("termsConditions")}
-                      className="font-medium text-primary underline"
-                    >
-                      {langNotice.langNoticeLink}
-                    </a>
-                  )}
-                </span>
-              ))}
+              {langNotice.langNoticeBody
+                .split("{termsLink}")
+                .map((chunk: string, i: number, all: string[]) => (
+                  <span key={i}>
+                    {chunk}
+                    {i < all.length - 1 && (
+                      <a
+                        href={localizedPath("termsConditions")}
+                        className="font-medium text-primary dark:text-chart-1 underline"
+                      >
+                        {langNotice.langNoticeLink}
+                      </a>
+                    )}
+                  </span>
+                ))}
             </div>
           )}
 
           {/* Embarcaciones CON Titulación */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="text-2xl text-primary">
+              <CardTitle className="text-2xl text-primary dark:text-chart-1">
                 Condiciones Generales del Alquiler para Embarcaciones CON TITULACIÓN
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <p className="text-foreground">
-                Las embarcaciones con titulación sólo podrán ser arrendadas por la persona designada en el contrato, que debe ser mayor de 18 años y poseer la correspondiente titulación en vigor.
+                Las embarcaciones con titulación sólo podrán ser arrendadas por la persona designada
+                en el contrato, que debe ser mayor de 18 años y poseer la correspondiente titulación
+                en vigor.
               </p>
 
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">PROHIBICIONES:</h3>
                 <p className="text-foreground">
-                  Queda prohibido sobrepasar la distancia de 2 millas desde la costa (3,7 km), los límites de navegación autorizados por la titulación náutica del patrón y la zona de navegación indicada en la sección «ZONA DE NAVEGACIÓN», sobrepasar el número de plazas máximo permitido según el modelo de la embarcación alquilada, varar la embarcación en la playa o acceder a ella. Entrar, permanecer o salir del agua con el motor en funcionamiento y dejar la embarcación amarrada o anclada sin ninguna persona a bordo.
+                  Queda prohibido sobrepasar la distancia de 2 millas desde la costa (3,7 km), los
+                  límites de navegación autorizados por la titulación náutica del patrón y la zona
+                  de navegación indicada en la sección «ZONA DE NAVEGACIÓN», sobrepasar el número de
+                  plazas máximo permitido según el modelo de la embarcación alquilada, varar la
+                  embarcación en la playa o acceder a ella. Entrar, permanecer o salir del agua con
+                  el motor en funcionamiento y dejar la embarcación amarrada o anclada sin ninguna
+                  persona a bordo.
                 </p>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">RESPONSABILIDADES:</h3>
                 <div className="space-y-3 text-foreground">
-                  <p>• La velocidad máxima en puertos y en canales específicos señalizados en playas es de 3 nudos. Debe respetarse la zona de bañistas y fondear siempre fuera de las boyas amarillas de las playas. La distancia mínima a la que se debe navegar de playas y acantilados es de 200 m. Debe guardarse una distancia de 100 m de las embarcaciones y boyas con bandera de submarinistas.</p>
-                  <p>• Durante la navegación se recomienda el uso de los chalecos salvavidas e ir sentados en los respectivos asientos de la embarcación.</p>
-                  <p>• El arrendatario asume toda responsabilidad por multa, sanción, perjuicio o daño causado o derivado de la infracción de alguna cláusula de este contrato y/o por cualquiera de las infracciones de las leyes españolas e internacionales vigentes.</p>
-                  <p>• El uso indebido de la embarcación dará derecho a cualquier persona autorizada por la empresa a finalizar la salida, sin derecho a la devolución del importe del alquiler al arrendatario.</p>
-                  <p>• Es muy importante que el patrón y/o tripulantes lleven siempre un teléfono disponible para poder contactar con nosotros o para que el equipo de Costa Brava Rent a Boat tenga la posibilidad llamarles para informarles de cualquier imprevisto que surja.</p>
+                  <p>
+                    • La velocidad máxima en puertos y en canales específicos señalizados en playas
+                    es de 3 nudos. Debe respetarse la zona de bañistas y fondear siempre fuera de
+                    las boyas amarillas de las playas. La distancia mínima a la que se debe navegar
+                    de playas y acantilados es de 200 m. Debe guardarse una distancia de 100 m de
+                    las embarcaciones y boyas con bandera de submarinistas.
+                  </p>
+                  <p>
+                    • Durante la navegación se recomienda el uso de los chalecos salvavidas e ir
+                    sentados en los respectivos asientos de la embarcación.
+                  </p>
+                  <p>
+                    • El arrendatario asume toda responsabilidad por multa, sanción, perjuicio o
+                    daño causado o derivado de la infracción de alguna cláusula de este contrato y/o
+                    por cualquiera de las infracciones de las leyes españolas e internacionales
+                    vigentes.
+                  </p>
+                  <p>
+                    • El uso indebido de la embarcación dará derecho a cualquier persona autorizada
+                    por la empresa a finalizar la salida, sin derecho a la devolución del importe
+                    del alquiler al arrendatario.
+                  </p>
+                  <p>
+                    • Es muy importante que el patrón y/o tripulantes lleven siempre un teléfono
+                    disponible para poder contactar con nosotros o para que el equipo de Costa Brava
+                    Rent a Boat tenga la posibilidad llamarles para informarles de cualquier
+                    imprevisto que surja.
+                  </p>
                 </div>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">ENTREGA Y RECOGIDA:</h3>
                 <p className="text-foreground">
-                  La embarcación será entregada y devuelta en el puerto base (Puerto de Blanes). Se devolverá con todo su equipamiento en las mismas condiciones en las que se entregó y en la fecha y hora estipuladas en el contrato. Si el check-out se realiza más tarde de la hora estipulada sin aviso se cobrará la tarifa horaria vigente de la embarcación incrementada en un 50 % por cada fracción de 30 minutos de retraso (en las embarcaciones sin tarifa de 1 hora, la tarifa horaria es la mitad del precio de 2 horas de la temporada). En caso de devolver la embarcación antes de la hora prevista de entrega no se hará ningún tipo de abono.
+                  La embarcación será entregada y devuelta en el puerto base (Puerto de Blanes). Se
+                  devolverá con todo su equipamiento en las mismas condiciones en las que se entregó
+                  y en la fecha y hora estipuladas en el contrato. Si el check-out se realiza más
+                  tarde de la hora estipulada sin aviso se cobrará la tarifa horaria vigente de la
+                  embarcación incrementada en un 50 % por cada fracción de 30 minutos de retraso (en
+                  las embarcaciones sin tarifa de 1 hora, la tarifa horaria es la mitad del precio
+                  de 2 horas de la temporada). En caso de devolver la embarcación antes de la hora
+                  prevista de entrega no se hará ningún tipo de abono.
                 </p>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">CARBURANTE:</h3>
                 <p className="text-foreground">
-                  La gasolina no está incluida en el precio. La embarcación se entregará con el depósito lleno y se devolverá en el mismo estado.
+                  La gasolina no está incluida en el precio. La embarcación se entregará con el
+                  depósito lleno y se devolverá en el mismo estado.
                 </p>
               </div>
 
@@ -146,9 +190,30 @@ export default function CondicionesGenerales() {
                 <div className="space-y-3 text-foreground">
                   <p>{INSURANCE_SCOPE_ES}</p>
                   <p>{INSURANCE_SEATS_LIMIT_ES}</p>
-                  <p>El cliente deberá depositar una fianza{depositStandardCL ? ` de ${depositStandardCL}` : ""} para responder a cualquier desperfecto, pérdida de material o retraso en la devolución de la embarcación. No obstante si la cantidad resultante de los incidentes anteriormente citados fuera superior a la fianza, el cliente queda obligado a pagar la diferencia.</p>
-                  <p>Quedan excluidas de la cobertura del seguro las actividades realizadas por la embarcación asegurada que conlleven el arrastre de artefactos como bananas, ruedas neumáticas, esquís, etc. El arrendatario de la embarcación se responsabilizará de la utilización de los mismos y de las consecuencias que de ello pudieran derivarse.</p>
-                  <p>La empresa no asume responsabilidad alguna por pérdidas o daños en cualquiera de los bienes que el arrendatario u otra persona olvide, deposite o transporte en la embarcación durante o después de finalizado el alquiler. El arrendatario asume el riesgo de tales pérdidas y exime a la empresa de toda reclamación de los mismos y se compromete a mantenerla libre e indemne de cualquier reclamación que se produzca por esta causa, así como por el posible cambio del estado del mar producido por causas meteorológicas imprevistas una vez que la embarcación se ha hecho a la mar.</p>
+                  <p>
+                    El cliente deberá depositar una fianza
+                    {depositStandardCL ? ` de ${depositStandardCL}` : ""} para responder a cualquier
+                    desperfecto, pérdida de material o retraso en la devolución de la embarcación.
+                    No obstante si la cantidad resultante de los incidentes anteriormente citados
+                    fuera superior a la fianza, el cliente queda obligado a pagar la diferencia.
+                  </p>
+                  <p>
+                    Quedan excluidas de la cobertura del seguro las actividades realizadas por la
+                    embarcación asegurada que conlleven el arrastre de artefactos como bananas,
+                    ruedas neumáticas, esquís, etc. El arrendatario de la embarcación se
+                    responsabilizará de la utilización de los mismos y de las consecuencias que de
+                    ello pudieran derivarse.
+                  </p>
+                  <p>
+                    La empresa no asume responsabilidad alguna por pérdidas o daños en cualquiera de
+                    los bienes que el arrendatario u otra persona olvide, deposite o transporte en
+                    la embarcación durante o después de finalizado el alquiler. El arrendatario
+                    asume el riesgo de tales pérdidas y exime a la empresa de toda reclamación de
+                    los mismos y se compromete a mantenerla libre e indemne de cualquier reclamación
+                    que se produzca por esta causa, así como por el posible cambio del estado del
+                    mar producido por causas meteorológicas imprevistas una vez que la embarcación
+                    se ha hecho a la mar.
+                  </p>
                 </div>
               </div>
 
@@ -157,21 +222,45 @@ export default function CondicionesGenerales() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">ZONA DE NAVEGACIÓN:</h3>
                 <p className="text-foreground">
-                  La zona autorizada llega al norte hasta el puerto de Sant Feliu de Guíxols, siempre dentro de 2 millas de la costa y de los límites de la titulación del patrón. Rebasar ese punto es navegar fuera de la zona autorizada: si en esa situación se requiere asistencia, la empresa no se hará responsable y el seguro no cubrirá ningún tipo de pérdidas y/o daños personales. Si es necesario remolcar la embarcación por falta de combustible, por navegar fuera de la zona autorizada o por una avería imputable al arrendatario, se cobrarán 1.000,00€ en concepto de maniobra de rescate. El remolque por una avería no imputable al arrendatario no tiene coste para él.
+                  La zona autorizada llega al norte hasta el puerto de Sant Feliu de Guíxols,
+                  siempre dentro de 2 millas de la costa y de los límites de la titulación del
+                  patrón. Rebasar ese punto es navegar fuera de la zona autorizada: si en esa
+                  situación se requiere asistencia, la empresa no se hará responsable y el seguro no
+                  cubrirá ningún tipo de pérdidas y/o daños personales. Si es necesario remolcar la
+                  embarcación por falta de combustible, por navegar fuera de la zona autorizada o
+                  por una avería imputable al arrendatario, se cobrarán 1.000,00€ en concepto de
+                  maniobra de rescate. El remolque por una avería no imputable al arrendatario no
+                  tiene coste para él.
                 </p>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">AVERÍAS:</h3>
                 <p className="text-foreground">
-                  En caso de avería, colisión o pérdida de material, el arrendatario deberá avisar imperativamente e inmediatamente a Costa Brava Rent a Boat, que le informará sobre las instrucciones a seguir. Si durante el alquiler se produjera una avería no imputable al arrendatario y que no permitiera seguir con el alquiler, Costa Brava Rent a Boat reembolsará al contratante las horas no navegadas o entregará una embarcación de características similares a la contratada. Si no hay una embarcación similar disponible o el cliente no la acepta, se le reembolsarán las horas no navegadas. En caso de que la avería o accidente fuera imputable al contratante, éste deberá abonar los gastos de remolque y de las reparaciones oportunas para quedar la embarcación, motor o accesorios en el estado en que se le entregó por la empresa al inicio del contrato de alquiler, siendo sólo Costa Brava Rent a Boat la autorizada a efectuar dichas reparaciones.
+                  En caso de avería, colisión o pérdida de material, el arrendatario deberá avisar
+                  imperativamente e inmediatamente a Costa Brava Rent a Boat, que le informará sobre
+                  las instrucciones a seguir. Si durante el alquiler se produjera una avería no
+                  imputable al arrendatario y que no permitiera seguir con el alquiler, Costa Brava
+                  Rent a Boat reembolsará al contratante las horas no navegadas o entregará una
+                  embarcación de características similares a la contratada. Si no hay una
+                  embarcación similar disponible o el cliente no la acepta, se le reembolsarán las
+                  horas no navegadas. En caso de que la avería o accidente fuera imputable al
+                  contratante, éste deberá abonar los gastos de remolque y de las reparaciones
+                  oportunas para quedar la embarcación, motor o accesorios en el estado en que se le
+                  entregó por la empresa al inicio del contrato de alquiler, siendo sólo Costa Brava
+                  Rent a Boat la autorizada a efectuar dichas reparaciones.
                 </p>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">LEGISLACIÓN:</h3>
                 <p className="text-foreground">
-                  Este contrato se rige por la legislación española. Para cuanta controversia pudiera surgir de su contenido o interpretación son competentes los Juzgados y Tribunales de {BUSINESS_JURISDICTION}, sin perjuicio del fuero que legalmente corresponda al cliente consumidor, que en ningún caso renuncia al de su domicilio. El cliente consumidor dispone de hojas oficiales de reclamación y puede acudir a los servicios públicos de consumo (Agència Catalana del Consum).
+                  Este contrato se rige por la legislación española. Para cuanta controversia
+                  pudiera surgir de su contenido o interpretación son competentes los Juzgados y
+                  Tribunales de {BUSINESS_JURISDICTION}, sin perjuicio del fuero que legalmente
+                  corresponda al cliente consumidor, que en ningún caso renuncia al de su domicilio.
+                  El cliente consumidor dispone de hojas oficiales de reclamación y puede acudir a
+                  los servicios públicos de consumo (Agència Catalana del Consum).
                 </p>
               </div>
             </CardContent>
@@ -180,47 +269,89 @@ export default function CondicionesGenerales() {
           {/* Embarcaciones SIN Titulación */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="text-2xl text-primary">
+              <CardTitle className="text-2xl text-primary dark:text-chart-1">
                 Condiciones Generales del Alquiler para Embarcaciones SIN TITULACIÓN
               </CardTitle>
               <p className="text-sm text-muted-foreground">
-                Aplicables solo a las reservas con salida hasta el 30 de septiembre de 2026. Desde el 1 de octubre de 2026 (RD 1188/2025) no se alquilan embarcaciones sin titulación.
+                Aplicables solo a las reservas con salida hasta el 30 de septiembre de 2026. Desde
+                el 1 de octubre de 2026 (RD 1188/2025) no se alquilan embarcaciones sin titulación.
               </p>
             </CardHeader>
             <CardContent className="space-y-6">
               <p className="text-foreground">
-                La embarcación sólo podrá ser arrendada por la persona designada en el contrato, que debe ser mayor de 18 años.
+                La embarcación sólo podrá ser arrendada por la persona designada en el contrato, que
+                debe ser mayor de 18 años.
               </p>
 
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">PROHIBICIONES:</h3>
                 <p className="text-foreground">
-                  Queda prohibido sobrepasar la distancia de una milla desde la costa (1,8 km), sobrepasar el número de plazas máximo permitido según el modelo de la embarcación alquilada, varar la embarcación en la playa o acceder a ella, entrar permanecer o salir del agua con el motor en funcionamiento y dejar la embarcación amarrada o anclada sin ninguna persona a bordo.
+                  Queda prohibido sobrepasar la distancia de una milla desde la costa (1,8 km),
+                  sobrepasar el número de plazas máximo permitido según el modelo de la embarcación
+                  alquilada, varar la embarcación en la playa o acceder a ella, entrar permanecer o
+                  salir del agua con el motor en funcionamiento y dejar la embarcación amarrada o
+                  anclada sin ninguna persona a bordo.
                 </p>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">RESPONSABILIDADES:</h3>
                 <div className="space-y-3 text-foreground">
-                  <p>• La velocidad máxima en puertos y en canales específicos señalizados en playas es de 3 nudos. Debe respetarse la zona de bañistas y fondear siempre fuera de las boyas amarillas de las playas. La distancia mínima a la que se debe navegar de playas y acantilados es de 200m. Debe guardarse una distancia de 100m de las embarcaciones y boyas con bandera de submarinistas.</p>
-                  <p>• Queda prohibido realizar giros bruscos y continuos (donuts) con la embarcación. En caso de incumplimiento podrá ser motivo de la finalización del alquiler sin derecho a ninguna devolución del importe.</p>
-                  <p>• Durante la navegación se recomienda el uso de los chalecos salvavidas e ir sentados en los respectivos asientos de la embarcación.</p>
-                  <p>• El arrendatario asume toda responsabilidad por multa, sanción, perjuicio o daño causado o derivado de la infracción de alguna cláusula de este contrato y/o por cualquiera de las infracciones de las leyes españolas e internacionales vigentes. El uso indebido de la embarcación dará derecho a cualquier persona autorizada por la empresa a finalizar la salida sin derecho a la devolución del importe del alquiler al arrendatario.</p>
+                  <p>
+                    • La velocidad máxima en puertos y en canales específicos señalizados en playas
+                    es de 3 nudos. Debe respetarse la zona de bañistas y fondear siempre fuera de
+                    las boyas amarillas de las playas. La distancia mínima a la que se debe navegar
+                    de playas y acantilados es de 200m. Debe guardarse una distancia de 100m de las
+                    embarcaciones y boyas con bandera de submarinistas.
+                  </p>
+                  <p>
+                    • Queda prohibido realizar giros bruscos y continuos (donuts) con la
+                    embarcación. En caso de incumplimiento podrá ser motivo de la finalización del
+                    alquiler sin derecho a ninguna devolución del importe.
+                  </p>
+                  <p>
+                    • Durante la navegación se recomienda el uso de los chalecos salvavidas e ir
+                    sentados en los respectivos asientos de la embarcación.
+                  </p>
+                  <p>
+                    • El arrendatario asume toda responsabilidad por multa, sanción, perjuicio o
+                    daño causado o derivado de la infracción de alguna cláusula de este contrato y/o
+                    por cualquiera de las infracciones de las leyes españolas e internacionales
+                    vigentes. El uso indebido de la embarcación dará derecho a cualquier persona
+                    autorizada por la empresa a finalizar la salida sin derecho a la devolución del
+                    importe del alquiler al arrendatario.
+                  </p>
                 </div>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">ENTREGA Y RECOGIDA:</h3>
                 <div className="space-y-3 text-foreground">
-                  <p>La embarcación será entregada y devuelta en el puerto base, Puerto de Blanes. Se devolverá con todo su equipamiento en las mismas condiciones en las que se entregó y en la fecha y hora estipuladas en el contrato. Si el check-out se realiza más tarde de la hora estipulada sin aviso, se cobrará la tarifa horaria vigente de la embarcación incrementada en un 50 % por cada fracción de 30 minutos de retraso (en las embarcaciones sin tarifa de 1 hora, la tarifa horaria es la mitad del precio de 2 horas de la temporada). En caso de devolver la embarcación antes de la hora prevista de entrega no se hará ningún tipo de abono.</p>
-                  <p>Es muy importante que el patrón y/o tripulantes lleven siempre un teléfono disponible para poder contactar con nosotros o para que el equipo de Costa Brava Rent a Boat tenga la posibilidad llamarles para informarles de cualquier imprevisto que surja.</p>
+                  <p>
+                    La embarcación será entregada y devuelta en el puerto base, Puerto de Blanes. Se
+                    devolverá con todo su equipamiento en las mismas condiciones en las que se
+                    entregó y en la fecha y hora estipuladas en el contrato. Si el check-out se
+                    realiza más tarde de la hora estipulada sin aviso, se cobrará la tarifa horaria
+                    vigente de la embarcación incrementada en un 50 % por cada fracción de 30
+                    minutos de retraso (en las embarcaciones sin tarifa de 1 hora, la tarifa horaria
+                    es la mitad del precio de 2 horas de la temporada). En caso de devolver la
+                    embarcación antes de la hora prevista de entrega no se hará ningún tipo de
+                    abono.
+                  </p>
+                  <p>
+                    Es muy importante que el patrón y/o tripulantes lleven siempre un teléfono
+                    disponible para poder contactar con nosotros o para que el equipo de Costa Brava
+                    Rent a Boat tenga la posibilidad llamarles para informarles de cualquier
+                    imprevisto que surja.
+                  </p>
                 </div>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">CARBURANTE:</h3>
                 <p className="text-foreground">
-                  La gasolina está incluida en el precio. El depósito de la embarcación, cuya capacidad varía según el modelo, va incluido en el precio del alquiler.
+                  La gasolina está incluida en el precio. El depósito de la embarcación, cuya
+                  capacidad varía según el modelo, va incluido en el precio del alquiler.
                 </p>
               </div>
 
@@ -229,8 +360,24 @@ export default function CondicionesGenerales() {
                 <div className="space-y-3 text-foreground">
                   <p>{INSURANCE_SCOPE_ES}</p>
                   <p>{INSURANCE_SEATS_LIMIT_ES}</p>
-                  <p>El cliente deberá depositar una fianza{depositStandardSL ? ` de ${depositStandardSL}` : ""} para responder a cualquier desperfecto, pérdida de material o retraso en la devolución de la embarcación. No obstante si la cantidad resultante de los incidentes anteriormente citados fuera superior a la fianza, el cliente queda obligado a pagar la diferencia.</p>
-                  <p>La empresa no asume responsabilidad alguna por daños o pérdidas en cualquiera de los bienes que el arrendatario u otra persona olvide, deposite o transporte en la embarcación, durante o después de finalizado el alquiler. El arrendatario asume el riesgo de tales pérdidas y exime a la empresa de toda reclamación de los mismos y se compromete a mantenerla libre e indemne de cualquier reclamación que se produzca por esta causa, por demora o retraso como consecuencia de avería de la embarcación e incluso el posible cambio del estado del mar producido por causas meteorológicas imprevistas una vez que la embarcación se ha hecho a la mar.</p>
+                  <p>
+                    El cliente deberá depositar una fianza
+                    {depositStandardSL ? ` de ${depositStandardSL}` : ""} para responder a cualquier
+                    desperfecto, pérdida de material o retraso en la devolución de la embarcación.
+                    No obstante si la cantidad resultante de los incidentes anteriormente citados
+                    fuera superior a la fianza, el cliente queda obligado a pagar la diferencia.
+                  </p>
+                  <p>
+                    La empresa no asume responsabilidad alguna por daños o pérdidas en cualquiera de
+                    los bienes que el arrendatario u otra persona olvide, deposite o transporte en
+                    la embarcación, durante o después de finalizado el alquiler. El arrendatario
+                    asume el riesgo de tales pérdidas y exime a la empresa de toda reclamación de
+                    los mismos y se compromete a mantenerla libre e indemne de cualquier reclamación
+                    que se produzca por esta causa, por demora o retraso como consecuencia de avería
+                    de la embarcación e incluso el posible cambio del estado del mar producido por
+                    causas meteorológicas imprevistas una vez que la embarcación se ha hecho a la
+                    mar.
+                  </p>
                 </div>
               </div>
 
@@ -239,18 +386,44 @@ export default function CondicionesGenerales() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">ZONA DE NAVEGACIÓN:</h3>
                 <div className="space-y-3 text-foreground">
-                  <p>Las embarcaciones tienen una zona restringida de navegación. Esta zona abarca desde el rio Tordera al sur hasta el final de la playa de Fenals al norte. Estos límites se indican al cliente en su teléfono móvil.</p>
+                  <p>
+                    Las embarcaciones tienen una zona restringida de navegación. Esta zona abarca
+                    desde el rio Tordera al sur hasta el final de la playa de Fenals al norte. Estos
+                    límites se indican al cliente en su teléfono móvil.
+                  </p>
                   <p>Costa Brava Rent a Boat - Blanes le recuerda los siguientes puntos:</p>
-                  <p>• Si navegando en zonas no autorizadas se requiere asistencia, la empresa no se hará responsable y el seguro no cubrirá ningún tipo de pérdidas y/o daños personales.</p>
-                  <p>• En el caso que se sobrepase la zona de navegación indicada en el mismo contrato podrá ser sancionado con 200,00€ por imprudencia.</p>
-                  <p>• En caso de necesidad de remolque de la embarcación por avería fuera de la zona de navegación o falta de combustible se cobrará 500,00€ por dicho servicio. El remolque por una avería no imputable al arrendatario no tiene coste para él.</p>
+                  <p>
+                    • Si navegando en zonas no autorizadas se requiere asistencia, la empresa no se
+                    hará responsable y el seguro no cubrirá ningún tipo de pérdidas y/o daños
+                    personales.
+                  </p>
+                  <p>
+                    • En el caso que se sobrepase la zona de navegación indicada en el mismo
+                    contrato podrá ser sancionado con 200,00€ por imprudencia.
+                  </p>
+                  <p>
+                    • En caso de necesidad de remolque de la embarcación por avería fuera de la zona
+                    de navegación o falta de combustible se cobrará 500,00€ por dicho servicio. El
+                    remolque por una avería no imputable al arrendatario no tiene coste para él.
+                  </p>
                 </div>
               </div>
 
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">AVERÍAS:</h3>
                 <p className="text-foreground">
-                  En caso de avería, colisión o pérdida de material, el arrendatario deberá avisar imperativamente e inmediatamente al arrendador que le informará sobre las instrucciones a seguir. Si durante el alquiler se produjera una avería no imputable al arrendatario, la cual no permitiera seguir con el alquiler, Costa Brava Rent a Boat reembolsará al contratante las horas no navegadas o entregará una embarcación de características similares a la contratada. Si no hay una embarcación similar disponible o el cliente no la acepta, se le reembolsarán las horas no navegadas. En caso de que la avería o accidente fuera imputable a la responsabilidad del contratante, éste deberá abonar los gastos de remolque y de las reparaciones oportunas para quedar la embarcación, motor o accesorios en el estado en que se le entregó por la empresa al inicio del contrato de alquiler, siendo sólo Costa Brava Rent a Boat la autorizada a efectuar dichas reparaciones.
+                  En caso de avería, colisión o pérdida de material, el arrendatario deberá avisar
+                  imperativamente e inmediatamente al arrendador que le informará sobre las
+                  instrucciones a seguir. Si durante el alquiler se produjera una avería no
+                  imputable al arrendatario, la cual no permitiera seguir con el alquiler, Costa
+                  Brava Rent a Boat reembolsará al contratante las horas no navegadas o entregará
+                  una embarcación de características similares a la contratada. Si no hay una
+                  embarcación similar disponible o el cliente no la acepta, se le reembolsarán las
+                  horas no navegadas. En caso de que la avería o accidente fuera imputable a la
+                  responsabilidad del contratante, éste deberá abonar los gastos de remolque y de
+                  las reparaciones oportunas para quedar la embarcación, motor o accesorios en el
+                  estado en que se le entregó por la empresa al inicio del contrato de alquiler,
+                  siendo sólo Costa Brava Rent a Boat la autorizada a efectuar dichas reparaciones.
                 </p>
               </div>
             </CardContent>
@@ -260,16 +433,20 @@ export default function CondicionesGenerales() {
           <Card className="bg-primary/5 border-primary/20">
             <CardContent className="p-6">
               <div className="text-center">
-                <h3 className="text-lg font-semibold text-foreground mb-2">¿Tienes dudas sobre nuestras condiciones?</h3>
-                <p className="text-foreground mb-4">Contacta con nosotros para resolver cualquier consulta</p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">
+                  ¿Tienes dudas sobre nuestras condiciones?
+                </h3>
+                <p className="text-foreground mb-4">
+                  Contacta con nosotros para resolver cualquier consulta
+                </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a 
+                  <a
                     href="mailto:info@costabravarentaboat.com"
                     className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition-colors"
                   >
                     Enviar email
                   </a>
-                  <a 
+                  <a
                     href="https://wa.me/34611500372"
                     className="bg-whatsapp hover:bg-whatsapp-hover text-white px-6 py-3 rounded-lg font-medium transition-colors"
                   >
@@ -282,8 +459,9 @@ export default function CondicionesGenerales() {
 
           {/* Identificación del arrendador — sin esto el contrato no dice con quién se firma */}
           <p className="text-sm text-muted-foreground text-center mt-8">
-            Arrendador: {BUSINESS_LEGAL_NAME}, CIF {BUSINESS_TAX_ID}, con domicilio social en {BUSINESS_REGISTERED_ADDRESS_FORMATTED} (España).
-            Teléfono {BUSINESS_PHONE}, correo electrónico {BUSINESS_EMAIL}.
+            Arrendador: {BUSINESS_LEGAL_NAME}, CIF {BUSINESS_TAX_ID}, con domicilio social en{" "}
+            {BUSINESS_REGISTERED_ADDRESS_FORMATTED} (España). Teléfono {BUSINESS_PHONE}, correo
+            electrónico {BUSINESS_EMAIL}.
           </p>
         </div>
       </div>

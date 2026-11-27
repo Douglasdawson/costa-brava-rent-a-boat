@@ -314,7 +314,7 @@ export default function GalleryPage() {
                 {gt.introP2pre}{" "}
                 <a
                   href={localizedPath("home") + "#fleet"}
-                  className="text-primary underline-offset-2 hover:underline"
+                  className="text-primary dark:text-chart-1 underline-offset-2 hover:underline"
                 >
                   {gt.introP2licenseFree}
                 </a>{" "}
@@ -323,7 +323,7 @@ export default function GalleryPage() {
                   href={localizedPath(
                     isLicenseFreeEraActive() ? "categoryLicensed" : "categoryCaptained"
                   )}
-                  className="text-primary underline-offset-2 hover:underline"
+                  className="text-primary dark:text-chart-1 underline-offset-2 hover:underline"
                 >
                   {gt.introP2licensed}
                 </a>{" "}

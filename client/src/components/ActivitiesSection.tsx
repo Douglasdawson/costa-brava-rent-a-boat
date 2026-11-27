@@ -103,7 +103,7 @@ export default function ActivitiesSection() {
                 <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
 
                 {c.isEfoil && (
-                  <span className="absolute left-5 top-5 rounded-full bg-white px-3 py-1 text-xs font-semibold text-foreground sm:left-6 sm:top-6">
+                  <span className="absolute left-5 top-5 rounded-full bg-white px-3 py-1 text-xs font-semibold text-nav sm:left-6 sm:top-6">
                     {s.newBadge}
                   </span>
                 )}

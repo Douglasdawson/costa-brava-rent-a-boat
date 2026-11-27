@@ -204,7 +204,7 @@ export default function LocationBarcelonaPage() {
               tone="dark"
               as="a"
               href={localizedPath("home") + "#fleet"}
-              className="mt-8 min-h-12 px-7 text-base"
+              className="mt-8 min-h-12 px-7 text-base dark:text-background"
             >
               {lb.boats.viewAllCta}
             </InteractiveHoverButton>
@@ -266,7 +266,7 @@ export default function LocationBarcelonaPage() {
       />
 
       {/* Blog section: closes over the footer colour */}
-      <div className="bg-foreground">
+      <div className="bg-foreground dark:bg-[hsl(215_45%_16%)]">
         <Sheet tone="muted" next="ink" labelledBy="bcn-blog-title">
           <Rise className="max-w-2xl">
             <SectionTitle id="bcn-blog-title">{lb.blog.title}</SectionTitle>

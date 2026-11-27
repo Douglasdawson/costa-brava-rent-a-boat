@@ -33,7 +33,10 @@ export default function Hero() {
 
   return (
     <div className="bg-background">
-      <div className="relative h-dvh min-h-[600px] overflow-hidden rounded-b-2xl squircle-b" id="home">
+      <div
+        className="relative h-dvh min-h-[600px] overflow-hidden rounded-b-2xl squircle-b"
+        id="home"
+      >
         {/* Background Image - Responsive <picture> */}
         <picture>
           <source
@@ -168,8 +171,8 @@ export default function Hero() {
         </div>
 
         {/* Trust badges strip — mobile: 2x2 grid with hairline dividers, 13px text, safe-area aware */}
-        <div className="absolute bottom-0 left-0 right-0 z-20 bg-foreground/90 dark:bg-cta/90 backdrop-blur-sm pb-[env(safe-area-inset-bottom,0px)]">
-          <div className="grid grid-cols-2 sm:flex sm:items-center sm:justify-center sm:gap-6 lg:gap-8 sm:px-4 sm:py-3 text-primary-foreground dark:text-foreground text-xs sm:text-sm font-medium [&>*]:min-h-10 sm:[&>*]:min-h-0 [&>*]:justify-center [&>*]:px-2 sm:[&>*]:whitespace-nowrap [&>*]:text-center [&>*]:leading-tight max-sm:[&>*]:border-white/15">
+        <div className="absolute bottom-0 left-0 right-0 z-20 bg-foreground/90 dark:bg-cta backdrop-blur-sm pb-[env(safe-area-inset-bottom,0px)]">
+          <div className="grid grid-cols-2 sm:flex sm:items-center sm:justify-center sm:gap-6 lg:gap-8 sm:px-4 sm:py-3 text-primary-foreground dark:text-background text-xs sm:text-sm font-medium [&>*]:min-h-10 sm:[&>*]:min-h-0 [&>*]:justify-center [&>*]:px-2 sm:[&>*]:whitespace-nowrap [&>*]:text-center [&>*]:leading-tight max-sm:[&>*]:border-white/15">
             <span className="inline-flex items-center gap-1.5 max-sm:order-1 max-sm:border-b max-sm:border-r">
               <Award className="w-3.5 h-3.5 flex-shrink-0 opacity-80" aria-hidden="true" />
               {authority.yearsExperience}
@@ -182,7 +185,7 @@ export default function Hero() {
               href={GBP_PROFILE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 hover:underline underline-offset-2 max-sm:order-2 max-sm:border-b"
+              className="inline-flex items-center gap-1.5 pointer-coarse:!min-h-11 hover:underline underline-offset-2 max-sm:order-2 max-sm:border-b"
             >
               <Star
                 className="w-3.5 h-3.5 flex-shrink-0 fill-amber-400 text-amber-400"

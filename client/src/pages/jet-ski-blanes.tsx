@@ -189,7 +189,7 @@ export default function JetSkiBlanesHub() {
                         {c.minPrice}€
                       </span>
                     </span>
-                    <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                    <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary dark:text-chart-1">
                       {t.jetskiLanding?.ctaRequest || "Ver"}
                       <ArrowRight className="h-4 w-4 transition-transform duration-300 motion-reduce:transition-none group-hover:translate-x-1" />
                     </span>

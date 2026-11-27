@@ -7,19 +7,17 @@ import rehypeRaw from "rehype-raw";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { Sheet, PageHeader, Rise, H2, ON_NAVY_MUTED } from "@/components/content-kit";
+import { cn } from "@/lib/utils";
 import {
   Calendar,
   Tag,
-  ArrowLeft,
   Share2,
   Copy,
   Check,
   ChevronLeft,
   ChevronRight,
-  Mail,
   List,
   Anchor,
 } from "lucide-react";
@@ -238,7 +236,15 @@ function extractFAQs(
 }
 
 // S5/U1: Table of Contents component
-function TableOfContents({ items, title }: { items: TocItem[]; title: string }) {
+function TableOfContents({
+  items,
+  title,
+  variant,
+}: {
+  items: TocItem[];
+  title: string;
+  variant: "mobile" | "desktop";
+}) {
   const [activeId, setActiveId] = useState<string>("");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -263,9 +269,8 @@ function TableOfContents({ items, title }: { items: TocItem[]; title: string }) 
 
   if (items.length < 3) return null;
 
-  return (
-    <>
-      {/* Mobile: collapsible */}
+  if (variant === "mobile") {
+    return (
       <div className="lg:hidden mb-6">
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -296,32 +301,33 @@ function TableOfContents({ items, title }: { items: TocItem[]; title: string }) 
           </nav>
         )}
       </div>
+    );
+  }
 
-      {/* Desktop: sticky sidebar */}
-      <aside className="hidden lg:block w-64 shrink-0">
-        <nav className="sticky top-28 max-h-[calc(100dvh-8rem)] overflow-y-auto">
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-1.5">
-            <List className="w-3.5 h-3.5" />
-            {title}
-          </p>
-          <div className="border-l-2 border-border/50 space-y-0.5">
-            {items.map(item => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                onClick={e => {
-                  e.preventDefault();
-                  document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className={`block text-[13px] leading-snug py-1.5 pl-3 -ml-px border-l-2 transition-colors ${item.level === 3 ? "pl-5" : ""} ${activeId === item.id ? "border-cta text-cta font-medium" : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"}`}
-              >
-                {item.text}
-              </a>
-            ))}
-          </div>
-        </nav>
-      </aside>
-    </>
+  return (
+    <aside className="hidden lg:block w-64 shrink-0">
+      <nav className="sticky top-[calc(var(--nav-height,5rem)+1rem)] max-h-[calc(100dvh-8rem)] overflow-y-auto">
+        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-1.5">
+          <List className="w-3.5 h-3.5" />
+          {title}
+        </p>
+        <div className="border-l-2 border-border/50 space-y-0.5">
+          {items.map(item => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={e => {
+                e.preventDefault();
+                document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className={`block text-[13px] leading-snug py-1.5 pl-3 -ml-px border-l-2 transition-colors ${item.level === 3 ? "pl-5" : ""} ${activeId === item.id ? "border-cta text-cta font-medium" : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"}`}
+            >
+              {item.text}
+            </a>
+          ))}
+        </div>
+      </nav>
+    </aside>
   );
 }
 
@@ -346,7 +352,7 @@ function StickyMobileCTA({ slug }: { slug: string }) {
       <Link
         href={`${localizedPath("home")}#fleet`}
         onClick={() => trackBlogCtaClick(slug, "sticky_mobile_cta")}
-        className="block w-full bg-cta hover:bg-cta/90 text-white rounded-full py-3 text-center text-sm font-semibold btn-elevated flex items-center justify-center gap-2"
+        className="block w-full bg-cta hover:bg-cta/90 text-white dark:text-background rounded-full py-3 text-center text-sm font-semibold btn-elevated flex items-center justify-center gap-2"
       >
         <Anchor className="w-4 h-4" />
         {t.hero?.bookNow || "Reservar"}
@@ -417,7 +423,7 @@ function InlineNewsletterCTA({ bd, language }: { bd: Record<string, string>; lan
   }
 
   return (
-    <div className="my-8 p-6 rounded-2xl bg-cta/5 border border-cta/20">
+    <div className="my-8 rounded-2xl border border-border bg-card p-6">
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <div className="flex-1">
           <h3 className="font-heading font-semibold text-lg mb-1">{bd.newsletterTitle}</h3>
@@ -446,14 +452,9 @@ function InlineNewsletterCTA({ bd, language }: { bd: Record<string, string>; lan
             required
             className="bg-background border border-border rounded-full px-4 py-2.5 text-sm flex-1 sm:w-56 focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
           />
-          <button
-            type="submit"
-            disabled={state === "loading"}
-            className="bg-cta hover:bg-cta/90 text-white rounded-full px-5 py-2.5 text-sm font-medium btn-elevated disabled:opacity-50 whitespace-nowrap flex items-center gap-1.5"
-          >
-            <Mail className="w-3.5 h-3.5" />
+          <InteractiveHoverButton type="submit" disabled={state === "loading"}>
             {state === "loading" ? "..." : bd.newsletterButton}
-          </button>
+          </InteractiveHoverButton>
         </form>
       </div>
       {state === "error" && <p className="text-xs text-red-500 mt-2">{bd.newsletterError}</p>}
@@ -514,9 +515,9 @@ function ShareButtons({
             trackWhatsAppClick("blog_share");
             trackBlogShare(slug, "whatsapp");
           }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-whatsapp/10 text-whatsapp hover:bg-whatsapp/20 transition-colors"
+          className="inline-flex min-h-11 items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border border-border text-foreground [@media(hover:hover)]:hover:bg-muted transition-colors motion-reduce:transition-none"
         >
-          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+          <svg className="w-4 h-4 text-whatsapp" viewBox="0 0 24 24" fill="currentColor">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
           </svg>
           WhatsApp
@@ -526,7 +527,7 @@ function ShareButtons({
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackBlogShare(slug, "twitter")}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-foreground/5 text-foreground hover:bg-foreground/10 transition-colors"
+          className="inline-flex min-h-11 items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border border-border text-foreground [@media(hover:hover)]:hover:bg-muted transition-colors motion-reduce:transition-none"
         >
           <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -538,7 +539,7 @@ function ShareButtons({
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackBlogShare(slug, "facebook")}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-[#1877F2]/10 text-[#1877F2] hover:bg-[#1877F2]/20 transition-colors"
+          className="inline-flex min-h-11 items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border border-border text-foreground [@media(hover:hover)]:hover:bg-muted transition-colors motion-reduce:transition-none"
         >
           <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
@@ -547,7 +548,7 @@ function ShareButtons({
         </a>
         <button
           onClick={handleCopy}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-foreground/5 text-foreground hover:bg-foreground/10 transition-colors"
+          className="inline-flex min-h-11 items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border border-border text-foreground [@media(hover:hover)]:hover:bg-muted transition-colors motion-reduce:transition-none"
         >
           {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
           {copied ? bd.linkCopied : bd.copyLink}
@@ -555,7 +556,7 @@ function ShareButtons({
         {typeof navigator !== "undefined" && "share" in navigator && (
           <button
             onClick={handleNativeShare}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-foreground/5 text-foreground hover:bg-foreground/10 transition-colors sm:hidden"
+            className="inline-flex min-h-11 items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border border-border text-foreground [@media(hover:hover)]:hover:bg-muted transition-colors motion-reduce:transition-none sm:hidden"
           >
             <Share2 className="w-4 h-4" />
             {bd.share}
@@ -566,56 +567,56 @@ function ShareButtons({
   );
 }
 
-// Conversion CTA banner — shown after article content
+// Conversion CTA: navy sheet that closes over the footer colour
 function BlogConversionBanner({ slug }: { slug: string }) {
   const { openBookingModal } = useBookingModal();
   const t = useTranslations();
   const bd = t.blogDetail!;
 
   return (
-    <div
-      className="mt-10 bg-muted/50 rounded-2xl p-6 sm:p-8 text-center"
-      data-testid="blog-conversion-banner"
-    >
-      <Anchor className="w-8 h-8 mx-auto mb-3 text-cta" />
-      <h3 className="font-heading font-semibold text-xl sm:text-2xl text-foreground mb-2">
-        {bd.ctaTitle || "Listo para tu aventura?"}
-      </h3>
-      <p className="text-muted-foreground text-sm sm:text-base mb-5">
-        {bd.ctaSubtitle ||
-          "Alquila una lancha con el titulín o sal con patrón desde el Puerto de Blanes"}
-      </p>
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <Button
-          size="lg"
-          className="bg-cta hover:bg-cta/90 text-white rounded-full px-8 font-semibold btn-elevated w-full sm:w-auto"
-          onClick={() => {
-            trackBlogCtaClick(slug, "conversion_banner_book");
-            openBookingModal();
-          }}
-          data-testid="button-blog-cta-book"
+    <Sheet tone="navy" next="foot" data-testid="blog-conversion-banner">
+      <Rise className="container mx-auto max-w-4xl px-4 text-center">
+        <h2 className={H2}>{bd.ctaTitle || "Listo para tu aventura?"}</h2>
+        <p
+          className={cn(
+            "mx-auto mt-5 max-w-2xl text-base leading-relaxed text-pretty sm:text-lg",
+            ON_NAVY_MUTED
+          )}
         >
-          <Anchor className="w-4 h-4 mr-2" />
-          {bd.ctaBookNow || "Reservar ahora"}
-        </Button>
-        <a
-          href="https://wa.me/34611500372"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => {
-            trackWhatsAppClick("blog_conversion_banner");
-            trackBlogCtaClick(slug, "conversion_banner_whatsapp");
-          }}
-          className="inline-flex items-center justify-center gap-2 bg-whatsapp hover:bg-whatsapp/90 text-white rounded-full px-8 py-2.5 font-semibold text-sm btn-elevated w-full sm:w-auto h-11"
-          data-testid="button-blog-cta-whatsapp"
-        >
-          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-          </svg>
-          {bd.ctaWhatsApp || "Preguntar por WhatsApp"}
-        </a>
-      </div>
-    </div>
+          {bd.ctaSubtitle ||
+            "Alquila una lancha con el titulín o sal con patrón desde el Puerto de Blanes"}
+        </p>
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <InteractiveHoverButton
+            tone="light"
+            className="min-h-12 px-8 text-base"
+            onClick={() => {
+              trackBlogCtaClick(slug, "conversion_banner_book");
+              openBookingModal();
+            }}
+            data-testid="button-blog-cta-book"
+          >
+            {bd.ctaBookNow || "Reservar ahora"}
+          </InteractiveHoverButton>
+          <a
+            href="https://wa.me/34611500372"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => {
+              trackWhatsAppClick("blog_conversion_banner");
+              trackBlogCtaClick(slug, "conversion_banner_whatsapp");
+            }}
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-primary-foreground/50 px-6 text-base font-medium text-primary-foreground transition-colors hover:bg-primary-foreground/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 motion-reduce:transition-none dark:border-foreground/40 dark:text-foreground dark:hover:bg-foreground/10"
+            data-testid="button-blog-cta-whatsapp"
+          >
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+            {bd.ctaWhatsApp || "Preguntar por WhatsApp"}
+          </a>
+        </div>
+      </Rise>
+    </Sheet>
   );
 }
 
@@ -940,7 +941,7 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
     return (
       <div className="min-h-screen flex flex-col">
         <Navigation />
-        <main id="main-content" className="flex-1 container mx-auto px-4 py-8 max-w-6xl">
+        <main id="main-content" className="flex-1 container mx-auto px-4 pb-8 pt-28 max-w-6xl">
           <div className="animate-pulse space-y-4">
             <div className="h-8 bg-muted rounded w-3/4"></div>
             <div className="h-64 bg-muted rounded"></div>
@@ -955,29 +956,36 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
 
   if (isError || !post) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-background">
         <Navigation />
-        <main id="main-content" className="flex-1 container mx-auto px-4 py-8 max-w-6xl">
-          <Card>
-            <CardContent className="pt-6">
-              <h2 className="text-h2 font-semibold tracking-tight mb-4">{bd.notFoundTitle}</h2>
-              <p className="text-muted-foreground mb-6">{bd.notFoundDescription}</p>
-              <Button asChild data-testid="button-back-blog">
-                <Link href={localizedPath("blog")}>
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  {bd.backToBlog}
-                </Link>
-              </Button>
-            </CardContent>
-          </Card>
+        <main id="main-content" className="flex-1">
+          <PageHeader title={bd.notFoundTitle} subtitle={bd.notFoundDescription} next="background">
+            <div className="mt-8 flex justify-center">
+              <InteractiveHoverButton
+                as={Link}
+                href={localizedPath("blog")}
+                tone="light"
+                data-testid="button-back-blog"
+              >
+                {bd.backToBlog}
+              </InteractiveHoverButton>
+            </div>
+          </PageHeader>
         </main>
         <Footer />
       </div>
     );
   }
 
+  const hasMore = !!(prevPost || nextPost || relatedPosts.length > 0);
+  const postTitle = localized(
+    post.titleByLang as Record<string, string> | null,
+    post.title,
+    language
+  );
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-background">
       {/* U2: Reading progress bar */}
       <ReadingProgressBar />
 
@@ -1016,36 +1024,74 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
       {/* E3: Sticky mobile CTA */}
       <StickyMobileCTA slug={post.slug} />
 
-      <main
-        id="main-content"
-        className="flex-1 container mx-auto px-4 pt-20 sm:pt-24 lg:pt-32 pb-20 lg:pb-8 max-w-6xl"
-      >
-        {/* S5/U1: Two-column layout with TOC sidebar on desktop */}
-        <div className="lg:flex lg:gap-10">
-          {/* Main article content */}
-          <div className="flex-1 min-w-0 max-w-4xl">
-            {/* Article Header */}
-            <article ref={articleRef} className="space-y-6">
-              <header className="space-y-4">
-                <p
-                  className="mb-2 flex items-center gap-1.5 text-sm font-medium text-muted-foreground"
-                  data-testid={`badge-category-${post.slug}`}
-                >
-                  <Tag className="h-3.5 w-3.5" aria-hidden="true" />
-                  {localizeCategory(post.category, language)}
-                </p>
+      <main id="main-content" className="flex-1">
+        {/* Header: navy sheet with category, title, excerpt and meta */}
+        <Sheet tone="navy" next="background" as="header" className="pb-14 pt-28 sm:pb-20 sm:pt-36">
+          <div className="container mx-auto max-w-4xl px-4">
+            <p
+              className={cn("flex items-center gap-1.5 text-sm font-medium", ON_NAVY_MUTED)}
+              data-testid={`badge-category-${post.slug}`}
+            >
+              <Tag className="h-3.5 w-3.5" aria-hidden="true" />
+              {localizeCategory(post.category, language)}
+            </p>
 
-                <h1
-                  className="text-h1 font-heading font-semibold tracking-tight"
-                  data-testid={`text-title-${post.slug}`}
-                >
-                  {localized(
-                    post.titleByLang as Record<string, string> | null,
-                    post.title,
-                    language
-                  )}
-                </h1>
+            <h1
+              className="mt-4 font-heading text-h1 font-semibold tracking-tight text-balance"
+              data-testid={`text-title-${post.slug}`}
+            >
+              {postTitle}
+            </h1>
 
+            {(post.excerpt || post.excerptByLang) && (
+              <p
+                className={cn("mt-5 max-w-2xl text-base text-pretty sm:text-lg", ON_NAVY_MUTED)}
+                data-testid={`text-excerpt-${post.slug}`}
+              >
+                {localized(
+                  post.excerptByLang as Record<string, string> | null,
+                  post.excerpt,
+                  language
+                )}
+              </p>
+            )}
+
+            <div
+              className={cn(
+                "mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm",
+                ON_NAVY_MUTED
+              )}
+            >
+              <div className="flex items-center gap-2" data-testid={`text-date-${post.slug}`}>
+                <Calendar className="h-4 w-4" aria-hidden="true" />
+                {formatDate(post.publishedAt)}
+              </div>
+              <span>
+                {estimateReadingTime(post.content)} {bd.minRead}
+              </span>
+              {post.tags && post.tags.length > 0 && (
+                // Keyword tags are noise on a phone: they push the article below the fold.
+                <ul className="hidden flex-wrap gap-x-3 sm:flex">
+                  {post.tags.map((tag, index) => (
+                    <li
+                      key={index}
+                      className="after:ml-3 after:content-['·'] last:after:content-none"
+                      data-testid={`badge-tag-${index}`}
+                    >
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+        </Sheet>
+
+        {/* Article: comfortable measure (70ch), TOC rail on desktop */}
+        <Sheet tone="background" next={hasMore ? "muted" : "background"} className="py-10 sm:py-16">
+          <div className="container mx-auto max-w-6xl px-4">
+            <div className="lg:flex lg:justify-center lg:gap-12">
+              <article ref={articleRef} className="min-w-0 flex-1 space-y-6 lg:max-w-3xl">
                 <AuthorByline
                   authorName={post.author}
                   publishedAt={post.publishedAt}
@@ -1053,132 +1099,94 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
                   language={language}
                 />
 
-                <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2" data-testid={`text-date-${post.slug}`}>
-                    <Calendar className="h-4 w-4" />
-                    {formatDate(post.publishedAt)}
+                {/* Featured Image */}
+                {post.featuredImage && (
+                  <div className="my-8">
+                    <img
+                      src={post.featuredImage}
+                      alt={
+                        localized(
+                          post.featuredImageAltByLang as Record<string, string> | null,
+                          null,
+                          language
+                        ) || postTitle
+                      }
+                      className="w-full aspect-video object-cover rounded-2xl"
+                      loading="eager"
+                      {...({
+                        fetchpriority: "high",
+                      } as unknown as React.ImgHTMLAttributes<HTMLImageElement>)}
+                      width={1200}
+                      height={630}
+                      onError={e => {
+                        (e.target as HTMLImageElement).src = "/images/blog/barco-mar.webp";
+                      }}
+                      data-testid={`img-featured-${post.slug}`}
+                    />
                   </div>
-                  <span className="text-muted-foreground">
-                    {estimateReadingTime(post.content)} {bd.minRead}
-                  </span>
-                  {post.tags && post.tags.length > 0 && (
-                    // Keyword chips are noise on a phone: they push the article below the fold.
-                    <div className="hidden sm:contents">
-                      <span className="text-border">|</span>
-                      <div className="flex flex-wrap gap-1.5">
-                        {post.tags.map((tag, index) => (
-                          <Badge
-                            key={index}
-                            variant="outline"
-                            className="text-xs"
-                            data-testid={`badge-tag-${index}`}
-                          >
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
+                )}
 
-                {(post.excerpt || post.excerptByLang) && (
-                  <p
-                    className="text-lg leading-relaxed text-muted-foreground"
-                    data-testid={`text-excerpt-${post.slug}`}
+                {/* Mobile TOC (collapsible, shown above content) */}
+                <TableOfContents items={tocItems} title={bd.tableOfContents} variant="mobile" />
+
+                {/* Article Content */}
+                <div
+                  className="prose max-w-[70ch] dark:prose-invert prose-headings:scroll-mt-28 prose-headings:font-heading prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-balance prose-h2:mt-12 prose-h2:text-2xl prose-h2:leading-tight prose-h3:text-xl prose-p:leading-[1.75] prose-a:text-cta prose-a:decoration-cta/40 hover:prose-a:decoration-cta prose-img:rounded-2xl prose-table:m-0"
+                  data-testid={`content-article-${post.slug}`}
+                >
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeRaw]}
+                    components={markdownComponents}
                   >
                     {localized(
-                      post.excerptByLang as Record<string, string> | null,
-                      post.excerpt,
+                      post.contentByLang as Record<string, string> | null,
+                      post.content,
                       language
                     )}
-                  </p>
-                )}
-              </header>
-
-              {/* Featured Image */}
-              {post.featuredImage && (
-                <div className="my-8">
-                  <img
-                    src={post.featuredImage}
-                    alt={
-                      localized(
-                        post.featuredImageAltByLang as Record<string, string> | null,
-                        null,
-                        language
-                      ) ||
-                      localized(
-                        post.titleByLang as Record<string, string> | null,
-                        post.title,
-                        language
-                      )
-                    }
-                    className="w-full aspect-video object-cover rounded-2xl"
-                    loading="eager"
-                    {...({
-                      fetchpriority: "high",
-                    } as unknown as React.ImgHTMLAttributes<HTMLImageElement>)}
-                    width={1200}
-                    height={630}
-                    onError={e => {
-                      (e.target as HTMLImageElement).src = "/images/blog/barco-mar.webp";
-                    }}
-                    data-testid={`img-featured-${post.slug}`}
-                  />
+                  </ReactMarkdown>
                 </div>
-              )}
 
-              {/* Mobile TOC (collapsible, shown above content) */}
-              <TableOfContents items={tocItems} title={bd.tableOfContents} />
+                {/* E1: Inline Newsletter CTA (after content: the reader came for the article) */}
+                <InlineNewsletterCTA bd={bd} language={language} />
 
-              {/* Article Content */}
-              <div
-                className="prose max-w-prose dark:prose-invert prose-headings:font-heading prose-headings:font-semibold prose-headings:tracking-tight prose-a:text-cta prose-a:decoration-cta/40 hover:prose-a:decoration-cta prose-img:rounded-2xl prose-table:m-0"
-                data-testid={`content-article-${post.slug}`}
-              >
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  rehypePlugins={[rehypeRaw]}
-                  components={markdownComponents}
-                >
-                  {localized(
-                    post.contentByLang as Record<string, string> | null,
-                    post.content,
-                    language
-                  )}
-                </ReactMarkdown>
-              </div>
+                {/* Share Buttons */}
+                <ShareButtons
+                  title={postTitle}
+                  url={typeof window !== "undefined" ? window.location.href : ""}
+                  bd={bd}
+                  slug={post.slug}
+                />
+              </article>
 
-              {/* E1: Inline Newsletter CTA (after content: the reader came for the article) */}
-              <InlineNewsletterCTA bd={bd} language={language} />
+              {/* Desktop TOC sidebar */}
+              <TableOfContents items={tocItems} title={bd.tableOfContents} variant="desktop" />
+            </div>
+          </div>
+        </Sheet>
 
-              {/* Share Buttons */}
-              <ShareButtons
-                title={localized(
-                  post.titleByLang as Record<string, string> | null,
-                  post.title,
-                  language
-                )}
-                url={typeof window !== "undefined" ? window.location.href : ""}
-                bd={bd}
-                slug={post.slug}
-              />
-
-              {/* U3: Previous/Next Article Navigation */}
+        {hasMore && (
+          <Sheet tone="muted" next="background">
+            <div className="container mx-auto max-w-4xl px-4">
+              {/* U3: Previous/Next Article Navigation, as one ruled strip */}
               {(prevPost || nextPost) && (
                 <nav
-                  className="mt-8 pt-6 border-t border-border/50 grid grid-cols-2 gap-4"
+                  className={cn(
+                    "grid divide-x divide-border overflow-hidden rounded-2xl border border-border bg-background",
+                    prevPost && nextPost ? "grid-cols-2" : "grid-cols-1"
+                  )}
                   aria-label="Article navigation"
                 >
                   {prevPost ? (
                     <Link
                       href={localizedPath("blogDetail", prevPost.slug)}
-                      className="group flex flex-col gap-1 text-left"
+                      className="group flex flex-col gap-1 p-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cta"
                     >
-                      <span className="text-xs text-muted-foreground flex items-center gap-1">
-                        <ChevronLeft className="w-3 h-3" />
+                      <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                        <ChevronLeft className="h-3 w-3" aria-hidden="true" />
                         {bd.previousArticle}
                       </span>
-                      <span className="text-sm font-medium line-clamp-2 group-hover:text-cta transition-colors">
+                      <span className="line-clamp-2 text-sm font-medium transition-colors [@media(hover:hover)]:group-hover:text-cta motion-reduce:transition-none">
                         {localized(
                           prevPost.titleByLang as Record<string, string> | null,
                           prevPost.title,
@@ -1186,19 +1194,17 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
                         )}
                       </span>
                     </Link>
-                  ) : (
-                    <div />
-                  )}
+                  ) : null}
                   {nextPost ? (
                     <Link
                       href={localizedPath("blogDetail", nextPost.slug)}
-                      className="group flex flex-col gap-1 text-right ml-auto"
+                      className="group flex flex-col gap-1 p-5 text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cta"
                     >
-                      <span className="text-xs text-muted-foreground flex items-center gap-1 justify-end">
+                      <span className="flex items-center justify-end gap-1 text-xs text-muted-foreground">
                         {bd.nextArticle}
-                        <ChevronRight className="w-3 h-3" />
+                        <ChevronRight className="h-3 w-3" aria-hidden="true" />
                       </span>
-                      <span className="text-sm font-medium line-clamp-2 group-hover:text-cta transition-colors">
+                      <span className="line-clamp-2 text-sm font-medium transition-colors [@media(hover:hover)]:group-hover:text-cta motion-reduce:transition-none">
                         {localized(
                           nextPost.titleByLang as Record<string, string> | null,
                           nextPost.title,
@@ -1206,140 +1212,129 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
                         )}
                       </span>
                     </Link>
-                  ) : (
-                    <div />
-                  )}
+                  ) : null}
                 </nav>
               )}
 
-              {/* Conversion CTA Banner */}
-              <BlogConversionBanner slug={post.slug} />
-            </article>
-          </div>
+              {/* Related Posts: ruled rows instead of identical cards */}
+              {relatedPosts.length > 0 && (
+                <Rise className={cn((prevPost || nextPost) && "mt-14 sm:mt-20")}>
+                  <h2 className={H2} data-testid="text-related-posts-title">
+                    {bd.relatedArticles}
+                  </h2>
+                  <ul className="mt-8 border-t border-border">
+                    {relatedPosts.map(relatedPost => (
+                      <li key={relatedPost.id} className="border-b border-border">
+                        <Link
+                          href={localizedPath("blogDetail", relatedPost.slug)}
+                          className={cn(
+                            "group grid items-center gap-4 py-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta",
+                            relatedPost.featuredImage && "sm:grid-cols-[10rem_1fr] sm:gap-6"
+                          )}
+                          data-testid={`card-related-${relatedPost.slug}`}
+                        >
+                          {relatedPost.featuredImage && (
+                            <img
+                              src={relatedPost.featuredImage}
+                              alt={
+                                localized(
+                                  relatedPost.featuredImageAltByLang as Record<
+                                    string,
+                                    string
+                                  > | null,
+                                  null,
+                                  language
+                                ) ||
+                                localized(
+                                  relatedPost.titleByLang as Record<string, string> | null,
+                                  relatedPost.title,
+                                  language
+                                )
+                              }
+                              className="aspect-[3/2] w-full rounded-xl object-cover sm:w-40"
+                              loading="lazy"
+                              width={600}
+                              height={400}
+                              onError={e => {
+                                (e.target as HTMLImageElement).src = "/images/blog/barco-mar.webp";
+                              }}
+                            />
+                          )}
+                          <div className="min-w-0">
+                            <p
+                              className="text-xs font-medium text-muted-foreground"
+                              data-testid={`badge-related-category-${relatedPost.slug}`}
+                            >
+                              {localizeCategory(relatedPost.category, language)}
+                            </p>
+                            <h3
+                              className="mt-1 line-clamp-2 font-heading text-lg font-semibold leading-snug tracking-tight text-balance transition-colors [@media(hover:hover)]:group-hover:text-cta motion-reduce:transition-none"
+                              data-testid={`text-related-title-${relatedPost.slug}`}
+                            >
+                              {localized(
+                                relatedPost.titleByLang as Record<string, string> | null,
+                                relatedPost.title,
+                                language
+                              )}
+                            </h3>
+                            <p
+                              className="mt-1.5 line-clamp-2 text-sm text-muted-foreground"
+                              data-testid={`text-related-excerpt-${relatedPost.slug}`}
+                            >
+                              {localized(
+                                relatedPost.excerptByLang as Record<string, string> | null,
+                                relatedPost.excerpt,
+                                language
+                              )}
+                            </p>
+                          </div>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </Rise>
+              )}
+            </div>
+          </Sheet>
+        )}
 
-          {/* Desktop TOC sidebar */}
-          <TableOfContents items={tocItems} title={bd.tableOfContents} />
-        </div>
+        {/* Quiz + related destinations */}
+        <Sheet tone="background" next="navy" className="py-12 sm:py-16">
+          <div className="container mx-auto max-w-4xl px-4">
+            {/* X2: Boat Quiz Widget */}
+            <section className="mx-auto max-w-md">
+              <BoatQuiz source={post.slug} />
+            </section>
 
-        {/* X2: Boat Quiz Widget */}
-        <section className="mt-16 pt-8 border-t max-w-md mx-auto">
-          <BoatQuiz source={post.slug} />
-        </section>
-
-        {/* Related Posts */}
-        {relatedPosts.length > 0 && (
-          <section className="mt-16 pt-8 border-t max-w-4xl">
-            <h2
-              className="text-h2 font-semibold tracking-tight mb-6"
-              data-testid="text-related-posts-title"
-            >
-              {bd.relatedArticles}
+            <h2 className="mt-14 font-heading text-xl font-semibold tracking-tight text-foreground sm:mt-20">
+              {t.blogDetail?.relatedDestinationsTitle ?? "Destinos relacionados"}
             </h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {relatedPosts.map(relatedPost => (
-                <Link
-                  key={relatedPost.id}
-                  href={localizedPath("blogDetail", relatedPost.slug)}
-                  className="block group"
-                  data-testid={`card-related-${relatedPost.slug}`}
+            <div className="mt-4 grid grid-cols-1 divide-y divide-border overflow-hidden rounded-2xl border border-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+              {[
+                ["locationBlanes", "relatedBlanesName", "Blanes", "relatedBlanesDesc"],
+                ["locationLloret", "relatedLloretName", "Lloret de Mar", "relatedLloretDesc"],
+                ["locationTossa", "relatedTossaName", "Tossa de Mar", "relatedTossaDesc"],
+              ].map(([route, nameKey, fallback, descKey]) => (
+                <a
+                  key={route}
+                  href={localizedPath(route)}
+                  className="block bg-background p-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cta motion-reduce:transition-none [@media(hover:hover)]:hover:bg-muted"
                 >
-                  <Card className="overflow-hidden hover-elevate h-full">
-                    {relatedPost.featuredImage && (
-                      <img
-                        src={relatedPost.featuredImage}
-                        alt={
-                          localized(
-                            relatedPost.featuredImageAltByLang as Record<string, string> | null,
-                            null,
-                            language
-                          ) ||
-                          localized(
-                            relatedPost.titleByLang as Record<string, string> | null,
-                            relatedPost.title,
-                            language
-                          )
-                        }
-                        className="w-full aspect-[3/2] object-cover"
-                        loading="lazy"
-                        width={600}
-                        height={400}
-                        onError={e => {
-                          (e.target as HTMLImageElement).src = "/images/blog/barco-mar.webp";
-                        }}
-                      />
-                    )}
-                    <CardHeader className={relatedPost.featuredImage ? "pt-4" : ""}>
-                      <Badge
-                        variant="secondary"
-                        className="w-fit mb-1 text-xs"
-                        data-testid={`badge-related-category-${relatedPost.slug}`}
-                      >
-                        {localizeCategory(relatedPost.category, language)}
-                      </Badge>
-                      <CardTitle
-                        className="line-clamp-2 text-base group-hover:text-cta transition-colors"
-                        data-testid={`text-related-title-${relatedPost.slug}`}
-                      >
-                        {localized(
-                          relatedPost.titleByLang as Record<string, string> | null,
-                          relatedPost.title,
-                          language
-                        )}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p
-                        className="text-sm text-muted-foreground line-clamp-2"
-                        data-testid={`text-related-excerpt-${relatedPost.slug}`}
-                      >
-                        {localized(
-                          relatedPost.excerptByLang as Record<string, string> | null,
-                          relatedPost.excerpt,
-                          language
-                        )}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </Link>
+                  <h3 className="mb-1 font-semibold">
+                    {(t.blogDetail as Record<string, string> | undefined)?.[nameKey] ?? fallback}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {(t.blogDetail as Record<string, string> | undefined)?.[descKey]}
+                  </p>
+                </a>
               ))}
             </div>
-          </section>
-        )}
-      </main>
+          </div>
+        </Sheet>
 
-      {/* Related destinations */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 pb-12">
-        <h2 className="text-xl font-heading font-semibold tracking-tight text-foreground mb-4">
-          {t.blogDetail?.relatedDestinationsTitle ?? "Destinos relacionados"}
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <a
-            href={localizedPath("locationBlanes")}
-            className="block rounded-2xl border border-border bg-background p-4 transition-colors motion-reduce:transition-none [@media(hover:hover)]:hover:border-primary"
-          >
-            <h3 className="font-semibold mb-1">{t.blogDetail?.relatedBlanesName ?? "Blanes"}</h3>
-            <p className="text-sm text-muted-foreground">{t.blogDetail?.relatedBlanesDesc}</p>
-          </a>
-          <a
-            href={localizedPath("locationLloret")}
-            className="block rounded-2xl border border-border bg-background p-4 transition-colors motion-reduce:transition-none [@media(hover:hover)]:hover:border-primary"
-          >
-            <h3 className="font-semibold mb-1">
-              {t.blogDetail?.relatedLloretName ?? "Lloret de Mar"}
-            </h3>
-            <p className="text-sm text-muted-foreground">{t.blogDetail?.relatedLloretDesc}</p>
-          </a>
-          <a
-            href={localizedPath("locationTossa")}
-            className="block rounded-2xl border border-border bg-background p-4 transition-colors motion-reduce:transition-none [@media(hover:hover)]:hover:border-primary"
-          >
-            <h3 className="font-semibold mb-1">
-              {t.blogDetail?.relatedTossaName ?? "Tossa de Mar"}
-            </h3>
-            <p className="text-sm text-muted-foreground">{t.blogDetail?.relatedTossaDesc}</p>
-          </a>
-        </div>
-      </div>
+        {/* Conversion CTA: closes over the footer colour */}
+        <BlogConversionBanner slug={post.slug} />
+      </main>
 
       <Footer />
     </div>

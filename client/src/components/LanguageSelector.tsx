@@ -1,29 +1,29 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuTrigger 
-} from '@/components/ui/dropdown-menu';
-import { Badge } from '@/components/ui/badge';
-import { Globe, Check } from 'lucide-react';
-import { useLanguage, Language } from '@/hooks/use-language';
-import { useTranslations } from '@/lib/translations';
-import CountryFlag from '@/components/booking/CountryFlag';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Badge } from "@/components/ui/badge";
+import { Globe, Check } from "lucide-react";
+import { useLanguage, Language } from "@/hooks/use-language";
+import { useTranslations } from "@/lib/translations";
+import CountryFlag from "@/components/booking/CountryFlag";
 
 // iso2 drives the SVG flag (country-flag-icons). Catalonia has no ISO 3166-1
 // code (and its emoji renders as a broken black flag on most platforms), so
 // Català renders a text code chip instead of a flag.
 const languages = [
-  { code: 'es' as Language, name: 'Español', iso2: 'ES', flag: '🇪🇸' },
-  { code: 'ca' as Language, name: 'Català', iso2: '', flag: '' },
-  { code: 'en' as Language, name: 'English', iso2: 'GB', flag: '🇬🇧' },
-  { code: 'fr' as Language, name: 'Français', iso2: 'FR', flag: '🇫🇷' },
-  { code: 'de' as Language, name: 'Deutsch', iso2: 'DE', flag: '🇩🇪' },
-  { code: 'nl' as Language, name: 'Nederlands', iso2: 'NL', flag: '🇳🇱' },
-  { code: 'it' as Language, name: 'Italiano', iso2: 'IT', flag: '🇮🇹' },
-  { code: 'ru' as Language, name: 'Русский', iso2: 'RU', flag: '🇷🇺' },
+  { code: "es" as Language, name: "Español", iso2: "ES", flag: "🇪🇸" },
+  { code: "ca" as Language, name: "Català", iso2: "", flag: "" },
+  { code: "en" as Language, name: "English", iso2: "GB", flag: "🇬🇧" },
+  { code: "fr" as Language, name: "Français", iso2: "FR", flag: "🇫🇷" },
+  { code: "de" as Language, name: "Deutsch", iso2: "DE", flag: "🇩🇪" },
+  { code: "nl" as Language, name: "Nederlands", iso2: "NL", flag: "🇳🇱" },
+  { code: "it" as Language, name: "Italiano", iso2: "IT", flag: "🇮🇹" },
+  { code: "ru" as Language, name: "Русский", iso2: "RU", flag: "🇷🇺" },
 ];
 
 function LanguageFlag({ iso2, flag, langCode }: { iso2: string; flag: string; langCode: string }) {
@@ -41,11 +41,14 @@ function LanguageFlag({ iso2, flag, langCode }: { iso2: string; flag: string; la
 }
 
 interface LanguageSelectorProps {
-  variant?: 'button' | 'minimal';
+  variant?: "button" | "minimal";
   className?: string;
 }
 
-export default function LanguageSelector({ variant = 'button', className = '' }: LanguageSelectorProps) {
+export default function LanguageSelector({
+  variant = "button",
+  className = "",
+}: LanguageSelectorProps) {
   const { language, setLanguage, isLoading } = useLanguage();
   const t = useTranslations();
   const [isOpen, setIsOpen] = useState(false);
@@ -65,7 +68,7 @@ export default function LanguageSelector({ variant = 'button', className = '' }:
     );
   }
 
-  if (variant === 'minimal') {
+  if (variant === "minimal") {
     return (
       <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
         <DropdownMenuTrigger asChild>
@@ -80,7 +83,7 @@ export default function LanguageSelector({ variant = 'button', className = '' }:
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-48">
-          {languages.map((lang) => (
+          {languages.map(lang => (
             <DropdownMenuItem
               key={lang.code}
               onClick={() => handleLanguageChange(lang.code)}
@@ -92,7 +95,7 @@ export default function LanguageSelector({ variant = 'button', className = '' }:
                 <span>{lang.name}</span>
               </div>
               {language === lang.code && (
-                <Check className="w-4 h-4 text-primary" />
+                <Check className="w-4 h-4 text-primary dark:text-chart-1" />
               )}
             </DropdownMenuItem>
           ))}
@@ -130,7 +133,7 @@ export default function LanguageSelector({ variant = 'button', className = '' }:
             <span>{t.nav.changeLanguage}</span>
           </div>
         </div>
-        {languages.map((lang) => (
+        {languages.map(lang => (
           <DropdownMenuItem
             key={lang.code}
             onClick={() => handleLanguageChange(lang.code)}
@@ -141,9 +144,7 @@ export default function LanguageSelector({ variant = 'button', className = '' }:
               <span className="text-lg">{lang.flag}</span>
               <span>{lang.name}</span>
             </div>
-            {language === lang.code && (
-              <Check className="w-4 h-4 text-primary" />
-            )}
+            {language === lang.code && <Check className="w-4 h-4 text-primary dark:text-chart-1" />}
           </DropdownMenuItem>
         ))}
         <div className="p-2 border-t">

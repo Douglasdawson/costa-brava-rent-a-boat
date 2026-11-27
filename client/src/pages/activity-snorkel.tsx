@@ -239,7 +239,9 @@ export default function ActivitySnorkelPage() {
                   </span>
                 </div>
                 <div className="space-y-3 px-5 py-4 sm:px-6">
-                  <p className="text-sm font-medium text-primary">{boat.duration}</p>
+                  <p className="text-sm font-medium text-primary dark:text-chart-1">
+                    {boat.duration}
+                  </p>
                   <LeadText text={boat.description} />
                 </div>
               </article>

@@ -195,6 +195,7 @@ function ReviewsSection({ wrapperClassName = "bg-muted/40" }: ReviewsSectionProp
   if (displayReviews.length === 0) return null;
 
   const featured = displayReviews[0];
+  const hasMore = displayReviews.length > 1;
   const featuredDateLabel = reviewDateLabel(featured, locale);
   const arrowClass =
     "flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta enabled:[@media(hover:hover)]:hover:bg-muted disabled:opacity-35 motion-reduce:transition-none";
@@ -271,36 +272,40 @@ function ReviewsSection({ wrapperClassName = "bg-muted/40" }: ReviewsSectionProp
                   aria-hidden="true"
                 />
               </a>
-              <div className="hidden gap-2 md:flex">
-                <button
-                  type="button"
-                  onClick={() => scrollByCards("left")}
-                  disabled={!canScrollLeft}
-                  aria-label={t.a11y.reviewPrev}
-                  className={arrowClass}
-                >
-                  <ChevronLeft className="h-5 w-5" aria-hidden="true" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => scrollByCards("right")}
-                  disabled={!canScrollRight}
-                  aria-label={t.a11y.reviewNext}
-                  className={arrowClass}
-                >
-                  <ChevronRight className="h-5 w-5" aria-hidden="true" />
-                </button>
+              {hasMore && (
+                <div className="hidden gap-2 md:flex">
+                  <button
+                    type="button"
+                    onClick={() => scrollByCards("left")}
+                    disabled={!canScrollLeft}
+                    aria-label={t.a11y.reviewPrev}
+                    className={arrowClass}
+                  >
+                    <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => scrollByCards("right")}
+                    disabled={!canScrollRight}
+                    aria-label={t.a11y.reviewNext}
+                    className={arrowClass}
+                  >
+                    <ChevronRight className="h-5 w-5" aria-hidden="true" />
+                  </button>
+                </div>
+              )}
+            </div>
+            {hasMore && (
+              <div
+                ref={scrollRef}
+                className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:scroll-px-6 sm:px-6 lg:-mx-8 lg:scroll-px-8 lg:px-8"
+                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+              >
+                {displayReviews.slice(1).map(review => (
+                  <ReviewCard key={review.id} review={review} locale={locale} />
+                ))}
               </div>
-            </div>
-            <div
-              ref={scrollRef}
-              className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:scroll-px-6 sm:px-6 lg:-mx-8 lg:scroll-px-8 lg:px-8"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              {displayReviews.slice(1).map(review => (
-                <ReviewCard key={review.id} review={review} locale={locale} />
-              ))}
-            </div>
+            )}
           </div>
         </motion.div>
       </section>

@@ -99,13 +99,13 @@ export default function CategoryCaptainedPage() {
       {/* PRICING BY SEASON: straight from boatData */}
       <Sheet tone="background" next="muted" aria-labelledby="captained-pricing-title">
         <div className="container mx-auto grid max-w-6xl gap-10 px-4 lg:grid-cols-[5fr_7fr] lg:gap-16">
-          <Rise>
+          <Rise className="min-w-0">
             <h2 id="captained-pricing-title" className={H2}>
               {cp.pricingTitle}
             </h2>
             <LeadFacts text={cp.pricingIntro} className="mt-5" />
           </Rise>
-          <Rise delay={0.1}>
+          <Rise delay={0.1} className="min-w-0">
             <div className="overflow-hidden rounded-2xl border border-border bg-card">
               <div className="overflow-x-auto">
                 <table className="w-full text-sm sm:text-base">

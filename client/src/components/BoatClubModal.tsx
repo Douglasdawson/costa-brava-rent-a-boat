@@ -36,12 +36,12 @@ const EXCLUDED_PAGE_KEYS: readonly PageKey[] = [
 ];
 
 const EXCLUDED_SLUGS = new Set<string>(
-  EXCLUDED_PAGE_KEYS.flatMap((key) => Object.values(ROUTE_SLUGS[key])),
+  EXCLUDED_PAGE_KEYS.flatMap(key => Object.values(ROUTE_SLUGS[key]))
 );
 
 function isExcludedPage(): boolean {
   const segments = window.location.pathname.split("/").filter(Boolean);
-  return segments.some((seg) => EXCLUDED_SLUGS.has(seg));
+  return segments.some(seg => EXCLUDED_SLUGS.has(seg));
 }
 
 /**
@@ -111,8 +111,7 @@ export function BoatClubModal() {
     };
 
     const onScroll = () => {
-      const scrollable =
-        document.documentElement.scrollHeight - window.innerHeight;
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
       if (scrollable <= 0) return;
       if (window.scrollY / scrollable >= SCROLL_THRESHOLD) trigger();
     };
@@ -171,7 +170,7 @@ export function BoatClubModal() {
       const modal = modalRef.current;
       if (!modal) return;
       const focusable = modal.querySelectorAll<HTMLElement>(
-        'button, [href], input, [tabindex]:not([tabindex="-1"])',
+        'button, [href], input, [tabindex]:not([tabindex="-1"])'
       );
       if (focusable.length === 0) return;
       const first = focusable[0];
@@ -213,8 +212,7 @@ export function BoatClubModal() {
   if (!show) return null;
 
   const prefersReducedMotion =
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   return (
     <div
@@ -229,7 +227,7 @@ export function BoatClubModal() {
       <div
         ref={modalRef}
         className="bcm-card relative w-full max-w-[440px] overflow-hidden rounded-[22px] bg-background shadow-[0_30px_80px_-20px_rgba(15,30,50,0.55)]"
-        onClick={(e) => e.stopPropagation()}
+        onClick={e => e.stopPropagation()}
       >
         {/* Photo header — golden hour over the Costa Brava */}
         <div className="relative h-[208px] w-full overflow-hidden">
@@ -270,9 +268,7 @@ export function BoatClubModal() {
             style={{ textShadow: "0 1px 8px rgba(12,22,34,0.6)" }}
           >
             <Anchor className="h-[15px] w-[15px] shrink-0" aria-hidden="true" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.13em]">
-              {eyebrow}
-            </span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.13em]">{eyebrow}</span>
           </div>
 
           {/* title over photo */}
@@ -334,7 +330,7 @@ export function BoatClubModal() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleCtaClick}
-            className="bcm-rise group mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-cta py-4 text-[16px] font-semibold text-white transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_30px_-10px_rgba(26,26,62,0.7)]"
+            className="bcm-rise group mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-cta py-4 text-[16px] font-semibold text-white dark:text-background transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_30px_-10px_rgba(26,26,62,0.7)]"
             style={{ animationDelay: "0.32s" }}
           >
             {cta}

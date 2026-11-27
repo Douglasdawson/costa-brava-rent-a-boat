@@ -186,7 +186,7 @@ export default function Footer() {
   const legalClass = `hover:text-primary-foreground transition-colors min-h-11 inline-flex items-center rounded ${ring}`;
 
   return (
-    <footer className="below-fold squircle-b rounded-b-2xl bg-foreground text-primary-foreground/80">
+    <footer className="below-fold squircle-b rounded-b-2xl bg-foreground dark:bg-[hsl(215_45%_16%)] text-primary-foreground/80">
       <motion.div
         variants={container}
         initial={reduce ? false : "hidden"}
@@ -318,7 +318,7 @@ export default function Footer() {
                     <a
                       href={linkHref(l)}
                       data-testid={l.testId}
-                      className={`group/fl relative inline-flex items-center py-1 rounded-sm text-[15px] font-medium leading-snug text-primary-foreground/85 transition-colors after:absolute after:inset-x-0 after:bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 [@media(hover:hover)]:hover:text-primary-foreground [@media(hover:hover)]:hover:after:scale-x-100 ${ring}`}
+                      className={`group/fl relative inline-flex items-center py-1 pointer-coarse:min-h-11 rounded-sm text-[15px] font-medium leading-snug text-primary-foreground/85 transition-colors after:absolute after:inset-x-0 after:bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 [@media(hover:hover)]:hover:text-primary-foreground [@media(hover:hover)]:hover:after:scale-x-100 ${ring}`}
                     >
                       {l.label}
                     </a>
@@ -336,7 +336,7 @@ export default function Footer() {
               <div>
                 <a
                   href="tel:+34611500372"
-                  className={`font-heading text-2xl font-semibold text-primary-foreground hover:text-primary-foreground/70 transition-colors inline-flex items-center gap-2 rounded-sm ${ring}`}
+                  className={`font-heading text-2xl font-semibold text-primary-foreground hover:text-primary-foreground/70 transition-colors inline-flex items-center gap-2 pointer-coarse:min-h-11 rounded-sm ${ring}`}
                   data-testid="phone-call-link"
                   aria-label={`${t.a11y.callPhone} +34 611 500 372`}
                   onClick={() => trackPhoneClick()}
@@ -352,7 +352,7 @@ export default function Footer() {
               <button
                 type="button"
                 onClick={() => openWhatsApp(t.fleet.whatsappHelpPrefill)}
-                className={`inline-flex min-h-12 w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3 text-sm font-semibold text-cta hover:brightness-95 transition ${ring}`}
+                className={`inline-flex min-h-12 w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3 text-sm font-semibold text-cta dark:text-nav hover:brightness-95 transition ${ring}`}
               >
                 <SiWhatsapp className="w-5 h-5" aria-hidden="true" />
                 {t.contact.whatsapp}
@@ -365,7 +365,7 @@ export default function Footer() {
                 />
                 <a
                   href="mailto:info@costabravarentaboat.com"
-                  className="text-sm hover:text-primary-foreground transition-colors py-0.5 break-all"
+                  className="text-sm hover:text-primary-foreground transition-colors py-0.5 break-all pointer-coarse:inline-flex pointer-coarse:min-h-11 pointer-coarse:items-center"
                   data-testid="email-link"
                   aria-label={`${t.a11y.sendEmail} info@costabravarentaboat.com`}
                 >
@@ -383,7 +383,7 @@ export default function Footer() {
                     href="https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm hover:text-primary-foreground transition-colors py-0.5 inline-block"
+                    className="text-sm hover:text-primary-foreground transition-colors py-0.5 inline-block pointer-coarse:inline-flex pointer-coarse:min-h-11 pointer-coarse:items-center"
                     data-testid="maps-link"
                     aria-label={`${t.a11y.viewOnMap}: Puerto de Blanes`}
                   >

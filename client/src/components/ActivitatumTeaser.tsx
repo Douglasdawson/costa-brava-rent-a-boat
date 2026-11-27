@@ -49,7 +49,7 @@ export default function ActivitatumTeaser({ topic, surface }: ActivitatumTeaserP
             </h2>
             <p className="mt-2 leading-relaxed text-muted-foreground">{s.teaserText}</p>
             <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5 text-sm">
-              {picks.map((key) => {
+              {picks.map(key => {
                 const copy = s.activities?.[key];
                 if (!copy) return null;
                 return (
@@ -88,7 +88,7 @@ export default function ActivitatumTeaser({ topic, surface }: ActivitatumTeaserP
           <div className="flex flex-shrink-0 flex-col gap-2">
             <a
               href={localizedPath("activities")}
-              className="inline-flex items-center gap-1.5 font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta"
+              className="inline-flex items-center gap-1.5 pointer-coarse:min-h-11 font-semibold text-primary dark:text-chart-1 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta"
             >
               {s.navLabel}
               <ArrowRight className="h-4 w-4" />
@@ -97,7 +97,7 @@ export default function ActivitatumTeaser({ topic, surface }: ActivitatumTeaserP
               href={topicUrl}
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta"
+              className="inline-flex items-center gap-1.5 pointer-coarse:min-h-11 text-sm text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta"
             >
               {topicCta}
               <ExternalLink className="h-3.5 w-3.5" />

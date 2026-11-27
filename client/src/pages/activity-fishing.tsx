@@ -218,7 +218,9 @@ export default function ActivityFishingPage() {
                   </span>
                 </div>
                 <div className="flex-1 space-y-3 px-5 py-4 sm:px-6">
-                  <p className="text-sm font-medium text-primary">{boat.capacity}</p>
+                  <p className="text-sm font-medium text-primary dark:text-chart-1">
+                    {boat.capacity}
+                  </p>
                   <p className="text-sm leading-relaxed text-muted-foreground">{boat.autonomy}</p>
                   <ul className="border-t border-border">
                     {boat.advantages.map(adv => (

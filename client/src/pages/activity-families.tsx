@@ -193,7 +193,7 @@ export default function ActivityFamiliesPage() {
                   </span>
                 </div>
                 <div className="flex-1 space-y-3 px-5 py-4 sm:px-6">
-                  <p className="text-sm font-medium text-primary">
+                  <p className="text-sm font-medium text-primary dark:text-chart-1">
                     {f?.stopsLabel ? `${f.stopsLabel} ` : ""}
                     {route.stops.join(" → ")}
                   </p>

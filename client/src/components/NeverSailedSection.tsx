@@ -22,7 +22,10 @@ export default function NeverSailedSection() {
   };
 
   return (
-    <section ref={revealRef} className={`below-fold py-16 md:py-24 bg-background transition-[opacity,transform,filter] duration-500 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"}`}>
+    <section
+      ref={revealRef}
+      className={`below-fold py-16 md:py-24 bg-background transition-[opacity,transform,filter] duration-500 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"}`}
+    >
       <div className="container mx-auto px-4 max-w-4xl text-center">
         {/* Header */}
         <h2 className="font-heading text-h2 font-semibold text-foreground tracking-tight mb-3">
@@ -43,13 +46,14 @@ export default function NeverSailedSection() {
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (
-              <div
-                key={index}
-                className="relative flex flex-col items-center flex-1 max-w-xs"
-              >
+              <div key={index} className="relative flex flex-col items-center flex-1 max-w-xs">
                 {/* Step number + icon */}
                 <div className="relative z-10 flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-4">
-                  <Icon className="w-8 h-8 text-primary" strokeWidth={1.5} aria-hidden="true" />
+                  <Icon
+                    className="w-8 h-8 text-primary dark:text-chart-1"
+                    strokeWidth={1.5}
+                    aria-hidden="true"
+                  />
                 </div>
 
                 {/* Step number badge */}
@@ -70,11 +74,7 @@ export default function NeverSailedSection() {
         </div>
 
         {/* CTA */}
-        <Button
-          onClick={handleCTA}
-          size="lg"
-          className="font-sans text-base px-8"
-        >
+        <Button onClick={handleCTA} size="lg" className="font-sans text-base px-8">
           {eraCopy(t.neverSailed.cta, t.neverSailed.ctaPostEra ?? t.neverSailed.cta)}
         </Button>
       </div>

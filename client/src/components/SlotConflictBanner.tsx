@@ -54,7 +54,7 @@ export default function SlotConflictBanner({
           <p className="font-semibold text-foreground">
             {(copy?.title ?? "Las {time}h ya no están libres").replace(
               "{time}",
-              `${preferredTime}${timeSuffix}`,
+              `${preferredTime}${timeSuffix}`
             )}
           </p>
           <p className="text-muted-foreground mt-0.5">
@@ -67,12 +67,12 @@ export default function SlotConflictBanner({
       </div>
       {alternatives.length > 0 ? (
         <div className="flex flex-wrap gap-2 pl-6">
-          {alternatives.map((alt) => (
+          {alternatives.map(alt => (
             <button
               key={alt.time}
               type="button"
               onClick={() => onPickAlternative(alt.time)}
-              className="rounded-lg border border-primary/40 bg-background px-3 py-1.5 text-sm font-semibold text-primary hover:bg-primary/10 active:scale-95 transition-all min-h-9"
+              className="rounded-lg border border-primary/40 bg-background px-3 py-1.5 text-sm font-semibold text-primary dark:text-chart-1 hover:bg-primary/10 active:scale-95 transition-all min-h-9"
             >
               {alt.time}
               {timeSuffix}
@@ -83,7 +83,7 @@ export default function SlotConflictBanner({
         <button
           type="button"
           onClick={onChangeDate}
-          className="ml-6 text-sm font-medium text-primary underline underline-offset-2 hover:text-primary/80"
+          className="ml-6 text-sm font-medium text-primary dark:text-chart-1 underline underline-offset-2 hover:text-primary dark:hover:text-chart-1/80"
         >
           {copy?.changeDate ?? "Cambiar fecha"}
         </button>

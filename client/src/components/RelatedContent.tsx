@@ -17,10 +17,22 @@ interface RelatedContentProps {
 }
 
 const TYPE_STYLES: Record<ContentType, { label: string; labelEn: string; className: string }> = {
-  blog: { label: "Blog", labelEn: "Blog", className: "bg-primary/10 text-primary" },
-  actividad: { label: "Actividad", labelEn: "Activity", className: "bg-primary/15 text-primary" },
+  blog: {
+    label: "Blog",
+    labelEn: "Blog",
+    className: "bg-primary/10 text-primary dark:text-chart-1",
+  },
+  actividad: {
+    label: "Actividad",
+    labelEn: "Activity",
+    className: "bg-primary/15 text-primary dark:text-chart-1",
+  },
   ubicacion: { label: "Ubicacion", labelEn: "Location", className: "bg-muted text-foreground" },
-  guia: { label: "Guia", labelEn: "Guide", className: "bg-primary/5 text-primary" },
+  guia: {
+    label: "Guia",
+    labelEn: "Guide",
+    className: "bg-primary/5 text-primary dark:text-chart-1",
+  },
 };
 
 const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
@@ -571,7 +583,7 @@ export default function RelatedContent({ currentPage }: RelatedContentProps) {
                 <p className="text-sm text-muted-foreground leading-relaxed flex-1">
                   {description}
                 </p>
-                <span className="inline-flex items-center gap-1 text-sm font-medium text-primary mt-auto">
+                <span className="inline-flex items-center gap-1 text-sm font-medium text-primary dark:text-chart-1 mt-auto">
                   {linkText}
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                 </span>

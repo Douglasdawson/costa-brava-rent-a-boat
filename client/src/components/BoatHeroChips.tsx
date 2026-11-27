@@ -30,14 +30,14 @@ interface BoatHeroChipsProps {
  * itself stands (see `CondicionesGenerales.tsx`); it just no longer rides in the
  * hero, so `t.boatDetail.heroChipDateChange` is unused here on purpose.
  *
- * Layout: centred flex-wrap at every width. It was a 2-column grid while there
- * were four chips (a tidy 2x2 on phones); with three, the grid left an orphan
- * in the bottom-left cell. Verified from 320px up. No shadow at rest
- * (DESIGN.md Earned Depth).
+ * Layout: ruled strip (no pills): three cells split by hairlines on sm+, three
+ * stacked rows on phones.
  */
 export function BoatHeroChips({ t, fuelIncluded }: BoatHeroChipsProps) {
   const { language } = useLanguage();
-  const rating = new Intl.NumberFormat(language, { minimumFractionDigits: 1 }).format(BUSINESS_RATING);
+  const rating = new Intl.NumberFormat(language, { minimumFractionDigits: 1 }).format(
+    BUSINESS_RATING
+  );
   const count = new Intl.NumberFormat(language).format(BUSINESS_REVIEW_COUNT);
   const reviewsLabel = (t.boatDetail.heroChipReviews || "{rating} · {count} reseñas en Google")
     .replace("{rating}", rating)
@@ -53,50 +53,47 @@ export function BoatHeroChips({ t, fuelIncluded }: BoatHeroChipsProps) {
       ? {
           Icon: Fuel,
           label: t.boatDetail.heroChipFuelInsurance,
-          iconClass: "text-cta",
+          iconClass: "text-muted-foreground",
         }
       : {
           Icon: Shield,
           label: t.boatDetail.heroChipInsurance,
-          iconClass: "text-cta",
+          iconClass: "text-muted-foreground",
         },
     {
       Icon: Waves,
       label: t.boatDetail.heroChipWeather,
-      iconClass: "text-cta",
+      iconClass: "text-muted-foreground",
     },
   ];
 
   return (
     <ul
-      className="mt-3 flex flex-wrap justify-center gap-2"
+      className="mt-4 grid divide-y divide-border border-y border-border sm:grid-cols-3 sm:divide-x sm:divide-y-0"
       aria-label={t.boatDetail.heroChipsLabel}
     >
       {chips.map((chip, i) => {
         const content = (
           <>
-            <chip.Icon
-              className={`mt-0.5 w-3.5 h-3.5 shrink-0 ${chip.iconClass}`}
-              aria-hidden="true"
-            />
+            <chip.Icon className={`h-4 w-4 shrink-0 ${chip.iconClass}`} aria-hidden="true" />
             <span className="text-balance">{chip.label}</span>
           </>
         );
+        const row =
+          "flex items-center justify-center gap-2 px-4 py-3.5 text-sm leading-snug text-foreground";
         return (
-          <li key={i} className="inline-flex">
+          <li key={i}>
             {i === 0 ? (
               <a
                 href={GBP_PROFILE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-start gap-1.5 rounded-full border border-border/70 bg-muted/70 px-3 py-1.5 pointer-coarse:min-h-11 pointer-coarse:items-center text-xs leading-snug text-foreground hover:border-foreground/40 transition-colors"
+                className={`${row} pointer-coarse:min-h-11 transition-colors motion-reduce:transition-none [@media(hover:hover)]:hover:bg-muted/60`}
               >
                 {content}
               </a>
             ) : (
-              <span className="inline-flex items-start gap-1.5 rounded-full border border-border/70 bg-muted/70 px-3 py-1.5 text-xs leading-snug text-foreground">
-                {content}
-              </span>
+              <span className={row}>{content}</span>
             )}
           </li>
         );

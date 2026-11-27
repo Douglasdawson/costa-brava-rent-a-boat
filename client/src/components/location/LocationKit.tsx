@@ -33,13 +33,13 @@ const FILL: Record<Tone, string> = {
   page: "bg-background",
   muted: MUTED,
   navy: NAVY,
-  ink: "bg-foreground",
+  ink: "bg-foreground dark:bg-[hsl(215_45%_16%)]",
 };
 const WRAP: Record<Tone, string> = {
   page: "bg-background",
   muted: MUTED,
   navy: NAVY_BG,
-  ink: "bg-foreground",
+  ink: "bg-foreground dark:bg-[hsl(215_45%_16%)]",
 };
 
 /** Colour class of a tone, for the sections that are not rendered through <Sheet> (e.g. PopularBoatsSection). */
@@ -177,7 +177,7 @@ function FactRow({ item }: { item: FactItem }) {
   const body = (
     <>
       <div className="flex items-start gap-3">
-        {Icon && <Icon className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />}
+        {Icon && <Icon className="mt-0.5 h-4 w-4 shrink-0 text-foreground/70" aria-hidden="true" />}
         <div className="min-w-0">
           <h3 className="font-heading text-base font-semibold leading-snug tracking-tight text-foreground">
             {item.title}
@@ -252,10 +252,11 @@ function FactRow({ item }: { item: FactItem }) {
 
 /** Data as a ruled panel: title column + one highlighted sentence, the rest muted. */
 export function FactPanel({ items, className }: { items: FactItem[]; className?: string }) {
+  const reduce = useReducedMotion();
   return (
     <motion.ul
       variants={listVariants}
-      initial="hidden"
+      initial={reduce ? false : "hidden"}
       whileInView="show"
       viewport={{ once: true, margin: "0px 0px -8% 0px" }}
       className={cn("overflow-hidden rounded-2xl border border-border bg-card", className)}
@@ -384,7 +385,7 @@ export function LocationHero({
             <InteractiveHoverButton
               tone="dark"
               onClick={onBook}
-              className="min-h-12 w-full px-8 text-base sm:w-auto"
+              className="min-h-12 w-full px-8 text-base dark:text-background sm:w-auto"
               data-testid="button-location-hero-book"
             >
               {bookLabel}
@@ -555,6 +556,7 @@ export function LocationFaq({
 }) {
   const t = useTranslations();
   const { localizedPath } = useLanguage();
+  const reduce = useReducedMotion();
   const [open, setOpen] = useState<number | null>(null);
   if (!items.length) return null;
   return (
@@ -584,7 +586,7 @@ export function LocationFaq({
         </aside>
         <motion.div
           variants={listVariants}
-          initial="hidden"
+          initial={reduce ? false : "hidden"}
           whileInView="show"
           viewport={{ once: true, margin: "0px 0px -8% 0px" }}
           className="flex flex-col gap-3 sm:gap-4"

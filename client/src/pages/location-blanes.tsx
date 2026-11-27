@@ -227,7 +227,7 @@ export default function LocationBlanesPage() {
 
       {/* Pricing table */}
       <Sheet tone="muted" next="page" labelledBy="blanes-pricing-title">
-        <div className="grid gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
           <Rise>
             <SectionTitle id="blanes-pricing-title">{s.pricingTitle}</SectionTitle>
             <Lead text={s.pricingIntro} className="mt-5" />
@@ -241,26 +241,28 @@ export default function LocationBlanesPage() {
               tone="dark"
               as={Link}
               href={localizedPath("pricing")}
-              className="mt-8 min-h-12 px-7 text-base"
+              className="mt-8 min-h-12 px-7 text-base dark:text-background"
             >
               {s.pricingFullDetails}
             </InteractiveHoverButton>
           </Rise>
           <Rise delay={0.1}>
             <div className="overflow-x-auto rounded-2xl border border-border bg-card">
-              <table className="w-full border-collapse text-sm">
+              <table className="w-full border-collapse text-xs sm:text-sm">
                 <thead>
                   <tr className="border-b border-border text-muted-foreground">
-                    <th className="p-3.5 text-left font-medium">{s.pricingBoatCol}</th>
-                    <th className="p-3.5 text-center font-medium">{s.pricingCapacityCol}</th>
-                    <th className="p-3.5 text-center font-medium">{s.pricingLowCol}</th>
-                    <th className="p-3.5 text-center font-medium">{s.pricingHighCol}</th>
+                    <th className="p-2.5 sm:p-3.5 text-left font-medium">{s.pricingBoatCol}</th>
+                    <th className="p-2.5 sm:p-3.5 text-center font-medium">
+                      {s.pricingCapacityCol}
+                    </th>
+                    <th className="p-2.5 sm:p-3.5 text-center font-medium">{s.pricingLowCol}</th>
+                    <th className="p-2.5 sm:p-3.5 text-center font-medium">{s.pricingHighCol}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {listedBoats.map(boat => (
                     <tr key={boat.id} className="border-b border-border last:border-b-0">
-                      <td className="p-3.5">
+                      <td className="p-2.5 sm:p-3.5">
                         <a
                           href={localizedPath("boatDetail", boat.id)}
                           className="font-medium text-foreground underline-offset-4 hover:underline"
@@ -268,13 +270,13 @@ export default function LocationBlanesPage() {
                           {translateBoatText(boat.name, language)}
                         </a>
                       </td>
-                      <td className="p-3.5 text-center">{boat.specifications.capacity}</td>
-                      <td className="p-3.5 text-center">
+                      <td className="p-2.5 sm:p-3.5 text-center">{boat.specifications.capacity}</td>
+                      <td className="p-2.5 sm:p-3.5 text-center">
                         {boat.pricing.BAJA.prices["2h"]
                           ? `${boat.pricing.BAJA.prices["2h"]} EUR`
                           : "-"}
                       </td>
-                      <td className="p-3.5 text-center">
+                      <td className="p-2.5 sm:p-3.5 text-center">
                         {boat.pricing.ALTA.prices["2h"]
                           ? `${boat.pricing.ALTA.prices["2h"]} EUR`
                           : "-"}

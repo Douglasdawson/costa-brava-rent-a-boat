@@ -28,9 +28,9 @@ export default function HomepageLocationsSection() {
   const t = useTranslations();
   const hl = t.homepageLocations;
 
-  const base = locations.filter((l) => l.group === "base");
-  const boat = locations.filter((l) => l.group === "boat");
-  const car = locations.filter((l) => l.group === "car");
+  const base = locations.filter(l => l.group === "base");
+  const boat = locations.filter(l => l.group === "boat");
+  const car = locations.filter(l => l.group === "car");
 
   const locationText: Record<string, { name: string; desc: string }> = {
     locationBlanes: { name: hl.blanes, desc: hl.blanesDesc },
@@ -56,7 +56,7 @@ export default function HomepageLocationsSection() {
         className="group flex items-start gap-3 p-4 rounded-lg border border-border/50 bg-card hover:border-primary/30 hover:shadow-sm transition-all"
       >
         <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-          <Icon className="w-4 h-4 text-primary" />
+          <Icon className="w-4 h-4 text-primary dark:text-chart-1" />
         </div>
         <div className="min-w-0">
           <span className="font-heading font-semibold text-sm text-foreground group-hover:text-primary transition-colors block">
@@ -77,33 +77,27 @@ export default function HomepageLocationsSection() {
           <h2 className="font-heading text-h2 font-semibold tracking-tight text-foreground mb-3">
             {hl.sectionTitle}
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            {hl.sectionSubtitle}
-          </p>
+          <p className="text-muted-foreground max-w-2xl mx-auto">{hl.sectionSubtitle}</p>
         </div>
 
         {/* Base - Blanes */}
         <div className="mb-8">
-          <div className="max-w-lg mx-auto">
-            {base.map(renderLink)}
-          </div>
+          <div className="max-w-lg mx-auto">{base.map(renderLink)}</div>
         </div>
 
         {/* Boat destinations */}
         <div className="mb-8">
           <h3 className="font-heading text-lg font-semibold text-foreground mb-4 flex items-center justify-center gap-2">
-            <Anchor className="w-4 h-4 text-primary" />
+            <Anchor className="w-4 h-4 text-primary dark:text-chart-1" />
             {hl.sailTo}
           </h3>
-          <div className="grid sm:grid-cols-3 gap-3 max-w-3xl mx-auto">
-            {boat.map(renderLink)}
-          </div>
+          <div className="grid sm:grid-cols-3 gap-3 max-w-3xl mx-auto">{boat.map(renderLink)}</div>
         </div>
 
         {/* Nearby towns */}
         <div>
           <h3 className="font-heading text-lg font-semibold text-foreground mb-4 flex items-center justify-center gap-2">
-            <Car className="w-4 h-4 text-primary" />
+            <Car className="w-4 h-4 text-primary dark:text-chart-1" />
             {hl.nearbyTowns}
           </h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">

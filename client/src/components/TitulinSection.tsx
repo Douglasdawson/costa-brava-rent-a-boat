@@ -89,7 +89,7 @@ function CourseStepItem({
         <motion.span
           aria-hidden="true"
           style={{ opacity: numDark }}
-          className="absolute text-primary"
+          className="absolute text-primary dark:text-chart-1"
         >
           {index + 1}
         </motion.span>

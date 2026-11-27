@@ -53,7 +53,7 @@ export default function FAQPreview() {
               >
                 {faqPreview.title}
               </h2>
-              <p className="mt-4 max-w-md text-base leading-relaxed opacity-80 text-pretty">
+              <p className="mt-4 max-w-md text-base leading-relaxed opacity-80 text-pretty dark:opacity-100">
                 {faqPreview.subtitle}
               </p>
             </div>

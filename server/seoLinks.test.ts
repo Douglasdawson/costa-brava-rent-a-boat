@@ -181,6 +181,42 @@ describe("home bodyFallback", () => {
       expect(links).toContain(getLocalizedPath("navigationLicense", lang));
       expect(links).not.toContain(getLocalizedPath("categoryLicenseFree", lang));
     });
+
+    // Blanes landing was an orphan for the JS-less crawler while the home absorbed its intent.
+    it(`${lang}: home links Blanes, Lloret, Tossa, routes and blog`, async () => {
+      const links = internalPaths(fallbackOf((await get(getLocalizedPath("home", lang))).text));
+      for (const key of ["locationBlanes", "locationLloret", "locationTossa", "routes", "blog"] as const) {
+        expect(links, key).toContain(getLocalizedPath(key, lang));
+      }
+    });
+  }
+});
+
+describe("home JSON-LD", () => {
+  it("no season Event, no non-visible Review[], hasMap present, no expired 30-sep sentence", async () => {
+    const html = (await get(getLocalizedPath("home", "es"))).text;
+    const blocks = [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+    const graph = blocks.flatMap((b) => (Array.isArray(b["@graph"]) ? b["@graph"] : [b]));
+    const lb = graph.find((n: { "@type"?: string }) => n["@type"] === "LocalBusiness");
+    expect(lb, "LocalBusiness node").toBeTruthy();
+    expect(graph.some((n: { "@type"?: string }) => n["@type"] === "Event")).toBe(false);
+    expect(lb.review).toBeUndefined();
+    expect(lb.hasMap).toMatch(/^https:\/\/www\.google\.com\/maps/);
+    expect(lb.description).not.toMatch(/legal hasta el 30 de septiembre/);
+  });
+});
+
+describe("Blanes landing bodyFallback (the page meant to own 'alquiler barco blanes')", () => {
+  for (const lang of LANGS) {
+    it(`${lang}: 500+ words, links to the segment pages, boats and neighbours`, async () => {
+      const body = fallbackOf((await get(getLocalizedPath("locationBlanes", lang))).text);
+      expect(wordCount(body)).toBeGreaterThanOrEqual(500);
+      const links = internalPaths(body);
+      for (const key of ["categoryLicensed", "categoryCaptained", "navigationLicense", "pricing", "locationLloret", "locationTossa", "home"] as const) {
+        expect(links, key).toContain(getLocalizedPath(key, lang));
+      }
+      for (const id of LICENSED_BOAT_IDS) expect(links).toContain(getLocalizedPath("boatDetail", lang, { slug: id }));
+    });
   }
 });
 

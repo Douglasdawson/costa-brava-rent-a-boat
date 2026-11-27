@@ -14,11 +14,13 @@
 // RULE: never hardcode rating/review count outside this file.
 
 export const BUSINESS_RATING = 4.8;
-// Sincronizado desde /api/business-stats (Places API, userRatingCount al
-// 2026-07-26). Maps mostraba 402 el 28-07: mantenemos el valor sincronizado,
-// que va por debajo del real, para no reclamar de más en el JSON-LD.
-export const BUSINESS_REVIEW_COUNT = 421;
-export const BUSINESS_RATING_LAST_UPDATED = "2026-09-13";
+// Sincronizado desde /api/business-stats (Places API). 435 confirmado el
+// 2026-11-24 (auditoría SEO) y el 2026-11-27 (ficha de Maps). Antes valía 421:
+// title/meta/OG decían una cifra distinta a la del JSON-LD (que ya leía la
+// caché viva) en la misma página. Mantenemos el valor sincronizado, que va por
+// debajo del real, para no reclamar de más.
+export const BUSINESS_REVIEW_COUNT = 435;
+export const BUSINESS_RATING_LAST_UPDATED = "2026-11-27";
 
 // String variants for JSON-LD schemas that expect string values.
 export const BUSINESS_RATING_STR = BUSINESS_RATING.toFixed(1);

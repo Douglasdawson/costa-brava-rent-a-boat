@@ -14,7 +14,7 @@ import { boatFaqPricing, boatFromPriceLabel, boatIncludedItems, buildBoatOffer, 
 import { buildBoatFaqItems, buildBoatFaqTitle, type BoatFaqText } from "../shared/boatFaqBuilder";
 import { isAICrawler as isAICrawlerShared } from "./seo/constants";
 import { authorToPersonSchema, DEFAULT_AUTHOR, AUTHORS } from "../shared/authors";
-import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, BUSINESS_STREET, CANCELLATION_POLICY_ES } from "../shared/businessProfile";
+import { BUSINESS_RATING_STR, BUSINESS_REVIEW_COUNT_STR, BUSINESS_STREET, CANCELLATION_POLICY_ES, GBP_PROFILE_URL } from "../shared/businessProfile";
 import { buildCoreFacts } from "../shared/aiCitationFacts";
 import { computeFaqVars, substituteFaqVars, type FaqVars } from "../shared/faqVars";
 import { BOAT_DATA, BASELINE_INACTIVE_BOAT_IDS, CAPTAINED_BOAT_IDS, applyFleetStatsToText, boatDataRequiresLicense, boatIncludesFuel, isCaptainedBoat, isPubliclyListed } from "../shared/boatData";
@@ -207,7 +207,7 @@ function jetskiProductLabel(product: JetSkiProduct, lang: LangCode): string {
 // (that goes through escolaNauticaHandoff, only es/ca/en).
 // ---------------------------------------------------------------------------
 export type InternalLinkKey =
-  | "home" | "licensed" | "captained" | "titulin" | "pricing" | "blanes" | "tossa"
+  | "home" | "licensed" | "captained" | "titulin" | "pricing" | "blanes" | "lloret" | "tossa"
   | `boat:${string}`;
 
 /** Self-drive boats sold today (3): licence required, not the captained excursion, not retired. */
@@ -225,6 +225,7 @@ function internalLink(lang: LangCode, key: InternalLinkKey): { href: string; lab
     case "titulin": return { href: getLocalizedPath("navigationLicense", lang), label: t.navigationLicensePage?.navLabel ?? "" };
     case "pricing": return { href: getLocalizedPath("pricing", lang), label: t.categoryLicensed?.linksPricing ?? "" };
     case "blanes": return { href: getLocalizedPath("locationBlanes", lang), label: t.categoryLicensed?.linksBlanes ?? "" };
+    case "lloret": return { href: getLocalizedPath("locationLloret", lang), label: t.locationPages?.lloret?.hero?.title ?? "" };
     case "tossa": return { href: getLocalizedPath("locationTossa", lang), label: t.categoryLicensed?.linksTossa ?? "" };
     default: {
       const id = key.slice("boat:".length);
@@ -2022,29 +2023,6 @@ function buildAggregateRating(): object {
   };
 }
 
-// Build individual Review[] schemas from the 5 most recent reviews cached in
-// business_stats. Each is a Review with author Person, reviewRating Rating,
-// reviewBody, datePublished. AI crawlers cite these individually as
-// authoritative first-party content (vs generic "we have 4.8 stars").
-// Returns undefined when no reviews are cached (prevents empty review key).
-function buildReviews(): object[] | undefined {
-  const stats = getCurrentStats();
-  if (!stats.reviews || stats.reviews.length === 0) return undefined;
-  return stats.reviews.slice(0, 5).map((r) => ({
-    "@type": "Review",
-    author: { "@type": "Person", name: r.author || "Google user" },
-    reviewRating: {
-      "@type": "Rating",
-      ratingValue: String(r.rating),
-      bestRating: "5",
-      worstRating: "1",
-    },
-    reviewBody: r.text,
-    ...(r.publishTime ? { datePublished: r.publishTime } : {}),
-    publisher: { "@type": "Organization", name: "Google Maps" },
-  }));
-}
-
 // Geographic hierarchy for location schemas (aggressive entity stacking)
 const GEO_HIERARCHY = {
   "@type": "Place",
@@ -2252,62 +2230,6 @@ const POST_ERA_TOWN = {
   licenceEn: "Yes, to skipper the boat yourself: from 1 October 2026 Spanish law (RD 1188/2025) requires a nautical licence to rent any motorboat. The Licencia de Navegacion is a 1-day course with no exam, and it covers our three powerboats. Without a licence, book the private excursion with skipper.",
   licenceEs: "Sí, para llevar tú el barco: desde el 1 de octubre de 2026 la ley (RD 1188/2025) exige título náutico para alquilar cualquier barco a motor. La Licencia de Navegación es un curso de 1 día sin examen y cubre nuestras tres lanchas. Sin título, reserva la excursión privada con patrón.",
 };
-
-// Build Event schema for the seasonal business (aggressive: recurring seasonal event)
-function buildSeasonalEvent(isEn: boolean): object {
-  const fleetRange = getSegmentPriceRange("fleet");
-  return {
-    "@type": "Event",
-    name: isEn ? `Costa Brava Boat Rental Season ${SEASON_YEAR}` : `Temporada de Alquiler de Barcos Costa Brava ${SEASON_YEAR}`,
-    description: isEn
-      ? eraCopy(
-          `Boat rental season in Blanes, Costa Brava. April to October ${SEASON_YEAR}. License-free boats from 70 EUR/hour. 9 boats available.`,
-          `Boat rental season in Blanes, Costa Brava. April to October ${SEASON_YEAR}. Powerboats with the Licencia de Navegacion (1-day course) and a private excursion with skipper. 9 boats available.`,
-        )
-      : eraCopy(
-          `Temporada de alquiler de barcos en Blanes, Costa Brava. Abril a octubre ${SEASON_YEAR}. Barcos sin licencia desde 70 EUR/hora. 9 embarcaciones disponibles.`,
-          `Temporada de alquiler de barcos en Blanes, Costa Brava. Abril a octubre ${SEASON_YEAR}. Lanchas con Licencia de Navegacion (curso de 1 dia) y excursion privada con patron. 9 embarcaciones disponibles.`,
-        ),
-    startDate: `${SEASON_YEAR}-04-01`,
-    endDate: `${SEASON_YEAR}-10-31`,
-    eventStatus: "https://schema.org/EventScheduled",
-    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-    location: {
-      "@type": "Place",
-      name: "Puerto de Blanes",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: BUSINESS_STREET,
-        addressLocality: "Blanes",
-        addressRegion: "Girona",
-        postalCode: "17300",
-        addressCountry: "ES",
-      },
-      geo: { "@type": "GeoCoordinates", latitude: 41.6722504, longitude: 2.7978625 },
-      containedInPlace: GEO_HIERARCHY,
-    },
-    organizer: {
-      "@type": "LocalBusiness",
-      "@id": `${BASE_URL}/#organization`,
-      name: "Costa Brava Rent a Boat Blanes",
-    },
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "EUR",
-      lowPrice: String(fleetRange.low),
-      highPrice: String(fleetRange.high),
-      availability: "https://schema.org/InStock",
-      validFrom: `${SEASON_YEAR}-01-01`,
-      validThrough: `${SEASON_YEAR}-10-31`,
-      url: BASE_URL,
-    },
-    image: `${BASE_URL}/og-image.webp`,
-    performer: {
-      "@type": "Organization",
-      name: "Costa Brava Rent a Boat",
-    },
-  };
-}
 
 // Build SiteNavigationElement schema. Tells Google which subpages are the
 // primary navigation candidates for sitelinks under the brand result.
@@ -2647,7 +2569,7 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           "Alquiler de Barcos Costa Brava",
           "CBRaB",
         ],
-        description: "Alquiler de embarcaciones con titulación en Blanes, Costa Brava. Puerto de Blanes. 9 embarcaciones para 4-7 personas. Basta la Licencia de Navegación y verificamos títulos extranjeros online; también barco con patrón, sin titulación. El alquiler sin título es legal hasta el 30 de septiembre de 2026 (RD 1188/2025).",
+        description: "Alquiler de embarcaciones con titulación en Blanes, Costa Brava. Puerto de Blanes. 9 embarcaciones para 4-7 personas. Basta la Licencia de Navegación y verificamos títulos extranjeros online; también barco con patrón, sin titulación. Desde el 1 de octubre de 2026 (RD 1188/2025) para pilotar un barco a motor de alquiler hace falta título náutico.",
         url: BASE_URL,
         telephone: "+34611500372",
         email: "info@costabravarentaboat.com",
@@ -2684,7 +2606,10 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
         paymentAccepted: ["Cash", "Credit Card", "Debit Card"],
         currenciesAccepted: "EUR",
         aggregateRating,
-        ...(buildReviews() ? { review: buildReviews() } : {}),
+        // No `review` array on the home: the 5 Google reviews were never rendered on this page
+        // (ReviewsSection only mounts on the jet ski pages), and Google ignores self-served
+        // LocalBusiness reviews for stars anyway. The visible rating chip backs aggregateRating.
+        hasMap: GBP_PROFILE_URL,
         image: `${BASE_URL}/og-image.webp`,
         logo: `${BASE_URL}/og-image.webp`,
         // Knowledge graph signal — entities this business has expertise on.
@@ -2881,11 +2806,12 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
           },
         ]
       };
-      const seasonalEvent = buildSeasonalEvent(isEn);
+      // The season is already declared in openingHoursSpecification (validFrom/validThrough);
+      // a standing "Event" with a forced performer/offer on the home is not an event.
       const siteNav = buildSiteNavigation(lang);
       const jsonLd = {
         "@context": "https://schema.org",
-        "@graph": [localBusiness, webSite, siteNav, howTo, faq, seasonalEvent]
+        "@graph": [localBusiness, webSite, siteNav, howTo, faq]
       };
       // SSR body fallback for AI crawlers (CCBot, ClaudeBot etc.) that parse
       // HTML but don't execute React hydration. Contains the citation-worthy
@@ -2918,6 +2844,22 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
       const jetskiHref = `${BASE_URL}/${lang}/${getSlugForPage("jetskiHub", lang)}`;
       const efoilLabel = tHome.jetskiLanding?.efoil?.navLabel ?? "eFoil";
       const efoilHref = `${BASE_URL}/${lang}/${getSlugForPage("efoilBlanes", lang)}`;
+      // Where-to-rent links. The home used to link none of the location pages, so the Blanes
+      // landing (the page meant to own "alquiler barco blanes") was an orphan for the JS-less
+      // crawler while the home absorbed that intent. Anchors are the pages' own translated H1s
+      // (keyword anchors), never a hardcoded string.
+      const lpHome = tHome.locationPages;
+      const placeLinks: Array<{ href: string; label: string | undefined }> = [
+        { href: `${BASE_URL}${getLocalizedPath("locationBlanes", lang)}`, label: lpHome?.blanes?.hero?.title },
+        { href: `${BASE_URL}${getLocalizedPath("locationLloret", lang)}`, label: lpHome?.lloret?.hero?.title },
+        { href: `${BASE_URL}${getLocalizedPath("locationTossa", lang)}`, label: lpHome?.tossa?.hero?.title },
+        { href: `${BASE_URL}${getLocalizedPath("routes", lang)}`, label: tHome.breadcrumbs?.routes },
+        { href: `${BASE_URL}${getLocalizedPath("blog", lang)}`, label: tHome.breadcrumbs?.blog },
+      ];
+      const placeLinksHtml = placeLinks
+        .filter((l) => l.label)
+        .map((l) => `  <a href="${l.href}">${esc(l.label as string)}</a>`)
+        .join(" ·\n");
       // Visible text of the home for the JS-less crawler, 100% from the locale bundle
       // (no es/en ternary, no literal fleet counts or prices: applyFleetStatsToText has
       // nothing to rewrite here). Sections follow the three ways to rent after RD 1188/2025:
@@ -2954,6 +2896,9 @@ ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
   <a href="${captainedHref}">${esc(captainedLabel)}</a> ·
   <a href="${jetskiHref}">${esc(jetskiLabel)}</a> ·
   <a href="${efoilHref}">${esc(efoilLabel)}</a>
+</p>
+<p>
+${placeLinksHtml}
 </p>
 <p>
   <a href="https://wa.me/34611500372">${esc(ctaLabel)}</a> ·
@@ -3308,28 +3253,61 @@ ${renderList(activitatumPicksBySlot("rainyDay") as (keyof typeof ACTIVITATUM_PIC
           : eraCopy("Alquiler de barcos sin licencia y con licencia desde el Puerto de Blanes. 9 embarcaciones disponibles, hasta 7 personas, desde 70€/hora. Gasolina incluida en los barcos sin licencia.", "Alquiler de lanchas con Licencia de Navegación (curso de 1 día, sin examen) y excursión privada con patrón desde el Puerto de Blanes. 9 embarcaciones disponibles, hasta 7 personas, desde 175€ por 2 horas. Gasolina aparte."),
         getSegmentPriceRange("fleet"),
       );
-      const blanesBodyFallback = buildLocationBodyFallback(
-        isEn ? "Boat Rental in Blanes, Costa Brava" : "Alquiler de Barcos en Blanes, Costa Brava",
-        isEn
-          ? eraCopy("Rent license-free and licensed boats directly from Blanes Port (Girona). 9 boats available, up to 7 people, from 70€/hour. Fuel included on all license-free boats. The closest harbor for exploring Sa Palomera, Sant Francesc cove, and the southern Costa Brava.", "Rent powerboats directly from Blanes Port (Girona) with the Licencia de Navegacion, a 1-day course with no exam, or sail with a skipper on our private excursion. 9 boats available, up to 7 people, from 175€ per 2 hours, fuel charged separately. The closest harbor for exploring Sa Palomera, Sant Francesc cove, and the southern Costa Brava.")
-          : eraCopy("Alquila barcos sin licencia y con licencia directamente desde el Puerto de Blanes (Girona). 9 barcos disponibles, hasta 7 personas, desde 70€/hora. Gasolina incluida en todos los barcos sin licencia. El puerto más cercano para explorar Sa Palomera, Cala Sant Francesc y la Costa Brava sur.", "Alquila lanchas directamente desde el Puerto de Blanes (Girona) con la Licencia de Navegación, un curso de 1 día sin examen, o sal con patrón en nuestra excursión privada. 9 barcos disponibles, hasta 7 personas, desde 175€ por 2 horas, gasolina aparte. El puerto más cercano para explorar Sa Palomera, Cala Sant Francesc y la Costa Brava sur."),
-        isEn
-          ? [
-              "Sa Palomera rock — 5 minutes from the port",
-              "Cala Sant Francesc — 10 minutes",
-              "Platja de Blanes — main town beach",
-              "Marimurtra Botanical Garden — coastal landmark",
-              "Free parking 100m from the dock",
-            ]
-          : [
-              "Roca de Sa Palomera — 5 minutos desde el puerto",
-              "Cala Sant Francesc — 10 minutos",
-              "Platja de Blanes — playa principal del pueblo",
-              "Jardín Botánico Marimurtra — referente costero",
-              "Parking gratuito a 100m del amarre",
-            ],
-        isEn ? "Book via WhatsApp +34 611 500 372" : "Reserva por WhatsApp +34 611 500 372",
-      );
+      // Native-language body for the JS-less crawler, from the same t.locationPages.blanes the page
+      // renders (8 locales, {var} interpolation like Tossa). It used to be ~120 words with a single
+      // wa.me link: the landing meant to own "alquiler barco blanes" was an orphan and the home
+      // (which linked nothing) kept absorbing that intent.
+      const blT = I18N_BY_LANG[lang] ?? i18nEs;
+      const bl = blT.locationPages.blanes;
+      const bs: Record<string, string> = bl.sections ?? {};
+      let blVars: FaqVars;
+      try {
+        blVars = computeFaqVars(await storage.getAllBoats());
+      } catch {
+        blVars = computeFaqVars(undefined); // static catalog fallbacks
+      }
+      const blSub = (txt: string | undefined): string => (txt ? substituteFaqVars(txt, blVars).replace(/<[^>]+>/g, "") : "");
+      const blBlock = (title: string | undefined, items: Array<string | undefined>): string => {
+        const paras = items.map(blSub).filter(Boolean);
+        return title && paras.length ? `<h2>${esc(blSub(title))}</h2>\n${paras.map((x) => `<p>${esc(x)}</p>`).join("\n")}` : "";
+      };
+      const blFaqHtml = (bl.faqItems ?? [])
+        .map((item) => `<h3>${esc(blSub(item.question))}</h3>\n<p>${esc(blSub(item.answer))}</p>`)
+        .join("\n");
+      const blanesBodyFallback = [
+        `<h1>${esc(bl.hero.title)}</h1>`,
+        `<p>${esc(blSub(bl.hero.subtitle))}</p>`,
+        internalLinksHtml(lang, ["licensed", "captained", "titulin", "pricing", ...LICENSED_BOAT_IDS.map((id): InternalLinkKey => `boat:${id}`), "lloret", "tossa", "home"]),
+        blBlock(bs.whyBlanesTitle, [
+          `${bs.strategicLocation}: ${bs.strategicLocationDesc}`,
+          `${bs.safePorts}: ${bs.safePortsDesc}`,
+          `${bs.accessibleCoves}: ${bs.accessibleCovesDesc}`,
+          `${bs.allLevels}: ${bs.allLevelsDesc}`,
+        ]),
+        blBlock(bs.destinationsTitle, [
+          `${bs.calaBrava} (${bs.calaBravaTime}): ${bs.calaBravaDesc}`,
+          `${bs.lloretDeMar} (${bs.lloretTime}): ${bs.lloretDesc}`,
+          `${bs.calaSantFrancesc} (${bs.calaSantFrancescTime}): ${bs.calaSantFrancescDesc}`,
+        ]),
+        blBlock(bs.fleetTitle, [bs.fleetIntro]),
+        blBlock(bs.guideTitle, [
+          `${bs.guideRequirementsTitle}: ${bs.guideRequirementsText}`,
+          `${bs.guideSeasonTitle}: ${bs.guideSeasonText}`,
+          `${bs.guideIncludedTitle}: ${bs.guideIncludedText}`,
+          `${bs.guideBookingTitle}: ${bs.guideBookingText}`,
+        ]),
+        blBlock(bs.pricingTitle, [bs.pricingIntro, bs.pricingSeasons, bs.pricingFuelNote]),
+        blBlock(bs.experiencesTitle, [
+          `${bs.expSnorkelTitle}: ${bs.expSnorkelDesc}`,
+          `${bs.expSunsetTitle}: ${bs.expSunsetDesc}`,
+          `${bs.expTossaTitle}: ${bs.expTossaDesc}`,
+          `${bs.expFishingTitle}: ${bs.expFishingDesc}`,
+        ]),
+        blBlock(bs.servicesTitle, [bs.portAmenities, bs.freeParking, bs.fuelStation, bs.restaurants, bs.nauticalShops]),
+        blBlock(bs.howToGet, [bs.fromBarcelona, bs.fromGirona, bs.fromFrance, bs.publicTransport]),
+        blFaqHtml,
+        `<p><a href="https://wa.me/34611500372">${esc(blSub(bs.ctaButton))}</a></p>`,
+      ].filter(Boolean).join("\n");
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages, bodyFallback: blanesBodyFallback };
     }
 

@@ -137,6 +137,15 @@ if (!isDev) {
       preload: true,
     },
   }));
+
+  // Permissions-Policy (helmet 8 doesn't ship it). The client never uses camera, microphone,
+  // geolocation or USB, so they are off. `payment` must stay open for the Activitatum booking
+  // overlay: its iframe is created with allow="payment" (Apple/Google Pay), and `payment=()`
+  // would break it. browsing-topics / attribution-reporting are deliberately NOT listed (GTM, Ads, Meta).
+  app.use((_req, res, next) => {
+    res.setHeader("Permissions-Policy", 'camera=(), microphone=(), geolocation=(), usb=(), payment=(self "https://activitatum.com")');
+    next();
+  });
 }
 
 // Rate limiting. Skipped in development so HMR + reloads + screenshot tooling

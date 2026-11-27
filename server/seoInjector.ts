@@ -2878,6 +2878,19 @@ ${bullets.map((b) => `  <li>${esc(b)}</li>`).join("\n")}
         hs?.coves,
         tHome.hero?.whatsappContact,
       ].filter((f): f is string => Boolean(f && f.trim() !== "."));
+      // Same 8 Q&A the hydrated FAQPreview renders (t.faqPreview, 8 locales, {var} interpolation),
+      // so the JS-less crawler reads the answers the visitor sees, in the page language.
+      let homeFaqVars: FaqVars;
+      try {
+        homeFaqVars = computeFaqVars(await storage.getAllBoats());
+      } catch {
+        homeFaqVars = computeFaqVars(undefined); // static catalog fallbacks
+      }
+      const faqSub = (txt: string): string => substituteFaqVars(txt, homeFaqVars).replace(/<[^>]+>/g, "");
+      const homeFaqHtml = (tHome.faqPreview?.items ?? [])
+        .slice(0, 8)
+        .map((i) => `<h3>${esc(faqSub(i.question))}</h3>\n<p>${esc(faqSub(i.answer))}</p>`)
+        .join("\n");
       const bodyFallback = `
 <h1>${esc(homeH1)}</h1>
 <p>${esc(homeSummary)}</p>
@@ -2890,6 +2903,7 @@ ${section(tHome.navigationLicensePage?.hero?.title, [tHome.navigationLicensePage
 ${facts.map((f) => `  <li>${esc(f)}</li>`).join("\n")}
 </ul>
 <p>${esc(tHome.boatDetail?.ssrInsurance ?? "")}</p>
+${tHome.faqPreview?.title ? `<h2>${esc(tHome.faqPreview.title)}</h2>\n${homeFaqHtml}` : ""}
 <p>
   <a href="${licensedHref}">${esc(licensedLabel)}</a> ·
   <a href="${titulinHref}">${esc(titulinLabel)}</a> ·

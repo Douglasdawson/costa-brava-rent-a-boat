@@ -251,6 +251,7 @@ Quedan textos en español hardcoded en `faq.tsx` (AccordionItem del body), en la
 - NO reintroducir resenas/testimonios fabricados en ninguna superficie ni JSON-LD. El dataset sintetico de ~2.370 resenas por barco se elimino el 2026-06-11 por decision del owner; la unica prueba social valida es la de Google Business Profile (`/api/business-stats` + `shared/businessProfile.ts`, perfil enlazado via `GBP_PROFILE_URL`)
 - NO importar bundles i18n estaticamente en codigo cliente (`import { es } from ...` prohibido): desde 2026-06-11 TODOS los locales son chunks lazy via `client/src/i18n/loaders.ts`; `main.tsx` precarga el del idioma activo antes de montar React y el fallback castellano se registra con `registerEsFallback`
 - NO usar em dashes en copy visible de UI/i18n (regla del design system): coma, dos puntos, punto y coma o parentesis
+- NO mezclar intenciones de búsqueda entre URLs (canibalización): home = marca + "alquiler barco costa brava" + titulín; `/alquiler-barcos-blanes` = "alquiler barco(s) blanes"; `barcos-con-licencia` = lancha sin patrón; `alquiler-barco-con-patron` = con patrón. La home y la landing de Blanes DEBEN enlazarse entre sí en su `bodyFallback` (lo único que ven los bots sin JS; guardado en `server/seoLinks.test.ts`). Title/meta de la home: no tocar sin medir en GSC antes (olas 1-3 del 24-11-2026; medir ~8 y ~22 dic)
 - Tests con Vitest: `npm test` para correr, archivos `*.test.ts` junto al codigo que testean
 
 ## Hechos canonicos (fuentes de verdad)

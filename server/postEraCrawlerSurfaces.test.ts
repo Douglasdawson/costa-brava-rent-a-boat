@@ -55,7 +55,8 @@ const SEP_30 = new Date("2026-09-30T10:00:00Z");
 
 // Promises that must not survive the switch (es + en, the languages of the server-built copy).
 const FORBIDDEN = [
-  /gasolina incluida/i,
+  // "sin gasolina incluida" is the TRUE statement for licensed boats (and the interpolated FAQ says it); only the promise is forbidden.
+  /(?<!sin )gasolina incluida/i,
   /incluye(?:n)? (?:la )?gasolina/i,
   /fuel (?:is )?included/i,
   /includes? fuel/i,

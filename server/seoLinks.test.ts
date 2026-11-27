@@ -182,6 +182,12 @@ describe("home bodyFallback", () => {
       expect(links).not.toContain(getLocalizedPath("categoryLicenseFree", lang));
     });
 
+    it(`${lang}: home body carries the FAQ answers (800+ words)`, async () => {
+      const body = fallbackOf((await get(getLocalizedPath("home", lang))).text);
+      expect(wordCount(body)).toBeGreaterThanOrEqual(800);
+      expect((body.match(/<h3>/g) ?? []).length).toBeGreaterThanOrEqual(8);
+    });
+
     // Blanes landing was an orphan for the JS-less crawler while the home absorbed its intent.
     it(`${lang}: home links Blanes, Lloret, Tossa, routes and blog`, async () => {
       const links = internalPaths(fallbackOf((await get(getLocalizedPath("home", lang))).text));

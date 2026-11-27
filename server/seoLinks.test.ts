@@ -212,6 +212,13 @@ describe("home JSON-LD", () => {
   });
 });
 
+describe("static shell JSON-LD (served as-is by pages without their own schema)", () => {
+  it("carries no hardcoded rating or review count (stale 310 vs live 435, GSC review-snippet errors)", () => {
+    const shell = fs.readFileSync(path.join(__dirname, "../client/index.html"), "utf8");
+    expect(shell).not.toMatch(/aggregateRating|reviewCount|ratingValue/);
+  });
+});
+
 describe("Blanes landing bodyFallback (the page meant to own 'alquiler barco blanes')", () => {
   for (const lang of LANGS) {
     it(`${lang}: 500+ words, links to the segment pages, boats and neighbours`, async () => {
